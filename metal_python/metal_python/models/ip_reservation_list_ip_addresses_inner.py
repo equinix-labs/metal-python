@@ -13,6 +13,7 @@
 
 from __future__ import annotations
 from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
 
@@ -32,9 +33,9 @@ class IPReservationListIpAddressesInner(BaseModel):
     Do not edit the class manually.
     """
     # data type: IPReservation
-    __anyof_schema_1: Optional[IPReservation] = None
+    anyof_schema_1_validator: Optional[IPReservation] = None
     # data type: VrfIpReservation
-    __anyof_schema_2: Optional[VrfIpReservation] = None
+    anyof_schema_2_validator: Optional[VrfIpReservation] = None
     actual_instance: Any
     any_of_schemas: List[str] = Field(IPRESERVATIONLISTIPADDRESSESINNER_ANY_OF_SCHEMAS, const=True)
 
@@ -43,6 +44,7 @@ class IPReservationListIpAddressesInner(BaseModel):
 
     @validator('actual_instance')
     def actual_instance_must_validate_anyof(cls, v):
+        instance = cls()
         error_messages = []
         # validate data type: IPReservation
         if type(v) is not IPReservation:
@@ -67,13 +69,13 @@ class IPReservationListIpAddressesInner(BaseModel):
         """Returns the object represented by the json string"""
         instance = cls()
         error_messages = []
-        # __anyof_schema_1: Optional[IPReservation] = None
+        # anyof_schema_1_validator: Optional[IPReservation] = None
         try:
             instance.actual_instance = IPReservation.from_json(json_str)
             return instance
         except ValidationError as e:
              error_messages.append(str(e))
-        # __anyof_schema_2: Optional[VrfIpReservation] = None
+        # anyof_schema_2_validator: Optional[VrfIpReservation] = None
         try:
             instance.actual_instance = VrfIpReservation.from_json(json_str)
             return instance

@@ -650,14 +650,14 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_projects(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ProjectList:  # noqa: E501
+    def find_projects(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, name : Annotated[Optional[StrictStr], Field(description="Search by name substring")] = None, **kwargs) -> ProjectList:  # noqa: E501
         """Retrieve all projects  # noqa: E501
 
         Returns a collection of projects that the current user is a member of.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_projects(include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_projects(include, exclude, page, per_page, name, async_req=True)
         >>> result = thread.get()
 
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -668,6 +668,8 @@ class ProjectsApi(object):
         :type page: int
         :param per_page: Items returned per page
         :type per_page: int
+        :param name: Search by name substring
+        :type name: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -684,21 +686,17 @@ class ProjectsApi(object):
         :rtype: ProjectList
         """
         kwargs['_return_http_data_only'] = True
-        return self.find_projects_with_http_info(include, exclude, page, per_page, **kwargs)  # noqa: E501
+        return self.find_projects_with_http_info(include, exclude, page, per_page, name, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_projects_with_http_info(self,
-      include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, 
-      exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
-      page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, 
-      per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs):  # noqa: E501
+    def find_projects_with_http_info(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, name : Annotated[Optional[StrictStr], Field(description="Search by name substring")] = None, **kwargs):  # noqa: E501
         """Retrieve all projects  # noqa: E501
 
         Returns a collection of projects that the current user is a member of.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_projects_with_http_info(include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_projects_with_http_info(include, exclude, page, per_page, name, async_req=True)
         >>> result = thread.get()
 
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -709,6 +707,8 @@ class ProjectsApi(object):
         :type page: int
         :param per_page: Items returned per page
         :type per_page: int
+        :param name: Search by name substring
+        :type name: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -739,7 +739,8 @@ class ProjectsApi(object):
             'include',
             'exclude',
             'page',
-            'per_page'
+            'per_page',
+            'name'
         ]
         _all_params.extend(
             [
@@ -780,6 +781,8 @@ class ProjectsApi(object):
             _query_params.append(('page', _params['page']))
         if _params.get('per_page') is not None:  # noqa: E501
             _query_params.append(('per_page', _params['per_page']))
+        if _params.get('name') is not None:  # noqa: E501
+            _query_params.append(('name', _params['name']))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

@@ -13,6 +13,7 @@
 
 from __future__ import annotations
 from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
 
@@ -30,9 +31,9 @@ class FacilityInputFacility(BaseModel):
     Do not edit the class manually.
     """
     # data type: List[str]
-    __anyof_schema_1: Optional[List[StrictStr]] = None
+    anyof_schema_1_validator: Optional[List[StrictStr]] = None
     # data type: str
-    __anyof_schema_2: Optional[StrictStr] = None
+    anyof_schema_2_validator: Optional[StrictStr] = None
     actual_instance: Any
     any_of_schemas: List[str] = Field(FACILITYINPUTFACILITY_ANY_OF_SCHEMAS, const=True)
 
@@ -41,19 +42,20 @@ class FacilityInputFacility(BaseModel):
 
     @validator('actual_instance')
     def actual_instance_must_validate_anyof(cls, v):
+        instance = cls()
         error_messages = []
         # validate data type: List[str]
-        if type(v) is not List[str]:
-            error_messages.append(f"Error! Input type `{type(v)}` is not `List[str]`")
-        else:
+        try:
+            instance.anyof_schema_1_validator = v
             return v
-
+        except ValidationError as e:
+            error_messages.append(str(e))
         # validate data type: str
-        if type(v) is not str:
-            error_messages.append(f"Error! Input type `{type(v)}` is not `str`")
-        else:
+        try:
+            instance.anyof_schema_2_validator = v
             return v
-
+        except ValidationError as e:
+            error_messages.append(str(e))
         if error_messages:
             # no match
             raise ValueError("No match found when deserializing the JSON string into FacilityInputFacility with anyOf schemas: List[str], str. Details: " + ", ".join(error_messages))
@@ -65,6 +67,24 @@ class FacilityInputFacility(BaseModel):
         """Returns the object represented by the json string"""
         instance = cls()
         error_messages = []
+        # deserialize data into List[str]
+        try:
+            # validation
+            instance.anyof_schema_1_validator = json.loads(json_str)
+            # assign value to actual_instance
+            instance.actual_instance = instance.anyof_schema_1_validator
+            return instance
+        except ValidationError as e:
+            error_messages.append(str(e))
+        # deserialize data into str
+        try:
+            # validation
+            instance.anyof_schema_2_validator = json.loads(json_str)
+            # assign value to actual_instance
+            instance.actual_instance = instance.anyof_schema_2_validator
+            return instance
+        except ValidationError as e:
+            error_messages.append(str(e))
 
         if error_messages:
             # no match

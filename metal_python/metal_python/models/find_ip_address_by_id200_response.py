@@ -13,8 +13,8 @@
 
 from __future__ import annotations
 from inspect import getfullargspec
-import pprint
 import json
+import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
@@ -34,11 +34,11 @@ class FindIPAddressById200Response(BaseModel):
     Do not edit the class manually.
     """
     # data type: IPAssignment
-    __oneof_schema_1: Optional[IPAssignment] = None
+    oneof_schema_1_validator: Optional[IPAssignment] = None
     # data type: IPReservation
-    __oneof_schema_2: Optional[IPReservation] = None
+    oneof_schema_2_validator: Optional[IPReservation] = None
     # data type: VrfIpReservation
-    __oneof_schema_3: Optional[VrfIpReservation] = None
+    oneof_schema_3_validator: Optional[VrfIpReservation] = None
     actual_instance: Any
     one_of_schemas: List[str] = Field(FINDIPADDRESSBYID200RESPONSE_ONE_OF_SCHEMAS, const=True)
 
@@ -47,6 +47,7 @@ class FindIPAddressById200Response(BaseModel):
 
     @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
+        instance = cls()
         error_messages = []
         match = 0
         # validate data type: IPAssignment
@@ -132,8 +133,4 @@ class FindIPAddressById200Response(BaseModel):
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.dict())
-
-
-
-
 

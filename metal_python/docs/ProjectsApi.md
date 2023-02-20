@@ -326,7 +326,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_projects**
-> ProjectList find_projects(include=include, exclude=exclude, page=page, per_page=per_page)
+> ProjectList find_projects(include=include, exclude=exclude, page=page, per_page=per_page, name=name)
 
 Retrieve all projects
 
@@ -367,10 +367,11 @@ with metal_python.ApiClient(configuration) as api_client:
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
     per_page = 10 # int | Items returned per page (optional) (default to 10)
+    name = 'name_example' # str | Search by name substring (optional)
 
     try:
         # Retrieve all projects
-        api_response = api_instance.find_projects(include=include, exclude=exclude, page=page, per_page=per_page)
+        api_response = api_instance.find_projects(include=include, exclude=exclude, page=page, per_page=per_page, name=name)
         print("The response of ProjectsApi->find_projects:\n")
         pprint(api_response)
     except Exception as e:
@@ -385,6 +386,7 @@ Name | Type | Description  | Notes
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]
  **per_page** | **int**| Items returned per page | [optional] [default to 10]
+ **name** | **str**| Search by name substring | [optional] 
 
 ### Return type
 

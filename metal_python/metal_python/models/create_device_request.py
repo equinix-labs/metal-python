@@ -13,8 +13,8 @@
 
 from __future__ import annotations
 from inspect import getfullargspec
-import pprint
 import json
+import pprint
 import re  # noqa: F401
 
 from typing import Any, List, Optional
@@ -33,9 +33,9 @@ class CreateDeviceRequest(BaseModel):
     Do not edit the class manually.
     """
     # data type: DeviceCreateInMetroInput
-    __oneof_schema_1: Optional[DeviceCreateInMetroInput] = None
+    oneof_schema_1_validator: Optional[DeviceCreateInMetroInput] = None
     # data type: DeviceCreateInFacilityInput
-    __oneof_schema_2: Optional[DeviceCreateInFacilityInput] = None
+    oneof_schema_2_validator: Optional[DeviceCreateInFacilityInput] = None
     actual_instance: Any
     one_of_schemas: List[str] = Field(CREATEDEVICEREQUEST_ONE_OF_SCHEMAS, const=True)
 
@@ -44,6 +44,7 @@ class CreateDeviceRequest(BaseModel):
 
     @validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
+        instance = cls()
         error_messages = []
         match = 0
         # validate data type: DeviceCreateInMetroInput
@@ -117,8 +118,4 @@ class CreateDeviceRequest(BaseModel):
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.dict())
-
-
-
-
 

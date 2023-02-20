@@ -171,7 +171,7 @@ class TestVrfIpReservation(unittest.TestCase):
                 public = True, 
                 management = True, 
                 manageable = True, 
-                customdata = None, 
+                customdata = metal_python.models.customdata.customdata(), 
                 bill = True, 
                 project_lite = metal_python.models.project.Project(
                     bgp_config = metal_python.models.href.Href(

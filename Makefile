@@ -1,4 +1,5 @@
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
+OPENAPI_CODEGEN_SHA=sha256:67100c4bda1fb1886b5024e3a7549f905002f6393d19f828f438c902b8f85d67
 OPENAPI_CODEGEN_IMAGE=openapitools/openapi-generator-cli@${OPENAPI_CODEGEN_SHA}
 CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
@@ -12,7 +13,6 @@ SPEC_DIR_ENTRY_POINT=oas3.fetched/openapi/public/openapi3.yaml
 STITCHED_DIR=oas3.stitched
 STITCHED_FILE=metal_openapi.yaml
 #OPENAPI_CODEGEN_SHA=sha256:be8c2ef6be22f695410c2cc13d0ec7fdf2533fc88a7f17288ad758b7679de8df
-OPENAPI_CODEGEN_SHA=sha256:2e108389ba0cc6210449fba419e755d737bd235b1d061359490c057a571b89fa
 
 .PHONY: docker-stitch-spec
 docker-stitch-spec:
