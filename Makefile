@@ -1,9 +1,11 @@
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
-OPENAPI_CODEGEN_SHA=sha256:67100c4bda1fb1886b5024e3a7549f905002f6393d19f828f438c902b8f85d67
+#OPENAPI_CODEGEN_SHA=sha256:67100c4bda1fb1886b5024e3a7549f905002f6393d19f828f438c902b8f85d67
+OPENAPI_CODEGEN_SHA=sha256:925bc39fc00f8198cde01a2315afa815b37b2a44a9a43afed298adfc79da5770
 OPENAPI_CODEGEN_IMAGE=openapitools/openapi-generator-cli@${OPENAPI_CODEGEN_SHA}
 CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
-DOCKER_OPENAPI=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_CODEGEN_IMAGE}
+#DOCKER_OPENAPI=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_CODEGEN_IMAGE}
+DOCKER_OPENAPI=java -jar oag.jar
 
 
 
@@ -16,11 +18,17 @@ STITCHED_FILE=metal_openapi.yaml
 
 .PHONY: docker-stitch-spec
 docker-stitch-spec:
-	${DOCKER_OPENAPI} generate \
+#	${DOCKER_OPENAPI} generate \
 		-i /local/${SPEC_DIR_ENTRY_POINT} \
 		-g openapi-yaml \
 		-p skipOperationExample=true -p outputFile=${STITCHED_FILE} \
 		-o /local/${STITCHED_DIR}
+	${DOCKER_OPENAPI} generate \
+		-i ${SPEC_DIR_ENTRY_POINT} \
+		-g openapi-yaml \
+		-p skipOperationExample=true -p outputFile=${STITCHED_FILE} \
+		-o ${STITCHED_DIR}
+
 
 .PHONY: patch-spec
 patch-spec: docker-stitch-spec
@@ -39,10 +47,17 @@ PACKAGE_VERSION=0.0.1
 
 .PHONY: docker-generate
 docker-generate: clean patch-spec
-	${DOCKER_OPENAPI} generate \
+#	${DOCKER_OPENAPI} generate \
 		-i /local/${SPEC_PATCHED_FILE} \
 		-g python-nextgen \
 		-o /local/${PACKAGE_NAME} \
+		--git-repo-id ${GIT_REPO} \
+		--git-user-id ${GIT_ORG}  \
+	    --additional-properties=packageName=${PACKAGE_NAME},packageVersion=${PACKAGE_VERSION}
+	${DOCKER_OPENAPI} generate \
+		-i ${SPEC_PATCHED_FILE} \
+		-g python-nextgen \
+		-o ${PACKAGE_NAME} \
 		--git-repo-id ${GIT_REPO} \
 		--git-user-id ${GIT_ORG}  \
 	    --additional-properties=packageName=${PACKAGE_NAME},packageVersion=${PACKAGE_VERSION}
