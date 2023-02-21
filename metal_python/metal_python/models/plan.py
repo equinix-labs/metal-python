@@ -34,7 +34,7 @@ class Plan(BaseModel):
     available_in_metros: Optional[List[PlanAvailableInMetrosInner]] = Field(None, description="Shows which metros the plan is available in, and the metro-based price if it is different from the default price.")
     var_class: Optional[StrictStr] = Field(None, alias="class")
     description: Optional[StrictStr] = None
-    deployment_types: Optional[conlist(StrictStr, min_items=0)] = Field(None, unique_items=True)
+    deployment_types: Optional[conlist(StrictStr, min_items=0)] = None
     id: Optional[StrictStr] = None
     legacy: Optional[StrictBool] = None
     line: Optional[StrictStr] = None

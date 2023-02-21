@@ -256,6 +256,11 @@ class TestFindIPAddressById200Response(unittest.TestCase):
             )
         else :
             return FindIPAddressById200Response(
+                parent_block = metal_python.models.parent_block.ParentBlock(
+                    cidr = 56, 
+                    href = '', 
+                    netmask = '', 
+                    network = '', ),
                 type = 'vrf',
                 vrf = metal_python.models.vrf.Vrf(
                     id = '', 

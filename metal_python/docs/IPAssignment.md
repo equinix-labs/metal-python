@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **metro** | [**IPAssignmentMetro**](IPAssignmentMetro.md) |  | [optional] 
 **netmask** | **str** |  | [optional] 
 **network** | **str** |  | [optional] 
-**parent_block** | [**ParentBlock**](ParentBlock.md) |  | [optional] 
+**parent_block** | [**ParentBlock**](ParentBlock.md) |  | 
 **public** | **bool** |  | [optional] 
 
 ## Example

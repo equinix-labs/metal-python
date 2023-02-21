@@ -194,9 +194,21 @@ name_search_capable_paths = [
 for path in name_search_capable_paths:
     fixedSpec['paths'][path]['get']['parameters'].append(name_search_param)
 
+# FIX 7. mitigate bug in openapi-generator
+# https://github.com/OpenAPITools/openapi-generator/issues/14780
+
+del fixedSpec['components']['schemas']['Plan']['properties']['deployment_types']['uniqueItems']
+
+# FIX 8. make requested_by mandatory for parsing ip reservation
+# .. in order to distinguish from ip assignment and vrf
+
+fixedSpec['components']['schemas']['IPAssignment']['required'] = [
+    'parent_block']
+
 
 with open(OUTFILE, 'w') as f:
     originalSpec = yaml.dump(
         fixedSpec, f, sort_keys=False, default_flow_style=False)
+
 
 print(INFILE, "was fixed into", OUTFILE)

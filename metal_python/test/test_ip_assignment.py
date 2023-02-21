@@ -64,6 +64,11 @@ class TestIPAssignment(unittest.TestCase):
             )
         else :
             return IPAssignment(
+                parent_block = metal_python.models.parent_block.ParentBlock(
+                    cidr = 56, 
+                    href = '', 
+                    netmask = '', 
+                    network = '', ),
         )
         """
 

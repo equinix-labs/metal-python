@@ -61,6 +61,9 @@ class FacilityInputFacility(BaseModel):
             raise ValueError("No match found when deserializing the JSON string into FacilityInputFacility with anyOf schemas: List[str], str. Details: " + ", ".join(error_messages))
         else:
             return v
+    @classmethod
+    def from_dict(cls, obj: dict) -> FacilityInputFacility:
+        return cls.from_json(json.dumps(obj))
 
     @classmethod
     def from_json(cls, json_str: str) -> FacilityInputFacility:

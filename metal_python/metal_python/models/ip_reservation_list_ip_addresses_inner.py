@@ -63,6 +63,9 @@ class IPReservationListIpAddressesInner(BaseModel):
             raise ValueError("No match found when deserializing the JSON string into IPReservationListIpAddressesInner with anyOf schemas: IPReservation, VrfIpReservation. Details: " + ", ".join(error_messages))
         else:
             return v
+    @classmethod
+    def from_dict(cls, obj: dict) -> IPReservationListIpAddressesInner:
+        return cls.from_json(json.dumps(obj))
 
     @classmethod
     def from_json(cls, json_str: str) -> IPReservationListIpAddressesInner:
