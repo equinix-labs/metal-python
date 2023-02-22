@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **addon** | **bool** |  | [optional] 
 **address** | **str** |  | [optional] 
 **address_family** | **int** |  | [optional] 
-**assignments** | [**List[IPAssignment]**](IPAssignment.md) |  | [optional] 
+**assignments** | [**List[Href]**](Href.md) |  | [optional] 
 **available** | **str** |  | [optional] 
 **bill** | **bool** |  | [optional] 
 **cidr** | **int** |  | [optional] 

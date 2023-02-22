@@ -21,7 +21,6 @@ from datetime import datetime
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, StrictBool, StrictInt, StrictStr, validator
 from metal_python.models.href import Href
-from metal_python.models.ip_assignment import IPAssignment
 from metal_python.models.ip_reservation_facility import IPReservationFacility
 from metal_python.models.ip_reservation_metro import IPReservationMetro
 from metal_python.models.metal_gateway_lite import MetalGatewayLite
@@ -36,7 +35,7 @@ class IPReservation(BaseModel):
     addon: Optional[StrictBool] = None
     address: Optional[StrictStr] = None
     address_family: Optional[StrictInt] = None
-    assignments: Optional[List[IPAssignment]] = None
+    assignments: Optional[List[Href]] = None
     available: Optional[StrictStr] = None
     bill: Optional[StrictBool] = None
     cidr: Optional[StrictInt] = None
@@ -66,8 +65,14 @@ class IPReservation(BaseModel):
 
     @validator('type')
     def type_validate_enum(cls, v):
-        if v not in ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6'):
-            raise ValueError("must validate the enum values ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6'):
+                    raise ValueError("each list item must be one of ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6')")
+        else:
+            if v not in ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6'):
+                raise ValueError("must be on of enum values ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6')")
+
         return v
 
     class Config:
@@ -133,7 +138,7 @@ class IPReservation(BaseModel):
             "addon": obj.get("addon"),
             "address": obj.get("address"),
             "address_family": obj.get("address_family"),
-            "assignments": [IPAssignment.from_dict(_item) for _item in obj.get("assignments")] if obj.get("assignments") is not None else None,
+            "assignments": [Href.from_dict(_item) for _item in obj.get("assignments")] if obj.get("assignments") is not None else None,
             "available": obj.get("available"),
             "bill": obj.get("bill"),
             "cidr": obj.get("cidr"),

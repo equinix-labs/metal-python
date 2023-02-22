@@ -39,8 +39,14 @@ class PlanSpecsDrivesInner(BaseModel):
         if v is None:
             return v
 
-        if v not in ('HDD', 'SSD', 'NVME'):
-            raise ValueError("must validate the enum values ('HDD', 'SSD', 'NVME')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('HDD', 'SSD', 'NVME'):
+                    raise ValueError("each list item must be one of ('HDD', 'SSD', 'NVME')")
+        else:
+            if v not in ('HDD', 'SSD', 'NVME'):
+                raise ValueError("must be on of enum values ('HDD', 'SSD', 'NVME')")
+
         return v
 
     @validator('category')
@@ -48,8 +54,14 @@ class PlanSpecsDrivesInner(BaseModel):
         if v is None:
             return v
 
-        if v not in ('boot', 'cache', 'storage'):
-            raise ValueError("must validate the enum values ('boot', 'cache', 'storage')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('boot', 'cache', 'storage'):
+                    raise ValueError("each list item must be one of ('boot', 'cache', 'storage')")
+        else:
+            if v not in ('boot', 'cache', 'storage'):
+                raise ValueError("must be on of enum values ('boot', 'cache', 'storage')")
+
         return v
 
     class Config:

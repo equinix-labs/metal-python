@@ -41,8 +41,14 @@ class MetalGatewayLite(BaseModel):
         if v is None:
             return v
 
-        if v not in ('ready', 'active', 'deleting'):
-            raise ValueError("must validate the enum values ('ready', 'active', 'deleting')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('ready', 'active', 'deleting'):
+                    raise ValueError("each list item must be one of ('ready', 'active', 'deleting')")
+        else:
+            if v not in ('ready', 'active', 'deleting'):
+                raise ValueError("must be on of enum values ('ready', 'active', 'deleting')")
+
         return v
 
     class Config:

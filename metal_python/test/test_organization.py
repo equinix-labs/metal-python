@@ -65,7 +65,7 @@ class TestOrganization(unittest.TestCase):
                     href = '', ), 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 credit_amount = 1.337, 
-                customdata = None, 
+                customdata = metal_python.models.customdata.customdata(), 
                 description = '', 
                 enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 id = '', 

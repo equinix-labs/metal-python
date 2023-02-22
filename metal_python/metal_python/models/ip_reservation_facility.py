@@ -44,8 +44,14 @@ class IPReservationFacility(BaseModel):
         if v is None:
             return v
 
-        if v not in ('baremetal', 'backend_transfer', 'layer_2', 'global_ipv4', 'ibx'):
-            raise ValueError("must validate the enum values ('baremetal', 'backend_transfer', 'layer_2', 'global_ipv4', 'ibx')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('baremetal', 'backend_transfer', 'layer_2', 'global_ipv4', 'ibx'):
+                    raise ValueError("each list item must be one of ('baremetal', 'backend_transfer', 'layer_2', 'global_ipv4', 'ibx')")
+        else:
+            if v not in ('baremetal', 'backend_transfer', 'layer_2', 'global_ipv4', 'ibx'):
+                raise ValueError("must be on of enum values ('baremetal', 'backend_transfer', 'layer_2', 'global_ipv4', 'ibx')")
+
         return v
 
     class Config:

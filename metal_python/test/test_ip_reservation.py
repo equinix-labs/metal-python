@@ -43,29 +43,8 @@ class TestIPReservation(unittest.TestCase):
                 address = '', 
                 address_family = 56, 
                 assignments = [
-                    metal_python.models.ip_assignment.IPAssignment(
-                        address = '', 
-                        address_family = 56, 
-                        assigned_to = metal_python.models.href.Href(
-                            href = '', ), 
-                        cidr = 56, 
-                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        enabled = True, 
-                        gateway = '', 
-                        global_ip = True, 
-                        href = '', 
-                        id = '', 
-                        manageable = True, 
-                        management = True, 
-                        metro = null, 
-                        netmask = '', 
-                        network = '', 
-                        parent_block = metal_python.models.parent_block.ParentBlock(
-                            cidr = 56, 
-                            href = '', 
-                            netmask = '', 
-                            network = '', ), 
-                        public = True, )
+                    metal_python.models.href.Href(
+                        href = '', )
                     ], 
                 available = '', 
                 bill = True, 

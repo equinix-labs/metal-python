@@ -32,7 +32,7 @@ class IPAssignment(BaseModel):
     """
     address: Optional[StrictStr] = None
     address_family: Optional[StrictInt] = None
-    assigned_to: Optional[Href] = None
+    assigned_to: Href = ...
     cidr: Optional[StrictInt] = None
     created_at: Optional[datetime] = None
     enabled: Optional[StrictBool] = None
@@ -45,7 +45,7 @@ class IPAssignment(BaseModel):
     metro: Optional[IPAssignmentMetro] = None
     netmask: Optional[StrictStr] = None
     network: Optional[StrictStr] = None
-    parent_block: ParentBlock = ...
+    parent_block: Optional[ParentBlock] = None
     public: Optional[StrictBool] = None
     __properties = ["address", "address_family", "assigned_to", "cidr", "created_at", "enabled", "gateway", "global_ip", "href", "id", "manageable", "management", "metro", "netmask", "network", "parent_block", "public"]
 

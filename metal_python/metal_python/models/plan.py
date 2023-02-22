@@ -51,8 +51,14 @@ class Plan(BaseModel):
         if v is None:
             return v
 
-        if v not in ('on_demand', 'spot_market'):
-            raise ValueError("must validate the enum values ('on_demand', 'spot_market')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('on_demand', 'spot_market'):
+                    raise ValueError("each list item must be one of ('on_demand', 'spot_market')")
+        else:
+            if v not in ('on_demand', 'spot_market'):
+                raise ValueError("must be on of enum values ('on_demand', 'spot_market')")
+
         return v
 
     @validator('line')
@@ -60,8 +66,14 @@ class Plan(BaseModel):
         if v is None:
             return v
 
-        if v not in ('baremetal'):
-            raise ValueError("must validate the enum values ('baremetal')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('baremetal'):
+                    raise ValueError("each list item must be one of ('baremetal')")
+        else:
+            if v not in ('baremetal'):
+                raise ValueError("must be on of enum values ('baremetal')")
+
         return v
 
     @validator('type')
@@ -69,8 +81,14 @@ class Plan(BaseModel):
         if v is None:
             return v
 
-        if v not in ('standard', 'workload_optimized', 'custom'):
-            raise ValueError("must validate the enum values ('standard', 'workload_optimized', 'custom')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('standard', 'workload_optimized', 'custom'):
+                    raise ValueError("each list item must be one of ('standard', 'workload_optimized', 'custom')")
+        else:
+            if v not in ('standard', 'workload_optimized', 'custom'):
+                raise ValueError("must be on of enum values ('standard', 'workload_optimized', 'custom')")
+
         return v
 
     class Config:

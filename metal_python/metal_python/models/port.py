@@ -48,8 +48,14 @@ class Port(BaseModel):
         if v is None:
             return v
 
-        if v not in ('NetworkPort', 'NetworkBondPort'):
-            raise ValueError("must validate the enum values ('NetworkPort', 'NetworkBondPort')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('NetworkPort', 'NetworkBondPort'):
+                    raise ValueError("each list item must be one of ('NetworkPort', 'NetworkBondPort')")
+        else:
+            if v not in ('NetworkPort', 'NetworkBondPort'):
+                raise ValueError("must be on of enum values ('NetworkPort', 'NetworkBondPort')")
+
         return v
 
     @validator('network_type')
@@ -57,8 +63,14 @@ class Port(BaseModel):
         if v is None:
             return v
 
-        if v not in ('layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded'):
-            raise ValueError("must validate the enum values ('layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded'):
+                    raise ValueError("each list item must be one of ('layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded')")
+        else:
+            if v not in ('layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded'):
+                raise ValueError("must be on of enum values ('layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded')")
+
         return v
 
     class Config:

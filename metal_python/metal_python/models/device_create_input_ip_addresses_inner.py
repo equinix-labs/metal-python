@@ -39,8 +39,14 @@ class DeviceCreateInputIpAddressesInner(BaseModel):
         if v is None:
             return v
 
-        if v not in (4, 6):
-            raise ValueError("must validate the enum values (4, 6)")
+        if type(v) is list:
+            for i in v:
+                if i not in (4, 6):
+                    raise ValueError("each list item must be one of (4, 6)")
+        else:
+            if v not in (4, 6):
+                raise ValueError("must be on of enum values (4, 6)")
+
         return v
 
     class Config:

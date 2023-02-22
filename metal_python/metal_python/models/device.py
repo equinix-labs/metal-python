@@ -85,8 +85,14 @@ class Device(BaseModel):
         if v is None:
             return v
 
-        if v not in ('active', 'deleted', 'deprovisioning', 'failed', 'inactive', 'queued', 'reinstalling', 'post_provisioning', 'powering_on', 'powering_off', 'provisioning'):
-            raise ValueError("must validate the enum values ('active', 'deleted', 'deprovisioning', 'failed', 'inactive', 'queued', 'reinstalling', 'post_provisioning', 'powering_on', 'powering_off', 'provisioning')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('active', 'deleted', 'deprovisioning', 'failed', 'inactive', 'queued', 'reinstalling', 'post_provisioning', 'powering_on', 'powering_off', 'provisioning'):
+                    raise ValueError("each list item must be one of ('active', 'deleted', 'deprovisioning', 'failed', 'inactive', 'queued', 'reinstalling', 'post_provisioning', 'powering_on', 'powering_off', 'provisioning')")
+        else:
+            if v not in ('active', 'deleted', 'deprovisioning', 'failed', 'inactive', 'queued', 'reinstalling', 'post_provisioning', 'powering_on', 'powering_off', 'provisioning'):
+                raise ValueError("must be on of enum values ('active', 'deleted', 'deprovisioning', 'failed', 'inactive', 'queued', 'reinstalling', 'post_provisioning', 'powering_on', 'powering_off', 'provisioning')")
+
         return v
 
     class Config:

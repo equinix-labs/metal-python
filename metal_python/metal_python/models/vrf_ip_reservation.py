@@ -60,8 +60,14 @@ class VrfIpReservation(BaseModel):
 
     @validator('type')
     def type_validate_enum(cls, v):
-        if v not in ('vrf'):
-            raise ValueError("must validate the enum values ('vrf')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('vrf'):
+                    raise ValueError("each list item must be one of ('vrf')")
+        else:
+            if v not in ('vrf'):
+                raise ValueError("must be on of enum values ('vrf')")
+
         return v
 
     class Config:

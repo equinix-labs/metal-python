@@ -203,8 +203,14 @@ del fixedSpec['components']['schemas']['Plan']['properties']['deployment_types']
 # .. in order to distinguish from ip assignment and vrf
 
 fixedSpec['components']['schemas']['IPAssignment']['required'] = [
-    'parent_block']
+    'assigned_to']
 
+# FIX 9. make  IPReservation assignments href, instead of IPAssignment,
+# .. so that it's not parsed as a list of IPAssignments which has mandatory fields
+
+fixedSpec['components']['schemas']['IPReservation']['properties']['assignments']['items'] = {
+    "$ref": "#/components/schemas/Href"
+}
 
 with open(OUTFILE, 'w') as f:
     originalSpec = yaml.dump(

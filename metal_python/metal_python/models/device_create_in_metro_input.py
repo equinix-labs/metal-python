@@ -61,8 +61,14 @@ class DeviceCreateInMetroInput(BaseModel):
         if v is None:
             return v
 
-        if v not in ('hourly', 'daily', 'monthly', 'yearly'):
-            raise ValueError("must validate the enum values ('hourly', 'daily', 'monthly', 'yearly')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('hourly', 'daily', 'monthly', 'yearly'):
+                    raise ValueError("each list item must be one of ('hourly', 'daily', 'monthly', 'yearly')")
+        else:
+            if v not in ('hourly', 'daily', 'monthly', 'yearly'):
+                raise ValueError("must be on of enum values ('hourly', 'daily', 'monthly', 'yearly')")
+
         return v
 
     class Config:

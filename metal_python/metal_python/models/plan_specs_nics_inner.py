@@ -37,8 +37,14 @@ class PlanSpecsNicsInner(BaseModel):
         if v is None:
             return v
 
-        if v not in ('1Gbps', '10Gbps', '25Gbps'):
-            raise ValueError("must validate the enum values ('1Gbps', '10Gbps', '25Gbps')")
+        if type(v) is list:
+            for i in v:
+                if i not in ('1Gbps', '10Gbps', '25Gbps'):
+                    raise ValueError("each list item must be one of ('1Gbps', '10Gbps', '25Gbps')")
+        else:
+            if v not in ('1Gbps', '10Gbps', '25Gbps'):
+                raise ValueError("must be on of enum values ('1Gbps', '10Gbps', '25Gbps')")
+
         return v
 
     class Config:
