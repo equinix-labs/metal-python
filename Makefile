@@ -41,7 +41,7 @@ clean:
 	rm -rf ${PACKAGE_NAME}
 
 GIT_REPO=metal-python
-GIT_ORG=t0mk
+GIT_ORG=equinix-labs
 OPENAPI_CONFIG:=oas3.config.json
 PACKAGE_NAME=equinix_metal
 PACKAGE_VERSION=0.0.1
