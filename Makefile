@@ -1,14 +1,15 @@
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
-#OPENAPI_CODEGEN_SHA=sha256:67100c4bda1fb1886b5024e3a7549f905002f6393d19f828f438c902b8f85d67
 OPENAPI_CODEGEN_SHA=sha256:925bc39fc00f8198cde01a2315afa815b37b2a44a9a43afed298adfc79da5770
 OPENAPI_CODEGEN_IMAGE=openapitools/openapi-generator-cli@${OPENAPI_CODEGEN_SHA}
 CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
+
+# TODO: switch back to Docker once openapi-generator-cli fixes python-nextgen bugs
 #OPENAPI_COMMAND=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_CODEGEN_IMAGE}
 OPENAPI_COMMAND=java -jar oag.jar
 
 .PHONY: all
-all: docker-stitch-spec patch-spec clean docker-generate fetch
+all: stitch-spec patch-spec clean generate fetch
 
 STITCHED_DIR=oas3.stitched
 STITCHED_FILE=metal_openapi.yaml
@@ -20,7 +21,7 @@ SPEC_FETCHED_DIR=oas3.fetched
 fetch:
 		${FETCH_SPEC_COMMAND} ${SPEC_BASE_URL} ${SPEC_FETCHED_DIR} ${SPEC_ROOT_FILE}
 
-docker-stitch-spec:
+stitch-spec: fetch
 #	${OPENAPI_COMMAND} generate \
 		-i /local/${SPEC_FETCHED_DIR}/${SPEC_ROOT_FILE} \
 		-g openapi-yaml \
@@ -32,7 +33,7 @@ docker-stitch-spec:
 		-p skipOperationExample=true -p outputFile=${STITCHED_FILE} \
 		-o ${STITCHED_DIR}
 
-patch-spec: docker-stitch-spec
+patch-spec: stitch-spec
 	scripts/patch_metal_spec.py ${STITCHED_DIR}/${STITCHED_FILE} ${SPEC_PATCHED_FILE}
 
 clean:
@@ -45,7 +46,7 @@ OPENAPI_CONFIG:=oas3.config.json
 PACKAGE_NAME=equinix_metal
 PACKAGE_VERSION=0.0.1
 
-docker-generate: clean patch-spec
+generate: clean patch-spec
 #	${OPENAPI_COMMAND} generate \
 		-i /local/${SPEC_PATCHED_FILE} \
 		-g python-nextgen \
