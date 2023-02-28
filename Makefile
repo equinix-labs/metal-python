@@ -14,7 +14,7 @@ all: stitch-spec patch-spec clean generate fetch
 STITCHED_DIR=oas3.stitched
 STITCHED_FILE=metal_openapi.yaml
 FETCH_SPEC_COMMAND=docker run --rm -v $(CURDIR):/workdir --entrypoint sh mikefarah/yq:4.30.8 scripts/download_spec.sh
-SPEC_BASE_URL:=https://api.packet.net/api-docs-test
+SPEC_BASE_URL:=https://api.equinix.com/metal/v1/api-docs
 SPEC_ROOT_FILE:=openapi3.yaml
 SPEC_FETCHED_DIR=oas3.fetched
 
@@ -41,7 +41,7 @@ clean:
 	rm -rf ${PACKAGE_NAME}
 
 GIT_REPO=metal-python
-GIT_ORG=t0mk
+GIT_ORG=equinix-labs
 OPENAPI_CONFIG:=oas3.config.json
 PACKAGE_NAME=equinix_metal
 PACKAGE_VERSION=0.0.1
