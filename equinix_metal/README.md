@@ -17,9 +17,9 @@ Python 3.7+
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install git+https://github.com/t0mk/metal-python.git
+pip install git+https://github.com/equinix-labs/metal-python.git
 ```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/t0mk/metal-python.git`)
+(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/equinix-labs/metal-python.git`)
 
 Then import the package:
 ```python
