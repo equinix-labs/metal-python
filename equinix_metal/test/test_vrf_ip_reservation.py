@@ -171,7 +171,7 @@ class TestVrfIpReservation(unittest.TestCase):
                 public = True, 
                 management = True, 
                 manageable = True, 
-                customdata = equinix_metal.models.customdata.customdata(), 
+                customdata = None, 
                 bill = True, 
                 project_lite = equinix_metal.models.project.Project(
                     bgp_config = equinix_metal.models.href.Href(
