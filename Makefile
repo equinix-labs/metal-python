@@ -47,7 +47,7 @@ OPENAPI_CONFIG:=oas3.config.json
 PACKAGE_NAME=equinix_metal
 PACKAGE_VERSION=0.0.1
 
-USER_AGENT=${PACKAGE_NAME}-${PACKAGE_VERSION}
+USER_AGENT=${GIT_REPO}/${PACKAGE_VERSION}
 generate: clean patch-spec
 #	${OPENAPI_COMMAND} generate \
 		-i /local/${SPEC_PATCHED_FILE} \
