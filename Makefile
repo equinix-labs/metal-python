@@ -18,6 +18,7 @@ SPEC_BASE_URL:=https://api.equinix.com/metal/v1/api-docs
 SPEC_ROOT_FILE:=openapi3.yaml
 SPEC_FETCHED_DIR=oas3.fetched
 
+
 fetch:
 		${FETCH_SPEC_COMMAND} ${SPEC_BASE_URL} ${SPEC_FETCHED_DIR} ${SPEC_ROOT_FILE}
 
@@ -46,6 +47,7 @@ OPENAPI_CONFIG:=oas3.config.json
 PACKAGE_NAME=equinix_metal
 PACKAGE_VERSION=0.0.1
 
+USER_AGENT=${GIT_REPO}/${PACKAGE_VERSION}
 generate: clean patch-spec
 #	${OPENAPI_COMMAND} generate \
 		-i /local/${SPEC_PATCHED_FILE} \
@@ -53,6 +55,7 @@ generate: clean patch-spec
 		-o /local/${PACKAGE_NAME} \
 		--git-repo-id ${GIT_REPO} \
 		--git-user-id ${GIT_ORG}  \
+		--http-user-agent ${USER_AGENT} \
 	    --additional-properties=packageName=${PACKAGE_NAME},packageVersion=${PACKAGE_VERSION}
 	${OPENAPI_COMMAND} generate \
 		-i ${SPEC_PATCHED_FILE} \
@@ -60,4 +63,5 @@ generate: clean patch-spec
 		-o ${PACKAGE_NAME} \
 		--git-repo-id ${GIT_REPO} \
 		--git-user-id ${GIT_ORG}  \
+		--http-user-agent ${USER_AGENT} \
 	    --additional-properties=packageName=${PACKAGE_NAME},packageVersion=${PACKAGE_VERSION}
