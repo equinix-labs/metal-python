@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
 from equinix_metal.models.metro import Metro
 from equinix_metal.models.project import Project
 from equinix_metal.models.user import User
@@ -33,6 +33,8 @@ class Vrf(BaseModel):
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     description: Optional[StrictStr] = Field(None, description="Optional field that can be set to describe the VRF")
+    bgp_dynamic_neighbors_enabled: Optional[StrictBool] = Field(None, description="Toggle to enable the dynamic bgp neighbors feature on the VRF")
+    bgp_dynamic_neighbors_export_route_map: Optional[StrictBool] = Field(None, description="Toggle to export the VRF route-map to the dynamic bgp neighbors")
     local_asn: Optional[StrictInt] = Field(None, description="A 4-byte ASN associated with the VRF.")
     ip_ranges: Optional[List[StrictStr]] = Field(None, description="A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].")
     project: Optional[Project] = None
@@ -41,7 +43,7 @@ class Vrf(BaseModel):
     href: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    __properties = ["id", "name", "description", "local_asn", "ip_ranges", "project", "metro", "created_by", "href", "created_at", "updated_at"]
+    __properties = ["id", "name", "description", "bgp_dynamic_neighbors_enabled", "bgp_dynamic_neighbors_export_route_map", "local_asn", "ip_ranges", "project", "metro", "created_by", "href", "created_at", "updated_at"]
 
     class Config:
         allow_population_by_field_name = True
@@ -90,6 +92,8 @@ class Vrf(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "description": obj.get("description"),
+            "bgp_dynamic_neighbors_enabled": obj.get("bgp_dynamic_neighbors_enabled"),
+            "bgp_dynamic_neighbors_export_route_map": obj.get("bgp_dynamic_neighbors_export_route_map"),
             "local_asn": obj.get("local_asn"),
             "ip_ranges": obj.get("ip_ranges"),
             "project": Project.from_dict(obj.get("project")) if obj.get("project") is not None else None,
