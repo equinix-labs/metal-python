@@ -156,6 +156,8 @@ class TestIPReservationListIpAddressesInner(unittest.TestCase):
                     id = '', 
                     name = '', 
                     description = '', 
+                    bgp_dynamic_neighbors_enabled = True, 
+                    bgp_dynamic_neighbors_export_route_map = True, 
                     local_asn = 56, 
                     ip_ranges = [
                         ''
@@ -233,6 +235,8 @@ class TestIPReservationListIpAddressesInner(unittest.TestCase):
                     id = '', 
                     name = '', 
                     description = '', 
+                    bgp_dynamic_neighbors_enabled = True, 
+                    bgp_dynamic_neighbors_export_route_map = True, 
                     local_asn = 56, 
                     ip_ranges = [
                         ''

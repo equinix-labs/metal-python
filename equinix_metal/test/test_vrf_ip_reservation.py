@@ -99,6 +99,8 @@ class TestVrfIpReservation(unittest.TestCase):
                     id = '', 
                     name = '', 
                     description = '', 
+                    bgp_dynamic_neighbors_enabled = True, 
+                    bgp_dynamic_neighbors_export_route_map = True, 
                     local_asn = 56, 
                     ip_ranges = [
                         ''
@@ -171,7 +173,7 @@ class TestVrfIpReservation(unittest.TestCase):
                 public = True, 
                 management = True, 
                 manageable = True, 
-                customdata = None, 
+                customdata = equinix_metal.models.customdata.customdata(), 
                 bill = True, 
                 project_lite = equinix_metal.models.project.Project(
                     bgp_config = equinix_metal.models.href.Href(
@@ -222,6 +224,8 @@ class TestVrfIpReservation(unittest.TestCase):
                     id = '', 
                     name = '', 
                     description = '', 
+                    bgp_dynamic_neighbors_enabled = True, 
+                    bgp_dynamic_neighbors_export_route_map = True, 
                     local_asn = 56, 
                     ip_ranges = [
                         ''
