@@ -1,1 +1,4 @@
 proj.py
+build
+dist
+*.egg-info
