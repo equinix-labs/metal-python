@@ -214,7 +214,7 @@ fixedSpec['components']['schemas']['IPReservation']['properties']['assignments']
 
 with open(OUTFILE, 'w') as f:
     originalSpec = yaml.dump(
-        fixedSpec, f, sort_keys=False, default_flow_style=False)
+        fixedSpec, f, default_flow_style=False)
 
 
 print(INFILE, "was fixed into", OUTFILE)
