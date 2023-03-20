@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cpus** | [**List[PlanSpecsCpusInner]**](PlanSpecsCpusInner.md) |  | [optional] 
 **drives** | [**List[PlanSpecsDrivesInner]**](PlanSpecsDrivesInner.md) |  | [optional] 
-**nics** | [**List[PlanSpecsNicsInner]**](PlanSpecsNicsInner.md) |  | [optional] 
 **features** | [**PlanSpecsFeatures**](PlanSpecsFeatures.md) |  | [optional] 
 **href** | **str** |  | [optional] 
+**nics** | [**List[PlanSpecsNicsInner]**](PlanSpecsNicsInner.md) |  | [optional] 
 
 ## Example
 

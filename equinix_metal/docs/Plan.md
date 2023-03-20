@@ -7,8 +7,9 @@ Name | Type | Description | Notes
 **available_in** | [**List[PlanAvailableInInner]**](PlanAvailableInInner.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
 **available_in_metros** | [**List[PlanAvailableInMetrosInner]**](PlanAvailableInMetrosInner.md) | Shows which metros the plan is available in, and the metro-based price if it is different from the default price. | [optional] 
 **var_class** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
 **deployment_types** | **List[str]** |  | [optional] 
+**description** | **str** |  | [optional] 
+**href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
 **legacy** | **bool** |  | [optional] 
 **line** | **str** |  | [optional] 
@@ -17,7 +18,6 @@ Name | Type | Description | Notes
 **slug** | **str** |  | [optional] 
 **specs** | [**PlanSpecs**](PlanSpecs.md) |  | [optional] 
 **type** | **str** | The plan type | [optional] 
-**href** | **str** |  | [optional] 
 
 ## Example
 

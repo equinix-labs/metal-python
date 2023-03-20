@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **city** | **str** |  | [optional] 
 **coordinates** | [**Coordinates**](Coordinates.md) |  | [optional] 
 **country** | **str** |  | 
+**href** | **str** |  | [optional] 
 **state** | **str** |  | [optional] 
 **zip_code** | **str** |  | 
-**href** | **str** |  | [optional] 
 
 ## Example
 

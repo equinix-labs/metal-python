@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metro** | **str** | Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided. | 
 **href** | **str** |  | [optional] 
+**metro** | **str** | Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided. | 
 **always_pxe** | **bool** | When true, devices with a &#x60;custom_ipxe&#x60; OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot. | [optional] 
 **billing_cycle** | **str** | The billing cycle of the device. | [optional] 
 **customdata** | **Dict[str, object]** | Customdata is an arbitrary JSON value that can be accessed via the metadata service. | [optional] 

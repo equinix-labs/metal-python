@@ -160,6 +160,7 @@ equinix_metal/models/vrf_ip_reservation.py
 equinix_metal/models/vrf_ip_reservation_create_input.py
 equinix_metal/rest.py
 git_push.sh
+pyproject.toml
 requirements.txt
 setup.cfg
 setup.py

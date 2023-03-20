@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**href** | **str** |  | [optional] 
 **key** | **str** |  | [optional] 
 **label** | **str** |  | [optional] 
-**href** | **str** |  | [optional] 
 
 ## Example
 

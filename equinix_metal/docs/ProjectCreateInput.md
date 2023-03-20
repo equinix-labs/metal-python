@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customdata** | **object** |  | [optional] 
+**href** | **str** |  | [optional] 
 **name** | **str** |  | 
 **payment_method_id** | **str** |  | [optional] 
-**href** | **str** |  | [optional] 
 
 ## Example
 

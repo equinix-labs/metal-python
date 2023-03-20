@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **backend_transfer_enabled** | **bool** |  | [optional] 
 **customdata** | **object** |  | [optional] 
+**href** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **payment_method_id** | **str** |  | [optional] 
-**href** | **str** |  | [optional] 
 
 ## Example
 
