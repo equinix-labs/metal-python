@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **customdata** | **Dict[str, object]** |  | [optional] 
 **description** | **str** |  | [optional] 
 **hostname** | **str** |  | [optional] 
+**href** | **str** |  | [optional] 
 **ipxe_script_url** | **str** |  | [optional] 
 **locked** | **bool** |  | [optional] 
 **network_frozen** | **bool** | If true, this instance can not be converted to a different network type. | [optional] 
 **spot_instance** | **bool** | Can be set to false to convert a spot-market instance to on-demand. | [optional] 
 **tags** | **List[str]** |  | [optional] 
 **userdata** | **str** |  | [optional] 
-**href** | **str** |  | [optional] 
 
 ## Example
 

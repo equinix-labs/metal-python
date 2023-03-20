@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **distro** | **str** |  | [optional] 
 **distro_label** | **str** |  | [optional] 
+**href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
 **licensed** | **bool** | Licenced OS is priced according to pricing property | [optional] 
 **name** | **str** |  | [optional] 
@@ -14,7 +15,6 @@ Name | Type | Description | Notes
 **provisionable_on** | **List[str]** |  | [optional] 
 **slug** | **str** |  | [optional] 
 **version** | **str** |  | [optional] 
-**href** | **str** |  | [optional] 
 
 ## Example
 

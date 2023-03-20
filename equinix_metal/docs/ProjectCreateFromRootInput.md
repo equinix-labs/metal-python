@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customdata** | **object** |  | [optional] 
+**href** | **str** |  | [optional] 
 **name** | **str** |  | 
 **organization_id** | **str** |  | [optional] 
 **payment_method_id** | **str** |  | [optional] 
-**href** | **str** |  | [optional] 
 
 ## Example
 

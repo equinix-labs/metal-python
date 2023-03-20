@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ip_addresses** | [**List[IPReservationListIpAddressesInner]**](IPReservationListIpAddressesInner.md) |  | [optional] 
 **href** | **str** |  | [optional] 
+**ip_addresses** | [**List[IPReservationListIpAddressesInner]**](IPReservationListIpAddressesInner.md) |  | [optional] 
 
 ## Example
 

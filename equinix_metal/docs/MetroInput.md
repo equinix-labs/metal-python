@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**metro** | **str** | Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided. | 
 **href** | **str** |  | [optional] 
+**metro** | **str** | Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided. | 
 
 ## Example
 

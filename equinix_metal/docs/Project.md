@@ -4,10 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**backend_transfer_enabled** | **bool** |  | [optional] 
 **bgp_config** | [**Href**](Href.md) |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **customdata** | **object** |  | [optional] 
 **devices** | [**List[Href]**](Href.md) |  | [optional] 
+**href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
 **invitations** | [**List[Href]**](Href.md) |  | [optional] 
 **max_devices** | **object** |  | [optional] 
@@ -15,13 +17,11 @@ Name | Type | Description | Notes
 **memberships** | [**List[Href]**](Href.md) |  | [optional] 
 **name** | **str** |  | [optional] 
 **network_status** | **object** |  | [optional] 
+**organization** | [**Href**](Href.md) |  | [optional] 
 **payment_method** | [**Href**](Href.md) |  | [optional] 
 **ssh_keys** | [**List[Href]**](Href.md) |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 **volumes** | [**List[Href]**](Href.md) |  | [optional] 
-**organization** | [**Href**](Href.md) |  | [optional] 
-**href** | **str** |  | [optional] 
-**backend_transfer_enabled** | **bool** |  | [optional] 
 
 ## Example
 

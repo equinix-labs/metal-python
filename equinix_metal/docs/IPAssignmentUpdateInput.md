@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**details** | **str** |  | [optional] 
 **customdata** | **object** |  | [optional] 
-**tags** | **List[str]** |  | [optional] 
+**details** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
+**tags** | **List[str]** |  | [optional] 
 
 ## Example
 

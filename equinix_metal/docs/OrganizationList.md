@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**href** | **str** |  | [optional] 
 **meta** | [**Meta**](Meta.md) |  | [optional] 
 **organizations** | [**List[Organization]**](Organization.md) |  | [optional] 
-**href** | **str** |  | [optional] 
 
 ## Example
 

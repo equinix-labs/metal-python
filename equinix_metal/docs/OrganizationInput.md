@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **customdata** | **object** |  | [optional] 
 **description** | **str** |  | [optional] 
 **enforce_2fa_at** | **datetime** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] 
+**href** | **str** |  | [optional] 
 **logo** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **twitter** | **str** |  | [optional] 
 **website** | **str** |  | [optional] 
-**href** | **str** |  | [optional] 
 
 ## Example
 

@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **details** | **str** |  | [optional] 
 **facility** | **str** |  | [optional] 
 **fail_on_approval_required** | **bool** |  | [optional] 
+**href** | **str** |  | [optional] 
 **metro** | **str** | The code of the metro you are requesting the IP reservation in. | [optional] 
 **quantity** | **int** |  | 
 **tags** | **List[str]** |  | [optional] 
 **type** | **str** |  | 
-**href** | **str** |  | [optional] 
 
 ## Example
 

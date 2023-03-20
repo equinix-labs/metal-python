@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**actions** | [**List[DeviceActionsInner]**](DeviceActionsInner.md) | Actions supported by the device instance. | [optional] 
 **always_pxe** | **bool** |  | [optional] 
 **billing_cycle** | **str** |  | [optional] 
 **bonding_mode** | **int** |  | [optional] 
@@ -24,7 +25,6 @@ Name | Type | Description | Notes
 **metro** | [**DeviceMetro**](DeviceMetro.md) |  | [optional] 
 **network_ports** | [**List[Port]**](Port.md) | By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available. | [optional] 
 **operating_system** | [**OperatingSystem**](OperatingSystem.md) |  | [optional] 
-**actions** | [**List[DeviceActionsInner]**](DeviceActionsInner.md) | Actions supported by the device instance. | [optional] 
 **plan** | [**Plan**](Plan.md) |  | [optional] 
 **project** | [**DeviceProject**](DeviceProject.md) |  | [optional] 
 **project_lite** | [**DeviceProjectLite**](DeviceProjectLite.md) |  | [optional] 

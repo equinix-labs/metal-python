@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **int** |  | [optional] 
-**type** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
+**type** | **str** |  | [optional] 
 
 ## Example
 
