@@ -23,7 +23,9 @@ all: stitch-spec patch-spec clean generate fetch
 fetch:
 		${FETCH_SPEC_COMMAND} ${SPEC_BASE_URL} ${SPEC_FETCHED_DIR} ${SPEC_ROOT_FILE}
 
-stitch-spec: fetch
+#stitch-spec: fetch
+# keep 'fetch' target independent on the API spec transformations 
+stitch-spec:
 	${OPENAPI_COMMAND} generate \
 		-i /local/${SPEC_FETCHED_DIR}/${SPEC_ROOT_FILE} \
 		-g openapi-yaml \
