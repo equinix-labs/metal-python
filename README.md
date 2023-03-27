@@ -58,17 +58,15 @@ pip install ./equinix_metal
 
 ## Release
 
-Before releasing:
- - included changes should be described in [CHANGELOG.md](CHANGELOG.md)
- - new version number should be in `PACKAGE_VERSION`
- - `make generate` should not taint git status
+When releasing, make sure that the desired version number is in `PACKAGE_VERSION` variable in Makefile, and that `make generate` doesn't taint git status.
 
-There is a Github action to make a PyPI release on push of tags in format `v1.2.3`. To create a release, you should create a tag and then push it to origin.
+Then go to [https://github.com/equinix-labs/metal-python/releases/new](https://github.com/equinix-labs/metal-python/releases/new) and create a new release from `main`. Don't choose an existing tag. Put `v{PACKAGE_VERSION}` to the field for "Release title". For example if PACKAGE_VERSION is "0.1.2", use "v0.1.2".
 
-```
-git tag v1.2.3
-git push origin --tags
-```
+Add release notes in format of [Terraform Provider Equinix](https://github.com/equinix/terraform-provider-equinix/releases), with at least one of the sections (NOTES, FEATURES, BUG FIXES, ENHANCEMENTS).
+
+Click "Publish release", and the manual part should be over.
+
+The release will create a tag, and we have a Github action in place that should create a PyPI release for version from PACKAGE_VERSION.
 
 Verify that the [releasing Github action](https://github.com/equinix-labs/metal-python/actions) succeeded.
 
