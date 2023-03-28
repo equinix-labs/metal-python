@@ -1,8 +1,7 @@
 name: Release Package to PyPI
 on:
-  push:
-    tags:
-    - 'v*.*.*'
+  release:
+    types: [published]
 env:
   PACKAGE_DIR: equinix_metal
   DIST_DIR: equinix_metal/dist
