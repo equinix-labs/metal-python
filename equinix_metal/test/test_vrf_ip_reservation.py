@@ -48,7 +48,7 @@ class TestVrfIpReservation(unittest.TestCase):
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_by = equinix_metal.models.href.Href(
                     href = '', ), 
-                customdata = None, 
+                customdata = equinix_metal.models.customdata.customdata(), 
                 details = '', 
                 gateway = '', 
                 href = '', 

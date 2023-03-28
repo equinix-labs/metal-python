@@ -1,4 +1,4 @@
-PACKAGE_VERSION=0.0.1
+PACKAGE_VERSION=0.1.0
 
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
 OPENAPI_CODEGEN_SHA=sha256:c07f666580053cc9f67a4adffad24c0ce6466c91d1ed1db8d05c39ba70f7ffdf
@@ -23,7 +23,9 @@ all: stitch-spec patch-spec clean generate fetch
 fetch:
 		${FETCH_SPEC_COMMAND} ${SPEC_BASE_URL} ${SPEC_FETCHED_DIR} ${SPEC_ROOT_FILE}
 
-stitch-spec: fetch
+#stitch-spec: fetch
+# keep 'fetch' target independent on the API spec transformations 
+stitch-spec:
 	${OPENAPI_COMMAND} generate \
 		-i /local/${SPEC_FETCHED_DIR}/${SPEC_ROOT_FILE} \
 		-g openapi-yaml \

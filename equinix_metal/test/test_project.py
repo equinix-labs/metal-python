@@ -45,7 +45,7 @@ class TestProject(unittest.TestCase):
                 bgp_config = equinix_metal.models.href.Href(
                     href = '', ), 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                customdata = None, 
+                customdata = equinix_metal.models.customdata.customdata(), 
                 devices = [
                     equinix_metal.models.href.Href(
                         href = '', )
@@ -56,7 +56,7 @@ class TestProject(unittest.TestCase):
                     equinix_metal.models.href.Href(
                         href = '', )
                     ], 
-                max_devices = None, 
+                max_devices = equinix_metal.models.max_devices.max_devices(), 
                 members = [
                     equinix_metal.models.href.Href(
                         href = '', )
@@ -66,7 +66,7 @@ class TestProject(unittest.TestCase):
                         href = '', )
                     ], 
                 name = '', 
-                network_status = None, 
+                network_status = equinix_metal.models.network_status.network_status(), 
                 organization = equinix_metal.models.href.Href(
                     href = '', ), 
                 payment_method = equinix_metal.models.href.Href(
