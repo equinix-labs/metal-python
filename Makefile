@@ -48,3 +48,5 @@ generate: clean patch-spec
 		--git-user-id ${GIT_ORG}  \
 		--http-user-agent ${USER_AGENT} \
 	    --additional-properties=packageName=${PACKAGE_NAME},packageVersion=${PACKAGE_VERSION}
+	rm -rf equinix_metal/.github
+	rm -rf equinix_metal/.gitlab-ci.yml
