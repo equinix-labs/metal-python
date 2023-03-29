@@ -60,7 +60,7 @@ pip install ./equinix_metal
 
 When releasing, make sure that the desired version number is in `PACKAGE_VERSION` variable in Makefile, and that `make generate` doesn't taint git status.
 
-Then go to [https://github.com/equinix-labs/metal-python/releases/new](https://github.com/equinix-labs/metal-python/releases/new) and create a new release from `main`. Don't choose an existing tag. Put `v{PACKAGE_VERSION}` to the field for "Release title". For example if PACKAGE_VERSION is "0.1.2", use "v0.1.2".
+Then go to [https://github.com/equinix-labs/metal-python/releases/new](https://github.com/equinix-labs/metal-python/releases/new) and create a new release from `main`. Don't choose an existing tag, but create a new one called `v{PACKAGE_VERSION}`. For example, if PACKAGE_VERSION is "0.1.2", create tag "v0.1.2". Put the tag name also to the "Release title" field.
 
 Add release notes in format of [Terraform Provider Equinix](https://github.com/equinix/terraform-provider-equinix/releases), with at least one of the sections (NOTES, FEATURES, BUG FIXES, ENHANCEMENTS).
 
