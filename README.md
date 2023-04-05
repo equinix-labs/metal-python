@@ -8,6 +8,12 @@
 
 Python SDK for Equinix Metal API , generated with openapi-generator. Pypi package name is `equinix-metal`.
 
+## Installation
+
+```
+python -m pip install --upgrade equinix-metal
+```
+
 ## Examples
 
 See examples in [examples](examples) directory.
