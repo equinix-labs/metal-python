@@ -1,7 +1,8 @@
 PACKAGE_VERSION=0.1.0
 
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
-OPENAPI_CODEGEN_SHA=sha256:c07f666580053cc9f67a4adffad24c0ce6466c91d1ed1db8d05c39ba70f7ffdf
+OPENAPI_CODEGEN_SHA=sha256:fc570971c1ca62fac829aba7d7d735efd580293adecdd2ccae21094904bc29e6
+
 OPENAPI_CODEGEN_IMAGE=openapitools/openapi-generator-cli@${OPENAPI_CODEGEN_SHA}
 CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
