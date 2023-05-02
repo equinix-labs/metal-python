@@ -168,7 +168,8 @@ for s in fixSchemas:
             del fixedSpec['components']['schemas'][s]['properties'][p]['default']
 
 # FIX 3. fix type and format for integers
-fixNumInt(fixedSpec)
+# most likely not necessary in 05/2023
+#fixNumInt(fixedSpec)
 
 # FIX 4. fix explode in non-array parameters
 fixExplode(fixedSpec)
@@ -197,7 +198,7 @@ for path in name_search_capable_paths:
 # FIX 7. mitigate bug in openapi-generator
 # https://github.com/OpenAPITools/openapi-generator/issues/14780
 
-del fixedSpec['components']['schemas']['Plan']['properties']['deployment_types']['uniqueItems']
+#del fixedSpec['components']['schemas']['Plan']['properties']['deployment_types']['uniqueItems']
 
 # FIX 8. make requested_by mandatory for parsing ip reservation
 # .. in order to distinguish from ip assignment and vrf
