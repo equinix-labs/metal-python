@@ -53,7 +53,7 @@ class TestCreateDeviceRequest(unittest.TestCase):
                 hardware_reservation_id = 'next-available', 
                 hostname = '', 
                 ip_addresses = [
-                    equinix_metal.models.device_create_input_ip_addresses_inner.DeviceCreateInput_ip_addresses_inner(
+                    equinix_metal.models.ip_address.IPAddress(
                         address_family = 4, 
                         cidr = 28, 
                         href = '', 

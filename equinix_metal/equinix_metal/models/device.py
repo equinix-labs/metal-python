@@ -67,6 +67,7 @@ class Device(BaseModel):
     provisioning_percentage: Optional[StrictFloat] = Field(None, description="Only visible while device provisioning")
     root_password: Optional[StrictStr] = Field(None, description="Root password is automatically generated when server is provisioned and it is removed after 24 hours")
     short_id: Optional[StrictStr] = None
+    sos: Optional[StrictStr] = Field(None, description="Hostname used to connect to the instance via the SOS (Serial over SSH) out-of-band console.")
     spot_instance: Optional[StrictBool] = Field(None, description="Whether or not the device is a spot instance.")
     spot_price_max: Optional[StrictFloat] = Field(None, description="The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown.")
     ssh_keys: Optional[conlist(Href)] = None
@@ -78,7 +79,7 @@ class Device(BaseModel):
     user: Optional[StrictStr] = None
     userdata: Optional[StrictStr] = None
     volumes: Optional[conlist(Href)] = None
-    __properties = ["actions", "always_pxe", "billing_cycle", "bonding_mode", "created_at", "created_by", "customdata", "description", "facility", "hardware_reservation", "hostname", "href", "id", "image_url", "ip_addresses", "ipxe_script_url", "iqn", "locked", "metro", "network_ports", "operating_system", "plan", "project", "project_lite", "provisioning_events", "provisioning_percentage", "root_password", "short_id", "spot_instance", "spot_price_max", "ssh_keys", "state", "switch_uuid", "tags", "termination_time", "updated_at", "user", "userdata", "volumes"]
+    __properties = ["actions", "always_pxe", "billing_cycle", "bonding_mode", "created_at", "created_by", "customdata", "description", "facility", "hardware_reservation", "hostname", "href", "id", "image_url", "ip_addresses", "ipxe_script_url", "iqn", "locked", "metro", "network_ports", "operating_system", "plan", "project", "project_lite", "provisioning_events", "provisioning_percentage", "root_password", "short_id", "sos", "spot_instance", "spot_price_max", "ssh_keys", "state", "switch_uuid", "tags", "termination_time", "updated_at", "user", "userdata", "volumes"]
 
     @validator('state')
     def state_validate_enum(cls, v):
@@ -217,6 +218,7 @@ class Device(BaseModel):
             "provisioning_percentage": obj.get("provisioning_percentage"),
             "root_password": obj.get("root_password"),
             "short_id": obj.get("short_id"),
+            "sos": obj.get("sos"),
             "spot_instance": obj.get("spot_instance"),
             "spot_price_max": obj.get("spot_price_max"),
             "ssh_keys": [Href.from_dict(_item) for _item in obj.get("ssh_keys")] if obj.get("ssh_keys") is not None else None,

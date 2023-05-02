@@ -13,7 +13,6 @@ docs/DeviceActionsInner.md
 docs/DeviceCreateInFacilityInput.md
 docs/DeviceCreateInMetroInput.md
 docs/DeviceCreateInput.md
-docs/DeviceCreateInputIpAddressesInner.md
 docs/DeviceCreatedBy.md
 docs/DeviceList.md
 docs/DeviceMetro.md
@@ -28,6 +27,7 @@ docs/FacilityInput.md
 docs/FacilityInputFacility.md
 docs/FindIPAddressById200Response.md
 docs/Href.md
+docs/IPAddress.md
 docs/IPAddressesApi.md
 docs/IPAssignment.md
 docs/IPAssignmentInput.md
@@ -78,6 +78,7 @@ docs/VirtualNetwork.md
 docs/Vrf.md
 docs/VrfIpReservation.md
 docs/VrfIpReservationCreateInput.md
+docs/VrfVirtualCircuitsInner.md
 equinix_metal/__init__.py
 equinix_metal/api/__init__.py
 equinix_metal/api/devices_api.py
@@ -98,7 +99,6 @@ equinix_metal/models/device_actions_inner.py
 equinix_metal/models/device_create_in_facility_input.py
 equinix_metal/models/device_create_in_metro_input.py
 equinix_metal/models/device_create_input.py
-equinix_metal/models/device_create_input_ip_addresses_inner.py
 equinix_metal/models/device_created_by.py
 equinix_metal/models/device_list.py
 equinix_metal/models/device_metro.py
@@ -112,6 +112,7 @@ equinix_metal/models/facility_input.py
 equinix_metal/models/facility_input_facility.py
 equinix_metal/models/find_ip_address_by_id200_response.py
 equinix_metal/models/href.py
+equinix_metal/models/ip_address.py
 equinix_metal/models/ip_assignment.py
 equinix_metal/models/ip_assignment_input.py
 equinix_metal/models/ip_assignment_list.py
@@ -158,6 +159,7 @@ equinix_metal/models/virtual_network.py
 equinix_metal/models/vrf.py
 equinix_metal/models/vrf_ip_reservation.py
 equinix_metal/models/vrf_ip_reservation_create_input.py
+equinix_metal/models/vrf_virtual_circuits_inner.py
 equinix_metal/rest.py
 git_push.sh
 pyproject.toml
@@ -175,7 +177,6 @@ test/test_device_actions_inner.py
 test/test_device_create_in_facility_input.py
 test/test_device_create_in_metro_input.py
 test/test_device_create_input.py
-test/test_device_create_input_ip_addresses_inner.py
 test/test_device_created_by.py
 test/test_device_list.py
 test/test_device_metro.py
@@ -190,6 +191,7 @@ test/test_facility_input.py
 test/test_facility_input_facility.py
 test/test_find_ip_address_by_id200_response.py
 test/test_href.py
+test/test_ip_address.py
 test/test_ip_addresses_api.py
 test/test_ip_assignment.py
 test/test_ip_assignment_input.py
@@ -239,5 +241,6 @@ test/test_virtual_network.py
 test/test_vrf.py
 test/test_vrf_ip_reservation.py
 test/test_vrf_ip_reservation_create_input.py
+test/test_vrf_virtual_circuits_inner.py
 test/test_vrfs_api.py
 tox.ini

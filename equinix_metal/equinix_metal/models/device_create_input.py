@@ -22,7 +22,7 @@ import json
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, conlist, validator
-from equinix_metal.models.device_create_input_ip_addresses_inner import DeviceCreateInputIpAddressesInner
+from equinix_metal.models.ip_address import IPAddress
 from equinix_metal.models.ssh_key_input import SSHKeyInput
 
 class DeviceCreateInput(BaseModel):
@@ -37,7 +37,7 @@ class DeviceCreateInput(BaseModel):
     hardware_reservation_id: Optional[StrictStr] = Field(None, description="The Hardware Reservation UUID to provision. Alternatively, `next-available` can be specified to select from any of the available hardware reservations. An error will be returned if the requested reservation option is not available.  See [Reserved Hardware](https://metal.equinix.com/developers/docs/deploy/reserved/) for more details.")
     hostname: Optional[StrictStr] = Field(None, description="The hostname to use within the operating system. The same hostname may be used on multiple devices within a project.")
     href: Optional[StrictStr] = None
-    ip_addresses: Optional[conlist(DeviceCreateInputIpAddressesInner)] = Field(None, description="The `ip_addresses attribute will allow you to specify the addresses you want created with your device.  The default value configures public IPv4, public IPv6, and private IPv4.  Private IPv4 address is required. When specifying `ip_addresses`, one of the array items must enable private IPv4.  Some operating systems require public IPv4 address. In those cases you will receive an error message if public IPv4 is not enabled.  For example, to only configure your server with a private IPv4 address, you can send `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": false }] }`.  It is possible to request a subnet size larger than a `/30` by assigning addresses using the UUID(s) of ip_reservations in your project.  For example, `{ \"ip_addresses\": [..., {\"address_family\": 4, \"public\": true, \"ip_reservations\": [\"uuid1\", \"uuid2\"]}] }`  To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled.")
+    ip_addresses: Optional[conlist(IPAddress)] = Field(None, description="The `ip_addresses attribute will allow you to specify the addresses you want created with your device.  The default value configures public IPv4, public IPv6, and private IPv4.  Private IPv4 address is required. When specifying `ip_addresses`, one of the array items must enable private IPv4.  Some operating systems require public IPv4 address. In those cases you will receive an error message if public IPv4 is not enabled.  For example, to only configure your server with a private IPv4 address, you can send `{ \"ip_addresses\": [{ \"address_family\": 4, \"public\": false }] }`.  It is possible to request a subnet size larger than a `/30` by assigning addresses using the UUID(s) of ip_reservations in your project.  For example, `{ \"ip_addresses\": [..., {\"address_family\": 4, \"public\": true, \"ip_reservations\": [\"uuid1\", \"uuid2\"]}] }`  To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled.")
     ipxe_script_url: Optional[StrictStr] = Field(None, description="When set, the device will chainload an iPXE Script at boot fetched from the supplied URL.  See [Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/) for more details.")
     locked: Optional[StrictBool] = Field(False, description="Whether the device should be locked, preventing accidental deletion.")
     no_ssh_keys: Optional[StrictBool] = Field(False, description="Overrides default behaviour of attaching all of the organization members ssh keys and project ssh keys to device if no specific keys specified")
@@ -120,7 +120,7 @@ class DeviceCreateInput(BaseModel):
             "hardware_reservation_id": obj.get("hardware_reservation_id"),
             "hostname": obj.get("hostname"),
             "href": obj.get("href"),
-            "ip_addresses": [DeviceCreateInputIpAddressesInner.from_dict(_item) for _item in obj.get("ip_addresses")] if obj.get("ip_addresses") is not None else None,
+            "ip_addresses": [IPAddress.from_dict(_item) for _item in obj.get("ip_addresses")] if obj.get("ip_addresses") is not None else None,
             "ipxe_script_url": obj.get("ipxe_script_url"),
             "locked": obj.get("locked") if obj.get("locked") is not None else False,
             "no_ssh_keys": obj.get("no_ssh_keys") if obj.get("no_ssh_keys") is not None else False,

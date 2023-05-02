@@ -19,11 +19,11 @@ import unittest
 import datetime
 
 import equinix_metal
-from equinix_metal.models.device_create_input_ip_addresses_inner import DeviceCreateInputIpAddressesInner  # noqa: E501
+from equinix_metal.models.vrf_virtual_circuits_inner import VrfVirtualCircuitsInner  # noqa: E501
 from equinix_metal.rest import ApiException
 
-class TestDeviceCreateInputIpAddressesInner(unittest.TestCase):
-    """DeviceCreateInputIpAddressesInner unit test stubs"""
+class TestVrfVirtualCircuitsInner(unittest.TestCase):
+    """VrfVirtualCircuitsInner unit test stubs"""
 
     def setUp(self):
         pass
@@ -32,30 +32,34 @@ class TestDeviceCreateInputIpAddressesInner(unittest.TestCase):
         pass
 
     def make_instance(self, include_optional):
-        """Test DeviceCreateInputIpAddressesInner
+        """Test VrfVirtualCircuitsInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `DeviceCreateInputIpAddressesInner`
+        # uncomment below to create an instance of `VrfVirtualCircuitsInner`
         """
-        model = equinix_metal.models.device_create_input_ip_addresses_inner.DeviceCreateInputIpAddressesInner()  # noqa: E501
+        model = equinix_metal.models.vrf_virtual_circuits_inner.VrfVirtualCircuitsInner()  # noqa: E501
         if include_optional :
-            return DeviceCreateInputIpAddressesInner(
-                address_family = 4, 
-                cidr = 28, 
+            return VrfVirtualCircuitsInner(
+                customer_ip = '12.0.0.2', 
                 href = '', 
-                ip_reservations = [
-                    ''
-                    ], 
-                public = False
+                id = '', 
+                md5 = '', 
+                metal_ip = '12.0.0.1', 
+                name = '', 
+                peer_asn = 56, 
+                port = equinix_metal.models.href.Href(
+                    href = '', ), 
+                status = '', 
+                subnet = '12.0.0.0/30'
             )
         else :
-            return DeviceCreateInputIpAddressesInner(
+            return VrfVirtualCircuitsInner(
         )
         """
 
-    def testDeviceCreateInputIpAddressesInner(self):
-        """Test DeviceCreateInputIpAddressesInner"""
+    def testVrfVirtualCircuitsInner(self):
+        """Test VrfVirtualCircuitsInner"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

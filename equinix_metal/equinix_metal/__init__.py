@@ -45,7 +45,6 @@ from equinix_metal.models.device_actions_inner import DeviceActionsInner
 from equinix_metal.models.device_create_in_facility_input import DeviceCreateInFacilityInput
 from equinix_metal.models.device_create_in_metro_input import DeviceCreateInMetroInput
 from equinix_metal.models.device_create_input import DeviceCreateInput
-from equinix_metal.models.device_create_input_ip_addresses_inner import DeviceCreateInputIpAddressesInner
 from equinix_metal.models.device_created_by import DeviceCreatedBy
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.models.device_metro import DeviceMetro
@@ -59,6 +58,7 @@ from equinix_metal.models.facility_input import FacilityInput
 from equinix_metal.models.facility_input_facility import FacilityInputFacility
 from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
 from equinix_metal.models.href import Href
+from equinix_metal.models.ip_address import IPAddress
 from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.ip_assignment_input import IPAssignmentInput
 from equinix_metal.models.ip_assignment_list import IPAssignmentList
@@ -105,3 +105,4 @@ from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
 from equinix_metal.models.vrf_ip_reservation_create_input import VrfIpReservationCreateInput
+from equinix_metal.models.vrf_virtual_circuits_inner import VrfVirtualCircuitsInner

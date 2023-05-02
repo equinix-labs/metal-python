@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **provisioning_percentage** | **float** | Only visible while device provisioning | [optional] 
 **root_password** | **str** | Root password is automatically generated when server is provisioned and it is removed after 24 hours | [optional] 
 **short_id** | **str** |  | [optional] 
+**sos** | **str** | Hostname used to connect to the instance via the SOS (Serial over SSH) out-of-band console. | [optional] 
 **spot_instance** | **bool** | Whether or not the device is a spot instance. | [optional] 
 **spot_price_max** | **float** | The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown. | [optional] 
 **ssh_keys** | [**List[Href]**](Href.md) |  | [optional] 

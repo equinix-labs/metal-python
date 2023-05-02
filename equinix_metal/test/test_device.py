@@ -241,6 +241,7 @@ class TestDevice(unittest.TestCase):
                 provisioning_percentage = 1.337, 
                 root_password = '', 
                 short_id = '', 
+                sos = '', 
                 spot_instance = True, 
                 spot_price_max = 1.337, 
                 ssh_keys = [

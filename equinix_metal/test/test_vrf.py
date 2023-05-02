@@ -41,8 +41,10 @@ class TestVrf(unittest.TestCase):
         model = equinix_metal.models.vrf.Vrf()  # noqa: E501
         if include_optional :
             return Vrf(
+                bgp_dynamic_neighbors_bfd_enabled = True, 
                 bgp_dynamic_neighbors_enabled = True, 
                 bgp_dynamic_neighbors_export_route_map = True, 
+                bill = True, 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_by = equinix_metal.models.user.User(
                     avatar_thumb_url = '', 
@@ -115,7 +117,21 @@ class TestVrf(unittest.TestCase):
                     volumes = [
                         
                         ], ), 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                virtual_circuits = [
+                    equinix_metal.models.vrf_virtual_circuits_inner.Vrf_virtual_circuits_inner(
+                        customer_ip = '12.0.0.2', 
+                        href = '', 
+                        id = '', 
+                        md5 = '', 
+                        metal_ip = '12.0.0.1', 
+                        name = '', 
+                        peer_asn = 56, 
+                        port = equinix_metal.models.href.Href(
+                            href = '', ), 
+                        status = '', 
+                        subnet = '12.0.0.0/30', )
+                    ]
             )
         else :
             return Vrf(

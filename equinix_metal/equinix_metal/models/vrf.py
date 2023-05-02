@@ -25,13 +25,16 @@ from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
 from equinix_metal.models.metro import Metro
 from equinix_metal.models.project import Project
 from equinix_metal.models.user import User
+from equinix_metal.models.vrf_virtual_circuits_inner import VrfVirtualCircuitsInner
 
 class Vrf(BaseModel):
     """
     Vrf
     """
+    bgp_dynamic_neighbors_bfd_enabled: Optional[StrictBool] = Field(None, description="Toggle BFD on dynamic bgp neighbors sessions")
     bgp_dynamic_neighbors_enabled: Optional[StrictBool] = Field(None, description="Toggle to enable the dynamic bgp neighbors feature on the VRF")
     bgp_dynamic_neighbors_export_route_map: Optional[StrictBool] = Field(None, description="Toggle to export the VRF route-map to the dynamic bgp neighbors")
+    bill: Optional[StrictBool] = Field(False, description="True if the VRF is being billed. Usage will start when the first VRF Virtual Circuit is active, and will only stop when the VRF has been deleted.")
     created_at: Optional[datetime] = None
     created_by: Optional[User] = None
     description: Optional[StrictStr] = Field(None, description="Optional field that can be set to describe the VRF")
@@ -43,7 +46,8 @@ class Vrf(BaseModel):
     name: Optional[StrictStr] = None
     project: Optional[Project] = None
     updated_at: Optional[datetime] = None
-    __properties = ["bgp_dynamic_neighbors_enabled", "bgp_dynamic_neighbors_export_route_map", "created_at", "created_by", "description", "href", "id", "ip_ranges", "local_asn", "metro", "name", "project", "updated_at"]
+    virtual_circuits: Optional[conlist(VrfVirtualCircuitsInner)] = Field(None, description="Virtual circuits that are in the VRF")
+    __properties = ["bgp_dynamic_neighbors_bfd_enabled", "bgp_dynamic_neighbors_enabled", "bgp_dynamic_neighbors_export_route_map", "bill", "created_at", "created_by", "description", "href", "id", "ip_ranges", "local_asn", "metro", "name", "project", "updated_at", "virtual_circuits"]
 
     class Config:
         allow_population_by_field_name = True
@@ -77,6 +81,13 @@ class Vrf(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of project
         if self.project:
             _dict['project'] = self.project.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in virtual_circuits (list)
+        _items = []
+        if self.virtual_circuits:
+            for _item in self.virtual_circuits:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['virtual_circuits'] = _items
         return _dict
 
     @classmethod
@@ -89,8 +100,10 @@ class Vrf(BaseModel):
             return Vrf.parse_obj(obj)
 
         _obj = Vrf.parse_obj({
+            "bgp_dynamic_neighbors_bfd_enabled": obj.get("bgp_dynamic_neighbors_bfd_enabled"),
             "bgp_dynamic_neighbors_enabled": obj.get("bgp_dynamic_neighbors_enabled"),
             "bgp_dynamic_neighbors_export_route_map": obj.get("bgp_dynamic_neighbors_export_route_map"),
+            "bill": obj.get("bill") if obj.get("bill") is not None else False,
             "created_at": obj.get("created_at"),
             "created_by": User.from_dict(obj.get("created_by")) if obj.get("created_by") is not None else None,
             "description": obj.get("description"),
@@ -101,7 +114,8 @@ class Vrf(BaseModel):
             "metro": Metro.from_dict(obj.get("metro")) if obj.get("metro") is not None else None,
             "name": obj.get("name"),
             "project": Project.from_dict(obj.get("project")) if obj.get("project") is not None else None,
-            "updated_at": obj.get("updated_at")
+            "updated_at": obj.get("updated_at"),
+            "virtual_circuits": [VrfVirtualCircuitsInner.from_dict(_item) for _item in obj.get("virtual_circuits")] if obj.get("virtual_circuits") is not None else None
         })
         return _obj
 

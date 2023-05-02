@@ -33,11 +33,11 @@ class Plan(BaseModel):
     available_in: Optional[conlist(PlanAvailableInInner)] = Field(None, description="Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.")
     available_in_metros: Optional[conlist(PlanAvailableInMetrosInner)] = Field(None, description="Shows which metros the plan is available in, and the metro-based price if it is different from the default price.")
     var_class: Optional[StrictStr] = Field(None, alias="class")
-    deployment_types: Optional[conlist(StrictStr, min_items=0)] = None
+    deployment_types: Optional[conlist(StrictStr, min_items=0, unique_items=True)] = None
     description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    legacy: Optional[StrictBool] = None
+    legacy: Optional[StrictBool] = Field(None, description="Deprecated. Always return false")
     line: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     pricing: Optional[Dict[str, Any]] = None

@@ -139,7 +139,6 @@ Class | Method | HTTP request | Description
  - [DeviceCreateInFacilityInput](docs/DeviceCreateInFacilityInput.md)
  - [DeviceCreateInMetroInput](docs/DeviceCreateInMetroInput.md)
  - [DeviceCreateInput](docs/DeviceCreateInput.md)
- - [DeviceCreateInputIpAddressesInner](docs/DeviceCreateInputIpAddressesInner.md)
  - [DeviceCreatedBy](docs/DeviceCreatedBy.md)
  - [DeviceList](docs/DeviceList.md)
  - [DeviceMetro](docs/DeviceMetro.md)
@@ -153,6 +152,7 @@ Class | Method | HTTP request | Description
  - [FacilityInputFacility](docs/FacilityInputFacility.md)
  - [FindIPAddressById200Response](docs/FindIPAddressById200Response.md)
  - [Href](docs/Href.md)
+ - [IPAddress](docs/IPAddress.md)
  - [IPAssignment](docs/IPAssignment.md)
  - [IPAssignmentInput](docs/IPAssignmentInput.md)
  - [IPAssignmentList](docs/IPAssignmentList.md)
@@ -199,6 +199,7 @@ Class | Method | HTTP request | Description
  - [Vrf](docs/Vrf.md)
  - [VrfIpReservation](docs/VrfIpReservation.md)
  - [VrfIpReservationCreateInput](docs/VrfIpReservationCreateInput.md)
+ - [VrfVirtualCircuitsInner](docs/VrfVirtualCircuitsInner.md)
 
 
 ## Documentation For Authorization

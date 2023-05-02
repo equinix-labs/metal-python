@@ -23,9 +23,9 @@ import json
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, validator
 
-class DeviceCreateInputIpAddressesInner(BaseModel):
+class IPAddress(BaseModel):
     """
-    DeviceCreateInputIpAddressesInner
+    IPAddress
     """
     address_family: Optional[StrictInt] = Field(None, description="Address Family for IP Address")
     cidr: Optional[StrictInt] = Field(None, description="Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses)")
@@ -55,8 +55,8 @@ class DeviceCreateInputIpAddressesInner(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> DeviceCreateInputIpAddressesInner:
-        """Create an instance of DeviceCreateInputIpAddressesInner from a JSON string"""
+    def from_json(cls, json_str: str) -> IPAddress:
+        """Create an instance of IPAddress from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -68,15 +68,15 @@ class DeviceCreateInputIpAddressesInner(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> DeviceCreateInputIpAddressesInner:
-        """Create an instance of DeviceCreateInputIpAddressesInner from a dict"""
+    def from_dict(cls, obj: dict) -> IPAddress:
+        """Create an instance of IPAddress from a dict"""
         if obj is None:
             return None
 
         if type(obj) is not dict:
-            return DeviceCreateInputIpAddressesInner.parse_obj(obj)
+            return IPAddress.parse_obj(obj)
 
-        _obj = DeviceCreateInputIpAddressesInner.parse_obj({
+        _obj = IPAddress.parse_obj({
             "address_family": obj.get("address_family"),
             "cidr": obj.get("cidr"),
             "href": obj.get("href"),
