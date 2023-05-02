@@ -15,8 +15,6 @@
 """
 
 
-from __future__ import absolute_import
-
 __version__ = "0.1.0"
 
 # import apis into sdk package
@@ -24,6 +22,7 @@ from equinix_metal.api.devices_api import DevicesApi
 from equinix_metal.api.ip_addresses_api import IPAddressesApi
 from equinix_metal.api.organizations_api import OrganizationsApi
 from equinix_metal.api.projects_api import ProjectsApi
+from equinix_metal.api.ssh_keys_api import SSHKeysApi
 from equinix_metal.api.vrfs_api import VRFsApi
 
 # import ApiClient
@@ -98,7 +97,10 @@ from equinix_metal.models.project_list import ProjectList
 from equinix_metal.models.project_update_input import ProjectUpdateInput
 from equinix_metal.models.request_ip_reservation201_response import RequestIPReservation201Response
 from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest
+from equinix_metal.models.ssh_key import SSHKey
+from equinix_metal.models.ssh_key_create_input import SSHKeyCreateInput
 from equinix_metal.models.ssh_key_input import SSHKeyInput
+from equinix_metal.models.ssh_key_list import SSHKeyList
 from equinix_metal.models.user import User
 from equinix_metal.models.user_lite import UserLite
 from equinix_metal.models.virtual_network import VirtualNetwork

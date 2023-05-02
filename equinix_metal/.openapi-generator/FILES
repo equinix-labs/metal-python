@@ -70,7 +70,11 @@ docs/ProjectUpdateInput.md
 docs/ProjectsApi.md
 docs/RequestIPReservation201Response.md
 docs/RequestIPReservationRequest.md
+docs/SSHKey.md
+docs/SSHKeyCreateInput.md
 docs/SSHKeyInput.md
+docs/SSHKeyList.md
+docs/SSHKeysApi.md
 docs/User.md
 docs/UserLite.md
 docs/VRFsApi.md
@@ -85,6 +89,7 @@ equinix_metal/api/devices_api.py
 equinix_metal/api/ip_addresses_api.py
 equinix_metal/api/organizations_api.py
 equinix_metal/api/projects_api.py
+equinix_metal/api/ssh_keys_api.py
 equinix_metal/api/vrfs_api.py
 equinix_metal/api_client.py
 equinix_metal/configuration.py
@@ -152,7 +157,10 @@ equinix_metal/models/project_list.py
 equinix_metal/models/project_update_input.py
 equinix_metal/models/request_ip_reservation201_response.py
 equinix_metal/models/request_ip_reservation_request.py
+equinix_metal/models/ssh_key.py
+equinix_metal/models/ssh_key_create_input.py
 equinix_metal/models/ssh_key_input.py
+equinix_metal/models/ssh_key_list.py
 equinix_metal/models/user.py
 equinix_metal/models/user_lite.py
 equinix_metal/models/virtual_network.py
@@ -234,7 +242,11 @@ test/test_project_update_input.py
 test/test_projects_api.py
 test/test_request_ip_reservation201_response.py
 test/test_request_ip_reservation_request.py
+test/test_ssh_key.py
+test/test_ssh_key_create_input.py
 test/test_ssh_key_input.py
+test/test_ssh_key_list.py
+test/test_ssh_keys_api.py
 test/test_user.py
 test/test_user_lite.py
 test/test_virtual_network.py

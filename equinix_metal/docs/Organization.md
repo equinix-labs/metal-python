@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **enforce_2fa_at** | **datetime** | Force to all members to have enabled the two factor authentication after that date, unless the value is null | [optional] 
 **href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
-**logo** | **str** |  | [optional] 
+**logo** | [**bytearray**](bytearray.md) |  | [optional] 
 **members** | [**List[Href]**](Href.md) |  | [optional] 
 **memberships** | [**List[Href]**](Href.md) |  | [optional] 
 **name** | **str** |  | [optional] 

@@ -78,6 +78,9 @@ class Organization(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of billing_address
         if self.billing_address:
             _dict['billing_address'] = self.billing_address.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of logo
+        if self.logo:
+            _dict['logo'] = self.logo.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in members (list)
         _items = []
         if self.members:
@@ -120,7 +123,7 @@ class Organization(BaseModel):
             "enforce_2fa_at": obj.get("enforce_2fa_at"),
             "href": obj.get("href"),
             "id": obj.get("id"),
-            "logo": obj.get("logo"),
+            "logo": bytearray.from_dict(obj.get("logo")) if obj.get("logo") is not None else None,
             "members": [Href.from_dict(_item) for _item in obj.get("members")] if obj.get("members") is not None else None,
             "memberships": [Href.from_dict(_item) for _item in obj.get("memberships")] if obj.get("memberships") is not None else None,
             "name": obj.get("name"),

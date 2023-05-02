@@ -52,132 +52,63 @@ components:
         type: integer
   requestBodies: {}
   schemas:
-    Project:
+    IPAssignmentInput:
       properties:
-        backend_transfer_enabled:
-          type: boolean
-        bgp_config:
-          $ref: '#/components/schemas/Href'
-        created_at:
-          format: date-time
+        address:
           type: string
         customdata:
           type: object
-        devices:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
         href:
           format: uri
+          type: string
+      required:
+      - address
+      type: object
+    IPReservationList:
+      properties:
+        href:
+          format: uri
+          type: string
+        ip_addresses:
+          items:
+            $ref: '#/components/schemas/IPReservationList_ip_addresses_inner'
+          type: array
+      type: object
+    SSHKey:
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        entity:
+          $ref: '#/components/schemas/Href'
+        fingerprint:
+          type: string
+        href:
           type: string
         id:
           format: uuid
           type: string
-        invitations:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        max_devices:
-          type: object
-        members:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        memberships:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        name:
+        key:
           type: string
-        network_status:
-          type: object
-        organization:
-          $ref: '#/components/schemas/Href'
-        payment_method:
-          $ref: '#/components/schemas/Href'
-        ssh_keys:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
+        label:
+          type: string
         updated_at:
           format: date-time
           type: string
-        volumes:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
       type: object
-    ProjectList:
+    IPAssignmentUpdateInput:
       properties:
-        href:
-          format: uri
-          type: string
-        meta:
-          $ref: '#/components/schemas/Meta'
-        projects:
-          items:
-            $ref: '#/components/schemas/Project'
-          type: array
-      type: object
-    VrfIpReservation:
-      properties:
-        address:
-          type: string
-        address_family:
-          type: integer
-        bill:
-          type: boolean
-        cidr:
-          type: integer
-        created_at:
-          format: date-time
-          type: string
-        created_by:
-          $ref: '#/components/schemas/Href'
         customdata:
           type: object
         details:
           type: string
-        gateway:
-          type: string
         href:
-          type: string
-        id:
-          format: uuid
-          type: string
-        manageable:
-          type: boolean
-        management:
-          type: boolean
-        metal_gateway:
-          $ref: '#/components/schemas/MetalGatewayLite'
-        metro:
-          $ref: '#/components/schemas/Metro'
-        netmask:
-          type: string
-        network:
-          type: string
-        project:
-          $ref: '#/components/schemas/Project'
-        project_lite:
-          $ref: '#/components/schemas/Project'
-        public:
-          type: boolean
-        state:
+          format: uri
           type: string
         tags:
           items:
             type: string
           type: array
-        type:
-          enum:
-          - vrf
-          type: string
-        vrf:
-          $ref: '#/components/schemas/Vrf'
-      required:
-      - type
-      - vrf
       type: object
     ProjectUpdateInput:
       properties:
@@ -194,30 +125,23 @@ components:
           format: uuid
           type: string
       type: object
-    requestIPReservation_request:
-      oneOf:
-      - $ref: '#/components/schemas/IPReservationRequestInput'
-      - $ref: '#/components/schemas/VrfIpReservationCreateInput'
-    createDevice_request:
-      oneOf:
-      - $ref: '#/components/schemas/DeviceCreateInMetroInput'
-      - $ref: '#/components/schemas/DeviceCreateInFacilityInput'
-    Error:
-      description: Error responses are included with 4xx and 5xx HTTP responses from
-        the API service. Either "error" or "errors" will be set.
+    ProjectCreateFromRootInput:
       properties:
-        error:
-          description: A description of the error that caused the request to fail.
-          type: string
-        errors:
-          description: A list of errors that contributed to the request failing.
-          items:
-            description: An error message that contributed to the request failing.
-            type: string
-          type: array
+        customdata:
+          type: object
         href:
           format: uri
           type: string
+        name:
+          type: string
+        organization_id:
+          format: uuid
+          type: string
+        payment_method_id:
+          format: uuid
+          type: string
+      required:
+      - name
       type: object
     OrganizationInput:
       properties:
@@ -247,42 +171,32 @@ components:
         website:
           type: string
       type: object
-    DeviceUpdateInput:
+    Error:
+      description: Error responses are included with 4xx and 5xx HTTP responses from
+        the API service. Either "error" or "errors" will be set.
       properties:
-        always_pxe:
-          type: boolean
-        billing_cycle:
+        error:
+          description: A description of the error that caused the request to fail.
           type: string
-        customdata:
-          additionalProperties: true
-          default: {}
-          type: object
-        description:
-          type: string
-        hostname:
-          type: string
+        errors:
+          description: A list of errors that contributed to the request failing.
+          items:
+            description: An error message that contributed to the request failing.
+            type: string
+          type: array
         href:
           format: uri
           type: string
-        ipxe_script_url:
+      type: object
+    IPAssignmentList:
+      properties:
+        href:
+          format: uri
           type: string
-        locked:
-          type: boolean
-        network_frozen:
-          description: If true, this instance can not be converted to a different
-            network type.
-          type: boolean
-        spot_instance:
-          description: Can be set to false to convert a spot-market instance to on-demand.
-          externalDocs:
-            url: https://metal.equinix.com/developers/docs/deploy/spot-market/#converting-a-spot-market-server-to-on-demand
-          type: boolean
-        tags:
+        ip_addresses:
           items:
-            type: string
+            $ref: '#/components/schemas/IPAssignment'
           type: array
-        userdata:
-          type: string
       type: object
     IPAssignment:
       properties:
@@ -325,153 +239,41 @@ components:
       required:
       - assigned_to
       type: object
-    IPReservationList:
+    DeviceUpdateInput:
       properties:
-        href:
-          format: uri
+        always_pxe:
+          type: boolean
+        billing_cycle:
           type: string
-        ip_addresses:
-          items:
-            $ref: '#/components/schemas/IPReservationList_ip_addresses_inner'
-          type: array
-      type: object
-    IPAssignmentList:
-      properties:
-        href:
-          format: uri
-          type: string
-        ip_addresses:
-          items:
-            $ref: '#/components/schemas/IPAssignment'
-          type: array
-      type: object
-    requestIPReservation_201_response:
-      oneOf:
-      - $ref: '#/components/schemas/IPReservation'
-      - $ref: '#/components/schemas/VrfIpReservation'
-    IPAssignmentUpdateInput:
-      properties:
         customdata:
+          additionalProperties: true
+          default: {}
           type: object
-        details:
+        description:
+          type: string
+        hostname:
           type: string
         href:
           format: uri
           type: string
+        ipxe_script_url:
+          type: string
+        locked:
+          type: boolean
+        network_frozen:
+          description: If true, this instance can not be converted to a different
+            network type.
+          type: boolean
+        spot_instance:
+          description: Can be set to false to convert a spot-market instance to on-demand.
+          externalDocs:
+            url: https://metal.equinix.com/developers/docs/deploy/spot-market/#converting-a-spot-market-server-to-on-demand
+          type: boolean
         tags:
           items:
             type: string
           type: array
-      type: object
-    ProjectCreateFromRootInput:
-      properties:
-        customdata:
-          type: object
-        href:
-          format: uri
-          type: string
-        name:
-          type: string
-        organization_id:
-          format: uuid
-          type: string
-        payment_method_id:
-          format: uuid
-          type: string
-      required:
-      - name
-      type: object
-    DeviceList:
-      properties:
-        devices:
-          items:
-            $ref: '#/components/schemas/Device'
-          type: array
-        href:
-          format: uri
-          type: string
-        meta:
-          $ref: '#/components/schemas/Meta'
-      type: object
-    OrganizationList:
-      properties:
-        href:
-          format: uri
-          type: string
-        meta:
-          $ref: '#/components/schemas/Meta'
-        organizations:
-          items:
-            $ref: '#/components/schemas/Organization'
-          type: array
-      type: object
-    ProjectCreateInput:
-      properties:
-        customdata:
-          type: object
-        href:
-          format: uri
-          type: string
-        name:
-          type: string
-        payment_method_id:
-          format: uuid
-          type: string
-      required:
-      - name
-      type: object
-    Organization:
-      properties:
-        address:
-          $ref: '#/components/schemas/Address'
-        billing_address:
-          $ref: '#/components/schemas/Address'
-        created_at:
-          format: date-time
-          type: string
-        credit_amount:
-          format: float
-          type: number
-        customdata:
-          type: object
-        description:
-          type: string
-        enforce_2fa_at:
-          description: Force to all members to have enabled the two factor authentication
-            after that date, unless the value is null
-          format: date-time
-          type: string
-        href:
-          format: uri
-          type: string
-        id:
-          format: uuid
-          type: string
-        logo:
-          format: binary
-          type: string
-        members:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        memberships:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        name:
-          type: string
-        projects:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        terms:
-          type: integer
-        twitter:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        website:
+        userdata:
           type: string
       type: object
     Device:
@@ -628,6 +430,175 @@ components:
             $ref: '#/components/schemas/Href'
           type: array
       type: object
+    SSHKeyList:
+      properties:
+        href:
+          format: uri
+          type: string
+        ssh_keys:
+          items:
+            $ref: '#/components/schemas/SSHKey'
+          type: array
+      type: object
+    VrfIpReservation:
+      properties:
+        address:
+          type: string
+        address_family:
+          type: integer
+        bill:
+          type: boolean
+        cidr:
+          type: integer
+        created_at:
+          format: date-time
+          type: string
+        created_by:
+          $ref: '#/components/schemas/Href'
+        customdata:
+          type: object
+        details:
+          type: string
+        gateway:
+          type: string
+        href:
+          type: string
+        id:
+          format: uuid
+          type: string
+        manageable:
+          type: boolean
+        management:
+          type: boolean
+        metal_gateway:
+          $ref: '#/components/schemas/MetalGatewayLite'
+        metro:
+          $ref: '#/components/schemas/Metro'
+        netmask:
+          type: string
+        network:
+          type: string
+        project:
+          $ref: '#/components/schemas/Project'
+        project_lite:
+          $ref: '#/components/schemas/Project'
+        public:
+          type: boolean
+        state:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - vrf
+          type: string
+        vrf:
+          $ref: '#/components/schemas/Vrf'
+      required:
+      - type
+      - vrf
+      type: object
+    findIPAddressById_200_response:
+      oneOf:
+      - $ref: '#/components/schemas/IPAssignment'
+      - $ref: '#/components/schemas/IPReservation'
+      - $ref: '#/components/schemas/VrfIpReservation'
+    Project:
+      properties:
+        backend_transfer_enabled:
+          type: boolean
+        bgp_config:
+          $ref: '#/components/schemas/Href'
+        created_at:
+          format: date-time
+          type: string
+        customdata:
+          type: object
+        devices:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        href:
+          format: uri
+          type: string
+        id:
+          format: uuid
+          type: string
+        invitations:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        max_devices:
+          type: object
+        members:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        memberships:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        name:
+          type: string
+        network_status:
+          type: object
+        organization:
+          $ref: '#/components/schemas/Href'
+        payment_method:
+          $ref: '#/components/schemas/Href'
+        ssh_keys:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        updated_at:
+          format: date-time
+          type: string
+        volumes:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+      type: object
+    ProjectList:
+      properties:
+        href:
+          format: uri
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        projects:
+          items:
+            $ref: '#/components/schemas/Project'
+          type: array
+      type: object
+    DeviceList:
+      properties:
+        devices:
+          items:
+            $ref: '#/components/schemas/Device'
+          type: array
+        href:
+          format: uri
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+      type: object
+    ProjectCreateInput:
+      properties:
+        customdata:
+          type: object
+        href:
+          format: uri
+          type: string
+        name:
+          type: string
+        payment_method_id:
+          format: uuid
+          type: string
+      required:
+      - name
+      type: object
     IPAvailabilitiesList:
       properties:
         available:
@@ -638,38 +609,217 @@ components:
           format: uri
           type: string
       type: object
-    IPAssignmentInput:
+    SSHKeyInput:
       properties:
-        address:
-          type: string
-        customdata:
-          type: object
         href:
           format: uri
           type: string
-      required:
-      - address
+        key:
+          type: string
+        label:
+          type: string
       type: object
-    findIPAddressById_200_response:
+    createDevice_request:
       oneOf:
-      - $ref: '#/components/schemas/IPAssignment'
-      - $ref: '#/components/schemas/IPReservation'
-      - $ref: '#/components/schemas/VrfIpReservation'
-    Device_metro:
-      allOf:
-      - $ref: '#/components/schemas/Metro'
-      - description: The metro the facility is in
-        type: object
-    DeviceCreateInMetroInput:
-      allOf:
-      - $ref: '#/components/schemas/MetroInput'
-      - $ref: '#/components/schemas/DeviceCreateInput'
-    Href:
+      - $ref: '#/components/schemas/DeviceCreateInMetroInput'
+      - $ref: '#/components/schemas/DeviceCreateInFacilityInput'
+    Organization:
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        billing_address:
+          $ref: '#/components/schemas/Address'
+        created_at:
+          format: date-time
+          type: string
+        credit_amount:
+          format: float
+          type: number
+        customdata:
+          type: object
+        description:
+          type: string
+        enforce_2fa_at:
+          description: Force to all members to have enabled the two factor authentication
+            after that date, unless the value is null
+          format: date-time
+          type: string
+        href:
+          format: uri
+          type: string
+        id:
+          format: uuid
+          type: string
+        logo:
+          format: binary
+          type: string
+        members:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        memberships:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        name:
+          type: string
+        projects:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        terms:
+          type: integer
+        twitter:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        website:
+          type: string
+      type: object
+    OrganizationList:
       properties:
         href:
+          format: uri
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        organizations:
+          items:
+            $ref: '#/components/schemas/Organization'
+          type: array
+      type: object
+    requestIPReservation_201_response:
+      oneOf:
+      - $ref: '#/components/schemas/IPReservation'
+      - $ref: '#/components/schemas/VrfIpReservation'
+    SSHKeyCreateInput:
+      properties:
+        href:
+          format: uri
+          type: string
+        instances_ids:
+          description: "List of instance UUIDs to associate SSH key with, when empty\
+            \ array is sent all instances belonging\n      to entity will be included"
+          items:
+            format: uuid
+            type: string
+          type: array
+        key:
+          type: string
+        label:
+          type: string
+      type: object
+    requestIPReservation_request:
+      oneOf:
+      - $ref: '#/components/schemas/IPReservationRequestInput'
+      - $ref: '#/components/schemas/VrfIpReservationCreateInput'
+    VrfIpReservationCreateInput:
+      properties:
+        cidr:
+          description: The size of the VRF IP Reservation's subnet
+          example: 16
+          type: integer
+        customdata:
+          type: object
+        details:
+          type: string
+        href:
+          format: uri
+          type: string
+        network:
+          description: The starting address for this VRF IP Reservation's subnet
+          example: 10.1.2.0
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: Must be set to 'vrf'
+          example: vrf
+          type: string
+        vrf_id:
+          description: The ID of the VRF in which this VRF IP Reservation is created.
+            The VRF must have an existing IP Range that contains the requested subnet.
+            This field may be aliased as just 'vrf'.
+          format: uuid
           type: string
       required:
-      - href
+      - cidr
+      - network
+      - type
+      - vrf_id
+      type: object
+    Device_created_by:
+      allOf:
+      - $ref: '#/components/schemas/UserLite'
+      - description: The user that created the device.
+        type: object
+    Meta:
+      properties:
+        current_page:
+          type: integer
+        first:
+          $ref: '#/components/schemas/Href'
+        href:
+          format: uri
+          type: string
+        last:
+          $ref: '#/components/schemas/Href'
+        last_page:
+          type: integer
+        next:
+          $ref: '#/components/schemas/Href'
+        previous:
+          $ref: '#/components/schemas/Href'
+        self:
+          $ref: '#/components/schemas/Href'
+        total:
+          type: integer
+      type: object
+    Port:
+      description: Port is a hardware port associated with a reserved or instantiated
+        hardware device.
+      properties:
+        bond:
+          $ref: '#/components/schemas/BondPortData'
+        data:
+          $ref: '#/components/schemas/PortData'
+        disbond_operation_supported:
+          description: Indicates whether or not the bond can be broken on the port
+            (when applicable).
+          type: boolean
+        href:
+          type: string
+        id:
+          format: uuid
+          type: string
+        name:
+          example: bond0
+          type: string
+        native_virtual_network:
+          $ref: '#/components/schemas/VirtualNetwork'
+        network_type:
+          description: Composite network type of the bond
+          enum:
+          - layer2-bonded
+          - layer2-individual
+          - layer3
+          - hybrid
+          - hybrid-bonded
+          type: string
+        type:
+          description: Type is either "NetworkBondPort" for bond ports or "NetworkPort"
+            for bondable ethernet ports
+          enum:
+          - NetworkPort
+          - NetworkBondPort
+          type: string
+        virtual_networks:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
       type: object
     MetalGatewayLite:
       properties:
@@ -708,43 +858,148 @@ components:
           example: 1001
           type: integer
       type: object
+    IPReservationRequestInput:
+      properties:
+        comments:
+          type: string
+        customdata:
+          type: object
+        details:
+          type: string
+        facility:
+          type: string
+        fail_on_approval_required:
+          type: boolean
+        href:
+          format: uri
+          type: string
+        metro:
+          description: The code of the metro you are requesting the IP reservation
+            in.
+          example: SV
+          type: string
+        quantity:
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          type: string
+      required:
+      - quantity
+      - type
+      type: object
+    Event:
+      properties:
+        body:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        href:
+          type: string
+        id:
+          format: uuid
+          type: string
+        interpolated:
+          type: string
+        ip:
+          type: string
+        modified_by:
+          type: object
+        relationships:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        state:
+          type: string
+        type:
+          type: string
+      type: object
+    Address:
+      properties:
+        address:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        coordinates:
+          $ref: '#/components/schemas/Coordinates'
+        country:
+          type: string
+        href:
+          format: uri
+          type: string
+        state:
+          type: string
+        zip_code:
+          type: string
+      required:
+      - address
+      - country
+      - zip_code
+      type: object
+    IPReservationList_ip_addresses_inner:
+      anyOf:
+      - $ref: '#/components/schemas/IPReservation'
+      - $ref: '#/components/schemas/VrfIpReservation'
+    DeviceCreateInMetroInput:
+      allOf:
+      - $ref: '#/components/schemas/MetroInput'
+      - $ref: '#/components/schemas/DeviceCreateInput'
+    Device_metro:
+      allOf:
+      - $ref: '#/components/schemas/Metro'
+      - description: The metro the facility is in
+        type: object
     DeviceCreateInFacilityInput:
       allOf:
       - $ref: '#/components/schemas/FacilityInput'
       - $ref: '#/components/schemas/DeviceCreateInput'
-    OperatingSystem:
+    Device_project:
+      allOf:
+      - $ref: '#/components/schemas/Href'
+      - description: Full version of project object when included
+        type: object
+    Facility:
       properties:
-        distro:
+        address:
+          $ref: '#/components/schemas/Address'
+        code:
           type: string
-        distro_label:
-          type: string
+        features:
+          example:
+          - baremetal
+          - backend_transfer
+          - global_ipv4
+          items:
+            enum:
+            - baremetal
+            - backend_transfer
+            - layer_2
+            - global_ipv4
+            - ibx
+            type: string
+          type: array
         href:
           format: uri
           type: string
         id:
           format: uuid
           type: string
-        licensed:
-          description: Licenced OS is priced according to pricing property
-          type: boolean
-        name:
-          type: string
-        preinstallable:
-          description: Servers can be already preinstalled with OS in order to shorten
-            provision time.
-          type: boolean
-        pricing:
-          description: This object contains price per time unit and optional multiplier
-            value if licence price depends on hardware plan or components (e.g. number
-            of cores)
-          type: object
-        provisionable_on:
+        ip_ranges:
+          description: IP ranges registered in facility. Can be used for GeoIP location
+          example:
+          - 2604:1380::/36
+          - 147.75.192.0/21
           items:
             type: string
           type: array
-        slug:
-          type: string
-        version:
+        metro:
+          $ref: '#/components/schemas/Device_metro'
+        name:
           type: string
       type: object
     Vrf:
@@ -801,106 +1056,19 @@ components:
             $ref: '#/components/schemas/Vrf_virtual_circuits_inner'
           type: array
       type: object
-    IPAssignment_metro:
-      allOf:
-      - $ref: '#/components/schemas/Metro'
-      - description: The metro the IP address is in
-        type: object
-    VrfIpReservationCreateInput:
+    Metro:
       properties:
-        cidr:
-          description: The size of the VRF IP Reservation's subnet
-          example: 16
-          type: integer
-        customdata:
-          type: object
-        details:
-          type: string
-        href:
-          format: uri
-          type: string
-        network:
-          description: The starting address for this VRF IP Reservation's subnet
-          example: 10.1.2.0
-          type: string
-        tags:
-          items:
-            type: string
-          type: array
-        type:
-          description: Must be set to 'vrf'
-          example: vrf
-          type: string
-        vrf_id:
-          description: The ID of the VRF in which this VRF IP Reservation is created.
-            The VRF must have an existing IP Range that contains the requested subnet.
-            This field may be aliased as just 'vrf'.
-          format: uuid
-          type: string
-      required:
-      - cidr
-      - network
-      - type
-      - vrf_id
-      type: object
-    ParentBlock:
-      properties:
-        cidr:
-          type: integer
-        href:
-          type: string
-        netmask:
-          type: string
-        network:
-          type: string
-      type: object
-    Facility:
-      properties:
-        address:
-          $ref: '#/components/schemas/Address'
         code:
           type: string
-        features:
-          example:
-          - baremetal
-          - backend_transfer
-          - global_ipv4
-          items:
-            enum:
-            - baremetal
-            - backend_transfer
-            - layer_2
-            - global_ipv4
-            - ibx
-            type: string
-          type: array
+        country:
+          type: string
         href:
           format: uri
           type: string
         id:
           format: uuid
           type: string
-        ip_ranges:
-          description: IP ranges registered in facility. Can be used for GeoIP location
-          example:
-          - 2604:1380::/36
-          - 147.75.192.0/21
-          items:
-            type: string
-          type: array
-        metro:
-          $ref: '#/components/schemas/Device_metro'
         name:
-          type: string
-      type: object
-    Device_actions_inner:
-      properties:
-        href:
-          format: uri
-          type: string
-        name:
-          type: string
-        type:
           type: string
       type: object
     IPReservation:
@@ -978,143 +1146,51 @@ components:
       required:
       - type
       type: object
-    Device_created_by:
+    IPAssignment_metro:
       allOf:
-      - $ref: '#/components/schemas/UserLite'
-      - description: The user that created the device.
+      - $ref: '#/components/schemas/Metro'
+      - description: The metro the IP address is in
         type: object
-    Device_project_lite:
-      allOf:
-      - $ref: '#/components/schemas/Href'
-      - description: Lite version of project object when included
-        type: object
-    Device_project:
-      allOf:
-      - $ref: '#/components/schemas/Href'
-      - description: Full version of project object when included
-        type: object
-    IPReservationList_ip_addresses_inner:
-      anyOf:
-      - $ref: '#/components/schemas/IPReservation'
-      - $ref: '#/components/schemas/VrfIpReservation'
-    IPReservationRequestInput:
+    Href:
       properties:
-        comments:
+        href:
           type: string
-        customdata:
-          type: object
-        details:
+      required:
+      - href
+      type: object
+    OperatingSystem:
+      properties:
+        distro:
           type: string
-        facility:
+        distro_label:
           type: string
-        fail_on_approval_required:
-          type: boolean
         href:
           format: uri
           type: string
-        metro:
-          description: The code of the metro you are requesting the IP reservation
-            in.
-          example: SV
+        id:
+          format: uuid
           type: string
-        quantity:
-          type: integer
-        tags:
+        licensed:
+          description: Licenced OS is priced according to pricing property
+          type: boolean
+        name:
+          type: string
+        preinstallable:
+          description: Servers can be already preinstalled with OS in order to shorten
+            provision time.
+          type: boolean
+        pricing:
+          description: This object contains price per time unit and optional multiplier
+            value if licence price depends on hardware plan or components (e.g. number
+            of cores)
+          type: object
+        provisionable_on:
           items:
             type: string
           type: array
-        type:
+        slug:
           type: string
-      required:
-      - quantity
-      - type
-      type: object
-    Address:
-      properties:
-        address:
-          type: string
-        address2:
-          type: string
-        city:
-          type: string
-        coordinates:
-          $ref: '#/components/schemas/Coordinates'
-        country:
-          type: string
-        href:
-          format: uri
-          type: string
-        state:
-          type: string
-        zip_code:
-          type: string
-      required:
-      - address
-      - country
-      - zip_code
-      type: object
-    Event:
-      properties:
-        body:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        href:
-          type: string
-        id:
-          format: uuid
-          type: string
-        interpolated:
-          type: string
-        ip:
-          type: string
-        modified_by:
-          type: object
-        relationships:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        state:
-          type: string
-        type:
-          type: string
-      type: object
-    Meta:
-      properties:
-        current_page:
-          type: integer
-        first:
-          $ref: '#/components/schemas/Href'
-        href:
-          format: uri
-          type: string
-        last:
-          $ref: '#/components/schemas/Href'
-        last_page:
-          type: integer
-        next:
-          $ref: '#/components/schemas/Href'
-        previous:
-          $ref: '#/components/schemas/Href'
-        self:
-          $ref: '#/components/schemas/Href'
-        total:
-          type: integer
-      type: object
-    Metro:
-      properties:
-        code:
-          type: string
-        country:
-          type: string
-        href:
-          format: uri
-          type: string
-        id:
-          format: uuid
-          type: string
-        name:
+        version:
           type: string
       type: object
     Plan:
@@ -1176,48 +1252,228 @@ components:
           - custom
           type: string
       type: object
-    Port:
-      description: Port is a hardware port associated with a reserved or instantiated
-        hardware device.
+    Device_project_lite:
+      allOf:
+      - $ref: '#/components/schemas/Href'
+      - description: Lite version of project object when included
+        type: object
+    ParentBlock:
       properties:
-        bond:
-          $ref: '#/components/schemas/BondPortData'
-        data:
-          $ref: '#/components/schemas/PortData'
-        disbond_operation_supported:
-          description: Indicates whether or not the bond can be broken on the port
-            (when applicable).
-          type: boolean
+        cidr:
+          type: integer
+        href:
+          type: string
+        netmask:
+          type: string
+        network:
+          type: string
+      type: object
+    Device_actions_inner:
+      properties:
+        href:
+          format: uri
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+      type: object
+    BondPortData:
+      properties:
+        href:
+          format: uri
+          type: string
+        id:
+          description: ID of the bonding port
+          format: uuid
+          type: string
+        name:
+          description: Name of the port interface for the bond ("bond0")
+          type: string
+      type: object
+    Plan_available_in_metros_inner:
+      properties:
+        href:
+          description: href to the Metro
+          type: string
+        price:
+          $ref: '#/components/schemas/Plan_available_in_inner_price'
+      type: object
+    IPReservation_facility:
+      allOf:
+      - $ref: '#/components/schemas/Facility'
+      - description: The facility the IP reservation is in. If the facility the IP
+          reservation was requested in is in a metro, a metro value will also be set,
+          and the subsequent IP reservation can be used on a metro level. Can be null
+          if requesting an IP reservation in a metro.
+        type: object
+    UserLite:
+      properties:
+        avatar_thumb_url:
+          description: Avatar thumbnail URL of the User
+          type: string
+        created_at:
+          description: When the user was created
+          format: date-time
+          type: string
+        email:
+          description: Primary email address of the User
+          type: string
+        first_name:
+          description: First name of the User
+          type: string
+        full_name:
+          description: Full name of the User
+          type: string
+        href:
+          description: API URL uniquely representing the User
+          type: string
+        id:
+          description: ID of the User
+          format: uuid
+          type: string
+        last_name:
+          description: Last name of the User
+          type: string
+        short_id:
+          description: Short ID of the User
+          type: string
+        updated_at:
+          description: When the user details were last updated
+          format: date-time
+          type: string
+      required:
+      - id
+      - short_id
+      type: object
+    User:
+      properties:
+        avatar_thumb_url:
+          type: string
+        avatar_url:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        customdata:
+          type: object
+        email:
+          type: string
+        emails:
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        first_name:
+          type: string
+        fraud_score:
+          type: string
+        full_name:
+          type: string
         href:
           type: string
         id:
           format: uuid
           type: string
+        last_login_at:
+          format: date-time
+          type: string
+        last_name:
+          type: string
+        max_organizations:
+          type: integer
+        max_projects:
+          type: integer
+        phone_number:
+          type: string
+        short_id:
+          type: string
+        timezone:
+          type: string
+        two_factor_auth:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
+    FacilityInput:
+      properties:
+        facility:
+          $ref: '#/components/schemas/FacilityInput_facility'
+        href:
+          format: uri
+          type: string
+      required:
+      - facility
+      type: object
+    Coordinates:
+      properties:
+        href:
+          format: uri
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+      type: object
+    Vrf_virtual_circuits_inner:
+      properties:
+        customer_ip:
+          description: An IP address from the subnet that will be used on the Customer
+            side. This parameter is optional, but if supplied, we will use the other
+            usable IP address in the subnet as the Metal IP. By default, the last
+            usable IP address in the subnet will be used.
+          example: 12.0.0.2
+          type: string
+        href:
+          format: uri
+          type: string
+        id:
+          format: uuid
+          type: string
+        md5:
+          description: The MD5 password for the BGP peering in plaintext (not a checksum).
+          type: string
+        metal_ip:
+          description: An IP address from the subnet that will be used on the Metal
+            side. This parameter is optional, but if supplied, we will use the other
+            usable IP address in the subnet as the Customer IP. By default, the first
+            usable IP address in the subnet will be used.
+          example: 12.0.0.1
+          type: string
         name:
-          example: bond0
           type: string
-        native_virtual_network:
-          $ref: '#/components/schemas/VirtualNetwork'
-        network_type:
-          description: Composite network type of the bond
-          enum:
-          - layer2-bonded
-          - layer2-individual
-          - layer3
-          - hybrid
-          - hybrid-bonded
+        peer_asn:
+          description: The peer ASN that will be used with the VRF on the Virtual
+            Circuit.
+          type: integer
+        port:
+          $ref: '#/components/schemas/Href'
+        status:
           type: string
-        type:
-          description: Type is either "NetworkBondPort" for bond ports or "NetworkPort"
-            for bondable ethernet ports
-          enum:
-          - NetworkPort
-          - NetworkBondPort
+        subnet:
+          description: The /30 or /31 subnet of one of the VRF IP Blocks that will
+            be used with the VRF for the Virtual Circuit. This subnet does not have
+            to be an existing VRF IP reservation, as we will create the VRF IP reservation
+            on creation if it does not exist. The Metal IP and Customer IP must be
+            IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot
+            be used as the Metal or Customer IP.
+          example: 12.0.0.0/30
           type: string
-        virtual_networks:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
+      type: object
+    MetroInput:
+      properties:
+        href:
+          format: uri
+          type: string
+        metro:
+          description: 'Metro code or ID of where the instance should be provisioned
+            in.
+
+            Either metro or facility must be provided.'
+          example: sv
+          type: string
+      required:
+      - metro
       type: object
     DeviceCreateInput:
       properties:
@@ -1481,220 +1737,6 @@ components:
       - operating_system
       - plan
       type: object
-    UserLite:
-      properties:
-        avatar_thumb_url:
-          description: Avatar thumbnail URL of the User
-          type: string
-        created_at:
-          description: When the user was created
-          format: date-time
-          type: string
-        email:
-          description: Primary email address of the User
-          type: string
-        first_name:
-          description: First name of the User
-          type: string
-        full_name:
-          description: Full name of the User
-          type: string
-        href:
-          description: API URL uniquely representing the User
-          type: string
-        id:
-          description: ID of the User
-          format: uuid
-          type: string
-        last_name:
-          description: Last name of the User
-          type: string
-        short_id:
-          description: Short ID of the User
-          type: string
-        updated_at:
-          description: When the user details were last updated
-          format: date-time
-          type: string
-      required:
-      - id
-      - short_id
-      type: object
-    Vrf_virtual_circuits_inner:
-      properties:
-        customer_ip:
-          description: An IP address from the subnet that will be used on the Customer
-            side. This parameter is optional, but if supplied, we will use the other
-            usable IP address in the subnet as the Metal IP. By default, the last
-            usable IP address in the subnet will be used.
-          example: 12.0.0.2
-          type: string
-        href:
-          format: uri
-          type: string
-        id:
-          format: uuid
-          type: string
-        md5:
-          description: The MD5 password for the BGP peering in plaintext (not a checksum).
-          type: string
-        metal_ip:
-          description: An IP address from the subnet that will be used on the Metal
-            side. This parameter is optional, but if supplied, we will use the other
-            usable IP address in the subnet as the Customer IP. By default, the first
-            usable IP address in the subnet will be used.
-          example: 12.0.0.1
-          type: string
-        name:
-          type: string
-        peer_asn:
-          description: The peer ASN that will be used with the VRF on the Virtual
-            Circuit.
-          type: integer
-        port:
-          $ref: '#/components/schemas/Href'
-        status:
-          type: string
-        subnet:
-          description: The /30 or /31 subnet of one of the VRF IP Blocks that will
-            be used with the VRF for the Virtual Circuit. This subnet does not have
-            to be an existing VRF IP reservation, as we will create the VRF IP reservation
-            on creation if it does not exist. The Metal IP and Customer IP must be
-            IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot
-            be used as the Metal or Customer IP.
-          example: 12.0.0.0/30
-          type: string
-      type: object
-    User:
-      properties:
-        avatar_thumb_url:
-          type: string
-        avatar_url:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        customdata:
-          type: object
-        email:
-          type: string
-        emails:
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        first_name:
-          type: string
-        fraud_score:
-          type: string
-        full_name:
-          type: string
-        href:
-          type: string
-        id:
-          format: uuid
-          type: string
-        last_login_at:
-          format: date-time
-          type: string
-        last_name:
-          type: string
-        max_organizations:
-          type: integer
-        max_projects:
-          type: integer
-        phone_number:
-          type: string
-        short_id:
-          type: string
-        timezone:
-          type: string
-        two_factor_auth:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-      type: object
-    IPReservation_metro:
-      allOf:
-      - $ref: '#/components/schemas/Metro'
-      - description: The metro the IP reservation is in. As long as the IP reservation
-          has a metro, it can be used on a metro level. Can be null if requesting
-          an IP reservation in a facility that is not in a metro.
-        type: object
-    MetroInput:
-      properties:
-        href:
-          format: uri
-          type: string
-        metro:
-          description: 'Metro code or ID of where the instance should be provisioned
-            in.
-
-            Either metro or facility must be provided.'
-          example: sv
-          type: string
-      required:
-      - metro
-      type: object
-    Plan_available_in_metros_inner:
-      properties:
-        href:
-          description: href to the Metro
-          type: string
-        price:
-          $ref: '#/components/schemas/Plan_available_in_inner_price'
-      type: object
-    Plan_specs:
-      properties:
-        cpus:
-          items:
-            $ref: '#/components/schemas/Plan_specs_cpus_inner'
-          type: array
-        drives:
-          items:
-            $ref: '#/components/schemas/Plan_specs_drives_inner'
-          type: array
-        features:
-          $ref: '#/components/schemas/Plan_specs_features'
-        href:
-          format: uri
-          type: string
-        nics:
-          items:
-            $ref: '#/components/schemas/Plan_specs_nics_inner'
-          type: array
-      type: object
-    PortData:
-      properties:
-        bonded:
-          description: Bonded is true for NetworkPort ports in a bond and NetworkBondPort
-            ports that are active
-          type: boolean
-        href:
-          format: uri
-          type: string
-        mac:
-          description: MAC address is set for NetworkPort ports
-          type: string
-      type: object
-    IPReservation_facility:
-      allOf:
-      - $ref: '#/components/schemas/Facility'
-      - description: The facility the IP reservation is in. If the facility the IP
-          reservation was requested in is in a metro, a metro value will also be set,
-          and the subsequent IP reservation can be used on a metro level. Can be null
-          if requesting an IP reservation in a metro.
-        type: object
-    FacilityInput:
-      properties:
-        facility:
-          $ref: '#/components/schemas/FacilityInput_facility'
-        href:
-          format: uri
-          type: string
-      required:
-      - facility
-      type: object
     VirtualNetwork:
       properties:
         assigned_to:
@@ -1733,17 +1775,44 @@ components:
         vxlan:
           type: integer
       type: object
-    BondPortData:
+    IPReservation_metro:
+      allOf:
+      - $ref: '#/components/schemas/Metro'
+      - description: The metro the IP reservation is in. As long as the IP reservation
+          has a metro, it can be used on a metro level. Can be null if requesting
+          an IP reservation in a facility that is not in a metro.
+        type: object
+    Plan_specs:
       properties:
+        cpus:
+          items:
+            $ref: '#/components/schemas/Plan_specs_cpus_inner'
+          type: array
+        drives:
+          items:
+            $ref: '#/components/schemas/Plan_specs_drives_inner'
+          type: array
+        features:
+          $ref: '#/components/schemas/Plan_specs_features'
         href:
           format: uri
           type: string
-        id:
-          description: ID of the bonding port
-          format: uuid
+        nics:
+          items:
+            $ref: '#/components/schemas/Plan_specs_nics_inner'
+          type: array
+      type: object
+    PortData:
+      properties:
+        bonded:
+          description: Bonded is true for NetworkPort ports in a bond and NetworkBondPort
+            ports that are active
+          type: boolean
+        href:
+          format: uri
           type: string
-        name:
-          description: Name of the port interface for the bond ("bond0")
+        mac:
+          description: MAC address is set for NetworkPort ports
           type: string
       type: object
     Plan_available_in_inner:
@@ -1754,14 +1823,63 @@ components:
         price:
           $ref: '#/components/schemas/Plan_available_in_inner_price'
       type: object
-    Coordinates:
+    FacilityInput_facility:
+      anyOf:
+      - example:
+        - sv15
+        items:
+          type: string
+        type: array
+      - example: any
+        type: string
+      description: 'The datacenter where the device should be created.
+
+
+        Either metro or facility must be provided.
+
+
+        The API will accept either a single facility `{ "facility": "f1" }`, or it
+        can be instructed to create the device in the best available datacenter `{
+        "facility": "any" }`.
+
+
+        Additionally it is possible to set a prioritized location selection. For example
+        `{ "facility": ["f3", "f2", "any"] }` can be used to prioritize `f3` and then
+        `f2` before accepting `any` facility. If none of the facilities provided have
+        availability for the requested device the request will fail.'
+    Plan_specs_cpus_inner:
       properties:
+        count:
+          type: integer
         href:
           format: uri
           type: string
-        latitude:
+        type:
           type: string
-        longitude:
+      type: object
+    Plan_specs_nics_inner:
+      properties:
+        count:
+          example: 2
+          type: integer
+        href:
+          format: uri
+          type: string
+        type:
+          enum:
+          - 1Gbps
+          - 10Gbps
+          - 25Gbps
+          type: string
+      type: object
+    Plan_available_in_inner_price:
+      properties:
+        hour:
+          example: 1.23
+          format: double
+          type: number
+        href:
+          format: uri
           type: string
       type: object
     IPAddress:
@@ -1795,40 +1913,18 @@ components:
           example: false
           type: boolean
       type: object
-    Plan_available_in_inner_price:
+    Plan_specs_features:
       properties:
-        hour:
-          example: 1.23
-          format: double
-          type: number
         href:
           format: uri
           type: string
+        raid:
+          type: boolean
+        txt:
+          type: boolean
+        uefi:
+          type: boolean
       type: object
-    FacilityInput_facility:
-      anyOf:
-      - example:
-        - sv15
-        items:
-          type: string
-        type: array
-      - example: any
-        type: string
-      description: 'The datacenter where the device should be created.
-
-
-        Either metro or facility must be provided.
-
-
-        The API will accept either a single facility `{ "facility": "f1" }`, or it
-        can be instructed to create the device in the best available datacenter `{
-        "facility": "any" }`.
-
-
-        Additionally it is possible to set a prioritized location selection. For example
-        `{ "facility": ["f3", "f2", "any"] }` can be used to prioritize `f3` and then
-        `f2` before accepting `any` facility. If none of the facilities provided have
-        availability for the requested device the request will fail.'
     Plan_specs_drives_inner:
       properties:
         category:
@@ -1850,53 +1946,6 @@ components:
           - HDD
           - SSD
           - NVME
-          type: string
-      type: object
-    Plan_specs_cpus_inner:
-      properties:
-        count:
-          type: integer
-        href:
-          format: uri
-          type: string
-        type:
-          type: string
-      type: object
-    SSHKeyInput:
-      properties:
-        href:
-          format: uri
-          type: string
-        key:
-          type: string
-        label:
-          type: string
-      type: object
-    Plan_specs_features:
-      properties:
-        href:
-          format: uri
-          type: string
-        raid:
-          type: boolean
-        txt:
-          type: boolean
-        uefi:
-          type: boolean
-      type: object
-    Plan_specs_nics_inner:
-      properties:
-        count:
-          example: 2
-          type: integer
-        href:
-          format: uri
-          type: string
-        type:
-          enum:
-          - 1Gbps
-          - 10Gbps
-          - 25Gbps
           type: string
       type: object
   securitySchemes:
@@ -2199,6 +2248,67 @@ paths:
       summary: Create an ip assignment
       tags:
       - Devices
+  /devices/{id}/ssh-keys:
+    get:
+      description: Returns a collection of the device's ssh keys.
+      operationId: findDeviceSSHKeys
+      parameters:
+      - description: Project UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Search by key, label, or fingerprint
+        in: query
+        name: Search string
+        schema:
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKeyList'
+          description: ok
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+      summary: Retrieve a device's ssh keys
+      tags:
+      - SSHKeys
   /ips/{id}:
     delete:
       description: Note! This call can be used to un-assign an IP assignment or delete
@@ -3625,6 +3735,107 @@ paths:
       summary: Requesting IP reservations
       tags:
       - IPAddresses
+  /projects/{id}/ssh-keys:
+    get:
+      description: Returns a collection of the project's ssh keys.
+      operationId: findProjectSSHKeys
+      parameters:
+      - description: Project UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: Search by key, label, or fingerprint
+        in: query
+        name: query
+        schema:
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKeyList'
+          description: ok
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+      summary: Retrieve a project's ssh keys
+      tags:
+      - SSHKeys
+    post:
+      description: Creates a ssh key.
+      operationId: createProjectSSHKey
+      parameters:
+      - description: Project UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SSHKeyCreateInput'
+        description: ssh key to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKey'
+          description: created
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unprocessable entity
+      summary: Create a ssh key for the given project
+      tags:
+      - SSHKeys
   /projects/{project_id}/ips/{id}/customdata:
     get:
       description: Provides the custom metadata stored for this IP Reservation in
@@ -3669,6 +3880,245 @@ paths:
       summary: Retrieve the custom metadata of an IP Reservation
       tags:
       - Projects
+  /ssh-keys:
+    get:
+      description: "Returns a collection of the user\u2019s ssh keys."
+      operationId: findSSHKeys
+      parameters:
+      - description: Search by key, label, or fingerprint
+        in: query
+        name: Search string
+        schema:
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKeyList'
+          description: ok
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+      summary: Retrieve all ssh keys
+      tags:
+      - SSHKeys
+    post:
+      description: Creates a ssh key.
+      operationId: createSSHKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SSHKeyCreateInput'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKey'
+          description: created
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unprocessable entity
+      summary: Create a ssh key for the current user
+      tags:
+      - SSHKeys
+  /ssh-keys/{id}:
+    delete:
+      description: Deletes the ssh key.
+      operationId: deleteSSHKey
+      parameters:
+      - description: ssh key UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '204':
+          description: no content
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Delete the ssh key
+      tags:
+      - SSHKeys
+    get:
+      description: Returns a single ssh key if the user has access
+      operationId: findSSHKeyById
+      parameters:
+      - description: SSH Key UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKey'
+          description: ok
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve a ssh key
+      tags:
+      - SSHKeys
+    put:
+      description: Updates the ssh key.
+      operationId: updateSSHKey
+      parameters:
+      - description: SSH Key UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SSHKeyInput'
+        description: ssh key to update
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSHKey'
+          description: ok
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unprocessable entity
+      summary: Update the ssh key
+      tags:
+      - SSHKeys
   /vrfs/{vrf_id}/ips/{id}:
     get:
       description: Returns the IP Reservation for the VRF.

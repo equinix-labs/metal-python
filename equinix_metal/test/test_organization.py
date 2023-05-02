@@ -13,8 +13,6 @@
 """
 
 
-from __future__ import absolute_import
-
 import unittest
 import datetime
 
@@ -67,7 +65,7 @@ class TestOrganization(unittest.TestCase):
                     zip_code = '', ), 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 credit_amount = 1.337, 
-                customdata = equinix_metal.models.customdata.customdata(), 
+                customdata = None, 
                 description = '', 
                 enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 href = '', 

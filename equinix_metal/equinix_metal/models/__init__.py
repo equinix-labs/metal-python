@@ -14,8 +14,6 @@
 """
 
 
-from __future__ import absolute_import
-
 # import models into model package
 from equinix_metal.models.address import Address
 from equinix_metal.models.bond_port_data import BondPortData
@@ -79,7 +77,10 @@ from equinix_metal.models.project_list import ProjectList
 from equinix_metal.models.project_update_input import ProjectUpdateInput
 from equinix_metal.models.request_ip_reservation201_response import RequestIPReservation201Response
 from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest
+from equinix_metal.models.ssh_key import SSHKey
+from equinix_metal.models.ssh_key_create_input import SSHKeyCreateInput
 from equinix_metal.models.ssh_key_input import SSHKeyInput
+from equinix_metal.models.ssh_key_list import SSHKeyList
 from equinix_metal.models.user import User
 from equinix_metal.models.user_lite import UserLite
 from equinix_metal.models.virtual_network import VirtualNetwork

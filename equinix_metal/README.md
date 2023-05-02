@@ -125,6 +125,14 @@ Class | Method | HTTP request | Description
 *ProjectsApi* | [**find_project_by_id**](docs/ProjectsApi.md#find_project_by_id) | **GET** /projects/{id} | Retrieve a project
 *ProjectsApi* | [**find_projects**](docs/ProjectsApi.md#find_projects) | **GET** /projects | Retrieve all projects
 *ProjectsApi* | [**update_project**](docs/ProjectsApi.md#update_project) | **PUT** /projects/{id} | Update the project
+*SSHKeysApi* | [**create_project_ssh_key**](docs/SSHKeysApi.md#create_project_ssh_key) | **POST** /projects/{id}/ssh-keys | Create a ssh key for the given project
+*SSHKeysApi* | [**create_ssh_key**](docs/SSHKeysApi.md#create_ssh_key) | **POST** /ssh-keys | Create a ssh key for the current user
+*SSHKeysApi* | [**delete_ssh_key**](docs/SSHKeysApi.md#delete_ssh_key) | **DELETE** /ssh-keys/{id} | Delete the ssh key
+*SSHKeysApi* | [**find_device_ssh_keys**](docs/SSHKeysApi.md#find_device_ssh_keys) | **GET** /devices/{id}/ssh-keys | Retrieve a device&#39;s ssh keys
+*SSHKeysApi* | [**find_project_ssh_keys**](docs/SSHKeysApi.md#find_project_ssh_keys) | **GET** /projects/{id}/ssh-keys | Retrieve a project&#39;s ssh keys
+*SSHKeysApi* | [**find_ssh_key_by_id**](docs/SSHKeysApi.md#find_ssh_key_by_id) | **GET** /ssh-keys/{id} | Retrieve a ssh key
+*SSHKeysApi* | [**find_ssh_keys**](docs/SSHKeysApi.md#find_ssh_keys) | **GET** /ssh-keys | Retrieve all ssh keys
+*SSHKeysApi* | [**update_ssh_key**](docs/SSHKeysApi.md#update_ssh_key) | **PUT** /ssh-keys/{id} | Update the ssh key
 *VRFsApi* | [**find_vrf_ip_reservation**](docs/VRFsApi.md#find_vrf_ip_reservation) | **GET** /vrfs/{vrf_id}/ips/{id} | Retrieve all VRF IP Reservations in the VRF
 
 
@@ -192,7 +200,10 @@ Class | Method | HTTP request | Description
  - [ProjectUpdateInput](docs/ProjectUpdateInput.md)
  - [RequestIPReservation201Response](docs/RequestIPReservation201Response.md)
  - [RequestIPReservationRequest](docs/RequestIPReservationRequest.md)
+ - [SSHKey](docs/SSHKey.md)
+ - [SSHKeyCreateInput](docs/SSHKeyCreateInput.md)
  - [SSHKeyInput](docs/SSHKeyInput.md)
+ - [SSHKeyList](docs/SSHKeyList.md)
  - [User](docs/User.md)
  - [UserLite](docs/UserLite.md)
  - [VirtualNetwork](docs/VirtualNetwork.md)
