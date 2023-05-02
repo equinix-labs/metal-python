@@ -13,7 +13,7 @@ properties:
           properties:
             hour:
               type: number
-              format: decimal
+              format: double
               example: 1.23
     type: array
   available_in_metros:
@@ -30,7 +30,7 @@ properties:
           properties:
             hour:
               type: number
-              format: decimal
+              format: double
               example: 1.23
     type: array
   class:
@@ -51,7 +51,9 @@ properties:
     format: uuid
     type: string
   legacy:
+    description: Deprecated. Always return false
     type: boolean
+    x-deprecated: true
   line:
     type: string
     enum:
