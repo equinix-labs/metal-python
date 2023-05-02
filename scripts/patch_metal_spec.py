@@ -34,6 +34,10 @@ WANT_PATHS = [
     '/ips/{id}/customdata',
     '/projects/{project_id}/ips/{id}/customdata',
     '/vrfs/{vrf_id}/ips/{id}',
+    '/devices/{id}/ssh-keys',
+    '/projects/{id}/ssh-keys',
+    '/ssh-keys/{id}',
+    '/ssh-keys',
 ]
 
 
@@ -211,6 +215,30 @@ fixedSpec['components']['schemas']['IPAssignment']['required'] = [
 
 fixedSpec['components']['schemas']['IPReservation']['properties']['assignments']['items'] = {
     "$ref": "#/components/schemas/Href"
+}
+
+# FIX 10. 
+# spec['paths']['/ssh-keys']['post']['requestBody'] was:
+#      requestBody:
+#        $ref: '#/components/requestBodies/SSHKeyCreateInput'
+# .. but it should be:
+#      requestBody:
+#        content:
+#          application/json:
+#            schema:
+#              $ref: '#/components/schemas/SSHKeyCreateInput'
+
+
+
+fixedSpec['paths']['/ssh-keys']['post']['requestBody'] = {
+    "content": {
+        "application/json": {
+            "schema": {
+                "$ref": "#/components/schemas/SSHKeyCreateInput",
+            },
+        },
+    },   
+
 }
 
 with open(OUTFILE, 'w') as f:
