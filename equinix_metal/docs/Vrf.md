@@ -4,8 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bgp_dynamic_neighbors_bfd_enabled** | **bool** | Toggle BFD on dynamic bgp neighbors sessions | [optional] 
 **bgp_dynamic_neighbors_enabled** | **bool** | Toggle to enable the dynamic bgp neighbors feature on the VRF | [optional] 
 **bgp_dynamic_neighbors_export_route_map** | **bool** | Toggle to export the VRF route-map to the dynamic bgp neighbors | [optional] 
+**bill** | **bool** | True if the VRF is being billed. Usage will start when the first VRF Virtual Circuit is active, and will only stop when the VRF has been deleted. | [optional] [default to False]
 **created_at** | **datetime** |  | [optional] 
 **created_by** | [**User**](User.md) |  | [optional] 
 **description** | **str** | Optional field that can be set to describe the VRF | [optional] 
@@ -17,6 +19,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **project** | [**Project**](Project.md) |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
+**virtual_circuits** | [**List[VrfVirtualCircuit]**](VrfVirtualCircuit.md) | Virtual circuits that are in the VRF | [optional] 
 
 ## Example
 
