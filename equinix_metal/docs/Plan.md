@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **description** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
-**legacy** | **bool** |  | [optional] 
+**legacy** | **bool** | Deprecated. Always return false | [optional] 
 **line** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **pricing** | **object** |  | [optional] 

@@ -1154,7 +1154,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_request'
+              $ref: '#/components/schemas/VirtualCircuitCreateInput'
         description: Virtual Circuit details
         required: true
       responses:
@@ -1162,7 +1162,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: ok
         "403":
           content:
@@ -8005,6 +8005,48 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Page to return
+        in: query
+        name: page
+        schema:
+          default: 1
+          format: int32
+          maximum: 100000
+          minimum: 1
+          type: integer
+      - description: Items returned per page
+        in: query
+        name: per_page
+        schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
       responses:
         "200":
           content:
@@ -10150,7 +10192,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: accepted
         "403":
           content:
@@ -10183,7 +10225,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: ok
         "403":
           content:
@@ -10215,7 +10257,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/updateVirtualCircuit_request'
+              $ref: '#/components/schemas/VirtualCircuitUpdateInput'
         description: Updated Virtual Circuit details
         required: true
       responses:
@@ -10223,13 +10265,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: ok
         "202":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/createInterconnectionPortVirtualCircuit_201_response'
+                $ref: '#/components/schemas/VirtualCircuit'
           description: accepted
         "403":
           content:
@@ -11041,16 +11083,16 @@ components:
         address_family:
           description: Address Family for IP Address. Accepted values are 4 or 6
           example: 4
-          format: integer
-          type: number
+          format: int32
+          type: integer
         customer_as:
           description: "The customer's ASN. In a local BGP deployment, this will be\
             \ an internal ASN used to route within the data center. For a global BGP\
             \ deployment, this will be the your own ASN, configured when you set up\
             \ BGP for your project."
           example: 65000
-          format: integer
-          type: number
+          format: int32
+          type: integer
         customer_ip:
           description: "The device's IP address. For an IPv4 BGP session, this is\
             \ typically the private bond0 address for the device."
@@ -11068,8 +11110,8 @@ components:
         peer_as:
           description: The Peer ASN to use when configuring BGP on your device.
           example: 65530
-          format: integer
-          type: number
+          format: int32
+          type: integer
         peer_ips:
           description: "A list of one or more IP addresses to use for the Peer IP\
             \ section of your BGP configuration. For non-multihop sessions, this will\
@@ -11445,6 +11487,10 @@ components:
           items:
             $ref: '#/components/schemas/Href'
           type: array
+        sos:
+          description: Hostname used to connect to the instance via the SOS (Serial
+            over SSH) out-of-band console.
+          type: string
       type: object
     DeviceCreateInput:
       properties:
@@ -11532,7 +11578,7 @@ components:
 
             To access a server without public IPs, you can use our Out-of-Band console access (SOS) or proxy through another server in the project with public IPs enabled.
           items:
-            $ref: '#/components/schemas/DeviceCreateInput_ip_addresses_inner'
+            $ref: '#/components/schemas/IPAddress'
           type: array
         ipxe_script_url:
           description: |-
@@ -11566,8 +11612,8 @@ components:
           default: 28
           description: Deprecated. Use ip_addresses. Subnet range for addresses allocated
             to this device.
-          format: integer
-          type: number
+          format: int32
+          type: integer
           x-deprecated: true
         project_ssh_keys:
           description: |
@@ -11587,8 +11633,8 @@ components:
           description: Deprecated. Use ip_addresses. Subnet range for addresses allocated
             to this device. Your project must have addresses available for a non-default
             request.
-          format: integer
-          type: number
+          format: int32
+          type: integer
           x-deprecated: true
         spot_instance:
           description: "Create a spot instance. Spot instances are created with a\
@@ -12008,6 +12054,34 @@ components:
       required:
       - href
       type: object
+    IPAddress:
+      properties:
+        address_family:
+          description: Address Family for IP Address
+          enum:
+          - 4
+          - 6
+          example: 4
+          format: int32
+          type: integer
+        cidr:
+          description: "Cidr Size for the IP Block created. Valid values depends on\
+            \ the operating system being provisioned. (28..32 for IPv4 addresses,\
+            \ 124..127 for IPv6 addresses)"
+          example: 28
+          format: int32
+          type: integer
+        ip_reservations:
+          description: UUIDs of any IP reservations to use when assigning IPs
+          items:
+            type: string
+          type: array
+        public:
+          default: true
+          description: Address Type for IP Address
+          example: false
+          type: boolean
+      type: object
     IPAssignment:
       properties:
         address:
@@ -12385,6 +12459,8 @@ components:
           items:
             $ref: '#/components/schemas/Interconnection'
           type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
       type: object
     InterconnectionPort:
       properties:
@@ -12740,6 +12816,8 @@ components:
           items:
             $ref: '#/components/schemas/MetalGatewayList_metal_gateways_inner'
           type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
       type: object
     MetalGatewayLite:
       properties:
@@ -13121,7 +13199,9 @@ components:
           format: uuid
           type: string
         legacy:
+          description: Deprecated. Always return false
           type: boolean
+          x-deprecated: true
         line:
           enum:
           - baremetal
@@ -13628,8 +13708,8 @@ components:
             format: uuid
             type: string
           type: array
-        instance_attributes:
-          $ref: '#/components/schemas/SpotMarketRequestCreateInput_instance_attributes'
+        instance_parameters:
+          $ref: '#/components/schemas/SpotMarketRequestCreateInput_instance_parameters'
         max_bid_price:
           format: float
           type: number
@@ -13977,6 +14057,90 @@ components:
       - user_token
       type: object
     VirtualCircuit:
+      oneOf:
+      - $ref: '#/components/schemas/VlanVirtualCircuit'
+      - $ref: '#/components/schemas/VrfVirtualCircuit'
+    VirtualCircuitCreateInput:
+      oneOf:
+      - $ref: '#/components/schemas/VlanVirtualCircuitCreateInput'
+      - $ref: '#/components/schemas/VrfVirtualCircuitCreateInput'
+    VirtualCircuitList:
+      properties:
+        virtual_circuits:
+          items:
+            $ref: '#/components/schemas/VirtualCircuit'
+          type: array
+      type: object
+    VirtualCircuitUpdateInput:
+      oneOf:
+      - $ref: '#/components/schemas/VlanVirtualCircuitUpdateInput'
+      - $ref: '#/components/schemas/VrfVirtualCircuitUpdateInput'
+    VirtualNetwork:
+      properties:
+        assigned_to:
+          $ref: '#/components/schemas/Href'
+        assigned_to_virtual_circuit:
+          description: True if the virtual network is attached to a virtual circuit.
+            False if not.
+          type: boolean
+        description:
+          type: string
+        facility:
+          $ref: '#/components/schemas/Href'
+        href:
+          type: string
+        id:
+          format: uuid
+          type: string
+        instances:
+          description: A list of instances with ports currently associated to this
+            Virtual Network.
+          items:
+            $ref: '#/components/schemas/Href'
+          type: array
+        metal_gateways:
+          description: A list of metal gateways currently associated to this Virtual
+            Network.
+          items:
+            $ref: '#/components/schemas/MetalGatewayLite'
+          type: array
+        metro:
+          $ref: '#/components/schemas/Href'
+        metro_code:
+          description: The Metro code of the metro in which this Virtual Network is
+            defined.
+          type: string
+        vxlan:
+          type: integer
+      type: object
+    VirtualNetworkCreateInput:
+      properties:
+        description:
+          type: string
+        facility:
+          description: The UUID (or facility code) for the Facility in which to create
+            this Virtual network.
+          type: string
+        metro:
+          description: The UUID (or metro code) for the Metro in which to create this
+            Virtual Network.
+          type: string
+        vxlan:
+          description: "VLAN ID between 2-3999. Must be unique for the project within\
+            \ the Metro in which this Virtual Network is being created. If no value\
+            \ is specified, the next-available VLAN ID in the range 1000-1999 will\
+            \ be automatically selected."
+          example: 1099
+          type: integer
+      type: object
+    VirtualNetworkList:
+      properties:
+        virtual_networks:
+          items:
+            $ref: '#/components/schemas/VirtualNetwork'
+          type: array
+      type: object
+    VlanVirtualCircuit:
       properties:
         bill:
           default: false
@@ -14071,7 +14235,7 @@ components:
       - virtual_network
       - vnid
       type: object
-    VirtualCircuitCreateInput:
+    VlanVirtualCircuitCreateInput:
       properties:
         description:
           type: string
@@ -14100,14 +14264,7 @@ components:
       required:
       - project_id
       type: object
-    VirtualCircuitList:
-      properties:
-        virtual_circuits:
-          items:
-            $ref: '#/components/schemas/VirtualCircuitList_virtual_circuits_inner'
-          type: array
-      type: object
-    VirtualCircuitUpdateInput:
+    VlanVirtualCircuitUpdateInput:
       properties:
         description:
           type: string
@@ -14126,71 +14283,6 @@ components:
             Network in your project.
           type: string
       type: object
-    VirtualNetwork:
-      properties:
-        assigned_to:
-          $ref: '#/components/schemas/Href'
-        assigned_to_virtual_circuit:
-          description: True if the virtual network is attached to a virtual circuit.
-            False if not.
-          type: boolean
-        description:
-          type: string
-        facility:
-          $ref: '#/components/schemas/Href'
-        href:
-          type: string
-        id:
-          format: uuid
-          type: string
-        instances:
-          description: A list of instances with ports currently associated to this
-            Virtual Network.
-          items:
-            $ref: '#/components/schemas/Href'
-          type: array
-        metal_gateways:
-          description: A list of metal gateways currently associated to this Virtual
-            Network.
-          items:
-            $ref: '#/components/schemas/MetalGatewayLite'
-          type: array
-        metro:
-          $ref: '#/components/schemas/Href'
-        metro_code:
-          description: The Metro code of the metro in which this Virtual Network is
-            defined.
-          type: string
-        vxlan:
-          type: integer
-      type: object
-    VirtualNetworkCreateInput:
-      properties:
-        description:
-          type: string
-        facility:
-          description: The UUID (or facility code) for the Facility in which to create
-            this Virtual network.
-          type: string
-        metro:
-          description: The UUID (or metro code) for the Metro in which to create this
-            Virtual Network.
-          type: string
-        vxlan:
-          description: "VLAN ID between 2-3999. Must be unique for the project within\
-            \ the Metro in which this Virtual Network is being created. If no value\
-            \ is specified, the next-available VLAN ID in the range 1000-1999 will\
-            \ be automatically selected."
-          example: 1099
-          type: integer
-      type: object
-    VirtualNetworkList:
-      properties:
-        virtual_networks:
-          items:
-            $ref: '#/components/schemas/VirtualNetwork'
-          type: array
-      type: object
     Vrf:
       properties:
         id:
@@ -14201,16 +14293,30 @@ components:
         description:
           description: Optional field that can be set to describe the VRF
           type: string
+        bill:
+          default: false
+          description: "True if the VRF is being billed. Usage will start when the\
+            \ first VRF Virtual Circuit is active, and will only stop when the VRF\
+            \ has been deleted."
+          type: boolean
         bgp_dynamic_neighbors_enabled:
           description: Toggle to enable the dynamic bgp neighbors feature on the VRF
           type: boolean
         bgp_dynamic_neighbors_export_route_map:
           description: Toggle to export the VRF route-map to the dynamic bgp neighbors
           type: boolean
+        bgp_dynamic_neighbors_bfd_enabled:
+          description: Toggle BFD on dynamic bgp neighbors sessions
+          type: boolean
         local_asn:
           description: A 4-byte ASN associated with the VRF.
           format: int32
           type: integer
+        virtual_circuits:
+          description: Virtual circuits that are in the VRF
+          items:
+            $ref: '#/components/schemas/VrfVirtualCircuit'
+          type: array
         ip_ranges:
           description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"\
             2001:d78::/56\"]."
@@ -14234,6 +14340,15 @@ components:
       type: object
     VrfCreateInput:
       properties:
+        bgp_dynamic_neighbors_enabled:
+          description: Toggle to enable the dynamic bgp neighbors feature on the VRF
+          type: boolean
+        bgp_dynamic_neighbors_export_route_map:
+          description: Toggle to export the VRF route-map to the dynamic bgp neighbors
+          type: boolean
+        bgp_dynamic_neighbors_bfd_enabled:
+          description: Toggle BFD on dynamic bgp neighbors sessions
+          type: boolean
         description:
           type: string
         ip_ranges:
@@ -14544,6 +14659,9 @@ components:
         bgp_dynamic_neighbors_export_route_map:
           description: Toggle to export the VRF route-map to the dynamic bgp neighbors
           type: boolean
+        bgp_dynamic_neighbors_bfd_enabled:
+          description: Toggle BFD on dynamic bgp neighbors sessions
+          type: boolean
         description:
           type: string
         ip_ranges:
@@ -14819,14 +14937,6 @@ components:
           example: 10.32.16.0/31
           type: string
       type: object
-    createInterconnectionPortVirtualCircuit_request:
-      oneOf:
-      - $ref: '#/components/schemas/VirtualCircuitCreateInput'
-      - $ref: '#/components/schemas/VrfVirtualCircuitCreateInput'
-    createInterconnectionPortVirtualCircuit_201_response:
-      oneOf:
-      - $ref: '#/components/schemas/VirtualCircuit'
-      - $ref: '#/components/schemas/VrfVirtualCircuit'
     findTraffic_timeframe_parameter:
       properties:
         ended_at:
@@ -14875,10 +14985,6 @@ components:
       oneOf:
       - $ref: '#/components/schemas/MetalGatewayCreateInput'
       - $ref: '#/components/schemas/VrfMetalGatewayCreateInput'
-    updateVirtualCircuit_request:
-      oneOf:
-      - $ref: '#/components/schemas/VirtualCircuitUpdateInput'
-      - $ref: '#/components/schemas/VrfVirtualCircuitUpdateInput'
     AuthToken_project:
       allOf:
       - $ref: '#/components/schemas/Project'
@@ -14895,7 +15001,7 @@ components:
           enum:
           - 12
           - 36
-          type: number
+          type: integer
         unit:
           enum:
           - monthly
@@ -14928,34 +15034,6 @@ components:
       - $ref: '#/components/schemas/Href'
       - description: Lite version of project object when included
         type: object
-    DeviceCreateInput_ip_addresses_inner:
-      properties:
-        address_family:
-          description: Address Family for IP Address
-          enum:
-          - 4
-          - 6
-          example: 4
-          format: integer
-          type: number
-        cidr:
-          description: "Cidr Size for the IP Block created. Valid values depends on\
-            \ the operating system being provisioned. (28..32 for IPv4 addresses,\
-            \ 124..127 for IPv6 addresses)"
-          example: 28
-          format: integer
-          type: number
-        ip_reservations:
-          description: UUIDs of any IP reservations to use when assigning IPs
-          items:
-            type: string
-          type: array
-        public:
-          default: true
-          description: Address Type for IP Address
-          example: false
-          type: boolean
-      type: object
     FacilityInput_facility:
       anyOf:
       - example:
@@ -15064,7 +15142,7 @@ components:
       properties:
         hour:
           example: 1.23
-          format: decimal
+          format: double
           type: number
       type: object
     Plan_available_in_inner:
@@ -15187,7 +15265,7 @@ components:
       - $ref: '#/components/schemas/Metro'
       - description: The metro the spot market request was created in
         type: object
-    SpotMarketRequestCreateInput_instance_attributes:
+    SpotMarketRequestCreateInput_instance_parameters:
       properties:
         always_pxe:
           type: boolean
@@ -15241,10 +15319,6 @@ components:
         userdata:
           type: string
       type: object
-    VirtualCircuitList_virtual_circuits_inner:
-      anyOf:
-      - $ref: '#/components/schemas/VirtualCircuit'
-      - $ref: '#/components/schemas/VrfVirtualCircuit'
     VrfRoute_metal_gateway:
       description: A link to the Metal Gateway to which this VRF Route is associated
       oneOf:
