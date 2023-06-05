@@ -59,8 +59,8 @@ class Plan(BaseModel):
     def line_validate_enum(cls, v):
         if v is None:
             return v
-        if v not in ('baremetal'):
-            raise ValueError("must be one of enum values ('baremetal')")
+        if v not in ('baremetal', 'reserved'):
+            raise ValueError("must be one of enum values ('baremetal', 'reserved')")
         return v
 
     @validator('type')

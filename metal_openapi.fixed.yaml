@@ -3044,6 +3044,7 @@ components:
         line:
           enum:
           - baremetal
+          - reserved
           type: string
         name:
           type: string
