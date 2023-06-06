@@ -92,7 +92,7 @@ fixedSpec['components']['schemas']['IPReservation']['properties']['assignments']
 
 # FIX 10. Extend "line" param of Plan by "reserved"
 
-fixedSpec['components']['schemas']['Plan']['properties']['line']['enum'].append("reserved")
+del fixedSpec['components']['schemas']['Plan']['properties']['line']['enum']
 
 with open(OUTFILE, 'w') as f:
     originalSpec = yaml.dump(
