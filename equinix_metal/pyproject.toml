@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "equinix_metal"
-version = "0.2.0"
+version = "0.2.1"
 description = "Metal API"
 authors = ["support@equinixmetal.com"]
 license = "Equinix Metal"
