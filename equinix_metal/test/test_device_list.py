@@ -183,7 +183,7 @@ class TestDeviceList(unittest.TestCase):
                             href = '', 
                             id = '', 
                             legacy = True, 
-                            line = 'baremetal', 
+                            line = '', 
                             name = '', 
                             pricing = equinix_metal.models.pricing.pricing(), 
                             slug = 'm3.large.x86', 

@@ -55,14 +55,6 @@ class Plan(BaseModel):
                 raise ValueError("each list item must be one of ('on_demand', 'spot_market')")
         return v
 
-    @validator('line')
-    def line_validate_enum(cls, v):
-        if v is None:
-            return v
-        if v not in ('baremetal'):
-            raise ValueError("must be one of enum values ('baremetal')")
-        return v
-
     @validator('type')
     def type_validate_enum(cls, v):
         if v is None:

@@ -3042,8 +3042,6 @@ components:
           type: boolean
           x-deprecated: true
         line:
-          enum:
-          - baremetal
           type: string
         name:
           type: string
