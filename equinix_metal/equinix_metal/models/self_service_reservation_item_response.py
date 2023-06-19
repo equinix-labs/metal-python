@@ -20,8 +20,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
+from typing import List, Optional
+from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr, conlist
 
 class SelfServiceReservationItemResponse(BaseModel):
     """
@@ -33,12 +33,13 @@ class SelfServiceReservationItemResponse(BaseModel):
     metro_code: Optional[StrictStr] = None
     metro_id: Optional[StrictStr] = None
     metro_name: Optional[StrictStr] = None
+    plan_categories: Optional[conlist(StrictStr)] = None
     plan_id: Optional[StrictStr] = None
     plan_name: Optional[StrictStr] = None
     plan_slug: Optional[StrictStr] = None
     quantity: Optional[StrictInt] = None
     term: Optional[StrictStr] = None
-    __properties = ["amount", "href", "id", "metro_code", "metro_id", "metro_name", "plan_id", "plan_name", "plan_slug", "quantity", "term"]
+    __properties = ["amount", "href", "id", "metro_code", "metro_id", "metro_name", "plan_categories", "plan_id", "plan_name", "plan_slug", "quantity", "term"]
 
     class Config:
         allow_population_by_field_name = True
@@ -81,6 +82,7 @@ class SelfServiceReservationItemResponse(BaseModel):
             "metro_code": obj.get("metro_code"),
             "metro_id": obj.get("metro_id"),
             "metro_name": obj.get("metro_name"),
+            "plan_categories": obj.get("plan_categories"),
             "plan_id": obj.get("plan_id"),
             "plan_name": obj.get("plan_name"),
             "plan_slug": obj.get("plan_slug"),

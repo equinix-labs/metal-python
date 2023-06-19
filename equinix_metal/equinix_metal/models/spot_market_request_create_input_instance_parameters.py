@@ -35,7 +35,7 @@ class SpotMarketRequestCreateInputInstanceParameters(BaseModel):
     hostname: Optional[StrictStr] = None
     hostnames: Optional[conlist(StrictStr)] = None
     href: Optional[StrictStr] = None
-    locked: Optional[StrictBool] = None
+    locked: Optional[StrictBool] = Field(None, description="Whether the device should be locked, preventing accidental deletion.")
     no_ssh_keys: Optional[StrictBool] = None
     operating_system: Optional[StrictStr] = None
     plan: Optional[StrictStr] = None

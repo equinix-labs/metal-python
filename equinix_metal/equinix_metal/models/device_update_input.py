@@ -34,7 +34,7 @@ class DeviceUpdateInput(BaseModel):
     hostname: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     ipxe_script_url: Optional[StrictStr] = None
-    locked: Optional[StrictBool] = None
+    locked: Optional[StrictBool] = Field(None, description="Whether the device should be locked, preventing accidental deletion.")
     network_frozen: Optional[StrictBool] = Field(None, description="If true, this instance can not be converted to a different network type.")
     spot_instance: Optional[StrictBool] = Field(None, description="Can be set to false to convert a spot-market instance to on-demand.")
     tags: Optional[conlist(StrictStr)] = None

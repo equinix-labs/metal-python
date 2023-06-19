@@ -355,6 +355,9 @@ components:
         href:
           format: uri
           type: string
+      required:
+      - bgp_neighbor_asn
+      - bgp_neighbor_range
       type: object
     BgpDynamicNeighborList:
       properties:
@@ -774,6 +777,7 @@ components:
         iqn:
           type: string
         locked:
+          description: Prevents accidental deletion of this resource when set to true.
           type: boolean
         metro:
           $ref: '#/components/schemas/Device_metro'
@@ -854,8 +858,11 @@ components:
             type: string
           type: array
         termination_time:
-          description: 'When the device will be terminated. This is commonly set in
-            advance for
+          description: 'When the device will be terminated. If you don''t supply timezone
+            info, the timestamp is assumed to be in UTC.
+
+
+            This is commonly set in advance for
 
             ephemeral spot market instances but this field may also be set with
 
@@ -868,6 +875,7 @@ components:
             open for other uses.  On a spot market device, the termination time will
 
             be set automatically when outbid.'
+          example: 2021-09-03 16:32:00+03:00
           format: date-time
           type: string
         updated_at:
@@ -1143,6 +1151,26 @@ components:
             type: string
           type: array
         termination_time:
+          description: 'When the device will be terminated. If you don''t supply timezone
+            info, the timestamp is assumed to be in UTC.
+
+
+            This is commonly set in advance for
+
+            ephemeral spot market instances but this field may also be set with
+
+            on-demand and reservation instances to automatically delete the resource
+
+            at a given time. The termination time can also be used to release a
+
+            hardware reservation instance at a given time, keeping the reservation
+
+            open for other uses.  On a spot market device, the termination time will
+
+            be set automatically when outbid.
+
+            '
+          example: 2021-09-03 16:32:00+03:00
           format: date-time
           type: string
         user_ssh_keys:
@@ -1221,6 +1249,8 @@ components:
         ipxe_script_url:
           type: string
         locked:
+          description: Whether the device should be locked, preventing accidental
+            deletion.
           type: boolean
         network_frozen:
           description: If true, this instance can not be converted to a different
@@ -1525,6 +1555,7 @@ components:
         type: array
       - example: any
         type: string
+      deprecated: true
       description: 'The datacenter where the device should be created.
 
 
@@ -1706,10 +1737,32 @@ components:
           type: string
         network:
           type: string
+        next_hop:
+          description: 'Only set when this is a Metal Gateway Elastic IP Assignment.
+
+
+            The IP address within the Metal Gateway to which requests to the Elastic
+            IP are forwarded.
+
+            '
+          format: ipv4
+          type: string
         parent_block:
           $ref: '#/components/schemas/ParentBlock'
         public:
           type: boolean
+        state:
+          description: 'Only set when this is a Metal Gateway Elastic IP Assignment.
+
+
+            Describes the current configuration state of this IP on the network.
+
+            '
+          enum:
+          - pending
+          - active
+          - deleting
+          type: string
       required:
       - assigned_to
       type: object
@@ -2027,6 +2080,11 @@ components:
     InterconnectionCreateInput:
       properties:
         contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
           type: string
         description:
           type: string
@@ -2319,6 +2377,61 @@ components:
             $ref: '#/components/schemas/Membership'
           type: array
       type: object
+    Invoice:
+      properties:
+        amount:
+          format: float
+          type: number
+        balance:
+          format: float
+          type: number
+        created_on:
+          format: date
+          type: string
+        credit_amount:
+          format: float
+          type: number
+        credits_applied:
+          format: float
+          type: number
+        currency:
+          example: USD
+          type: string
+        due_on:
+          format: date
+          type: string
+        href:
+          format: uri
+          type: string
+        id:
+          format: uuid
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/LineItem'
+          type: array
+        number:
+          type: string
+        project:
+          $ref: '#/components/schemas/ProjectIdName'
+        reference_number:
+          type: string
+        status:
+          type: string
+        target_date:
+          format: date
+          type: string
+      type: object
+    InvoiceList:
+      properties:
+        href:
+          format: uri
+          type: string
+        invoices:
+          items:
+            $ref: '#/components/schemas/Invoice'
+          type: array
+      type: object
     License:
       properties:
         description:
@@ -2368,6 +2481,28 @@ components:
           format: uri
           type: string
         size:
+          type: number
+      type: object
+    LineItem:
+      properties:
+        amount:
+          format: float
+          type: number
+        currency:
+          type: string
+        description:
+          type: string
+        details:
+          type: string
+        href:
+          format: uri
+          type: string
+        plan:
+          $ref: '#/components/schemas/Plan'
+        unit:
+          type: string
+        unit_price:
+          format: float
           type: number
       type: object
     Membership:
@@ -2586,6 +2721,41 @@ components:
           type: string
       required:
       - virtual_network_id
+      type: object
+    MetalGatewayElasticIpCreateInput:
+      properties:
+        address:
+          description: An IP address (or IP Address range) contained within one of
+            the project's IP Reservations
+          example: 147.75.234.8/31
+          type: string
+        customdata:
+          additionalProperties: true
+          description: Optional User-defined JSON object value.
+          type: object
+        href:
+          format: uri
+          type: string
+        next_hop:
+          description: An IP address contained within the Metal Gateways' IP Reservation
+            range.
+          example: 192.168.12.13
+          format: ipv4
+          type: string
+        tags:
+          description: Optional list of User-defined tags. Can be used by users to
+            provide additional details or context regarding the purpose or usage of
+            this resource.
+          example:
+          - NY
+          - prod
+          - public
+          items:
+            type: string
+          type: array
+      required:
+      - address
+      - next_hop
       type: object
     MetalGatewayList:
       properties:
@@ -2830,7 +3000,6 @@ components:
           format: uuid
           type: string
         logo:
-          format: binary
           type: string
         members:
           items:
@@ -3016,6 +3185,12 @@ components:
             price if it is different from the default price.
           items:
             $ref: '#/components/schemas/Plan_available_in_metros_inner'
+          type: array
+        categories:
+          description: Categories of the plan, like compute or storage. A Plan can
+            belong to multiple categories.
+          items:
+            type: string
           type: array
         class:
           example: m3.large.x86
@@ -3480,6 +3655,17 @@ components:
       required:
       - name
       type: object
+    ProjectIdName:
+      properties:
+        href:
+          format: uri
+          type: string
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
+      type: object
     ProjectList:
       properties:
         href:
@@ -3646,6 +3832,10 @@ components:
           type: string
         metro_name:
           type: string
+        plan_categories:
+          items:
+            type: string
+          type: array
         plan_id:
           format: uuid
           type: string
@@ -3705,6 +3895,7 @@ components:
     ServerInfo:
       properties:
         facility:
+          deprecated: true
           type: string
         href:
           format: uri
@@ -3789,6 +3980,7 @@ components:
           format: date-time
           type: string
         facilities:
+          deprecated: true
           items:
             format: uuid
             type: string
@@ -3830,6 +4022,8 @@ components:
           format: uri
           type: string
         locked:
+          description: Whether the device should be locked, preventing accidental
+            deletion.
           type: boolean
         no_ssh_keys:
           type: boolean
@@ -4055,6 +4249,12 @@ components:
           type: string
         customdata:
           type: object
+        default_organization_id:
+          format: uuid
+          type: string
+        default_project_id:
+          format: uuid
+          type: string
         email:
           type: string
         emails:
@@ -4120,8 +4320,6 @@ components:
           type: string
         level:
           type: string
-        locked:
-          type: boolean
         nonce:
           type: string
         password:
@@ -4319,6 +4517,7 @@ components:
         description:
           type: string
         facility:
+          deprecated: true
           description: The UUID (or facility code) for the Facility in which to create
             this Virtual network.
           type: string
@@ -4813,7 +5012,7 @@ components:
           readOnly: true
           type: string
         metal_gateway:
-          $ref: '#/components/schemas/VrfRoute_metal_gateway'
+          $ref: '#/components/schemas/VrfMetalGateway'
         next_hop:
           description: The next-hop IPv4 address for the route
           example: 192.168.1.254
@@ -4848,9 +5047,9 @@ components:
           readOnly: true
           type: string
         virtual_network:
-          $ref: '#/components/schemas/VrfRoute_virtual_network'
+          $ref: '#/components/schemas/VirtualNetwork'
         vrf:
-          $ref: '#/components/schemas/VrfRoute_vrf'
+          $ref: '#/components/schemas/Vrf'
       type: object
     VrfRouteCreateInput:
       properties:
@@ -4884,25 +5083,23 @@ components:
             $ref: '#/components/schemas/VrfRoute'
           type: array
       type: object
-    VrfRoute_metal_gateway:
-      description: A link to the Metal Gateway to which this VRF Route is associated
-      oneOf:
-      - $ref: '#/components/schemas/Href'
-      - $ref: '#/components/schemas/MetalGateway'
-      readOnly: true
-    VrfRoute_virtual_network:
-      description: A link to the Virtual Network to which this VRF Route is associated,
-        through the Metal Gateway
-      oneOf:
-      - $ref: '#/components/schemas/Href'
-      - $ref: '#/components/schemas/VirtualNetwork'
-      readOnly: true
-    VrfRoute_vrf:
-      description: A link to the VRF within which this route exists
-      oneOf:
-      - $ref: '#/components/schemas/Href'
-      - $ref: '#/components/schemas/Vrf'
-      readOnly: true
+    VrfRouteUpdateInput:
+      properties:
+        href:
+          format: uri
+          type: string
+        next_hop:
+          description: The IPv4 address within the VRF of the host that will handle
+            this route
+          example: 192.168.1.254
+          format: ipv4
+          type: string
+        prefix:
+          description: The IPv4 prefix for the route, in CIDR-style notation. For
+            a static default route, this will always be "0.0.0.0/0"
+          example: 0.0.0.0/0
+          type: string
+      type: object
     VrfUpdateInput:
       properties:
         bgp_dynamic_neighbors_bfd_enabled:
@@ -5386,6 +5583,134 @@ paths:
       summary: Retrieve a Batch
       tags:
       - Batches
+  /bgp-dynamic-neighbors/{id}:
+    delete:
+      description: Trigger the removal of a BGP Neighbor range from a VRF
+      operationId: deleteBgpDynamicNeighborById
+      parameters:
+      - description: BGP Dynamic Neighbor UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '202':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BgpDynamicNeighbor'
+          description: Accepted
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+      summary: Delete a VRF BGP Dynamic Neighbor
+      tags:
+      - VRFs
+    get:
+      description: Return a single BGP Dynamic Neighbor resource
+      parameters:
+      - description: BGP Dynamic Neighbor UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BgpDynamicNeighbor'
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+      summary: Retrieve a BGP Dynamic Neighbor
+      tags:
+      - VRFs
   /bgp/sessions/{id}:
     delete:
       description: Deletes the BGP session.
@@ -5559,6 +5884,7 @@ paths:
       tags:
       - Capacity
     post:
+      deprecated: true
       description: Validates if a deploy can be fulfilled.
       operationId: checkCapacityForFacility
       requestBody:
@@ -6695,6 +7021,34 @@ paths:
       description: Creates an ip assignment for a device.
       operationId: createIPAssignment
       parameters:
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       - description: Device UUID
         in: path
         name: id
@@ -7368,6 +7722,7 @@ paths:
       - Events
   /facilities:
     get:
+      deprecated: true
       description: Provides a listing of available datacenters where you can provision
         Packet devices.
       operationId: findFacilities
@@ -7845,15 +8200,63 @@ paths:
       summary: Accept an invitation
       tags:
       - Invitations
+  /invoices/{id}:
+    get:
+      description: Returns the invoice identified by the provided id
+      operationId: getInvoiceById
+      parameters:
+      - description: Invoice UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ok
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve an invoice
+      tags:
+      - Invoices
   /ips/{id}:
     delete:
-      description: Note! This call can be used to un-assign an IP assignment or delete
-        an IP reservation. Un-assign an IP address record. Use the assignment UUID
-        you get after attaching the IP. This will remove the relationship between
-        an IP and the device and will make the IP address available to be assigned
-        to another device. Delete and IP reservation. Use the reservation UUID you
-        get after adding the IP to the project. This will permanently delete the IP
-        block reservation from the project.
+      description: 'This call can be used to un-assign an IP assignment or delete
+
+        an IP reservation.
+
+
+        Un-assign an IP address record.
+
+        Use the assignment UUID you
+
+        get after attaching the IP. This will remove the relationship between an IP
+        and the device or metal gateway and will make the IP address available to
+        be assigned to another device, once the IP has been un-configured from the
+        network.
+
+
+        Delete an IP reservation.
+
+        Use the reservation UUID you get after adding the IP to the project. This
+        will permanently delete the IP block reservation from the project.
+
+        '
       operationId: deleteIPAddress
       parameters:
       - description: IP Address UUID
@@ -8686,7 +9089,8 @@ paths:
       - Memberships
   /metal-gateways/{id}:
     delete:
-      description: Deletes a specific metal gateway
+      description: Deletes a metal gateway and any elastic IP assignments associated
+        with this metal gateway.
       operationId: deleteMetalGateway
       parameters:
       - description: Metal Gateway UUID
@@ -8805,6 +9209,280 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: not found
       summary: Returns the metal gateway
+      tags:
+      - MetalGateways
+  /metal-gateways/{id}/bgp-dynamic-neighbors:
+    get:
+      description: Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway
+      operationId: getBgpDynamicNeighbors
+      parameters:
+      - description: Metal Gateway UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BgpDynamicNeighborList'
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+      summary: List BGP Dynamic Neighbors
+      tags:
+      - VRFs
+    post:
+      description: 'Create a VRF BGP Dynamic Neighbor range.
+
+
+        BGP Dynamic Neighbor records are limited to 2 per Virtual Network.
+
+
+        Notice: VRFs are a test feature currently under active development, and only
+        available to certain users. Please contact Customer Success for more information.
+
+        '
+      operationId: createBgpDynamicNeighbor
+      parameters:
+      - description: Metal Gateway UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BgpDynamicNeighborCreateInput'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BgpDynamicNeighbor'
+          description: Created
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable entity
+      summary: Create a VRF BGP Dynamic Neighbor range
+      tags:
+      - VRFs
+  /metal-gateways/{id}/ips:
+    get:
+      description: Returns the list of Elastic IPs assigned to this Metal Gateway
+      operationId: getMetalGatewayElasticIps
+      parameters:
+      - description: Metal Gateway UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPAssignmentList'
+          description: OK
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+      summary: List Metal Gateway Elastic IPs
+      tags:
+      - MetalGateways
+    post:
+      description: 'Create a new Elastic IP on this Metal Gateway.
+
+
+        Assign an IPv4 range as an elastic IP to the Metal Gateway, with a specified
+        next-hop address contained within the Metal Gateway.
+
+
+        Notice: Elastic IPs on Metal Gateways are a test feature currently under active
+        development, and only available to certain users. Please contact Customer
+        Success for more information.
+
+        '
+      operationId: createMetalGatewayElasticIp
+      parameters:
+      - description: Metal Gateway UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MetalGatewayElasticIpCreateInput'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPAssignment'
+          description: Created
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unprocessable entity
+      summary: Create a Metal Gateway Elastic IP
       tags:
       - MetalGateways
   /operating-system-versions:
@@ -8937,6 +9615,35 @@ paths:
     post:
       description: Creates an organization.
       operationId: createOrganization
+      parameters:
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -9239,6 +9946,17 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: Filter by plan category
+        in: query
+        name: categories
+        schema:
+          items:
+            enum:
+            - compute
+            - storage
+            example: compute
+            type: string
+          type: array
       - description: Filter by device facility
         in: query
         name: facility
@@ -9249,7 +9967,8 @@ paths:
         name: hostname
         schema:
           type: string
-      - description: Filter only reserved instances
+      - description: Filter only reserved instances. When set to true, only include
+          reserved instances. When set to false, only include on-demand instances.
         in: query
         name: reserved
         schema:
@@ -9264,6 +9983,13 @@ paths:
         name: type
         schema:
           type: string
+      - description: Filter only instances marked for termination. When set to true,
+          only include instances that have a termination time. When set to false,
+          only include instances that do not have a termination time.
+        in: query
+        name: has_termination_time
+        schema:
+          type: boolean
       - description: 'Nested attributes to include. Included objects will return their
           full
 
@@ -9426,6 +10152,7 @@ paths:
       - Events
   /organizations/{id}/facilities:
     get:
+      deprecated: true
       description: Returns a listing of available datacenters for the given organization
       operationId: findFacilitiesByOrganization
       parameters:
@@ -9629,6 +10356,55 @@ paths:
       summary: Create an invitation for an organization
       tags:
       - Organizations
+  /organizations/{id}/invoices:
+    get:
+      description: Returns all invoices for an organization
+      operationId: findOrganizationInvoices
+      parameters:
+      - description: Organization UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: page number
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: per page
+        in: query
+        name: per_page
+        schema:
+          type: integer
+      - description: filter by status
+        in: query
+        name: status
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceList'
+          description: ok
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve all invoices for an organization
+      tags:
+      - Invoices
   /organizations/{id}/operating-systems:
     get:
       description: Returns a listing of available operating systems for the given
@@ -10295,6 +11071,17 @@ paths:
         on.
       operationId: findPlans
       parameters:
+      - description: Filter plans by its category
+        in: query
+        name: categories
+        schema:
+          items:
+            enum:
+            - compute
+            - storage
+            example: compute
+            type: string
+          type: array
       - description: Filter plans by its plan type
         in: query
         name: type
@@ -10304,6 +11091,12 @@ paths:
           - workload_optimized
           - custom
           example: standard
+          type: string
+      - description: Filter plans by slug
+        in: query
+        name: slug
+        schema:
+          example: c3.small.x86
           type: string
       - description: 'Nested attributes to include. Included objects will return their
           full
@@ -11178,6 +11971,35 @@ paths:
       description: Creates a new project for the user default organization. If the
         user don't have an organization, a new one will be created.
       operationId: createProject
+      parameters:
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -11750,6 +12572,17 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: Filter by plan category
+        in: query
+        name: categories
+        schema:
+          items:
+            enum:
+            - compute
+            - storage
+            example: compute
+            type: string
+          type: array
       - description: Filter by device facility
         in: query
         name: facility
@@ -11760,7 +12593,8 @@ paths:
         name: hostname
         schema:
           type: string
-      - description: Filter only reserved instances
+      - description: Filter only reserved instances. When set to true, only include
+          reserved instances. When set to false, only include on-demand instances.
         in: query
         name: reserved
         schema:
@@ -11775,6 +12609,13 @@ paths:
         name: type
         schema:
           type: string
+      - description: Filter only instances marked for termination. When set to true,
+          only include instances that have a termination time. When set to false,
+          only include instances that do not have a termination time.
+        in: query
+        name: has_termination_time
+        schema:
+          type: boolean
       - description: 'Nested attributes to include. Included objects will return their
           full
 
@@ -11865,6 +12706,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -12047,6 +12916,7 @@ paths:
       - Events
   /projects/{id}/facilities:
     get:
+      deprecated: true
       description: Returns a listing of available datacenters for the given project
       operationId: findFacilitiesByProject
       parameters:
@@ -12955,7 +13825,8 @@ paths:
             type: string
           type: array
         style: form
-      - description: Filter by Facility ID (uuid) or Facility Code
+      - deprecated: true
+        description: Filter by Facility ID (uuid) or Facility Code
         in: query
         name: facility
         schema:
@@ -13004,6 +13875,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -13123,6 +14022,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -13738,6 +14665,17 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: Filter reservations by items category
+        in: query
+        name: categories
+        schema:
+          items:
+            enum:
+            - compute
+            - storage
+            example: compute
+            type: string
+          type: array
       responses:
         '200':
           content:
@@ -14061,6 +14999,12 @@ paths:
             type: string
           type: array
         style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VrfRouteUpdateInput'
+        required: true
       responses:
         '202':
           content:
@@ -14101,6 +15045,92 @@ paths:
       summary: Update a VRF Route
       tags:
       - VRFs
+  /routes/{id}/events:
+    get:
+      description: Returns a list of the VRF route events
+      operationId: findVrfRouteEvents
+      parameters:
+      - description: VRF Route UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Page to return
+        in: query
+        name: page
+        schema:
+          default: 1
+          format: int32
+          maximum: 100000
+          minimum: 1
+          type: integer
+      - description: Items returned per page
+        in: query
+        name: per_page
+        schema:
+          default: 10
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+          description: ok
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retrieve VRF route events
+      tags:
+      - Events
   /spot-market-requests/{id}:
     delete:
       description: Deletes the spot market request.
@@ -15518,7 +16548,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: not found
-      summary: Retrieve interconnection events
+      summary: Retrieve virtual circuit events
       tags:
       - Events
   /virtual-networks/{id}:
@@ -15901,6 +16931,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -16347,6 +17405,7 @@ x-tagGroups:
   - Events
   - Facilities
   - Incidents
+  - Invoices
   - Licenses
   - Metros
   - Plans

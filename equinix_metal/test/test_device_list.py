@@ -98,12 +98,14 @@ class TestDeviceList(unittest.TestCase):
                                 management = True, 
                                 netmask = '', 
                                 network = '', 
+                                next_hop = '', 
                                 parent_block = equinix_metal.models.parent_block.ParentBlock(
                                     cidr = 56, 
                                     href = '', 
                                     netmask = '', 
                                     network = '', ), 
-                                public = True, )
+                                public = True, 
+                                state = 'pending', )
                             ], 
                         ipxe_script_url = '', 
                         iqn = '', 
@@ -174,6 +176,9 @@ class TestDeviceList(unittest.TestCase):
                             available_in_metros = [
                                 equinix_metal.models.plan_available_in_metros_inner.Plan_available_in_metros_inner(
                                     href = '', )
+                                ], 
+                            categories = [
+                                ''
                                 ], 
                             class = 'm3.large.x86', 
                             deployment_types = [

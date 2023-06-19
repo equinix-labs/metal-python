@@ -32,6 +32,7 @@ class Plan(BaseModel):
     """
     available_in: Optional[conlist(PlanAvailableInInner)] = Field(None, description="Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.")
     available_in_metros: Optional[conlist(PlanAvailableInMetrosInner)] = Field(None, description="Shows which metros the plan is available in, and the metro-based price if it is different from the default price.")
+    categories: Optional[conlist(StrictStr)] = Field(None, description="Categories of the plan, like compute or storage. A Plan can belong to multiple categories.")
     var_class: Optional[StrictStr] = Field(None, alias="class")
     deployment_types: Optional[conlist(StrictStr, min_items=0, unique_items=True)] = None
     description: Optional[StrictStr] = None
@@ -44,7 +45,7 @@ class Plan(BaseModel):
     slug: Optional[StrictStr] = None
     specs: Optional[PlanSpecs] = None
     type: Optional[StrictStr] = Field(None, description="The plan type")
-    __properties = ["available_in", "available_in_metros", "class", "deployment_types", "description", "href", "id", "legacy", "line", "name", "pricing", "slug", "specs", "type"]
+    __properties = ["available_in", "available_in_metros", "categories", "class", "deployment_types", "description", "href", "id", "legacy", "line", "name", "pricing", "slug", "specs", "type"]
 
     @validator('deployment_types')
     def deployment_types_validate_enum(cls, v):
@@ -117,6 +118,7 @@ class Plan(BaseModel):
         _obj = Plan.parse_obj({
             "available_in": [PlanAvailableInInner.from_dict(_item) for _item in obj.get("available_in")] if obj.get("available_in") is not None else None,
             "available_in_metros": [PlanAvailableInMetrosInner.from_dict(_item) for _item in obj.get("available_in_metros")] if obj.get("available_in_metros") is not None else None,
+            "categories": obj.get("categories"),
             "var_class": obj.get("class"),
             "deployment_types": obj.get("deployment_types"),
             "description": obj.get("description"),

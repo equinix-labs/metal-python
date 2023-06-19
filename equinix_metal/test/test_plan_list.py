@@ -55,6 +55,9 @@ class TestPlanList(unittest.TestCase):
                             equinix_metal.models.plan_available_in_metros_inner.Plan_available_in_metros_inner(
                                 href = '', )
                             ], 
+                        categories = [
+                            ''
+                            ], 
                         class = 'm3.large.x86', 
                         deployment_types = [
                             'on_demand'

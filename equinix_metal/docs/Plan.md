@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **available_in** | [**List[PlanAvailableInInner]**](PlanAvailableInInner.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
 **available_in_metros** | [**List[PlanAvailableInMetrosInner]**](PlanAvailableInMetrosInner.md) | Shows which metros the plan is available in, and the metro-based price if it is different from the default price. | [optional] 
+**categories** | **List[str]** | Categories of the plan, like compute or storage. A Plan can belong to multiple categories. | [optional] 
 **var_class** | **str** |  | [optional] 
 **deployment_types** | **List[str]** |  | [optional] 
 **description** | **str** |  | [optional] 

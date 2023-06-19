@@ -83,7 +83,14 @@ class TestEventsApi(unittest.TestCase):
     def test_find_virtual_circuit_events(self):
         """Test case for find_virtual_circuit_events
 
-        Retrieve interconnection events  # noqa: E501
+        Retrieve virtual circuit events  # noqa: E501
+        """
+        pass
+
+    def test_find_vrf_route_events(self):
+        """Test case for find_vrf_route_events
+
+        Retrieve VRF route events  # noqa: E501
         """
         pass
 

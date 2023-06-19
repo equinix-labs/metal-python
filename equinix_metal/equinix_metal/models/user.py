@@ -32,6 +32,8 @@ class User(BaseModel):
     avatar_url: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
     customdata: Optional[Dict[str, Any]] = None
+    default_organization_id: Optional[StrictStr] = None
+    default_project_id: Optional[StrictStr] = None
     email: Optional[StrictStr] = None
     emails: Optional[conlist(Href)] = None
     first_name: Optional[StrictStr] = None
@@ -48,7 +50,7 @@ class User(BaseModel):
     timezone: Optional[StrictStr] = None
     two_factor_auth: Optional[StrictStr] = None
     updated_at: Optional[datetime] = None
-    __properties = ["avatar_thumb_url", "avatar_url", "created_at", "customdata", "email", "emails", "first_name", "fraud_score", "full_name", "href", "id", "last_login_at", "last_name", "max_organizations", "max_projects", "phone_number", "short_id", "timezone", "two_factor_auth", "updated_at"]
+    __properties = ["avatar_thumb_url", "avatar_url", "created_at", "customdata", "default_organization_id", "default_project_id", "email", "emails", "first_name", "fraud_score", "full_name", "href", "id", "last_login_at", "last_name", "max_organizations", "max_projects", "phone_number", "short_id", "timezone", "two_factor_auth", "updated_at"]
 
     class Config:
         allow_population_by_field_name = True
@@ -96,6 +98,8 @@ class User(BaseModel):
             "avatar_url": obj.get("avatar_url"),
             "created_at": obj.get("created_at"),
             "customdata": obj.get("customdata"),
+            "default_organization_id": obj.get("default_organization_id"),
+            "default_project_id": obj.get("default_project_id"),
             "email": obj.get("email"),
             "emails": [Href.from_dict(_item) for _item in obj.get("emails")] if obj.get("emails") is not None else None,
             "first_name": obj.get("first_name"),

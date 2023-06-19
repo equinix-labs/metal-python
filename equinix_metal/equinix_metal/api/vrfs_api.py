@@ -24,6 +24,9 @@ from pydantic import Field, StrictStr, conlist
 
 from typing import Optional
 
+from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
+from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput
+from equinix_metal.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.models.vrf_create_input import VrfCreateInput
 from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
@@ -32,6 +35,7 @@ from equinix_metal.models.vrf_list import VrfList
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.models.vrf_route_create_input import VrfRouteCreateInput
 from equinix_metal.models.vrf_route_list import VrfRouteList
+from equinix_metal.models.vrf_route_update_input import VrfRouteUpdateInput
 from equinix_metal.models.vrf_update_input import VrfUpdateInput
 
 from equinix_metal.api_client import ApiClient
@@ -54,20 +58,361 @@ class VRFsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_vrf(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], vrf_create_input : Annotated[VrfCreateInput, Field(..., description="VRF to create")], **kwargs) -> Vrf:  # noqa: E501
+    def bgp_dynamic_neighbors_id_get(self, id : Annotated[StrictStr, Field(..., description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighbor:  # noqa: E501
+        """Retrieve a BGP Dynamic Neighbor  # noqa: E501
+
+        Return a single BGP Dynamic Neighbor resource  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.bgp_dynamic_neighbors_id_get(id, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: BGP Dynamic Neighbor UUID (required)
+        :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: BgpDynamicNeighbor
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.bgp_dynamic_neighbors_id_get_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def bgp_dynamic_neighbors_id_get_with_http_info(self, id : Annotated[StrictStr, Field(..., description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+        """Retrieve a BGP Dynamic Neighbor  # noqa: E501
+
+        Return a single BGP Dynamic Neighbor resource  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.bgp_dynamic_neighbors_id_get_with_http_info(id, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: BGP Dynamic Neighbor UUID (required)
+        :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(BgpDynamicNeighbor, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'include',
+            'exclude'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method bgp_dynamic_neighbors_id_get" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['x_auth_token']  # noqa: E501
+
+        _response_types_map = {
+            '200': "BgpDynamicNeighbor",
+            '401': "Error",
+            '404': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/bgp-dynamic-neighbors/{id}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def create_bgp_dynamic_neighbor(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], bgp_dynamic_neighbor_create_input : BgpDynamicNeighborCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighbor:  # noqa: E501
+        """Create a VRF BGP Dynamic Neighbor range  # noqa: E501
+
+        Create a VRF BGP Dynamic Neighbor range.  BGP Dynamic Neighbor records are limited to 2 per Virtual Network.  Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_bgp_dynamic_neighbor(id, bgp_dynamic_neighbor_create_input, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Metal Gateway UUID (required)
+        :type id: str
+        :param bgp_dynamic_neighbor_create_input: (required)
+        :type bgp_dynamic_neighbor_create_input: BgpDynamicNeighborCreateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: BgpDynamicNeighbor
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.create_bgp_dynamic_neighbor_with_http_info(id, bgp_dynamic_neighbor_create_input, include, exclude, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_bgp_dynamic_neighbor_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], bgp_dynamic_neighbor_create_input : BgpDynamicNeighborCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+        """Create a VRF BGP Dynamic Neighbor range  # noqa: E501
+
+        Create a VRF BGP Dynamic Neighbor range.  BGP Dynamic Neighbor records are limited to 2 per Virtual Network.  Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_bgp_dynamic_neighbor_with_http_info(id, bgp_dynamic_neighbor_create_input, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Metal Gateway UUID (required)
+        :type id: str
+        :param bgp_dynamic_neighbor_create_input: (required)
+        :type bgp_dynamic_neighbor_create_input: BgpDynamicNeighborCreateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(BgpDynamicNeighbor, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'bgp_dynamic_neighbor_create_input',
+            'include',
+            'exclude'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_bgp_dynamic_neighbor" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['bgp_dynamic_neighbor_create_input']:
+            _body_params = _params['bgp_dynamic_neighbor_create_input']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['x_auth_token']  # noqa: E501
+
+        _response_types_map = {
+            '201': "BgpDynamicNeighbor",
+            '401': "Error",
+            '403': "Error",
+            '404': "Error",
+            '422': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/metal-gateways/{id}/bgp-dynamic-neighbors', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def create_vrf(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], vrf_create_input : Annotated[VrfCreateInput, Field(..., description="VRF to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Vrf:  # noqa: E501
         """Create a new VRF in the specified project  # noqa: E501
 
         Creates a new VRF in the specified project  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_vrf(id, vrf_create_input, async_req=True)
+        >>> thread = api.create_vrf(id, vrf_create_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
         :param vrf_create_input: VRF to create (required)
         :type vrf_create_input: VrfCreateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -84,23 +429,27 @@ class VRFsApi(object):
         :rtype: Vrf
         """
         kwargs['_return_http_data_only'] = True
-        return self.create_vrf_with_http_info(id, vrf_create_input, **kwargs)  # noqa: E501
+        return self.create_vrf_with_http_info(id, vrf_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_vrf_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], vrf_create_input : Annotated[VrfCreateInput, Field(..., description="VRF to create")], **kwargs):  # noqa: E501
+    def create_vrf_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], vrf_create_input : Annotated[VrfCreateInput, Field(..., description="VRF to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Create a new VRF in the specified project  # noqa: E501
 
         Creates a new VRF in the specified project  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_vrf_with_http_info(id, vrf_create_input, async_req=True)
+        >>> thread = api.create_vrf_with_http_info(id, vrf_create_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
         :param vrf_create_input: VRF to create (required)
         :type vrf_create_input: VrfCreateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -129,7 +478,9 @@ class VRFsApi(object):
 
         _all_params = [
             'id',
-            'vrf_create_input'
+            'vrf_create_input',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -163,6 +514,14 @@ class VRFsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -212,20 +571,24 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_vrf_route(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], vrf_route_create_input : VrfRouteCreateInput, **kwargs) -> VrfRoute:  # noqa: E501
+    def create_vrf_route(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], vrf_route_create_input : VrfRouteCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
         """Create a VRF route  # noqa: E501
 
         Create a route in a VRF. Currently only static default routes are supported.  Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_vrf_route(id, vrf_route_create_input, async_req=True)
+        >>> thread = api.create_vrf_route(id, vrf_route_create_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: VRF UUID (required)
         :type id: str
         :param vrf_route_create_input: (required)
         :type vrf_route_create_input: VrfRouteCreateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -242,23 +605,27 @@ class VRFsApi(object):
         :rtype: VrfRoute
         """
         kwargs['_return_http_data_only'] = True
-        return self.create_vrf_route_with_http_info(id, vrf_route_create_input, **kwargs)  # noqa: E501
+        return self.create_vrf_route_with_http_info(id, vrf_route_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_vrf_route_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], vrf_route_create_input : VrfRouteCreateInput, **kwargs):  # noqa: E501
+    def create_vrf_route_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], vrf_route_create_input : VrfRouteCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Create a VRF route  # noqa: E501
 
         Create a route in a VRF. Currently only static default routes are supported.  Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_vrf_route_with_http_info(id, vrf_route_create_input, async_req=True)
+        >>> thread = api.create_vrf_route_with_http_info(id, vrf_route_create_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: VRF UUID (required)
         :type id: str
         :param vrf_route_create_input: (required)
         :type vrf_route_create_input: VrfRouteCreateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -287,7 +654,9 @@ class VRFsApi(object):
 
         _all_params = [
             'id',
-            'vrf_route_create_input'
+            'vrf_route_create_input',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -321,6 +690,14 @@ class VRFsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -355,6 +732,167 @@ class VRFsApi(object):
 
         return self.api_client.call_api(
             '/vrfs/{id}/routes', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def delete_bgp_dynamic_neighbor_by_id(self, id : Annotated[StrictStr, Field(..., description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighbor:  # noqa: E501
+        """Delete a VRF BGP Dynamic Neighbor  # noqa: E501
+
+        Trigger the removal of a BGP Neighbor range from a VRF  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_bgp_dynamic_neighbor_by_id(id, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: BGP Dynamic Neighbor UUID (required)
+        :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: BgpDynamicNeighbor
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.delete_bgp_dynamic_neighbor_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def delete_bgp_dynamic_neighbor_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+        """Delete a VRF BGP Dynamic Neighbor  # noqa: E501
+
+        Trigger the removal of a BGP Neighbor range from a VRF  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_bgp_dynamic_neighbor_by_id_with_http_info(id, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: BGP Dynamic Neighbor UUID (required)
+        :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(BgpDynamicNeighbor, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'include',
+            'exclude'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_bgp_dynamic_neighbor_by_id" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['x_auth_token']  # noqa: E501
+
+        _response_types_map = {
+            '202': "BgpDynamicNeighbor",
+            '401': "Error",
+            '403': "Error",
+            '404': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/bgp-dynamic-neighbors/{id}', 'DELETE',
             _path_params,
             _query_params,
             _header_params,
@@ -1487,6 +2025,166 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def get_bgp_dynamic_neighbors(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighborList:  # noqa: E501
+        """List BGP Dynamic Neighbors  # noqa: E501
+
+        Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_bgp_dynamic_neighbors(id, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Metal Gateway UUID (required)
+        :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: BgpDynamicNeighborList
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.get_bgp_dynamic_neighbors_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_bgp_dynamic_neighbors_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+        """List BGP Dynamic Neighbors  # noqa: E501
+
+        Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_bgp_dynamic_neighbors_with_http_info(id, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Metal Gateway UUID (required)
+        :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(BgpDynamicNeighborList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'include',
+            'exclude'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_bgp_dynamic_neighbors" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['x_auth_token']  # noqa: E501
+
+        _response_types_map = {
+            '200': "BgpDynamicNeighborList",
+            '401': "Error",
+            '404': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/metal-gateways/{id}/bgp-dynamic-neighbors', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def get_vrf_routes(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRouteList:  # noqa: E501
         """Retrieve all routes in the VRF  # noqa: E501
 
@@ -1806,18 +2504,20 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_vrf_route_by_id(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
+    def update_vrf_route_by_id(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], vrf_route_update_input : VrfRouteUpdateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
         """Update a VRF Route  # noqa: E501
 
         Requests a VRF Route be redeployed across the network. Updating the prefix or next-hop address on a route is not currently supported.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_vrf_route_by_id(id, include, exclude, async_req=True)
+        >>> thread = api.update_vrf_route_by_id(id, vrf_route_update_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: VRF Route UUID (required)
         :type id: str
+        :param vrf_route_update_input: (required)
+        :type vrf_route_update_input: VrfRouteUpdateInput
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -1838,21 +2538,23 @@ class VRFsApi(object):
         :rtype: VrfRoute
         """
         kwargs['_return_http_data_only'] = True
-        return self.update_vrf_route_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
+        return self.update_vrf_route_by_id_with_http_info(id, vrf_route_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_vrf_route_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+    def update_vrf_route_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], vrf_route_update_input : VrfRouteUpdateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Update a VRF Route  # noqa: E501
 
         Requests a VRF Route be redeployed across the network. Updating the prefix or next-hop address on a route is not currently supported.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_vrf_route_by_id_with_http_info(id, include, exclude, async_req=True)
+        >>> thread = api.update_vrf_route_by_id_with_http_info(id, vrf_route_update_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: VRF Route UUID (required)
         :type id: str
+        :param vrf_route_update_input: (required)
+        :type vrf_route_update_input: VrfRouteUpdateInput
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -1885,6 +2587,7 @@ class VRFsApi(object):
 
         _all_params = [
             'id',
+            'vrf_route_update_input',
             'include',
             'exclude'
         ]
@@ -1935,9 +2638,19 @@ class VRFsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
+        if _params['vrf_route_update_input']:
+            _body_params = _params['vrf_route_update_input']
+
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
         _auth_settings = ['x_auth_token']  # noqa: E501

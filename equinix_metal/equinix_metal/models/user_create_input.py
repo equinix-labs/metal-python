@@ -21,7 +21,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, StrictBool, StrictBytes, StrictStr, conlist
+from pydantic import BaseModel, StrictBytes, StrictStr, conlist
 from equinix_metal.models.email_input import EmailInput
 
 class UserCreateInput(BaseModel):
@@ -38,7 +38,6 @@ class UserCreateInput(BaseModel):
     invitation_id: Optional[StrictStr] = None
     last_name: StrictStr = ...
     level: Optional[StrictStr] = None
-    locked: Optional[StrictBool] = None
     nonce: Optional[StrictStr] = None
     password: Optional[StrictStr] = None
     phone_number: Optional[StrictStr] = None
@@ -47,7 +46,7 @@ class UserCreateInput(BaseModel):
     title: Optional[StrictStr] = None
     two_factor_auth: Optional[StrictStr] = None
     verified_at: Optional[datetime] = None
-    __properties = ["avatar", "company_name", "company_url", "customdata", "emails", "first_name", "href", "invitation_id", "last_name", "level", "locked", "nonce", "password", "phone_number", "social_accounts", "timezone", "title", "two_factor_auth", "verified_at"]
+    __properties = ["avatar", "company_name", "company_url", "customdata", "emails", "first_name", "href", "invitation_id", "last_name", "level", "nonce", "password", "phone_number", "social_accounts", "timezone", "title", "two_factor_auth", "verified_at"]
 
     class Config:
         allow_population_by_field_name = True
@@ -101,7 +100,6 @@ class UserCreateInput(BaseModel):
             "invitation_id": obj.get("invitation_id"),
             "last_name": obj.get("last_name"),
             "level": obj.get("level"),
-            "locked": obj.get("locked"),
             "nonce": obj.get("nonce"),
             "password": obj.get("password"),
             "phone_number": obj.get("phone_number"),

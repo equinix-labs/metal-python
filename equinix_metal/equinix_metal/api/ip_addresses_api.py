@@ -54,7 +54,7 @@ class IPAddressesApi(object):
     def delete_ip_address(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], **kwargs) -> None:  # noqa: E501
         """Unassign an ip address  # noqa: E501
 
-        Note! This call can be used to un-assign an IP assignment or delete an IP reservation. Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device and will make the IP address available to be assigned to another device. Delete and IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.  # noqa: E501
+        This call can be used to un-assign an IP assignment or delete an IP reservation.  Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device or metal gateway and will make the IP address available to be assigned to another device, once the IP has been un-configured from the network.  Delete an IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -85,7 +85,7 @@ class IPAddressesApi(object):
     def delete_ip_address_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], **kwargs):  # noqa: E501
         """Unassign an ip address  # noqa: E501
 
-        Note! This call can be used to un-assign an IP assignment or delete an IP reservation. Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device and will make the IP address available to be assigned to another device. Delete and IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.  # noqa: E501
+        This call can be used to un-assign an IP assignment or delete an IP reservation.  Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device or metal gateway and will make the IP address available to be assigned to another device, once the IP has been un-configured from the network.  Delete an IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

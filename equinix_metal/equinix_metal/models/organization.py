@@ -21,7 +21,7 @@ import json
 
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBytes, StrictFloat, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, conlist
 from equinix_metal.models.address import Address
 from equinix_metal.models.href import Href
 
@@ -38,7 +38,7 @@ class Organization(BaseModel):
     enforce_2fa_at: Optional[datetime] = Field(None, description="Force to all members to have enabled the two factor authentication after that date, unless the value is null")
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    logo: Optional[StrictBytes] = None
+    logo: Optional[StrictStr] = None
     members: Optional[conlist(Href)] = None
     memberships: Optional[conlist(Href)] = None
     name: Optional[StrictStr] = None

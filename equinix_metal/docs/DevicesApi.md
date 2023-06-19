@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_device**
-> Device create_device(id, create_device_request)
+> Device create_device(id, create_device_request, include=include, exclude=exclude)
 
 Create a device
 
@@ -144,10 +144,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Project UUID
     create_device_request = equinix_metal.CreateDeviceRequest() # CreateDeviceRequest | Device to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Create a device
-        api_response = api_instance.create_device(id, create_device_request)
+        api_response = api_instance.create_device(id, create_device_request, include=include, exclude=exclude)
         print("The response of DevicesApi->create_device:\n")
         pprint(api_response)
     except Exception as e:
@@ -160,6 +162,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **create_device_request** | [**CreateDeviceRequest**](CreateDeviceRequest.md)| Device to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -186,7 +190,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_ip_assignment**
-> IPAssignment create_ip_assignment(id, ip_assignment_input)
+> IPAssignment create_ip_assignment(id, ip_assignment_input, include=include, exclude=exclude)
 
 Create an ip assignment
 
@@ -225,10 +229,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
     ip_assignment_input = equinix_metal.IPAssignmentInput() # IPAssignmentInput | IPAssignment to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Create an ip assignment
-        api_response = api_instance.create_ip_assignment(id, ip_assignment_input)
+        api_response = api_instance.create_ip_assignment(id, ip_assignment_input, include=include, exclude=exclude)
         print("The response of DevicesApi->create_ip_assignment:\n")
         pprint(api_response)
     except Exception as e:
@@ -241,6 +247,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
  **ip_assignment_input** | [**IPAssignmentInput**](IPAssignmentInput.md)| IPAssignment to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -974,7 +982,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_organization_devices**
-> DeviceList find_organization_devices(id, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, include=include, exclude=exclude, page=page, per_page=per_page)
+> DeviceList find_organization_devices(id, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
 
 Retrieve all devices of an organization
 
@@ -1012,11 +1020,13 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Organization UUID
+    categories = ['categories_example'] # List[str] | Filter by plan category (optional)
     facility = 'facility_example' # str | Filter by device facility (optional)
     hostname = 'hostname_example' # str | Filter by partial hostname (optional)
-    reserved = True # bool | Filter only reserved instances (optional)
+    reserved = True # bool | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. (optional)
     tag = 'tag_example' # str | Filter by device tag (optional)
     type = 'type_example' # str | Filter by instance type (ondemand,spot,reserved) (optional)
+    has_termination_time = True # bool | Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time. (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
@@ -1024,7 +1034,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
     try:
         # Retrieve all devices of an organization
-        api_response = api_instance.find_organization_devices(id, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, include=include, exclude=exclude, page=page, per_page=per_page)
+        api_response = api_instance.find_organization_devices(id, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
         print("The response of DevicesApi->find_organization_devices:\n")
         pprint(api_response)
     except Exception as e:
@@ -1036,11 +1046,13 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
+ **categories** | [**List[str]**](str.md)| Filter by plan category | [optional] 
  **facility** | **str**| Filter by device facility | [optional] 
  **hostname** | **str**| Filter by partial hostname | [optional] 
- **reserved** | **bool**| Filter only reserved instances | [optional] 
+ **reserved** | **bool**| Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. | [optional] 
  **tag** | **str**| Filter by device tag | [optional] 
  **type** | **str**| Filter by instance type (ondemand,spot,reserved) | [optional] 
+ **has_termination_time** | **bool**| Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time. | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]
@@ -1070,7 +1082,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_project_devices**
-> DeviceList find_project_devices(id, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, include=include, exclude=exclude, page=page, per_page=per_page)
+> DeviceList find_project_devices(id, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
 
 Retrieve all devices of a project
 
@@ -1108,11 +1120,13 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Project UUID
+    categories = ['categories_example'] # List[str] | Filter by plan category (optional)
     facility = 'facility_example' # str | Filter by device facility (optional)
     hostname = 'hostname_example' # str | Filter by partial hostname (optional)
-    reserved = True # bool | Filter only reserved instances (optional)
+    reserved = True # bool | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. (optional)
     tag = 'tag_example' # str | Filter by device tag (optional)
     type = 'type_example' # str | Filter by instance type (ondemand,spot,reserved) (optional)
+    has_termination_time = True # bool | Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time. (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
@@ -1120,7 +1134,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
     try:
         # Retrieve all devices of a project
-        api_response = api_instance.find_project_devices(id, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, include=include, exclude=exclude, page=page, per_page=per_page)
+        api_response = api_instance.find_project_devices(id, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
         print("The response of DevicesApi->find_project_devices:\n")
         pprint(api_response)
     except Exception as e:
@@ -1132,11 +1146,13 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
+ **categories** | [**List[str]**](str.md)| Filter by plan category | [optional] 
  **facility** | **str**| Filter by device facility | [optional] 
  **hostname** | **str**| Filter by partial hostname | [optional] 
- **reserved** | **bool**| Filter only reserved instances | [optional] 
+ **reserved** | **bool**| Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. | [optional] 
  **tag** | **str**| Filter by device tag | [optional] 
  **type** | **str**| Filter by instance type (ondemand,spot,reserved) | [optional] 
+ **has_termination_time** | **bool**| Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time. | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]

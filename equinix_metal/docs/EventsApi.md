@@ -11,7 +11,8 @@ Method | HTTP request | Description
 [**find_interconnection_port_events**](EventsApi.md#find_interconnection_port_events) | **GET** /connections/{connection_id}/ports/{id}/events | Retrieve interconnection port events
 [**find_organization_events**](EventsApi.md#find_organization_events) | **GET** /organizations/{id}/events | Retrieve organization&#39;s events
 [**find_project_events**](EventsApi.md#find_project_events) | **GET** /projects/{id}/events | Retrieve project&#39;s events
-[**find_virtual_circuit_events**](EventsApi.md#find_virtual_circuit_events) | **GET** /virtual-circuits/{id}/events | Retrieve interconnection events
+[**find_virtual_circuit_events**](EventsApi.md#find_virtual_circuit_events) | **GET** /virtual-circuits/{id}/events | Retrieve virtual circuit events
+[**find_vrf_route_events**](EventsApi.md#find_vrf_route_events) | **GET** /routes/{id}/events | Retrieve VRF route events
 
 
 # **find_device_events**
@@ -613,7 +614,7 @@ Name | Type | Description  | Notes
 # **find_virtual_circuit_events**
 > Event find_virtual_circuit_events(id, include=include, exclude=exclude, page=page, per_page=per_page)
 
-Retrieve interconnection events
+Retrieve virtual circuit events
 
 Returns a list of the virtual circuit events
 
@@ -655,7 +656,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     per_page = 10 # int | Items returned per page (optional) (default to 10)
 
     try:
-        # Retrieve interconnection events
+        # Retrieve virtual circuit events
         api_response = api_instance.find_virtual_circuit_events(id, include=include, exclude=exclude, page=page, per_page=per_page)
         print("The response of EventsApi->find_virtual_circuit_events:\n")
         pprint(api_response)
@@ -668,6 +669,92 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Virtual Circuit UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
+ **page** | **int**| Page to return | [optional] [default to 1]
+ **per_page** | **int**| Items returned per page | [optional] [default to 10]
+
+### Return type
+
+[**Event**](Event.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | ok |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **find_vrf_route_events**
+> Event find_vrf_route_events(id, include=include, exclude=exclude, page=page, per_page=per_page)
+
+Retrieve VRF route events
+
+Returns a list of the VRF route events
+
+### Example
+
+* Api Key Authentication (x_auth_token):
+```python
+from __future__ import print_function
+import time
+import os
+import equinix_metal
+from equinix_metal.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://api.equinix.com/metal/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = equinix_metal.Configuration(
+    host = "https://api.equinix.com/metal/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: x_auth_token
+configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x_auth_token'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with equinix_metal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = equinix_metal.EventsApi(api_client)
+    id = 'id_example' # str | VRF Route UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
+    page = 1 # int | Page to return (optional) (default to 1)
+    per_page = 10 # int | Items returned per page (optional) (default to 10)
+
+    try:
+        # Retrieve VRF route events
+        api_response = api_instance.find_vrf_route_events(id, include=include, exclude=exclude, page=page, per_page=per_page)
+        print("The response of EventsApi->find_vrf_route_events:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling EventsApi->find_vrf_route_events: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| VRF Route UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]

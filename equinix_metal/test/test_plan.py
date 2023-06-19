@@ -55,6 +55,9 @@ class TestPlan(unittest.TestCase):
                             hour = 1.23, 
                             href = '', ), )
                     ], 
+                categories = [
+                    ''
+                    ], 
                 var_class = 'm3.large.x86', 
                 deployment_types = [
                     'on_demand'

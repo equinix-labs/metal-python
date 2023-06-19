@@ -48,20 +48,24 @@ class VLANsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_virtual_network(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], virtual_network_create_input : Annotated[VirtualNetworkCreateInput, Field(..., description="Virtual Network to create")], **kwargs) -> VirtualNetwork:  # noqa: E501
+    def create_virtual_network(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], virtual_network_create_input : Annotated[VirtualNetworkCreateInput, Field(..., description="Virtual Network to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualNetwork:  # noqa: E501
         """Create a virtual network  # noqa: E501
 
         Creates an virtual network.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_virtual_network(id, virtual_network_create_input, async_req=True)
+        >>> thread = api.create_virtual_network(id, virtual_network_create_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
         :param virtual_network_create_input: Virtual Network to create (required)
         :type virtual_network_create_input: VirtualNetworkCreateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -78,23 +82,27 @@ class VLANsApi(object):
         :rtype: VirtualNetwork
         """
         kwargs['_return_http_data_only'] = True
-        return self.create_virtual_network_with_http_info(id, virtual_network_create_input, **kwargs)  # noqa: E501
+        return self.create_virtual_network_with_http_info(id, virtual_network_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_virtual_network_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], virtual_network_create_input : Annotated[VirtualNetworkCreateInput, Field(..., description="Virtual Network to create")], **kwargs):  # noqa: E501
+    def create_virtual_network_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], virtual_network_create_input : Annotated[VirtualNetworkCreateInput, Field(..., description="Virtual Network to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Create a virtual network  # noqa: E501
 
         Creates an virtual network.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_virtual_network_with_http_info(id, virtual_network_create_input, async_req=True)
+        >>> thread = api.create_virtual_network_with_http_info(id, virtual_network_create_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
         :param virtual_network_create_input: Virtual Network to create (required)
         :type virtual_network_create_input: VirtualNetworkCreateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -123,7 +131,9 @@ class VLANsApi(object):
 
         _all_params = [
             'id',
-            'virtual_network_create_input'
+            'virtual_network_create_input',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -157,6 +167,14 @@ class VLANsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

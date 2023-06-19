@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **find_plans**
-> PlanList find_plans(type=type, include=include, exclude=exclude)
+> PlanList find_plans(categories=categories, type=type, slug=slug, include=include, exclude=exclude)
 
 Retrieve all plans
 
@@ -46,13 +46,15 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.PlansApi(api_client)
+    categories = ['categories_example'] # List[str] | Filter plans by its category (optional)
     type = 'standard' # str | Filter plans by its plan type (optional)
+    slug = 'c3.small.x86' # str | Filter plans by slug (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve all plans
-        api_response = api_instance.find_plans(type=type, include=include, exclude=exclude)
+        api_response = api_instance.find_plans(categories=categories, type=type, slug=slug, include=include, exclude=exclude)
         print("The response of PlansApi->find_plans:\n")
         pprint(api_response)
     except Exception as e:
@@ -63,7 +65,9 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **categories** | [**List[str]**](str.md)| Filter plans by its category | [optional] 
  **type** | **str**| Filter plans by its plan type | [optional] 
+ **slug** | **str**| Filter plans by slug | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 

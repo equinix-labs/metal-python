@@ -20,7 +20,7 @@ import re  # noqa: F401
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conint
+from pydantic import Field, StrictStr, conint, conlist, validator
 
 from typing import Optional
 
@@ -355,14 +355,14 @@ class SelfServiceReservationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_self_service_reservations(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> SelfServiceReservationList:  # noqa: E501
+    def find_self_service_reservations(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter reservations by items category")] = None, **kwargs) -> SelfServiceReservationList:  # noqa: E501
         """Retrieve all reservations  # noqa: E501
 
         Returns all reservations.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_self_service_reservations(project_id, page, per_page, async_req=True)
+        >>> thread = api.find_self_service_reservations(project_id, page, per_page, categories, async_req=True)
         >>> result = thread.get()
 
         :param project_id: Project UUID (required)
@@ -371,6 +371,8 @@ class SelfServiceReservationsApi(object):
         :type page: int
         :param per_page: Items returned per page
         :type per_page: int
+        :param categories: Filter reservations by items category
+        :type categories: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -387,17 +389,17 @@ class SelfServiceReservationsApi(object):
         :rtype: SelfServiceReservationList
         """
         kwargs['_return_http_data_only'] = True
-        return self.find_self_service_reservations_with_http_info(project_id, page, per_page, **kwargs)  # noqa: E501
+        return self.find_self_service_reservations_with_http_info(project_id, page, per_page, categories, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_self_service_reservations_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs):  # noqa: E501
+    def find_self_service_reservations_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter reservations by items category")] = None, **kwargs):  # noqa: E501
         """Retrieve all reservations  # noqa: E501
 
         Returns all reservations.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_self_service_reservations_with_http_info(project_id, page, per_page, async_req=True)
+        >>> thread = api.find_self_service_reservations_with_http_info(project_id, page, per_page, categories, async_req=True)
         >>> result = thread.get()
 
         :param project_id: Project UUID (required)
@@ -406,6 +408,8 @@ class SelfServiceReservationsApi(object):
         :type page: int
         :param per_page: Items returned per page
         :type per_page: int
+        :param categories: Filter reservations by items category
+        :type categories: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -435,7 +439,8 @@ class SelfServiceReservationsApi(object):
         _all_params = [
             'project_id',
             'page',
-            'per_page'
+            'per_page',
+            'categories'
         ]
         _all_params.extend(
             [
@@ -474,6 +479,10 @@ class SelfServiceReservationsApi(object):
 
         if _params.get('per_page') is not None:  # noqa: E501
             _query_params.append(('per_page', _params['per_page']))
+
+        if _params.get('categories') is not None:  # noqa: E501
+            _query_params.append(('categories', _params['categories']))
+            _collection_formats['categories'] = 'multi'
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

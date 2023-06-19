@@ -16,6 +16,7 @@ from equinix_metal.api.ip_addresses_api import IPAddressesApi
 from equinix_metal.api.incidents_api import IncidentsApi
 from equinix_metal.api.interconnections_api import InterconnectionsApi
 from equinix_metal.api.invitations_api import InvitationsApi
+from equinix_metal.api.invoices_api import InvoicesApi
 from equinix_metal.api.licenses_api import LicensesApi
 from equinix_metal.api.memberships_api import MembershipsApi
 from equinix_metal.api.metal_gateways_api import MetalGatewaysApi

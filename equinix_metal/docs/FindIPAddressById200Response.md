@@ -19,8 +19,10 @@ Name | Type | Description | Notes
 **metro** | [**Metro**](Metro.md) |  | [optional] 
 **netmask** | **str** |  | [optional] 
 **network** | **str** |  | [optional] 
+**next_hop** | **str** | Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.  | [optional] 
 **parent_block** | [**ParentBlock**](ParentBlock.md) |  | [optional] 
 **public** | **bool** |  | [optional] 
+**state** | **str** |  | [optional] 
 **addon** | **bool** |  | [optional] 
 **assignments** | [**List[Href]**](Href.md) |  | [optional] 
 **available** | **str** |  | [optional] 
@@ -32,7 +34,6 @@ Name | Type | Description | Notes
 **project** | [**Project**](Project.md) |  | [optional] 
 **project_lite** | [**Project**](Project.md) |  | [optional] 
 **requested_by** | [**Href**](Href.md) |  | [optional] 
-**state** | **str** |  | [optional] 
 **tags** | **List[str]** |  | [optional] 
 **type** | **str** |  | 
 **created_by** | [**Href**](Href.md) |  | [optional] 

@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **invitation_id** | **str** |  | [optional] 
 **last_name** | **str** |  | 
 **level** | **str** |  | [optional] 
-**locked** | **bool** |  | [optional] 
 **nonce** | **str** |  | [optional] 
 **password** | **str** |  | [optional] 
 **phone_number** | **str** |  | [optional] 

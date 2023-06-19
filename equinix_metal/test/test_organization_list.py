@@ -83,7 +83,7 @@ class TestOrganizationList(unittest.TestCase):
                         enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         href = '', 
                         id = '', 
-                        logo = bytes(b'blah'), 
+                        logo = '', 
                         members = [
                             equinix_metal.models.href.Href(
                                 href = '', )

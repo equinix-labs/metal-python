@@ -47,6 +47,8 @@ class TestBgpDynamicNeighborCreateInput(unittest.TestCase):
             )
         else :
             return BgpDynamicNeighborCreateInput(
+                bgp_neighbor_asn = 12345,
+                bgp_neighbor_range = '192.168.1.0/25',
         )
         """
 

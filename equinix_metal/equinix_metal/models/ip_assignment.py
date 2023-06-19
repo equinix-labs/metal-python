@@ -21,7 +21,7 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, validator
 from equinix_metal.models.href import Href
 from equinix_metal.models.ip_assignment_metro import IPAssignmentMetro
 from equinix_metal.models.parent_block import ParentBlock
@@ -45,9 +45,19 @@ class IPAssignment(BaseModel):
     metro: Optional[IPAssignmentMetro] = None
     netmask: Optional[StrictStr] = None
     network: Optional[StrictStr] = None
+    next_hop: Optional[StrictStr] = Field(None, description="Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded. ")
     parent_block: Optional[ParentBlock] = None
     public: Optional[StrictBool] = None
-    __properties = ["address", "address_family", "assigned_to", "cidr", "created_at", "enabled", "gateway", "global_ip", "href", "id", "manageable", "management", "metro", "netmask", "network", "parent_block", "public"]
+    state: Optional[StrictStr] = Field(None, description="Only set when this is a Metal Gateway Elastic IP Assignment.  Describes the current configuration state of this IP on the network. ")
+    __properties = ["address", "address_family", "assigned_to", "cidr", "created_at", "enabled", "gateway", "global_ip", "href", "id", "manageable", "management", "metro", "netmask", "network", "next_hop", "parent_block", "public", "state"]
+
+    @validator('state')
+    def state_validate_enum(cls, v):
+        if v is None:
+            return v
+        if v not in ('pending', 'active', 'deleting'):
+            raise ValueError("must be one of enum values ('pending', 'active', 'deleting')")
+        return v
 
     class Config:
         allow_population_by_field_name = True
@@ -108,8 +118,10 @@ class IPAssignment(BaseModel):
             "metro": IPAssignmentMetro.from_dict(obj.get("metro")) if obj.get("metro") is not None else None,
             "netmask": obj.get("netmask"),
             "network": obj.get("network"),
+            "next_hop": obj.get("next_hop"),
             "parent_block": ParentBlock.from_dict(obj.get("parent_block")) if obj.get("parent_block") is not None else None,
-            "public": obj.get("public")
+            "public": obj.get("public"),
+            "state": obj.get("state")
         })
         return _obj
 

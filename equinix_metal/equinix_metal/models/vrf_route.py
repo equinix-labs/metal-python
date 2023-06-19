@@ -22,9 +22,9 @@ import json
 from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr, validator
-from equinix_metal.models.vrf_route_metal_gateway import VrfRouteMetalGateway
-from equinix_metal.models.vrf_route_virtual_network import VrfRouteVirtualNetwork
-from equinix_metal.models.vrf_route_vrf import VrfRouteVrf
+from equinix_metal.models.virtual_network import VirtualNetwork
+from equinix_metal.models.vrf import Vrf
+from equinix_metal.models.vrf_metal_gateway import VrfMetalGateway
 
 class VrfRoute(BaseModel):
     """
@@ -33,14 +33,14 @@ class VrfRoute(BaseModel):
     created_at: Optional[datetime] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = Field(None, description="The unique identifier for the newly-created resource")
-    metal_gateway: Optional[VrfRouteMetalGateway] = None
+    metal_gateway: Optional[VrfMetalGateway] = None
     next_hop: Optional[StrictStr] = Field(None, description="The next-hop IPv4 address for the route")
     prefix: Optional[StrictStr] = Field(None, description="The IPv4 prefix for the route, in CIDR-style notation")
     status: Optional[StrictStr] = Field(None, description="The status of the route. Potential values are \"pending\", \"active\", \"deleting\", and \"error\", representing various lifecycle states of the route and whether or not it has been successfully configured on the network")
     type: Optional[StrictStr] = Field(None, description="VRF route type, like 'bgp', 'connected', and 'static'. Currently, only static routes are supported")
     updated_at: Optional[datetime] = None
-    virtual_network: Optional[VrfRouteVirtualNetwork] = None
-    vrf: Optional[VrfRouteVrf] = None
+    virtual_network: Optional[VirtualNetwork] = None
+    vrf: Optional[Vrf] = None
     __properties = ["created_at", "href", "id", "metal_gateway", "next_hop", "prefix", "status", "type", "updated_at", "virtual_network", "vrf"]
 
     @validator('status')
@@ -112,14 +112,14 @@ class VrfRoute(BaseModel):
             "created_at": obj.get("created_at"),
             "href": obj.get("href"),
             "id": obj.get("id"),
-            "metal_gateway": VrfRouteMetalGateway.from_dict(obj.get("metal_gateway")) if obj.get("metal_gateway") is not None else None,
+            "metal_gateway": VrfMetalGateway.from_dict(obj.get("metal_gateway")) if obj.get("metal_gateway") is not None else None,
             "next_hop": obj.get("next_hop"),
             "prefix": obj.get("prefix"),
             "status": obj.get("status"),
             "type": obj.get("type"),
             "updated_at": obj.get("updated_at"),
-            "virtual_network": VrfRouteVirtualNetwork.from_dict(obj.get("virtual_network")) if obj.get("virtual_network") is not None else None,
-            "vrf": VrfRouteVrf.from_dict(obj.get("vrf")) if obj.get("vrf") is not None else None
+            "virtual_network": VirtualNetwork.from_dict(obj.get("virtual_network")) if obj.get("virtual_network") is not None else None,
+            "vrf": Vrf.from_dict(obj.get("vrf")) if obj.get("vrf") is not None else None
         })
         return _obj
 

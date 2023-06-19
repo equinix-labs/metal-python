@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **create_project**
-> Project create_project(project_create_from_root_input)
+> Project create_project(project_create_from_root_input, include=include, exclude=exclude)
 
 Create a project
 
@@ -56,10 +56,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.ProjectsApi(api_client)
     project_create_from_root_input = equinix_metal.ProjectCreateFromRootInput() # ProjectCreateFromRootInput | Project to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Create a project
-        api_response = api_instance.create_project(project_create_from_root_input)
+        api_response = api_instance.create_project(project_create_from_root_input, include=include, exclude=exclude)
         print("The response of ProjectsApi->create_project:\n")
         pprint(api_response)
     except Exception as e:
@@ -71,6 +73,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_create_from_root_input** | [**ProjectCreateFromRootInput**](ProjectCreateFromRootInput.md)| Project to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

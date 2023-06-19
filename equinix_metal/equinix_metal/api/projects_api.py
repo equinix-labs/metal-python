@@ -55,18 +55,22 @@ class ProjectsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_project(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(..., description="Project to create")], **kwargs) -> Project:  # noqa: E501
+    def create_project(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(..., description="Project to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
         """Create a project  # noqa: E501
 
         Creates a new project for the user default organization. If the user don't have an organization, a new one will be created.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_project(project_create_from_root_input, async_req=True)
+        >>> thread = api.create_project(project_create_from_root_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param project_create_from_root_input: Project to create (required)
         :type project_create_from_root_input: ProjectCreateFromRootInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -83,21 +87,25 @@ class ProjectsApi(object):
         :rtype: Project
         """
         kwargs['_return_http_data_only'] = True
-        return self.create_project_with_http_info(project_create_from_root_input, **kwargs)  # noqa: E501
+        return self.create_project_with_http_info(project_create_from_root_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_project_with_http_info(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(..., description="Project to create")], **kwargs):  # noqa: E501
+    def create_project_with_http_info(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(..., description="Project to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Create a project  # noqa: E501
 
         Creates a new project for the user default organization. If the user don't have an organization, a new one will be created.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_project_with_http_info(project_create_from_root_input, async_req=True)
+        >>> thread = api.create_project_with_http_info(project_create_from_root_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param project_create_from_root_input: Project to create (required)
         :type project_create_from_root_input: ProjectCreateFromRootInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -125,7 +133,9 @@ class ProjectsApi(object):
         _params = locals()
 
         _all_params = [
-            'project_create_from_root_input'
+            'project_create_from_root_input',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -156,6 +166,14 @@ class ProjectsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

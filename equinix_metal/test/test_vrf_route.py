@@ -44,14 +44,301 @@ class TestVrfRoute(unittest.TestCase):
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 href = '/routes/e1ff9c2b-051a-4688-965f-153e274f77e0', 
                 id = 'e1ff9c2b-051a-4688-965f-153e274f77e0', 
-                metal_gateway = None, 
+                metal_gateway = equinix_metal.models.vrf_metal_gateway.VrfMetalGateway(
+                    created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    created_by = equinix_metal.models.href.Href(
+                        href = '', ), 
+                    href = '', 
+                    id = '', 
+                    ip_reservation = equinix_metal.models.vrf_ip_reservation.VrfIpReservation(
+                        address = '', 
+                        address_family = 56, 
+                        bill = True, 
+                        cidr = 56, 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        customdata = equinix_metal.models.customdata.customdata(), 
+                        details = '', 
+                        gateway = '', 
+                        href = '', 
+                        id = '', 
+                        manageable = True, 
+                        management = True, 
+                        metal_gateway = equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            gateway_address = '10.1.2.1/27', 
+                            href = '', 
+                            id = '', 
+                            state = 'ready', 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            vlan = 1001, ), 
+                        metro = equinix_metal.models.metro.Metro(
+                            code = '', 
+                            country = '', 
+                            href = '', 
+                            id = '', 
+                            name = '', ), 
+                        netmask = '', 
+                        network = '', 
+                        project = equinix_metal.models.project.Project(
+                            backend_transfer_enabled = True, 
+                            bgp_config = equinix_metal.models.href.Href(
+                                href = '', ), 
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            customdata = equinix_metal.models.customdata.customdata(), 
+                            devices = [
+                                
+                                ], 
+                            href = '', 
+                            id = '', 
+                            invitations = [
+                                
+                                ], 
+                            max_devices = equinix_metal.models.max_devices.max_devices(), 
+                            members = [
+                                
+                                ], 
+                            memberships = [
+                                
+                                ], 
+                            name = '', 
+                            network_status = equinix_metal.models.network_status.network_status(), 
+                            organization = , 
+                            payment_method = , 
+                            ssh_keys = [
+                                
+                                ], 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            volumes = [
+                                
+                                ], ), 
+                        project_lite = equinix_metal.models.project.Project(
+                            backend_transfer_enabled = True, 
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            customdata = equinix_metal.models.customdata.customdata(), 
+                            href = '', 
+                            id = '', 
+                            max_devices = equinix_metal.models.max_devices.max_devices(), 
+                            name = '', 
+                            network_status = equinix_metal.models.network_status.network_status(), 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                        public = True, 
+                        state = '', 
+                        tags = [
+                            ''
+                            ], 
+                        type = 'vrf', 
+                        vrf = equinix_metal.models.vrf.Vrf(
+                            bgp_dynamic_neighbors_bfd_enabled = True, 
+                            bgp_dynamic_neighbors_enabled = True, 
+                            bgp_dynamic_neighbors_export_route_map = True, 
+                            bill = True, 
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            description = '', 
+                            href = '', 
+                            id = '', 
+                            ip_ranges = [
+                                ''
+                                ], 
+                            local_asn = 56, 
+                            name = '', 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            virtual_circuits = [
+                                equinix_metal.models.vrf_virtual_circuit.VrfVirtualCircuit(
+                                    created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                    customer_ip = '12.0.0.2', 
+                                    description = '', 
+                                    href = '', 
+                                    id = '', 
+                                    md5 = '', 
+                                    metal_ip = '12.0.0.1', 
+                                    name = '', 
+                                    nni_vlan = 56, 
+                                    peer_asn = 56, 
+                                    port = , 
+                                    speed = 56, 
+                                    status = '', 
+                                    subnet = '12.0.0.0/30', 
+                                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                                ], ), ), 
+                    project = , 
+                    state = 'ready', 
+                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
+                        assigned_to = , 
+                        assigned_to_virtual_circuit = True, 
+                        description = '', 
+                        facility = , 
+                        href = '', 
+                        id = '', 
+                        instances = [
+                            
+                            ], 
+                        metal_gateways = [
+                            equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
+                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                gateway_address = '10.1.2.1/27', 
+                                href = '', 
+                                id = '', 
+                                state = 'ready', 
+                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                vlan = 1001, )
+                            ], 
+                        metro_code = '', 
+                        vxlan = 56, ), 
+                    vrf = equinix_metal.models.vrf.Vrf(
+                        bgp_dynamic_neighbors_bfd_enabled = True, 
+                        bgp_dynamic_neighbors_enabled = True, 
+                        bgp_dynamic_neighbors_export_route_map = True, 
+                        bill = True, 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        description = '', 
+                        href = '', 
+                        id = '', 
+                        local_asn = 56, 
+                        name = '', 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), ), 
                 next_hop = '192.168.1.254', 
                 prefix = '0.0.0.0/0', 
                 status = 'active', 
                 type = 'static', 
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                virtual_network = None, 
-                vrf = None
+                virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
+                    assigned_to = equinix_metal.models.href.Href(
+                        href = '', ), 
+                    assigned_to_virtual_circuit = True, 
+                    description = '', 
+                    facility = equinix_metal.models.href.Href(
+                        href = '', ), 
+                    href = '', 
+                    id = '', 
+                    instances = [
+                        
+                        ], 
+                    metal_gateways = [
+                        equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            gateway_address = '10.1.2.1/27', 
+                            href = '', 
+                            id = '', 
+                            state = 'ready', 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            vlan = 1001, )
+                        ], 
+                    metro = , 
+                    metro_code = '', 
+                    vxlan = 56, ), 
+                vrf = equinix_metal.models.vrf.Vrf(
+                    bgp_dynamic_neighbors_bfd_enabled = True, 
+                    bgp_dynamic_neighbors_enabled = True, 
+                    bgp_dynamic_neighbors_export_route_map = True, 
+                    bill = True, 
+                    created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    created_by = equinix_metal.models.user.User(
+                        avatar_thumb_url = '', 
+                        avatar_url = '', 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        customdata = equinix_metal.models.customdata.customdata(), 
+                        default_organization_id = '', 
+                        default_project_id = '', 
+                        email = '', 
+                        emails = [
+                            equinix_metal.models.href.Href(
+                                href = '', )
+                            ], 
+                        first_name = '', 
+                        fraud_score = '', 
+                        full_name = '', 
+                        href = '', 
+                        id = '', 
+                        last_login_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        last_name = '', 
+                        max_organizations = 56, 
+                        max_projects = 56, 
+                        phone_number = '', 
+                        short_id = '', 
+                        timezone = '', 
+                        two_factor_auth = '', 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                    description = '', 
+                    href = '', 
+                    id = '', 
+                    ip_ranges = [
+                        ''
+                        ], 
+                    local_asn = 56, 
+                    metro = equinix_metal.models.metro.Metro(
+                        code = '', 
+                        country = '', 
+                        href = '', 
+                        id = '', 
+                        name = '', ), 
+                    name = '', 
+                    project = equinix_metal.models.project.Project(
+                        backend_transfer_enabled = True, 
+                        bgp_config = equinix_metal.models.href.Href(
+                            href = '', ), 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        customdata = equinix_metal.models.customdata.customdata(), 
+                        devices = [
+                            
+                            ], 
+                        href = '', 
+                        id = '', 
+                        invitations = [
+                            
+                            ], 
+                        max_devices = equinix_metal.models.max_devices.max_devices(), 
+                        members = [
+                            
+                            ], 
+                        memberships = [
+                            
+                            ], 
+                        name = '', 
+                        network_status = equinix_metal.models.network_status.network_status(), 
+                        organization = , 
+                        payment_method = , 
+                        ssh_keys = [
+                            
+                            ], 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        volumes = [
+                            
+                            ], ), 
+                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    virtual_circuits = [
+                        equinix_metal.models.vrf_virtual_circuit.VrfVirtualCircuit(
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            customer_ip = '12.0.0.2', 
+                            description = '', 
+                            href = '', 
+                            id = '', 
+                            md5 = '', 
+                            metal_ip = '12.0.0.1', 
+                            name = '', 
+                            nni_vlan = 56, 
+                            peer_asn = 56, 
+                            port = , 
+                            speed = 56, 
+                            status = '', 
+                            subnet = '12.0.0.0/30', 
+                            tags = [
+                                ''
+                                ], 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            vrf = equinix_metal.models.vrf.Vrf(
+                                bgp_dynamic_neighbors_bfd_enabled = True, 
+                                bgp_dynamic_neighbors_enabled = True, 
+                                bgp_dynamic_neighbors_export_route_map = True, 
+                                bill = True, 
+                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                description = '', 
+                                href = '', 
+                                id = '', 
+                                local_asn = 56, 
+                                name = '', 
+                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
+                        ], )
             )
         else :
             return VrfRoute(
