@@ -100,10 +100,6 @@ components:
           type: string
         zip_code:
           type: string
-      required:
-      - address
-      - country
-      - zip_code
       type: object
     AuthToken:
       properties:
