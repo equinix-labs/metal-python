@@ -90,9 +90,6 @@ fixedSpec['components']['schemas']['IPReservation']['properties']['assignments']
     "$ref": "#/components/schemas/Href"
 }
 
-# FIX 10. Extend "line" param of Plan by "reserved"
-
-del fixedSpec['components']['schemas']['Plan']['properties']['line']['enum']
 
 with open(OUTFILE, 'w') as f:
     originalSpec = yaml.dump(
