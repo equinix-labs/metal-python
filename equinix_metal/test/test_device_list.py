@@ -58,7 +58,6 @@ class TestDeviceList(unittest.TestCase):
                         description = '', 
                         facility = equinix_metal.models.facility.Facility(
                             address = equinix_metal.models.address.Address(
-                                address = '', 
                                 address2 = '', 
                                 city = '', 
                                 coordinates = equinix_metal.models.coordinates.Coordinates(

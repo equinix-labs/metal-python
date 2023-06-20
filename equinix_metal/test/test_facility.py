@@ -42,7 +42,6 @@ class TestFacility(unittest.TestCase):
         if include_optional :
             return Facility(
                 address = equinix_metal.models.address.Address(
-                    address = '', 
                     address2 = '', 
                     city = '', 
                     coordinates = equinix_metal.models.coordinates.Coordinates(

@@ -28,14 +28,14 @@ class Address(BaseModel):
     """
     Address
     """
-    address: StrictStr = ...
+    address: Optional[StrictStr] = None
     address2: Optional[StrictStr] = None
     city: Optional[StrictStr] = None
     coordinates: Optional[Coordinates] = None
-    country: StrictStr = ...
+    country: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     state: Optional[StrictStr] = None
-    zip_code: StrictStr = ...
+    zip_code: Optional[StrictStr] = None
     __properties = ["address", "address2", "city", "coordinates", "country", "href", "state", "zip_code"]
 
     class Config:

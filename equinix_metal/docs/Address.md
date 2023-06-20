@@ -4,14 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | **str** |  | 
+**address** | **str** |  | [optional] 
 **address2** | **str** |  | [optional] 
 **city** | **str** |  | [optional] 
 **coordinates** | [**Coordinates**](Coordinates.md) |  | [optional] 
-**country** | **str** |  | 
+**country** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
 **state** | **str** |  | [optional] 
-**zip_code** | **str** |  | 
+**zip_code** | **str** |  | [optional] 
 
 ## Example
 

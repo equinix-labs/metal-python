@@ -57,7 +57,6 @@ class TestOrganizationList(unittest.TestCase):
                 organizations = [
                     equinix_metal.models.organization.Organization(
                         address = equinix_metal.models.address.Address(
-                            address = '', 
                             address2 = '', 
                             city = '', 
                             coordinates = equinix_metal.models.coordinates.Coordinates(
@@ -69,7 +68,6 @@ class TestOrganizationList(unittest.TestCase):
                             state = '', 
                             zip_code = '', ), 
                         billing_address = equinix_metal.models.address.Address(
-                            address = '', 
                             address2 = '', 
                             city = '', 
                             country = '', 

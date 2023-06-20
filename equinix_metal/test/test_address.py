@@ -55,9 +55,6 @@ class TestAddress(unittest.TestCase):
             )
         else :
             return Address(
-                address = '',
-                country = '',
-                zip_code = '',
         )
         """
 
