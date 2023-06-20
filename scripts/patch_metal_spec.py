@@ -90,6 +90,9 @@ fixedSpec['components']['schemas']['IPReservation']['properties']['assignments']
     "$ref": "#/components/schemas/Href"
 }
 
+# FIX 11. Make all Address parameters non-mandatory
+
+del fixedSpec['components']['schemas']['Address']['required']
 
 with open(OUTFILE, 'w') as f:
     originalSpec = yaml.dump(
