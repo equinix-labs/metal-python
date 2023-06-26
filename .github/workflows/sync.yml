@@ -5,11 +5,8 @@ on:
 
 jobs:
   sync:
-    strategy:
-      matrix:
-        go-version: [1.19.x]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    name: Regenerate SDK with latest API spec
+    runs-on: ubuntu-latest
     steps:
     - name: Get current date
       id: date
