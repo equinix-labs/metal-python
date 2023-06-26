@@ -31,6 +31,20 @@ class TestVRFsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_bgp_dynamic_neighbors_id_get(self):
+        """Test case for bgp_dynamic_neighbors_id_get
+
+        Retrieve a BGP Dynamic Neighbor  # noqa: E501
+        """
+        pass
+
+    def test_create_bgp_dynamic_neighbor(self):
+        """Test case for create_bgp_dynamic_neighbor
+
+        Create a VRF BGP Dynamic Neighbor range  # noqa: E501
+        """
+        pass
+
     def test_create_vrf(self):
         """Test case for create_vrf
 
@@ -42,6 +56,13 @@ class TestVRFsApi(unittest.TestCase):
         """Test case for create_vrf_route
 
         Create a VRF route  # noqa: E501
+        """
+        pass
+
+    def test_delete_bgp_dynamic_neighbor_by_id(self):
+        """Test case for delete_bgp_dynamic_neighbor_by_id
+
+        Delete a VRF BGP Dynamic Neighbor  # noqa: E501
         """
         pass
 
@@ -91,6 +112,13 @@ class TestVRFsApi(unittest.TestCase):
         """Test case for find_vrfs
 
         Retrieve all VRFs in the project  # noqa: E501
+        """
+        pass
+
+    def test_get_bgp_dynamic_neighbors(self):
+        """Test case for get_bgp_dynamic_neighbors
+
+        List BGP Dynamic Neighbors  # noqa: E501
         """
         pass
 

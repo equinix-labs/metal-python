@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **avatar_url** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **customdata** | **object** |  | [optional] 
+**default_organization_id** | **str** |  | [optional] 
+**default_project_id** | **str** |  | [optional] 
 **email** | **str** |  | [optional] 
 **emails** | [**List[Href]**](Href.md) |  | [optional] 
 **first_name** | **str** |  | [optional] 

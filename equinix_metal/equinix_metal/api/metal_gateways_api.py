@@ -26,6 +26,9 @@ from typing import Optional
 
 from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest
 from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
+from equinix_metal.models.ip_assignment import IPAssignment
+from equinix_metal.models.ip_assignment_list import IPAssignmentList
+from equinix_metal.models.metal_gateway_elastic_ip_create_input import MetalGatewayElasticIpCreateInput
 from equinix_metal.models.metal_gateway_list import MetalGatewayList
 
 from equinix_metal.api_client import ApiClient
@@ -240,10 +243,169 @@ class MetalGatewaysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
+    def create_metal_gateway_elastic_ip(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], metal_gateway_elastic_ip_create_input : MetalGatewayElasticIpCreateInput, **kwargs) -> IPAssignment:  # noqa: E501
+        """Create a Metal Gateway Elastic IP  # noqa: E501
+
+        Create a new Elastic IP on this Metal Gateway.  Assign an IPv4 range as an elastic IP to the Metal Gateway, with a specified next-hop address contained within the Metal Gateway.  Notice: Elastic IPs on Metal Gateways are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_metal_gateway_elastic_ip(id, metal_gateway_elastic_ip_create_input, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Metal Gateway UUID (required)
+        :type id: str
+        :param metal_gateway_elastic_ip_create_input: (required)
+        :type metal_gateway_elastic_ip_create_input: MetalGatewayElasticIpCreateInput
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: IPAssignment
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.create_metal_gateway_elastic_ip_with_http_info(id, metal_gateway_elastic_ip_create_input, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_metal_gateway_elastic_ip_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], metal_gateway_elastic_ip_create_input : MetalGatewayElasticIpCreateInput, **kwargs):  # noqa: E501
+        """Create a Metal Gateway Elastic IP  # noqa: E501
+
+        Create a new Elastic IP on this Metal Gateway.  Assign an IPv4 range as an elastic IP to the Metal Gateway, with a specified next-hop address contained within the Metal Gateway.  Notice: Elastic IPs on Metal Gateways are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_metal_gateway_elastic_ip_with_http_info(id, metal_gateway_elastic_ip_create_input, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Metal Gateway UUID (required)
+        :type id: str
+        :param metal_gateway_elastic_ip_create_input: (required)
+        :type metal_gateway_elastic_ip_create_input: MetalGatewayElasticIpCreateInput
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(IPAssignment, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'metal_gateway_elastic_ip_create_input'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_metal_gateway_elastic_ip" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['metal_gateway_elastic_ip_create_input']:
+            _body_params = _params['metal_gateway_elastic_ip_create_input']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['x_auth_token']  # noqa: E501
+
+        _response_types_map = {
+            '201': "IPAssignment",
+            '401': "Error",
+            '403': "Error",
+            '404': "Error",
+            '422': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/metal-gateways/{id}/ips', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
     def delete_metal_gateway(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> FindMetalGatewayById200Response:  # noqa: E501
         """Deletes the metal gateway  # noqa: E501
 
-        Deletes a specific metal gateway  # noqa: E501
+        Deletes a metal gateway and any elastic IP assignments associated with this metal gateway.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -278,7 +440,7 @@ class MetalGatewaysApi(object):
     def delete_metal_gateway_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Deletes the metal gateway  # noqa: E501
 
-        Deletes a specific metal gateway  # noqa: E501
+        Deletes a metal gateway and any elastic IP assignments associated with this metal gateway.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -720,6 +882,166 @@ class MetalGatewaysApi(object):
 
         return self.api_client.call_api(
             '/projects/{project_id}/metal-gateways', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_metal_gateway_elastic_ips(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignmentList:  # noqa: E501
+        """List Metal Gateway Elastic IPs  # noqa: E501
+
+        Returns the list of Elastic IPs assigned to this Metal Gateway  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_metal_gateway_elastic_ips(id, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Metal Gateway UUID (required)
+        :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: IPAssignmentList
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.get_metal_gateway_elastic_ips_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_metal_gateway_elastic_ips_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+        """List Metal Gateway Elastic IPs  # noqa: E501
+
+        Returns the list of Elastic IPs assigned to this Metal Gateway  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_metal_gateway_elastic_ips_with_http_info(id, include, exclude, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Metal Gateway UUID (required)
+        :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(IPAssignmentList, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id',
+            'include',
+            'exclude'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_metal_gateway_elastic_ips" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['x_auth_token']  # noqa: E501
+
+        _response_types_map = {
+            '200': "IPAssignmentList",
+            '401': "Error",
+            '404': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/metal-gateways/{id}/ips', 'GET',
             _path_params,
             _query_params,
             _header_params,

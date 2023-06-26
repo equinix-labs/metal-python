@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_self_service_reservations**
-> SelfServiceReservationList find_self_service_reservations(project_id, page=page, per_page=per_page)
+> SelfServiceReservationList find_self_service_reservations(project_id, page=page, per_page=per_page, categories=categories)
 
 Retrieve all reservations
 
@@ -208,10 +208,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     project_id = 'project_id_example' # str | Project UUID
     page = 1 # int | Page to return (optional) (default to 1)
     per_page = 10 # int | Items returned per page (optional) (default to 10)
+    categories = ['categories_example'] # List[str] | Filter reservations by items category (optional)
 
     try:
         # Retrieve all reservations
-        api_response = api_instance.find_self_service_reservations(project_id, page=page, per_page=per_page)
+        api_response = api_instance.find_self_service_reservations(project_id, page=page, per_page=per_page, categories=categories)
         print("The response of SelfServiceReservationsApi->find_self_service_reservations:\n")
         pprint(api_response)
     except Exception as e:
@@ -225,6 +226,7 @@ Name | Type | Description  | Notes
  **project_id** | **str**| Project UUID | 
  **page** | **int**| Page to return | [optional] [default to 1]
  **per_page** | **int**| Items returned per page | [optional] [default to 10]
+ **categories** | [**List[str]**](str.md)| Filter reservations by items category | [optional] 
 
 ### Return type
 

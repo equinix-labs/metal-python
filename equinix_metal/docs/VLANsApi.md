@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create_virtual_network**
-> VirtualNetwork create_virtual_network(id, virtual_network_create_input)
+> VirtualNetwork create_virtual_network(id, virtual_network_create_input, include=include, exclude=exclude)
 
 Create a virtual network
 
@@ -50,10 +50,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.VLANsApi(api_client)
     id = 'id_example' # str | Project UUID
     virtual_network_create_input = equinix_metal.VirtualNetworkCreateInput() # VirtualNetworkCreateInput | Virtual Network to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Create a virtual network
-        api_response = api_instance.create_virtual_network(id, virtual_network_create_input)
+        api_response = api_instance.create_virtual_network(id, virtual_network_create_input, include=include, exclude=exclude)
         print("The response of VLANsApi->create_virtual_network:\n")
         pprint(api_response)
     except Exception as e:
@@ -66,6 +68,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **virtual_network_create_input** | [**VirtualNetworkCreateInput**](VirtualNetworkCreateInput.md)| Virtual Network to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

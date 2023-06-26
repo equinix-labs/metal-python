@@ -42,7 +42,6 @@ class TestIPReservationFacility(unittest.TestCase):
         if include_optional :
             return IPReservationFacility(
                 address = equinix_metal.models.address.Address(
-                    address = '', 
                     address2 = '', 
                     city = '', 
                     coordinates = equinix_metal.models.coordinates.Coordinates(

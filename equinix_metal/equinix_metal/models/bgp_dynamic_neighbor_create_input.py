@@ -27,8 +27,8 @@ class BgpDynamicNeighborCreateInput(BaseModel):
     """
     BgpDynamicNeighborCreateInput
     """
-    bgp_neighbor_asn: Optional[StrictInt] = Field(None, description="The ASN of the dynamic BGP neighbor")
-    bgp_neighbor_range: Optional[StrictStr] = Field(None, description="Network range of the dynamic BGP neighbor in CIDR format")
+    bgp_neighbor_asn: StrictInt = Field(..., description="The ASN of the dynamic BGP neighbor")
+    bgp_neighbor_range: StrictStr = Field(..., description="Network range of the dynamic BGP neighbor in CIDR format")
     href: Optional[StrictStr] = None
     __properties = ["bgp_neighbor_asn", "bgp_neighbor_range", "href"]
 

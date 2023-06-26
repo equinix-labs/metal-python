@@ -57,7 +57,6 @@ class TestOrganizationList(unittest.TestCase):
                 organizations = [
                     equinix_metal.models.organization.Organization(
                         address = equinix_metal.models.address.Address(
-                            address = '', 
                             address2 = '', 
                             city = '', 
                             coordinates = equinix_metal.models.coordinates.Coordinates(
@@ -69,7 +68,6 @@ class TestOrganizationList(unittest.TestCase):
                             state = '', 
                             zip_code = '', ), 
                         billing_address = equinix_metal.models.address.Address(
-                            address = '', 
                             address2 = '', 
                             city = '', 
                             country = '', 
@@ -83,7 +81,7 @@ class TestOrganizationList(unittest.TestCase):
                         enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         href = '', 
                         id = '', 
-                        logo = bytes(b'blah'), 
+                        logo = '', 
                         members = [
                             equinix_metal.models.href.Href(
                                 href = '', )

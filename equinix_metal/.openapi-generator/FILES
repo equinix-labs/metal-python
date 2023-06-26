@@ -114,11 +114,15 @@ docs/Invitation.md
 docs/InvitationInput.md
 docs/InvitationList.md
 docs/InvitationsApi.md
+docs/Invoice.md
+docs/InvoiceList.md
+docs/InvoicesApi.md
 docs/License.md
 docs/LicenseCreateInput.md
 docs/LicenseList.md
 docs/LicenseUpdateInput.md
 docs/LicensesApi.md
+docs/LineItem.md
 docs/Membership.md
 docs/MembershipInput.md
 docs/MembershipList.md
@@ -130,6 +134,7 @@ docs/MetadataNetworkNetwork.md
 docs/MetadataNetworkNetworkBonding.md
 docs/MetalGateway.md
 docs/MetalGatewayCreateInput.md
+docs/MetalGatewayElasticIpCreateInput.md
 docs/MetalGatewayList.md
 docs/MetalGatewayListMetalGatewaysInner.md
 docs/MetalGatewayLite.md
@@ -186,6 +191,7 @@ docs/PortsApi.md
 docs/Project.md
 docs/ProjectCreateFromRootInput.md
 docs/ProjectCreateInput.md
+docs/ProjectIdName.md
 docs/ProjectList.md
 docs/ProjectUpdateInput.md
 docs/ProjectUsage.md
@@ -263,9 +269,7 @@ docs/VrfMetalGatewayCreateInput.md
 docs/VrfRoute.md
 docs/VrfRouteCreateInput.md
 docs/VrfRouteList.md
-docs/VrfRouteMetalGateway.md
-docs/VrfRouteVirtualNetwork.md
-docs/VrfRouteVrf.md
+docs/VrfRouteUpdateInput.md
 docs/VrfUpdateInput.md
 docs/VrfVirtualCircuit.md
 docs/VrfVirtualCircuitCreateInput.md
@@ -284,6 +288,7 @@ equinix_metal/api/hardware_reservations_api.py
 equinix_metal/api/incidents_api.py
 equinix_metal/api/interconnections_api.py
 equinix_metal/api/invitations_api.py
+equinix_metal/api/invoices_api.py
 equinix_metal/api/ip_addresses_api.py
 equinix_metal/api/licenses_api.py
 equinix_metal/api/memberships_api.py
@@ -397,6 +402,8 @@ equinix_metal/models/interconnection_update_input.py
 equinix_metal/models/invitation.py
 equinix_metal/models/invitation_input.py
 equinix_metal/models/invitation_list.py
+equinix_metal/models/invoice.py
+equinix_metal/models/invoice_list.py
 equinix_metal/models/ip_address.py
 equinix_metal/models/ip_assignment.py
 equinix_metal/models/ip_assignment_input.py
@@ -414,6 +421,7 @@ equinix_metal/models/license.py
 equinix_metal/models/license_create_input.py
 equinix_metal/models/license_list.py
 equinix_metal/models/license_update_input.py
+equinix_metal/models/line_item.py
 equinix_metal/models/membership.py
 equinix_metal/models/membership_input.py
 equinix_metal/models/membership_list.py
@@ -424,6 +432,7 @@ equinix_metal/models/metadata_network_network.py
 equinix_metal/models/metadata_network_network_bonding.py
 equinix_metal/models/metal_gateway.py
 equinix_metal/models/metal_gateway_create_input.py
+equinix_metal/models/metal_gateway_elastic_ip_create_input.py
 equinix_metal/models/metal_gateway_list.py
 equinix_metal/models/metal_gateway_list_metal_gateways_inner.py
 equinix_metal/models/metal_gateway_lite.py
@@ -471,6 +480,7 @@ equinix_metal/models/port_vlan_assignment_list.py
 equinix_metal/models/project.py
 equinix_metal/models/project_create_from_root_input.py
 equinix_metal/models/project_create_input.py
+equinix_metal/models/project_id_name.py
 equinix_metal/models/project_list.py
 equinix_metal/models/project_update_input.py
 equinix_metal/models/project_usage.py
@@ -535,9 +545,7 @@ equinix_metal/models/vrf_metal_gateway_create_input.py
 equinix_metal/models/vrf_route.py
 equinix_metal/models/vrf_route_create_input.py
 equinix_metal/models/vrf_route_list.py
-equinix_metal/models/vrf_route_metal_gateway.py
-equinix_metal/models/vrf_route_virtual_network.py
-equinix_metal/models/vrf_route_vrf.py
+equinix_metal/models/vrf_route_update_input.py
 equinix_metal/models/vrf_update_input.py
 equinix_metal/models/vrf_virtual_circuit.py
 equinix_metal/models/vrf_virtual_circuit_create_input.py
@@ -646,6 +654,9 @@ test/test_invitation.py
 test/test_invitation_input.py
 test/test_invitation_list.py
 test/test_invitations_api.py
+test/test_invoice.py
+test/test_invoice_list.py
+test/test_invoices_api.py
 test/test_ip_address.py
 test/test_ip_addresses_api.py
 test/test_ip_assignment.py
@@ -665,6 +676,7 @@ test/test_license_create_input.py
 test/test_license_list.py
 test/test_license_update_input.py
 test/test_licenses_api.py
+test/test_line_item.py
 test/test_membership.py
 test/test_membership_input.py
 test/test_membership_list.py
@@ -676,6 +688,7 @@ test/test_metadata_network_network.py
 test/test_metadata_network_network_bonding.py
 test/test_metal_gateway.py
 test/test_metal_gateway_create_input.py
+test/test_metal_gateway_elastic_ip_create_input.py
 test/test_metal_gateway_list.py
 test/test_metal_gateway_list_metal_gateways_inner.py
 test/test_metal_gateway_lite.py
@@ -732,6 +745,7 @@ test/test_ports_api.py
 test/test_project.py
 test/test_project_create_from_root_input.py
 test/test_project_create_input.py
+test/test_project_id_name.py
 test/test_project_list.py
 test/test_project_update_input.py
 test/test_project_usage.py
@@ -808,9 +822,7 @@ test/test_vrf_metal_gateway_create_input.py
 test/test_vrf_route.py
 test/test_vrf_route_create_input.py
 test/test_vrf_route_list.py
-test/test_vrf_route_metal_gateway.py
-test/test_vrf_route_virtual_network.py
-test/test_vrf_route_vrf.py
+test/test_vrf_route_update_input.py
 test/test_vrf_update_input.py
 test/test_vrf_virtual_circuit.py
 test/test_vrf_virtual_circuit_create_input.py

@@ -15,107 +15,67 @@
 
 from __future__ import annotations
 from inspect import getfullargspec
-import json
 import pprint
 import re  # noqa: F401
+import json
 
-from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from equinix_metal.models.href import Href
-from equinix_metal.models.vrf import Vrf
-from typing import Any, List
-from pydantic import StrictStr, Field
 
-VRFROUTEVRF_ONE_OF_SCHEMAS = ["Href", "Vrf"]
+from typing import List, Optional
+from pydantic import BaseModel, StrictStr, conlist
+from equinix_metal.models.invoice import Invoice
 
-class VrfRouteVrf(BaseModel):
+class InvoiceList(BaseModel):
     """
-    A link to the VRF within which this route exists
+    InvoiceList
     """
-    # data type: Href
-    oneof_schema_1_validator: Optional[Href] = None
-    # data type: Vrf
-    oneof_schema_2_validator: Optional[Vrf] = None
-    actual_instance: Any
-    one_of_schemas: List[str] = Field(VRFROUTEVRF_ONE_OF_SCHEMAS, const=True)
+    href: Optional[StrictStr] = None
+    invoices: Optional[conlist(Invoice)] = None
+    __properties = ["href", "invoices"]
 
     class Config:
+        allow_population_by_field_name = True
         validate_assignment = True
 
-    @validator('actual_instance')
-    def actual_instance_must_validate_oneof(cls, v):
-        instance = cls()
-        error_messages = []
-        match = 0
-        # validate data type: Href
-        if type(v) is not Href:
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Href`")
-        else:
-            match += 1
-
-        # validate data type: Vrf
-        if type(v) is not Vrf:
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Vrf`")
-        else:
-            match += 1
-
-        if match > 1:
-            # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into VrfRouteVrf with oneOf schemas: Href, Vrf. Details: " + ", ".join(error_messages))
-        elif match == 0:
-            # no match
-            raise ValueError("No match found when deserializing the JSON string into VrfRouteVrf with oneOf schemas: Href, Vrf. Details: " + ", ".join(error_messages))
-        else:
-            return v
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> VrfRouteVrf:
-        return cls.from_json(json.dumps(obj))
-
-    @classmethod
-    def from_json(cls, json_str: str) -> VrfRouteVrf:
-        """Returns the object represented by the json string"""
-        instance = cls()
-        error_messages = []
-        match = 0
-
-        # deserialize data into Href
-        try:
-            instance.actual_instance = Href.from_json(json_str)
-            match += 1
-        except ValidationError as e:
-            error_messages.append(str(e))
-        # deserialize data into Vrf
-        try:
-            instance.actual_instance = Vrf.from_json(json_str)
-            match += 1
-        except ValidationError as e:
-            error_messages.append(str(e))
-
-        if match > 1:
-            # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into VrfRouteVrf with oneOf schemas: Href, Vrf. Details: " + ", ".join(error_messages))
-        elif match == 0:
-            # no match
-            raise ValueError("No match found when deserializing the JSON string into VrfRouteVrf with oneOf schemas: Href, Vrf. Details: " + ", ".join(error_messages))
-        else:
-            return instance
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the actual instance"""
-        if self.actual_instance is not None:
-            return self.actual_instance.to_json()
-        else:
-            return "null"
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
 
-    def to_dict(self) -> dict:
-        """Returns the dict representation of the actual instance"""
-        if self.actual_instance is not None:
-            return self.actual_instance.to_dict()
-        else:
-            return dict()
+    @classmethod
+    def from_json(cls, json_str: str) -> InvoiceList:
+        """Create an instance of InvoiceList from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
 
-    def to_str(self) -> str:
-        """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.dict())
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in invoices (list)
+        _items = []
+        if self.invoices:
+            for _item in self.invoices:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['invoices'] = _items
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> InvoiceList:
+        """Create an instance of InvoiceList from a dict"""
+        if obj is None:
+            return None
+
+        if type(obj) is not dict:
+            return InvoiceList.parse_obj(obj)
+
+        _obj = InvoiceList.parse_obj({
+            "href": obj.get("href"),
+            "invoices": [Invoice.from_dict(_item) for _item in obj.get("invoices")] if obj.get("invoices") is not None else None
+        })
+        return _obj
 

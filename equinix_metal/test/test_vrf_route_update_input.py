@@ -13,109 +13,47 @@
 """
 
 
-from __future__ import annotations
-from inspect import getfullargspec
-import json
-import pprint
-import re  # noqa: F401
+from __future__ import absolute_import
 
-from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
-from equinix_metal.models.href import Href
-from equinix_metal.models.metal_gateway import MetalGateway
-from typing import Any, List
-from pydantic import StrictStr, Field
+import unittest
+import datetime
 
-VRFROUTEMETALGATEWAY_ONE_OF_SCHEMAS = ["Href", "MetalGateway"]
+import equinix_metal
+from equinix_metal.models.vrf_route_update_input import VrfRouteUpdateInput  # noqa: E501
+from equinix_metal.rest import ApiException
 
-class VrfRouteMetalGateway(BaseModel):
-    """
-    A link to the Metal Gateway to which this VRF Route is associated
-    """
-    # data type: Href
-    oneof_schema_1_validator: Optional[Href] = None
-    # data type: MetalGateway
-    oneof_schema_2_validator: Optional[MetalGateway] = None
-    actual_instance: Any
-    one_of_schemas: List[str] = Field(VRFROUTEMETALGATEWAY_ONE_OF_SCHEMAS, const=True)
+class TestVrfRouteUpdateInput(unittest.TestCase):
+    """VrfRouteUpdateInput unit test stubs"""
 
-    class Config:
-        validate_assignment = True
+    def setUp(self):
+        pass
 
-    @validator('actual_instance')
-    def actual_instance_must_validate_oneof(cls, v):
-        instance = cls()
-        error_messages = []
-        match = 0
-        # validate data type: Href
-        if type(v) is not Href:
-            error_messages.append(f"Error! Input type `{type(v)}` is not `Href`")
-        else:
-            match += 1
+    def tearDown(self):
+        pass
 
-        # validate data type: MetalGateway
-        if type(v) is not MetalGateway:
-            error_messages.append(f"Error! Input type `{type(v)}` is not `MetalGateway`")
-        else:
-            match += 1
+    def make_instance(self, include_optional):
+        """Test VrfRouteUpdateInput
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `VrfRouteUpdateInput`
+        """
+        model = equinix_metal.models.vrf_route_update_input.VrfRouteUpdateInput()  # noqa: E501
+        if include_optional :
+            return VrfRouteUpdateInput(
+                href = '', 
+                next_hop = '192.168.1.254', 
+                prefix = '0.0.0.0/0'
+            )
+        else :
+            return VrfRouteUpdateInput(
+        )
+        """
 
-        if match > 1:
-            # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into VrfRouteMetalGateway with oneOf schemas: Href, MetalGateway. Details: " + ", ".join(error_messages))
-        elif match == 0:
-            # no match
-            raise ValueError("No match found when deserializing the JSON string into VrfRouteMetalGateway with oneOf schemas: Href, MetalGateway. Details: " + ", ".join(error_messages))
-        else:
-            return v
+    def testVrfRouteUpdateInput(self):
+        """Test VrfRouteUpdateInput"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-    @classmethod
-    def from_dict(cls, obj: dict) -> VrfRouteMetalGateway:
-        return cls.from_json(json.dumps(obj))
-
-    @classmethod
-    def from_json(cls, json_str: str) -> VrfRouteMetalGateway:
-        """Returns the object represented by the json string"""
-        instance = cls()
-        error_messages = []
-        match = 0
-
-        # deserialize data into Href
-        try:
-            instance.actual_instance = Href.from_json(json_str)
-            match += 1
-        except ValidationError as e:
-            error_messages.append(str(e))
-        # deserialize data into MetalGateway
-        try:
-            instance.actual_instance = MetalGateway.from_json(json_str)
-            match += 1
-        except ValidationError as e:
-            error_messages.append(str(e))
-
-        if match > 1:
-            # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into VrfRouteMetalGateway with oneOf schemas: Href, MetalGateway. Details: " + ", ".join(error_messages))
-        elif match == 0:
-            # no match
-            raise ValueError("No match found when deserializing the JSON string into VrfRouteMetalGateway with oneOf schemas: Href, MetalGateway. Details: " + ", ".join(error_messages))
-        else:
-            return instance
-
-    def to_json(self) -> str:
-        """Returns the JSON representation of the actual instance"""
-        if self.actual_instance is not None:
-            return self.actual_instance.to_json()
-        else:
-            return "null"
-
-    def to_dict(self) -> dict:
-        """Returns the dict representation of the actual instance"""
-        if self.actual_instance is not None:
-            return self.actual_instance.to_dict()
-        else:
-            return dict()
-
-    def to_str(self) -> str:
-        """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.dict())
-
+if __name__ == '__main__':
+    unittest.main()

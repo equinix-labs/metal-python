@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bgp_neighbor_asn** | **int** | The ASN of the dynamic BGP neighbor | [optional] 
-**bgp_neighbor_range** | **str** | Network range of the dynamic BGP neighbor in CIDR format | [optional] 
+**bgp_neighbor_asn** | **int** | The ASN of the dynamic BGP neighbor | 
+**bgp_neighbor_range** | **str** | Network range of the dynamic BGP neighbor in CIDR format | 
 **href** | **str** |  | [optional] 
 
 ## Example

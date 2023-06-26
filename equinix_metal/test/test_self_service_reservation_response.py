@@ -51,6 +51,9 @@ class TestSelfServiceReservationResponse(unittest.TestCase):
                         metro_code = '', 
                         metro_id = '', 
                         metro_name = '', 
+                        plan_categories = [
+                            ''
+                            ], 
                         plan_id = '', 
                         plan_name = '', 
                         plan_slug = '', 

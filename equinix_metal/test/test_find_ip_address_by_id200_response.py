@@ -62,12 +62,14 @@ class TestFindIPAddressById200Response(unittest.TestCase):
                     name = '', ), 
                 netmask = '', 
                 network = '', 
+                next_hop = '', 
                 parent_block = equinix_metal.models.parent_block.ParentBlock(
                     cidr = 56, 
                     href = '', 
                     netmask = '', 
                     network = '', ), 
                 public = True, 
+                state = '', 
                 addon = True, 
                 assignments = [
                     equinix_metal.models.href.Href(
@@ -154,7 +156,6 @@ class TestFindIPAddressById200Response(unittest.TestCase):
                         ], ), 
                 requested_by = equinix_metal.models.href.Href(
                     href = '', ), 
-                state = '', 
                 tags = [
                     ''
                     ], 
@@ -172,6 +173,8 @@ class TestFindIPAddressById200Response(unittest.TestCase):
                         avatar_url = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         customdata = equinix_metal.models.customdata.customdata(), 
+                        default_organization_id = '', 
+                        default_project_id = '', 
                         email = '', 
                         emails = [
                             equinix_metal.models.href.Href(
@@ -276,6 +279,8 @@ class TestFindIPAddressById200Response(unittest.TestCase):
                         avatar_url = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         customdata = equinix_metal.models.customdata.customdata(), 
+                        default_organization_id = '', 
+                        default_project_id = '', 
                         email = '', 
                         emails = [
                             equinix_metal.models.href.Href(

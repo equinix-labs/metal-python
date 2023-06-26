@@ -33,6 +33,7 @@ from equinix_metal.api.ip_addresses_api import IPAddressesApi
 from equinix_metal.api.incidents_api import IncidentsApi
 from equinix_metal.api.interconnections_api import InterconnectionsApi
 from equinix_metal.api.invitations_api import InvitationsApi
+from equinix_metal.api.invoices_api import InvoicesApi
 from equinix_metal.api.licenses_api import LicensesApi
 from equinix_metal.api.memberships_api import MembershipsApi
 from equinix_metal.api.metal_gateways_api import MetalGatewaysApi
@@ -165,10 +166,13 @@ from equinix_metal.models.interconnection_update_input import InterconnectionUpd
 from equinix_metal.models.invitation import Invitation
 from equinix_metal.models.invitation_input import InvitationInput
 from equinix_metal.models.invitation_list import InvitationList
+from equinix_metal.models.invoice import Invoice
+from equinix_metal.models.invoice_list import InvoiceList
 from equinix_metal.models.license import License
 from equinix_metal.models.license_create_input import LicenseCreateInput
 from equinix_metal.models.license_list import LicenseList
 from equinix_metal.models.license_update_input import LicenseUpdateInput
+from equinix_metal.models.line_item import LineItem
 from equinix_metal.models.membership import Membership
 from equinix_metal.models.membership_input import MembershipInput
 from equinix_metal.models.membership_list import MembershipList
@@ -179,6 +183,7 @@ from equinix_metal.models.metadata_network_network import MetadataNetworkNetwork
 from equinix_metal.models.metadata_network_network_bonding import MetadataNetworkNetworkBonding
 from equinix_metal.models.metal_gateway import MetalGateway
 from equinix_metal.models.metal_gateway_create_input import MetalGatewayCreateInput
+from equinix_metal.models.metal_gateway_elastic_ip_create_input import MetalGatewayElasticIpCreateInput
 from equinix_metal.models.metal_gateway_list import MetalGatewayList
 from equinix_metal.models.metal_gateway_list_metal_gateways_inner import MetalGatewayListMetalGatewaysInner
 from equinix_metal.models.metal_gateway_lite import MetalGatewayLite
@@ -226,6 +231,7 @@ from equinix_metal.models.port_vlan_assignment_list import PortVlanAssignmentLis
 from equinix_metal.models.project import Project
 from equinix_metal.models.project_create_from_root_input import ProjectCreateFromRootInput
 from equinix_metal.models.project_create_input import ProjectCreateInput
+from equinix_metal.models.project_id_name import ProjectIdName
 from equinix_metal.models.project_list import ProjectList
 from equinix_metal.models.project_update_input import ProjectUpdateInput
 from equinix_metal.models.project_usage import ProjectUsage
@@ -290,9 +296,7 @@ from equinix_metal.models.vrf_metal_gateway_create_input import VrfMetalGatewayC
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.models.vrf_route_create_input import VrfRouteCreateInput
 from equinix_metal.models.vrf_route_list import VrfRouteList
-from equinix_metal.models.vrf_route_metal_gateway import VrfRouteMetalGateway
-from equinix_metal.models.vrf_route_virtual_network import VrfRouteVirtualNetwork
-from equinix_metal.models.vrf_route_vrf import VrfRouteVrf
+from equinix_metal.models.vrf_route_update_input import VrfRouteUpdateInput
 from equinix_metal.models.vrf_update_input import VrfUpdateInput
 from equinix_metal.models.vrf_virtual_circuit import VrfVirtualCircuit
 from equinix_metal.models.vrf_virtual_circuit_create_input import VrfVirtualCircuitCreateInput

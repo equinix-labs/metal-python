@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **hostname** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
 **ipxe_script_url** | **str** |  | [optional] 
-**locked** | **bool** |  | [optional] 
+**locked** | **bool** | Whether the device should be locked, preventing accidental deletion. | [optional] 
 **network_frozen** | **bool** | If true, this instance can not be converted to a different network type. | [optional] 
 **spot_instance** | **bool** | Can be set to false to convert a spot-market instance to on-demand. | [optional] 
 **tags** | **List[str]** |  | [optional] 

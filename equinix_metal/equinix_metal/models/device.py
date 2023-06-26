@@ -56,7 +56,7 @@ class Device(BaseModel):
     ip_addresses: Optional[conlist(IPAssignment)] = None
     ipxe_script_url: Optional[StrictStr] = None
     iqn: Optional[StrictStr] = None
-    locked: Optional[StrictBool] = None
+    locked: Optional[StrictBool] = Field(None, description="Prevents accidental deletion of this resource when set to true.")
     metro: Optional[DeviceMetro] = None
     network_ports: Optional[conlist(Port)] = Field(None, description="By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available.")
     operating_system: Optional[OperatingSystem] = None
@@ -74,7 +74,7 @@ class Device(BaseModel):
     state: Optional[StrictStr] = None
     switch_uuid: Optional[StrictStr] = Field(None, description="Switch short id. This can be used to determine if two devices are connected to the same switch, for example.")
     tags: Optional[conlist(StrictStr)] = None
-    termination_time: Optional[datetime] = Field(None, description="When the device will be terminated. This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.")
+    termination_time: Optional[datetime] = Field(None, description="When the device will be terminated. If you don't supply timezone info, the timestamp is assumed to be in UTC.  This is commonly set in advance for ephemeral spot market instances but this field may also be set with on-demand and reservation instances to automatically delete the resource at a given time. The termination time can also be used to release a hardware reservation instance at a given time, keeping the reservation open for other uses.  On a spot market device, the termination time will be set automatically when outbid.")
     updated_at: Optional[datetime] = None
     user: Optional[StrictStr] = None
     userdata: Optional[StrictStr] = None

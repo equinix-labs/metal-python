@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 
 # **create_organization**
-> Organization create_organization(organization_input)
+> Organization create_organization(organization_input, include=include, exclude=exclude)
 
 Create an organization
 
@@ -60,10 +60,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.OrganizationsApi(api_client)
     organization_input = equinix_metal.OrganizationInput() # OrganizationInput | Organization to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Create an organization
-        api_response = api_instance.create_organization(organization_input)
+        api_response = api_instance.create_organization(organization_input, include=include, exclude=exclude)
         print("The response of OrganizationsApi->create_organization:\n")
         pprint(api_response)
     except Exception as e:
@@ -75,6 +77,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization_input** | [**OrganizationInput**](OrganizationInput.md)| Organization to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

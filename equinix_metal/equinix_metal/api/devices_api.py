@@ -20,7 +20,7 @@ import re  # noqa: F401
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, conint, conlist
+from pydantic import Field, StrictBool, StrictStr, conint, conlist, validator
 
 from typing import Dict, Optional
 
@@ -217,20 +217,24 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_device(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(..., description="Device to create")], **kwargs) -> Device:  # noqa: E501
+    def create_device(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(..., description="Device to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Device:  # noqa: E501
         """Create a device  # noqa: E501
 
         Creates a new device and provisions it in the specified location.  Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_device(id, create_device_request, async_req=True)
+        >>> thread = api.create_device(id, create_device_request, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
         :param create_device_request: Device to create (required)
         :type create_device_request: CreateDeviceRequest
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -247,23 +251,27 @@ class DevicesApi(object):
         :rtype: Device
         """
         kwargs['_return_http_data_only'] = True
-        return self.create_device_with_http_info(id, create_device_request, **kwargs)  # noqa: E501
+        return self.create_device_with_http_info(id, create_device_request, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(..., description="Device to create")], **kwargs):  # noqa: E501
+    def create_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(..., description="Device to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Create a device  # noqa: E501
 
         Creates a new device and provisions it in the specified location.  Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_device_with_http_info(id, create_device_request, async_req=True)
+        >>> thread = api.create_device_with_http_info(id, create_device_request, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
         :param create_device_request: Device to create (required)
         :type create_device_request: CreateDeviceRequest
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -292,7 +300,9 @@ class DevicesApi(object):
 
         _all_params = [
             'id',
-            'create_device_request'
+            'create_device_request',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -326,6 +336,14 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -376,20 +394,24 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_ip_assignment(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(..., description="IPAssignment to create")], **kwargs) -> IPAssignment:  # noqa: E501
+    def create_ip_assignment(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(..., description="IPAssignment to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignment:  # noqa: E501
         """Create an ip assignment  # noqa: E501
 
         Creates an ip assignment for a device.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_ip_assignment(id, ip_assignment_input, async_req=True)
+        >>> thread = api.create_ip_assignment(id, ip_assignment_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
         :param ip_assignment_input: IPAssignment to create (required)
         :type ip_assignment_input: IPAssignmentInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -406,23 +428,27 @@ class DevicesApi(object):
         :rtype: IPAssignment
         """
         kwargs['_return_http_data_only'] = True
-        return self.create_ip_assignment_with_http_info(id, ip_assignment_input, **kwargs)  # noqa: E501
+        return self.create_ip_assignment_with_http_info(id, ip_assignment_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_ip_assignment_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(..., description="IPAssignment to create")], **kwargs):  # noqa: E501
+    def create_ip_assignment_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(..., description="IPAssignment to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Create an ip assignment  # noqa: E501
 
         Creates an ip assignment for a device.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_ip_assignment_with_http_info(id, ip_assignment_input, async_req=True)
+        >>> thread = api.create_ip_assignment_with_http_info(id, ip_assignment_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
         :param ip_assignment_input: IPAssignment to create (required)
         :type ip_assignment_input: IPAssignmentInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -451,7 +477,9 @@ class DevicesApi(object):
 
         _all_params = [
             'id',
-            'ip_assignment_input'
+            'ip_assignment_input',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -485,6 +513,14 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1867,28 +1903,32 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_devices(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_organization_devices(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         Provides a collection of devices for a given organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_organization_devices(id, facility, hostname, reserved, tag, type, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_organization_devices(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Organization UUID (required)
         :type id: str
+        :param categories: Filter by plan category
+        :type categories: List[str]
         :param facility: Filter by device facility
         :type facility: str
         :param hostname: Filter by partial hostname
         :type hostname: str
-        :param reserved: Filter only reserved instances
+        :param reserved: Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.
         :type reserved: bool
         :param tag: Filter by device tag
         :type tag: str
         :param type: Filter by instance type (ondemand,spot,reserved)
         :type type: str
+        :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
+        :type has_termination_time: bool
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -1913,31 +1953,35 @@ class DevicesApi(object):
         :rtype: DeviceList
         """
         kwargs['_return_http_data_only'] = True
-        return self.find_organization_devices_with_http_info(id, facility, hostname, reserved, tag, type, include, exclude, page, per_page, **kwargs)  # noqa: E501
+        return self.find_organization_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs):  # noqa: E501
+    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs):  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         Provides a collection of devices for a given organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_organization_devices_with_http_info(id, facility, hostname, reserved, tag, type, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_organization_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Organization UUID (required)
         :type id: str
+        :param categories: Filter by plan category
+        :type categories: List[str]
         :param facility: Filter by device facility
         :type facility: str
         :param hostname: Filter by partial hostname
         :type hostname: str
-        :param reserved: Filter only reserved instances
+        :param reserved: Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.
         :type reserved: bool
         :param tag: Filter by device tag
         :type tag: str
         :param type: Filter by instance type (ondemand,spot,reserved)
         :type type: str
+        :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
+        :type has_termination_time: bool
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -1974,11 +2018,13 @@ class DevicesApi(object):
 
         _all_params = [
             'id',
+            'categories',
             'facility',
             'hostname',
             'reserved',
             'tag',
             'type',
+            'has_termination_time',
             'include',
             'exclude',
             'page',
@@ -2016,6 +2062,10 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('categories') is not None:  # noqa: E501
+            _query_params.append(('categories', _params['categories']))
+            _collection_formats['categories'] = 'multi'
+
         if _params.get('facility') is not None:  # noqa: E501
             _query_params.append(('facility', _params['facility']))
 
@@ -2030,6 +2080,9 @@ class DevicesApi(object):
 
         if _params.get('type') is not None:  # noqa: E501
             _query_params.append(('type', _params['type']))
+
+        if _params.get('has_termination_time') is not None:  # noqa: E501
+            _query_params.append(('has_termination_time', _params['has_termination_time']))
 
         if _params.get('include') is not None:  # noqa: E501
             _query_params.append(('include', _params['include']))
@@ -2084,28 +2137,32 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_devices(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_project_devices(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         Provides a collection of devices for a given project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_project_devices(id, facility, hostname, reserved, tag, type, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_project_devices(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
+        :param categories: Filter by plan category
+        :type categories: List[str]
         :param facility: Filter by device facility
         :type facility: str
         :param hostname: Filter by partial hostname
         :type hostname: str
-        :param reserved: Filter only reserved instances
+        :param reserved: Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.
         :type reserved: bool
         :param tag: Filter by device tag
         :type tag: str
         :param type: Filter by instance type (ondemand,spot,reserved)
         :type type: str
+        :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
+        :type has_termination_time: bool
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -2130,31 +2187,35 @@ class DevicesApi(object):
         :rtype: DeviceList
         """
         kwargs['_return_http_data_only'] = True
-        return self.find_project_devices_with_http_info(id, facility, hostname, reserved, tag, type, include, exclude, page, per_page, **kwargs)  # noqa: E501
+        return self.find_project_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs):  # noqa: E501
+    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs):  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         Provides a collection of devices for a given project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_project_devices_with_http_info(id, facility, hostname, reserved, tag, type, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_project_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
+        :param categories: Filter by plan category
+        :type categories: List[str]
         :param facility: Filter by device facility
         :type facility: str
         :param hostname: Filter by partial hostname
         :type hostname: str
-        :param reserved: Filter only reserved instances
+        :param reserved: Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.
         :type reserved: bool
         :param tag: Filter by device tag
         :type tag: str
         :param type: Filter by instance type (ondemand,spot,reserved)
         :type type: str
+        :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
+        :type has_termination_time: bool
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -2191,11 +2252,13 @@ class DevicesApi(object):
 
         _all_params = [
             'id',
+            'categories',
             'facility',
             'hostname',
             'reserved',
             'tag',
             'type',
+            'has_termination_time',
             'include',
             'exclude',
             'page',
@@ -2233,6 +2296,10 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('categories') is not None:  # noqa: E501
+            _query_params.append(('categories', _params['categories']))
+            _collection_formats['categories'] = 'multi'
+
         if _params.get('facility') is not None:  # noqa: E501
             _query_params.append(('facility', _params['facility']))
 
@@ -2247,6 +2314,9 @@ class DevicesApi(object):
 
         if _params.get('type') is not None:  # noqa: E501
             _query_params.append(('type', _params['type']))
+
+        if _params.get('has_termination_time') is not None:  # noqa: E501
+            _query_params.append(('has_termination_time', _params['has_termination_time']))
 
         if _params.get('include') is not None:  # noqa: E501
             _query_params.append(('include', _params['include']))

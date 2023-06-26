@@ -56,7 +56,6 @@ class TestUserCreateInput(unittest.TestCase):
                 invitation_id = '', 
                 last_name = '', 
                 level = '', 
-                locked = True, 
                 nonce = '', 
                 password = '', 
                 phone_number = '', 

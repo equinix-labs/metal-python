@@ -60,18 +60,22 @@ class OrganizationsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_organization(self, organization_input : Annotated[OrganizationInput, Field(..., description="Organization to create")], **kwargs) -> Organization:  # noqa: E501
+    def create_organization(self, organization_input : Annotated[OrganizationInput, Field(..., description="Organization to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Organization:  # noqa: E501
         """Create an organization  # noqa: E501
 
         Creates an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_organization(organization_input, async_req=True)
+        >>> thread = api.create_organization(organization_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param organization_input: Organization to create (required)
         :type organization_input: OrganizationInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -88,21 +92,25 @@ class OrganizationsApi(object):
         :rtype: Organization
         """
         kwargs['_return_http_data_only'] = True
-        return self.create_organization_with_http_info(organization_input, **kwargs)  # noqa: E501
+        return self.create_organization_with_http_info(organization_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_organization_with_http_info(self, organization_input : Annotated[OrganizationInput, Field(..., description="Organization to create")], **kwargs):  # noqa: E501
+    def create_organization_with_http_info(self, organization_input : Annotated[OrganizationInput, Field(..., description="Organization to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Create an organization  # noqa: E501
 
         Creates an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_organization_with_http_info(organization_input, async_req=True)
+        >>> thread = api.create_organization_with_http_info(organization_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param organization_input: Organization to create (required)
         :type organization_input: OrganizationInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -130,7 +138,9 @@ class OrganizationsApi(object):
         _params = locals()
 
         _all_params = [
-            'organization_input'
+            'organization_input',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -161,6 +171,14 @@ class OrganizationsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

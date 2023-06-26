@@ -38,6 +38,13 @@ class TestMetalGatewaysApi(unittest.TestCase):
         """
         pass
 
+    def test_create_metal_gateway_elastic_ip(self):
+        """Test case for create_metal_gateway_elastic_ip
+
+        Create a Metal Gateway Elastic IP  # noqa: E501
+        """
+        pass
+
     def test_delete_metal_gateway(self):
         """Test case for delete_metal_gateway
 
@@ -56,6 +63,13 @@ class TestMetalGatewaysApi(unittest.TestCase):
         """Test case for find_metal_gateways_by_project
 
         Returns all metal gateways for a project  # noqa: E501
+        """
+        pass
+
+    def test_get_metal_gateway_elastic_ips(self):
+        """Test case for get_metal_gateway_elastic_ips
+
+        List Metal Gateway Elastic IPs  # noqa: E501
         """
         pass
 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **metro_code** | **str** |  | [optional] 
 **metro_id** | **str** |  | [optional] 
 **metro_name** | **str** |  | [optional] 
+**plan_categories** | **List[str]** |  | [optional] 
 **plan_id** | **str** |  | [optional] 
 **plan_name** | **str** |  | [optional] 
 **plan_slug** | **str** |  | [optional] 

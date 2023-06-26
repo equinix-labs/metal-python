@@ -13,71 +13,77 @@
 """
 
 
-from __future__ import absolute_import
+from __future__ import annotations
+from inspect import getfullargspec
+import pprint
+import re  # noqa: F401
+import json
 
-import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_route_virtual_network import VrfRouteVirtualNetwork  # noqa: E501
-from equinix_metal.rest import ApiException
+from typing import Optional
+from pydantic import BaseModel, StrictFloat, StrictStr
+from equinix_metal.models.plan import Plan
 
-class TestVrfRouteVirtualNetwork(unittest.TestCase):
-    """VrfRouteVirtualNetwork unit test stubs"""
+class LineItem(BaseModel):
+    """
+    LineItem
+    """
+    amount: Optional[StrictFloat] = None
+    currency: Optional[StrictStr] = None
+    description: Optional[StrictStr] = None
+    details: Optional[StrictStr] = None
+    href: Optional[StrictStr] = None
+    plan: Optional[Plan] = None
+    unit: Optional[StrictStr] = None
+    unit_price: Optional[StrictFloat] = None
+    __properties = ["amount", "currency", "description", "details", "href", "plan", "unit", "unit_price"]
 
-    def setUp(self):
-        pass
+    class Config:
+        allow_population_by_field_name = True
+        validate_assignment = True
 
-    def tearDown(self):
-        pass
+    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
 
-    def make_instance(self, include_optional):
-        """Test VrfRouteVirtualNetwork
-            include_option is a boolean, when False only required
-            params are included, when True both required and
-            optional params are included """
-        # uncomment below to create an instance of `VrfRouteVirtualNetwork`
-        """
-        model = equinix_metal.models.vrf_route_virtual_network.VrfRouteVirtualNetwork()  # noqa: E501
-        if include_optional :
-            return VrfRouteVirtualNetwork(
-                href = '', 
-                assigned_to = equinix_metal.models.href.Href(
-                    href = '', ), 
-                assigned_to_virtual_circuit = True, 
-                description = '', 
-                facility = equinix_metal.models.href.Href(
-                    href = '', ), 
-                id = '', 
-                instances = [
-                    equinix_metal.models.href.Href(
-                        href = '', )
-                    ], 
-                metal_gateways = [
-                    equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
-                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        gateway_address = '10.1.2.1/27', 
-                        href = '', 
-                        id = '', 
-                        state = 'ready', 
-                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        vlan = 1001, )
-                    ], 
-                metro = equinix_metal.models.href.Href(
-                    href = '', ), 
-                metro_code = '', 
-                vxlan = 56
-            )
-        else :
-            return VrfRouteVirtualNetwork(
-                href = '',
-        )
-        """
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
 
-    def testVrfRouteVirtualNetwork(self):
-        """Test VrfRouteVirtualNetwork"""
-        # inst_req_only = self.make_instance(include_optional=False)
-        # inst_req_and_optional = self.make_instance(include_optional=True)
+    @classmethod
+    def from_json(cls, json_str: str) -> LineItem:
+        """Create an instance of LineItem from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
 
-if __name__ == '__main__':
-    unittest.main()
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+                          },
+                          exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of plan
+        if self.plan:
+            _dict['plan'] = self.plan.to_dict()
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> LineItem:
+        """Create an instance of LineItem from a dict"""
+        if obj is None:
+            return None
+
+        if type(obj) is not dict:
+            return LineItem.parse_obj(obj)
+
+        _obj = LineItem.parse_obj({
+            "amount": obj.get("amount"),
+            "currency": obj.get("currency"),
+            "description": obj.get("description"),
+            "details": obj.get("details"),
+            "href": obj.get("href"),
+            "plan": Plan.from_dict(obj.get("plan")) if obj.get("plan") is not None else None,
+            "unit": obj.get("unit"),
+            "unit_price": obj.get("unit_price")
+        })
+        return _obj
+

@@ -56,7 +56,6 @@ class TestDevice(unittest.TestCase):
                 description = '', 
                 facility = equinix_metal.models.facility.Facility(
                     address = equinix_metal.models.address.Address(
-                        address = '', 
                         address2 = '', 
                         city = '', 
                         coordinates = equinix_metal.models.coordinates.Coordinates(
@@ -98,12 +97,14 @@ class TestDevice(unittest.TestCase):
                         metro = null, 
                         netmask = '', 
                         network = '', 
+                        next_hop = '', 
                         parent_block = equinix_metal.models.parent_block.ParentBlock(
                             cidr = 56, 
                             href = '', 
                             netmask = '', 
                             network = '', ), 
-                        public = True, )
+                        public = True, 
+                        state = 'pending', )
                     ], 
                 ipxe_script_url = '', 
                 iqn = '', 
@@ -179,6 +180,9 @@ class TestDevice(unittest.TestCase):
                     available_in_metros = [
                         equinix_metal.models.plan_available_in_metros_inner.Plan_available_in_metros_inner(
                             href = '', )
+                        ], 
+                    categories = [
+                        ''
                         ], 
                     class = 'm3.large.x86', 
                     deployment_types = [

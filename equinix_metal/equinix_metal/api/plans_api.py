@@ -20,7 +20,7 @@ import re  # noqa: F401
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist
+from pydantic import Field, StrictStr, conlist, validator
 
 from typing import Optional
 
@@ -46,18 +46,22 @@ class PlansApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def find_plans(self, type : Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> PlanList:  # noqa: E501
+    def find_plans(self, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter plans by its category")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None, slug : Annotated[Optional[StrictStr], Field(description="Filter plans by slug")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> PlanList:  # noqa: E501
         """Retrieve all plans  # noqa: E501
 
         Provides a listing of available plans to provision your device on.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_plans(type, include, exclude, async_req=True)
+        >>> thread = api.find_plans(categories, type, slug, include, exclude, async_req=True)
         >>> result = thread.get()
 
+        :param categories: Filter plans by its category
+        :type categories: List[str]
         :param type: Filter plans by its plan type
         :type type: str
+        :param slug: Filter plans by slug
+        :type slug: str
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -78,21 +82,25 @@ class PlansApi(object):
         :rtype: PlanList
         """
         kwargs['_return_http_data_only'] = True
-        return self.find_plans_with_http_info(type, include, exclude, **kwargs)  # noqa: E501
+        return self.find_plans_with_http_info(categories, type, slug, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_plans_with_http_info(self, type : Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+    def find_plans_with_http_info(self, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter plans by its category")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None, slug : Annotated[Optional[StrictStr], Field(description="Filter plans by slug")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
         """Retrieve all plans  # noqa: E501
 
         Provides a listing of available plans to provision your device on.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_plans_with_http_info(type, include, exclude, async_req=True)
+        >>> thread = api.find_plans_with_http_info(categories, type, slug, include, exclude, async_req=True)
         >>> result = thread.get()
 
+        :param categories: Filter plans by its category
+        :type categories: List[str]
         :param type: Filter plans by its plan type
         :type type: str
+        :param slug: Filter plans by slug
+        :type slug: str
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -124,7 +132,9 @@ class PlansApi(object):
         _params = locals()
 
         _all_params = [
+            'categories',
             'type',
+            'slug',
             'include',
             'exclude'
         ]
@@ -157,8 +167,15 @@ class PlansApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('categories') is not None:  # noqa: E501
+            _query_params.append(('categories', _params['categories']))
+            _collection_formats['categories'] = 'multi'
+
         if _params.get('type') is not None:  # noqa: E501
             _query_params.append(('type', _params['type']))
+
+        if _params.get('slug') is not None:  # noqa: E501
+            _query_params.append(('slug', _params['slug']))
 
         if _params.get('include') is not None:  # noqa: E501
             _query_params.append(('include', _params['include']))

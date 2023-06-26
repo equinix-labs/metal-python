@@ -154,6 +154,8 @@ class TestVrfIpReservation(unittest.TestCase):
                         avatar_url = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         customdata = equinix_metal.models.customdata.customdata(), 
+                        default_organization_id = '', 
+                        default_project_id = '', 
                         email = '', 
                         emails = [
                             equinix_metal.models.href.Href(
@@ -256,6 +258,8 @@ class TestVrfIpReservation(unittest.TestCase):
                         avatar_url = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         customdata = equinix_metal.models.customdata.customdata(), 
+                        default_organization_id = '', 
+                        default_project_id = '', 
                         email = '', 
                         emails = [
                             equinix_metal.models.href.Href(

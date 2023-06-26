@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **hostname** | **str** |  | [optional] 
 **hostnames** | **List[str]** |  | [optional] 
 **href** | **str** |  | [optional] 
-**locked** | **bool** |  | [optional] 
+**locked** | **bool** | Whether the device should be locked, preventing accidental deletion. | [optional] 
 **no_ssh_keys** | **bool** |  | [optional] 
 **operating_system** | **str** |  | [optional] 
 **plan** | **str** |  | [optional] 
