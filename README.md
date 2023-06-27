@@ -78,7 +78,7 @@ If you want to do a new release:
   M equinix_metal/setup.py
 ```
 
-Then submit a PR with the changes. One the PR is merged, go to [https://github.com/equinix-labs/metal-python/releases/new](https://github.com/equinix-labs/metal-python/releases/new) and create a new release from `main`. Don't choose an existing tag, but create a new one called `v{PACKAGE_VERSION}`. For example, if PACKAGE_VERSION is "0.1.2", create tag "v0.1.2". Put the tag name also to the "Release title" field.
+Then submit a PR with the changes. Once the PR is merged, go to [https://github.com/equinix-labs/metal-python/releases/new](https://github.com/equinix-labs/metal-python/releases/new) and create a new release from `main`. Don't choose an existing tag, but create a new one called `v{PACKAGE_VERSION}`. For example, if PACKAGE_VERSION is "0.1.2", create tag "v0.1.2". Put the tag name also to the "Release title" field.
 
 Add release notes in format of [Terraform Provider Equinix](https://github.com/equinix/terraform-provider-equinix/releases), with at least one of the sections (NOTES, FEATURES, BUG FIXES, ENHANCEMENTS).
 
@@ -88,4 +88,4 @@ The release will create a tag, and we have a Github action in place that should 
 
 Verify that the [releasing Github action](https://github.com/equinix-labs/metal-python/actions) succeeded.
 
-Verify that new version of (equinix-metal)[https://pypi.org/project/equinix-metal/#history] is avaiable on Pypi.
+Verify that new version of [equinix-metal](https://pypi.org/project/equinix-metal/#history) is avaiable on Pypi.
