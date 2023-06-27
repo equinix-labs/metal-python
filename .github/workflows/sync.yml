@@ -64,6 +64,7 @@ jobs:
         author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
         commit-message: "sync: uncommitted changes detected when opening PR"
         title: "feat: API Sync by GitHub Action (${{ steps.date.outputs.date }})"
+        token: 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
         body: |
           This API Sync PR was automated through [GitHub Actions workflow_displatch](https://github.com/equinix-labs/metal-python/actions?query=event%3Aworkflow_dispatch)
           on ${{ steps.date.outputs.date }}.

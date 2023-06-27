@@ -1,0 +1,522 @@
+time="2023-06-27T17:03:00+03:00" level=debug msg="Loading environment from /home/tomk/em/oag-metal-python/.env"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Loading action inputs from /home/tomk/em/oag-metal-python/.input"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Loading secrets from /home/tomk/em/oag-metal-python/.secrets"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Loading workflows from '/home/tomk/em/oag-metal-python/.github/workflows'"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Loading workflows recursively"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Conditional GET for notices etag=8d35eb0f-6747-4c02-aaae-81d662356489"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Found workflow 'release.yml' in '/home/tomk/em/oag-metal-python/.github/workflows/release.yml'"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Found workflow 'sync.yml' in '/home/tomk/em/oag-metal-python/.github/workflows/sync.yml'"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Reading workflow '/home/tomk/em/oag-metal-python/.github/workflows/release.yml'"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Reading workflow '/home/tomk/em/oag-metal-python/.github/workflows/sync.yml'"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Using first passed in arguments event for filtering: workflow_dispatch"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Preparing plan for a event: workflow_dispatch"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Using first passed in arguments event: workflow_dispatch"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Planning jobs for event: workflow_dispatch"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Loading revision from git directory"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca"
+time="2023-06-27T17:03:00+03:00" level=debug msg="HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'"
+time="2023-06-27T17:03:00+03:00" level=debug msg="using github ref: refs/heads/sync_workflow"
+time="2023-06-27T17:03:00+03:00" level=debug msg="Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca"
+[Sync/Regenerate SDK with latest API spec] [DEBUG] evaluating expression 'success()'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] expression 'success()' evaluated to 'true'
+[Sync/Regenerate SDK with latest API spec] 🚀  Start image=catthehacker/ubuntu:act-latest
+[Sync/Regenerate SDK with latest API spec]   🐳  docker pull image=catthehacker/ubuntu:act-latest platform= username= forcePull=true
+[Sync/Regenerate SDK with latest API spec] [DEBUG]   🐳  docker pull catthehacker/ubuntu:act-latest
+[Sync/Regenerate SDK with latest API spec] [DEBUG] pulling image 'docker.io/catthehacker/ubuntu:act-latest' ()
+time="2023-06-27T17:03:01+03:00" level=debug msg="Saving notices etag=8bde1e01-b0e5-443a-ba2a-65ac35853e49"
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Pulling from catthehacker/ubuntu :: act-latest
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Digest: sha256:8d79baa5a548b0e4dd861b6ec81cdb17cb0b3abb55661fbfbe9e553ebc15fb18 :: 
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Status: Image is up to date for catthehacker/ubuntu:act-latest :: 
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Removed container: eefac70df284ff7e38c4ee3297ba572c9bd80bfeb4bda5d9d3ace9e5c6915c26
+[Sync/Regenerate SDK with latest API spec] [DEBUG]   🐳  docker volume rm act-Sync-Regenerate-SDK-with-latest-API-spec-3d35cd6343ce4e920a0f2df6066927ce43c0f562351601958644d3cc388738b6
+[Sync/Regenerate SDK with latest API spec] [DEBUG]   🐳  docker volume rm act-Sync-Regenerate-SDK-with-latest-API-spec-3d35cd6343ce4e920a0f2df6066927ce43c0f562351601958644d3cc388738b6-env
+[Sync/Regenerate SDK with latest API spec]   🐳  docker create image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[]
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Common container.Config ==> &{Hostname: Domainname: User: AttachStdin:false AttachStdout:false AttachStderr:false ExposedPorts:map[] Tty:false OpenStdin:false StdinOnce:false Env:[RUNNER_TOOL_CACHE=/opt/hostedtoolcache RUNNER_OS=Linux RUNNER_ARCH=X64 RUNNER_TEMP=/tmp LANG=C.UTF-8] Cmd:[] Healthcheck:<nil> ArgsEscaped:false Image:catthehacker/ubuntu:act-latest Volumes:map[] WorkingDir:/home/tomk/em/oag-metal-python Entrypoint:[] NetworkDisabled:false MacAddress: OnBuild:[] Labels:map[] StopSignal: StopTimeout:<nil> Shell:[]}
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Common container.HostConfig ==> &{Binds:[/var/run/docker.sock:/var/run/docker.sock] ContainerIDFile: LogConfig:{Type: Config:map[]} NetworkMode:host PortBindings:map[] RestartPolicy:{Name: MaximumRetryCount:0} AutoRemove:false VolumeDriver: VolumesFrom:[] ConsoleSize:[0 0] CapAdd:[] CapDrop:[] CgroupnsMode: DNS:[] DNSOptions:[] DNSSearch:[] ExtraHosts:[] GroupAdd:[] IpcMode: Cgroup: Links:[] OomScoreAdj:0 PidMode: Privileged:false PublishAllPorts:false ReadonlyRootfs:false SecurityOpt:[] StorageOpt:map[] Tmpfs:map[] UTSMode: UsernsMode: ShmSize:0 Sysctls:map[] Runtime: Isolation: Resources:{CPUShares:0 Memory:0 NanoCPUs:0 CgroupParent: BlkioWeight:0 BlkioWeightDevice:[] BlkioDeviceReadBps:[] BlkioDeviceWriteBps:[] BlkioDeviceReadIOps:[] BlkioDeviceWriteIOps:[] CPUPeriod:0 CPUQuota:0 CPURealtimePeriod:0 CPURealtimeRuntime:0 CpusetCpus: CpusetMems: Devices:[] DeviceCgroupRules:[] DeviceRequests:[] KernelMemory:0 KernelMemoryTCP:0 MemoryReservation:0 MemorySwap:0 MemorySwappiness:<nil> OomKillDisable:<nil> PidsLimit:<nil> Ulimits:[] CPUCount:0 CPUPercent:0 IOMaximumIOps:0 IOMaximumBandwidth:0} Mounts:[{Type:volume Source:act-toolcache Target:/toolcache ReadOnly:false Consistency: BindOptions:<nil> VolumeOptions:<nil> TmpfsOptions:<nil> ClusterOptions:<nil>} {Type:volume Source:act-Sync-Regenerate-SDK-with-latest-API-spec-3d35cd6343ce4e920a0f2df6066927ce43c0f562351601958644d3cc388738b6-env Target:/var/run/act ReadOnly:false Consistency: BindOptions:<nil> VolumeOptions:<nil> TmpfsOptions:<nil> ClusterOptions:<nil>} {Type:volume Source:act-Sync-Regenerate-SDK-with-latest-API-spec-3d35cd6343ce4e920a0f2df6066927ce43c0f562351601958644d3cc388738b6 Target:/home/tomk/em/oag-metal-python ReadOnly:false Consistency: BindOptions:<nil> VolumeOptions:<nil> TmpfsOptions:<nil> ClusterOptions:<nil>}] MaskedPaths:[] ReadonlyPaths:[] Init:<nil>}
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Created container name=act-Sync-Regenerate-SDK-with-latest-API-spec-3d35cd6343ce4e920a0f2df6066927ce43c0f562351601958644d3cc388738b6 id=1f59505e433082ae245f9f45dabc212998925205b7a2e738e5b6b8a24c01ff59 from image catthehacker/ubuntu:act-latest (platform: )
+[Sync/Regenerate SDK with latest API spec] [DEBUG] ENV ==> [RUNNER_TOOL_CACHE=/opt/hostedtoolcache RUNNER_OS=Linux RUNNER_ARCH=X64 RUNNER_TEMP=/tmp LANG=C.UTF-8]
+[Sync/Regenerate SDK with latest API spec]   🐳  docker run image=catthehacker/ubuntu:act-latest platform= entrypoint=["tail" "-f" "/dev/null"] cmd=[]
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Starting container: 1f59505e433082ae245f9f45dabc212998925205b7a2e738e5b6b8a24c01ff59
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Started container: 1f59505e433082ae245f9f45dabc212998925205b7a2e738e5b6b8a24c01ff59
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/event.json len:2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/envs.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Extracting content to '/var/run/act/'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec]   ☁  git clone 'https://github.com/actions/setup-python' # ref=v4
+[Sync/Regenerate SDK with latest API spec] [DEBUG]   cloning https://github.com/actions/setup-python to /home/tomk/.cache/act/actions-setup-python@v4
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Unable to pull refs/heads/v4: worktree contains unstaged changes
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Cloned https://github.com/actions/setup-python to /home/tomk/.cache/act/actions-setup-python@v4
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Checked out v4
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Read action &{Setup Python GitHub Set up a specific version of Python and add the command-line tools to the PATH. map[allow-prereleases:{When 'true', a version range passed to 'python-version' input will match prerelease versions if no GA versions are found. Only 'x.y' version range is supported for CPython. false false} architecture:{The target architecture (x86, x64) of the Python or PyPy interpreter. false } cache:{Used to specify a package manager for caching in the default directory. Supported values: pip, pipenv, poetry. false } cache-dependency-path:{Used to specify the path to dependency files. Supports wildcards or a list of file names for caching multiple dependencies. false } check-latest:{Set this option if you want the action to check for the latest available version that satisfies the version spec. false false} python-version:{Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset. false } python-version-file:{File containing the Python version to use. Example: .python-version false } token:{The token used to authenticate when fetching Python distributions from https://github.com/actions/python-versions. When running this action on github.com, the default value is sufficient. When running on GHES, you can pass a personal access token for github.com if you are experiencing rate limiting. false ${{ github.server_url == 'https://github.com' && github.token || '' }}} update-environment:{Set this option if you want the action to update environment variables. false true}] map[cache-hit:{A boolean value to indicate a cache entry was found } python-path:{The absolute path to the Python or PyPy executable. } python-version:{The installed Python or PyPy version. Useful when given a version range as input. }] {node16 map[] dist/setup/index.js  always() dist/cache-save/index.js success()   [] []} {yellow code}} from 'Unknown'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Skipping local actions/checkout because workdir was already copied
+[Sync/Regenerate SDK with latest API spec] [DEBUG] skip pre step for 'Checkout code': no action model available
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec]   ☁  git clone 'https://github.com/peter-evans/create-pull-request' # ref=v5
+[Sync/Regenerate SDK with latest API spec] [DEBUG]   cloning https://github.com/peter-evans/create-pull-request to /home/tomk/.cache/act/peter-evans-create-pull-request@v5
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Unable to pull refs/heads/v5: worktree contains unstaged changes
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Cloned https://github.com/peter-evans/create-pull-request to /home/tomk/.cache/act/peter-evans-create-pull-request@v5
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Checked out v5
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Read action &{Create Pull Request  Creates a pull request for changes to your repository in the actions workspace map[add-paths:{A comma or newline-separated list of file paths to commit. Paths should follow git's pathspec syntax. Defaults to adding all new and modified files.
+ false } assignees:{A comma or newline separated list of assignees (GitHub usernames). false } author:{The author name and email address in the format `Display Name <email@address.com>`. Defaults to the user who triggered the workflow run.
+ false ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>} base:{The pull request base branch. Defaults to the branch checked out in the workflow.
+ false } body:{The body of the pull request. false Automated changes by [create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action} body-path:{The path to a file containing the pull request body. Takes precedence over `body`. false } branch:{The pull request branch name. false create-pull-request/patch} branch-suffix:{The branch suffix type when using the alternative branching strategy. false } commit-message:{The message to use when committing changes. false [create-pull-request] automated change} committer:{The committer name and email address in the format `Display Name <email@address.com>`. Defaults to the GitHub Actions bot user.
+ false GitHub <noreply@github.com>} delete-branch:{Delete the `branch` when closing pull requests, and when undeleted after merging. Recommend `true`.
+ false false} draft:{Create a draft pull request. It is not possible to change draft status after creation except through the web interface false false} labels:{A comma or newline separated list of labels. false } milestone:{The number of the milestone to associate the pull request with. false } path:{Relative path under $GITHUB_WORKSPACE to the repository. Defaults to $GITHUB_WORKSPACE.
+ false } push-to-fork:{A fork of the checked out parent repository to which the pull request branch will be pushed. e.g. `owner/repo-fork`. The pull request will be created to merge the fork's branch into the parent's base.
+ false } reviewers:{A comma or newline separated list of reviewers (GitHub usernames) to request a review from. false } signoff:{Add `Signed-off-by` line by the committer at the end of the commit log message. false false} team-reviewers:{A comma or newline separated list of GitHub teams to request a review from. Note that a `repo` scoped Personal Access Token (PAT) may be required.
+ false } title:{The title of the pull request. false Changes by create-pull-request action} token:{GITHUB_TOKEN or a `repo` scoped Personal Access Token (PAT) false ${{ github.token }}}] map[pull-request-head-sha:{The commit SHA of the pull request branch. } pull-request-number:{The pull request number } pull-request-operation:{The pull request operation performed by the action, `created`, `updated` or `closed`. } pull-request-url:{The URL of the pull request. }] {node16 map[] dist/index.js  always()  always()   [] []} {gray-dark git-pull-request}} from 'Unknown'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec]   ☁  git clone 'https://github.com/mshick/add-pr-comment' # ref=v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG]   cloning https://github.com/mshick/add-pr-comment to /home/tomk/.cache/act/mshick-add-pr-comment@v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Cloned https://github.com/mshick/add-pr-comment to /home/tomk/.cache/act/mshick-add-pr-comment@v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Checked out v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Read action &{Add PR Comment  Add a comment to a pull request map[allow-repeats:{Allow messages to be repeated. true false} find:{A regular expression to find for replacement. Multiple lines become individual regular expressions. false } issue:{Override the message when a run is cancelled. false } message:{The message to print. false } message-cancelled:{Override the message when a run is cancelled. false } message-failure:{Override the message when a run fails. false } message-id:{An optional id to use for this message. true add-pr-comment} message-path:{A path or list of paths to a file to print as a message instead of a string. false } message-skipped:{Override the message when a run is skipped. false } message-success:{Override the message when a run is successful. false } preformatted:{Treat message text (from a file or input) as pre-formatted and place it in a codeblock. false } proxy-url:{Proxy URL for comment creation false } refresh-message-position:{If a message with the same id, this option allow to refresh the position of the message to be the last one posted. true false} replace:{A replacement to use, overrides the message. Multple lines can replace same-indexed find patterns. false } repo-name:{The repo name. true ${{ github.event.repository.name }}} repo-owner:{The repo owner. true ${{ github.repository_owner }}} repo-token:{A GitHub token for API access. Defaults to {{ github.token }}. true ${{ github.token }}} status:{A job status for status headers. Defaults to {{ job.status }}. true ${{ job.status }}} update-only:{Only update the comment if it already exists. false }] map[comment-created:{Whether a comment was created. } comment-id:{If a comment was created or updated, the comment id. } comment-updated:{Whether a comment was updated. }] {node16 map[] dist/index.js  always()  always()   [] []} {purple message-circle}} from 'Unknown'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec]   ☁  git clone 'https://github.com/mshick/add-pr-comment' # ref=v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG]   cloning https://github.com/mshick/add-pr-comment to /home/tomk/.cache/act/mshick-add-pr-comment@v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Cloned https://github.com/mshick/add-pr-comment to /home/tomk/.cache/act/mshick-add-pr-comment@v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Checked out v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Read action &{Add PR Comment  Add a comment to a pull request map[allow-repeats:{Allow messages to be repeated. true false} find:{A regular expression to find for replacement. Multiple lines become individual regular expressions. false } issue:{Override the message when a run is cancelled. false } message:{The message to print. false } message-cancelled:{Override the message when a run is cancelled. false } message-failure:{Override the message when a run fails. false } message-id:{An optional id to use for this message. true add-pr-comment} message-path:{A path or list of paths to a file to print as a message instead of a string. false } message-skipped:{Override the message when a run is skipped. false } message-success:{Override the message when a run is successful. false } preformatted:{Treat message text (from a file or input) as pre-formatted and place it in a codeblock. false } proxy-url:{Proxy URL for comment creation false } refresh-message-position:{If a message with the same id, this option allow to refresh the position of the message to be the last one posted. true false} replace:{A replacement to use, overrides the message. Multple lines can replace same-indexed find patterns. false } repo-name:{The repo name. true ${{ github.event.repository.name }}} repo-owner:{The repo owner. true ${{ github.repository_owner }}} repo-token:{A GitHub token for API access. Defaults to {{ github.token }}. true ${{ github.token }}} status:{A job status for status headers. Defaults to {{ job.status }}. true ${{ job.status }}} update-only:{Only update the comment if it already exists. false }] map[comment-created:{Whether a comment was created. } comment-id:{If a comment was created or updated, the comment id. } comment-updated:{Whether a comment was updated. }] {node16 map[] dist/index.js  always()  always()   [] []} {purple message-circle}} from 'Unknown'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec]   ☁  git clone 'https://github.com/mshick/add-pr-comment' # ref=v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG]   cloning https://github.com/mshick/add-pr-comment to /home/tomk/.cache/act/mshick-add-pr-comment@v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Cloned https://github.com/mshick/add-pr-comment to /home/tomk/.cache/act/mshick-add-pr-comment@v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Checked out v2
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Read action &{Add PR Comment  Add a comment to a pull request map[allow-repeats:{Allow messages to be repeated. true false} find:{A regular expression to find for replacement. Multiple lines become individual regular expressions. false } issue:{Override the message when a run is cancelled. false } message:{The message to print. false } message-cancelled:{Override the message when a run is cancelled. false } message-failure:{Override the message when a run fails. false } message-id:{An optional id to use for this message. true add-pr-comment} message-path:{A path or list of paths to a file to print as a message instead of a string. false } message-skipped:{Override the message when a run is skipped. false } message-success:{Override the message when a run is successful. false } preformatted:{Treat message text (from a file or input) as pre-formatted and place it in a codeblock. false } proxy-url:{Proxy URL for comment creation false } refresh-message-position:{If a message with the same id, this option allow to refresh the position of the message to be the last one posted. true false} replace:{A replacement to use, overrides the message. Multple lines can replace same-indexed find patterns. false } repo-name:{The repo name. true ${{ github.event.repository.name }}} repo-owner:{The repo owner. true ${{ github.repository_owner }}} repo-token:{A GitHub token for API access. Defaults to {{ github.token }}. true ${{ github.token }}} status:{A job status for status headers. Defaults to {{ job.status }}. true ${{ job.status }}} update-only:{Only update the comment if it already exists. false }] map[comment-created:{Whether a comment was created. } comment-id:{If a comment was created or updated, the comment id. } comment-updated:{Whether a comment was updated. }] {node16 map[] dist/index.js  always()  always()   [] []} {purple message-circle}} from 'Unknown'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] expression '${{ env.PYTHON_VERSION }}' rewritten to 'format('{0}', env.PYTHON_VERSION)'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] evaluating expression 'format('{0}', env.PYTHON_VERSION)'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] expression 'format('{0}', env.PYTHON_VERSION)' evaluated to '%!t(string=3.8)'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] setupEnv => map[ACT:true CI:true GITHUB_ACTION:0 GITHUB_ACTIONS:true GITHUB_ACTION_PATH: GITHUB_ACTION_REF:v4 GITHUB_ACTION_REPOSITORY:actions/setup-python GITHUB_ACTOR:nektos/act GITHUB_API_URL:https://api.github.com GITHUB_BASE_REF: GITHUB_EVENT_NAME:workflow_dispatch GITHUB_EVENT_PATH:/var/run/act/workflow/event.json GITHUB_GRAPHQL_URL:https://api.github.com/graphql GITHUB_HEAD_REF: GITHUB_JOB:sync GITHUB_REF:refs/heads/sync_workflow GITHUB_REF_NAME:sync_workflow GITHUB_REF_TYPE:branch GITHUB_REPOSITORY:equinix-labs/metal-python GITHUB_REPOSITORY_OWNER:equinix-labs GITHUB_RETENTION_DAYS:0 GITHUB_RUN_ID:1 GITHUB_RUN_NUMBER:1 GITHUB_SERVER_URL:https://github.com GITHUB_SHA:e4326031c152b8dcb8ba1310ed190cf3390841ca GITHUB_TOKEN: GITHUB_WORKFLOW:Sync GITHUB_WORKSPACE:/home/tomk/em/oag-metal-python INPUT_PYTHON-VERSION:3.8 ImageOS:ubuntu20 PYTHON_VERSION:3.8 RUNNER_PERFLOG:/dev/null RUNNER_TRACKING_ID:]
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] evaluating expression ''
+[Sync/Regenerate SDK with latest API spec] [DEBUG] expression '' evaluated to 'true'
+[Sync/Regenerate SDK with latest API spec] ⭐ Run Main Set up Python
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/outputcmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/statecmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/pathcmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/envs.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/SUMMARY.md len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Extracting content to '/var/run/act'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] About to run action &{Setup Python GitHub Set up a specific version of Python and add the command-line tools to the PATH. map[allow-prereleases:{When 'true', a version range passed to 'python-version' input will match prerelease versions if no GA versions are found. Only 'x.y' version range is supported for CPython. false false} architecture:{The target architecture (x86, x64) of the Python or PyPy interpreter. false } cache:{Used to specify a package manager for caching in the default directory. Supported values: pip, pipenv, poetry. false } cache-dependency-path:{Used to specify the path to dependency files. Supports wildcards or a list of file names for caching multiple dependencies. false } check-latest:{Set this option if you want the action to check for the latest available version that satisfies the version spec. false false} python-version:{Version range or exact version of Python or PyPy to use, using SemVer's version range syntax. Reads from .python-version if unset. false } python-version-file:{File containing the Python version to use. Example: .python-version false } token:{The token used to authenticate when fetching Python distributions from https://github.com/actions/python-versions. When running this action on github.com, the default value is sufficient. When running on GHES, you can pass a personal access token for github.com if you are experiencing rate limiting. false ${{ github.server_url == 'https://github.com' && github.token || '' }}} update-environment:{Set this option if you want the action to update environment variables. false true}] map[cache-hit:{A boolean value to indicate a cache entry was found } python-path:{The absolute path to the Python or PyPy executable. } python-version:{The installed Python or PyPy version. Useful when given a version range as input. }] {node16 map[] dist/setup/index.js  always() dist/cache-save/index.js success()   [] []} {yellow code}}
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] expression '${{ github.server_url == 'https://github.com' && github.token || '' }}' rewritten to 'format('{0}', github.server_url == 'https://github.com' && github.token || '')'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] evaluating expression 'format('{0}', github.server_url == 'https://github.com' && github.token || '')'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] expression 'format('{0}', github.server_url == 'https://github.com' && github.token || '')' evaluated to '%!t(string=)'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] type=remote-action actionDir=/home/tomk/.cache/act/actions-setup-python@v4 actionPath= workdir=/home/tomk/em/oag-metal-python actionCacheDir=/home/tomk/.cache/act actionName=actions-setup-python@v4 containerActionDir=/var/run/act/actions/actions-setup-python@v4
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Removing /home/tomk/.cache/act/actions-setup-python@v4/.gitignore before docker cp
+[Sync/Regenerate SDK with latest API spec] [DEBUG] /var/run/act/actions/actions-setup-python@v4
+[Sync/Regenerate SDK with latest API spec]   🐳  docker cp src=/home/tomk/.cache/act/actions-setup-python@v4/ dst=/var/run/act/actions/actions-setup-python@v4/
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing tarball /tmp/act1987060359 from /home/tomk/.cache/act/actions-setup-python@v4/
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Stripping prefix:/home/tomk/.cache/act/actions-setup-python@v4/ src:/home/tomk/.cache/act/actions-setup-python@v4/
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Extracting content from '/tmp/act1987060359' to '/var/run/act/actions/actions-setup-python@v4/'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] executing remote job container: [node /var/run/act/actions/actions-setup-python@v4/dist/setup/index.js]
+[Sync/Regenerate SDK with latest API spec]   🐳  docker exec cmd=[node /var/run/act/actions/actions-setup-python@v4/dist/setup/index.js] user= workdir=
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Exec command '[node /var/run/act/actions/actions-setup-python@v4/dist/setup/index.js]'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Working directory '/home/tomk/em/oag-metal-python'
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::Python is expected to be installed into /opt/hostedtoolcache
+[Sync/Regenerate SDK with latest API spec]   ❓  ::group::Installed versions
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::Semantic version spec of 3.8 is 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::isExplicit: 
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::explicit? false
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::evaluating 0 versions
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::match not found
+[Sync/Regenerate SDK with latest API spec]   | Version 3.8 was not found in the local cache
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::Getting manifest from actions/python-versions@main
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-beta.3 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-beta.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-beta.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-alpha.7 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-alpha.6 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-alpha.5 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-alpha.4 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-alpha.3 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-alpha.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.12.0-alpha.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.4 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.3 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-rc.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-rc.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-beta.5 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-beta.4 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-beta.3 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-beta.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-beta.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-alpha.7 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-alpha.6 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-alpha.5 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-alpha.4 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-alpha.3 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-alpha.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.11.0-alpha.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.12 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.11 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.10 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.9 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.8 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.7 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.6 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.5 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.4 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.3 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-rc.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-rc.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-beta.4 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-beta.3 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-beta.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-beta.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-alpha.7 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-alpha.6 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-alpha.5 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-alpha.4 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-alpha.3 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-alpha.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.10.0-alpha.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.17 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.16 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.15 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.14 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.13 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.12 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.11 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.10 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.9 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.8 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.7 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.6 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.5 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.4 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.3 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.2-rc.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.1-rc.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.0 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.0-rc.2 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.0-rc.1 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.0-beta.5 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.9.0-beta.4 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::check 3.8.17 satisfies 3.8
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::x64===x64 && darwin===linux
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::x64===x64 && linux===linux
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::x64===x64 && linux===linux
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::matched 3.8.17
+[Sync/Regenerate SDK with latest API spec]   | Version 3.8 is available for downloading
+[Sync/Regenerate SDK with latest API spec]   | Download from "https://github.com/actions/python-versions/releases/download/3.8.17-5199874912/python-3.8.17-linux-22.04-x64.tar.gz"
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::Downloading https://github.com/actions/python-versions/releases/download/3.8.17-5199874912/python-3.8.17-linux-22.04-x64.tar.gz
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::Destination /tmp/732a1307-15a8-40ab-befe-1c4b8e497dd2
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::download complete
+[Sync/Regenerate SDK with latest API spec]   | Extract downloaded archive
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::Checking tar --version
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::tar (GNU tar) 1.34%0ACopyright (C) 2021 Free Software Foundation, Inc.%0ALicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.%0AThis is free software: you are free to change and redistribute it.%0AThere is NO WARRANTY, to the extent permitted by law.%0A%0AWritten by John Gilmore and Jay Fenlason.
+[Sync/Regenerate SDK with latest API spec]   | [command]/usr/bin/tar xz --warning=no-unknown-keyword -C /tmp/fd19da8b-867f-4ed0-84b0-5f26c84a79da -f /tmp/732a1307-15a8-40ab-befe-1c4b8e497dd2
+[Sync/Regenerate SDK with latest API spec]   | Execute installation script
+[Sync/Regenerate SDK with latest API spec]   | Check if Python hostedtoolcache folder exist...
+[Sync/Regenerate SDK with latest API spec]   | Creating Python hostedtoolcache folder...
+[Sync/Regenerate SDK with latest API spec]   | Create Python 3.8.17 folder
+[Sync/Regenerate SDK with latest API spec]   | Copy Python binaries to hostedtoolcache folder
+[Sync/Regenerate SDK with latest API spec]   | Create additional symlinks (Required for the UsePythonVersion Azure Pipelines task and the setup-python GitHub Action)
+[Sync/Regenerate SDK with latest API spec]   | Upgrading pip...
+[Sync/Regenerate SDK with latest API spec]   | Looking in links: /tmp/tmp6pj0rgoy
+[Sync/Regenerate SDK with latest API spec]   | Requirement already satisfied: setuptools in /opt/hostedtoolcache/Python/3.8.17/x64/lib/python3.8/site-packages (56.0.0)
+[Sync/Regenerate SDK with latest API spec]   | Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.8.17/x64/lib/python3.8/site-packages (23.0.1)
+[Sync/Regenerate SDK with latest API spec]   ❗  ::error::WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[Sync/Regenerate SDK with latest API spec]   | Collecting pip
+[Sync/Regenerate SDK with latest API spec]   | Downloading pip-23.1.2-py3-none-any.whl (2.1 MB)
+[Sync/Regenerate SDK with latest API spec]   | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 12.3 MB/s eta 0:00:00
+[Sync/Regenerate SDK with latest API spec]   | 
+[Sync/Regenerate SDK with latest API spec]   | Installing collected packages: pip
+[Sync/Regenerate SDK with latest API spec]   | Successfully installed pip-23.1.2
+[Sync/Regenerate SDK with latest API spec]   | Create complete file
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::isExplicit: 
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::explicit? false
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::isExplicit: 3.8.17
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::explicit? true
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::evaluating 1 versions
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::matched: 3.8.17
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::checking cache: /opt/hostedtoolcache/Python/3.8.17/x64
+[Sync/Regenerate SDK with latest API spec]   💬  ::debug::Found tool in cache Python 3.8.17 x64
+[Sync/Regenerate SDK with latest API spec]   | Successfully set up CPython (3.8.17)
+[Sync/Regenerate SDK with latest API spec]   ❓  ::endgroup::
+[Sync/Regenerate SDK with latest API spec]   ❓ add-matcher /run/act/actions/actions-setup-python@v4/.github/python.json
+[Sync/Regenerate SDK with latest API spec]   ✅  Success - Main Set up Python
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::set-env:: pythonLocation=/opt/hostedtoolcache/Python/3.8.17/x64
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::set-env:: PKG_CONFIG_PATH=/opt/hostedtoolcache/Python/3.8.17/x64/lib/pkgconfig
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::set-env:: Python_ROOT_DIR=/opt/hostedtoolcache/Python/3.8.17/x64
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::set-env:: Python2_ROOT_DIR=/opt/hostedtoolcache/Python/3.8.17/x64
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::set-env:: Python3_ROOT_DIR=/opt/hostedtoolcache/Python/3.8.17/x64
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::set-env:: LD_LIBRARY_PATH=/opt/hostedtoolcache/Python/3.8.17/x64/lib
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::set-output:: python-version=3.8.17
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::set-output:: python-path=/opt/hostedtoolcache/Python/3.8.17/x64/bin/python
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.8.17/x64
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::add-path:: /opt/hostedtoolcache/Python/3.8.17/x64/bin
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] setupEnv => map[ACT:true CI:true GITHUB_ACTION:1 GITHUB_ACTIONS:true GITHUB_ACTION_PATH: GITHUB_ACTION_REF: GITHUB_ACTION_REPOSITORY: GITHUB_ACTOR:nektos/act GITHUB_API_URL:https://api.github.com GITHUB_BASE_REF: GITHUB_EVENT_NAME:workflow_dispatch GITHUB_EVENT_PATH:/var/run/act/workflow/event.json GITHUB_GRAPHQL_URL:https://api.github.com/graphql GITHUB_HEAD_REF: GITHUB_JOB:sync GITHUB_REF:refs/heads/sync_workflow GITHUB_REF_NAME:sync_workflow GITHUB_REF_TYPE:branch GITHUB_REPOSITORY:equinix-labs/metal-python GITHUB_REPOSITORY_OWNER:equinix-labs GITHUB_RETENTION_DAYS:0 GITHUB_RUN_ID:1 GITHUB_RUN_NUMBER:1 GITHUB_SERVER_URL:https://github.com GITHUB_SHA:e4326031c152b8dcb8ba1310ed190cf3390841ca GITHUB_TOKEN: GITHUB_WORKFLOW:Sync GITHUB_WORKSPACE:/home/tomk/em/oag-metal-python ImageOS:ubuntu20 LD_LIBRARY_PATH:/opt/hostedtoolcache/Python/3.8.17/x64/lib PKG_CONFIG_PATH:/opt/hostedtoolcache/Python/3.8.17/x64/lib/pkgconfig PYTHON_VERSION:3.8 Python2_ROOT_DIR:/opt/hostedtoolcache/Python/3.8.17/x64 Python3_ROOT_DIR:/opt/hostedtoolcache/Python/3.8.17/x64 Python_ROOT_DIR:/opt/hostedtoolcache/Python/3.8.17/x64 RUNNER_PERFLOG:/dev/null RUNNER_TRACKING_ID: pythonLocation:/opt/hostedtoolcache/Python/3.8.17/x64]
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] evaluating expression ''
+[Sync/Regenerate SDK with latest API spec] [DEBUG] expression '' evaluated to 'true'
+[Sync/Regenerate SDK with latest API spec] ⭐ Run Main Install dependencies
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/outputcmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/statecmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/pathcmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/envs.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/SUMMARY.md len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Extracting content to '/var/run/act'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Wrote command 
+
+python -m pip install --upgrade PyYAML
+
+
+ to 'workflow/1'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/1 len:41
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Extracting content to '/var/run/act'
+[Sync/Regenerate SDK with latest API spec]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/1] user= workdir=
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Exec command '[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/1]'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Working directory '/home/tomk/em/oag-metal-python'
+[Sync/Regenerate SDK with latest API spec]   | Collecting PyYAML
+[Sync/Regenerate SDK with latest API spec]   |   Downloading PyYAML-6.0-cp38-cp38-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (701 kB)
+[Sync/Regenerate SDK with latest API spec]   |      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 701.2/701.2 kB 7.8 MB/s eta 0:00:00
+[Sync/Regenerate SDK with latest API spec]   | Installing collected packages: PyYAML
+[Sync/Regenerate SDK with latest API spec]   | Successfully installed PyYAML-6.0
+[Sync/Regenerate SDK with latest API spec]   | WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+[Sync/Regenerate SDK with latest API spec]   | 
+[Sync/Regenerate SDK with latest API spec]   | [notice] A new release of pip is available: 23.0.1 -> 23.1.2
+[Sync/Regenerate SDK with latest API spec]   | [notice] To update, run: pip install --upgrade pip
+[Sync/Regenerate SDK with latest API spec]   ✅  Success - Main Install dependencies
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] setupEnv => map[ACT:true CI:true GITHUB_ACTION:date GITHUB_ACTIONS:true GITHUB_ACTION_PATH: GITHUB_ACTION_REF: GITHUB_ACTION_REPOSITORY: GITHUB_ACTOR:nektos/act GITHUB_API_URL:https://api.github.com GITHUB_BASE_REF: GITHUB_EVENT_NAME:workflow_dispatch GITHUB_EVENT_PATH:/var/run/act/workflow/event.json GITHUB_GRAPHQL_URL:https://api.github.com/graphql GITHUB_HEAD_REF: GITHUB_JOB:sync GITHUB_REF:refs/heads/sync_workflow GITHUB_REF_NAME:sync_workflow GITHUB_REF_TYPE:branch GITHUB_REPOSITORY:equinix-labs/metal-python GITHUB_REPOSITORY_OWNER:equinix-labs GITHUB_RETENTION_DAYS:0 GITHUB_RUN_ID:1 GITHUB_RUN_NUMBER:1 GITHUB_SERVER_URL:https://github.com GITHUB_SHA:e4326031c152b8dcb8ba1310ed190cf3390841ca GITHUB_TOKEN: GITHUB_WORKFLOW:Sync GITHUB_WORKSPACE:/home/tomk/em/oag-metal-python ImageOS:ubuntu20 LD_LIBRARY_PATH:/opt/hostedtoolcache/Python/3.8.17/x64/lib PKG_CONFIG_PATH:/opt/hostedtoolcache/Python/3.8.17/x64/lib/pkgconfig PYTHON_VERSION:3.8 Python2_ROOT_DIR:/opt/hostedtoolcache/Python/3.8.17/x64 Python3_ROOT_DIR:/opt/hostedtoolcache/Python/3.8.17/x64 Python_ROOT_DIR:/opt/hostedtoolcache/Python/3.8.17/x64 RUNNER_PERFLOG:/dev/null RUNNER_TRACKING_ID: pythonLocation:/opt/hostedtoolcache/Python/3.8.17/x64]
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] evaluating expression ''
+[Sync/Regenerate SDK with latest API spec] [DEBUG] expression '' evaluated to 'true'
+[Sync/Regenerate SDK with latest API spec] ⭐ Run Main Get current date
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/outputcmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/statecmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/pathcmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/envs.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/SUMMARY.md len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Extracting content to '/var/run/act'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Wrote command 
+
+echo "date=$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+
+ to 'workflow/date'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/date len:53
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Extracting content to '/var/run/act'
+[Sync/Regenerate SDK with latest API spec]   🐳  docker exec cmd=[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/date] user= workdir=
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Exec command '[bash --noprofile --norc -e -o pipefail /var/run/act/workflow/date]'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Working directory '/home/tomk/em/oag-metal-python'
+[Sync/Regenerate SDK with latest API spec]   ✅  Success - Main Get current date
+[Sync/Regenerate SDK with latest API spec]   ⚙  ::set-output:: date=2023-06-27
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Skipping local actions/checkout because workdir was already copied
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] setupEnv => map[ACT:true CI:true GITHUB_ACTION:3 GITHUB_ACTIONS:true GITHUB_ACTION_PATH: GITHUB_ACTION_REF:v3 GITHUB_ACTION_REPOSITORY:actions/checkout GITHUB_ACTOR:nektos/act GITHUB_API_URL:https://api.github.com GITHUB_BASE_REF: GITHUB_EVENT_NAME:workflow_dispatch GITHUB_EVENT_PATH:/var/run/act/workflow/event.json GITHUB_GRAPHQL_URL:https://api.github.com/graphql GITHUB_HEAD_REF: GITHUB_JOB:sync GITHUB_REF:refs/heads/sync_workflow GITHUB_REF_NAME:sync_workflow GITHUB_REF_TYPE:branch GITHUB_REPOSITORY:equinix-labs/metal-python GITHUB_REPOSITORY_OWNER:equinix-labs GITHUB_RETENTION_DAYS:0 GITHUB_RUN_ID:1 GITHUB_RUN_NUMBER:1 GITHUB_SERVER_URL:https://github.com GITHUB_SHA:e4326031c152b8dcb8ba1310ed190cf3390841ca GITHUB_TOKEN: GITHUB_WORKFLOW:Sync GITHUB_WORKSPACE:/home/tomk/em/oag-metal-python ImageOS:ubuntu20 LD_LIBRARY_PATH:/opt/hostedtoolcache/Python/3.8.17/x64/lib PKG_CONFIG_PATH:/opt/hostedtoolcache/Python/3.8.17/x64/lib/pkgconfig PYTHON_VERSION:3.8 Python2_ROOT_DIR:/opt/hostedtoolcache/Python/3.8.17/x64 Python3_ROOT_DIR:/opt/hostedtoolcache/Python/3.8.17/x64 Python_ROOT_DIR:/opt/hostedtoolcache/Python/3.8.17/x64 RUNNER_PERFLOG:/dev/null RUNNER_TRACKING_ID: pythonLocation:/opt/hostedtoolcache/Python/3.8.17/x64]
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] evaluating expression ''
+[Sync/Regenerate SDK with latest API spec] [DEBUG] expression '' evaluated to 'true'
+[Sync/Regenerate SDK with latest API spec] ⭐ Run Main Checkout code
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/outputcmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/statecmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/pathcmd.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/envs.txt len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing entry to tarball workflow/SUMMARY.md len:0
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Extracting content to '/var/run/act'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Loading revision from git directory
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec] [DEBUG] HEAD points to 'e4326031c152b8dcb8ba1310ed190cf3390841ca'
+[Sync/Regenerate SDK with latest API spec] [DEBUG] using github ref: refs/heads/sync_workflow
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Found revision: e4326031c152b8dcb8ba1310ed190cf3390841ca
+[Sync/Regenerate SDK with latest API spec]   🐳  docker cp src=/home/tomk/em/oag-metal-python/. dst=/home/tomk/em/oag-metal-python
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Writing tarball /tmp/act866086425 from /home/tomk/em/oag-metal-python/.
+[Sync/Regenerate SDK with latest API spec] [DEBUG] Stripping prefix:/home/tomk/em/oag-metal-python/ src:/home/tomk/em/oag-metal-python/.
