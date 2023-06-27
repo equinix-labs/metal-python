@@ -594,86 +594,20 @@ components:
     CapacityList:
       properties:
         capacity:
-          $ref: '#/components/schemas/CapacityReport'
-        href:
-          format: uri
-          type: string
-      type: object
-    CapacityPerFacility:
-      properties:
-        baremetal_0:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_1:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_2:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_2a:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_2a2:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_3:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_s:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        c2.medium.x86:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        href:
-          format: uri
-          type: string
-        m2.xlarge.x86:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-      type: object
-    CapacityPerMetroInput:
-      properties:
-        href:
-          format: uri
-          type: string
-        servers:
-          items:
-            $ref: '#/components/schemas/MetroServerInfo'
-          type: array
-      type: object
-    CapacityPerNewFacility:
-      properties:
-        baremetal_1e:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
+          additionalProperties:
+            additionalProperties:
+              $ref: '#/components/schemas/CapacityLevelPerBaremetal'
+            type: object
+          type: object
         href:
           format: uri
           type: string
       type: object
     CapacityReport:
-      properties:
-        ams1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        atl1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        dfw1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        ewr1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        fra1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        href:
-          format: uri
-          type: string
-        iad1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        lax1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        nrt1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ord1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        sea1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        sin1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        sjc1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        syd1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        yyz1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
+      additionalProperties:
+        additionalProperties:
+          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
+        type: object
       type: object
     Coordinates:
       properties:
@@ -777,6 +711,11 @@ components:
           type: boolean
         metro:
           $ref: '#/components/schemas/Device_metro'
+        network_frozen:
+          description: Whether network mode changes such as converting to/from Layer2
+            or Layer3 networking, bonding or disbonding network interfaces are permitted
+            for the device.
+          type: boolean
         network_ports:
           description: "By default, servers at Equinix Metal are configured in a \u201C\
             bonded\u201D mode using LACP (Link Aggregation Control Protocol). Each\
@@ -1071,6 +1010,10 @@ components:
           default: false
           description: Whether the device should be locked, preventing accidental
             deletion.
+          type: boolean
+        network_frozen:
+          description: If true, this instance can not be converted to a different
+            network type.
           type: boolean
         no_ssh_keys:
           default: false
@@ -2821,60 +2764,6 @@ components:
         name:
           type: string
       type: object
-    MetroCapacityList:
-      properties:
-        capacity:
-          $ref: '#/components/schemas/MetroCapacityReport'
-        href:
-          format: uri
-          type: string
-      type: object
-    MetroCapacityReport:
-      properties:
-        am:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        at:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ch:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        da:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        dc:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        fr:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        hk:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        href:
-          format: uri
-          type: string
-        la:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ld:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        md:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ny:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        pa:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        se:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sg:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sl:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sp:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sv:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sy:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        tr:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ty:
-          $ref: '#/components/schemas/CapacityPerFacility'
-      type: object
     MetroInput:
       properties:
         href:
@@ -2900,21 +2789,6 @@ components:
             $ref: '#/components/schemas/Metro'
           type: array
       type: object
-    MetroServerInfo:
-      properties:
-        href:
-          format: uri
-          type: string
-        metro:
-          description: The metro ID or code to check the capacity in.
-          type: string
-        plan:
-          description: The plan ID or slug to check the capacity of.
-          type: string
-        quantity:
-          description: The number of servers to check the capacity of.
-          type: string
-      type: object
     NewPassword:
       properties:
         href:
@@ -2925,6 +2799,10 @@ components:
       type: object
     OperatingSystem:
       properties:
+        default_operating_system:
+          description: Default operating system for the distro.
+          readOnly: true
+          type: boolean
         distro:
           type: string
         distro_label:
@@ -3896,9 +3774,14 @@ components:
         href:
           format: uri
           type: string
+        metro:
+          description: The metro ID or code to check the capacity in.
+          type: string
         plan:
+          description: The plan ID or slug to check the capacity of.
           type: string
         quantity:
+          description: The number of servers to check the capacity of.
           type: string
       type: object
     SpotMarketPricesList:
@@ -5867,6 +5750,23 @@ paths:
         '200':
           content:
             application/json:
+              example:
+                capacity:
+                  am6:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da11:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  sv15:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
                 $ref: '#/components/schemas/CapacityList'
           description: ok
@@ -5920,8 +5820,25 @@ paths:
         '200':
           content:
             application/json:
+              example:
+                capacity:
+                  am:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  dc:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
-                $ref: '#/components/schemas/MetroCapacityList'
+                $ref: '#/components/schemas/CapacityList'
           description: ok
         '401':
           content:
@@ -5939,7 +5856,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CapacityPerMetroInput'
+              $ref: '#/components/schemas/CapacityInput'
         description: Metro to check capacity in
         required: true
       responses:
@@ -9841,6 +9758,23 @@ paths:
         '200':
           content:
             application/json:
+              example:
+                capacity:
+                  am6:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da11:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  sv15:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
                 $ref: '#/components/schemas/CapacityList'
           description: ok
@@ -9875,8 +9809,25 @@ paths:
         '200':
           content:
             application/json:
+              example:
+                capacity:
+                  am:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  dc:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
-                $ref: '#/components/schemas/MetroCapacityList'
+                $ref: '#/components/schemas/CapacityList'
           description: ok
         '401':
           content:
