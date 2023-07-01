@@ -51,7 +51,7 @@ jobs:
       id: generate
       if: ${{ always() && steps.patch.conclusion == 'success' }}
       run: |
-        make generate -o patch-spec -o clean
+        make generate -o patch-spec
         git add equinix_metal
         echo `git commit -m 'sync: generate client with ${{ steps.date.outputs.date }} spec'`
     - name: Create Pull Request
