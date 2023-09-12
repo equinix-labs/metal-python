@@ -21,12 +21,14 @@ Add a new email address to the current user.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.create_email_input import CreateEmailInput
+from equinix_metal.models.email import Email
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -58,6 +60,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EmailsApi->create_email: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -98,12 +102,12 @@ Deletes the email.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -133,6 +137,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EmailsApi->delete_email: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -174,12 +180,13 @@ Provides one of the user’s emails.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.email import Email
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -213,6 +220,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EmailsApi->find_email_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -256,12 +265,14 @@ Updates the email.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.email import Email
+from equinix_metal.models.update_email_input import UpdateEmailInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -294,6 +305,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EmailsApi->update_email: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

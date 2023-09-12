@@ -19,12 +19,13 @@ Returns all usages for a device.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.device_usage_list import DeviceUsageList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -58,6 +59,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling UsagesApi->find_device_usages: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -100,12 +103,13 @@ Returns all usages for a project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.project_usage_list import ProjectUsageList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -139,6 +143,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling UsagesApi->find_project_usage: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

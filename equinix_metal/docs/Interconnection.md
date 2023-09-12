@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **facility** | [**Href**](Href.md) |  | [optional] 
 **href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
-**metro** | [**InterconnectionMetro**](InterconnectionMetro.md) |  | [optional] 
+**metro** | [**Metro**](Metro.md) |  | [optional] 
 **mode** | **str** | The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of an interconnection on a Dedicated Port is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
 **name** | **str** |  | [optional] 
 **organization** | [**Href**](Href.md) |  | [optional] 

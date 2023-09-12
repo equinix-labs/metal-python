@@ -1884,6 +1884,7 @@ components:
           - public_ipv4
           - private_ipv4
           - public_ipv6
+          - vrf
           type: string
       required:
       - type
@@ -1961,25 +1962,23 @@ components:
       type: object
     InstancesBatchCreateInput_batches_inner:
       allOf:
-      - $ref: '#/components/schemas/InstancesBatchCreateInput_batches_inner_allOf'
-      - $ref: '#/components/schemas/createDevice_request'
-    InstancesBatchCreateInput_batches_inner_allOf:
-      properties:
-        hostnames:
-          items:
-            type: string
-          type: array
-        href:
-          format: uri
-          type: string
-        quantity:
-          description: The number of devices to create in this batch. The hostname
-            may contain an `{{index}}` placeholder, which will be replaced with the
-            index of the device in the batch. For example, if the hostname is `device-{{index}}`,
-            the first device in the batch will have the hostname `device-01`, the
-            second device will have the hostname `device-02`, and so on.
-          type: integer
-      type: object
+      - properties:
+          hostnames:
+            items:
+              type: string
+            type: array
+          quantity:
+            description: The number of devices to create in this batch. The hostname
+              may contain an `{{index}}` placeholder, which will be replaced with
+              the index of the device in the batch. For example, if the hostname is
+              `device-{{index}}`, the first device in the batch will have the hostname
+              `device-01`, the second device will have the hostname `device-02`, and
+              so on.
+            type: integer
+        type: object
+      - oneOf:
+        - $ref: '#/components/schemas/DeviceCreateInMetroInput'
+        - $ref: '#/components/schemas/DeviceCreateInFacilityInput'
     Interconnection:
       properties:
         contact_email:
@@ -1998,7 +1997,19 @@ components:
           format: uuid
           type: string
         metro:
-          $ref: '#/components/schemas/Interconnection_metro'
+          allOf:
+          - $ref: '#/components/schemas/Metro'
+          description: "The location of where the shared or Dedicated Port is located.\
+            \ For interconnections with Dedicated Ports,\n  this will be the location\
+            \ of the Dedicated Ports. For Fabric VCs (Metal Billed), this is where\
+            \ interconnection will be originating from, as we pre-authorize the use\
+            \ of one of our shared ports\n  as the origin of the interconnection using\
+            \ A-Side service tokens. We only allow local connections for Fabric VCs\
+            \ (Metal Billed), so the destination location must be the same as the\
+            \ origin. For Fabric VCs (Fabric Billed), \n  this will be the destination\
+            \ of the interconnection. We allow remote connections for Fabric VCs (Fabric\
+            \ Billed), so the origin of the interconnection can be a different metro\
+            \ set here."
         mode:
           description: "The mode of the interconnection (only relevant to Dedicated\
             \ Ports). Shared connections won't have this field. Can be either 'standard'\
@@ -2282,19 +2293,6 @@ components:
             type: string
           type: array
       type: object
-    Interconnection_metro:
-      allOf:
-      - $ref: '#/components/schemas/Metro'
-      description: "The location of where the shared or Dedicated Port is located.\
-        \ For interconnections with Dedicated Ports,\n  this will be the location\
-        \ of the Dedicated Ports. For Fabric VCs (Metal Billed), this is where interconnection\
-        \ will be originating from, as we pre-authorize the use of one of our shared\
-        \ ports\n  as the origin of the interconnection using A-Side service tokens.\
-        \ We only allow local connections for Fabric VCs (Metal Billed), so the destination\
-        \ location must be the same as the origin. For Fabric VCs (Fabric Billed),\
-        \ \n  this will be the destination of the interconnection. We allow remote\
-        \ connections for Fabric VCs (Fabric Billed), so the origin of the interconnection\
-        \ can be a different metro set here."
     Invitation:
       properties:
         created_at:

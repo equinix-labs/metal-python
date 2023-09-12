@@ -21,12 +21,14 @@ Activate a spare hardware reservation
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest
+from equinix_metal.models.hardware_reservation import HardwareReservation
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -59,6 +61,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling HardwareReservationsApi->activate_hardware_reservation: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -101,12 +105,13 @@ Returns a single hardware reservation
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.hardware_reservation import HardwareReservation
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -140,6 +145,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling HardwareReservationsApi->find_hardware_reservation_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -183,12 +190,13 @@ Provides a collection of hardware reservations for a given project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.hardware_reservation_list import HardwareReservationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -227,6 +235,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling HardwareReservationsApi->find_project_hardware_reservations: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -275,12 +285,14 @@ Move a hardware reservation to another project
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.hardware_reservation import HardwareReservation
+from equinix_metal.models.move_hardware_reservation_request import MoveHardwareReservationRequest
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -313,6 +325,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling HardwareReservationsApi->move_hardware_reservation: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

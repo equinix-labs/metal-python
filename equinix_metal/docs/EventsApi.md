@@ -26,12 +26,13 @@ Returns a list of events pertaining to a specific device
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -67,6 +68,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EventsApi->find_device_events: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -112,12 +115,13 @@ Returns a single event if the user has access
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -151,6 +155,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EventsApi->find_event_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -194,12 +200,13 @@ Returns a list of the current user’s events
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -234,6 +241,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EventsApi->find_events: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -276,12 +285,13 @@ Returns a list of the interconnection events
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -317,6 +327,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EventsApi->find_interconnection_events: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -362,12 +374,13 @@ Returns a list of the interconnection port events
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -404,6 +417,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EventsApi->find_interconnection_port_events: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -450,12 +465,13 @@ Returns a list of events for a single organization
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -491,6 +507,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EventsApi->find_organization_events: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -536,12 +554,13 @@ Returns a list of events for a single project
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -577,6 +596,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EventsApi->find_project_events: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -622,12 +643,13 @@ Returns a list of the virtual circuit events
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -663,6 +685,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EventsApi->find_virtual_circuit_events: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -708,12 +732,13 @@ Returns a list of the VRF route events
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -749,6 +774,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling EventsApi->find_vrf_route_events: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

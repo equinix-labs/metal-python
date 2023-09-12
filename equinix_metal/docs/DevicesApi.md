@@ -35,12 +35,14 @@ Creates a BGP session.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.bgp_session_input import BGPSessionInput
+from equinix_metal.models.bgp_session import BgpSession
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -73,6 +75,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->create_bgp_session: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -115,12 +119,14 @@ Creates a new device and provisions it in the specified location.  Device type-s
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.create_device_request import CreateDeviceRequest
+from equinix_metal.models.device import Device
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -155,6 +161,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->create_device: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -200,12 +208,14 @@ Creates an ip assignment for a device.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ip_assignment import IPAssignment
+from equinix_metal.models.ip_assignment_input import IPAssignmentInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -240,6 +250,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->create_ip_assignment: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -284,12 +296,12 @@ Deletes a device and deprovisions it in our datacenter.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -320,6 +332,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->delete_device: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -363,12 +377,13 @@ Provides a listing of available BGP sessions for the device.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.bgp_session_list import BgpSessionList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -400,6 +415,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_bgp_sessions: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -440,12 +457,13 @@ Type-specific options (such as facility for baremetal devices) will be included 
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.device import Device
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -479,6 +497,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_device_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -522,12 +542,12 @@ Provides the custom metadata stored for this instance in json format
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -557,6 +577,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_device_customdata: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -598,12 +620,13 @@ Retrieve device metadata
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.metadata import Metadata
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -635,6 +658,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_device_metadata_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -676,12 +701,13 @@ Retrieve device userdata
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.userdata import Userdata
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -713,6 +739,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_device_userdata_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -754,12 +782,12 @@ Retrieve an instance bandwidth for a given period of time.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -791,6 +819,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_instance_bandwidth: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -833,12 +863,12 @@ Provides the custom metadata stored for this IP Assignment in json format
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -869,6 +899,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_ip_assignment_customdata: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -911,12 +943,13 @@ Returns all ip assignments for a device.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ip_assignment_list import IPAssignmentList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -950,6 +983,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_ip_assignments: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -992,12 +1027,13 @@ Provides a collection of devices for a given organization.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.device_list import DeviceList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1040,6 +1076,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_organization_devices: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1092,12 +1130,13 @@ Provides a collection of devices for a given project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.device_list import DeviceList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1140,6 +1179,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_project_devices: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1192,12 +1233,13 @@ Returns traffic for a specific device.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1223,7 +1265,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     direction = 'direction_example' # str | Traffic direction
     interval = 'interval_example' # str | Traffic interval (optional)
     bucket = 'bucket_example' # str | Traffic bucket (optional)
-    timeframe = {'key': equinix_metal.FindTrafficTimeframeParameter()} # FindTrafficTimeframeParameter |  (optional)
+    timeframe = equinix_metal.FindTrafficTimeframeParameter() # FindTrafficTimeframeParameter |  (optional)
 
     try:
         # Retrieve device traffic
@@ -1231,6 +1273,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->find_traffic: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1276,12 +1320,13 @@ Provides a summary of the BGP neighbor data associated to the BGP sessions for t
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.bgp_session_neighbors import BgpSessionNeighbors
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1313,6 +1358,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->get_bgp_neighbor_data: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1354,12 +1401,13 @@ Performs an action for the given device.  Possible actions include: power_on, po
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.device_action_input import DeviceActionInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1390,6 +1438,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->perform_action: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1432,12 +1482,14 @@ Updates the device.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.device import Device
+from equinix_metal.models.device_update_input import DeviceUpdateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1470,6 +1522,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling DevicesApi->update_device: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

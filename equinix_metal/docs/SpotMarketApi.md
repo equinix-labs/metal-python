@@ -24,12 +24,14 @@ Creates a new spot market request.  Type-specific options (such as operating_sys
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.spot_market_request import SpotMarketRequest
+from equinix_metal.models.spot_market_request_create_input import SpotMarketRequestCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -62,6 +64,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SpotMarketApi->create_spot_market_request: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -104,12 +108,12 @@ Deletes the spot market request.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -140,6 +144,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SpotMarketApi->delete_spot_market_request: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -182,12 +188,13 @@ Get Equinix Metal current spot market prices for all metros.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.spot_market_prices_per_metro_list import SpotMarketPricesPerMetroList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -220,6 +227,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SpotMarketApi->find_metro_spot_market_prices: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -261,12 +270,13 @@ Get Equinix Metal current spot market prices.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.spot_market_prices_list import SpotMarketPricesList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -299,6 +309,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SpotMarketApi->find_spot_market_prices: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -340,12 +352,13 @@ Get spot market prices for a given plan and facility in a fixed period of time  
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.spot_prices_history_report import SpotPricesHistoryReport
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -381,6 +394,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SpotMarketApi->find_spot_market_prices_history: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -425,12 +440,13 @@ Returns a single spot market request
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.spot_market_request import SpotMarketRequest
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -464,6 +480,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SpotMarketApi->find_spot_market_request_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -507,12 +525,13 @@ View all spot market requests for a given project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.spot_market_request_list import SpotMarketRequestList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -544,6 +563,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SpotMarketApi->list_spot_market_requests: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

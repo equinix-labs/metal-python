@@ -21,12 +21,14 @@ Creates an virtual network.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_network import VirtualNetwork
+from equinix_metal.models.virtual_network_create_input import VirtualNetworkCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -61,6 +63,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VLANsApi->create_virtual_network: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -106,12 +110,13 @@ Deletes a virtual network.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -143,6 +148,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VLANsApi->delete_virtual_network: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -185,12 +192,13 @@ Provides a list of virtual networks for a single project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_network_list import VirtualNetworkList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -226,6 +234,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VLANsApi->find_virtual_networks: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -271,12 +281,13 @@ Get a virtual network.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -308,6 +319,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VLANsApi->get_virtual_network: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

@@ -3,26 +3,26 @@
 """
     Metal API
 
-    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.   # noqa: E501
+    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@equinixmetal.com
     Generated by OpenAPI Generator (https://openapi-generator.tech)
 
     Do not edit the class manually.
-"""
+"""  # noqa: E501
 
-
-from __future__ import absolute_import
 
 import re  # noqa: F401
+import io
+import warnings
 
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBool, StrictStr, conint, conlist, validator
 
-from typing import Dict, Optional
+from typing import Optional
 
 from equinix_metal.models.bgp_session_input import BGPSessionInput
 from equinix_metal.models.bgp_session import BgpSession
@@ -33,6 +33,7 @@ from equinix_metal.models.device import Device
 from equinix_metal.models.device_action_input import DeviceActionInput
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.models.device_update_input import DeviceUpdateInput
+from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
 from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.ip_assignment_input import IPAssignmentInput
 from equinix_metal.models.ip_assignment_list import IPAssignmentList
@@ -40,6 +41,7 @@ from equinix_metal.models.metadata import Metadata
 from equinix_metal.models.userdata import Userdata
 
 from equinix_metal.api_client import ApiClient
+from equinix_metal.api_response import ApiResponse
 from equinix_metal.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
@@ -75,10 +77,6 @@ class DevicesApi(object):
         :type bgp_session_input: BGPSessionInput
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -89,10 +87,12 @@ class DevicesApi(object):
         :rtype: BgpSession
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_bgp_session_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_bgp_session_with_http_info(id, bgp_session_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(..., description="BGP session to create")], **kwargs):  # noqa: E501
+    def create_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(..., description="BGP session to create")], **kwargs) -> ApiResponse:  # noqa: E501
         """Create a BGP session  # noqa: E501
 
         Creates a BGP session.  # noqa: E501
@@ -108,13 +108,14 @@ class DevicesApi(object):
         :type bgp_session_input: BGPSessionInput
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -175,7 +176,7 @@ class DevicesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['bgp_session_input']:
+        if _params['bgp_session_input'] is not None:
             _body_params = _params['bgp_session_input']
 
         # set the HTTP header `Accept`
@@ -237,10 +238,6 @@ class DevicesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -251,10 +248,12 @@ class DevicesApi(object):
         :rtype: Device
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_device_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_device_with_http_info(id, create_device_request, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(..., description="Device to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+    def create_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(..., description="Device to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a device  # noqa: E501
 
         Creates a new device and provisions it in the specified location.  Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.  # noqa: E501
@@ -274,13 +273,14 @@ class DevicesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -351,7 +351,7 @@ class DevicesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['create_device_request']:
+        if _params['create_device_request'] is not None:
             _body_params = _params['create_device_request']
 
         # set the HTTP header `Accept`
@@ -414,10 +414,6 @@ class DevicesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -428,10 +424,12 @@ class DevicesApi(object):
         :rtype: IPAssignment
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_ip_assignment_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.create_ip_assignment_with_http_info(id, ip_assignment_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_ip_assignment_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(..., description="IPAssignment to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+    def create_ip_assignment_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(..., description="IPAssignment to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create an ip assignment  # noqa: E501
 
         Creates an ip assignment for a device.  # noqa: E501
@@ -451,13 +449,14 @@ class DevicesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -528,7 +527,7 @@ class DevicesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['ip_assignment_input']:
+        if _params['ip_assignment_input'] is not None:
             _body_params = _params['ip_assignment_input']
 
         # set the HTTP header `Accept`
@@ -586,10 +585,6 @@ class DevicesApi(object):
         :type force_delete: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -600,10 +595,12 @@ class DevicesApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the delete_device_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_device_with_http_info(id, force_delete, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], force_delete : Annotated[Optional[StrictBool], Field(description="Force the deletion of the device, by detaching any storage volume still active.")] = None, **kwargs):  # noqa: E501
+    def delete_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], force_delete : Annotated[Optional[StrictBool], Field(description="Force the deletion of the device, by detaching any storage volume still active.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the device  # noqa: E501
 
         Deletes a device and deprovisions it in our datacenter.  # noqa: E501
@@ -619,13 +616,14 @@ class DevicesApi(object):
         :type force_delete: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -730,10 +728,6 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -744,10 +738,12 @@ class DevicesApi(object):
         :rtype: BgpSessionList
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_bgp_sessions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_bgp_sessions_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_bgp_sessions_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs):  # noqa: E501
+    def find_bgp_sessions_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all BGP sessions  # noqa: E501
 
         Provides a listing of available BGP sessions for the device.  # noqa: E501
@@ -761,13 +757,14 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -876,10 +873,6 @@ class DevicesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -890,10 +883,12 @@ class DevicesApi(object):
         :rtype: Device
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_device_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_device_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+    def find_device_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a device  # noqa: E501
 
         Type-specific options (such as facility for baremetal devices) will be included as part of the main data structure.                          State value can be one of: active inactive queued or provisioning  # noqa: E501
@@ -911,13 +906,14 @@ class DevicesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1033,10 +1029,6 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1047,10 +1039,12 @@ class DevicesApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_device_customdata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_device_customdata_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_customdata_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Instance UUID")], **kwargs):  # noqa: E501
+    def find_device_customdata_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Instance UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of an instance  # noqa: E501
 
         Provides the custom metadata stored for this instance in json format  # noqa: E501
@@ -1064,13 +1058,14 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1171,10 +1166,6 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1185,10 +1176,12 @@ class DevicesApi(object):
         :rtype: Metadata
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_device_metadata_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_device_metadata_by_id_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_metadata_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs):  # noqa: E501
+    def find_device_metadata_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve metadata  # noqa: E501
 
         Retrieve device metadata  # noqa: E501
@@ -1202,13 +1195,14 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1314,10 +1308,6 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1328,10 +1318,12 @@ class DevicesApi(object):
         :rtype: Userdata
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_device_userdata_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_device_userdata_by_id_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_userdata_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs):  # noqa: E501
+    def find_device_userdata_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve userdata  # noqa: E501
 
         Retrieve device userdata  # noqa: E501
@@ -1345,13 +1337,14 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1461,10 +1454,6 @@ class DevicesApi(object):
         :type until: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1475,10 +1464,12 @@ class DevicesApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_instance_bandwidth_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_instance_bandwidth_with_http_info(id, var_from, until, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_instance_bandwidth_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], var_from : Annotated[StrictStr, Field(..., description="Timestamp from range")], until : Annotated[StrictStr, Field(..., description="Timestamp to range")], **kwargs):  # noqa: E501
+    def find_instance_bandwidth_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], var_from : Annotated[StrictStr, Field(..., description="Timestamp from range")], until : Annotated[StrictStr, Field(..., description="Timestamp to range")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve an instance bandwidth  # noqa: E501
 
         Retrieve an instance bandwidth for a given period of time.  # noqa: E501
@@ -1496,13 +1487,14 @@ class DevicesApi(object):
         :type until: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1613,10 +1605,6 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1627,10 +1615,12 @@ class DevicesApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_ip_assignment_customdata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_ip_assignment_customdata_with_http_info(instance_id, id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_assignment_customdata_with_http_info(self, instance_id : Annotated[StrictStr, Field(..., description="Instance UUID")], id : Annotated[StrictStr, Field(..., description="Ip Assignment UUID")], **kwargs):  # noqa: E501
+    def find_ip_assignment_customdata_with_http_info(self, instance_id : Annotated[StrictStr, Field(..., description="Instance UUID")], id : Annotated[StrictStr, Field(..., description="Ip Assignment UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of an IP Assignment  # noqa: E501
 
         Provides the custom metadata stored for this IP Assignment in json format  # noqa: E501
@@ -1646,13 +1636,14 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1761,10 +1752,6 @@ class DevicesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1775,10 +1762,12 @@ class DevicesApi(object):
         :rtype: IPAssignmentList
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_ip_assignments_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_ip_assignments_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_assignments_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+    def find_ip_assignments_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all ip assignments  # noqa: E501
 
         Returns all ip assignments for a device.  # noqa: E501
@@ -1796,13 +1785,14 @@ class DevicesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1939,10 +1929,6 @@ class DevicesApi(object):
         :type per_page: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1953,10 +1939,12 @@ class DevicesApi(object):
         :rtype: DeviceList
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_organization_devices_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_organization_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs):  # noqa: E501
+    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         Provides a collection of devices for a given organization.  # noqa: E501
@@ -1992,13 +1980,14 @@ class DevicesApi(object):
         :type per_page: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2173,10 +2162,6 @@ class DevicesApi(object):
         :type per_page: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2187,10 +2172,12 @@ class DevicesApi(object):
         :rtype: DeviceList
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_project_devices_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_project_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs):  # noqa: E501
+    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         Provides a collection of devices for a given project.  # noqa: E501
@@ -2226,13 +2213,14 @@ class DevicesApi(object):
         :type per_page: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2371,7 +2359,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_traffic(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], direction : Annotated[StrictStr, Field(..., description="Traffic direction")], interval : Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None, bucket : Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None, timeframe : Optional[Dict[str, Dict[str, StrictStr]]] = None, **kwargs) -> None:  # noqa: E501
+    def find_traffic(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], direction : Annotated[StrictStr, Field(..., description="Traffic direction")], interval : Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None, bucket : Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None, timeframe : Optional[FindTrafficTimeframeParameter] = None, **kwargs) -> None:  # noqa: E501
         """Retrieve device traffic  # noqa: E501
 
         Returns traffic for a specific device.  # noqa: E501
@@ -2393,10 +2381,6 @@ class DevicesApi(object):
         :type timeframe: FindTrafficTimeframeParameter
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2407,10 +2391,12 @@ class DevicesApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_traffic_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_traffic_with_http_info(id, direction, interval, bucket, timeframe, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_traffic_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], direction : Annotated[StrictStr, Field(..., description="Traffic direction")], interval : Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None, bucket : Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None, timeframe : Optional[Dict[str, Dict[str, StrictStr]]] = None, **kwargs):  # noqa: E501
+    def find_traffic_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], direction : Annotated[StrictStr, Field(..., description="Traffic direction")], interval : Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None, bucket : Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None, timeframe : Optional[FindTrafficTimeframeParameter] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve device traffic  # noqa: E501
 
         Returns traffic for a specific device.  # noqa: E501
@@ -2432,13 +2418,14 @@ class DevicesApi(object):
         :type timeframe: FindTrafficTimeframeParameter
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2555,10 +2542,6 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2569,10 +2552,12 @@ class DevicesApi(object):
         :rtype: BgpSessionNeighbors
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_bgp_neighbor_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_bgp_neighbor_data_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_bgp_neighbor_data_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs):  # noqa: E501
+    def get_bgp_neighbor_data_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve BGP neighbor data for this device  # noqa: E501
 
         Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.  # noqa: E501
@@ -2586,13 +2571,14 @@ class DevicesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2700,10 +2686,6 @@ class DevicesApi(object):
         :type device_action_input: DeviceActionInput
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2714,10 +2696,12 @@ class DevicesApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the perform_action_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.perform_action_with_http_info(id, device_action_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def perform_action_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_action_input : Annotated[DeviceActionInput, Field(..., description="Action to perform")], **kwargs):  # noqa: E501
+    def perform_action_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_action_input : Annotated[DeviceActionInput, Field(..., description="Action to perform")], **kwargs) -> ApiResponse:  # noqa: E501
         """Perform an action  # noqa: E501
 
         Performs an action for the given device.  Possible actions include: power_on, power_off, reboot, reinstall, and rescue (reboot the device into rescue OS.)  # noqa: E501
@@ -2733,13 +2717,14 @@ class DevicesApi(object):
         :type device_action_input: DeviceActionInput
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2800,7 +2785,7 @@ class DevicesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['device_action_input']:
+        if _params['device_action_input'] is not None:
             _body_params = _params['device_action_input']
 
         # set the HTTP header `Accept`
@@ -2853,10 +2838,6 @@ class DevicesApi(object):
         :type device_update_input: DeviceUpdateInput
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2867,10 +2848,12 @@ class DevicesApi(object):
         :rtype: Device
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_device_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_device_with_http_info(id, device_update_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(..., description="Facility to update")], **kwargs):  # noqa: E501
+    def update_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(..., description="Facility to update")], **kwargs) -> ApiResponse:  # noqa: E501
         """Update the device  # noqa: E501
 
         Updates the device.  # noqa: E501
@@ -2886,13 +2869,14 @@ class DevicesApi(object):
         :type device_update_input: DeviceUpdateInput
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2953,7 +2937,7 @@ class DevicesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['device_update_input']:
+        if _params['device_update_input'] is not None:
             _body_params = _params['device_update_input']
 
         # set the HTTP header `Accept`

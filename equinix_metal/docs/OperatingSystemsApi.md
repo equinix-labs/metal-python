@@ -19,12 +19,13 @@ Provides a listing of available operating system versions.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.operating_system_list import OperatingSystemList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -55,6 +56,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OperatingSystemsApi->find_operating_system_version: %s\n" % e)
 ```
+
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -91,12 +94,13 @@ Provides a listing of available operating systems to provision your new device w
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.operating_system_list import OperatingSystemList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -127,6 +131,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OperatingSystemsApi->find_operating_systems: %s\n" % e)
 ```
+
+
 
 ### Parameters
 This endpoint does not need any parameter.

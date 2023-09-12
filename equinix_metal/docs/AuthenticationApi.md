@@ -23,12 +23,14 @@ Creates a API key for the current user.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.auth_token import AuthToken
+from equinix_metal.models.auth_token_input import AuthTokenInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -60,6 +62,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthenticationApi->create_api_key: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -101,12 +105,14 @@ Creates an API key for a project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.auth_token import AuthToken
+from equinix_metal.models.auth_token_input import AuthTokenInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -139,6 +145,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthenticationApi->create_project_api_key: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -181,12 +189,12 @@ Deletes the API key.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -216,6 +224,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthenticationApi->delete_api_key: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -256,12 +266,12 @@ Deletes the current user API key.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -291,6 +301,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthenticationApi->delete_user_api_key: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -331,12 +343,13 @@ Returns all API keys for the current user.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.auth_token_list import AuthTokenList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -369,6 +382,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthenticationApi->find_api_keys: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -410,12 +425,13 @@ Returns all API keys for a specific project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.auth_token_list import AuthTokenList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -449,6 +465,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthenticationApi->find_project_api_keys: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

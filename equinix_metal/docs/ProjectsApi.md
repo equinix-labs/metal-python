@@ -28,12 +28,14 @@ Creates a new project for the user default organization. If the user don't have 
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.project import Project
+from equinix_metal.models.project_create_from_root_input import ProjectCreateFromRootInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -67,6 +69,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->create_project: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -109,12 +113,14 @@ In order to add a user to a project, they must first be invited.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.invitation import Invitation
+from equinix_metal.models.invitation_input import InvitationInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -147,6 +153,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->create_project_invitation: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -190,12 +198,14 @@ Organization owners can transfer their projects to other organizations.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.transfer_request import TransferRequest
+from equinix_metal.models.transfer_request_input import TransferRequestInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -228,6 +238,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->create_transfer_request: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -271,12 +283,12 @@ Deletes the project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -306,6 +318,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->delete_project: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -347,12 +361,12 @@ Provides the custom metadata stored for this IP Reservation in json format
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -383,6 +397,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->find_ip_reservation_customdata: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -425,12 +441,13 @@ Returns a single project if the user has access
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.project import Project
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -464,6 +481,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->find_project_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -507,12 +526,12 @@ Provides the custom metadata stored for this project in json format
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -542,6 +561,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->find_project_customdata: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -583,12 +604,13 @@ Returns all invitations in a project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.invitation_list import InvitationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -624,6 +646,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->find_project_invitations: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -669,12 +693,13 @@ Returns all memberships in a project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.membership_list import MembershipList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -710,6 +735,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->find_project_memberships: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -755,12 +782,13 @@ Returns a collection of projects that the current user is a member of.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.project_list import ProjectList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -796,6 +824,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->find_projects: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -839,12 +869,14 @@ Updates the project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.project import Project
+from equinix_metal.models.project_update_input import ProjectUpdateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -877,6 +909,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ProjectsApi->update_project: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

@@ -3,24 +3,23 @@
 """
     Metal API
 
-    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.   # noqa: E501
+    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@equinixmetal.com
     Generated by OpenAPI Generator (https://openapi-generator.tech)
 
     Do not edit the class manually.
-"""
+"""  # noqa: E501
 
 
 from __future__ import annotations
-from inspect import getfullargspec
 import pprint
 import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, conlist, validator
 from equinix_metal.models.device_actions_inner import DeviceActionsInner
 from equinix_metal.models.device_created_by import DeviceCreatedBy
@@ -64,12 +63,12 @@ class Device(BaseModel):
     project: Optional[DeviceProject] = None
     project_lite: Optional[DeviceProjectLite] = None
     provisioning_events: Optional[conlist(Event)] = None
-    provisioning_percentage: Optional[StrictFloat] = Field(None, description="Only visible while device provisioning")
+    provisioning_percentage: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Only visible while device provisioning")
     root_password: Optional[StrictStr] = Field(None, description="Root password is automatically generated when server is provisioned and it is removed after 24 hours")
     short_id: Optional[StrictStr] = None
     sos: Optional[StrictStr] = Field(None, description="Hostname used to connect to the instance via the SOS (Serial over SSH) out-of-band console.")
     spot_instance: Optional[StrictBool] = Field(None, description="Whether or not the device is a spot instance.")
-    spot_price_max: Optional[StrictFloat] = Field(None, description="The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown.")
+    spot_price_max: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="The maximum price per hour you are willing to pay to keep this spot instance.  If you are outbid, the termination will be set allowing two minutes before shutdown.")
     ssh_keys: Optional[conlist(Href)] = None
     state: Optional[StrictStr] = None
     switch_uuid: Optional[StrictStr] = Field(None, description="Switch short id. This can be used to determine if two devices are connected to the same switch, for example.")
@@ -82,14 +81,17 @@ class Device(BaseModel):
     __properties = ["actions", "always_pxe", "billing_cycle", "bonding_mode", "created_at", "created_by", "customdata", "description", "facility", "hardware_reservation", "hostname", "href", "id", "image_url", "ip_addresses", "ipxe_script_url", "iqn", "locked", "metro", "network_ports", "operating_system", "plan", "project", "project_lite", "provisioning_events", "provisioning_percentage", "root_password", "short_id", "sos", "spot_instance", "spot_price_max", "ssh_keys", "state", "switch_uuid", "tags", "termination_time", "updated_at", "user", "userdata", "volumes"]
 
     @validator('state')
-    def state_validate_enum(cls, v):
-        if v is None:
-            return v
-        if v not in ('active', 'deleted', 'deprovisioning', 'failed', 'inactive', 'queued', 'reinstalling', 'post_provisioning', 'powering_on', 'powering_off', 'provisioning'):
+    def state_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('active', 'deleted', 'deprovisioning', 'failed', 'inactive', 'queued', 'reinstalling', 'post_provisioning', 'powering_on', 'powering_off', 'provisioning'):
             raise ValueError("must be one of enum values ('active', 'deleted', 'deprovisioning', 'failed', 'inactive', 'queued', 'reinstalling', 'post_provisioning', 'powering_on', 'powering_off', 'provisioning')")
-        return v
+        return value
 
     class Config:
+        """Pydantic configuration"""
         allow_population_by_field_name = True
         validate_assignment = True
 
@@ -186,7 +188,7 @@ class Device(BaseModel):
         if obj is None:
             return None
 
-        if type(obj) is not dict:
+        if not isinstance(obj, dict):
             return Device.parse_obj(obj)
 
         _obj = Device.parse_obj({
@@ -232,4 +234,5 @@ class Device(BaseModel):
             "volumes": [Href.from_dict(_item) for _item in obj.get("volumes")] if obj.get("volumes") is not None else None
         })
         return _obj
+
 

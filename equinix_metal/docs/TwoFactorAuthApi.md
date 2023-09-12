@@ -21,12 +21,12 @@ Disables two factor authentication.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -55,6 +55,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling TwoFactorAuthApi->disable_tfa_app: %s\n" % e)
 ```
+
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -92,12 +94,12 @@ Disables two factor authentication.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -126,6 +128,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling TwoFactorAuthApi->disable_tfa_sms: %s\n" % e)
 ```
+
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -163,12 +167,12 @@ Enables two factor authentication using authenticator app.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -197,6 +201,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling TwoFactorAuthApi->enable_tfa_app: %s\n" % e)
 ```
+
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -233,12 +239,12 @@ Enables two factor authentication with sms.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -267,6 +273,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling TwoFactorAuthApi->enable_tfa_sms: %s\n" % e)
 ```
+
+
 
 ### Parameters
 This endpoint does not need any parameter.

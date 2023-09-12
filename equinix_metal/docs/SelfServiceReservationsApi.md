@@ -20,12 +20,14 @@ Creates a reservation.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.create_self_service_reservation_request import CreateSelfServiceReservationRequest
+from equinix_metal.models.self_service_reservation_response import SelfServiceReservationResponse
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -58,6 +60,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SelfServiceReservationsApi->create_self_service_reservation: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -99,12 +103,13 @@ Returns a reservation
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.self_service_reservation_response import SelfServiceReservationResponse
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -137,6 +142,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SelfServiceReservationsApi->find_self_service_reservation: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -178,12 +185,13 @@ Returns all reservations.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.self_service_reservation_list import SelfServiceReservationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -218,6 +226,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SelfServiceReservationsApi->find_self_service_reservations: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
