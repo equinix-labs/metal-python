@@ -60,23 +60,6 @@ for s in fixSchemas:
 project_props = fixedSpec['components']['schemas']['Project']['properties']
 project_props['backend_transfer_enabled'] = {'type': 'boolean'}
 
-# FIX 6. add `name` param to allow for search by resource name
-name_search_param = {
-    "name": "name",
-    "in": "query",
-    "description": "Search by name substring",
-    "required": False,
-    "schema": {
-        "type": "string"
-    }
-}
-name_search_capable_paths = [
-    '/projects',
-    '/organizations/{id}/projects',
-]
-for path in name_search_capable_paths:
-    fixedSpec['paths'][path]['get']['parameters'].append(name_search_param)
-
 # FIX 8. make requested_by mandatory for parsing ip reservation
 # .. in order to distinguish from ip assignment and vrf
 
