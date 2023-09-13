@@ -32,12 +32,14 @@ Creates an organization.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.organization import Organization
+from equinix_metal.models.organization_input import OrganizationInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -71,6 +73,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->create_organization: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -114,12 +118,14 @@ In order to add a user to an organization, they must first be invited. To invite
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.invitation import Invitation
+from equinix_metal.models.invitation_input import InvitationInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -152,6 +158,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->create_organization_invitation: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -195,12 +203,14 @@ Creates a new project for the organization
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.project import Project
+from equinix_metal.models.project_create_input import ProjectCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -233,6 +243,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->create_organization_project: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -274,12 +286,14 @@ Creates a payment method.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.payment_method import PaymentMethod
+from equinix_metal.models.payment_method_create_input import PaymentMethodCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -312,6 +326,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->create_payment_method: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -354,12 +370,12 @@ Deletes the organization.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -389,6 +405,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->delete_organization: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -429,12 +447,13 @@ Returns a listing of available operating systems for the given organization
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.operating_system_list import OperatingSystemList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -468,6 +487,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->find_operating_systems_by_organization: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -511,12 +532,13 @@ Returns a single organization's details, if the user is authorized to view it.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.organization import Organization
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -550,6 +572,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->find_organization_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -593,12 +617,12 @@ Provides the custom metadata stored for this organization in json format
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -628,6 +652,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->find_organization_customdata: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -669,12 +695,13 @@ Returns all invitations in an organization.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.invitation_list import InvitationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -710,6 +737,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->find_organization_invitations: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -755,12 +784,13 @@ Returns all payment methods of an organization.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.payment_method_list import PaymentMethodList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -796,6 +826,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->find_organization_payment_methods: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -840,12 +872,13 @@ Returns a collection of projects that belong to the organization.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.project_list import ProjectList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -882,6 +915,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->find_organization_projects: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -926,12 +961,13 @@ Provides a collection of project transfer requests from or to the organization.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.transfer_request_list import TransferRequestList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -965,6 +1001,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->find_organization_transfers: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1007,12 +1045,13 @@ Returns a list of organizations that are accessible to the current user.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.organization_list import OrganizationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1049,6 +1088,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->find_organizations: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1093,12 +1134,13 @@ Returns a listing of available plans for the given organization
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.plan_list import PlanList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1132,6 +1174,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->find_plans_by_organization: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1175,12 +1219,14 @@ Updates the organization.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.organization import Organization
+from equinix_metal.models.organization_input import OrganizationInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1213,6 +1259,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling OrganizationsApi->update_organization: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 # flake8: noqa
 
 # import apis into api package
@@ -41,3 +39,4 @@ from equinix_metal.api.userdata_api import UserdataApi
 from equinix_metal.api.users_api import UsersApi
 from equinix_metal.api.vlans_api import VLANsApi
 from equinix_metal.api.vrfs_api import VRFsApi
+

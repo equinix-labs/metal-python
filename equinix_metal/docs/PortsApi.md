@@ -31,12 +31,13 @@ Sets a virtual network on this port as a \"native VLAN\". The VLAN must have alr
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -69,6 +70,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->assign_native_vlan: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -111,12 +114,14 @@ Assign a hardware port to a virtual network.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port import Port
+from equinix_metal.models.port_assign_input import PortAssignInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -149,6 +154,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->assign_port: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -192,12 +199,13 @@ Enabling bonding for one or all ports
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -230,6 +238,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->bond_port: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -273,12 +283,14 @@ Converts a bond port to Layer 2. IP assignments of the port will be removed.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port import Port
+from equinix_metal.models.port_assign_input import PortAssignInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -311,6 +323,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->convert_layer2: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -354,12 +368,14 @@ Converts a bond port to Layer 3. VLANs must first be unassigned.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port import Port
+from equinix_metal.models.port_convert_layer3_input import PortConvertLayer3Input
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -392,6 +408,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->convert_layer3: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -435,12 +453,14 @@ Create a new asynchronous batch request which handles adding and/or removing the
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port_vlan_assignment_batch import PortVlanAssignmentBatch
+from equinix_metal.models.port_vlan_assignment_batch_create_input import PortVlanAssignmentBatchCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -473,6 +493,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->create_port_vlan_assignment_batch: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -516,12 +538,13 @@ Removes the native VLAN from this port
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -553,6 +576,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->delete_native_vlan: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -594,12 +619,13 @@ Disabling bonding for one or all ports
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -632,6 +658,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->disbond_port: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -675,12 +703,13 @@ Returns a port
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -714,6 +743,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->find_port_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -756,12 +787,13 @@ Returns the details of an existing Port-VLAN Assignment batch, including the lis
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port_vlan_assignment_batch import PortVlanAssignmentBatch
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -796,6 +828,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->find_port_vlan_assignment_batch_by_port_id_and_batch_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -840,12 +874,13 @@ Show all the VLAN assignment batches that have been created for managing this po
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port_vlan_assignment_batch_list import PortVlanAssignmentBatchList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -877,6 +912,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->find_port_vlan_assignment_batches: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -918,12 +955,13 @@ Show the details of a specific Port-VLAN assignment, including the current state
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port_vlan_assignment import PortVlanAssignment
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -958,6 +996,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->find_port_vlan_assignment_by_port_id_and_assignment_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1002,12 +1042,13 @@ Show the port's current VLAN assignments, including if this VLAN is set as nativ
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port_vlan_assignment_list import PortVlanAssignmentList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1041,6 +1082,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->find_port_vlan_assignments: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1084,12 +1127,14 @@ Unassign a port for a hardware.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.port import Port
+from equinix_metal.models.port_assign_input import PortAssignInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1122,6 +1167,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PortsApi->unassign_port: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

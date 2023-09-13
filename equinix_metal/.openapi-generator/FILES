@@ -101,11 +101,9 @@ docs/IPReservationRequestInput.md
 docs/IncidentsApi.md
 docs/InstancesBatchCreateInput.md
 docs/InstancesBatchCreateInputBatchesInner.md
-docs/InstancesBatchCreateInputBatchesInnerAllOf.md
 docs/Interconnection.md
 docs/InterconnectionCreateInput.md
 docs/InterconnectionList.md
-docs/InterconnectionMetro.md
 docs/InterconnectionPort.md
 docs/InterconnectionPortList.md
 docs/InterconnectionUpdateInput.md
@@ -315,6 +313,7 @@ equinix_metal/api/users_api.py
 equinix_metal/api/vlans_api.py
 equinix_metal/api/vrfs_api.py
 equinix_metal/api_client.py
+equinix_metal/api_response.py
 equinix_metal/configuration.py
 equinix_metal/exceptions.py
 equinix_metal/models/__init__.py
@@ -391,11 +390,9 @@ equinix_metal/models/hardware_reservation_list.py
 equinix_metal/models/href.py
 equinix_metal/models/instances_batch_create_input.py
 equinix_metal/models/instances_batch_create_input_batches_inner.py
-equinix_metal/models/instances_batch_create_input_batches_inner_all_of.py
 equinix_metal/models/interconnection.py
 equinix_metal/models/interconnection_create_input.py
 equinix_metal/models/interconnection_list.py
-equinix_metal/models/interconnection_metro.py
 equinix_metal/models/interconnection_port.py
 equinix_metal/models/interconnection_port_list.py
 equinix_metal/models/interconnection_update_input.py
@@ -550,6 +547,7 @@ equinix_metal/models/vrf_update_input.py
 equinix_metal/models/vrf_virtual_circuit.py
 equinix_metal/models/vrf_virtual_circuit_create_input.py
 equinix_metal/models/vrf_virtual_circuit_update_input.py
+equinix_metal/py.typed
 equinix_metal/rest.py
 git_push.sh
 pyproject.toml
@@ -641,11 +639,9 @@ test/test_href.py
 test/test_incidents_api.py
 test/test_instances_batch_create_input.py
 test/test_instances_batch_create_input_batches_inner.py
-test/test_instances_batch_create_input_batches_inner_all_of.py
 test/test_interconnection.py
 test/test_interconnection_create_input.py
 test/test_interconnection_list.py
-test/test_interconnection_metro.py
 test/test_interconnection_port.py
 test/test_interconnection_port_list.py
 test/test_interconnection_update_input.py

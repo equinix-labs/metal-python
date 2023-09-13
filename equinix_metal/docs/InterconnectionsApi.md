@@ -32,12 +32,14 @@ Create a new Virtual Circuit on a Dedicated Port. To create a regular Virtual Ci
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_circuit import VirtualCircuit
+from equinix_metal.models.virtual_circuit_create_input import VirtualCircuitCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -71,6 +73,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->create_interconnection_port_virtual_circuit: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -113,12 +117,14 @@ Creates a new interconnection request. A Project ID must be specified in the req
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.interconnection import Interconnection
+from equinix_metal.models.interconnection_create_input import InterconnectionCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -151,6 +157,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->create_organization_interconnection: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -193,12 +201,14 @@ Creates a new interconnection request
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.interconnection import Interconnection
+from equinix_metal.models.interconnection_create_input import InterconnectionCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -231,6 +241,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->create_project_interconnection: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -272,12 +284,13 @@ Delete a interconnection, its associated ports and virtual circuits.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.interconnection import Interconnection
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -309,6 +322,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->delete_interconnection: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -349,12 +364,13 @@ Delete a virtual circuit from a Dedicated Port.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_circuit import VirtualCircuit
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -386,6 +402,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->delete_virtual_circuit: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -426,12 +444,13 @@ Get the details of a interconnection
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.interconnection import Interconnection
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -463,6 +482,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->get_interconnection: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -503,12 +524,13 @@ Get the details of an interconnection port.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.interconnection_port import InterconnectionPort
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -541,6 +563,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->get_interconnection_port: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -582,12 +606,13 @@ Get the details of a virtual circuit
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_circuit import VirtualCircuit
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -619,6 +644,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->get_virtual_circuit: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -659,12 +686,13 @@ List the virtual circuit record(s) associatiated with a particular interconnecti
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_circuit_list import VirtualCircuitList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -697,6 +725,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->list_interconnection_port_virtual_circuits: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -738,12 +768,13 @@ List the ports associated to an interconnection.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.interconnection_port_list import InterconnectionPortList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -775,6 +806,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->list_interconnection_ports: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -815,12 +848,13 @@ List the virtual circuit record(s) associated with a particular interconnection 
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_circuit_list import VirtualCircuitList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -852,6 +886,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->list_interconnection_virtual_circuits: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -892,12 +928,13 @@ List the connections belonging to the organization
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.interconnection_list import InterconnectionList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -929,6 +966,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->organization_list_interconnections: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -969,12 +1008,13 @@ List the connections belonging to the project
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.interconnection_list import InterconnectionList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1010,6 +1050,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->project_list_interconnections: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1054,12 +1096,14 @@ Update the details of a interconnection
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.interconnection import Interconnection
+from equinix_metal.models.interconnection_update_input import InterconnectionUpdateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1092,6 +1136,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->update_interconnection: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1133,12 +1179,14 @@ Update the details of a virtual circuit.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.virtual_circuit import VirtualCircuit
+from equinix_metal.models.virtual_circuit_update_input import VirtualCircuitUpdateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1171,6 +1219,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling InterconnectionsApi->update_virtual_circuit: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

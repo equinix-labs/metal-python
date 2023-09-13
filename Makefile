@@ -1,8 +1,8 @@
 PACKAGE_VERSION=0.2.2
 
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
-OPENAPI_CODEGEN_SHA=sha256:c07f666580053cc9f67a4adffad24c0ce6466c91d1ed1db8d05c39ba70f7ffdf
-OPENAPI_CODEGEN_IMAGE=openapitools/openapi-generator-cli@${OPENAPI_CODEGEN_SHA}
+OPENAPI_CODEGEN_TAG=v7.0.0
+OPENAPI_CODEGEN_IMAGE=openapitools/openapi-generator-cli:${OPENAPI_CODEGEN_TAG}
 CURRENT_UID := $(shell id -u)
 CURRENT_GID := $(shell id -g)
 OPENAPI_COMMAND=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_CODEGEN_IMAGE}
@@ -44,7 +44,7 @@ USER_AGENT=${GIT_REPO}/${PACKAGE_VERSION}
 generate: clean patch-spec
 	${OPENAPI_COMMAND} generate \
 		-i /local/${SPEC_PATCHED_FILE} \
-		-g python-nextgen \
+		-g python \
 		-o /local/${PACKAGE_NAME} \
 		--git-repo-id ${GIT_REPO} \
 		--git-user-id ${GIT_ORG}  \

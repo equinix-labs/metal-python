@@ -20,12 +20,13 @@ Provides a listing of available datacenters where you can provision Packet devic
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.facility_list import FacilityList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -58,6 +59,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling FacilitiesApi->find_facilities: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -98,12 +101,13 @@ Returns a listing of available datacenters for the given organization
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.facility_list import FacilityList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -137,6 +141,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling FacilitiesApi->find_facilities_by_organization: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -180,12 +186,13 @@ Returns a listing of available datacenters for the given project
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.facility_list import FacilityList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -219,6 +226,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling FacilitiesApi->find_facilities_by_project: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

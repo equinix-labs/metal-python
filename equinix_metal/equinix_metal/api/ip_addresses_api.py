@@ -3,19 +3,19 @@
 """
     Metal API
 
-    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field.   # noqa: E501
+    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@equinixmetal.com
     Generated by OpenAPI Generator (https://openapi-generator.tech)
 
     Do not edit the class manually.
-"""
+"""  # noqa: E501
 
-
-from __future__ import absolute_import
 
 import re  # noqa: F401
+import io
+import warnings
 
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
@@ -32,6 +32,7 @@ from equinix_metal.models.request_ip_reservation201_response import RequestIPRes
 from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest
 
 from equinix_metal.api_client import ApiClient
+from equinix_metal.api_response import ApiResponse
 from equinix_metal.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
@@ -65,10 +66,6 @@ class IPAddressesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -79,10 +76,12 @@ class IPAddressesApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the delete_ip_address_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_ip_address_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_ip_address_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], **kwargs):  # noqa: E501
+    def delete_ip_address_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Unassign an ip address  # noqa: E501
 
         This call can be used to un-assign an IP assignment or delete an IP reservation.  Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device or metal gateway and will make the IP address available to be assigned to another device, once the IP has been un-configured from the network.  Delete an IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.   # noqa: E501
@@ -96,13 +95,14 @@ class IPAddressesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -207,10 +207,6 @@ class IPAddressesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -221,10 +217,12 @@ class IPAddressesApi(object):
         :rtype: FindIPAddressById200Response
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_ip_address_by_id_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_ip_address_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_address_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs):  # noqa: E501
+    def find_ip_address_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve an ip address  # noqa: E501
 
         Returns a single ip address if the user has access.  # noqa: E501
@@ -242,13 +240,14 @@ class IPAddressesApi(object):
         :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -364,10 +363,6 @@ class IPAddressesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -378,10 +373,12 @@ class IPAddressesApi(object):
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_ip_address_customdata_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_ip_address_customdata_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_address_customdata_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Ip Reservation UUID")], **kwargs):  # noqa: E501
+    def find_ip_address_customdata_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Ip Reservation UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of an IP Reservation or IP Assignment  # noqa: E501
 
         Provides the custom metadata stored for this IP Reservation or IP Assignment in json format  # noqa: E501
@@ -395,13 +392,14 @@ class IPAddressesApi(object):
         :type id: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -504,10 +502,6 @@ class IPAddressesApi(object):
         :type cidr: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -518,10 +512,12 @@ class IPAddressesApi(object):
         :rtype: IPAvailabilitiesList
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_ip_availabilities_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_ip_availabilities_with_http_info(id, cidr, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_availabilities_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Reservation UUID")], cidr : Annotated[StrictStr, Field(..., description="Size of subnets in bits")], **kwargs):  # noqa: E501
+    def find_ip_availabilities_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Reservation UUID")], cidr : Annotated[StrictStr, Field(..., description="Size of subnets in bits")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all available subnets of a particular reservation  # noqa: E501
 
         Provides a list of IP resevations for a single project.  # noqa: E501
@@ -537,13 +533,14 @@ class IPAddressesApi(object):
         :type cidr: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -661,10 +658,6 @@ class IPAddressesApi(object):
         :type per_page: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -675,10 +668,12 @@ class IPAddressesApi(object):
         :rtype: IPReservationList
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the find_ip_reservations_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.find_ip_reservations_with_http_info(id, types, include, exclude, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_reservations_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], types : Annotated[Optional[conlist(StrictStr)], Field(description="Filter project IP reservations by reservation type")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs):  # noqa: E501
+    def find_ip_reservations_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], types : Annotated[Optional[conlist(StrictStr)], Field(description="Filter project IP reservations by reservation type")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all ip reservations  # noqa: E501
 
         Provides a paginated list of IP reservations for a single project.  # noqa: E501
@@ -700,13 +695,14 @@ class IPAddressesApi(object):
         :type per_page: int
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -833,10 +829,6 @@ class IPAddressesApi(object):
         :type request_ip_reservation_request: RequestIPReservationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -847,10 +839,12 @@ class IPAddressesApi(object):
         :rtype: RequestIPReservation201Response
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the request_ip_reservation_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.request_ip_reservation_with_http_info(id, request_ip_reservation_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def request_ip_reservation_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], request_ip_reservation_request : Annotated[RequestIPReservationRequest, Field(..., description="IP Reservation Request to create")], **kwargs):  # noqa: E501
+    def request_ip_reservation_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], request_ip_reservation_request : Annotated[RequestIPReservationRequest, Field(..., description="IP Reservation Request to create")], **kwargs) -> ApiResponse:  # noqa: E501
         """Requesting IP reservations  # noqa: E501
 
         Request more IP space for a project in order to have additional IP addresses to assign to devices.  If the request is within the max quota, an IP reservation will be created. If the project will exceed its IP quota, a request will be submitted for review, and will return an IP Reservation with a `state` of `pending`. You can automatically have the request fail with HTTP status 422 instead of triggering the review process by providing the `fail_on_approval_required` parameter set to `true` in the request.  # noqa: E501
@@ -866,13 +860,14 @@ class IPAddressesApi(object):
         :type request_ip_reservation_request: RequestIPReservationRequest
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -933,7 +928,7 @@ class IPAddressesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['request_ip_reservation_request']:
+        if _params['request_ip_reservation_request'] is not None:
             _body_params = _params['request_ip_reservation_request']
 
         # set the HTTP header `Accept`
@@ -992,10 +987,6 @@ class IPAddressesApi(object):
         :type ip_assignment_update_input: IPAssignmentUpdateInput
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :type _preload_content: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1006,10 +997,12 @@ class IPAddressesApi(object):
         :rtype: FindIPAddressById200Response
         """
         kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the update_ip_address_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.update_ip_address_with_http_info(id, ip_assignment_update_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_ip_address_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], ip_assignment_update_input : Optional[IPAssignmentUpdateInput] = None, **kwargs):  # noqa: E501
+    def update_ip_address_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], ip_assignment_update_input : Optional[IPAssignmentUpdateInput] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update an ip address  # noqa: E501
 
         Update details about an ip address  # noqa: E501
@@ -1025,13 +1018,14 @@ class IPAddressesApi(object):
         :type ip_assignment_update_input: IPAssignmentUpdateInput
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
         :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1092,7 +1086,7 @@ class IPAddressesApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['ip_assignment_update_input']:
+        if _params['ip_assignment_update_input'] is not None:
             _body_params = _params['ip_assignment_update_input']
 
         # set the HTTP header `Accept`

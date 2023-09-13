@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**avatar** | **str** |  | [optional] 
+**avatar** | **bytearray** |  | [optional] 
 **company_name** | **str** |  | [optional] 
 **company_url** | **str** |  | [optional] 
 **customdata** | **object** |  | [optional] 

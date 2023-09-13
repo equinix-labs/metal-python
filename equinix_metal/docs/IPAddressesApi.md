@@ -24,12 +24,12 @@ This call can be used to un-assign an IP assignment or delete an IP reservation.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -59,6 +59,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IPAddressesApi->delete_ip_address: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -100,12 +102,13 @@ Returns a single ip address if the user has access.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -139,6 +142,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IPAddressesApi->find_ip_address_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -182,12 +187,12 @@ Provides the custom metadata stored for this IP Reservation or IP Assignment in 
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -217,6 +222,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IPAddressesApi->find_ip_address_customdata: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -258,12 +265,13 @@ Provides a list of IP resevations for a single project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ip_availabilities_list import IPAvailabilitiesList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -296,6 +304,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IPAddressesApi->find_ip_availabilities: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -338,12 +348,13 @@ Provides a paginated list of IP reservations for a single project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ip_reservation_list import IPReservationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -379,6 +390,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IPAddressesApi->find_ip_reservations: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -424,12 +437,14 @@ Request more IP space for a project in order to have additional IP addresses to 
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.request_ip_reservation201_response import RequestIPReservation201Response
+from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -462,6 +477,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IPAddressesApi->request_ip_reservation: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -505,12 +522,14 @@ Update details about an ip address
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
+from equinix_metal.models.ip_assignment_update_input import IPAssignmentUpdateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -543,6 +562,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling IPAddressesApi->update_ip_address: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

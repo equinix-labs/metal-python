@@ -25,12 +25,14 @@ Creates a ssh key.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ssh_key import SSHKey
+from equinix_metal.models.ssh_key_create_input import SSHKeyCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -63,6 +65,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SSHKeysApi->create_project_ssh_key: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -104,12 +108,14 @@ Creates a ssh key.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ssh_key import SSHKey
+from equinix_metal.models.ssh_key_create_input import SSHKeyCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -141,6 +147,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SSHKeysApi->create_ssh_key: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -181,12 +189,12 @@ Deletes the ssh key.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -216,6 +224,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SSHKeysApi->delete_ssh_key: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -257,12 +267,13 @@ Returns a collection of the device's ssh keys.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ssh_key_list import SSHKeyList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -297,6 +308,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SSHKeysApi->find_device_ssh_keys: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -339,12 +352,13 @@ Returns a collection of the project's ssh keys.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ssh_key_list import SSHKeyList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -379,6 +393,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SSHKeysApi->find_project_ssh_keys: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -421,12 +437,13 @@ Returns a single ssh key if the user has access
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ssh_key import SSHKey
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -460,6 +477,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SSHKeysApi->find_ssh_key_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -503,12 +522,13 @@ Returns a collection of the user’s ssh keys.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ssh_key_list import SSHKeyList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -542,6 +562,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SSHKeysApi->find_ssh_keys: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -583,12 +605,14 @@ Updates the ssh key.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ssh_key import SSHKey
+from equinix_metal.models.ssh_key_input import SSHKeyInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -621,6 +645,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling SSHKeysApi->update_ssh_key: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

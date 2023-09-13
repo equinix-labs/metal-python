@@ -20,12 +20,12 @@ Deletes the payment method.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -55,6 +55,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PaymentMethodsApi->delete_payment_method: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -95,12 +97,13 @@ Returns a payment method
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.payment_method import PaymentMethod
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -134,6 +137,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PaymentMethodsApi->find_payment_method_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -176,12 +181,14 @@ Updates the payment method.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.payment_method import PaymentMethod
+from equinix_metal.models.payment_method_update_input import PaymentMethodUpdateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -214,6 +221,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling PaymentMethodsApi->update_payment_method: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

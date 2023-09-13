@@ -23,12 +23,14 @@ Validates if a deploy can be fulfilled.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.capacity_check_per_facility_list import CapacityCheckPerFacilityList
+from equinix_metal.models.capacity_input import CapacityInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -60,6 +62,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling CapacityApi->check_capacity_for_facility: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -100,12 +104,14 @@ Validates if a deploy can be fulfilled in a metro.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.capacity_check_per_metro_list import CapacityCheckPerMetroList
+from equinix_metal.models.capacity_per_metro_input import CapacityPerMetroInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -137,6 +143,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling CapacityApi->check_capacity_for_metro: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -177,12 +185,13 @@ Returns a list of facilities and plans with their current capacity.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.capacity_list import CapacityList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -213,6 +222,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling CapacityApi->find_capacity_for_facility: %s\n" % e)
 ```
+
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -249,12 +260,13 @@ Returns a list of metros and plans with their current capacity.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.metro_capacity_list import MetroCapacityList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -285,6 +297,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling CapacityApi->find_capacity_for_metro: %s\n" % e)
 ```
+
+
 
 ### Parameters
 This endpoint does not need any parameter.
@@ -321,12 +335,13 @@ Returns a list of facilities and plans with their current capacity.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.capacity_list import CapacityList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -358,6 +373,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling CapacityApi->find_organization_capacity_per_facility: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -398,12 +415,13 @@ Returns a list of metros and plans with their current capacity.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.metro_capacity_list import MetroCapacityList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -435,6 +453,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling CapacityApi->find_organization_capacity_per_metro: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

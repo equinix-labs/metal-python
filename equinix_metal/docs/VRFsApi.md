@@ -33,12 +33,13 @@ Return a single BGP Dynamic Neighbor resource
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -72,6 +73,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->bgp_dynamic_neighbors_id_get: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -114,12 +117,14 @@ Create a VRF BGP Dynamic Neighbor range.  BGP Dynamic Neighbor records are limit
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
+from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -154,6 +159,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->create_bgp_dynamic_neighbor: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -199,12 +206,14 @@ Creates a new VRF in the specified project
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf import Vrf
+from equinix_metal.models.vrf_create_input import VrfCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -239,6 +248,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->create_vrf: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -283,12 +294,14 @@ Create a route in a VRF. Currently only static default routes are supported.  No
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf_route import VrfRoute
+from equinix_metal.models.vrf_route_create_input import VrfRouteCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -323,6 +336,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->create_vrf_route: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -368,12 +383,13 @@ Trigger the removal of a BGP Neighbor range from a VRF
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -407,6 +423,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->delete_bgp_dynamic_neighbor_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -450,12 +468,12 @@ Deletes the VRF
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -485,6 +503,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->delete_vrf: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -526,12 +546,13 @@ Trigger the deletion of a VRF Route resource. The status of the route will updat
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -565,6 +586,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->delete_vrf_route_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -608,12 +631,13 @@ Returns a single VRF resource
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf import Vrf
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -647,6 +671,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->find_vrf_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -690,12 +716,13 @@ Returns the IP Reservation for the VRF.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -730,6 +757,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->find_vrf_ip_reservation: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -773,12 +802,13 @@ Returns the list of VRF IP Reservations for the VRF.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf_ip_reservation_list import VrfIpReservationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -812,6 +842,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->find_vrf_ip_reservations: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -854,12 +886,13 @@ Returns a single VRF Route resource
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -893,6 +926,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->find_vrf_route_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -935,12 +970,13 @@ Returns the list of VRFs for a single project.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf_list import VrfList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -975,6 +1011,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->find_vrfs: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1018,12 +1056,13 @@ Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1057,6 +1096,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->get_bgp_dynamic_neighbors: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1099,12 +1140,13 @@ Returns the list of routes for the VRF
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf_route_list import VrfRouteList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1138,6 +1180,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->get_vrf_routes: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1180,12 +1224,14 @@ Updates the VRF.
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf import Vrf
+from equinix_metal.models.vrf_update_input import VrfUpdateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1218,6 +1264,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->update_vrf: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -1261,12 +1309,14 @@ Requests a VRF Route be redeployed across the network. Updating the prefix or ne
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.vrf_route import VrfRoute
+from equinix_metal.models.vrf_route_update_input import VrfRouteUpdateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -1301,6 +1351,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling VRFsApi->update_vrf_route_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

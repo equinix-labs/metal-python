@@ -23,12 +23,14 @@ Create a metal gateway in a project
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest
+from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -65,6 +67,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling MetalGatewaysApi->create_metal_gateway: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -111,12 +115,14 @@ Create a new Elastic IP on this Metal Gateway.  Assign an IPv4 range as an elast
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ip_assignment import IPAssignment
+from equinix_metal.models.metal_gateway_elastic_ip_create_input import MetalGatewayElasticIpCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -149,6 +155,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling MetalGatewaysApi->create_metal_gateway_elastic_ip: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -192,12 +200,13 @@ Deletes a metal gateway and any elastic IP assignments associated with this meta
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -231,6 +240,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling MetalGatewaysApi->delete_metal_gateway: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -273,12 +284,13 @@ Returns a specific metal gateway
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -312,6 +324,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling MetalGatewaysApi->find_metal_gateway_by_id: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -354,12 +368,13 @@ Return all metal gateways for a project
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.metal_gateway_list import MetalGatewayList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -395,6 +410,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling MetalGatewaysApi->find_metal_gateways_by_project: %s\n" % e)
 ```
+
+
 
 ### Parameters
 
@@ -439,12 +456,13 @@ Returns the list of Elastic IPs assigned to this Metal Gateway
 
 * Api Key Authentication (x_auth_token):
 ```python
-from __future__ import print_function
 import time
 import os
 import equinix_metal
+from equinix_metal.models.ip_assignment_list import IPAssignmentList
 from equinix_metal.rest import ApiException
 from pprint import pprint
+
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
 configuration = equinix_metal.Configuration(
@@ -478,6 +496,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling MetalGatewaysApi->get_metal_gateway_elastic_ips: %s\n" % e)
 ```
+
+
 
 ### Parameters
 

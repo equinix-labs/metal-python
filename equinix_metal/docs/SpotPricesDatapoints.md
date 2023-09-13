@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**datapoints** | **List[List]** |  | [optional] 
+**datapoints** | **List[List[float]]** |  | [optional] 
 **href** | **str** |  | [optional] 
 
 ## Example
