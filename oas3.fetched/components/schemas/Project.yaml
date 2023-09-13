@@ -29,6 +29,9 @@ properties:
     type: array
   name:
     type: string
+    minLength: 1
+    maxLength: 80
+    description: The name of the project. Cannot contain characters encoded in greater than 3 bytes such as emojis.
   network_status:
     type: object
   organization:
@@ -45,5 +48,15 @@ properties:
   volumes:
     items:
       $ref: './Href.yaml'
+    type: array
+  type:
+    type: string
+    description: The type of the project. Projects of type `vmce` are part of an in development feature and not available to all customers.
+    enum:
+      - default
+      - vmce
+  tags:
+    items:
+      type: string
     type: array
 type: object
