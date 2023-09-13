@@ -87,7 +87,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_payment_method_by_id**
-> PaymentMethod find_payment_method_by_id(id, include=include, exclude=exclude)
+> PaymentMethod find_payment_method_by_id(id, include=include)
 
 Retrieve a payment method
 
@@ -127,11 +127,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.PaymentMethodsApi(api_client)
     id = 'id_example' # str | Payment Method UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve a payment method
-        api_response = api_instance.find_payment_method_by_id(id, include=include, exclude=exclude)
+        api_response = api_instance.find_payment_method_by_id(id, include=include)
         print("The response of PaymentMethodsApi->find_payment_method_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -146,7 +145,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Payment Method UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -171,7 +169,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_payment_method**
-> PaymentMethod update_payment_method(id, payment_method_update_input)
+> PaymentMethod update_payment_method(id, payment_method_update_input, include=include)
 
 Update the payment method
 
@@ -212,10 +210,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.PaymentMethodsApi(api_client)
     id = 'id_example' # str | Payment Method UUID
     payment_method_update_input = equinix_metal.PaymentMethodUpdateInput() # PaymentMethodUpdateInput | Payment Method to update
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Update the payment method
-        api_response = api_instance.update_payment_method(id, payment_method_update_input)
+        api_response = api_instance.update_payment_method(id, payment_method_update_input, include=include)
         print("The response of PaymentMethodsApi->update_payment_method:\n")
         pprint(api_response)
     except Exception as e:
@@ -230,6 +229,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Payment Method UUID | 
  **payment_method_update_input** | [**PaymentMethodUpdateInput**](PaymentMethodUpdateInput.md)| Payment Method to update | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **instances_ids** | **List[str]** | List of instance UUIDs to associate SSH key with, when empty array is sent all instances belonging       to entity will be included | [optional] 
 **key** | **str** |  | [optional] 
 **label** | **str** |  | [optional] 
+**tags** | **List[str]** |  | [optional] 
 
 ## Example
 

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **metal_gateways** | [**List[MetalGatewayLite]**](MetalGatewayLite.md) | A list of metal gateways currently associated to this Virtual Network. | [optional] 
 **metro** | [**Href**](Href.md) |  | [optional] 
 **metro_code** | **str** | The Metro code of the metro in which this Virtual Network is defined. | [optional] 
+**tags** | **List[str]** |  | [optional] 
 **vxlan** | **int** |  | [optional] 
 
 ## Example

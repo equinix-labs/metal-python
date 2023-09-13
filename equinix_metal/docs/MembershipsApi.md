@@ -88,7 +88,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_membership_by_id**
-> Membership find_membership_by_id(id, include=include, exclude=exclude)
+> Membership find_membership_by_id(id, include=include)
 
 Retrieve a membership
 
@@ -128,11 +128,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.MembershipsApi(api_client)
     id = 'id_example' # str | Membership UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve a membership
-        api_response = api_instance.find_membership_by_id(id, include=include, exclude=exclude)
+        api_response = api_instance.find_membership_by_id(id, include=include)
         print("The response of MembershipsApi->find_membership_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -147,7 +146,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Membership UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -173,7 +171,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_membership**
-> Membership update_membership(id, membership_input)
+> Membership update_membership(id, membership_input, include=include)
 
 Update the membership
 
@@ -214,10 +212,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.MembershipsApi(api_client)
     id = 'id_example' # str | Membership UUID
     membership_input = equinix_metal.MembershipInput() # MembershipInput | Membership to update
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Update the membership
-        api_response = api_instance.update_membership(id, membership_input)
+        api_response = api_instance.update_membership(id, membership_input, include=include)
         print("The response of MembershipsApi->update_membership:\n")
         pprint(api_response)
     except Exception as e:
@@ -232,6 +231,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Membership UUID | 
  **membership_input** | [**MembershipInput**](MembershipInput.md)| Membership to update | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 

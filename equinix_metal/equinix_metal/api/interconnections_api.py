@@ -3,7 +3,7 @@
 """
     Metal API
 
-    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field. 
+    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@equinixmetal.com
@@ -24,8 +24,8 @@ from pydantic import Field, StrictStr, conint, conlist
 
 from typing import Optional
 
+from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest
 from equinix_metal.models.interconnection import Interconnection
-from equinix_metal.models.interconnection_create_input import InterconnectionCreateInput
 from equinix_metal.models.interconnection_list import InterconnectionList
 from equinix_metal.models.interconnection_port import InterconnectionPort
 from equinix_metal.models.interconnection_port_list import InterconnectionPortList
@@ -220,20 +220,24 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_organization_interconnection(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], interconnection_create_input : Annotated[InterconnectionCreateInput, Field(..., description="Interconnection details")], **kwargs) -> Interconnection:  # noqa: E501
+    def create_organization_interconnection(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(..., description="Dedicated port or shared interconnection (also known as Fabric VC) creation request")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Request a new interconnection for the organization  # noqa: E501
 
         Creates a new interconnection request. A Project ID must be specified in the request body for connections on shared ports.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_organization_interconnection(organization_id, interconnection_create_input, async_req=True)
+        >>> thread = api.create_organization_interconnection(organization_id, create_organization_interconnection_request, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param organization_id: UUID of the organization (required)
         :type organization_id: str
-        :param interconnection_create_input: Interconnection details (required)
-        :type interconnection_create_input: InterconnectionCreateInput
+        :param create_organization_interconnection_request: Dedicated port or shared interconnection (also known as Fabric VC) creation request (required)
+        :type create_organization_interconnection_request: CreateOrganizationInterconnectionRequest
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -248,23 +252,27 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the create_organization_interconnection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.create_organization_interconnection_with_http_info(organization_id, interconnection_create_input, **kwargs)  # noqa: E501
+        return self.create_organization_interconnection_with_http_info(organization_id, create_organization_interconnection_request, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_organization_interconnection_with_http_info(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], interconnection_create_input : Annotated[InterconnectionCreateInput, Field(..., description="Interconnection details")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_organization_interconnection_with_http_info(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(..., description="Dedicated port or shared interconnection (also known as Fabric VC) creation request")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Request a new interconnection for the organization  # noqa: E501
 
         Creates a new interconnection request. A Project ID must be specified in the request body for connections on shared ports.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_organization_interconnection_with_http_info(organization_id, interconnection_create_input, async_req=True)
+        >>> thread = api.create_organization_interconnection_with_http_info(organization_id, create_organization_interconnection_request, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param organization_id: UUID of the organization (required)
         :type organization_id: str
-        :param interconnection_create_input: Interconnection details (required)
-        :type interconnection_create_input: InterconnectionCreateInput
+        :param create_organization_interconnection_request: Dedicated port or shared interconnection (also known as Fabric VC) creation request (required)
+        :type create_organization_interconnection_request: CreateOrganizationInterconnectionRequest
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -294,7 +302,9 @@ class InterconnectionsApi(object):
 
         _all_params = [
             'organization_id',
-            'interconnection_create_input'
+            'create_organization_interconnection_request',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -328,6 +338,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -335,8 +353,8 @@ class InterconnectionsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['interconnection_create_input'] is not None:
-            _body_params = _params['interconnection_create_input']
+        if _params['create_organization_interconnection_request'] is not None:
+            _body_params = _params['create_organization_interconnection_request']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
@@ -377,20 +395,24 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_project_interconnection(self, project_id : Annotated[StrictStr, Field(..., description="UUID of the project")], interconnection_create_input : Annotated[InterconnectionCreateInput, Field(..., description="Interconnection details")], **kwargs) -> Interconnection:  # noqa: E501
+    def create_project_interconnection(self, project_id : Annotated[StrictStr, Field(..., description="UUID of the project")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(..., description="Dedicated port or shared interconnection (also known as Fabric VC) creation request")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Request a new interconnection for the project's organization  # noqa: E501
 
         Creates a new interconnection request  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_project_interconnection(project_id, interconnection_create_input, async_req=True)
+        >>> thread = api.create_project_interconnection(project_id, create_organization_interconnection_request, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param project_id: UUID of the project (required)
         :type project_id: str
-        :param interconnection_create_input: Interconnection details (required)
-        :type interconnection_create_input: InterconnectionCreateInput
+        :param create_organization_interconnection_request: Dedicated port or shared interconnection (also known as Fabric VC) creation request (required)
+        :type create_organization_interconnection_request: CreateOrganizationInterconnectionRequest
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -405,23 +427,27 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the create_project_interconnection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.create_project_interconnection_with_http_info(project_id, interconnection_create_input, **kwargs)  # noqa: E501
+        return self.create_project_interconnection_with_http_info(project_id, create_organization_interconnection_request, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_project_interconnection_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="UUID of the project")], interconnection_create_input : Annotated[InterconnectionCreateInput, Field(..., description="Interconnection details")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_project_interconnection_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="UUID of the project")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(..., description="Dedicated port or shared interconnection (also known as Fabric VC) creation request")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Request a new interconnection for the project's organization  # noqa: E501
 
         Creates a new interconnection request  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_project_interconnection_with_http_info(project_id, interconnection_create_input, async_req=True)
+        >>> thread = api.create_project_interconnection_with_http_info(project_id, create_organization_interconnection_request, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param project_id: UUID of the project (required)
         :type project_id: str
-        :param interconnection_create_input: Interconnection details (required)
-        :type interconnection_create_input: InterconnectionCreateInput
+        :param create_organization_interconnection_request: Dedicated port or shared interconnection (also known as Fabric VC) creation request (required)
+        :type create_organization_interconnection_request: CreateOrganizationInterconnectionRequest
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -451,7 +477,9 @@ class InterconnectionsApi(object):
 
         _all_params = [
             'project_id',
-            'interconnection_create_input'
+            'create_organization_interconnection_request',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -485,6 +513,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -492,8 +528,8 @@ class InterconnectionsApi(object):
         _files = {}
         # process the body parameter
         _body_params = None
-        if _params['interconnection_create_input'] is not None:
-            _body_params = _params['interconnection_create_input']
+        if _params['create_organization_interconnection_request'] is not None:
+            _body_params = _params['create_organization_interconnection_request']
 
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
@@ -533,18 +569,22 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_interconnection(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], **kwargs) -> Interconnection:  # noqa: E501
+    def delete_interconnection(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Delete interconnection  # noqa: E501
 
         Delete a interconnection, its associated ports and virtual circuits.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_interconnection(connection_id, async_req=True)
+        >>> thread = api.delete_interconnection(connection_id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: Interconnection UUID (required)
         :type connection_id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -559,21 +599,25 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the delete_interconnection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.delete_interconnection_with_http_info(connection_id, **kwargs)  # noqa: E501
+        return self.delete_interconnection_with_http_info(connection_id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete interconnection  # noqa: E501
 
         Delete a interconnection, its associated ports and virtual circuits.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_interconnection_with_http_info(connection_id, async_req=True)
+        >>> thread = api.delete_interconnection_with_http_info(connection_id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: Interconnection UUID (required)
         :type connection_id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -602,7 +646,9 @@ class InterconnectionsApi(object):
         _params = locals()
 
         _all_params = [
-            'connection_id'
+            'connection_id',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -636,6 +682,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -674,18 +728,22 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_virtual_circuit(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], **kwargs) -> VirtualCircuit:  # noqa: E501
+    def delete_virtual_circuit(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuit:  # noqa: E501
         """Delete a virtual circuit  # noqa: E501
 
         Delete a virtual circuit from a Dedicated Port.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_virtual_circuit(id, async_req=True)
+        >>> thread = api.delete_virtual_circuit(id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Virtual Circuit UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -700,21 +758,25 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the delete_virtual_circuit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.delete_virtual_circuit_with_http_info(id, **kwargs)  # noqa: E501
+        return self.delete_virtual_circuit_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete a virtual circuit  # noqa: E501
 
         Delete a virtual circuit from a Dedicated Port.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_virtual_circuit_with_http_info(id, async_req=True)
+        >>> thread = api.delete_virtual_circuit_with_http_info(id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Virtual Circuit UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -743,7 +805,9 @@ class InterconnectionsApi(object):
         _params = locals()
 
         _all_params = [
-            'id'
+            'id',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -777,6 +841,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -815,18 +887,22 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_interconnection(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], **kwargs) -> Interconnection:  # noqa: E501
+    def get_interconnection(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Get interconnection  # noqa: E501
 
         Get the details of a interconnection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_interconnection(connection_id, async_req=True)
+        >>> thread = api.get_interconnection(connection_id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: Interconnection UUID (required)
         :type connection_id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -841,21 +917,25 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the get_interconnection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_interconnection_with_http_info(connection_id, **kwargs)  # noqa: E501
+        return self.get_interconnection_with_http_info(connection_id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get interconnection  # noqa: E501
 
         Get the details of a interconnection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_interconnection_with_http_info(connection_id, async_req=True)
+        >>> thread = api.get_interconnection_with_http_info(connection_id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: Interconnection UUID (required)
         :type connection_id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -884,7 +964,9 @@ class InterconnectionsApi(object):
         _params = locals()
 
         _all_params = [
-            'connection_id'
+            'connection_id',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -918,6 +1000,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -956,20 +1046,24 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_interconnection_port(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], id : Annotated[StrictStr, Field(..., description="Port UUID")], **kwargs) -> InterconnectionPort:  # noqa: E501
+    def get_interconnection_port(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> InterconnectionPort:  # noqa: E501
         """Get a interconnection port  # noqa: E501
 
         Get the details of an interconnection port.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_interconnection_port(connection_id, id, async_req=True)
+        >>> thread = api.get_interconnection_port(connection_id, id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: UUID of the interconnection (required)
         :type connection_id: str
         :param id: Port UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -984,23 +1078,27 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the get_interconnection_port_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_interconnection_port_with_http_info(connection_id, id, **kwargs)  # noqa: E501
+        return self.get_interconnection_port_with_http_info(connection_id, id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_interconnection_port_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], id : Annotated[StrictStr, Field(..., description="Port UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_interconnection_port_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get a interconnection port  # noqa: E501
 
         Get the details of an interconnection port.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_interconnection_port_with_http_info(connection_id, id, async_req=True)
+        >>> thread = api.get_interconnection_port_with_http_info(connection_id, id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: UUID of the interconnection (required)
         :type connection_id: str
         :param id: Port UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1030,7 +1128,9 @@ class InterconnectionsApi(object):
 
         _all_params = [
             'connection_id',
-            'id'
+            'id',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -1067,6 +1167,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1105,18 +1213,22 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_virtual_circuit(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], **kwargs) -> VirtualCircuit:  # noqa: E501
+    def get_virtual_circuit(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuit:  # noqa: E501
         """Get a virtual circuit  # noqa: E501
 
         Get the details of a virtual circuit  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_virtual_circuit(id, async_req=True)
+        >>> thread = api.get_virtual_circuit(id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Virtual Circuit UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -1131,21 +1243,25 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the get_virtual_circuit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_virtual_circuit_with_http_info(id, **kwargs)  # noqa: E501
+        return self.get_virtual_circuit_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get a virtual circuit  # noqa: E501
 
         Get the details of a virtual circuit  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_virtual_circuit_with_http_info(id, async_req=True)
+        >>> thread = api.get_virtual_circuit_with_http_info(id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Virtual Circuit UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1174,7 +1290,9 @@ class InterconnectionsApi(object):
         _params = locals()
 
         _all_params = [
-            'id'
+            'id',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -1208,6 +1326,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1246,20 +1372,24 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def list_interconnection_port_virtual_circuits(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection port")], **kwargs) -> VirtualCircuitList:  # noqa: E501
+    def list_interconnection_port_virtual_circuits(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection port")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuitList:  # noqa: E501
         """List a interconnection port's virtual circuits  # noqa: E501
 
         List the virtual circuit record(s) associatiated with a particular interconnection port.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_interconnection_port_virtual_circuits(connection_id, port_id, async_req=True)
+        >>> thread = api.list_interconnection_port_virtual_circuits(connection_id, port_id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: UUID of the interconnection (required)
         :type connection_id: str
         :param port_id: UUID of the interconnection port (required)
         :type port_id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -1274,23 +1404,27 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the list_interconnection_port_virtual_circuits_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.list_interconnection_port_virtual_circuits_with_http_info(connection_id, port_id, **kwargs)  # noqa: E501
+        return self.list_interconnection_port_virtual_circuits_with_http_info(connection_id, port_id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_interconnection_port_virtual_circuits_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection port")], **kwargs) -> ApiResponse:  # noqa: E501
+    def list_interconnection_port_virtual_circuits_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection port")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List a interconnection port's virtual circuits  # noqa: E501
 
         List the virtual circuit record(s) associatiated with a particular interconnection port.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_interconnection_port_virtual_circuits_with_http_info(connection_id, port_id, async_req=True)
+        >>> thread = api.list_interconnection_port_virtual_circuits_with_http_info(connection_id, port_id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: UUID of the interconnection (required)
         :type connection_id: str
         :param port_id: UUID of the interconnection port (required)
         :type port_id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1320,7 +1454,9 @@ class InterconnectionsApi(object):
 
         _all_params = [
             'connection_id',
-            'port_id'
+            'port_id',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -1357,6 +1493,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1677,18 +1821,22 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def organization_list_interconnections(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], **kwargs) -> InterconnectionList:  # noqa: E501
+    def organization_list_interconnections(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> InterconnectionList:  # noqa: E501
         """List organization connections  # noqa: E501
 
         List the connections belonging to the organization  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.organization_list_interconnections(organization_id, async_req=True)
+        >>> thread = api.organization_list_interconnections(organization_id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param organization_id: UUID of the organization (required)
         :type organization_id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -1703,21 +1851,25 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the organization_list_interconnections_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.organization_list_interconnections_with_http_info(organization_id, **kwargs)  # noqa: E501
+        return self.organization_list_interconnections_with_http_info(organization_id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def organization_list_interconnections_with_http_info(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], **kwargs) -> ApiResponse:  # noqa: E501
+    def organization_list_interconnections_with_http_info(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List organization connections  # noqa: E501
 
         List the connections belonging to the organization  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.organization_list_interconnections_with_http_info(organization_id, async_req=True)
+        >>> thread = api.organization_list_interconnections_with_http_info(organization_id, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param organization_id: UUID of the organization (required)
         :type organization_id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -1746,7 +1898,9 @@ class InterconnectionsApi(object):
         _params = locals()
 
         _all_params = [
-            'organization_id'
+            'organization_id',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -1780,6 +1934,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1993,20 +2155,24 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_interconnection(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], interconnection_update_input : Annotated[InterconnectionUpdateInput, Field(..., description="Updated interconnection details")], **kwargs) -> Interconnection:  # noqa: E501
+    def update_interconnection(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], interconnection_update_input : Annotated[InterconnectionUpdateInput, Field(..., description="Updated interconnection details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Update interconnection  # noqa: E501
 
         Update the details of a interconnection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_interconnection(connection_id, interconnection_update_input, async_req=True)
+        >>> thread = api.update_interconnection(connection_id, interconnection_update_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: Interconnection UUID (required)
         :type connection_id: str
         :param interconnection_update_input: Updated interconnection details (required)
         :type interconnection_update_input: InterconnectionUpdateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -2021,23 +2187,27 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the update_interconnection_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.update_interconnection_with_http_info(connection_id, interconnection_update_input, **kwargs)  # noqa: E501
+        return self.update_interconnection_with_http_info(connection_id, interconnection_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], interconnection_update_input : Annotated[InterconnectionUpdateInput, Field(..., description="Updated interconnection details")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], interconnection_update_input : Annotated[InterconnectionUpdateInput, Field(..., description="Updated interconnection details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update interconnection  # noqa: E501
 
         Update the details of a interconnection  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_interconnection_with_http_info(connection_id, interconnection_update_input, async_req=True)
+        >>> thread = api.update_interconnection_with_http_info(connection_id, interconnection_update_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param connection_id: Interconnection UUID (required)
         :type connection_id: str
         :param interconnection_update_input: Updated interconnection details (required)
         :type interconnection_update_input: InterconnectionUpdateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -2067,7 +2237,9 @@ class InterconnectionsApi(object):
 
         _all_params = [
             'connection_id',
-            'interconnection_update_input'
+            'interconnection_update_input',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -2101,6 +2273,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -2149,20 +2329,24 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_virtual_circuit(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], virtual_circuit_update_input : Annotated[VirtualCircuitUpdateInput, Field(..., description="Updated Virtual Circuit details")], **kwargs) -> VirtualCircuit:  # noqa: E501
+    def update_virtual_circuit(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], virtual_circuit_update_input : Annotated[VirtualCircuitUpdateInput, Field(..., description="Updated Virtual Circuit details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuit:  # noqa: E501
         """Update a virtual circuit  # noqa: E501
 
         Update the details of a virtual circuit.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_virtual_circuit(id, virtual_circuit_update_input, async_req=True)
+        >>> thread = api.update_virtual_circuit(id, virtual_circuit_update_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Virtual Circuit UUID (required)
         :type id: str
         :param virtual_circuit_update_input: Updated Virtual Circuit details (required)
         :type virtual_circuit_update_input: VirtualCircuitUpdateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -2177,23 +2361,27 @@ class InterconnectionsApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the update_virtual_circuit_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.update_virtual_circuit_with_http_info(id, virtual_circuit_update_input, **kwargs)  # noqa: E501
+        return self.update_virtual_circuit_with_http_info(id, virtual_circuit_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], virtual_circuit_update_input : Annotated[VirtualCircuitUpdateInput, Field(..., description="Updated Virtual Circuit details")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], virtual_circuit_update_input : Annotated[VirtualCircuitUpdateInput, Field(..., description="Updated Virtual Circuit details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update a virtual circuit  # noqa: E501
 
         Update the details of a virtual circuit.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_virtual_circuit_with_http_info(id, virtual_circuit_update_input, async_req=True)
+        >>> thread = api.update_virtual_circuit_with_http_info(id, virtual_circuit_update_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Virtual Circuit UUID (required)
         :type id: str
         :param virtual_circuit_update_input: Updated Virtual Circuit details (required)
         :type virtual_circuit_update_input: VirtualCircuitUpdateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -2223,7 +2411,9 @@ class InterconnectionsApi(object):
 
         _all_params = [
             'id',
-            'virtual_circuit_update_input'
+            'virtual_circuit_update_input',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -2257,6 +2447,14 @@ class InterconnectionsApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

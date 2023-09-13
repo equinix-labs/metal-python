@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **activate_hardware_reservation**
-> HardwareReservation activate_hardware_reservation(id, activate_hardware_reservation_request=activate_hardware_reservation_request)
+> HardwareReservation activate_hardware_reservation(id, include=include, exclude=exclude, activate_hardware_reservation_request=activate_hardware_reservation_request)
 
 Activate a spare hardware reservation
 
@@ -51,11 +51,13 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.HardwareReservationsApi(api_client)
     id = 'id_example' # str | Hardware Reservation UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     activate_hardware_reservation_request = equinix_metal.ActivateHardwareReservationRequest() # ActivateHardwareReservationRequest | Note to attach to the reservation (optional)
 
     try:
         # Activate a spare hardware reservation
-        api_response = api_instance.activate_hardware_reservation(id, activate_hardware_reservation_request=activate_hardware_reservation_request)
+        api_response = api_instance.activate_hardware_reservation(id, include=include, exclude=exclude, activate_hardware_reservation_request=activate_hardware_reservation_request)
         print("The response of HardwareReservationsApi->activate_hardware_reservation:\n")
         pprint(api_response)
     except Exception as e:
@@ -69,6 +71,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Hardware Reservation UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **activate_hardware_reservation_request** | [**ActivateHardwareReservationRequest**](ActivateHardwareReservationRequest.md)| Note to attach to the reservation | [optional] 
 
 ### Return type
@@ -275,7 +279,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **move_hardware_reservation**
-> HardwareReservation move_hardware_reservation(id, move_hardware_reservation_request)
+> HardwareReservation move_hardware_reservation(id, move_hardware_reservation_request, include=include, exclude=exclude)
 
 Move a hardware reservation
 
@@ -316,10 +320,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.HardwareReservationsApi(api_client)
     id = 'id_example' # str | Hardware Reservation UUID
     move_hardware_reservation_request = equinix_metal.MoveHardwareReservationRequest() # MoveHardwareReservationRequest | Destination Project UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Move a hardware reservation
-        api_response = api_instance.move_hardware_reservation(id, move_hardware_reservation_request)
+        api_response = api_instance.move_hardware_reservation(id, move_hardware_reservation_request, include=include, exclude=exclude)
         print("The response of HardwareReservationsApi->move_hardware_reservation:\n")
         pprint(api_response)
     except Exception as e:
@@ -334,6 +340,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Hardware Reservation UUID | 
  **move_hardware_reservation_request** | [**MoveHardwareReservationRequest**](MoveHardwareReservationRequest.md)| Destination Project UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

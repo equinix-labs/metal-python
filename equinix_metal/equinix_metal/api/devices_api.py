@@ -3,7 +3,7 @@
 """
     Metal API
 
-    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field. 
+    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@equinixmetal.com
@@ -31,9 +31,11 @@ from equinix_metal.models.bgp_session_neighbors import BgpSessionNeighbors
 from equinix_metal.models.create_device_request import CreateDeviceRequest
 from equinix_metal.models.device import Device
 from equinix_metal.models.device_action_input import DeviceActionInput
+from equinix_metal.models.device_health_rollup import DeviceHealthRollup
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.models.device_update_input import DeviceUpdateInput
 from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
+from equinix_metal.models.firmware_set_response import FirmwareSetResponse
 from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.ip_assignment_input import IPAssignmentInput
 from equinix_metal.models.ip_assignment_list import IPAssignmentList
@@ -61,20 +63,22 @@ class DevicesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_bgp_session(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(..., description="BGP session to create")], **kwargs) -> BgpSession:  # noqa: E501
+    def create_bgp_session(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(..., description="BGP session to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSession:  # noqa: E501
         """Create a BGP session  # noqa: E501
 
         Creates a BGP session.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_bgp_session(id, bgp_session_input, async_req=True)
+        >>> thread = api.create_bgp_session(id, bgp_session_input, include, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
         :param bgp_session_input: BGP session to create (required)
         :type bgp_session_input: BGPSessionInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -89,23 +93,25 @@ class DevicesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the create_bgp_session_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.create_bgp_session_with_http_info(id, bgp_session_input, **kwargs)  # noqa: E501
+        return self.create_bgp_session_with_http_info(id, bgp_session_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(..., description="BGP session to create")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(..., description="BGP session to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a BGP session  # noqa: E501
 
         Creates a BGP session.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_bgp_session_with_http_info(id, bgp_session_input, async_req=True)
+        >>> thread = api.create_bgp_session_with_http_info(id, bgp_session_input, include, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
         :param bgp_session_input: BGP session to create (required)
         :type bgp_session_input: BGPSessionInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -135,7 +141,8 @@ class DevicesApi(object):
 
         _all_params = [
             'id',
-            'bgp_session_input'
+            'bgp_session_input',
+            'include'
         ]
         _all_params.extend(
             [
@@ -169,6 +176,10 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -714,18 +725,20 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_bgp_sessions(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> BgpSessionList:  # noqa: E501
+    def find_bgp_sessions(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSessionList:  # noqa: E501
         """Retrieve all BGP sessions  # noqa: E501
 
         Provides a listing of available BGP sessions for the device.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_bgp_sessions(id, async_req=True)
+        >>> thread = api.find_bgp_sessions(id, include, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -740,21 +753,23 @@ class DevicesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the find_bgp_sessions_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.find_bgp_sessions_with_http_info(id, **kwargs)  # noqa: E501
+        return self.find_bgp_sessions_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_bgp_sessions_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_bgp_sessions_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all BGP sessions  # noqa: E501
 
         Provides a listing of available BGP sessions for the device.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_bgp_sessions_with_http_info(id, async_req=True)
+        >>> thread = api.find_bgp_sessions_with_http_info(id, include, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -783,7 +798,8 @@ class DevicesApi(object):
         _params = locals()
 
         _all_params = [
-            'id'
+            'id',
+            'include'
         ]
         _all_params.extend(
             [
@@ -817,6 +833,10 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -1893,18 +1913,20 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_devices(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_organization_devices(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         Provides a collection of devices for a given organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_organization_devices(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_organization_devices(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Organization UUID (required)
         :type id: str
+        :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
+        :type search: str
         :param categories: Filter by plan category
         :type categories: List[str]
         :param facility: Filter by device facility
@@ -1941,21 +1963,23 @@ class DevicesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the find_organization_devices_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.find_organization_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
+        return self.find_organization_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         Provides a collection of devices for a given organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_organization_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_organization_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Organization UUID (required)
         :type id: str
+        :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
+        :type search: str
         :param categories: Filter by plan category
         :type categories: List[str]
         :param facility: Filter by device facility
@@ -2007,6 +2031,7 @@ class DevicesApi(object):
 
         _all_params = [
             'id',
+            'search',
             'categories',
             'facility',
             'hostname',
@@ -2051,6 +2076,9 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('search') is not None:  # noqa: E501
+            _query_params.append(('search', _params['search']))
+
         if _params.get('categories') is not None:  # noqa: E501
             _query_params.append(('categories', _params['categories']))
             _collection_formats['categories'] = 'multi'
@@ -2126,18 +2154,20 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_devices(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_project_devices(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         Provides a collection of devices for a given project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_project_devices(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_project_devices(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
+        :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
+        :type search: str
         :param categories: Filter by plan category
         :type categories: List[str]
         :param facility: Filter by device facility
@@ -2174,21 +2204,23 @@ class DevicesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the find_project_devices_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.find_project_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
+        return self.find_project_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         Provides a collection of devices for a given project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_project_devices_with_http_info(id, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_project_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
         :type id: str
+        :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
+        :type search: str
         :param categories: Filter by plan category
         :type categories: List[str]
         :param facility: Filter by device facility
@@ -2240,6 +2272,7 @@ class DevicesApi(object):
 
         _all_params = [
             'id',
+            'search',
             'categories',
             'facility',
             'hostname',
@@ -2284,6 +2317,9 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('search') is not None:  # noqa: E501
+            _query_params.append(('search', _params['search']))
+
         if _params.get('categories') is not None:  # noqa: E501
             _query_params.append(('categories', _params['categories']))
             _collection_formats['categories'] = 'multi'
@@ -2528,18 +2564,20 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_bgp_neighbor_data(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> BgpSessionNeighbors:  # noqa: E501
+    def get_bgp_neighbor_data(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSessionNeighbors:  # noqa: E501
         """Retrieve BGP neighbor data for this device  # noqa: E501
 
         Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_bgp_neighbor_data(id, async_req=True)
+        >>> thread = api.get_bgp_neighbor_data(id, include, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -2554,21 +2592,23 @@ class DevicesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the get_bgp_neighbor_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_bgp_neighbor_data_with_http_info(id, **kwargs)  # noqa: E501
+        return self.get_bgp_neighbor_data_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_bgp_neighbor_data_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_bgp_neighbor_data_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve BGP neighbor data for this device  # noqa: E501
 
         Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_bgp_neighbor_data_with_http_info(id, async_req=True)
+        >>> thread = api.get_bgp_neighbor_data_with_http_info(id, include, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -2597,7 +2637,8 @@ class DevicesApi(object):
         _params = locals()
 
         _all_params = [
-            'id'
+            'id',
+            'include'
         ]
         _all_params.extend(
             [
@@ -2631,6 +2672,10 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters
@@ -2654,6 +2699,290 @@ class DevicesApi(object):
 
         return self.api_client.call_api(
             '/devices/{id}/bgp/neighbors', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_device_firmware_sets(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> FirmwareSetResponse:  # noqa: E501
+        """Get Device's associated Firmware Set  # noqa: E501
+
+        Returns the firmware set associated with the device. If a custom firmware set is associated with the device, then it is returned. Otherwise, if a default firmware set is available it is returned.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_device_firmware_sets(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Device UUID (required)
+        :type id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: FirmwareSetResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_device_firmware_sets_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_device_firmware_sets_with_http_info(id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_device_firmware_sets_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Get Device's associated Firmware Set  # noqa: E501
+
+        Returns the firmware set associated with the device. If a custom firmware set is associated with the device, then it is returned. Otherwise, if a default firmware set is available it is returned.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_device_firmware_sets_with_http_info(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Device UUID (required)
+        :type id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(FirmwareSetResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_device_firmware_sets" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['x_auth_token']  # noqa: E501
+
+        _response_types_map = {
+            '200': "FirmwareSetResponse",
+            '401': None,
+            '404': None,
+            '500': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/devices/{id}/firmware-sets', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_device_health_rollup(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> DeviceHealthRollup:  # noqa: E501
+        """Get Device's Health Status  # noqa: E501
+
+        Returns the health rollup status of the device.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_device_health_rollup(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Device UUID (required)
+        :type id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: DeviceHealthRollup
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_device_health_rollup_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_device_health_rollup_with_http_info(id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_device_health_rollup_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Get Device's Health Status  # noqa: E501
+
+        Returns the health rollup status of the device.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_device_health_rollup_with_http_info(id, async_req=True)
+        >>> result = thread.get()
+
+        :param id: Device UUID (required)
+        :type id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the 
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(DeviceHealthRollup, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_device_health_rollup" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['id']:
+            _path_params['id'] = _params['id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['x_auth_token']  # noqa: E501
+
+        _response_types_map = {
+            '200': "DeviceHealthRollup",
+            '401': None,
+            '404': None,
+            '500': "Error",
+        }
+
+        return self.api_client.call_api(
+            '/devices/{id}/diagnostics/health/rollup', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -2822,20 +3151,24 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_device(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(..., description="Facility to update")], **kwargs) -> Device:  # noqa: E501
+    def update_device(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(..., description="Device to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Device:  # noqa: E501
         """Update the device  # noqa: E501
 
         Updates the device.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_device(id, device_update_input, async_req=True)
+        >>> thread = api.update_device(id, device_update_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
-        :param device_update_input: Facility to update (required)
+        :param device_update_input: Device to update (required)
         :type device_update_input: DeviceUpdateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _request_timeout: timeout setting for this request. If one
@@ -2850,23 +3183,27 @@ class DevicesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the update_device_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.update_device_with_http_info(id, device_update_input, **kwargs)  # noqa: E501
+        return self.update_device_with_http_info(id, device_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(..., description="Facility to update")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(..., description="Device to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the device  # noqa: E501
 
         Updates the device.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_device_with_http_info(id, device_update_input, async_req=True)
+        >>> thread = api.update_device_with_http_info(id, device_update_input, include, exclude, async_req=True)
         >>> result = thread.get()
 
         :param id: Device UUID (required)
         :type id: str
-        :param device_update_input: Facility to update (required)
+        :param device_update_input: Device to update (required)
         :type device_update_input: DeviceUpdateInput
+        :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
+        :type include: List[str]
+        :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
+        :type exclude: List[str]
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the ApiResponse.data will
@@ -2896,7 +3233,9 @@ class DevicesApi(object):
 
         _all_params = [
             'id',
-            'device_update_input'
+            'device_update_input',
+            'include',
+            'exclude'
         ]
         _all_params.extend(
             [
@@ -2930,6 +3269,14 @@ class DevicesApi(object):
 
         # process the query parameters
         _query_params = []
+        if _params.get('include') is not None:  # noqa: E501
+            _query_params.append(('include', _params['include']))
+            _collection_formats['include'] = 'csv'
+
+        if _params.get('exclude') is not None:  # noqa: E501
+            _query_params.append(('exclude', _params['exclude']))
+            _collection_formats['exclude'] = 'csv'
+
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))
         # process the form parameters

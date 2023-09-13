@@ -37,7 +37,7 @@ Only IP addresses with the `type` field set to `public_ipv4` will be returned.
 
 ## Searching
 
-Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.
+Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
 
 To search resources you can use the `search` query parameter.
 
@@ -159,10 +159,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.AuthenticationApi(api_client)
     auth_token_input = equinix_metal.AuthTokenInput() # AuthTokenInput | API key to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Create an API key
-        api_response = api_instance.create_api_key(auth_token_input)
+        api_response = api_instance.create_api_key(auth_token_input, include=include)
         print("The response of AuthenticationApi->create_api_key:\n")
         pprint(api_response)
     except ApiException as e:
@@ -215,6 +216,8 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**find_project_devices**](docs/DevicesApi.md#find_project_devices) | **GET** /projects/{id}/devices | Retrieve all devices of a project
 *DevicesApi* | [**find_traffic**](docs/DevicesApi.md#find_traffic) | **GET** /devices/{id}/traffic | Retrieve device traffic
 *DevicesApi* | [**get_bgp_neighbor_data**](docs/DevicesApi.md#get_bgp_neighbor_data) | **GET** /devices/{id}/bgp/neighbors | Retrieve BGP neighbor data for this device
+*DevicesApi* | [**get_device_firmware_sets**](docs/DevicesApi.md#get_device_firmware_sets) | **GET** /devices/{id}/firmware-sets | Get Device&#39;s associated Firmware Set
+*DevicesApi* | [**get_device_health_rollup**](docs/DevicesApi.md#get_device_health_rollup) | **GET** /devices/{id}/diagnostics/health/rollup | Get Device&#39;s Health Status
 *DevicesApi* | [**perform_action**](docs/DevicesApi.md#perform_action) | **POST** /devices/{id}/actions | Perform an action
 *DevicesApi* | [**update_device**](docs/DevicesApi.md#update_device) | **PUT** /devices/{id} | Update the device
 *EmailsApi* | [**create_email**](docs/EmailsApi.md#create_email) | **POST** /emails | Create an email
@@ -233,6 +236,8 @@ Class | Method | HTTP request | Description
 *FacilitiesApi* | [**find_facilities**](docs/FacilitiesApi.md#find_facilities) | **GET** /facilities | Retrieve all facilities
 *FacilitiesApi* | [**find_facilities_by_organization**](docs/FacilitiesApi.md#find_facilities_by_organization) | **GET** /organizations/{id}/facilities | Retrieve all facilities visible by the organization
 *FacilitiesApi* | [**find_facilities_by_project**](docs/FacilitiesApi.md#find_facilities_by_project) | **GET** /projects/{id}/facilities | Retrieve all facilities visible by the project
+*FirmwareSetsApi* | [**get_organization_firmware_sets**](docs/FirmwareSetsApi.md#get_organization_firmware_sets) | **GET** /organizations/{id}/firmware-sets | Get Organization&#39;s Firmware Sets
+*FirmwareSetsApi* | [**get_project_firmware_sets**](docs/FirmwareSetsApi.md#get_project_firmware_sets) | **GET** /projects/{id}/firmware-sets | Get Project&#39;s Firmware Sets
 *HardwareReservationsApi* | [**activate_hardware_reservation**](docs/HardwareReservationsApi.md#activate_hardware_reservation) | **POST** /hardware-reservations/{id}/activate | Activate a spare hardware reservation
 *HardwareReservationsApi* | [**find_hardware_reservation_by_id**](docs/HardwareReservationsApi.md#find_hardware_reservation_by_id) | **GET** /hardware-reservations/{id} | Retrieve a hardware reservation
 *HardwareReservationsApi* | [**find_project_hardware_reservations**](docs/HardwareReservationsApi.md#find_project_hardware_reservations) | **GET** /projects/{id}/hardware-reservations | Retrieve all hardware reservations for a given project
@@ -398,6 +403,8 @@ Class | Method | HTTP request | Description
 
  - [ActivateHardwareReservationRequest](docs/ActivateHardwareReservationRequest.md)
  - [Address](docs/Address.md)
+ - [Attribute](docs/Attribute.md)
+ - [AttributeData](docs/AttributeData.md)
  - [AuthToken](docs/AuthToken.md)
  - [AuthTokenInput](docs/AuthTokenInput.md)
  - [AuthTokenList](docs/AuthTokenList.md)
@@ -424,16 +431,15 @@ Class | Method | HTTP request | Description
  - [CapacityInput](docs/CapacityInput.md)
  - [CapacityLevelPerBaremetal](docs/CapacityLevelPerBaremetal.md)
  - [CapacityList](docs/CapacityList.md)
- - [CapacityPerFacility](docs/CapacityPerFacility.md)
- - [CapacityPerMetroInput](docs/CapacityPerMetroInput.md)
- - [CapacityPerNewFacility](docs/CapacityPerNewFacility.md)
- - [CapacityReport](docs/CapacityReport.md)
+ - [Component](docs/Component.md)
  - [Coordinates](docs/Coordinates.md)
  - [CreateDeviceRequest](docs/CreateDeviceRequest.md)
  - [CreateEmailInput](docs/CreateEmailInput.md)
  - [CreateMetalGatewayRequest](docs/CreateMetalGatewayRequest.md)
+ - [CreateOrganizationInterconnectionRequest](docs/CreateOrganizationInterconnectionRequest.md)
  - [CreateSelfServiceReservationRequest](docs/CreateSelfServiceReservationRequest.md)
  - [CreateSelfServiceReservationRequestPeriod](docs/CreateSelfServiceReservationRequestPeriod.md)
+ - [DedicatedPortCreateInput](docs/DedicatedPortCreateInput.md)
  - [Device](docs/Device.md)
  - [DeviceActionInput](docs/DeviceActionInput.md)
  - [DeviceActionsInner](docs/DeviceActionsInner.md)
@@ -441,6 +447,7 @@ Class | Method | HTTP request | Description
  - [DeviceCreateInMetroInput](docs/DeviceCreateInMetroInput.md)
  - [DeviceCreateInput](docs/DeviceCreateInput.md)
  - [DeviceCreatedBy](docs/DeviceCreatedBy.md)
+ - [DeviceHealthRollup](docs/DeviceHealthRollup.md)
  - [DeviceList](docs/DeviceList.md)
  - [DeviceMetro](docs/DeviceMetro.md)
  - [DeviceProject](docs/DeviceProject.md)
@@ -448,6 +455,7 @@ Class | Method | HTTP request | Description
  - [DeviceUpdateInput](docs/DeviceUpdateInput.md)
  - [DeviceUsage](docs/DeviceUsage.md)
  - [DeviceUsageList](docs/DeviceUsageList.md)
+ - [Disk](docs/Disk.md)
  - [Email](docs/Email.md)
  - [EmailInput](docs/EmailInput.md)
  - [Entitlement](docs/Entitlement.md)
@@ -459,9 +467,13 @@ Class | Method | HTTP request | Description
  - [FacilityInput](docs/FacilityInput.md)
  - [FacilityInputFacility](docs/FacilityInputFacility.md)
  - [FacilityList](docs/FacilityList.md)
+ - [Filesystem](docs/Filesystem.md)
  - [FindIPAddressById200Response](docs/FindIPAddressById200Response.md)
  - [FindMetalGatewayById200Response](docs/FindMetalGatewayById200Response.md)
  - [FindTrafficTimeframeParameter](docs/FindTrafficTimeframeParameter.md)
+ - [FirmwareSet](docs/FirmwareSet.md)
+ - [FirmwareSetListResponse](docs/FirmwareSetListResponse.md)
+ - [FirmwareSetResponse](docs/FirmwareSetResponse.md)
  - [GlobalBgpRange](docs/GlobalBgpRange.md)
  - [GlobalBgpRangeList](docs/GlobalBgpRangeList.md)
  - [HardwareReservation](docs/HardwareReservation.md)
@@ -483,7 +495,6 @@ Class | Method | HTTP request | Description
  - [InstancesBatchCreateInput](docs/InstancesBatchCreateInput.md)
  - [InstancesBatchCreateInputBatchesInner](docs/InstancesBatchCreateInputBatchesInner.md)
  - [Interconnection](docs/Interconnection.md)
- - [InterconnectionCreateInput](docs/InterconnectionCreateInput.md)
  - [InterconnectionList](docs/InterconnectionList.md)
  - [InterconnectionPort](docs/InterconnectionPort.md)
  - [InterconnectionPortList](docs/InterconnectionPortList.md)
@@ -513,11 +524,9 @@ Class | Method | HTTP request | Description
  - [MetalGatewayListMetalGatewaysInner](docs/MetalGatewayListMetalGatewaysInner.md)
  - [MetalGatewayLite](docs/MetalGatewayLite.md)
  - [Metro](docs/Metro.md)
- - [MetroCapacityList](docs/MetroCapacityList.md)
- - [MetroCapacityReport](docs/MetroCapacityReport.md)
  - [MetroInput](docs/MetroInput.md)
  - [MetroList](docs/MetroList.md)
- - [MetroServerInfo](docs/MetroServerInfo.md)
+ - [Mount](docs/Mount.md)
  - [MoveHardwareReservationRequest](docs/MoveHardwareReservationRequest.md)
  - [NewPassword](docs/NewPassword.md)
  - [OperatingSystem](docs/OperatingSystem.md)
@@ -526,6 +535,7 @@ Class | Method | HTTP request | Description
  - [OrganizationInput](docs/OrganizationInput.md)
  - [OrganizationList](docs/OrganizationList.md)
  - [ParentBlock](docs/ParentBlock.md)
+ - [Partition](docs/Partition.md)
  - [PaymentMethod](docs/PaymentMethod.md)
  - [PaymentMethodBillingAddress](docs/PaymentMethodBillingAddress.md)
  - [PaymentMethodCreateInput](docs/PaymentMethodCreateInput.md)
@@ -540,6 +550,7 @@ Class | Method | HTTP request | Description
  - [PlanSpecsCpusInner](docs/PlanSpecsCpusInner.md)
  - [PlanSpecsDrivesInner](docs/PlanSpecsDrivesInner.md)
  - [PlanSpecsFeatures](docs/PlanSpecsFeatures.md)
+ - [PlanSpecsMemory](docs/PlanSpecsMemory.md)
  - [PlanSpecsNicsInner](docs/PlanSpecsNicsInner.md)
  - [Port](docs/Port.md)
  - [PortAssignInput](docs/PortAssignInput.md)
@@ -561,6 +572,7 @@ Class | Method | HTTP request | Description
  - [ProjectUpdateInput](docs/ProjectUpdateInput.md)
  - [ProjectUsage](docs/ProjectUsage.md)
  - [ProjectUsageList](docs/ProjectUsageList.md)
+ - [Raid](docs/Raid.md)
  - [RecoveryCodeList](docs/RecoveryCodeList.md)
  - [RequestIPReservation201Response](docs/RequestIPReservation201Response.md)
  - [RequestIPReservationRequest](docs/RequestIPReservationRequest.md)
@@ -587,6 +599,7 @@ Class | Method | HTTP request | Description
  - [SpotPricesPerFacility](docs/SpotPricesPerFacility.md)
  - [SpotPricesPerNewFacility](docs/SpotPricesPerNewFacility.md)
  - [SpotPricesReport](docs/SpotPricesReport.md)
+ - [Storage](docs/Storage.md)
  - [SupportRequestInput](docs/SupportRequestInput.md)
  - [TransferRequest](docs/TransferRequest.md)
  - [TransferRequestInput](docs/TransferRequestInput.md)
@@ -607,11 +620,13 @@ Class | Method | HTTP request | Description
  - [VirtualNetwork](docs/VirtualNetwork.md)
  - [VirtualNetworkCreateInput](docs/VirtualNetworkCreateInput.md)
  - [VirtualNetworkList](docs/VirtualNetworkList.md)
+ - [VlanFabricVcCreateInput](docs/VlanFabricVcCreateInput.md)
  - [VlanVirtualCircuit](docs/VlanVirtualCircuit.md)
  - [VlanVirtualCircuitCreateInput](docs/VlanVirtualCircuitCreateInput.md)
  - [VlanVirtualCircuitUpdateInput](docs/VlanVirtualCircuitUpdateInput.md)
  - [Vrf](docs/Vrf.md)
  - [VrfCreateInput](docs/VrfCreateInput.md)
+ - [VrfFabricVcCreateInput](docs/VrfFabricVcCreateInput.md)
  - [VrfIpReservation](docs/VrfIpReservation.md)
  - [VrfIpReservationCreateInput](docs/VrfIpReservationCreateInput.md)
  - [VrfIpReservationList](docs/VrfIpReservationList.md)

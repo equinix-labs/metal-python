@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **create_api_key**
-> AuthToken create_api_key(auth_token_input)
+> AuthToken create_api_key(auth_token_input, include=include)
 
 Create an API key
 
@@ -53,10 +53,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.AuthenticationApi(api_client)
     auth_token_input = equinix_metal.AuthTokenInput() # AuthTokenInput | API key to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Create an API key
-        api_response = api_instance.create_api_key(auth_token_input)
+        api_response = api_instance.create_api_key(auth_token_input, include=include)
         print("The response of AuthenticationApi->create_api_key:\n")
         pprint(api_response)
     except Exception as e:
@@ -70,6 +71,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **auth_token_input** | [**AuthTokenInput**](AuthTokenInput.md)| API key to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -95,7 +97,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_project_api_key**
-> AuthToken create_project_api_key(id, auth_token_input)
+> AuthToken create_project_api_key(id, auth_token_input, include=include)
 
 Create an API key for a project.
 
@@ -136,10 +138,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.AuthenticationApi(api_client)
     id = 'id_example' # str | Project UUID
     auth_token_input = equinix_metal.AuthTokenInput() # AuthTokenInput | API Key to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Create an API key for a project.
-        api_response = api_instance.create_project_api_key(id, auth_token_input)
+        api_response = api_instance.create_project_api_key(id, auth_token_input, include=include)
         print("The response of AuthenticationApi->create_project_api_key:\n")
         pprint(api_response)
     except Exception as e:
@@ -154,6 +157,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **auth_token_input** | [**AuthTokenInput**](AuthTokenInput.md)| API Key to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -333,7 +337,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_api_keys**
-> AuthTokenList find_api_keys(include=include, exclude=exclude)
+> AuthTokenList find_api_keys(search=search, include=include)
 
 Retrieve all user API keys
 
@@ -371,12 +375,12 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.AuthenticationApi(api_client)
+    search = 'search_example' # str | Search by description (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve all user API keys
-        api_response = api_instance.find_api_keys(include=include, exclude=exclude)
+        api_response = api_instance.find_api_keys(search=search, include=include)
         print("The response of AuthenticationApi->find_api_keys:\n")
         pprint(api_response)
     except Exception as e:
@@ -389,8 +393,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **search** | **str**| Search by description | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -415,7 +419,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_project_api_keys**
-> AuthTokenList find_project_api_keys(id, include=include, exclude=exclude)
+> AuthTokenList find_project_api_keys(id, include=include)
 
 Retrieve all API keys for the project.
 
@@ -455,11 +459,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.AuthenticationApi(api_client)
     id = 'id_example' # str | Project UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve all API keys for the project.
-        api_response = api_instance.find_project_api_keys(id, include=include, exclude=exclude)
+        api_response = api_instance.find_project_api_keys(id, include=include)
         print("The response of AuthenticationApi->find_project_api_keys:\n")
         pprint(api_response)
     except Exception as e:
@@ -474,7 +477,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **drives** | [**List[PlanSpecsDrivesInner]**](PlanSpecsDrivesInner.md) |  | [optional] 
 **features** | [**PlanSpecsFeatures**](PlanSpecsFeatures.md) |  | [optional] 
 **href** | **str** |  | [optional] 
+**memory** | [**PlanSpecsMemory**](PlanSpecsMemory.md) |  | [optional] 
 **nics** | [**List[PlanSpecsNicsInner]**](PlanSpecsNicsInner.md) |  | [optional] 
 
 ## Example

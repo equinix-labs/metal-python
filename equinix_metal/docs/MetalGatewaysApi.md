@@ -105,7 +105,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_metal_gateway_elastic_ip**
-> IPAssignment create_metal_gateway_elastic_ip(id, metal_gateway_elastic_ip_create_input)
+> IPAssignment create_metal_gateway_elastic_ip(id, metal_gateway_elastic_ip_create_input, include=include, exclude=exclude)
 
 Create a Metal Gateway Elastic IP
 
@@ -146,10 +146,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.MetalGatewaysApi(api_client)
     id = 'id_example' # str | Metal Gateway UUID
     metal_gateway_elastic_ip_create_input = equinix_metal.MetalGatewayElasticIpCreateInput() # MetalGatewayElasticIpCreateInput | 
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Create a Metal Gateway Elastic IP
-        api_response = api_instance.create_metal_gateway_elastic_ip(id, metal_gateway_elastic_ip_create_input)
+        api_response = api_instance.create_metal_gateway_elastic_ip(id, metal_gateway_elastic_ip_create_input, include=include, exclude=exclude)
         print("The response of MetalGatewaysApi->create_metal_gateway_elastic_ip:\n")
         pprint(api_response)
     except Exception as e:
@@ -164,6 +166,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Metal Gateway UUID | 
  **metal_gateway_elastic_ip_create_input** | [**MetalGatewayElasticIpCreateInput**](MetalGatewayElasticIpCreateInput.md)|  | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

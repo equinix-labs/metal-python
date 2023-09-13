@@ -20,12 +20,14 @@ Method | HTTP request | Description
 [**find_project_devices**](DevicesApi.md#find_project_devices) | **GET** /projects/{id}/devices | Retrieve all devices of a project
 [**find_traffic**](DevicesApi.md#find_traffic) | **GET** /devices/{id}/traffic | Retrieve device traffic
 [**get_bgp_neighbor_data**](DevicesApi.md#get_bgp_neighbor_data) | **GET** /devices/{id}/bgp/neighbors | Retrieve BGP neighbor data for this device
+[**get_device_firmware_sets**](DevicesApi.md#get_device_firmware_sets) | **GET** /devices/{id}/firmware-sets | Get Device&#39;s associated Firmware Set
+[**get_device_health_rollup**](DevicesApi.md#get_device_health_rollup) | **GET** /devices/{id}/diagnostics/health/rollup | Get Device&#39;s Health Status
 [**perform_action**](DevicesApi.md#perform_action) | **POST** /devices/{id}/actions | Perform an action
 [**update_device**](DevicesApi.md#update_device) | **PUT** /devices/{id} | Update the device
 
 
 # **create_bgp_session**
-> BgpSession create_bgp_session(id, bgp_session_input)
+> BgpSession create_bgp_session(id, bgp_session_input, include=include)
 
 Create a BGP session
 
@@ -66,10 +68,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
     bgp_session_input = equinix_metal.BGPSessionInput() # BGPSessionInput | BGP session to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Create a BGP session
-        api_response = api_instance.create_bgp_session(id, bgp_session_input)
+        api_response = api_instance.create_bgp_session(id, bgp_session_input, include=include)
         print("The response of DevicesApi->create_bgp_session:\n")
         pprint(api_response)
     except Exception as e:
@@ -84,6 +87,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
  **bgp_session_input** | [**BGPSessionInput**](BGPSessionInput.md)| BGP session to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -367,7 +371,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_bgp_sessions**
-> BgpSessionList find_bgp_sessions(id)
+> BgpSessionList find_bgp_sessions(id, include=include)
 
 Retrieve all BGP sessions
 
@@ -406,10 +410,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Retrieve all BGP sessions
-        api_response = api_instance.find_bgp_sessions(id)
+        api_response = api_instance.find_bgp_sessions(id, include=include)
         print("The response of DevicesApi->find_bgp_sessions:\n")
         pprint(api_response)
     except Exception as e:
@@ -423,6 +428,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -1017,7 +1023,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_organization_devices**
-> DeviceList find_organization_devices(id, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
+> DeviceList find_organization_devices(id, search=search, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
 
 Retrieve all devices of an organization
 
@@ -1056,6 +1062,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Organization UUID
+    search = 'search_example' # str | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
     categories = ['categories_example'] # List[str] | Filter by plan category (optional)
     facility = 'facility_example' # str | Filter by device facility (optional)
     hostname = 'hostname_example' # str | Filter by partial hostname (optional)
@@ -1070,7 +1077,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
     try:
         # Retrieve all devices of an organization
-        api_response = api_instance.find_organization_devices(id, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
+        api_response = api_instance.find_organization_devices(id, search=search, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
         print("The response of DevicesApi->find_organization_devices:\n")
         pprint(api_response)
     except Exception as e:
@@ -1084,6 +1091,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
+ **search** | **str**| Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. | [optional] 
  **categories** | [**List[str]**](str.md)| Filter by plan category | [optional] 
  **facility** | **str**| Filter by device facility | [optional] 
  **hostname** | **str**| Filter by partial hostname | [optional] 
@@ -1120,7 +1128,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_project_devices**
-> DeviceList find_project_devices(id, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
+> DeviceList find_project_devices(id, search=search, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
 
 Retrieve all devices of a project
 
@@ -1159,6 +1167,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Project UUID
+    search = 'search_example' # str | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
     categories = ['categories_example'] # List[str] | Filter by plan category (optional)
     facility = 'facility_example' # str | Filter by device facility (optional)
     hostname = 'hostname_example' # str | Filter by partial hostname (optional)
@@ -1173,7 +1182,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
     try:
         # Retrieve all devices of a project
-        api_response = api_instance.find_project_devices(id, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
+        api_response = api_instance.find_project_devices(id, search=search, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
         print("The response of DevicesApi->find_project_devices:\n")
         pprint(api_response)
     except Exception as e:
@@ -1187,6 +1196,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
+ **search** | **str**| Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. | [optional] 
  **categories** | [**List[str]**](str.md)| Filter by plan category | [optional] 
  **facility** | **str**| Filter by device facility | [optional] 
  **hostname** | **str**| Filter by partial hostname | [optional] 
@@ -1310,7 +1320,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_bgp_neighbor_data**
-> BgpSessionNeighbors get_bgp_neighbor_data(id)
+> BgpSessionNeighbors get_bgp_neighbor_data(id, include=include)
 
 Retrieve BGP neighbor data for this device
 
@@ -1349,10 +1359,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Retrieve BGP neighbor data for this device
-        api_response = api_instance.get_bgp_neighbor_data(id)
+        api_response = api_instance.get_bgp_neighbor_data(id, include=include)
         print("The response of DevicesApi->get_bgp_neighbor_data:\n")
         pprint(api_response)
     except Exception as e:
@@ -1366,6 +1377,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -1387,6 +1399,168 @@ Name | Type | Description  | Notes
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
 **404** | not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_device_firmware_sets**
+> FirmwareSetResponse get_device_firmware_sets(id)
+
+Get Device's associated Firmware Set
+
+Returns the firmware set associated with the device. If a custom firmware set is associated with the device, then it is returned. Otherwise, if a default firmware set is available it is returned.
+
+### Example
+
+* Api Key Authentication (x_auth_token):
+```python
+import time
+import os
+import equinix_metal
+from equinix_metal.models.firmware_set_response import FirmwareSetResponse
+from equinix_metal.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.equinix.com/metal/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = equinix_metal.Configuration(
+    host = "https://api.equinix.com/metal/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: x_auth_token
+configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x_auth_token'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with equinix_metal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = equinix_metal.DevicesApi(api_client)
+    id = 'id_example' # str | Device UUID
+
+    try:
+        # Get Device's associated Firmware Set
+        api_response = api_instance.get_device_firmware_sets(id)
+        print("The response of DevicesApi->get_device_firmware_sets:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DevicesApi->get_device_firmware_sets: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Device UUID | 
+
+### Return type
+
+[**FirmwareSetResponse**](FirmwareSetResponse.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+**401** | Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \&quot;error\&quot; or \&quot;errors\&quot; will be set. |  -  |
+**404** | Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \&quot;error\&quot; or \&quot;errors\&quot; will be set. |  -  |
+**500** | Internal Server Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_device_health_rollup**
+> DeviceHealthRollup get_device_health_rollup(id)
+
+Get Device's Health Status
+
+Returns the health rollup status of the device.
+
+### Example
+
+* Api Key Authentication (x_auth_token):
+```python
+import time
+import os
+import equinix_metal
+from equinix_metal.models.device_health_rollup import DeviceHealthRollup
+from equinix_metal.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.equinix.com/metal/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = equinix_metal.Configuration(
+    host = "https://api.equinix.com/metal/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: x_auth_token
+configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x_auth_token'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with equinix_metal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = equinix_metal.DevicesApi(api_client)
+    id = 'id_example' # str | Device UUID
+
+    try:
+        # Get Device's Health Status
+        api_response = api_instance.get_device_health_rollup(id)
+        print("The response of DevicesApi->get_device_health_rollup:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling DevicesApi->get_device_health_rollup: %s\n" % e)
+```
+
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **str**| Device UUID | 
+
+### Return type
+
+[**DeviceHealthRollup**](DeviceHealthRollup.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful operation |  -  |
+**401** | Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \&quot;error\&quot; or \&quot;errors\&quot; will be set. |  -  |
+**404** | Error responses are included with 4xx and 5xx HTTP responses from the API service. Either \&quot;error\&quot; or \&quot;errors\&quot; will be set. |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1472,7 +1646,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_device**
-> Device update_device(id, device_update_input)
+> Device update_device(id, device_update_input, include=include, exclude=exclude)
 
 Update the device
 
@@ -1512,11 +1686,13 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
-    device_update_input = equinix_metal.DeviceUpdateInput() # DeviceUpdateInput | Facility to update
+    device_update_input = equinix_metal.DeviceUpdateInput() # DeviceUpdateInput | Device to update
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Update the device
-        api_response = api_instance.update_device(id, device_update_input)
+        api_response = api_instance.update_device(id, device_update_input, include=include, exclude=exclude)
         print("The response of DevicesApi->update_device:\n")
         pprint(api_response)
     except Exception as e:
@@ -1530,7 +1706,9 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
- **device_update_input** | [**DeviceUpdateInput**](DeviceUpdateInput.md)| Facility to update | 
+ **device_update_input** | [**DeviceUpdateInput**](DeviceUpdateInput.md)| Device to update | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

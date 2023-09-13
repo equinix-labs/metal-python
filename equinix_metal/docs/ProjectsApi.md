@@ -103,7 +103,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_project_invitation**
-> Invitation create_project_invitation(project_id, invitation_input)
+> Invitation create_project_invitation(project_id, invitation_input, include=include)
 
 Create an invitation for a project
 
@@ -144,10 +144,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.ProjectsApi(api_client)
     project_id = 'project_id_example' # str | Project UUID
     invitation_input = equinix_metal.InvitationInput() # InvitationInput | Invitation to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Create an invitation for a project
-        api_response = api_instance.create_project_invitation(project_id, invitation_input)
+        api_response = api_instance.create_project_invitation(project_id, invitation_input, include=include)
         print("The response of ProjectsApi->create_project_invitation:\n")
         pprint(api_response)
     except Exception as e:
@@ -162,6 +163,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| Project UUID | 
  **invitation_input** | [**InvitationInput**](InvitationInput.md)| Invitation to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -188,7 +190,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_transfer_request**
-> TransferRequest create_transfer_request(id, transfer_request_input)
+> TransferRequest create_transfer_request(id, transfer_request_input, include=include)
 
 Create a transfer request
 
@@ -229,10 +231,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.ProjectsApi(api_client)
     id = 'id_example' # str | UUID of the project to be transferred
     transfer_request_input = equinix_metal.TransferRequestInput() # TransferRequestInput | Transfer Request to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Create a transfer request
-        api_response = api_instance.create_transfer_request(id, transfer_request_input)
+        api_response = api_instance.create_transfer_request(id, transfer_request_input, include=include)
         print("The response of ProjectsApi->create_transfer_request:\n")
         pprint(api_response)
     except Exception as e:
@@ -247,6 +250,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| UUID of the project to be transferred | 
  **transfer_request_input** | [**TransferRequestInput**](TransferRequestInput.md)| Transfer Request to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -594,7 +598,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_project_invitations**
-> InvitationList find_project_invitations(project_id, include=include, exclude=exclude, page=page, per_page=per_page)
+> InvitationList find_project_invitations(project_id, include=include, page=page, per_page=per_page)
 
 Retrieve project invitations
 
@@ -634,13 +638,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.ProjectsApi(api_client)
     project_id = 'project_id_example' # str | Project UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
     per_page = 10 # int | Items returned per page (optional) (default to 10)
 
     try:
         # Retrieve project invitations
-        api_response = api_instance.find_project_invitations(project_id, include=include, exclude=exclude, page=page, per_page=per_page)
+        api_response = api_instance.find_project_invitations(project_id, include=include, page=page, per_page=per_page)
         print("The response of ProjectsApi->find_project_invitations:\n")
         pprint(api_response)
     except Exception as e:
@@ -655,7 +658,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| Project UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]
  **per_page** | **int**| Items returned per page | [optional] [default to 10]
 
@@ -683,7 +685,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_project_memberships**
-> MembershipList find_project_memberships(project_id, include=include, exclude=exclude, page=page, per_page=per_page)
+> MembershipList find_project_memberships(project_id, search=search, include=include, page=page, per_page=per_page)
 
 Retrieve project memberships
 
@@ -722,14 +724,14 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.ProjectsApi(api_client)
     project_id = 'project_id_example' # str | Project UUID
+    search = 'search_example' # str | Search by member full name, id and email. (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
     per_page = 10 # int | Items returned per page (optional) (default to 10)
 
     try:
         # Retrieve project memberships
-        api_response = api_instance.find_project_memberships(project_id, include=include, exclude=exclude, page=page, per_page=per_page)
+        api_response = api_instance.find_project_memberships(project_id, search=search, include=include, page=page, per_page=per_page)
         print("The response of ProjectsApi->find_project_memberships:\n")
         pprint(api_response)
     except Exception as e:
@@ -743,8 +745,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| Project UUID | 
+ **search** | **str**| Search by member full name, id and email. | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]
  **per_page** | **int**| Items returned per page | [optional] [default to 10]
 
@@ -772,7 +774,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_projects**
-> ProjectList find_projects(include=include, exclude=exclude, page=page, per_page=per_page, name=name)
+> ProjectList find_projects(name=name, include=include, exclude=exclude, page=page, per_page=per_page)
 
 Retrieve all projects
 
@@ -810,15 +812,15 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.ProjectsApi(api_client)
+    name = 'name_example' # str | Filter results by name. (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
     per_page = 10 # int | Items returned per page (optional) (default to 10)
-    name = 'name_example' # str | Search by name substring (optional)
 
     try:
         # Retrieve all projects
-        api_response = api_instance.find_projects(include=include, exclude=exclude, page=page, per_page=per_page, name=name)
+        api_response = api_instance.find_projects(name=name, include=include, exclude=exclude, page=page, per_page=per_page)
         print("The response of ProjectsApi->find_projects:\n")
         pprint(api_response)
     except Exception as e:
@@ -831,11 +833,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **name** | **str**| Filter results by name. | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]
  **per_page** | **int**| Items returned per page | [optional] [default to 10]
- **name** | **str**| Search by name substring | [optional] 
 
 ### Return type
 
@@ -859,7 +861,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_project**
-> Project update_project(id, project_update_input)
+> Project update_project(id, project_update_input, include=include, exclude=exclude)
 
 Update the project
 
@@ -900,10 +902,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.ProjectsApi(api_client)
     id = 'id_example' # str | Project UUID
     project_update_input = equinix_metal.ProjectUpdateInput() # ProjectUpdateInput | Project to update
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Update the project
-        api_response = api_instance.update_project(id, project_update_input)
+        api_response = api_instance.update_project(id, project_update_input, include=include, exclude=exclude)
         print("The response of ProjectsApi->update_project:\n")
         pprint(api_response)
     except Exception as e:
@@ -918,6 +922,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **project_update_input** | [**ProjectUpdateInput**](ProjectUpdateInput.md)| Project to update | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

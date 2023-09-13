@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **id** | **str** | The unique identifier for the resource | [optional] [readonly] 
 **metal_gateway** | [**VrfMetalGateway**](VrfMetalGateway.md) |  | [optional] 
 **state** | **str** |  | [optional] [readonly] 
+**tags** | **List[str]** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 
 ## Example

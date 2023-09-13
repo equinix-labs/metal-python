@@ -1,5 +1,13 @@
 components:
   parameters:
+    DeviceSearch:
+      description: Search by hostname, description, short_id, reservation short_id,
+        tags, plan name, plan slug, facility code, facility name, operating system
+        name, operating system slug, IP addresses.
+      in: query
+      name: search
+      schema:
+        type: string
     Exclude:
       description: 'Nested attributes to exclude. Excluded objects will return only
         the href
@@ -50,13 +58,20 @@ components:
         maximum: 1000
         minimum: 1
         type: integer
+    ProjectName:
+      description: Filter results by name.
+      in: query
+      name: name
+      schema:
+        type: string
   requestBodies:
     InterconnectionCreateInput:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/InterconnectionCreateInput'
-      description: Interconnection details
+            $ref: '#/components/schemas/createOrganizationInterconnection_request'
+      description: Dedicated port or shared interconnection (also known as Fabric
+        VC) creation request
       required: true
     InvitationInput:
       content:
@@ -80,6 +95,10 @@ components:
             $ref: '#/components/schemas/SSHKeyCreateInput'
       description: ssh key to create
       required: true
+  responses:
+    Error:
+      description: Error responses are included with 4xx and 5xx HTTP responses from
+        the API service. Either "error" or "errors" will be set.
   schemas:
     Address:
       properties:
@@ -99,6 +118,51 @@ components:
         state:
           type: string
         zip_code:
+          type: string
+      type: object
+    Attribute:
+      properties:
+        created_at:
+          description: Datetime when the block was created.
+          format: date-time
+          readOnly: true
+          type: string
+        data:
+          $ref: '#/components/schemas/AttributeData'
+        href:
+          format: uri
+          type: string
+        namespace:
+          description: Attribute namespace
+          readOnly: true
+          type: string
+        updated_at:
+          description: Datetime when the block was updated.
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
+    AttributeData:
+      properties:
+        href:
+          format: uri
+          type: string
+        latest:
+          description: Boolean flag to know if the firmware set is the latest for
+            the model and vendor
+          readOnly: true
+          type: boolean
+        model:
+          description: Model on which this firmware set can be applied
+          readOnly: true
+          type: string
+        plan:
+          description: Plan where the firmware set can be applied
+          readOnly: true
+          type: string
+        vendor:
+          description: Vendor on which this firmware set can be applied
+          readOnly: true
           type: string
       type: object
     AuthToken:
@@ -283,15 +347,40 @@ components:
     BgpConfigRequestInput:
       properties:
         asn:
+          description: Autonomous System Number for local BGP deployment.
+          example: 65000
+          maximum: 4294967295
+          minimum: 0
           type: integer
         deployment_type:
+          description: Wether the BGP deployment is local or global. Local deployments
+            are configured immediately. Global deployments will need to be reviewed
+            by Equinix Metal engineers.
+          enum:
+          - local
+          - global
+          example: local
           type: string
         href:
           format: uri
           type: string
         md5:
+          description: 'The plaintext password to share between BGP neighbors as an
+            MD5 checksum:
+
+            * must be 10-20 characters long
+
+            * may not include punctuation
+
+            * must be a combination of numbers and letters
+
+            * must contain at least one lowercase, uppercase, and digit character
+
+            '
+          pattern: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{10,20}$
           type: string
         use_case:
+          description: A use case explanation (necessary for global BGP request review).
           type: string
       required:
       - asn
@@ -333,6 +422,10 @@ components:
           - ready
           readOnly: true
           type: string
+        tags:
+          items:
+            type: string
+          type: array
         updated_at:
           format: date-time
           readOnly: true
@@ -351,6 +444,10 @@ components:
         href:
           format: uri
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       required:
       - bgp_neighbor_asn
       - bgp_neighbor_range
@@ -561,7 +658,7 @@ components:
           type: string
         quantity:
           description: The number of servers sent to check capacity.
-          type: string
+          type: integer
       type: object
     CapacityCheckPerMetroList:
       properties:
@@ -594,86 +691,80 @@ components:
     CapacityList:
       properties:
         capacity:
-          $ref: '#/components/schemas/CapacityReport'
-        href:
-          format: uri
-          type: string
-      type: object
-    CapacityPerFacility:
-      properties:
-        baremetal_0:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_1:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_2:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_2a:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_2a2:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_3:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        baremetal_s:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        c2.medium.x86:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-        href:
-          format: uri
-          type: string
-        m2.xlarge.x86:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
-      type: object
-    CapacityPerMetroInput:
-      properties:
-        href:
-          format: uri
-          type: string
-        servers:
-          items:
-            $ref: '#/components/schemas/MetroServerInfo'
-          type: array
-      type: object
-    CapacityPerNewFacility:
-      properties:
-        baremetal_1e:
-          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
+          additionalProperties:
+            additionalProperties:
+              $ref: '#/components/schemas/CapacityLevelPerBaremetal'
+            type: object
+          type: object
         href:
           format: uri
           type: string
       type: object
     CapacityReport:
+      additionalProperties:
+        additionalProperties:
+          $ref: '#/components/schemas/CapacityLevelPerBaremetal'
+        type: object
+      type: object
+    Component:
       properties:
-        ams1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        atl1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        dfw1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        ewr1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        fra1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
+        checksum:
+          description: File checksum
+          readOnly: true
+          type: string
+        component:
+          description: Component type
+          example: bmc
+          readOnly: true
+          type: string
+        created_at:
+          description: Datetime when the block was created.
+          format: date-time
+          readOnly: true
+          type: string
+        filename:
+          description: name of the file
+          readOnly: true
+          type: string
         href:
           format: uri
           type: string
-        iad1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        lax1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        nrt1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ord1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        sea1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        sin1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        sjc1:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        syd1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
-        yyz1:
-          $ref: '#/components/schemas/CapacityPerNewFacility'
+        model:
+          description: List of models where this component version can be applied
+          items:
+            example: romed8hm3
+            type: string
+          readOnly: true
+          type: array
+        repository_url:
+          description: Location of the file in the repository
+          readOnly: true
+          type: string
+        updated_at:
+          description: Datetime when the block was updated.
+          format: date-time
+          readOnly: true
+          type: string
+        upstream_url:
+          description: Location of the file
+          readOnly: true
+          type: string
+        uuid:
+          description: Component UUID
+          example: 0516463a-47ee-4809-9a66-ece8c740eed9
+          format: uuid
+          readOnly: true
+          type: string
+        vendor:
+          description: Component vendor
+          example: equinix
+          readOnly: true
+          type: string
+        version:
+          description: Version of the component
+          example: 1.5.0
+          readOnly: true
+          type: string
       type: object
     Coordinates:
       properties:
@@ -727,6 +818,72 @@ components:
           - monthly
           type: string
       type: object
+    DedicatedPortCreateInput:
+      properties:
+        billing_account_name:
+          description: The billing account name of the Equinix Fabric account.
+          type: string
+        contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
+          type: string
+        description:
+          type: string
+        href:
+          format: uri
+          type: string
+        metro:
+          description: A Metro ID or code. For interconnections with Dedicated Ports,
+            this will be the location of the issued Dedicated Ports.
+          type: string
+        mode:
+          description: "The mode of the interconnection (only relevant to Dedicated\
+            \ Ports). Fabric VCs won't have this field. Can be either 'standard' or\
+            \ 'tunnel'.\n  The default mode of an interconnection on a Dedicated Port\
+            \ is 'standard'. The mode can only be changed when there are no associated\
+            \ virtual circuits on the interconnection.\n  In tunnel mode, an 802.1q\
+            \ tunnel is added to a port to send/receive double tagged packets from\
+            \ server instances."
+          enum:
+          - standard
+          - tunnel
+          example: standard
+          type: string
+        name:
+          type: string
+        project:
+          type: string
+        redundancy:
+          description: Either 'primary' or 'redundant'.
+          type: string
+        speed:
+          description: A interconnection speed, in bps, mbps, or gbps. For Dedicated
+            Ports, this can be 10Gbps or 100Gbps.
+          example: 10000000000
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: When requesting for a dedicated port, the value of this field
+            should be 'dedicated'.
+          enum:
+          - dedicated
+          - shared
+          type: string
+        use_case:
+          description: The intended use case of the dedicated port.
+          type: string
+      required:
+      - metro
+      - name
+      - redundancy
+      - type
+      type: object
     Device:
       properties:
         actions:
@@ -753,6 +910,10 @@ components:
           type: string
         facility:
           $ref: '#/components/schemas/Facility'
+        firmware_set_id:
+          description: The UUID of the firmware set to associate with the device.
+          format: uuid
+          type: string
         hardware_reservation:
           $ref: '#/components/schemas/Href'
         hostname:
@@ -777,6 +938,11 @@ components:
           type: boolean
         metro:
           $ref: '#/components/schemas/Device_metro'
+        network_frozen:
+          description: Whether network mode changes such as converting to/from Layer2
+            or Layer3 networking, bonding or disbonding network interfaces are permitted
+            for the device.
+          type: boolean
         network_ports:
           description: "By default, servers at Equinix Metal are configured in a \u201C\
             bonded\u201D mode using LACP (Link Aggregation Control Protocol). Each\
@@ -830,19 +996,35 @@ components:
             $ref: '#/components/schemas/Href'
           type: array
         state:
+          description: "The current state the instance is in.\n\n* When an instance\
+            \ is initially created it will be in the `queued` state until it is picked\
+            \ up by the provisioner.\n* Once provisioning has begun on the instance\
+            \ it's state will move to `provisioning`.\n* When an instance is deleted,\
+            \ it will move to `deprovisioning` state until the deprovision is completed\
+            \ and the instance state moves to `deleted`.\n* If an instance fails to\
+            \ provision or deprovision it will move to `failed` state.\n* Once an\
+            \ instance has completed provisioning it will move to `active` state.\n\
+            * If an instance is currently powering off or powering on it will move\
+            \ to `powering_off` or `powering_on` states respectively. \n* When the\
+            \ instance is powered off completely it will move to the `inactive` state.\n\
+            * When an instance is powered on completely it will move to the `active`\
+            \ state.\n* Using the reinstall action to install a new OS on the instance\
+            \ will cause the instance state to change to `reinstalling`.\n* When the\
+            \ reinstall action is complete the instance will move to `active` state."
           enum:
-          - active
-          - deleted
-          - deprovisioning
-          - failed
-          - inactive
           - queued
+          - provisioning
+          - deprovisioning
           - reinstalling
-          - post_provisioning
+          - active
+          - inactive
+          - failed
           - powering_on
           - powering_off
-          - provisioning
+          - deleted
           type: string
+        storage:
+          $ref: '#/components/schemas/Storage'
         switch_uuid:
           description: 'Switch short id. This can be used to determine if two devices
             are
@@ -1072,6 +1254,10 @@ components:
           description: Whether the device should be locked, preventing accidental
             deletion.
           type: boolean
+        network_frozen:
+          description: If true, this instance can not be converted to a different
+            network type.
+          type: boolean
         no_ssh_keys:
           default: false
           description: Overrides default behaviour of attaching all of the organization
@@ -1142,6 +1328,8 @@ components:
           items:
             $ref: '#/components/schemas/SSHKeyInput'
           type: array
+        storage:
+          $ref: '#/components/schemas/Storage'
         tags:
           items:
             type: string
@@ -1213,6 +1401,26 @@ components:
       - operating_system
       - plan
       type: object
+    DeviceHealthRollup:
+      description: Represents a Device Health Status
+      properties:
+        health_rollup:
+          description: Health Status
+          enum:
+          - ok
+          - warning
+          - critical
+          readOnly: true
+          type: string
+        href:
+          format: uri
+          type: string
+        updated_at:
+          description: Last update of health status.
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
     DeviceList:
       properties:
         devices:
@@ -1236,6 +1444,8 @@ components:
           default: {}
           type: object
         description:
+          type: string
+        firmware_set_id:
           type: string
         hostname:
           type: string
@@ -1316,6 +1526,20 @@ components:
       - $ref: '#/components/schemas/Href'
       - description: Lite version of project object when included
         type: object
+    Disk:
+      properties:
+        device:
+          type: string
+        href:
+          format: uri
+          type: string
+        partitions:
+          items:
+            $ref: '#/components/schemas/Partition'
+          type: array
+        wipeTable:
+          type: boolean
+      type: object
     Email:
       properties:
         address:
@@ -1576,6 +1800,95 @@ components:
         href:
           format: uri
           type: string
+      type: object
+    Filesystem:
+      properties:
+        href:
+          format: uri
+          type: string
+        mount:
+          $ref: '#/components/schemas/Mount'
+      type: object
+    FirmwareSet:
+      description: Represents a Firmware Set
+      properties:
+        attributes:
+          description: Represents a list of attributes
+          items:
+            $ref: '#/components/schemas/Attribute'
+          type: array
+        component_firmware:
+          description: List of components versions
+          items:
+            $ref: '#/components/schemas/Component'
+          type: array
+        created_at:
+          description: Datetime when the block was created.
+          format: date-time
+          readOnly: true
+          type: string
+        href:
+          format: uri
+          type: string
+        name:
+          description: Firmware Set Name
+          readOnly: true
+          type: string
+        updated_at:
+          description: Datetime when the block was updated.
+          format: date-time
+          readOnly: true
+          type: string
+        uuid:
+          description: Firmware Set UUID
+          example: 0516463a-47ee-4809-9a66-ece8c740eed9
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - name
+      - uuid
+      type: object
+    FirmwareSetList:
+      description: Represents a list of FirmwareSets
+      items:
+        $ref: '#/components/schemas/FirmwareSet'
+      type: array
+    FirmwareSetListResponse:
+      description: Represents collection of Firmware Sets
+      properties:
+        href:
+          format: uri
+          type: string
+        page:
+          description: Page returned
+          type: integer
+        page_count:
+          description: Items returned in current page
+          type: integer
+        page_size:
+          description: Max number of items returned in a page
+          type: integer
+        records:
+          description: Represents a list of FirmwareSets
+          items:
+            $ref: '#/components/schemas/FirmwareSet'
+          type: array
+        total_pages:
+          description: Total count of pages
+          type: integer
+        total_record_count:
+          description: Total count of items
+          type: integer
+      type: object
+    FirmwareSetResponse:
+      description: Represents single Firmware set response
+      properties:
+        href:
+          format: uri
+          type: string
+        record:
+          $ref: '#/components/schemas/FirmwareSet'
       type: object
     GlobalBgpRange:
       properties:
@@ -2084,120 +2397,6 @@ components:
           format: date-time
           type: string
       type: object
-    InterconnectionCreateInput:
-      properties:
-        contact_email:
-          description: The preferred email used for communication and notifications
-            about the Equinix Fabric interconnection. Required when using a Project
-            API key. Optional and defaults to the primary user email address when
-            using a User API key.
-          format: email
-          type: string
-        description:
-          type: string
-        href:
-          format: uri
-          type: string
-        metro:
-          description: A Metro ID or code. For interconnections with Dedicated Ports,
-            this will be the location of the issued Dedicated Ports. When creating
-            Fabric VCs (Metal Billed), this is where interconnection will be originating
-            from, as we pre-authorize the use of one of our shared ports as the origin
-            of the interconnection using A-Side service tokens. We only allow local
-            connections for Fabric VCs (Metal Billed), so the destination location
-            must be the same as the origin. For Fabric VCs (Fabric Billed), or shared
-            connections, this will be the destination of the interconnection. We allow
-            remote connections for Fabric VCs (Fabric Billed), so the origin of the
-            interconnection can be a different metro set here.
-          type: string
-        mode:
-          description: "The mode of the interconnection (only relevant to Dedicated\
-            \ Ports). Fabric VCs won't have this field. Can be either 'standard' or\
-            \ 'tunnel'.\n  The default mode of an interconnection on a Dedicated Port\
-            \ is 'standard'. The mode can only be changed when there are no associated\
-            \ virtual circuits on the interconnection.\n  In tunnel mode, an 802.1q\
-            \ tunnel is added to a port to send/receive double tagged packets from\
-            \ server instances."
-          enum:
-          - standard
-          - tunnel
-          example: standard
-          type: string
-        name:
-          type: string
-        project:
-          type: string
-        redundancy:
-          description: Either 'primary' or 'redundant'.
-          type: string
-        service_token_type:
-          description: Either 'a_side' or 'z_side'. Setting this field to 'a_side'
-            will create an interconnection with Fabric VCs (Metal Billed). Setting
-            this field to 'z_side' will create an interconnection with Fabric VCs
-            (Fabric Billed). This is required when the 'type' is 'shared', but this
-            is not applicable when the 'type' is 'dedicated'. This parameter is included
-            in the specification as a developer preview and is generally unavailable.
-            Please contact our Support team for more details.
-          enum:
-          - a_side
-          - z_side
-          example: a_side
-          type: string
-        speed:
-          description: "A interconnection speed, in bps, mbps, or gbps. For Dedicated\
-            \ Ports, this can be 10Gbps or 100Gbps.\nFor Fabric VCs, this represents\
-            \ the maximum speed of the interconnection. For Fabric VCs (Metal Billed),\
-            \ this can only be one of the following: \n''50mbps'', ''200mbps'', ''500mbps'',\
-            \ ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation.\
-            \ For Fabric VCs (Fabric Billed), this field will always default to ''10gbps''\
-            \ even if it is not provided.\nFor example, ''500000000'', ''50m'', or'\
-            \ ''500mbps'' will all work as valid inputs."
-          example: 10000000000
-          type: integer
-        tags:
-          items:
-            type: string
-          type: array
-        type:
-          description: Either 'shared' or 'dedicated'. The 'shared' type represents
-            shared interconnections, or also known as Fabric VCs. The 'dedicated'
-            type represents dedicated interconnections, or also known as Dedicated
-            Ports.
-          type: string
-        vlans:
-          description: A list of one or two metro-based VLANs that will be set on
-            the virtual circuits of primary and/or secondary (if redundant) interconnections
-            respectively when creating Fabric VCs. VLANs can also be set after the
-            interconnection is created, but are required to fully activate the interconnection.
-            This parameter is included in the specification as a developer preview
-            and is generally unavailable. Please contact our Support team for more
-            details.
-          example:
-          - 1000
-          - 1001
-          items:
-            type: integer
-          type: array
-        vrfs:
-          description: Can only be set when creating Fabric VCs in VRF(s). This field
-            holds a list of VRF UUIDs that will be set automatically on the virtual
-            circuits on creation, and can hold up to two UUIDs. Two UUIDs are required
-            when requesting redundant Fabric VCs. The first UUID will be set on the
-            primary virtual circuit, while the second UUID will be set on the secondary.
-            The two UUIDs can be the same if both the primary and secondary virtual
-            circuits will be in the same VRF. This parameter is included in the specification
-            as a developer preview and is generally unavailable. Please contact our
-            Support team for more details.
-          items:
-            format: uuid
-            type: string
-          type: array
-      required:
-      - metro
-      - name
-      - redundancy
-      - type
-      type: object
     InterconnectionList:
       properties:
         href:
@@ -2243,12 +2442,15 @@ components:
           - active
           - deleting
           - expired
+          - delete_failed
           type: string
         switch_id:
           description: A switch 'short ID'
           type: string
         virtual_circuits:
-          $ref: '#/components/schemas/VirtualCircuitList'
+          items:
+            $ref: '#/components/schemas/VirtualCircuit'
+          type: array
       type: object
     InterconnectionPortList:
       properties:
@@ -2608,6 +2810,34 @@ components:
           items:
             type: string
           type: array
+        state:
+          description: "The current state the instance is in.\n\n* When an instance\
+            \ is initially created it will be in the `queued` state until it is picked\
+            \ up by the provisioner.\n* Once provisioning has begun on the instance\
+            \ it's state will move to `provisioning`.\n* When an instance is deleted,\
+            \ it will move to `deprovisioning` state until the deprovision is completed\
+            \ and the instance state moves to `deleted`.\n* If an instance fails to\
+            \ provision or deprovision it will move to `failed` state.\n* Once an\
+            \ instance has completed provisioning it will move to `active` state.\n\
+            * If an instance is currently powering off or powering on it will move\
+            \ to `powering_off` or `powering_on` states respectively. \n* When the\
+            \ instance is powered off completely it will move to the `inactive` state.\n\
+            * When an instance is powered on completely it will move to the `active`\
+            \ state.\n* Using the reinstall action to install a new OS on the instance\
+            \ will cause the instance state to change to `reinstalling`.\n* When the\
+            \ reinstall action is complete the instance will move to `active` state."
+          enum:
+          - queued
+          - provisioning
+          - deprovisioning
+          - reinstalling
+          - active
+          - inactive
+          - failed
+          - powering_on
+          - powering_off
+          - deleted
+          type: string
         switch_short_id:
           type: string
         tags:
@@ -2819,60 +3049,6 @@ components:
         name:
           type: string
       type: object
-    MetroCapacityList:
-      properties:
-        capacity:
-          $ref: '#/components/schemas/MetroCapacityReport'
-        href:
-          format: uri
-          type: string
-      type: object
-    MetroCapacityReport:
-      properties:
-        am:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        at:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ch:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        da:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        dc:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        fr:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        hk:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        href:
-          format: uri
-          type: string
-        la:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ld:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        md:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ny:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        pa:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        se:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sg:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sl:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sp:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sv:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        sy:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        tr:
-          $ref: '#/components/schemas/CapacityPerFacility'
-        ty:
-          $ref: '#/components/schemas/CapacityPerFacility'
-      type: object
     MetroInput:
       properties:
         href:
@@ -2898,19 +3074,20 @@ components:
             $ref: '#/components/schemas/Metro'
           type: array
       type: object
-    MetroServerInfo:
+    Mount:
       properties:
+        device:
+          type: string
+        format:
+          type: string
         href:
           format: uri
           type: string
-        metro:
-          description: The metro ID or code to check the capacity in.
-          type: string
-        plan:
-          description: The plan ID or slug to check the capacity of.
-          type: string
-        quantity:
-          description: The number of servers to check the capacity of.
+        options:
+          items:
+            type: string
+          type: array
+        point:
           type: string
       type: object
     NewPassword:
@@ -2923,6 +3100,10 @@ components:
       type: object
     OperatingSystem:
       properties:
+        default_operating_system:
+          description: Default operating system for the distro.
+          readOnly: true
+          type: boolean
         distro:
           type: string
         distro_label:
@@ -3038,7 +3219,9 @@ components:
           format: uri
           type: string
         logo:
-          format: binary
+          description: The logo for the organization; must be base64-encoded image
+            data
+          format: byte
           type: string
         name:
           type: string
@@ -3068,6 +3251,19 @@ components:
         netmask:
           type: string
         network:
+          type: string
+      type: object
+    Partition:
+      properties:
+        href:
+          format: uri
+          type: string
+        label:
+          type: string
+        number:
+          format: int32
+          type: integer
+        size:
           type: string
       type: object
     PaymentMethod:
@@ -3280,6 +3476,8 @@ components:
         href:
           format: uri
           type: string
+        memory:
+          $ref: '#/components/schemas/Plan_specs_memory'
         nics:
           items:
             $ref: '#/components/schemas/Plan_specs_nics_inner'
@@ -3329,6 +3527,14 @@ components:
           type: boolean
         uefi:
           type: boolean
+      type: object
+    Plan_specs_memory:
+      properties:
+        href:
+          format: uri
+          type: string
+        total:
+          type: string
       type: object
     Plan_specs_nics_inner:
       properties:
@@ -3597,6 +3803,10 @@ components:
             $ref: '#/components/schemas/Href'
           type: array
         name:
+          description: The name of the project. Cannot contain characters encoded
+            in greater than 3 bytes such as emojis.
+          maxLength: 80
+          minLength: 1
           type: string
         network_status:
           type: object
@@ -3608,6 +3818,17 @@ components:
           items:
             $ref: '#/components/schemas/Href'
           type: array
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: The type of the project. Projects of type `vmce` are part of
+            an in development feature and not available to all customers.
+          enum:
+          - default
+          - vmce
+          type: string
         updated_at:
           format: date-time
           type: string
@@ -3624,12 +3845,28 @@ components:
           format: uri
           type: string
         name:
+          description: The name of the project. Cannot contain characters encoded
+            in greater than 3 bytes such as emojis.
+          maxLength: 80
+          minLength: 1
           type: string
         organization_id:
           format: uuid
           type: string
         payment_method_id:
           format: uuid
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: The type of the project. If no type is specified the project
+            type will automatically be `default` Projects of type 'vmce' are part
+            of an in development feature and not available to all customers.
+          enum:
+          - default
+          - vmce
           type: string
       required:
       - name
@@ -3642,9 +3879,25 @@ components:
           format: uri
           type: string
         name:
+          description: The name of the project. Cannot contain characters encoded
+            in greater than 3 bytes such as emojis.
+          maxLength: 80
+          minLength: 1
           type: string
         payment_method_id:
           format: uuid
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: The type of the project. If no type is specified the project
+            type will automatically be `default` Projects of type 'vmce' are part
+            of an in development feature and not available to all customers.
+          enum:
+          - default
+          - vmce
           type: string
       required:
       - name
@@ -3682,10 +3935,18 @@ components:
           format: uri
           type: string
         name:
+          description: The name of the project. Cannot contain characters encoded
+            in greater than 3 bytes such as emojis.
+          maxLength: 80
+          minLength: 1
           type: string
         payment_method_id:
           format: uuid
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     ProjectUsage:
       properties:
@@ -3721,6 +3982,20 @@ components:
             $ref: '#/components/schemas/ProjectUsage'
           type: array
       type: object
+    Raid:
+      properties:
+        devices:
+          items:
+            type: string
+          type: array
+        href:
+          format: uri
+          type: string
+        level:
+          type: string
+        name:
+          type: string
+      type: object
     RecoveryCodeList:
       properties:
         href:
@@ -3749,6 +4024,10 @@ components:
           type: string
         label:
           type: string
+        tags:
+          items:
+            type: string
+          type: array
         updated_at:
           format: date-time
           type: string
@@ -3769,6 +4048,10 @@ components:
           type: string
         label:
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     SSHKeyInput:
       properties:
@@ -3779,6 +4062,10 @@ components:
           type: string
         label:
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     SSHKeyList:
       properties:
@@ -3894,9 +4181,14 @@ components:
         href:
           format: uri
           type: string
+        metro:
+          description: The metro ID or code to check the capacity in.
+          type: string
         plan:
+          description: The plan ID or slug to check the capacity of.
           type: string
         quantity:
+          description: The number of servers to check the capacity of.
           type: string
       type: object
     SpotMarketPricesList:
@@ -4162,6 +4454,24 @@ components:
           $ref: '#/components/schemas/SpotPricesPerNewFacility'
         yyz1:
           $ref: '#/components/schemas/SpotPricesPerNewFacility'
+      type: object
+    Storage:
+      properties:
+        disks:
+          items:
+            $ref: '#/components/schemas/Disk'
+          type: array
+        filesystems:
+          items:
+            $ref: '#/components/schemas/Filesystem'
+          type: array
+        href:
+          format: uri
+          type: string
+        raid:
+          items:
+            $ref: '#/components/schemas/Raid'
+          type: array
       type: object
     SupportRequestInput:
       properties:
@@ -4503,6 +4813,10 @@ components:
           description: The Metro code of the metro in which this Virtual Network is
             defined.
           type: string
+        tags:
+          items:
+            type: string
+          type: array
         vxlan:
           type: integer
       type: object
@@ -4522,6 +4836,10 @@ components:
           description: The UUID (or metro code) for the Metro in which to create this
             Virtual Network.
           type: string
+        tags:
+          items:
+            type: string
+          type: array
         vxlan:
           description: VLAN ID between 2-3999. Must be unique for the project within
             the Metro in which this Virtual Network is being created. If no value
@@ -4539,6 +4857,90 @@ components:
           items:
             $ref: '#/components/schemas/VirtualNetwork'
           type: array
+      type: object
+    VlanFabricVcCreateInput:
+      properties:
+        contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
+          type: string
+        description:
+          type: string
+        href:
+          format: uri
+          type: string
+        metro:
+          description: A Metro ID or code. When creating Fabric VCs (Metal Billed),
+            this is where interconnection will be originating from, as we pre-authorize
+            the use of one of our shared ports as the origin of the interconnection
+            using A-Side service tokens. We only allow local connections for Fabric
+            VCs (Metal Billed), so the destination location must be the same as the
+            origin. For Fabric VCs (Fabric Billed), or shared connections, this will
+            be the destination of the interconnection. We allow remote connections
+            for Fabric VCs (Fabric Billed), so the origin of the interconnection can
+            be a different metro set here.
+          type: string
+        name:
+          type: string
+        project:
+          type: string
+        redundancy:
+          description: Either 'primary' or 'redundant'.
+          type: string
+        service_token_type:
+          description: Either 'a_side' or 'z_side'. Setting this field to 'a_side'
+            will create an interconnection with Fabric VCs (Metal Billed). Setting
+            this field to 'z_side' will create an interconnection with Fabric VCs
+            (Fabric Billed). This is required when the 'type' is 'shared', but this
+            is not applicable when the 'type' is 'dedicated'. This parameter is included
+            in the specification as a developer preview and is generally unavailable.
+            Please contact our Support team for more details.
+          enum:
+          - a_side
+          - z_side
+          example: a_side
+          type: string
+        speed:
+          description: "A interconnection speed, in bps, mbps, or gbps. For Fabric\
+            \ VCs, this represents the maximum speed of the interconnection. For Fabric\
+            \ VCs (Metal Billed), this can only be one of the following: \n''50mbps'',\
+            \ ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'',\
+            \ and is required for creation. For Fabric VCs (Fabric Billed), this field\
+            \ will always default to ''10gbps'' even if it is not provided.\nFor example,\
+            \ ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs."
+          example: 10000000000
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: When requesting for a Fabric VC, the value of this field should
+            be 'shared'.
+          enum:
+          - shared
+          type: string
+        vlans:
+          description: A list of one or two metro-based VLANs that will be set on
+            the virtual circuits of primary and/or secondary (if redundant) interconnections
+            respectively when creating Fabric VCs. VLANs can also be set after the
+            interconnection is created, but are required to fully activate the virtual
+            circuits.
+          example:
+          - 1000
+          - 1001
+          items:
+            type: integer
+          type: array
+      required:
+      - metro
+      - name
+      - redundancy
+      - service_token_type
+      - type
       type: object
     VlanVirtualCircuit:
       properties:
@@ -4579,26 +4981,33 @@ components:
             Support team for more details.
           type: integer
         status:
-          description: The status of a Virtual Circuit is always 'Pending' on creation.
+          description: The status of a Virtual Circuit is always 'pending' on creation.
             The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was
             not set yet on the Virtual Circuit and is the last step needed for full
             activation. For Dedicated interconnections, as long as the Dedicated Port
             has been associated to the Virtual Circuit and a NNI VNID has been set,
-            it will turn to 'Waiting on Customer VLAN'. For Fabric VCs, it will only
-            change to 'Waiting on Customer VLAN' once the corresponding Fabric connection
-            has been found on the Fabric side. Once a Metro VLAN is set on the Virtual
-            Circuit (which for Fabric VCs, can be set on creation) and the necessary
-            set up is done, it will turn into 'Activating' status as it tries to activate
-            the Virtual Circuit. Once the Virtual Circuit fully activates and is configured
-            on the switch, it will turn to staus 'Active'. For Fabric VCs (Metal Billed),
-            we will start billing the moment the status of the Virtual Circuit turns
-            to 'Active'. If there are any changes to the VLAN after the Virtual Circuit
-            is in an 'Active' status, the status will show 'Changing VLAN' if a new
-            VLAN has been provided, or 'Deactivating' if we are removing the VLAN.
-            When a deletion request is issued for the Virtual Circuit, it will move
-            to a 'deleting' status until it is fully deleted. If the Virtual Circuit
-            is on a Fabric VC, it can also change into an 'Expired' status if the
-            associated service token has expired.
+            it will turn to 'waiting_on_customer_vlan'. For Fabric VCs, it will only
+            change to 'waiting_on_customer_vlan' once the corresponding Fabric connection
+            has been found on the Fabric side. If the Fabric service token associated
+            with the Virtual Circuit hasn't been redeemed on Fabric within the expiry
+            time, it will change to an `expired` status. Once a Metro VLAN is set
+            on the Virtual Circuit (which for Fabric VCs, can be set on creation of
+            a Fabric VC) and the necessary set up is done, it will turn into 'Activating'
+            status as it tries to activate the Virtual Circuit. Once the Virtual Circuit
+            fully activates and is configured on the switch, it will turn to staus
+            'active'. For Fabric VCs (Metal Billed), we will start billing the moment
+            the status of the Virtual Circuit turns to 'active'. If there are any
+            changes to the VLAN after the Virtual Circuit is in an 'active' status,
+            the status will show 'changing_vlan' if a new VLAN has been provided,
+            or 'deactivating' if we are removing the VLAN. When a deletion request
+            is issued for the Virtual Circuit, it will move to a 'deleting' status,
+            and we will immediately unconfigure the switch for the Virtual Circuit
+            and issue a deletion on any associated Fabric connections. Any associated
+            Metro VLANs on the virtual circuit will also be unassociated after the
+            switch has been successfully unconfigured. If there are any associated
+            Fabric connections, we will only fully delete the Virtual Circuit once
+            we have checked that the Fabric connection was fully deprovisioned on
+            Fabric.
           enum:
           - pending
           - waiting_on_customer_vlan
@@ -4736,6 +5145,10 @@ components:
           type: string
         project:
           $ref: '#/components/schemas/Project'
+        tags:
+          items:
+            type: string
+          type: array
         updated_at:
           format: date-time
           type: string
@@ -4779,9 +5192,99 @@ components:
           type: string
         name:
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       required:
       - metro
       - name
+      type: object
+    VrfFabricVcCreateInput:
+      properties:
+        contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
+          type: string
+        description:
+          type: string
+        href:
+          format: uri
+          type: string
+        metro:
+          description: A Metro ID or code. When creating Fabric VCs (Metal Billed),
+            this is where interconnection will be originating from, as we pre-authorize
+            the use of one of our shared ports as the origin of the interconnection
+            using A-Side service tokens. We only allow local connections for Fabric
+            VCs (Metal Billed), so the destination location must be the same as the
+            origin. For Fabric VCs (Fabric Billed), or shared connections, this will
+            be the destination of the interconnection. We allow remote connections
+            for Fabric VCs (Fabric Billed), so the origin of the interconnection can
+            be a different metro set here.
+          type: string
+        name:
+          type: string
+        project:
+          type: string
+        redundancy:
+          description: Either 'primary' or 'redundant'.
+          type: string
+        service_token_type:
+          description: Either 'a_side' or 'z_side'. Setting this field to 'a_side'
+            will create an interconnection with Fabric VCs (Metal Billed). Setting
+            this field to 'z_side' will create an interconnection with Fabric VCs
+            (Fabric Billed). This is required when the 'type' is 'shared', but this
+            is not applicable when the 'type' is 'dedicated'. This parameter is included
+            in the specification as a developer preview and is generally unavailable.
+            Please contact our Support team for more details.
+          enum:
+          - a_side
+          - z_side
+          example: a_side
+          type: string
+        speed:
+          description: "A interconnection speed, in bps, mbps, or gbps. For Fabric\
+            \ VCs, this represents the maximum speed of the interconnection. For Fabric\
+            \ VCs (Metal Billed), this can only be one of the following: \n''50mbps'',\
+            \ ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'',\
+            \ and is required for creation. For Fabric VCs (Fabric Billed), this field\
+            \ will always default to ''10gbps'' even if it is not provided.\nFor example,\
+            \ ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs."
+          example: 10000000000
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          description: When requesting for a Fabric VC, the value of this field should
+            be 'shared'.
+          enum:
+          - shared
+          type: string
+        vrfs:
+          description: This field holds a list of VRF UUIDs that will be set automatically
+            on the virtual circuits of Fabric VCs on creation, and can hold up to
+            two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs.
+            The first UUID will be set on the primary virtual circuit, while the second
+            UUID will be set on the secondary. The two UUIDs can be the same if both
+            the primary and secondary virtual circuits will be in the same VRF. This
+            parameter is included in the specification as a developer preview and
+            is generally unavailable. Please contact our Support team for more details.
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - metro
+      - name
+      - redundancy
+      - service_token_type
+      - type
+      - vrfs
       type: object
     VrfIpRangeCreateInput:
       description: A list of CIDR network addresses. Like ["10.0.0.0/16", "2001:d78::/56"].
@@ -5028,6 +5531,10 @@ components:
           example: active
           readOnly: true
           type: string
+        tags:
+          items:
+            type: string
+          type: array
         type:
           description: VRF route type, like 'bgp', 'connected', and 'static'. Currently,
             only static routes are supported
@@ -5061,6 +5568,10 @@ components:
             a static default route, this will always be "0.0.0.0/0"
           example: 0.0.0.0/0
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       required:
       - next_hop
       - prefix
@@ -5093,6 +5604,10 @@ components:
             a static default route, this will always be "0.0.0.0/0"
           example: 0.0.0.0/0
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     VrfUpdateInput:
       properties:
@@ -5136,6 +5651,10 @@ components:
           type: integer
         name:
           type: string
+        tags:
+          items:
+            type: string
+          type: array
       type: object
     VrfVirtualCircuit:
       properties:
@@ -5183,6 +5702,29 @@ components:
           description: integer representing bps speed
           type: integer
         status:
+          description: The status changes of a VRF virtual circuit are generally the
+            same as Virtual Circuits that aren't in a VRF. However, for VRF Virtual
+            Circuits on Fabric VCs, the status will change to 'waiting_on_peering_details'
+            once the Fabric service token associated with the virtual circuit has
+            been redeemed on Fabric, and Metal has found the associated Fabric connection.
+            At this point, users can update the subnet, MD5 password, customer IP
+            and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports,
+            we require all peering details to be set on creation of a VRF Virtual
+            Circuit. The status will change to `changing_peering_details` whenever
+            an active VRF Virtual Circuit has any of its peering details updated.
+          enum:
+          - pending
+          - waiting_on_peering_details
+          - activating
+          - changing_peering_details
+          - deactivating
+          - deleting
+          - active
+          - expired
+          - activation_failed
+          - changing_peering_details_failed
+          - deactivation_failed
+          - delete_failed
           type: string
         subnet:
           description: The /30 or /31 subnet of one of the VRF IP Blocks that will
@@ -5218,8 +5760,20 @@ components:
           format: uri
           type: string
         md5:
-          description: The MD5 password for the BGP peering in plaintext (not a checksum).
+          description: 'The plaintext BGP peering password shared by neighbors as
+            an MD5 checksum:
+
+            * must be 10-20 characters long
+
+            * may not include punctuation
+
+            * must be a combination of numbers and letters
+
+            * must contain at least one lowercase, uppercase, and digit character
+
+            '
           nullable: true
+          pattern: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{10,20}$
           type: string
         metal_ip:
           description: An IP address from the subnet that will be used on the Metal
@@ -5286,7 +5840,19 @@ components:
           format: uri
           type: string
         md5:
-          description: The MD5 password for the BGP peering in plaintext (not a checksum).
+          description: 'The plaintext BGP peering password shared by neighbors as
+            an MD5 checksum:
+
+            * must be 10-20 characters long
+
+            * may not include punctuation
+
+            * must be a combination of numbers and letters
+
+            * must contain at least one lowercase, uppercase, and digit character
+
+            '
+          pattern: ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{10,20}$
           type: string
         metal_ip:
           description: An IP address from the subnet that will be used on the Metal
@@ -5335,6 +5901,11 @@ components:
       oneOf:
       - $ref: '#/components/schemas/MetalGatewayCreateInput'
       - $ref: '#/components/schemas/VrfMetalGatewayCreateInput'
+    createOrganizationInterconnection_request:
+      oneOf:
+      - $ref: '#/components/schemas/DedicatedPortCreateInput'
+      - $ref: '#/components/schemas/VlanFabricVcCreateInput'
+      - $ref: '#/components/schemas/VrfFabricVcCreateInput'
     findIPAddressById_200_response:
       oneOf:
       - $ref: '#/components/schemas/IPAssignment'
@@ -5420,12 +5991,12 @@ info:
     \nOnly IP addresses with the `type` field set to `public_ipv4` will be returned.\n\
     \n## Searching\n\nSearching is used to find matching resources using multiple\
     \ field comparissons. The API supports searching in resources that define this\
-    \ behavior. The fields available for search differ by resource, as does the search\
-    \ strategy.\n\nTo search resources you can use the `search` query parameter.\n\
-    \n## Include and Exclude\n\nFor resources that contain references to other resources,\
-    \ sucha as a Device that refers to the Project it resides in, the Equinix Metal\
-    \ API will returns `href` values (API links) to the associated resource.\n\n```json\n\
-    {\n  ...\n  \"project\": {\n    \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"\
+    \ behavior. Currently the search parameter is only available on devices, ssh_keys,\
+    \ api_keys and memberships endpoints.\n\nTo search resources you can use the `search`\
+    \ query parameter.\n\n## Include and Exclude\n\nFor resources that contain references\
+    \ to other resources, sucha as a Device that refers to the Project it resides\
+    \ in, the Equinix Metal API will returns `href` values (API links) to the associated\
+    \ resource.\n\n```json\n{\n  ...\n  \"project\": {\n    \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"\
     \n  }\n}\n```\n\nIf you're going need the project details, you can avoid a second\
     \ API request.  Specify the contained `href` resources and collections that you'd\
     \ like to have included in the response using the `include` query parameter.\n\
@@ -5536,20 +6107,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -5766,20 +6323,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -5865,6 +6408,23 @@ paths:
         '200':
           content:
             application/json:
+              example:
+                capacity:
+                  am6:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da11:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  sv15:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
                 $ref: '#/components/schemas/CapacityList'
           description: ok
@@ -5918,8 +6478,25 @@ paths:
         '200':
           content:
             application/json:
+              example:
+                capacity:
+                  am:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  dc:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
-                $ref: '#/components/schemas/MetroCapacityList'
+                $ref: '#/components/schemas/CapacityList'
           description: ok
         '401':
           content:
@@ -5937,7 +6514,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CapacityPerMetroInput'
+              $ref: '#/components/schemas/CapacityInput'
         description: Metro to check capacity in
         required: true
       responses:
@@ -5974,6 +6551,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '202':
           content:
@@ -6007,6 +6612,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -6040,6 +6673,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -6208,6 +6869,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -6343,6 +7032,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -6578,12 +7295,40 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/DeviceUpdateInput'
-        description: Facility to update
+        description: Device to update
         required: true
       responses:
         '200':
@@ -6719,6 +7464,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -6759,6 +7518,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -6792,6 +7565,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -6861,6 +7648,40 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: not found
       summary: Retrieve the custom metadata of an instance
+      tags:
+      - Devices
+  /devices/{id}/diagnostics/health/rollup:
+    get:
+      description: Returns the health rollup status of the device.
+      operationId: getDeviceHealthRollup
+      parameters:
+      - description: Device UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceHealthRollup'
+          description: Successful operation
+        '401':
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        '404':
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Get Device's Health Status
       tags:
       - Devices
   /devices/{id}/events:
@@ -6949,6 +7770,42 @@ paths:
       summary: Retrieve device's events
       tags:
       - Events
+  /devices/{id}/firmware-sets:
+    get:
+      description: Returns the firmware set associated with the device. If a custom
+        firmware set is associated with the device, then it is returned. Otherwise,
+        if a default firmware set is available it is returned.
+      operationId: getDeviceFirmwareSets
+      parameters:
+      - description: Device UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmwareSetResponse'
+          description: Successful operation
+        '401':
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        '404':
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Get Device's associated Firmware Set
+      tags:
+      - Devices
   /devices/{id}/ips:
     get:
       description: Returns all ip assignments for a device.
@@ -7151,20 +8008,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -7471,34 +8314,6 @@ paths:
         schema:
           format: uuid
           type: string
-      - description: 'Nested attributes to include. Included objects will return their
-          full
-
-          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -7845,6 +8660,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -7892,6 +8735,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -7986,20 +8857,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -8113,20 +8970,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -8166,6 +9009,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -8362,6 +9219,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -8702,6 +9587,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -8987,20 +9900,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -9040,6 +9939,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -9439,6 +10352,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -9782,6 +10723,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -9839,6 +10808,23 @@ paths:
         '200':
           content:
             application/json:
+              example:
+                capacity:
+                  am6:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da11:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  sv15:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
                 $ref: '#/components/schemas/CapacityList'
           description: ok
@@ -9873,8 +10859,25 @@ paths:
         '200':
           content:
             application/json:
+              example:
+                capacity:
+                  am:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  da:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
+                  dc:
+                    c2.medium.x86:
+                      level: string
+                    m2.xlarge.x86:
+                      level: string
               schema:
-                $ref: '#/components/schemas/MetroCapacityList'
+                $ref: '#/components/schemas/CapacityList'
           description: ok
         '401':
           content:
@@ -9939,6 +10942,13 @@ paths:
         required: true
         schema:
           format: uuid
+          type: string
+      - description: Search by hostname, description, short_id, reservation short_id,
+          tags, plan name, plan slug, facility code, facility name, operating system
+          name, operating system slug, IP addresses.
+        in: query
+        name: search
+        schema:
           type: string
       - description: Filter by plan category
         in: query
@@ -10213,6 +11223,50 @@ paths:
       summary: Retrieve all facilities visible by the organization
       tags:
       - Facilities
+  /organizations/{id}/firmware-sets:
+    get:
+      description: Returns all firmware sets associated with the organization.
+      operationId: getOrganizationFirmwareSets
+      parameters:
+      - description: Organization UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: page number to return
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: items returned per page.
+        in: query
+        name: per_page
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmwareSetListResponse'
+          description: Successful operation
+        '401':
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        '404':
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Get Organization's Firmware Sets
+      tags:
+      - Firmware Sets
   /organizations/{id}/invitations:
     get:
       description: Returns all invitations in an organization.
@@ -10227,20 +11281,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -10314,6 +11354,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/InvitationInput'
       responses:
@@ -10426,20 +11480,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -10489,20 +11529,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -10559,6 +11585,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -10674,6 +11714,11 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: Filter results by name.
+        in: query
+        name: name
+        schema:
+          type: string
       - description: 'Nested attributes to include. Included objects will return their
           full
 
@@ -10720,13 +11765,6 @@ paths:
           maximum: 1000
           minimum: 1
           type: integer
-      - &id001
-        description: Search by name substring
-        in: query
-        name: name
-        required: false
-        schema:
-          type: string
       responses:
         '200':
           content:
@@ -10754,6 +11792,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -10810,20 +11876,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -10858,6 +11910,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -10892,6 +11972,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/InterconnectionCreateInput'
       responses:
@@ -10977,20 +12085,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -11024,6 +12118,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -11162,20 +12270,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -11210,6 +12304,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/PortAssignInput'
       responses:
@@ -11263,6 +12371,20 @@ paths:
         name: bulk_enable
         schema:
           type: boolean
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -11310,6 +12432,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/PortAssignInput'
       responses:
@@ -11358,6 +12494,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -11415,6 +12565,20 @@ paths:
         name: bulk_disable
         schema:
           type: boolean
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -11461,6 +12625,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -11509,6 +12687,20 @@ paths:
         required: true
         schema:
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -11549,6 +12741,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/PortAssignInput'
       responses:
@@ -11608,16 +12814,6 @@ paths:
           default:
           - port
           - virtual_network
-          items:
-            type: string
-          type: array
-        style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        in: query
-        name: exclude
-        schema:
           items:
             type: string
           type: array
@@ -11703,6 +12899,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -11779,20 +12989,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -11854,16 +13050,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: Nested attributes to exclude. Excluded objects will return only
-          the href attribute. Attribute names can be dotted (up to 3 levels) to exclude
-          deeply nested objects.
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -11898,6 +13084,11 @@ paths:
         of.
       operationId: findProjects
       parameters:
+      - description: Filter results by name.
+        in: query
+        name: name
+        schema:
+          type: string
       - description: 'Nested attributes to include. Included objects will return their
           full
 
@@ -11944,7 +13135,6 @@ paths:
           maximum: 1000
           minimum: 1
           type: integer
-      - *id001
       responses:
         '200':
           content:
@@ -12137,6 +13327,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -12204,20 +13422,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -12251,6 +13455,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -12312,20 +13530,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -12375,20 +13579,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -12447,6 +13637,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -12565,6 +13769,13 @@ paths:
         required: true
         schema:
           format: uuid
+          type: string
+      - description: Search by hostname, description, short_id, reservation short_id,
+          tags, plan name, plan slug, facility code, facility name, operating system
+          name, operating system slug, IP addresses.
+        in: query
+        name: search
+        schema:
           type: string
       - description: Filter by plan category
         in: query
@@ -12977,6 +14188,50 @@ paths:
       summary: Retrieve all facilities visible by the project
       tags:
       - Facilities
+  /projects/{id}/firmware-sets:
+    get:
+      description: Returns all firmware sets associated with the project or organization.
+      operationId: getProjectFirmwareSets
+      parameters:
+      - description: Project UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: page number to return
+        in: query
+        name: page
+        schema:
+          type: integer
+      - description: items returned per page.
+        in: query
+        name: per_page
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FirmwareSetListResponse'
+          description: Successful operation
+        '401':
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        '404':
+          description: Error responses are included with 4xx and 5xx HTTP responses
+            from the API service. Either "error" or "errors" will be set.
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      summary: Get Project's Firmware Sets
+      tags:
+      - Firmware Sets
   /projects/{id}/global-bgp-ranges:
     get:
       description: Returns all global bgp ranges for a project
@@ -13233,6 +14488,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -13371,6 +14654,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -13610,20 +14921,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -13651,6 +14948,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -13692,6 +15003,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -14170,6 +15495,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/InterconnectionCreateInput'
       responses:
@@ -14208,20 +15561,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -14291,6 +15630,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/InvitationInput'
       responses:
@@ -14376,6 +15729,11 @@ paths:
       description: Returns all memberships in a project.
       operationId: findProjectMemberships
       parameters:
+      - description: Search by member full name, id and email.
+        in: query
+        name: search
+        schema:
+          type: string
       - description: 'Nested attributes to include. Included objects will return their
           full
 
@@ -14385,20 +15743,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -15191,20 +16535,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -15240,7 +16570,7 @@ paths:
       parameters:
       - description: Search by key, label, or fingerprint
         in: query
-        name: Search string
+        name: search
         schema:
           type: string
       - description: 'Nested attributes to include. Included objects will return their
@@ -15252,20 +16582,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -15290,6 +16606,21 @@ paths:
     post:
       description: Creates a ssh key.
       operationId: createSSHKey
+      parameters:
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         $ref: '#/components/requestBodies/SSHKeyCreateInput'
       responses:
@@ -15375,20 +16706,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -15428,6 +16745,20 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -15571,20 +16902,6 @@ paths:
             type: string
           type: array
         style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         '200':
           content:
@@ -15700,6 +17017,35 @@ paths:
     put:
       description: Updates the currently logged-in user.
       operationId: updateCurrentUser
+      parameters:
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -15734,6 +17080,11 @@ paths:
       description: Returns all API keys for the current user.
       operationId: findAPIKeys
       parameters:
+      - description: Search by description
+        in: query
+        name: search
+        schema:
+          type: string
       - description: 'Nested attributes to include. Included objects will return their
           full
 
@@ -15743,20 +17094,6 @@ paths:
         explode: false
         in: query
         name: include
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - description: 'Nested attributes to exclude. Excluded objects will return only
-          the href
-
-          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
-
-          nested objects.'
-        explode: false
-        in: query
-        name: exclude
         schema:
           items:
             type: string
@@ -15787,6 +17124,21 @@ paths:
     post:
       description: Creates a API key for the current user.
       operationId: createAPIKey
+      parameters:
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -16152,6 +17504,35 @@ paths:
     post:
       description: Creates a user.
       operationId: createUser
+      parameters:
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -16299,6 +17680,20 @@ paths:
         required: true
         schema:
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '201':
           description: created
@@ -16321,6 +17716,21 @@ paths:
       description: Consumes an email verification token and verifies the user associated
         with it.
       operationId: consumeVerificationRequest
+      parameters:
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -16358,6 +17768,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '202':
           content:
@@ -16391,6 +17829,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -16424,6 +17890,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -16557,6 +18051,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -16602,6 +18124,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         '200':
           content:
@@ -16750,6 +18300,34 @@ paths:
         schema:
           format: uuid
           type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       requestBody:
         content:
           application/json:
@@ -17181,6 +18759,12 @@ tags:
 
     '
   name: Facilities
+- description: 'Firmware Sets Management. Notice: Firmware Sets are a test feature
+    currently under active development, and only available to certain users. Please
+    contact Customer Success for more information.
+
+    '
+  name: Firmware Sets
 - description: 'Global BGP Range Management
 
     '

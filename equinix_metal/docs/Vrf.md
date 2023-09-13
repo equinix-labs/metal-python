@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **metro** | [**Metro**](Metro.md) |  | [optional] 
 **name** | **str** |  | [optional] 
 **project** | [**Project**](Project.md) |  | [optional] 
+**tags** | **List[str]** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 **virtual_circuits** | [**List[VrfVirtualCircuit]**](VrfVirtualCircuit.md) | Virtual circuits that are in the VRF | [optional] 
 

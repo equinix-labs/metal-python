@@ -430,7 +430,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_spot_market_request_by_id**
-> SpotMarketRequest find_spot_market_request_by_id(id, include=include, exclude=exclude)
+> SpotMarketRequest find_spot_market_request_by_id(id, include=include)
 
 Retrieve a spot market request
 
@@ -470,11 +470,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.SpotMarketApi(api_client)
     id = 'id_example' # str | SpotMarketRequest UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve a spot market request
-        api_response = api_instance.find_spot_market_request_by_id(id, include=include, exclude=exclude)
+        api_response = api_instance.find_spot_market_request_by_id(id, include=include)
         print("The response of SpotMarketApi->find_spot_market_request_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -489,7 +488,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| SpotMarketRequest UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

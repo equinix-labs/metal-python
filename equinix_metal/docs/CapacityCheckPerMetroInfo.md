@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **href** | **str** |  | [optional] 
 **metro** | **str** | The metro ID or code sent to check capacity. | [optional] 
 **plan** | **str** | The plan ID or slug sent to check capacity. | [optional] 
-**quantity** | **str** | The number of servers sent to check capacity. | [optional] 
+**quantity** | **int** | The number of servers sent to check capacity. | [optional] 
 
 ## Example
 

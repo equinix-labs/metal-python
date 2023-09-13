@@ -92,7 +92,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_bgp_config_by_project**
-> BgpConfig find_bgp_config_by_project(id, include=include, exclude=exclude)
+> BgpConfig find_bgp_config_by_project(id, include=include)
 
 Retrieve a bgp config
 
@@ -132,11 +132,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.BGPApi(api_client)
     id = 'id_example' # str | Project UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve a bgp config
-        api_response = api_instance.find_bgp_config_by_project(id, include=include, exclude=exclude)
+        api_response = api_instance.find_bgp_config_by_project(id, include=include)
         print("The response of BGPApi->find_bgp_config_by_project:\n")
         pprint(api_response)
     except Exception as e:
@@ -151,7 +150,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -177,7 +175,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_bgp_session_by_id**
-> BgpSession find_bgp_session_by_id(id, include=include, exclude=exclude)
+> BgpSession find_bgp_session_by_id(id, include=include)
 
 Retrieve a BGP session
 
@@ -217,11 +215,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.BGPApi(api_client)
     id = 'id_example' # str | BGP session UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve a BGP session
-        api_response = api_instance.find_bgp_session_by_id(id, include=include, exclude=exclude)
+        api_response = api_instance.find_bgp_session_by_id(id, include=include)
         print("The response of BGPApi->find_bgp_session_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -236,7 +233,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| BGP session UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -423,7 +419,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **request_bgp_config**
-> request_bgp_config(id, bgp_config_request_input)
+> request_bgp_config(id, bgp_config_request_input, include=include)
 
 Requesting bgp config
 
@@ -463,10 +459,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.BGPApi(api_client)
     id = 'id_example' # str | Project UUID
     bgp_config_request_input = equinix_metal.BgpConfigRequestInput() # BgpConfigRequestInput | BGP config Request to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Requesting bgp config
-        api_instance.request_bgp_config(id, bgp_config_request_input)
+        api_instance.request_bgp_config(id, bgp_config_request_input, include=include)
     except Exception as e:
         print("Exception when calling BGPApi->request_bgp_config: %s\n" % e)
 ```
@@ -479,6 +476,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **bgp_config_request_input** | [**BgpConfigRequestInput**](BgpConfigRequestInput.md)| BGP config Request to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
