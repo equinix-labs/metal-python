@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_organization_interconnection**
-> Interconnection create_organization_interconnection(organization_id, interconnection_create_input)
+> Interconnection create_organization_interconnection(organization_id, create_organization_interconnection_request, include=include, exclude=exclude)
 
 Request a new interconnection for the organization
 
@@ -120,8 +120,8 @@ Creates a new interconnection request. A Project ID must be specified in the req
 import time
 import os
 import equinix_metal
+from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest
 from equinix_metal.models.interconnection import Interconnection
-from equinix_metal.models.interconnection_create_input import InterconnectionCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -147,11 +147,13 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     organization_id = 'organization_id_example' # str | UUID of the organization
-    interconnection_create_input = equinix_metal.InterconnectionCreateInput() # InterconnectionCreateInput | Interconnection details
+    create_organization_interconnection_request = equinix_metal.CreateOrganizationInterconnectionRequest() # CreateOrganizationInterconnectionRequest | Dedicated port or shared interconnection (also known as Fabric VC) creation request
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Request a new interconnection for the organization
-        api_response = api_instance.create_organization_interconnection(organization_id, interconnection_create_input)
+        api_response = api_instance.create_organization_interconnection(organization_id, create_organization_interconnection_request, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->create_organization_interconnection:\n")
         pprint(api_response)
     except Exception as e:
@@ -165,7 +167,9 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization_id** | **str**| UUID of the organization | 
- **interconnection_create_input** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md)| Interconnection details | 
+ **create_organization_interconnection_request** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md)| Dedicated port or shared interconnection (also known as Fabric VC) creation request | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -191,7 +195,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_project_interconnection**
-> Interconnection create_project_interconnection(project_id, interconnection_create_input)
+> Interconnection create_project_interconnection(project_id, create_organization_interconnection_request, include=include, exclude=exclude)
 
 Request a new interconnection for the project's organization
 
@@ -204,8 +208,8 @@ Creates a new interconnection request
 import time
 import os
 import equinix_metal
+from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest
 from equinix_metal.models.interconnection import Interconnection
-from equinix_metal.models.interconnection_create_input import InterconnectionCreateInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -231,11 +235,13 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     project_id = 'project_id_example' # str | UUID of the project
-    interconnection_create_input = equinix_metal.InterconnectionCreateInput() # InterconnectionCreateInput | Interconnection details
+    create_organization_interconnection_request = equinix_metal.CreateOrganizationInterconnectionRequest() # CreateOrganizationInterconnectionRequest | Dedicated port or shared interconnection (also known as Fabric VC) creation request
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Request a new interconnection for the project's organization
-        api_response = api_instance.create_project_interconnection(project_id, interconnection_create_input)
+        api_response = api_instance.create_project_interconnection(project_id, create_organization_interconnection_request, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->create_project_interconnection:\n")
         pprint(api_response)
     except Exception as e:
@@ -249,7 +255,9 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| UUID of the project | 
- **interconnection_create_input** | [**InterconnectionCreateInput**](InterconnectionCreateInput.md)| Interconnection details | 
+ **create_organization_interconnection_request** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md)| Dedicated port or shared interconnection (also known as Fabric VC) creation request | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -274,7 +282,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_interconnection**
-> Interconnection delete_interconnection(connection_id)
+> Interconnection delete_interconnection(connection_id, include=include, exclude=exclude)
 
 Delete interconnection
 
@@ -313,10 +321,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     connection_id = 'connection_id_example' # str | Interconnection UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Delete interconnection
-        api_response = api_instance.delete_interconnection(connection_id)
+        api_response = api_instance.delete_interconnection(connection_id, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->delete_interconnection:\n")
         pprint(api_response)
     except Exception as e:
@@ -330,6 +340,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connection_id** | **str**| Interconnection UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -354,7 +366,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_virtual_circuit**
-> VirtualCircuit delete_virtual_circuit(id)
+> VirtualCircuit delete_virtual_circuit(id, include=include, exclude=exclude)
 
 Delete a virtual circuit
 
@@ -393,10 +405,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     id = 'id_example' # str | Virtual Circuit UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Delete a virtual circuit
-        api_response = api_instance.delete_virtual_circuit(id)
+        api_response = api_instance.delete_virtual_circuit(id, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->delete_virtual_circuit:\n")
         pprint(api_response)
     except Exception as e:
@@ -410,6 +424,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Virtual Circuit UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -434,7 +450,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_interconnection**
-> Interconnection get_interconnection(connection_id)
+> Interconnection get_interconnection(connection_id, include=include, exclude=exclude)
 
 Get interconnection
 
@@ -473,10 +489,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     connection_id = 'connection_id_example' # str | Interconnection UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Get interconnection
-        api_response = api_instance.get_interconnection(connection_id)
+        api_response = api_instance.get_interconnection(connection_id, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->get_interconnection:\n")
         pprint(api_response)
     except Exception as e:
@@ -490,6 +508,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connection_id** | **str**| Interconnection UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -514,7 +534,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_interconnection_port**
-> InterconnectionPort get_interconnection_port(connection_id, id)
+> InterconnectionPort get_interconnection_port(connection_id, id, include=include, exclude=exclude)
 
 Get a interconnection port
 
@@ -554,10 +574,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     connection_id = 'connection_id_example' # str | UUID of the interconnection
     id = 'id_example' # str | Port UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Get a interconnection port
-        api_response = api_instance.get_interconnection_port(connection_id, id)
+        api_response = api_instance.get_interconnection_port(connection_id, id, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->get_interconnection_port:\n")
         pprint(api_response)
     except Exception as e:
@@ -572,6 +594,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connection_id** | **str**| UUID of the interconnection | 
  **id** | **str**| Port UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -596,7 +620,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_virtual_circuit**
-> VirtualCircuit get_virtual_circuit(id)
+> VirtualCircuit get_virtual_circuit(id, include=include, exclude=exclude)
 
 Get a virtual circuit
 
@@ -635,10 +659,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     id = 'id_example' # str | Virtual Circuit UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Get a virtual circuit
-        api_response = api_instance.get_virtual_circuit(id)
+        api_response = api_instance.get_virtual_circuit(id, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->get_virtual_circuit:\n")
         pprint(api_response)
     except Exception as e:
@@ -652,6 +678,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Virtual Circuit UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -676,7 +704,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_interconnection_port_virtual_circuits**
-> VirtualCircuitList list_interconnection_port_virtual_circuits(connection_id, port_id)
+> VirtualCircuitList list_interconnection_port_virtual_circuits(connection_id, port_id, include=include, exclude=exclude)
 
 List a interconnection port's virtual circuits
 
@@ -716,10 +744,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     connection_id = 'connection_id_example' # str | UUID of the interconnection
     port_id = 'port_id_example' # str | UUID of the interconnection port
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # List a interconnection port's virtual circuits
-        api_response = api_instance.list_interconnection_port_virtual_circuits(connection_id, port_id)
+        api_response = api_instance.list_interconnection_port_virtual_circuits(connection_id, port_id, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->list_interconnection_port_virtual_circuits:\n")
         pprint(api_response)
     except Exception as e:
@@ -734,6 +764,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connection_id** | **str**| UUID of the interconnection | 
  **port_id** | **str**| UUID of the interconnection port | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -918,7 +950,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **organization_list_interconnections**
-> InterconnectionList organization_list_interconnections(organization_id)
+> InterconnectionList organization_list_interconnections(organization_id, include=include, exclude=exclude)
 
 List organization connections
 
@@ -957,10 +989,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     organization_id = 'organization_id_example' # str | UUID of the organization
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # List organization connections
-        api_response = api_instance.organization_list_interconnections(organization_id)
+        api_response = api_instance.organization_list_interconnections(organization_id, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->organization_list_interconnections:\n")
         pprint(api_response)
     except Exception as e:
@@ -974,6 +1008,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization_id** | **str**| UUID of the organization | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -1086,7 +1122,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_interconnection**
-> Interconnection update_interconnection(connection_id, interconnection_update_input)
+> Interconnection update_interconnection(connection_id, interconnection_update_input, include=include, exclude=exclude)
 
 Update interconnection
 
@@ -1127,10 +1163,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     connection_id = 'connection_id_example' # str | Interconnection UUID
     interconnection_update_input = equinix_metal.InterconnectionUpdateInput() # InterconnectionUpdateInput | Updated interconnection details
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Update interconnection
-        api_response = api_instance.update_interconnection(connection_id, interconnection_update_input)
+        api_response = api_instance.update_interconnection(connection_id, interconnection_update_input, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->update_interconnection:\n")
         pprint(api_response)
     except Exception as e:
@@ -1145,6 +1183,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connection_id** | **str**| Interconnection UUID | 
  **interconnection_update_input** | [**InterconnectionUpdateInput**](InterconnectionUpdateInput.md)| Updated interconnection details | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -1169,7 +1209,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_virtual_circuit**
-> VirtualCircuit update_virtual_circuit(id, virtual_circuit_update_input)
+> VirtualCircuit update_virtual_circuit(id, virtual_circuit_update_input, include=include, exclude=exclude)
 
 Update a virtual circuit
 
@@ -1210,10 +1250,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     id = 'id_example' # str | Virtual Circuit UUID
     virtual_circuit_update_input = equinix_metal.VirtualCircuitUpdateInput() # VirtualCircuitUpdateInput | Updated Virtual Circuit details
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Update a virtual circuit
-        api_response = api_instance.update_virtual_circuit(id, virtual_circuit_update_input)
+        api_response = api_instance.update_virtual_circuit(id, virtual_circuit_update_input, include=include, exclude=exclude)
         print("The response of InterconnectionsApi->update_virtual_circuit:\n")
         pprint(api_response)
     except Exception as e:
@@ -1228,6 +1270,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Virtual Circuit UUID | 
  **virtual_circuit_update_input** | [**VirtualCircuitUpdateInput**](VirtualCircuitUpdateInput.md)| Updated Virtual Circuit details | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

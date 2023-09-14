@@ -427,7 +427,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **request_ip_reservation**
-> RequestIPReservation201Response request_ip_reservation(id, request_ip_reservation_request)
+> RequestIPReservation201Response request_ip_reservation(id, request_ip_reservation_request, include=include, exclude=exclude)
 
 Requesting IP reservations
 
@@ -468,10 +468,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.IPAddressesApi(api_client)
     id = 'id_example' # str | Project UUID
     request_ip_reservation_request = equinix_metal.RequestIPReservationRequest() # RequestIPReservationRequest | IP Reservation Request to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Requesting IP reservations
-        api_response = api_instance.request_ip_reservation(id, request_ip_reservation_request)
+        api_response = api_instance.request_ip_reservation(id, request_ip_reservation_request, include=include, exclude=exclude)
         print("The response of IPAddressesApi->request_ip_reservation:\n")
         pprint(api_response)
     except Exception as e:
@@ -486,6 +488,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **request_ip_reservation_request** | [**RequestIPReservationRequest**](RequestIPReservationRequest.md)| IP Reservation Request to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -512,7 +516,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_ip_address**
-> FindIPAddressById200Response update_ip_address(id, ip_assignment_update_input=ip_assignment_update_input)
+> FindIPAddressById200Response update_ip_address(id, include=include, exclude=exclude, ip_assignment_update_input=ip_assignment_update_input)
 
 Update an ip address
 
@@ -552,11 +556,13 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.IPAddressesApi(api_client)
     id = 'id_example' # str | IP Address UUID
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     ip_assignment_update_input = equinix_metal.IPAssignmentUpdateInput() # IPAssignmentUpdateInput |  (optional)
 
     try:
         # Update an ip address
-        api_response = api_instance.update_ip_address(id, ip_assignment_update_input=ip_assignment_update_input)
+        api_response = api_instance.update_ip_address(id, include=include, exclude=exclude, ip_assignment_update_input=ip_assignment_update_input)
         print("The response of IPAddressesApi->update_ip_address:\n")
         pprint(api_response)
     except Exception as e:
@@ -570,6 +576,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| IP Address UUID | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **ip_assignment_update_input** | [**IPAssignmentUpdateInput**](IPAssignmentUpdateInput.md)|  | [optional] 
 
 ### Return type

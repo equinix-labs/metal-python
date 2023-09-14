@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**capacity** | [**CapacityReport**](CapacityReport.md) |  | [optional] 
+**capacity** | **Dict[str, Dict[str, CapacityLevelPerBaremetal]]** |  | [optional] 
 **href** | **str** |  | [optional] 
 
 ## Example

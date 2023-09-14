@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **billing_cycle** | **str** |  | [optional] 
 **customdata** | **Dict[str, object]** |  | [optional] 
 **description** | **str** |  | [optional] 
+**firmware_set_id** | **str** |  | [optional] 
 **hostname** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
 **ipxe_script_url** | **str** |  | [optional] 

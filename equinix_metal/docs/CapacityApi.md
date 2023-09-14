@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **check_capacity_for_metro**
-> CapacityCheckPerMetroList check_capacity_for_metro(capacity_per_metro_input)
+> CapacityCheckPerMetroList check_capacity_for_metro(capacity_input)
 
 Check capacity for a metro
 
@@ -108,7 +108,7 @@ import time
 import os
 import equinix_metal
 from equinix_metal.models.capacity_check_per_metro_list import CapacityCheckPerMetroList
-from equinix_metal.models.capacity_per_metro_input import CapacityPerMetroInput
+from equinix_metal.models.capacity_input import CapacityInput
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -133,11 +133,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.CapacityApi(api_client)
-    capacity_per_metro_input = equinix_metal.CapacityPerMetroInput() # CapacityPerMetroInput | Metro to check capacity in
+    capacity_input = equinix_metal.CapacityInput() # CapacityInput | Metro to check capacity in
 
     try:
         # Check capacity for a metro
-        api_response = api_instance.check_capacity_for_metro(capacity_per_metro_input)
+        api_response = api_instance.check_capacity_for_metro(capacity_input)
         print("The response of CapacityApi->check_capacity_for_metro:\n")
         pprint(api_response)
     except Exception as e:
@@ -150,7 +150,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **capacity_per_metro_input** | [**CapacityPerMetroInput**](CapacityPerMetroInput.md)| Metro to check capacity in | 
+ **capacity_input** | [**CapacityInput**](CapacityInput.md)| Metro to check capacity in | 
 
 ### Return type
 
@@ -250,7 +250,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_capacity_for_metro**
-> MetroCapacityList find_capacity_for_metro()
+> CapacityList find_capacity_for_metro()
 
 View capacity for metros
 
@@ -263,7 +263,7 @@ Returns a list of metros and plans with their current capacity.
 import time
 import os
 import equinix_metal
-from equinix_metal.models.metro_capacity_list import MetroCapacityList
+from equinix_metal.models.capacity_list import CapacityList
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -305,7 +305,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**MetroCapacityList**](MetroCapacityList.md)
+[**CapacityList**](CapacityList.md)
 
 ### Authorization
 
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_organization_capacity_per_metro**
-> MetroCapacityList find_organization_capacity_per_metro(id)
+> CapacityList find_organization_capacity_per_metro(id)
 
 View available hardware plans per Metro for given organization
 
@@ -418,7 +418,7 @@ Returns a list of metros and plans with their current capacity.
 import time
 import os
 import equinix_metal
-from equinix_metal.models.metro_capacity_list import MetroCapacityList
+from equinix_metal.models.capacity_list import CapacityList
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -464,7 +464,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**MetroCapacityList**](MetroCapacityList.md)
+[**CapacityList**](CapacityList.md)
 
 ### Authorization
 

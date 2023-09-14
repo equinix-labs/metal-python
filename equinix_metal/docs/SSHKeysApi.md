@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **create_project_ssh_key**
-> SSHKey create_project_ssh_key(id, ssh_key_create_input)
+> SSHKey create_project_ssh_key(id, ssh_key_create_input, include=include)
 
 Create a ssh key for the given project
 
@@ -56,10 +56,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.SSHKeysApi(api_client)
     id = 'id_example' # str | Project UUID
     ssh_key_create_input = equinix_metal.SSHKeyCreateInput() # SSHKeyCreateInput | ssh key to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Create a ssh key for the given project
-        api_response = api_instance.create_project_ssh_key(id, ssh_key_create_input)
+        api_response = api_instance.create_project_ssh_key(id, ssh_key_create_input, include=include)
         print("The response of SSHKeysApi->create_project_ssh_key:\n")
         pprint(api_response)
     except Exception as e:
@@ -74,6 +75,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **ssh_key_create_input** | [**SSHKeyCreateInput**](SSHKeyCreateInput.md)| ssh key to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -98,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_ssh_key**
-> SSHKey create_ssh_key(ssh_key_create_input)
+> SSHKey create_ssh_key(ssh_key_create_input, include=include)
 
 Create a ssh key for the current user
 
@@ -138,10 +140,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.SSHKeysApi(api_client)
     ssh_key_create_input = equinix_metal.SSHKeyCreateInput() # SSHKeyCreateInput | ssh key to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Create a ssh key for the current user
-        api_response = api_instance.create_ssh_key(ssh_key_create_input)
+        api_response = api_instance.create_ssh_key(ssh_key_create_input, include=include)
         print("The response of SSHKeysApi->create_ssh_key:\n")
         pprint(api_response)
     except Exception as e:
@@ -155,6 +158,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ssh_key_create_input** | [**SSHKeyCreateInput**](SSHKeyCreateInput.md)| ssh key to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -257,7 +261,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_device_ssh_keys**
-> SSHKeyList find_device_ssh_keys(id, search_string=search_string, include=include, exclude=exclude)
+> SSHKeyList find_device_ssh_keys(id, search_string=search_string, include=include)
 
 Retrieve a device's ssh keys
 
@@ -298,11 +302,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     id = 'id_example' # str | Project UUID
     search_string = 'search_string_example' # str | Search by key, label, or fingerprint (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve a device's ssh keys
-        api_response = api_instance.find_device_ssh_keys(id, search_string=search_string, include=include, exclude=exclude)
+        api_response = api_instance.find_device_ssh_keys(id, search_string=search_string, include=include)
         print("The response of SSHKeysApi->find_device_ssh_keys:\n")
         pprint(api_response)
     except Exception as e:
@@ -318,7 +321,6 @@ Name | Type | Description  | Notes
  **id** | **str**| Project UUID | 
  **search_string** | **str**| Search by key, label, or fingerprint | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -342,7 +344,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_project_ssh_keys**
-> SSHKeyList find_project_ssh_keys(id, query=query, include=include, exclude=exclude)
+> SSHKeyList find_project_ssh_keys(id, query=query, include=include)
 
 Retrieve a project's ssh keys
 
@@ -383,11 +385,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     id = 'id_example' # str | Project UUID
     query = 'query_example' # str | Search by key, label, or fingerprint (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve a project's ssh keys
-        api_response = api_instance.find_project_ssh_keys(id, query=query, include=include, exclude=exclude)
+        api_response = api_instance.find_project_ssh_keys(id, query=query, include=include)
         print("The response of SSHKeysApi->find_project_ssh_keys:\n")
         pprint(api_response)
     except Exception as e:
@@ -403,7 +404,6 @@ Name | Type | Description  | Notes
  **id** | **str**| Project UUID | 
  **query** | **str**| Search by key, label, or fingerprint | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -427,7 +427,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_ssh_key_by_id**
-> SSHKey find_ssh_key_by_id(id, include=include, exclude=exclude)
+> SSHKey find_ssh_key_by_id(id, include=include)
 
 Retrieve a ssh key
 
@@ -467,11 +467,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.SSHKeysApi(api_client)
     id = 'id_example' # str | SSH Key UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve a ssh key
-        api_response = api_instance.find_ssh_key_by_id(id, include=include, exclude=exclude)
+        api_response = api_instance.find_ssh_key_by_id(id, include=include)
         print("The response of SSHKeysApi->find_ssh_key_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -486,7 +485,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| SSH Key UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -512,7 +510,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_ssh_keys**
-> SSHKeyList find_ssh_keys(search_string=search_string, include=include, exclude=exclude)
+> SSHKeyList find_ssh_keys(search=search, include=include)
 
 Retrieve all ssh keys
 
@@ -550,13 +548,12 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.SSHKeysApi(api_client)
-    search_string = 'search_string_example' # str | Search by key, label, or fingerprint (optional)
+    search = 'search_example' # str | Search by key, label, or fingerprint (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve all ssh keys
-        api_response = api_instance.find_ssh_keys(search_string=search_string, include=include, exclude=exclude)
+        api_response = api_instance.find_ssh_keys(search=search, include=include)
         print("The response of SSHKeysApi->find_ssh_keys:\n")
         pprint(api_response)
     except Exception as e:
@@ -569,9 +566,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **search_string** | **str**| Search by key, label, or fingerprint | [optional] 
+ **search** | **str**| Search by key, label, or fingerprint | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -595,7 +591,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_ssh_key**
-> SSHKey update_ssh_key(id, ssh_key_input)
+> SSHKey update_ssh_key(id, ssh_key_input, include=include)
 
 Update the ssh key
 
@@ -636,10 +632,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.SSHKeysApi(api_client)
     id = 'id_example' # str | SSH Key UUID
     ssh_key_input = equinix_metal.SSHKeyInput() # SSHKeyInput | ssh key to update
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Update the ssh key
-        api_response = api_instance.update_ssh_key(id, ssh_key_input)
+        api_response = api_instance.update_ssh_key(id, ssh_key_input, include=include)
         print("The response of SSHKeysApi->update_ssh_key:\n")
         pprint(api_response)
     except Exception as e:
@@ -654,6 +651,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| SSH Key UUID | 
  **ssh_key_input** | [**SSHKeyInput**](SSHKeyInput.md)| ssh key to update | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 

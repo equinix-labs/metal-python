@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **facility** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
-**plan** | **str** |  | [optional] 
-**quantity** | **str** |  | [optional] 
+**metro** | **str** | The metro ID or code to check the capacity in. | [optional] 
+**plan** | **str** | The plan ID or slug to check the capacity of. | [optional] 
+**quantity** | **str** | The number of servers to check the capacity of. | [optional] 
 
 ## Example
 

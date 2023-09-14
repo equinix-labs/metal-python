@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_license**
-> License create_license(id, license_create_input)
+> License create_license(id, license_create_input, include=include, exclude=exclude)
 
 Create a License
 
@@ -53,10 +53,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.LicensesApi(api_client)
     id = 'id_example' # str | Project UUID
     license_create_input = equinix_metal.LicenseCreateInput() # LicenseCreateInput | License to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Create a License
-        api_response = api_instance.create_license(id, license_create_input)
+        api_response = api_instance.create_license(id, license_create_input, include=include, exclude=exclude)
         print("The response of LicensesApi->create_license:\n")
         pprint(api_response)
     except Exception as e:
@@ -71,6 +73,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **license_create_input** | [**LicenseCreateInput**](LicenseCreateInput.md)| License to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -349,7 +353,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_license**
-> License update_license(id, license_update_input)
+> License update_license(id, license_update_input, include=include, exclude=exclude)
 
 Update the license
 
@@ -390,10 +394,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.LicensesApi(api_client)
     id = 'id_example' # str | License UUID
     license_update_input = equinix_metal.LicenseUpdateInput() # LicenseUpdateInput | License to update
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Update the license
-        api_response = api_instance.update_license(id, license_update_input)
+        api_response = api_instance.update_license(id, license_update_input, include=include, exclude=exclude)
         print("The response of LicensesApi->update_license:\n")
         pprint(api_response)
     except Exception as e:
@@ -408,6 +414,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| License UUID | 
  **license_update_input** | [**LicenseUpdateInput**](LicenseUpdateInput.md)| License to update | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

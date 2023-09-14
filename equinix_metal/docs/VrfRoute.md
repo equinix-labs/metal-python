@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **next_hop** | **str** | The next-hop IPv4 address for the route | [optional] 
 **prefix** | **str** | The IPv4 prefix for the route, in CIDR-style notation | [optional] 
 **status** | **str** | The status of the route. Potential values are \&quot;pending\&quot;, \&quot;active\&quot;, \&quot;deleting\&quot;, and \&quot;error\&quot;, representing various lifecycle states of the route and whether or not it has been successfully configured on the network | [optional] [readonly] 
+**tags** | **List[str]** |  | [optional] 
 **type** | **str** | VRF route type, like &#39;bgp&#39;, &#39;connected&#39;, and &#39;static&#39;. Currently, only static routes are supported | [optional] [readonly] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 **virtual_network** | [**VirtualNetwork**](VirtualNetwork.md) |  | [optional] 

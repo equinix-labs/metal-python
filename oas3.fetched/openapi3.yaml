@@ -44,7 +44,7 @@ info:
 
     ## Searching
 
-    Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.
+    Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.
 
     To search resources you can use the `search` query parameter.
 
@@ -97,6 +97,10 @@ servers:
   - url: https://api.equinix.com/metal/v1
 components:
   parameters:
+    DeviceSearch:
+      $ref: './components/parameters/DeviceSearch.yaml'
+    ProjectName:
+      $ref: './components/parameters/ProjectName.yaml'
     Page:
       $ref: './components/parameters/Page.yaml'
     PerPage:
@@ -117,6 +121,10 @@ components:
   schemas:
     Address:
       $ref: './components/schemas/Address.yaml'
+    Attribute:
+      $ref: './components/schemas/Attribute.yaml'
+    AttributeData:
+      $ref: './components/schemas/AttributeData.yaml'
     AuthToken:
       $ref: './components/schemas/AuthToken.yaml'
     AuthTokenInput:
@@ -161,24 +169,24 @@ components:
       $ref: './components/schemas/CapacityLevelPerBaremetal.yaml'
     CapacityList:
       $ref: './components/schemas/CapacityList.yaml'
-    CapacityPerFacility:
-      $ref: './components/schemas/CapacityPerFacility.yaml'
-    CapacityPerMetroInput:
-      $ref: './components/schemas/CapacityPerMetroInput.yaml'
-    CapacityPerNewFacility:
-      $ref: './components/schemas/CapacityPerNewFacility.yaml'
     CapacityReport:
       $ref: './components/schemas/CapacityReport.yaml'
+    Component:
+      $ref: './components/schemas/Component.yaml'
     Coordinates:
       $ref: './components/schemas/Coordinates.yaml'
     CreateEmailInput:
       $ref: './components/schemas/CreateEmailInput.yaml'
     CreateSelfServiceReservationRequest:
       $ref: './components/schemas/CreateSelfServiceReservationRequest.yaml'
+    DedicatedPortCreateInput:
+      $ref: './components/schemas/DedicatedPortCreateInput.yaml'
     Device:
       $ref: './components/schemas/Device.yaml'
     DeviceCreateInput:
       $ref: './components/schemas/DeviceCreateInput.yaml'
+    DeviceHealthRollup:
+      $ref: './components/schemas/DeviceHealthRollup.yaml'
     DeviceCreateInFacilityInput:
       $ref: './components/schemas/DeviceCreateInFacilityInput.yaml'
     DeviceCreateInMetroInput:
@@ -211,6 +219,14 @@ components:
       $ref: './components/schemas/FacilityInput.yaml'
     FacilityList:
       $ref: './components/schemas/FacilityList.yaml'
+    FirmwareSet:
+      $ref: './components/schemas/FirmwareSet.yaml'
+    FirmwareSetList:
+      $ref: './components/schemas/FirmwareSetList.yaml'
+    FirmwareSetListResponse:
+      $ref: './components/schemas/FirmwareSetListResponse.yaml'
+    FirmwareSetResponse:
+      $ref: './components/schemas/FirmwareSetResponse.yaml'
     GlobalBgpRange:
       $ref: './components/schemas/GlobalBgpRange.yaml'
     GlobalBgpRangeList:
@@ -241,8 +257,6 @@ components:
       $ref: './components/schemas/InstancesBatchCreateInput.yaml'
     Interconnection:
       $ref: './components/schemas/Interconnection.yaml'
-    InterconnectionCreateInput:
-      $ref: './components/schemas/InterconnectionCreateInput.yaml'
     InterconnectionList:
       $ref: './components/schemas/InterconnectionList.yaml'
     InterconnectionPort:
@@ -295,14 +309,8 @@ components:
       $ref: './components/schemas/Metro.yaml'
     MetroInput:
       $ref: './components/schemas/MetroInput.yaml'
-    MetroCapacityList:
-      $ref: './components/schemas/MetroCapacityList.yaml'
-    MetroCapacityReport:
-      $ref: './components/schemas/MetroCapacityReport.yaml'
     MetroList:
       $ref: './components/schemas/MetroList.yaml'
-    MetroServerInfo:
-      $ref: './components/schemas/MetroServerInfo.yaml'
     NewPassword:
       $ref: './components/schemas/NewPassword.yaml'
     OperatingSystem:
@@ -449,6 +457,8 @@ components:
       $ref: './components/schemas/VirtualNetworkCreateInput.yaml'
     VirtualNetworkList:
       $ref: './components/schemas/VirtualNetworkList.yaml'
+    VlanFabricVcCreateInput:
+      $ref: './components/schemas/VlanFabricVcCreateInput.yaml'
     VlanVirtualCircuit:
       $ref: './components/schemas/VlanVirtualCircuit.yaml'
     VlanVirtualCircuitCreateInput:
@@ -459,6 +469,8 @@ components:
       $ref: './components/schemas/Vrf.yaml'
     VrfCreateInput:
       $ref: './components/schemas/VrfCreateInput.yaml'
+    VrfFabricVcCreateInput:
+      $ref: './components/schemas/VrfFabricVcCreateInput.yaml'
     VrfIpRangeCreateInput:
       $ref: './components/schemas/VrfIpRangeCreateInput.yaml'
     VrfIpRangeList:
@@ -540,8 +552,12 @@ paths:
     $ref: ./paths/devices/id/bgp/sessions.yaml
   /devices/{id}/customdata:
     $ref: ./paths/devices/id/customdata.yaml
+  /devices/{id}/diagnostics/health/rollup:
+    $ref: ./paths/devices/id/diagnostics/health/rollup.yaml
   /devices/{id}/events:
     $ref: ./paths/devices/id/events.yaml
+  /devices/{id}/firmware-sets:
+    $ref: ./paths/devices/id/firmware-sets.yaml
   /devices/{id}/ips:
     $ref: ./paths/devices/id/ips.yaml
   /devices/{id}/metadata:
@@ -626,6 +642,8 @@ paths:
     $ref: ./paths/organizations/id/events.yaml
   /organizations/{id}/facilities:
     $ref: ./paths/organizations/id/facilities.yaml
+  /organizations/{id}/firmware-sets:
+    $ref: ./paths/organizations/id/firmware-sets.yaml
   /organizations/{id}/invitations:
     $ref: ./paths/organizations/id/invitations.yaml
   /organizations/{id}/invoices:
@@ -694,6 +712,8 @@ paths:
     $ref: ./paths/projects/id/events.yaml
   /projects/{id}/facilities:
     $ref: ./paths/projects/id/facilities.yaml
+  /projects/{id}/firmware-sets:
+    $ref: ./paths/projects/id/firmware-sets.yaml
   /projects/{id}/global-bgp-ranges:
     $ref: ./paths/projects/id/global-bgp-ranges.yaml
   /projects/{id}/hardware-reservations:
@@ -879,6 +899,9 @@ tags:
       Facility Management. Check out the product docs to learn more about
       [Facilities](https://metal.equinix.com/developers/docs/locations/).
     name: Facilities
+  - description: >
+      Firmware Sets Management. Notice: Firmware Sets are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
+    name: Firmware Sets
   - description: >
       Global BGP Range Management
     name: GlobalBgpRanges

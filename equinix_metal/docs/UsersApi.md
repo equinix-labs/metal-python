@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 
 # **create_user**
-> User create_user(user_create_input)
+> User create_user(user_create_input, include=include, exclude=exclude)
 
 Create a user
 
@@ -54,10 +54,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.UsersApi(api_client)
     user_create_input = equinix_metal.UserCreateInput() # UserCreateInput | User to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Create a user
-        api_response = api_instance.create_user(user_create_input)
+        api_response = api_instance.create_user(user_create_input, include=include, exclude=exclude)
         print("The response of UsersApi->create_user:\n")
         pprint(api_response)
     except Exception as e:
@@ -71,6 +73,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_create_input** | [**UserCreateInput**](UserCreateInput.md)| User to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -176,7 +180,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_invitations**
-> InvitationList find_invitations(include=include, exclude=exclude, page=page, per_page=per_page)
+> InvitationList find_invitations(include=include, page=page, per_page=per_page)
 
 Retrieve current user invitations
 
@@ -215,13 +219,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.UsersApi(api_client)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
     per_page = 10 # int | Items returned per page (optional) (default to 10)
 
     try:
         # Retrieve current user invitations
-        api_response = api_instance.find_invitations(include=include, exclude=exclude, page=page, per_page=per_page)
+        api_response = api_instance.find_invitations(include=include, page=page, per_page=per_page)
         print("The response of UsersApi->find_invitations:\n")
         pprint(api_response)
     except Exception as e:
@@ -235,7 +238,6 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]
  **per_page** | **int**| Items returned per page | [optional] [default to 10]
 
@@ -511,7 +513,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_current_user**
-> User update_current_user(user_update_input)
+> User update_current_user(user_update_input, include=include, exclude=exclude)
 
 Update the current user
 
@@ -551,10 +553,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.UsersApi(api_client)
     user_update_input = equinix_metal.UserUpdateInput() # UserUpdateInput | User to update
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Update the current user
-        api_response = api_instance.update_current_user(user_update_input)
+        api_response = api_instance.update_current_user(user_update_input, include=include, exclude=exclude)
         print("The response of UsersApi->update_current_user:\n")
         pprint(api_response)
     except Exception as e:
@@ -568,6 +572,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_update_input** | [**UserUpdateInput**](UserUpdateInput.md)| User to update | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

@@ -9,6 +9,7 @@ from equinix_metal.api.devices_api import DevicesApi
 from equinix_metal.api.emails_api import EmailsApi
 from equinix_metal.api.events_api import EventsApi
 from equinix_metal.api.facilities_api import FacilitiesApi
+from equinix_metal.api.firmware_sets_api import FirmwareSetsApi
 from equinix_metal.api.hardware_reservations_api import HardwareReservationsApi
 from equinix_metal.api.ip_addresses_api import IPAddressesApi
 from equinix_metal.api.incidents_api import IncidentsApi

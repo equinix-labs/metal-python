@@ -166,7 +166,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_transfer_request_by_id**
-> TransferRequest find_transfer_request_by_id(id, include=include, exclude=exclude)
+> TransferRequest find_transfer_request_by_id(id, include=include)
 
 View a transfer request
 
@@ -206,11 +206,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.TransferRequestsApi(api_client)
     id = 'id_example' # str | Transfer request UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # View a transfer request
-        api_response = api_instance.find_transfer_request_by_id(id, include=include, exclude=exclude)
+        api_response = api_instance.find_transfer_request_by_id(id, include=include)
         print("The response of TransferRequestsApi->find_transfer_request_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -225,7 +224,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Transfer request UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

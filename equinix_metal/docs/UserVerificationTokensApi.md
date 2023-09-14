@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **consume_verification_request**
-> consume_verification_request(verify_email)
+> consume_verification_request(verify_email, include=include)
 
 Verify a user using an email verification token
 
@@ -48,10 +48,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.UserVerificationTokensApi(api_client)
     verify_email = equinix_metal.VerifyEmail() # VerifyEmail | Email to create
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Verify a user using an email verification token
-        api_instance.consume_verification_request(verify_email)
+        api_instance.consume_verification_request(verify_email, include=include)
     except Exception as e:
         print("Exception when calling UserVerificationTokensApi->consume_verification_request: %s\n" % e)
 ```
@@ -63,6 +64,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **verify_email** | [**VerifyEmail**](VerifyEmail.md)| Email to create | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -87,7 +89,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_validation_request**
-> create_validation_request(login)
+> create_validation_request(login, include=include)
 
 Create an email verification request
 
@@ -125,10 +127,11 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.UserVerificationTokensApi(api_client)
     login = 'login_example' # str | Email for verification request
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
         # Create an email verification request
-        api_instance.create_validation_request(login)
+        api_instance.create_validation_request(login, include=include)
     except Exception as e:
         print("Exception when calling UserVerificationTokensApi->create_validation_request: %s\n" % e)
 ```
@@ -140,6 +143,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **login** | **str**| Email for verification request | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
 
 ### Return type
 

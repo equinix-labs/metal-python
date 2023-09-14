@@ -1214,7 +1214,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_vrf**
-> Vrf update_vrf(id, vrf_update_input)
+> Vrf update_vrf(id, vrf_update_input, include=include, exclude=exclude)
 
 Update the VRF
 
@@ -1255,10 +1255,12 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.VRFsApi(api_client)
     id = 'id_example' # str | VRF UUID
     vrf_update_input = equinix_metal.VrfUpdateInput() # VrfUpdateInput | VRF to update
+    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Update the VRF
-        api_response = api_instance.update_vrf(id, vrf_update_input)
+        api_response = api_instance.update_vrf(id, vrf_update_input, include=include, exclude=exclude)
         print("The response of VRFsApi->update_vrf:\n")
         pprint(api_response)
     except Exception as e:
@@ -1273,6 +1275,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF UUID | 
  **vrf_update_input** | [**VrfUpdateInput**](VrfUpdateInput.md)| VRF to update | 
+ **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

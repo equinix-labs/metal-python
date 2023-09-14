@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **local_asn** | **int** |  | [optional] 
 **metro** | **str** | The UUID (or metro code) for the Metro in which to create this VRF. | 
 **name** | **str** |  | 
+**tags** | **List[str]** |  | [optional] 
 
 ## Example
 

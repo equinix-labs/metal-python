@@ -175,7 +175,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_batch_by_id**
-> Batch find_batch_by_id(id, include=include, exclude=exclude)
+> Batch find_batch_by_id(id, include=include)
 
 Retrieve a Batch
 
@@ -215,11 +215,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.BatchesApi(api_client)
     id = 'id_example' # str | Batch UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve a Batch
-        api_response = api_instance.find_batch_by_id(id, include=include, exclude=exclude)
+        api_response = api_instance.find_batch_by_id(id, include=include)
         print("The response of BatchesApi->find_batch_by_id:\n")
         pprint(api_response)
     except Exception as e:
@@ -234,7 +233,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Batch UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 
@@ -259,7 +257,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_batches_by_project**
-> BatchesList find_batches_by_project(id, include=include, exclude=exclude)
+> BatchesList find_batches_by_project(id, include=include)
 
 Retrieve all batches by project
 
@@ -299,11 +297,10 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.BatchesApi(api_client)
     id = 'id_example' # str | Project UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
         # Retrieve all batches by project
-        api_response = api_instance.find_batches_by_project(id, include=include, exclude=exclude)
+        api_response = api_instance.find_batches_by_project(id, include=include)
         print("The response of BatchesApi->find_batches_by_project:\n")
         pprint(api_response)
     except Exception as e:
@@ -318,7 +315,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
 ### Return type
 

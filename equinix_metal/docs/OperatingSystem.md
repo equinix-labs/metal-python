@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**default_operating_system** | **bool** | Default operating system for the distro. | [optional] [readonly] 
 **distro** | **str** |  | [optional] 
 **distro_label** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 

@@ -5,7 +5,7 @@
 """
     Metal API
 
-    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. The fields available for search differ by resource, as does the search strategy.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field. 
+    # Introduction Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.  The API allows you to programmatically interact with all of your Equinix Metal resources, including devices, networks, addresses, organizations, projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.  The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.  # Common Parameters  The Equinix Metal API uses a few methods to minimize network traffic and improve throughput. These parameters are not used in all API calls, but are used often enough to warrant their own section. Look for these parameters in the documentation for the API calls that support them.  ## Pagination  Pagination is used to limit the number of results returned in a single request. The API will return a maximum of 100 results per page. To retrieve additional results, you can use the `page` and `per_page` query parameters.  The `page` parameter is used to specify the page number. The first page is `1`. The `per_page` parameter is used to specify the number of results per page. The maximum number of results differs by resource type.  ## Sorting  Where offered, the API allows you to sort results by a specific field. To sort results use the `sort_by` query parameter with the root level field name as the value. The `sort_direction` parameter is used to specify the sort direction, either either `asc` (ascending) or `desc` (descending).  ## Filtering  Filtering is used to limit the results returned in a single request. The API supports filtering by certain fields in the response. To filter results, you can use the field as a query parameter.  For example, to filter the IP list to only return public IPv4 addresses, you can filter by the `type` field, as in the following request:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/projects/id/ips?type=public_ipv4 ```  Only IP addresses with the `type` field set to `public_ipv4` will be returned.  ## Searching  Searching is used to find matching resources using multiple field comparissons. The API supports searching in resources that define this behavior. Currently the search parameter is only available on devices, ssh_keys, api_keys and memberships endpoints.  To search resources you can use the `search` query parameter.  ## Include and Exclude  For resources that contain references to other resources, sucha as a Device that refers to the Project it resides in, the Equinix Metal API will returns `href` values (API links) to the associated resource.  ```json {   ...   \"project\": {     \"href\": \"/metal/v1/projects/f3f131c8-f302-49ef-8c44-9405022dc6dd\"   } } ```  If you're going need the project details, you can avoid a second API request.  Specify the contained `href` resources and collections that you'd like to have included in the response using the `include` query parameter.  For example:  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=projects ```  The `include` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests where `href` resources are presented.  To have multiple resources include, use a comma-separated list (e.g. `?include=emails,projects,memberships`).  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=emails,projects,memberships ```  You may also include nested associations up to three levels deep using dot notation (`?include=memberships.projects`):  ```sh curl -H 'X-Auth-Token: my_authentication_token' \\   https://api.equinix.com/metal/v1/user?include=memberships.projects ```  To exclude resources, and optimize response delivery, use the `exclude` query parameter. The `exclude` parameter is generally accepted in `GET`, `POST`, `PUT`, and `PATCH` requests for fields with nested object responses. When excluded, these fields will be replaced with an object that contains only an `href` field. 
 
     The version of the OpenAPI document: 1.0.0
     Contact: support@equinixmetal.com
@@ -26,6 +26,7 @@ from equinix_metal.api.devices_api import DevicesApi
 from equinix_metal.api.emails_api import EmailsApi
 from equinix_metal.api.events_api import EventsApi
 from equinix_metal.api.facilities_api import FacilitiesApi
+from equinix_metal.api.firmware_sets_api import FirmwareSetsApi
 from equinix_metal.api.hardware_reservations_api import HardwareReservationsApi
 from equinix_metal.api.ip_addresses_api import IPAddressesApi
 from equinix_metal.api.incidents_api import IncidentsApi
@@ -71,6 +72,8 @@ from equinix_metal.exceptions import ApiException
 # import models into sdk package
 from equinix_metal.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest
 from equinix_metal.models.address import Address
+from equinix_metal.models.attribute import Attribute
+from equinix_metal.models.attribute_data import AttributeData
 from equinix_metal.models.auth_token import AuthToken
 from equinix_metal.models.auth_token_input import AuthTokenInput
 from equinix_metal.models.auth_token_list import AuthTokenList
@@ -97,16 +100,15 @@ from equinix_metal.models.capacity_check_per_metro_list import CapacityCheckPerM
 from equinix_metal.models.capacity_input import CapacityInput
 from equinix_metal.models.capacity_level_per_baremetal import CapacityLevelPerBaremetal
 from equinix_metal.models.capacity_list import CapacityList
-from equinix_metal.models.capacity_per_facility import CapacityPerFacility
-from equinix_metal.models.capacity_per_metro_input import CapacityPerMetroInput
-from equinix_metal.models.capacity_per_new_facility import CapacityPerNewFacility
-from equinix_metal.models.capacity_report import CapacityReport
+from equinix_metal.models.component import Component
 from equinix_metal.models.coordinates import Coordinates
 from equinix_metal.models.create_device_request import CreateDeviceRequest
 from equinix_metal.models.create_email_input import CreateEmailInput
 from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest
+from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest
 from equinix_metal.models.create_self_service_reservation_request import CreateSelfServiceReservationRequest
 from equinix_metal.models.create_self_service_reservation_request_period import CreateSelfServiceReservationRequestPeriod
+from equinix_metal.models.dedicated_port_create_input import DedicatedPortCreateInput
 from equinix_metal.models.device import Device
 from equinix_metal.models.device_action_input import DeviceActionInput
 from equinix_metal.models.device_actions_inner import DeviceActionsInner
@@ -114,6 +116,7 @@ from equinix_metal.models.device_create_in_facility_input import DeviceCreateInF
 from equinix_metal.models.device_create_in_metro_input import DeviceCreateInMetroInput
 from equinix_metal.models.device_create_input import DeviceCreateInput
 from equinix_metal.models.device_created_by import DeviceCreatedBy
+from equinix_metal.models.device_health_rollup import DeviceHealthRollup
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.models.device_metro import DeviceMetro
 from equinix_metal.models.device_project import DeviceProject
@@ -121,6 +124,7 @@ from equinix_metal.models.device_project_lite import DeviceProjectLite
 from equinix_metal.models.device_update_input import DeviceUpdateInput
 from equinix_metal.models.device_usage import DeviceUsage
 from equinix_metal.models.device_usage_list import DeviceUsageList
+from equinix_metal.models.disk import Disk
 from equinix_metal.models.email import Email
 from equinix_metal.models.email_input import EmailInput
 from equinix_metal.models.entitlement import Entitlement
@@ -132,9 +136,13 @@ from equinix_metal.models.facility import Facility
 from equinix_metal.models.facility_input import FacilityInput
 from equinix_metal.models.facility_input_facility import FacilityInputFacility
 from equinix_metal.models.facility_list import FacilityList
+from equinix_metal.models.filesystem import Filesystem
 from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
 from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
+from equinix_metal.models.firmware_set import FirmwareSet
+from equinix_metal.models.firmware_set_list_response import FirmwareSetListResponse
+from equinix_metal.models.firmware_set_response import FirmwareSetResponse
 from equinix_metal.models.global_bgp_range import GlobalBgpRange
 from equinix_metal.models.global_bgp_range_list import GlobalBgpRangeList
 from equinix_metal.models.hardware_reservation import HardwareReservation
@@ -156,7 +164,6 @@ from equinix_metal.models.ip_reservation_request_input import IPReservationReque
 from equinix_metal.models.instances_batch_create_input import InstancesBatchCreateInput
 from equinix_metal.models.instances_batch_create_input_batches_inner import InstancesBatchCreateInputBatchesInner
 from equinix_metal.models.interconnection import Interconnection
-from equinix_metal.models.interconnection_create_input import InterconnectionCreateInput
 from equinix_metal.models.interconnection_list import InterconnectionList
 from equinix_metal.models.interconnection_port import InterconnectionPort
 from equinix_metal.models.interconnection_port_list import InterconnectionPortList
@@ -186,11 +193,9 @@ from equinix_metal.models.metal_gateway_list import MetalGatewayList
 from equinix_metal.models.metal_gateway_list_metal_gateways_inner import MetalGatewayListMetalGatewaysInner
 from equinix_metal.models.metal_gateway_lite import MetalGatewayLite
 from equinix_metal.models.metro import Metro
-from equinix_metal.models.metro_capacity_list import MetroCapacityList
-from equinix_metal.models.metro_capacity_report import MetroCapacityReport
 from equinix_metal.models.metro_input import MetroInput
 from equinix_metal.models.metro_list import MetroList
-from equinix_metal.models.metro_server_info import MetroServerInfo
+from equinix_metal.models.mount import Mount
 from equinix_metal.models.move_hardware_reservation_request import MoveHardwareReservationRequest
 from equinix_metal.models.new_password import NewPassword
 from equinix_metal.models.operating_system import OperatingSystem
@@ -199,6 +204,7 @@ from equinix_metal.models.organization import Organization
 from equinix_metal.models.organization_input import OrganizationInput
 from equinix_metal.models.organization_list import OrganizationList
 from equinix_metal.models.parent_block import ParentBlock
+from equinix_metal.models.partition import Partition
 from equinix_metal.models.payment_method import PaymentMethod
 from equinix_metal.models.payment_method_billing_address import PaymentMethodBillingAddress
 from equinix_metal.models.payment_method_create_input import PaymentMethodCreateInput
@@ -213,6 +219,7 @@ from equinix_metal.models.plan_specs import PlanSpecs
 from equinix_metal.models.plan_specs_cpus_inner import PlanSpecsCpusInner
 from equinix_metal.models.plan_specs_drives_inner import PlanSpecsDrivesInner
 from equinix_metal.models.plan_specs_features import PlanSpecsFeatures
+from equinix_metal.models.plan_specs_memory import PlanSpecsMemory
 from equinix_metal.models.plan_specs_nics_inner import PlanSpecsNicsInner
 from equinix_metal.models.port import Port
 from equinix_metal.models.port_assign_input import PortAssignInput
@@ -234,6 +241,7 @@ from equinix_metal.models.project_list import ProjectList
 from equinix_metal.models.project_update_input import ProjectUpdateInput
 from equinix_metal.models.project_usage import ProjectUsage
 from equinix_metal.models.project_usage_list import ProjectUsageList
+from equinix_metal.models.raid import Raid
 from equinix_metal.models.recovery_code_list import RecoveryCodeList
 from equinix_metal.models.request_ip_reservation201_response import RequestIPReservation201Response
 from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest
@@ -260,6 +268,7 @@ from equinix_metal.models.spot_prices_per_baremetal import SpotPricesPerBaremeta
 from equinix_metal.models.spot_prices_per_facility import SpotPricesPerFacility
 from equinix_metal.models.spot_prices_per_new_facility import SpotPricesPerNewFacility
 from equinix_metal.models.spot_prices_report import SpotPricesReport
+from equinix_metal.models.storage import Storage
 from equinix_metal.models.support_request_input import SupportRequestInput
 from equinix_metal.models.transfer_request import TransferRequest
 from equinix_metal.models.transfer_request_input import TransferRequestInput
@@ -280,11 +289,13 @@ from equinix_metal.models.virtual_circuit_update_input import VirtualCircuitUpda
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.models.virtual_network_create_input import VirtualNetworkCreateInput
 from equinix_metal.models.virtual_network_list import VirtualNetworkList
+from equinix_metal.models.vlan_fabric_vc_create_input import VlanFabricVcCreateInput
 from equinix_metal.models.vlan_virtual_circuit import VlanVirtualCircuit
 from equinix_metal.models.vlan_virtual_circuit_create_input import VlanVirtualCircuitCreateInput
 from equinix_metal.models.vlan_virtual_circuit_update_input import VlanVirtualCircuitUpdateInput
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.models.vrf_create_input import VrfCreateInput
+from equinix_metal.models.vrf_fabric_vc_create_input import VrfFabricVcCreateInput
 from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
 from equinix_metal.models.vrf_ip_reservation_create_input import VrfIpReservationCreateInput
 from equinix_metal.models.vrf_ip_reservation_list import VrfIpReservationList
