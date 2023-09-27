@@ -17,7 +17,9 @@ Method | HTTP request | Description
 [**find_ip_assignment_customdata**](DevicesApi.md#find_ip_assignment_customdata) | **GET** /devices/{instance_id}/ips/{id}/customdata | Retrieve the custom metadata of an IP Assignment
 [**find_ip_assignments**](DevicesApi.md#find_ip_assignments) | **GET** /devices/{id}/ips | Retrieve all ip assignments
 [**find_organization_devices**](DevicesApi.md#find_organization_devices) | **GET** /organizations/{id}/devices | Retrieve all devices of an organization
+[**find_organization_devices_all_pages**](DevicesApi.md#find_organization_devices_all_pages) | **GET** /organizations/{id}/devices | Retrieve all devices of an organization, fetches all the pages
 [**find_project_devices**](DevicesApi.md#find_project_devices) | **GET** /projects/{id}/devices | Retrieve all devices of a project
+[**find_project_devices_all_pages**](DevicesApi.md#find_project_devices_all_pages) | **GET** /projects/{id}/devices | Retrieve all devices of a project, fetches all the pages
 [**find_traffic**](DevicesApi.md#find_traffic) | **GET** /devices/{id}/traffic | Retrieve device traffic
 [**get_bgp_neighbor_data**](DevicesApi.md#get_bgp_neighbor_data) | **GET** /devices/{id}/bgp/neighbors | Retrieve BGP neighbor data for this device
 [**get_device_firmware_sets**](DevicesApi.md#get_device_firmware_sets) | **GET** /devices/{id}/firmware-sets | Get Device&#39;s associated Firmware Set
@@ -1127,6 +1129,11 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **find_organization_devices_all_pages**
+> DeviceList find_organization_devices_all_pages(id, search=search, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, per_page=per_page)
+
+Just like [**find_organization_devices**](DevicesApi.md#find_organization_devices) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_organization_devices**](DevicesApi.md#find_organization_devices).
+
 # **find_project_devices**
 > DeviceList find_project_devices(id, search=search, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -1231,6 +1238,11 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **find_project_devices_all_pages**
+> DeviceList find_project_devices_all_pages(id, search=search, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, include=include, exclude=exclude, per_page=per_page)
+
+Just like [**find_project_devices**](DevicesApi.md#find_project_devices) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_project_devices**](DevicesApi.md#find_project_devices).
 
 # **find_traffic**
 > find_traffic(id, direction, interval=interval, bucket=bucket, timeframe=timeframe)
