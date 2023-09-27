@@ -6779,6 +6779,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -6816,6 +6817,7 @@ paths:
       summary: Retrieve interconnection events
       tags:
       - Events
+      x-equinix-metal-paginated-property: events
   /connections/{connection_id}/ports:
     get:
       description: List the ports associated to an interconnection.
@@ -6975,6 +6977,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -7733,6 +7736,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -7770,6 +7774,7 @@ paths:
       summary: Retrieve device's events
       tags:
       - Events
+      x-equinix-metal-paginated-property: events
   /devices/{id}/firmware-sets:
     get:
       description: Returns the firmware set associated with the device. If a custom
@@ -8436,6 +8441,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -8461,6 +8467,7 @@ paths:
       summary: Retrieve current user's events
       tags:
       - Events
+      x-equinix-metal-paginated-property: events
   /events/{id}:
     get:
       description: Returns a single event if the user has access
@@ -8871,6 +8878,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -10522,6 +10530,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -10547,6 +10556,7 @@ paths:
       summary: Retrieve all organizations
       tags:
       - Organizations
+      x-equinix-metal-paginated-property: organizations
     post:
       description: Creates an organization.
       operationId: createOrganization
@@ -11031,6 +11041,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -11068,6 +11079,7 @@ paths:
       summary: Retrieve all devices of an organization
       tags:
       - Devices
+      x-equinix-metal-paginated-property: devices
   /organizations/{id}/events:
     get:
       description: Returns a list of events for a single organization
@@ -11117,6 +11129,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -11154,6 +11167,7 @@ paths:
       summary: Retrieve organization's events
       tags:
       - Events
+      x-equinix-metal-paginated-property: events
   /organizations/{id}/facilities:
     get:
       deprecated: true
@@ -11240,6 +11254,7 @@ paths:
         name: page
         schema:
           type: integer
+        x-equinix-metal-page-param: true
       - description: items returned per page.
         in: query
         name: per_page
@@ -11295,6 +11310,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -11421,6 +11437,7 @@ paths:
         name: page
         schema:
           type: integer
+        x-equinix-metal-page-param: true
       - description: per page
         in: query
         name: per_page
@@ -11543,6 +11560,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -11756,6 +11774,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -11781,6 +11800,7 @@ paths:
       summary: Retrieve all projects of an organization
       tags:
       - Organizations
+      x-equinix-metal-paginated-property: projects
     post:
       description: Creates a new project for the organization
       operationId: createOrganizationProject
@@ -13126,6 +13146,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -13151,6 +13172,7 @@ paths:
       summary: Retrieve all projects
       tags:
       - Projects
+      x-equinix-metal-paginated-property: projects
     post:
       description: Creates a new project for the user default organization. If the
         user don't have an organization, a new one will be created.
@@ -13858,6 +13880,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -13895,6 +13918,7 @@ paths:
       summary: Retrieve all devices of a project
       tags:
       - Devices
+      x-equinix-metal-paginated-property: devices
     post:
       description: 'Creates a new device and provisions it in the specified location.
 
@@ -14082,6 +14106,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -14119,6 +14144,7 @@ paths:
       summary: Retrieve project's events
       tags:
       - Events
+      x-equinix-metal-paginated-property: events
   /projects/{id}/facilities:
     get:
       deprecated: true
@@ -14205,6 +14231,7 @@ paths:
         name: page
         schema:
           type: integer
+        x-equinix-metal-page-param: true
       - description: items returned per page.
         in: query
         name: per_page
@@ -14343,6 +14370,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -14380,6 +14408,7 @@ paths:
       summary: Retrieve all hardware reservations for a given project
       tags:
       - HardwareReservations
+      x-equinix-metal-paginated-property: hardware_reservations
   /projects/{id}/ips:
     get:
       description: Provides a paginated list of IP reservations for a single project.
@@ -14606,6 +14635,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -15453,6 +15483,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -15484,6 +15515,7 @@ paths:
       summary: List project connections
       tags:
       - Interconnections
+      x-equinix-metal-paginated-property: interconnections
     post:
       description: Creates a new interconnection request
       operationId: createProjectInterconnection
@@ -15575,6 +15607,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -15757,6 +15790,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -15850,6 +15884,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -15881,6 +15916,7 @@ paths:
       summary: Returns all metal gateways for a project
       tags:
       - MetalGateways
+      x-equinix-metal-paginated-property: metal_gateways
     post:
       description: Create a metal gateway in a project
       operationId: createMetalGateway
@@ -15987,6 +16023,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -16432,6 +16469,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -17476,6 +17514,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
@@ -17501,6 +17540,7 @@ paths:
       summary: Retrieve all users
       tags:
       - Users
+      x-equinix-metal-paginated-property: users
     post:
       description: Creates a user.
       operationId: createUser
@@ -18002,6 +18042,7 @@ paths:
           maximum: 100000
           minimum: 1
           type: integer
+        x-equinix-metal-page-param: true
       - description: Items returned per page
         in: query
         name: per_page
