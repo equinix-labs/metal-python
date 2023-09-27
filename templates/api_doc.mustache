@@ -6,6 +6,8 @@ All URIs are relative to *{{basePath}}*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 {{#operations}}{{#operation}}[**{{operationId}}**]({{classname}}.md#{{operationId}}) | **{{httpMethod}}** {{path}} | {{summary}}
+{{#vendorExtensions.x-equinix-metal-paginated-property}}[**{{operationId}}_all_pages**]({{classname}}.md#{{operationId}}_all_pages) | **{{httpMethod}}** {{path}} | {{summary}}, fetches all the pages
+{{/vendorExtensions.x-equinix-metal-paginated-property}}
 {{/operation}}{{/operations}}
 
 {{#operations}}
@@ -70,5 +72,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+{{#vendorExtensions.x-equinix-metal-paginated-property}}
+# **{{{operationId}}}_all_pages**
+> {{#returnType}}{{{.}}} {{/returnType}}{{{operationId}}}_all_pages({{#allParams}}{{^vendorExtensions.x-equinix-metal-page-param}}{{#required}}{{{paramName}}}{{/required}}{{^required}}{{{paramName}}}={{{paramName}}}{{/required}}{{^-last}}, {{/-last}}{{/vendorExtensions.x-equinix-metal-page-param}}{{/allParams}})
+
+Just like [**{{operationId}}**]({{classname}}.md#{{operationId}}) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**{{operationId}}**]({{classname}}.md#{{operationId}}).
+
+{{/vendorExtensions.x-equinix-metal-paginated-property}}
 {{/operation}}
 {{/operations}}
