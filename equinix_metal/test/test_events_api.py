@@ -36,6 +36,13 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
+    def test_find_device_events_all_pages(self):
+        """Test case for find_device_events_all_pages
+
+        Retrieve device's events  # noqa: E501
+        """
+        pass
+
     def test_find_event_by_id(self):
         """Test case for find_event_by_id
 
@@ -50,8 +57,22 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
+    def test_find_events_all_pages(self):
+        """Test case for find_events_all_pages
+
+        Retrieve current user's events  # noqa: E501
+        """
+        pass
+
     def test_find_interconnection_events(self):
         """Test case for find_interconnection_events
+
+        Retrieve interconnection events  # noqa: E501
+        """
+        pass
+
+    def test_find_interconnection_events_all_pages(self):
+        """Test case for find_interconnection_events_all_pages
 
         Retrieve interconnection events  # noqa: E501
         """
@@ -71,8 +92,22 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
+    def test_find_organization_events_all_pages(self):
+        """Test case for find_organization_events_all_pages
+
+        Retrieve organization's events  # noqa: E501
+        """
+        pass
+
     def test_find_project_events(self):
         """Test case for find_project_events
+
+        Retrieve project's events  # noqa: E501
+        """
+        pass
+
+    def test_find_project_events_all_pages(self):
+        """Test case for find_project_events_all_pages
 
         Retrieve project's events  # noqa: E501
         """

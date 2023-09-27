@@ -99,6 +99,13 @@ class TestProjectsApi(unittest.TestCase):
         """
         pass
 
+    def test_find_projects_all_pages(self):
+        """Test case for find_projects_all_pages
+
+        Retrieve all projects  # noqa: E501
+        """
+        pass
+
     def test_update_project(self):
         """Test case for update_project
 
