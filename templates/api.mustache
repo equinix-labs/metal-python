@@ -46,6 +46,56 @@ class {{classname}}(object):
         ...
 
 {{/asyncio}}
+{{#vendorExtensions}}
+{{#x-equinix-metal-paginated-property}}
+    @validate_arguments
+    def {{operationId}}_all_pages(self, {{#allParams}}{{^vendorExtensions.x-equinix-metal-page-param}}{{paramName}} : {{{vendorExtensions.x-py-typing}}}{{^required}} = None{{/required}}, {{/vendorExtensions.x-equinix-metal-page-param}}{{/allParams}}{{#asyncio}}async_req: Optional[bool]=None, {{/asyncio}}**kwargs) -> {{#asyncio}}Union[{{{returnType}}}{{^returnType}}None{{/returnType}}, Awaitable[{{{returnType}}}{{^returnType}}None{{/returnType}}]]{{/asyncio}}{{^asyncio}}{{{returnType}}}{{^returnType}}None{{/returnType}}{{/asyncio}}:  # noqa: E501
+        """{{#isDeprecated}}(Deprecated) {{/isDeprecated}}{{{summary}}}{{^summary}}{{operationId}}{{/summary}}  # noqa: E501
+
+        This method is the same as {{operationId}}, but fetches resources from all the pages.
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.{{operationId}}({{#allParams}}}{{^vendorExtensions.x-equinix-metal-page-param}}{{paramName}}, {{/vendorExtensions.x-equinix-metal-page-param}}, {{/allParams}}async_req=True)
+        >>> result = thread.get()
+
+{{#allParams}} {{^vendorExtensions.x-equinix-metal-page-param}}
+        :param {{paramName}}:{{#description}} {{{.}}}{{/description}}{{#required}} (required){{/required}}{{#optional}}(optional){{/optional}}
+        :type {{paramName}}: {{dataType}}{{#optional}}, optional{{/optional}}
+{{/vendorExtensions.x-equinix-metal-page-param}}{{/allParams}}
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for a single page request.
+                                 If one number provided, it will be single 
+                                 page request timeout. It can also be a pair
+                                 (tuple) of (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: {{returnType}}{{^returnType}}None{{/returnType}}
+
+        """
+        all_pages = None
+
+        page = 1
+        while True:
+            # Template comment: here we set var "page" to page number and then
+            # we call the base method with all the parameters listed (including
+            # page).
+            page_response = self.{{operationId}}({{#allParams}}{{paramName}}, {{/allParams}}**kwargs)  # noqa: E501
+            if all_pages is None:
+                all_pages = page_response
+            else:
+                all_pages.{{.}}.extend(page_response.{{.}})
+            if page_response.meta.next is None:
+                break
+            page += 1
+            
+        return all_pages
+
+{{/x-equinix-metal-paginated-property}}
+{{/vendorExtensions}}
     @validate_arguments
     def {{operationId}}(self, {{#allParams}}{{paramName}} : {{{vendorExtensions.x-py-typing}}}{{^required}} = None{{/required}}, {{/allParams}}{{#asyncio}}async_req: Optional[bool]=None, {{/asyncio}}**kwargs) -> {{#asyncio}}Union[{{{returnType}}}{{^returnType}}None{{/returnType}}, Awaitable[{{{returnType}}}{{^returnType}}None{{/returnType}}]]{{/asyncio}}{{^asyncio}}{{{returnType}}}{{^returnType}}None{{/returnType}}{{/asyncio}}:  # noqa: E501
         """{{#isDeprecated}}(Deprecated) {{/isDeprecated}}{{{summary}}}{{^summary}}{{operationId}}{{/summary}}  # noqa: E501
