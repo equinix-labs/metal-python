@@ -83,6 +83,7 @@ del fixedSpec['components']['schemas']['Address']['required']
 
 refkey = "$ref"
 
+page_param_marker = 'x-equinix-metal-page-param'
 
 for opPath, methods in fixedSpec['paths'].items():
     if 'get' not in methods:
@@ -91,28 +92,27 @@ for opPath, methods in fixedSpec['paths'].items():
     if 'parameters' not in getOp:
         continue
     getOpParams = getOp['parameters']
-    for p in getOpParams:
-        if p['name'] != 'page':
-            continue
-        respSchemaPath = getOp['responses']['200']['content']['application/json']['schema'][refkey]
-        respSchemaName = os.path.basename(respSchemaPath)
-        oid = getOp['operationId']
-        respSchemaProperties = set(fixedSpec['components']['schemas'][respSchemaName]['properties'].keys())
-        if 'href' in respSchemaProperties:
-            respSchemaProperties.remove("href")
-        if 'meta' in respSchemaProperties:
-            respSchemaProperties.remove("meta")
-        else:
-            print("%s => %s doesn't have 'meta', and therefore no PageNum etc" % (oid, respSchemaName))
-            break
-        if len(respSchemaProperties) > 1:
-            print("%s => %s has 'page' but ambiguous response type with args %s" %
-                  (oid, respSchemaName, respSchemaProperties))
-            break
-        print("marking %s as paginated" % oid)
-        fixedSpec['paths'][opPath]['get']['x-equinix-metal-paginated-property'] = respSchemaProperties.pop()
-        break
-
+    for i, p in enumerate(getOpParams):
+        if p['name'] == 'page':
+            fixedSpec['paths'][opPath]['get']['parameters'][i][page_param_marker] = True
+            respSchemaPath = getOp['responses']['200']['content']['application/json']['schema'][refkey]
+            respSchemaName = os.path.basename(respSchemaPath)
+            oid = getOp['operationId']
+            respSchemaProperties = set(fixedSpec['components']['schemas'][respSchemaName]['properties'].keys())
+            if 'href' in respSchemaProperties:
+                respSchemaProperties.remove("href")
+            if 'meta' in respSchemaProperties:
+                respSchemaProperties.remove("meta")
+            else:
+                print("%s => %s doesn't have 'meta', and therefore no PageNum etc" % (oid, respSchemaName))
+                break
+            if len(respSchemaProperties) > 1:
+                print("%s => %s has 'page' but ambiguous response type with args %s" %
+                      (oid, respSchemaName, respSchemaProperties))
+                break
+            print("marking %s as paginated" % oid)
+            fixedSpec['paths'][opPath]['get']['x-equinix-metal-paginated-property'] = respSchemaProperties.pop()
+            fixedSpec['paths'][opPath]['get']['parameters'][i] 
 
 with open(OUTFILE, 'w') as f:
     originalSpec = yaml.dump(
