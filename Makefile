@@ -8,7 +8,7 @@ CURRENT_GID := $(shell id -g)
 OPENAPI_COMMAND=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/local ${OPENAPI_CODEGEN_IMAGE}
 GIT_REPO=metal-python
 GIT_ORG=equinix-labs
-OPENAPI_CONFIG:=oas3.config.json
+OPENAPI_CONFIG:=config/openapi-generator.json
 PACKAGE_NAME=equinix_metal
 STITCHED_DIR=oas3.stitched
 STITCHED_FILE=metal_openapi.yaml
@@ -46,6 +46,7 @@ generate: clean patch-spec
 		-i /local/${SPEC_PATCHED_FILE} \
 		-g python \
 		-o /local/${PACKAGE_NAME} \
+		-c /local/${OPENAPI_CONFIG} \
 		--git-repo-id ${GIT_REPO} \
 		--git-user-id ${GIT_ORG}  \
 		--http-user-agent ${USER_AGENT} \

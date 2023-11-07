@@ -106,6 +106,13 @@ class TestOrganizationsApi(unittest.TestCase):
         """
         pass
 
+    def test_find_organization_projects_all_pages(self):
+        """Test case for find_organization_projects_all_pages
+
+        Retrieve all projects of an organization  # noqa: E501
+        """
+        pass
+
     def test_find_organization_transfers(self):
         """Test case for find_organization_transfers
 
@@ -115,6 +122,13 @@ class TestOrganizationsApi(unittest.TestCase):
 
     def test_find_organizations(self):
         """Test case for find_organizations
+
+        Retrieve all organizations  # noqa: E501
+        """
+        pass
+
+    def test_find_organizations_all_pages(self):
+        """Test case for find_organizations_all_pages
 
         Retrieve all organizations  # noqa: E501
         """

@@ -120,8 +120,22 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
+    def test_find_organization_devices_all_pages(self):
+        """Test case for find_organization_devices_all_pages
+
+        Retrieve all devices of an organization  # noqa: E501
+        """
+        pass
+
     def test_find_project_devices(self):
         """Test case for find_project_devices
+
+        Retrieve all devices of a project  # noqa: E501
+        """
+        pass
+
+    def test_find_project_devices_all_pages(self):
+        """Test case for find_project_devices_all_pages
 
         Retrieve all devices of a project  # noqa: E501
         """
