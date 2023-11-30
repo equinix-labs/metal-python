@@ -182,6 +182,9 @@ tags:
     Firmware Sets Management. Notice: Firmware Sets are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
   name: Firmware Sets
 - description: |
+    Console Log Details. Notice: This is a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
+  name: Console Log Details
+- description: |
     Global BGP Range Management
   externalDocs:
     url: https://metal.equinix.com/developers/docs/bgp/global-bgp/
@@ -1902,6 +1905,46 @@ paths:
       summary: Retrieve the custom metadata of an instance
       tags:
       - Devices
+  /devices/{id}/diagnostics/screenshot:
+    get:
+      description: "Capture a screenshot from the device, if supported, via the BMC."
+      operationId: captureScreenshot
+      parameters:
+      - description: Device UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/jpeg:
+              schema:
+                format: binary
+                type: string
+          description: An image file
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not implemented for device
+      tags:
+      - Console Log Details
   /devices/{id}/diagnostics/health/rollup:
     get:
       description: Returns the health rollup status of the device.
@@ -5083,6 +5126,9 @@ paths:
             enum:
             - compute
             - storage
+            - vmce
+            - legacy_gen
+            - current_gen
             example: compute
             type: string
           type: array
@@ -5119,6 +5165,11 @@ paths:
         name: has_termination_time
         schema:
           type: boolean
+      - description: Filter by MAC address
+        in: query
+        name: mac_address
+        schema:
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -6256,6 +6307,9 @@ paths:
             enum:
             - compute
             - storage
+            - vmce
+            - legacy_gen
+            - current_gen
             example: compute
             type: string
           type: array
@@ -7802,12 +7856,20 @@ paths:
             enum:
             - compute
             - storage
+            - vmce
+            - legacy_gen
+            - current_gen
             example: compute
             type: string
           type: array
       - description: Filter by device facility
         in: query
         name: facility
+        schema:
+          type: string
+      - description: Filter by device metro
+        in: query
+        name: metro
         schema:
           type: string
       - description: Filter by partial hostname
@@ -7838,6 +7900,11 @@ paths:
         name: has_termination_time
         schema:
           type: boolean
+      - description: Filter by MAC address
+        in: query
+        name: mac_address
+        schema:
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -8954,6 +9021,7 @@ paths:
       - SSHKeys
   /projects/{id}/transfers:
     post:
+      deprecated: true
       description: Organization owners can transfer their projects to other organizations.
       operationId: createTransferRequest
       parameters:
@@ -9932,6 +10000,9 @@ paths:
             enum:
             - compute
             - storage
+            - vmce
+            - legacy_gen
+            - current_gen
             example: compute
             type: string
           type: array
@@ -13014,7 +13085,7 @@ components:
           type: string
         quantity:
           description: The number of servers sent to check capacity.
-          type: integer
+          type: string
       type: object
     CapacityCheckPerMetroList:
       properties:
@@ -14229,6 +14300,8 @@ components:
           items:
             $ref: '#/components/schemas/IPReservationList_ip_addresses_inner'
           type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
       type: object
     IPReservationRequestInput:
       properties:
@@ -16393,6 +16466,11 @@ components:
           items:
             type: string
           type: array
+        type:
+          enum:
+          - vlan
+          - vrf
+          type: string
         virtual_network:
           $ref: '#/components/schemas/Href'
         vnid:
@@ -16403,18 +16481,6 @@ components:
         updated_at:
           format: date-time
           type: string
-      required:
-      - bill
-      - description
-      - id
-      - name
-      - nni_vlan
-      - port
-      - project
-      - status
-      - tags
-      - virtual_network
-      - vnid
       type: object
     VlanVirtualCircuitCreateInput:
       properties:
@@ -16982,9 +17048,10 @@ components:
             type: string
           type: array
         local_asn:
-          description: The new `local_asn` value for the VRF. This field cannot be
-            updated when there are active Interconnection Virtual Circuits associated
-            to the VRF.
+          description: "The new `local_asn` value for the VRF. This field cannot be\
+            \ updated when there are active Interconnection Virtual Circuits associated\
+            \ to the VRF, or if any of the VLANs of the VRF's metal gateway has been\
+            \ assigned on an instance."
           format: int32
           type: integer
         name:
@@ -17071,6 +17138,10 @@ components:
           items:
             type: string
           type: array
+        type:
+          enum:
+          - vrf
+          type: string
         vrf:
           $ref: '#/components/schemas/Vrf'
         created_at:
@@ -17079,6 +17150,8 @@ components:
         updated_at:
           format: date-time
           type: string
+      required:
+      - vrf
       type: object
     VrfVirtualCircuitCreateInput:
       properties:
