@@ -22,6 +22,7 @@ import json
 from typing import List, Optional
 from pydantic import BaseModel, StrictStr, conlist
 from equinix_metal.models.ip_reservation_list_ip_addresses_inner import IPReservationListIpAddressesInner
+from equinix_metal.models.meta import Meta
 
 class IPReservationList(BaseModel):
     """
@@ -29,7 +30,8 @@ class IPReservationList(BaseModel):
     """
     href: Optional[StrictStr] = None
     ip_addresses: Optional[conlist(IPReservationListIpAddressesInner)] = None
-    __properties = ["href", "ip_addresses"]
+    meta: Optional[Meta] = None
+    __properties = ["href", "ip_addresses", "meta"]
 
     class Config:
         """Pydantic configuration"""
@@ -62,6 +64,9 @@ class IPReservationList(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['ip_addresses'] = _items
+        # override the default output from pydantic by calling `to_dict()` of meta
+        if self.meta:
+            _dict['meta'] = self.meta.to_dict()
         return _dict
 
     @classmethod
@@ -75,7 +80,8 @@ class IPReservationList(BaseModel):
 
         _obj = IPReservationList.parse_obj({
             "href": obj.get("href"),
-            "ip_addresses": [IPReservationListIpAddressesInner.from_dict(_item) for _item in obj.get("ip_addresses")] if obj.get("ip_addresses") is not None else None
+            "ip_addresses": [IPReservationListIpAddressesInner.from_dict(_item) for _item in obj.get("ip_addresses")] if obj.get("ip_addresses") is not None else None,
+            "meta": Meta.from_dict(obj.get("meta")) if obj.get("meta") is not None else None
         })
         return _obj
 

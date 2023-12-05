@@ -200,6 +200,7 @@ Class | Method | HTTP request | Description
 *CapacityApi* | [**find_capacity_for_metro**](docs/CapacityApi.md#find_capacity_for_metro) | **GET** /capacity/metros | View capacity for metros
 *CapacityApi* | [**find_organization_capacity_per_facility**](docs/CapacityApi.md#find_organization_capacity_per_facility) | **GET** /organizations/{id}/capacity | View available hardware plans per Facility for given organization
 *CapacityApi* | [**find_organization_capacity_per_metro**](docs/CapacityApi.md#find_organization_capacity_per_metro) | **GET** /organizations/{id}/capacity/metros | View available hardware plans per Metro for given organization
+*ConsoleLogDetailsApi* | [**capture_screenshot**](docs/ConsoleLogDetailsApi.md#capture_screenshot) | **GET** /devices/{id}/diagnostics/screenshot | 
 *DevicesApi* | [**create_bgp_session**](docs/DevicesApi.md#create_bgp_session) | **POST** /devices/{id}/bgp/sessions | Create a BGP session
 *DevicesApi* | [**create_device**](docs/DevicesApi.md#create_device) | **POST** /projects/{id}/devices | Create a device
 *DevicesApi* | [**create_ip_assignment**](docs/DevicesApi.md#create_ip_assignment) | **POST** /devices/{id}/ips | Create an ip assignment

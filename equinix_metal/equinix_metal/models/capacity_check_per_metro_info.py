@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, Field, StrictBool, StrictStr
 
 class CapacityCheckPerMetroInfo(BaseModel):
     """
@@ -30,7 +30,7 @@ class CapacityCheckPerMetroInfo(BaseModel):
     href: Optional[StrictStr] = None
     metro: Optional[StrictStr] = Field(None, description="The metro ID or code sent to check capacity.")
     plan: Optional[StrictStr] = Field(None, description="The plan ID or slug sent to check capacity.")
-    quantity: Optional[StrictInt] = Field(None, description="The number of servers sent to check capacity.")
+    quantity: Optional[StrictStr] = Field(None, description="The number of servers sent to check capacity.")
     __properties = ["available", "href", "metro", "plan", "quantity"]
 
     class Config:
