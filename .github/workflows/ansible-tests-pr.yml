@@ -1,11 +1,12 @@
 on: 
   pull_request_target:
     paths:
-    - plugins/**
-    - tests/**
-    - Makefile
-    - requirements.txt
-    - requirements-dev.txt
+    - config
+    - equinix_metal
+    - templates
+    - metal_openapi.fixed.yaml
+    - oas3.stitched
+    - oas3.fetched
     - .github/**
   workflow_dispatch:
 
