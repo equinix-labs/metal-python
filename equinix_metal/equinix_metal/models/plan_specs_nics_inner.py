@@ -37,8 +37,8 @@ class PlanSpecsNicsInner(BaseModel):
         if value is None:
             return value
 
-        if value not in ('1Gbps', '10Gbps', '25Gbps'):
-            raise ValueError("must be one of enum values ('1Gbps', '10Gbps', '25Gbps')")
+        if value not in ('1Gbps', '10Gbps', '25Gbps', '100Gbps'):
+            raise ValueError("must be one of enum values ('1Gbps', '10Gbps', '25Gbps', '100Gbps')")
         return value
 
     class Config:

@@ -93,7 +93,7 @@ class PlanSpecsDrivesInner(BaseModel):
             "count": obj.get("count"),
             "href": obj.get("href"),
             "size": obj.get("size"),
-            "type": obj.get("type")
+            "type": obj.get("type").upper()
         })
         return _obj
 
