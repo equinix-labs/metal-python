@@ -49,8 +49,8 @@ class PlanSpecsDrivesInner(BaseModel):
         if value is None:
             return value
 
-        if value not in ('HDD', 'SSD', 'NVME'):
-            raise ValueError("must be one of enum values ('HDD', 'SSD', 'NVME')")
+        if value not in ('HDD', 'SSD', 'NVME', 'NVMe'):
+            raise ValueError("must be one of enum values ('HDD', 'SSD', 'NVME', 'NVMe')")
         return value
 
     class Config:
@@ -93,7 +93,7 @@ class PlanSpecsDrivesInner(BaseModel):
             "count": obj.get("count"),
             "href": obj.get("href"),
             "size": obj.get("size"),
-            "type": obj.get("type").upper()
+            "type": obj.get("type")
         })
         return _obj
 
