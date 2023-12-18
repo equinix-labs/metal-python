@@ -77,6 +77,12 @@ fixedSpec['components']['schemas']['IPReservation']['properties']['assignments']
 
 del fixedSpec['components']['schemas']['Address']['required']
 
+# FIX 12. Adding items for validation of enum PlanSpec
+
+fixedSpec['components']['schemas']['Plan_specs_drives_inner']['properties']['type']['enum'].append('NVMe')
+fixedSpec['components']['schemas']['Plan_specs_nics_inner']['properties']['type']['enum'].append('100Gbps')
+
+
 with open(OUTFILE, 'w') as f:
     originalSpec = yaml.dump(
         fixedSpec, f, default_flow_style=False)
