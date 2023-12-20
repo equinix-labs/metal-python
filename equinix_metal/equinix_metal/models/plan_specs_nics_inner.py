@@ -20,7 +20,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictInt, StrictStr, validator
+from pydantic import BaseModel, StrictInt, StrictStr
 
 class PlanSpecsNicsInner(BaseModel):
     """
@@ -30,16 +30,6 @@ class PlanSpecsNicsInner(BaseModel):
     href: Optional[StrictStr] = None
     type: Optional[StrictStr] = None
     __properties = ["count", "href", "type"]
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('1Gbps', '10Gbps', '25Gbps'):
-            raise ValueError("must be one of enum values ('1Gbps', '10Gbps', '25Gbps')")
-        return value
 
     class Config:
         """Pydantic configuration"""

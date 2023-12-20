@@ -43,16 +43,6 @@ class PlanSpecsDrivesInner(BaseModel):
             raise ValueError("must be one of enum values ('boot', 'cache', 'storage')")
         return value
 
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('HDD', 'SSD', 'NVME'):
-            raise ValueError("must be one of enum values ('HDD', 'SSD', 'NVME')")
-        return value
-
     class Config:
         """Pydantic configuration"""
         allow_population_by_field_name = True

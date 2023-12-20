@@ -208,7 +208,7 @@ class TestDeviceList(unittest.TestCase):
                                         count = 56, 
                                         href = '', 
                                         size = '3.84TB', 
-                                        type = 'HDD', )
+                                        type = '', )
                                     ], 
                                 features = equinix_metal.models.plan_specs_features.Plan_specs_features(
                                     href = '', 
@@ -223,7 +223,7 @@ class TestDeviceList(unittest.TestCase):
                                     equinix_metal.models.plan_specs_nics_inner.Plan_specs_nics_inner(
                                         count = 2, 
                                         href = '', 
-                                        type = '1Gbps', )
+                                        type = '', )
                                     ], ), 
                             type = 'standard', ), 
                         project = null, 

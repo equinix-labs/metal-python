@@ -43,7 +43,7 @@ class TestPlanSpecsDrivesInner(unittest.TestCase):
                 count = 56, 
                 href = '', 
                 size = '3.84TB', 
-                type = 'HDD'
+                type = ''
             )
         else :
             return PlanSpecsDrivesInner(
