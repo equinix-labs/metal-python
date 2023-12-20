@@ -78,6 +78,11 @@ fixedSpec['components']['schemas']['IPReservation']['properties']['assignments']
 
 del fixedSpec['components']['schemas']['Address']['required']
 
+# FIX 12. Remove enums from Plan schema - they don't match the real API
+# https://github.com/equinix-labs/metal-python/pull/63
+
+del fixedSpec['components']['schemas']['Plan_specs_drives_inner']['properties']['type']['enum']
+del fixedSpec['components']['schemas']['Plan_specs_nics_inner']['properties']['type']['enum']
 
 # Mark paginated operation with `x-equinix-metal-paginated-property`
 

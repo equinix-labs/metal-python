@@ -3510,10 +3510,6 @@ components:
           example: 3.84TB
           type: string
         type:
-          enum:
-          - HDD
-          - SSD
-          - NVME
           type: string
       type: object
     Plan_specs_features:
@@ -3545,10 +3541,6 @@ components:
           format: uri
           type: string
         type:
-          enum:
-          - 1Gbps
-          - 10Gbps
-          - 25Gbps
           type: string
       type: object
     Port:

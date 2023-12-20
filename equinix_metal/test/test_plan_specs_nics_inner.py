@@ -41,7 +41,7 @@ class TestPlanSpecsNicsInner(unittest.TestCase):
             return PlanSpecsNicsInner(
                 count = 2, 
                 href = '', 
-                type = '1Gbps'
+                type = ''
             )
         else :
             return PlanSpecsNicsInner(
