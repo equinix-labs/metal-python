@@ -12187,7 +12187,7 @@ paths:
       parameters:
       - description: Filter plans by its category
         in: query
-        name: categories
+        name: categories[]
         schema:
           items:
             enum:

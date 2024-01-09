@@ -84,6 +84,17 @@ del fixedSpec['components']['schemas']['Address']['required']
 del fixedSpec['components']['schemas']['Plan_specs_drives_inner']['properties']['type']['enum']
 del fixedSpec['components']['schemas']['Plan_specs_nics_inner']['properties']['type']['enum']
 
+# FIX 13. rename query attribute categories to "categories[]"
+
+plans_get_params = fixedSpec['paths']['/plans']['get']['parameters']
+
+for i, p in enumerate(plans_get_params):
+    if p['name'] == 'categories':
+        fixedSpec['paths']['/plans']['get']['parameters'][i]['name'] = "categories[]"
+        break
+
+
+
 # Mark paginated operation with `x-equinix-metal-paginated-property`
 
 refkey = "$ref"
