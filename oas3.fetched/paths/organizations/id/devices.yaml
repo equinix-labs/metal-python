@@ -20,6 +20,9 @@ get:
         enum:
           - compute
           - storage
+          - vmce
+          - legacy_gen
+          - current_gen
         example: compute
   - description: Filter by device facility
     in: query
@@ -51,6 +54,11 @@ get:
     name: has_termination_time
     schema:
       type: boolean
+  - description: Filter by MAC address
+    in: query
+    name: mac_address
+    schema:
+      type: string
   - $ref: '../../../components/parameters/Include.yaml'
   - $ref: '../../../components/parameters/Exclude.yaml'
   - $ref: '../../../components/parameters/Page.yaml'

@@ -12,6 +12,9 @@ get:
         enum:
           - compute
           - storage
+          - vmce
+          - legacy_gen
+          - current_gen
         example: compute
   - description: Filter plans by its plan type
     in: query
