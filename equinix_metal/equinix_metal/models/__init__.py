@@ -64,7 +64,6 @@ from equinix_metal.models.device_created_by import DeviceCreatedBy
 from equinix_metal.models.device_health_rollup import DeviceHealthRollup
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.models.device_metro import DeviceMetro
-from equinix_metal.models.device_project import DeviceProject
 from equinix_metal.models.device_project_lite import DeviceProjectLite
 from equinix_metal.models.device_update_input import DeviceUpdateInput
 from equinix_metal.models.device_usage import DeviceUsage

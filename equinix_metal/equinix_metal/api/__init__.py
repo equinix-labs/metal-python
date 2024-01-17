@@ -5,6 +5,7 @@ from equinix_metal.api.authentication_api import AuthenticationApi
 from equinix_metal.api.bgp_api import BGPApi
 from equinix_metal.api.batches_api import BatchesApi
 from equinix_metal.api.capacity_api import CapacityApi
+from equinix_metal.api.console_log_details_api import ConsoleLogDetailsApi
 from equinix_metal.api.devices_api import DevicesApi
 from equinix_metal.api.emails_api import EmailsApi
 from equinix_metal.api.events_api import EventsApi

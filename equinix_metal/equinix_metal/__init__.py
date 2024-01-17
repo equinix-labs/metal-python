@@ -22,6 +22,7 @@ from equinix_metal.api.authentication_api import AuthenticationApi
 from equinix_metal.api.bgp_api import BGPApi
 from equinix_metal.api.batches_api import BatchesApi
 from equinix_metal.api.capacity_api import CapacityApi
+from equinix_metal.api.console_log_details_api import ConsoleLogDetailsApi
 from equinix_metal.api.devices_api import DevicesApi
 from equinix_metal.api.emails_api import EmailsApi
 from equinix_metal.api.events_api import EventsApi
@@ -119,7 +120,6 @@ from equinix_metal.models.device_created_by import DeviceCreatedBy
 from equinix_metal.models.device_health_rollup import DeviceHealthRollup
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.models.device_metro import DeviceMetro
-from equinix_metal.models.device_project import DeviceProject
 from equinix_metal.models.device_project_lite import DeviceProjectLite
 from equinix_metal.models.device_update_input import DeviceUpdateInput
 from equinix_metal.models.device_usage import DeviceUsage

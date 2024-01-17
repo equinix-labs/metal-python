@@ -27,28 +27,53 @@ class VlanVirtualCircuit(BaseModel):
     """
     VlanVirtualCircuit
     """
-    bill: StrictBool = Field(..., description="True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal.")
+    bill: Optional[StrictBool] = Field(False, description="True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal.")
+    bill_type: Optional[StrictStr] = Field(None, description="Fabric Billed if the Virtual Circuit is billed by Fabric. Metal Billed if the Virtual Circuit is billed by Metal. Legacy Virtual Circuits will have a value of nil.")
     created_at: Optional[datetime] = None
-    description: StrictStr = Field(...)
+    description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
-    id: StrictStr = Field(...)
-    name: StrictStr = Field(...)
-    nni_vlan: StrictInt = Field(...)
-    port: Href = Field(...)
-    project: Href = Field(...)
+    id: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
+    nni_vlan: Optional[StrictInt] = None
+    port: Optional[Href] = None
+    project: Optional[Href] = None
     speed: Optional[StrictInt] = Field(None, description="For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.")
-    status: StrictStr = Field(..., description="The status of a Virtual Circuit is always 'pending' on creation. The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was not set yet on the Virtual Circuit and is the last step needed for full activation. For Dedicated interconnections, as long as the Dedicated Port has been associated to the Virtual Circuit and a NNI VNID has been set, it will turn to 'waiting_on_customer_vlan'. For Fabric VCs, it will only change to 'waiting_on_customer_vlan' once the corresponding Fabric connection has been found on the Fabric side. If the Fabric service token associated with the Virtual Circuit hasn't been redeemed on Fabric within the expiry time, it will change to an `expired` status. Once a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can be set on creation of a Fabric VC) and the necessary set up is done, it will turn into 'Activating' status as it tries to activate the Virtual Circuit. Once the Virtual Circuit fully activates and is configured on the switch, it will turn to staus 'active'. For Fabric VCs (Metal Billed), we will start billing the moment the status of the Virtual Circuit turns to 'active'. If there are any changes to the VLAN after the Virtual Circuit is in an 'active' status, the status will show 'changing_vlan' if a new VLAN has been provided, or 'deactivating' if we are removing the VLAN. When a deletion request is issued for the Virtual Circuit, it will move to a 'deleting' status, and we will immediately unconfigure the switch for the Virtual Circuit and issue a deletion on any associated Fabric connections. Any associated Metro VLANs on the virtual circuit will also be unassociated after the switch has been successfully unconfigured. If there are any associated Fabric connections, we will only fully delete the Virtual Circuit once we have checked that the Fabric connection was fully deprovisioned on Fabric.")
-    tags: conlist(StrictStr) = Field(...)
+    status: Optional[StrictStr] = Field(None, description="The status of a Virtual Circuit is always 'pending' on creation. The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was not set yet on the Virtual Circuit and is the last step needed for full activation. For Dedicated interconnections, as long as the Dedicated Port has been associated to the Virtual Circuit and a NNI VNID has been set, it will turn to 'waiting_on_customer_vlan'. For Fabric VCs, it will only change to 'waiting_on_customer_vlan' once the corresponding Fabric connection has been found on the Fabric side. If the Fabric service token associated with the Virtual Circuit hasn't been redeemed on Fabric within the expiry time, it will change to an `expired` status. Once a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can be set on creation of a Fabric VC) and the necessary set up is done, it will turn into 'Activating' status as it tries to activate the Virtual Circuit. Once the Virtual Circuit fully activates and is configured on the switch, it will turn to staus 'active'. For Fabric VCs (Metal Billed), we will start billing the moment the status of the Virtual Circuit turns to 'active'. If there are any changes to the VLAN after the Virtual Circuit is in an 'active' status, the status will show 'changing_vlan' if a new VLAN has been provided, or 'deactivating' if we are removing the VLAN. When a deletion request is issued for the Virtual Circuit, it will move to a 'deleting' status, and we will immediately unconfigure the switch for the Virtual Circuit and issue a deletion on any associated Fabric connections. Any associated Metro VLANs on the virtual circuit will also be unassociated after the switch has been successfully unconfigured. If there are any associated Fabric connections, we will only fully delete the Virtual Circuit once we have checked that the Fabric connection was fully deprovisioned on Fabric.")
+    tags: Optional[conlist(StrictStr)] = None
+    type: Optional[StrictStr] = None
     updated_at: Optional[datetime] = None
-    virtual_network: Href = Field(...)
-    vnid: StrictInt = Field(...)
-    __properties = ["bill", "created_at", "description", "href", "id", "name", "nni_vlan", "port", "project", "speed", "status", "tags", "updated_at", "virtual_network", "vnid"]
+    virtual_network: Optional[Href] = None
+    vnid: Optional[StrictInt] = None
+    __properties = ["bill", "bill_type", "created_at", "description", "href", "id", "name", "nni_vlan", "port", "project", "speed", "status", "tags", "type", "updated_at", "virtual_network", "vnid"]
+
+    @validator('bill_type')
+    def bill_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('metal_billed', 'fabric_billed'):
+            raise ValueError("must be one of enum values ('metal_billed', 'fabric_billed')")
+        return value
 
     @validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
+        if value is None:
+            return value
+
         if value not in ('pending', 'waiting_on_customer_vlan', 'activating', 'changing_vlan', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_vlan_failed', 'deactivation_failed', 'delete_failed'):
             raise ValueError("must be one of enum values ('pending', 'waiting_on_customer_vlan', 'activating', 'changing_vlan', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_vlan_failed', 'deactivation_failed', 'delete_failed')")
+        return value
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('vlan', 'vrf'):
+            raise ValueError("must be one of enum values ('vlan', 'vrf')")
         return value
 
     class Config:
@@ -84,6 +109,11 @@ class VlanVirtualCircuit(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of virtual_network
         if self.virtual_network:
             _dict['virtual_network'] = self.virtual_network.to_dict()
+        # set to None if bill_type (nullable) is None
+        # and __fields_set__ contains the field
+        if self.bill_type is None and "bill_type" in self.__fields_set__:
+            _dict['bill_type'] = None
+
         return _dict
 
     @classmethod
@@ -97,6 +127,7 @@ class VlanVirtualCircuit(BaseModel):
 
         _obj = VlanVirtualCircuit.parse_obj({
             "bill": obj.get("bill") if obj.get("bill") is not None else False,
+            "bill_type": obj.get("bill_type"),
             "created_at": obj.get("created_at"),
             "description": obj.get("description"),
             "href": obj.get("href"),
@@ -108,6 +139,7 @@ class VlanVirtualCircuit(BaseModel):
             "speed": obj.get("speed"),
             "status": obj.get("status"),
             "tags": obj.get("tags"),
+            "type": obj.get("type"),
             "updated_at": obj.get("updated_at"),
             "virtual_network": Href.from_dict(obj.get("virtual_network")) if obj.get("virtual_network") is not None else None,
             "vnid": obj.get("vnid")

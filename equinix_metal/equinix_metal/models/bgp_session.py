@@ -45,16 +45,6 @@ class BgpSession(BaseModel):
             raise ValueError("must be one of enum values ('ipv4', 'ipv6')")
         return value
 
-    @validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('unknown', 'up', 'down'):
-            raise ValueError("must be one of enum values ('unknown', 'up', 'down')")
-        return value
-
     class Config:
         """Pydantic configuration"""
         allow_population_by_field_name = True

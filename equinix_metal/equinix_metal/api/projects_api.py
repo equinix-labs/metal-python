@@ -390,7 +390,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def create_transfer_request(self, id : Annotated[StrictStr, Field(..., description="UUID of the project to be transferred")], transfer_request_input : Annotated[TransferRequestInput, Field(..., description="Transfer Request to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> TransferRequest:  # noqa: E501
-        """Create a transfer request  # noqa: E501
+        """(Deprecated) Create a transfer request  # noqa: E501
 
         Organization owners can transfer their projects to other organizations.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -423,7 +423,7 @@ class ProjectsApi(object):
 
     @validate_arguments
     def create_transfer_request_with_http_info(self, id : Annotated[StrictStr, Field(..., description="UUID of the project to be transferred")], transfer_request_input : Annotated[TransferRequestInput, Field(..., description="Transfer Request to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Create a transfer request  # noqa: E501
+        """(Deprecated) Create a transfer request  # noqa: E501
 
         Organization owners can transfer their projects to other organizations.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -462,6 +462,8 @@ class ProjectsApi(object):
                  returns the request thread.
         :rtype: tuple(TransferRequest, status_code(int), headers(HTTPHeaderDict))
         """
+
+        warnings.warn("POST /projects/{id}/transfers is deprecated.", DeprecationWarning)
 
         _params = locals()
 
