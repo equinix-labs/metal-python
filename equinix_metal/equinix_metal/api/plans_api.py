@@ -168,8 +168,8 @@ class PlansApi(object):
         # process the query parameters
         _query_params = []
         if _params.get('categories') is not None:  # noqa: E501
-            _query_params.append(('categories', _params['categories']))
-            _collection_formats['categories'] = 'multi'
+            _query_params.append(('categories[]', _params['categories']))
+            _collection_formats['categories[]'] = 'multi'
 
         if _params.get('type') is not None:  # noqa: E501
             _query_params.append(('type', _params['type']))
