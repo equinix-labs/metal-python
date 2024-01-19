@@ -46,7 +46,7 @@ class TestCapacityCheckPerMetroList(unittest.TestCase):
                         href = '', 
                         metro = '', 
                         plan = '', 
-                        quantity = 56, )
+                        quantity = '', )
                     ]
             )
         else :

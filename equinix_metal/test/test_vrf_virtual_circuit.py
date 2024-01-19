@@ -59,6 +59,7 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                 tags = [
                     ''
                     ], 
+                type = 'vrf', 
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 vrf = equinix_metal.models.vrf.Vrf(
                     bgp_dynamic_neighbors_bfd_enabled = True, 
@@ -162,11 +163,141 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                             speed = 56, 
                             status = 'pending', 
                             subnet = '12.0.0.0/30', 
-                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
+                            type = 'vrf', 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            vrf = equinix_metal.models.vrf.Vrf(
+                                bgp_dynamic_neighbors_bfd_enabled = True, 
+                                bgp_dynamic_neighbors_enabled = True, 
+                                bgp_dynamic_neighbors_export_route_map = True, 
+                                bill = True, 
+                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                description = '', 
+                                href = '', 
+                                id = '', 
+                                local_asn = 56, 
+                                name = '', 
+                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], )
             )
         else :
             return VrfVirtualCircuit(
+                vrf = equinix_metal.models.vrf.Vrf(
+                    bgp_dynamic_neighbors_bfd_enabled = True, 
+                    bgp_dynamic_neighbors_enabled = True, 
+                    bgp_dynamic_neighbors_export_route_map = True, 
+                    bill = True, 
+                    created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    created_by = equinix_metal.models.user.User(
+                        avatar_thumb_url = '', 
+                        avatar_url = '', 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        customdata = equinix_metal.models.customdata.customdata(), 
+                        default_organization_id = '', 
+                        default_project_id = '', 
+                        email = '', 
+                        emails = [
+                            equinix_metal.models.href.Href(
+                                href = '', )
+                            ], 
+                        first_name = '', 
+                        fraud_score = '', 
+                        full_name = '', 
+                        href = '', 
+                        id = '', 
+                        last_login_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        last_name = '', 
+                        max_organizations = 56, 
+                        max_projects = 56, 
+                        phone_number = '', 
+                        short_id = '', 
+                        timezone = '', 
+                        two_factor_auth = '', 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                    description = '', 
+                    href = '', 
+                    id = '', 
+                    ip_ranges = [
+                        ''
+                        ], 
+                    local_asn = 56, 
+                    metro = equinix_metal.models.metro.Metro(
+                        code = '', 
+                        country = '', 
+                        href = '', 
+                        id = '', 
+                        name = '', ), 
+                    name = '', 
+                    project = equinix_metal.models.project.Project(
+                        backend_transfer_enabled = True, 
+                        bgp_config = equinix_metal.models.href.Href(
+                            href = '', ), 
+                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        customdata = equinix_metal.models.customdata.customdata(), 
+                        devices = [
+                            
+                            ], 
+                        href = '', 
+                        id = '', 
+                        invitations = [
+                            
+                            ], 
+                        max_devices = equinix_metal.models.max_devices.max_devices(), 
+                        members = [
+                            
+                            ], 
+                        memberships = [
+                            
+                            ], 
+                        name = '0', 
+                        network_status = equinix_metal.models.network_status.network_status(), 
+                        organization = , 
+                        payment_method = , 
+                        ssh_keys = [
+                            
+                            ], 
+                        tags = [
+                            ''
+                            ], 
+                        type = 'default', 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        volumes = [
+                            
+                            ], ), 
+                    tags = [
+                        ''
+                        ], 
+                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    virtual_circuits = [
+                        equinix_metal.models.vrf_virtual_circuit.VrfVirtualCircuit(
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            customer_ip = '12.0.0.2', 
+                            description = '', 
+                            href = '', 
+                            id = '', 
+                            md5 = '', 
+                            metal_ip = '12.0.0.1', 
+                            name = '', 
+                            nni_vlan = 56, 
+                            peer_asn = 56, 
+                            port = , 
+                            speed = 56, 
+                            status = 'pending', 
+                            subnet = '12.0.0.0/30', 
+                            type = 'vrf', 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            vrf = equinix_metal.models.vrf.Vrf(
+                                bgp_dynamic_neighbors_bfd_enabled = True, 
+                                bgp_dynamic_neighbors_enabled = True, 
+                                bgp_dynamic_neighbors_export_route_map = True, 
+                                bill = True, 
+                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                description = '', 
+                                href = '', 
+                                id = '', 
+                                local_asn = 56, 
+                                name = '', 
+                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
+                        ], ),
         )
         """
 

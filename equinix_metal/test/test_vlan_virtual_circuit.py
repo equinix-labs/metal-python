@@ -40,6 +40,7 @@ class TestVlanVirtualCircuit(unittest.TestCase):
         if include_optional :
             return VlanVirtualCircuit(
                 bill = True, 
+                bill_type = 'metal_billed', 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 description = '', 
                 href = '', 
@@ -55,6 +56,7 @@ class TestVlanVirtualCircuit(unittest.TestCase):
                 tags = [
                     ''
                     ], 
+                type = 'vlan', 
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 virtual_network = equinix_metal.models.href.Href(
                     href = '', ), 
@@ -62,22 +64,6 @@ class TestVlanVirtualCircuit(unittest.TestCase):
             )
         else :
             return VlanVirtualCircuit(
-                bill = True,
-                description = '',
-                id = '',
-                name = '',
-                nni_vlan = 56,
-                port = equinix_metal.models.href.Href(
-                    href = '', ),
-                project = equinix_metal.models.href.Href(
-                    href = '', ),
-                status = 'pending',
-                tags = [
-                    ''
-                    ],
-                virtual_network = equinix_metal.models.href.Href(
-                    href = '', ),
-                vnid = 56,
         )
         """
 
