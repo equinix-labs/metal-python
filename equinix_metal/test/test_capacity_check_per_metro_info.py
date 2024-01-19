@@ -43,7 +43,7 @@ class TestCapacityCheckPerMetroInfo(unittest.TestCase):
                 href = '', 
                 metro = '', 
                 plan = '', 
-                quantity = 56
+                quantity = ''
             )
         else :
             return CapacityCheckPerMetroInfo(

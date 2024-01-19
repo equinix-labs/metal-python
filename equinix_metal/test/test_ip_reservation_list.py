@@ -42,7 +42,19 @@ class TestIPReservationList(unittest.TestCase):
                 href = '', 
                 ip_addresses = [
                     null
-                    ]
+                    ], 
+                meta = equinix_metal.models.meta.Meta(
+                    current_page = 56, 
+                    first = equinix_metal.models.href.Href(
+                        href = '', ), 
+                    href = '', 
+                    last = equinix_metal.models.href.Href(
+                        href = '', ), 
+                    last_page = 56, 
+                    next = , 
+                    previous = , 
+                    self = , 
+                    total = 56, )
             )
         else :
             return IPReservationList(

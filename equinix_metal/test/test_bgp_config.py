@@ -71,7 +71,7 @@ class TestBgpConfig(unittest.TestCase):
                         learned_routes = [
                             '10.32.16.0/31'
                             ], 
-                        status = 'unknown', 
+                        status = 'up,down', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ], 
                 status = 'requested'

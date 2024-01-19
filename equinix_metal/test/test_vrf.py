@@ -147,6 +147,7 @@ class TestVrf(unittest.TestCase):
                         tags = [
                             ''
                             ], 
+                        type = 'vrf', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         vrf = equinix_metal.models.vrf.Vrf(
                             bgp_dynamic_neighbors_bfd_enabled = True, 

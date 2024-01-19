@@ -44,7 +44,6 @@ class TestInterconnectionUpdateInput(unittest.TestCase):
                 href = '', 
                 mode = 'standard', 
                 name = '', 
-                redundancy = '', 
                 tags = [
                     ''
                     ]
