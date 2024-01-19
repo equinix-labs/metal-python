@@ -24,7 +24,6 @@ from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, Stric
 from equinix_metal.models.device_actions_inner import DeviceActionsInner
 from equinix_metal.models.device_created_by import DeviceCreatedBy
 from equinix_metal.models.device_metro import DeviceMetro
-from equinix_metal.models.device_project import DeviceProject
 from equinix_metal.models.device_project_lite import DeviceProjectLite
 from equinix_metal.models.event import Event
 from equinix_metal.models.facility import Facility
@@ -33,6 +32,7 @@ from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.operating_system import OperatingSystem
 from equinix_metal.models.plan import Plan
 from equinix_metal.models.port import Port
+from equinix_metal.models.project import Project
 from equinix_metal.models.storage import Storage
 
 class Device(BaseModel):
@@ -49,7 +49,7 @@ class Device(BaseModel):
     description: Optional[StrictStr] = None
     facility: Optional[Facility] = None
     firmware_set_id: Optional[StrictStr] = Field(None, description="The UUID of the firmware set to associate with the device.")
-    hardware_reservation: Optional[Href] = None
+    hardware_reservation: Optional[HardwareReservation] = None
     hostname: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
@@ -63,7 +63,7 @@ class Device(BaseModel):
     network_ports: Optional[conlist(Port)] = Field(None, description="By default, servers at Equinix Metal are configured in a “bonded” mode using LACP (Link Aggregation Control Protocol). Each 2-NIC server is configured with a single bond (namely bond0) with both interfaces eth0 and eth1 as members of the bond in a default Layer 3 mode. Some device plans may have a different number of ports and bonds available.")
     operating_system: Optional[OperatingSystem] = None
     plan: Optional[Plan] = None
-    project: Optional[DeviceProject] = None
+    project: Optional[Project] = None
     project_lite: Optional[DeviceProjectLite] = None
     provisioning_events: Optional[conlist(Event)] = None
     provisioning_percentage: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Only visible while device provisioning")
@@ -209,7 +209,7 @@ class Device(BaseModel):
             "description": obj.get("description"),
             "facility": Facility.from_dict(obj.get("facility")) if obj.get("facility") is not None else None,
             "firmware_set_id": obj.get("firmware_set_id"),
-            "hardware_reservation": Href.from_dict(obj.get("hardware_reservation")) if obj.get("hardware_reservation") is not None else None,
+            "hardware_reservation": HardwareReservation.from_dict(obj.get("hardware_reservation")) if obj.get("hardware_reservation") is not None else None,
             "hostname": obj.get("hostname"),
             "href": obj.get("href"),
             "id": obj.get("id"),
@@ -223,7 +223,7 @@ class Device(BaseModel):
             "network_ports": [Port.from_dict(_item) for _item in obj.get("network_ports")] if obj.get("network_ports") is not None else None,
             "operating_system": OperatingSystem.from_dict(obj.get("operating_system")) if obj.get("operating_system") is not None else None,
             "plan": Plan.from_dict(obj.get("plan")) if obj.get("plan") is not None else None,
-            "project": DeviceProject.from_dict(obj.get("project")) if obj.get("project") is not None else None,
+            "project": Project.from_dict(obj.get("project")) if obj.get("project") is not None else None,
             "project_lite": DeviceProjectLite.from_dict(obj.get("project_lite")) if obj.get("project_lite") is not None else None,
             "provisioning_events": [Event.from_dict(_item) for _item in obj.get("provisioning_events")] if obj.get("provisioning_events") is not None else None,
             "provisioning_percentage": obj.get("provisioning_percentage"),
@@ -245,4 +245,6 @@ class Device(BaseModel):
         })
         return _obj
 
+from equinix_metal.models.hardware_reservation import HardwareReservation
+Device.update_forward_refs()
 

@@ -182,6 +182,9 @@ tags:
     Firmware Sets Management. Notice: Firmware Sets are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
   name: Firmware Sets
 - description: |
+    Console Log Details. Notice: This is a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
+  name: Console Log Details
+- description: |
     Global BGP Range Management
   externalDocs:
     url: https://metal.equinix.com/developers/docs/bgp/global-bgp/
@@ -777,18 +780,24 @@ paths:
                   am:
                     c2.medium.x86:
                       level: string
+                      available_servers: 25
                     m2.xlarge.x86:
                       level: string
+                      available_servers: 15
                   da:
                     c2.medium.x86:
                       level: string
+                      available_servers: 26
                     m2.xlarge.x86:
                       level: string
+                      available_servers: 11
                   dc:
                     c2.medium.x86:
                       level: string
+                      available_servers: 14
                     m2.xlarge.x86:
                       level: string
+                      available_servers: 10
               schema:
                 $ref: '#/components/schemas/CapacityList'
           description: ok
@@ -1902,6 +1911,46 @@ paths:
       summary: Retrieve the custom metadata of an instance
       tags:
       - Devices
+  /devices/{id}/diagnostics/screenshot:
+    get:
+      description: "Capture a screenshot from the device, if supported, via the BMC."
+      operationId: captureScreenshot
+      parameters:
+      - description: Device UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        "200":
+          content:
+            application/jpeg:
+              schema:
+                format: binary
+                type: string
+          description: An image file
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not implemented for device
+      tags:
+      - Console Log Details
   /devices/{id}/diagnostics/health/rollup:
     get:
       description: Returns the health rollup status of the device.
@@ -5083,6 +5132,9 @@ paths:
             enum:
             - compute
             - storage
+            - vmce
+            - legacy_gen
+            - current_gen
             example: compute
             type: string
           type: array
@@ -5119,6 +5171,11 @@ paths:
         name: has_termination_time
         schema:
           type: boolean
+      - description: Filter by MAC address
+        in: query
+        name: mac_address
+        schema:
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -6256,6 +6313,9 @@ paths:
             enum:
             - compute
             - storage
+            - vmce
+            - legacy_gen
+            - current_gen
             example: compute
             type: string
           type: array
@@ -7802,12 +7862,20 @@ paths:
             enum:
             - compute
             - storage
+            - vmce
+            - legacy_gen
+            - current_gen
             example: compute
             type: string
           type: array
       - description: Filter by device facility
         in: query
         name: facility
+        schema:
+          type: string
+      - description: Filter by device metro
+        in: query
+        name: metro
         schema:
           type: string
       - description: Filter by partial hostname
@@ -7838,6 +7906,11 @@ paths:
         name: has_termination_time
         schema:
           type: boolean
+      - description: Filter by MAC address
+        in: query
+        name: mac_address
+        schema:
+          type: string
       - description: |-
           Nested attributes to include. Included objects will return their full
           attributes. Attribute names can be dotted (up to 3 levels) to included deeply
@@ -8954,6 +9027,7 @@ paths:
       - SSHKeys
   /projects/{id}/transfers:
     post:
+      deprecated: true
       description: Organization owners can transfer their projects to other organizations.
       operationId: createTransferRequest
       parameters:
@@ -9932,6 +10006,9 @@ paths:
             enum:
             - compute
             - storage
+            - vmce
+            - legacy_gen
+            - current_gen
             example: compute
             type: string
           type: array
@@ -12956,10 +13033,7 @@ components:
             \ per switch. Each status will start with \"unknown\" and progress to\
             \ \"up\" or \"down\" depending on the connected device. Subsequent \"\
             unknown\" values indicate a problem acquiring status from the switch. "
-          enum:
-          - unknown
-          - up
-          - down
+          example: "up,down"
           type: string
         updated_at:
           format: date-time
@@ -13014,7 +13088,7 @@ components:
           type: string
         quantity:
           description: The number of servers sent to check capacity.
-          type: integer
+          type: string
       type: object
     CapacityCheckPerMetroList:
       properties:
@@ -13221,7 +13295,7 @@ components:
           format: uuid
           type: string
         hardware_reservation:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/HardwareReservation'
         hostname:
           type: string
         href:
@@ -13268,7 +13342,7 @@ components:
         plan:
           $ref: '#/components/schemas/Plan'
         project:
-          $ref: '#/components/schemas/Device_project'
+          $ref: '#/components/schemas/Project'
         project_lite:
           $ref: '#/components/schemas/Device_project_lite'
         provisioning_events:
@@ -14229,6 +14303,8 @@ components:
           items:
             $ref: '#/components/schemas/IPReservationList_ip_addresses_inner'
           type: array
+        meta:
+          $ref: '#/components/schemas/Meta'
       type: object
     IPReservationRequestInput:
       properties:
@@ -14442,10 +14518,6 @@ components:
           example: standard
           type: string
         name:
-          type: string
-        redundancy:
-          description: "Updating from 'redundant' to 'primary' will remove a secondary\
-            \ port, while updating from 'primary' to 'redundant' will add one."
           type: string
         tags:
           items:
@@ -15373,6 +15445,8 @@ components:
           items:
             $ref: '#/components/schemas/Href'
           type: array
+        href:
+          type: string
         id:
           format: uuid
           type: string
@@ -16324,6 +16398,15 @@ components:
             \ will start the first time the Virtual Circuit becomes active, and will\
             \ not stop until it is deleted from Metal."
           type: boolean
+        bill_type:
+          description: Fabric Billed if the Virtual Circuit is billed by Fabric. Metal
+            Billed if the Virtual Circuit is billed by Metal. Legacy Virtual Circuits
+            will have a value of nil.
+          enum:
+          - metal_billed
+          - fabric_billed
+          nullable: true
+          type: string
         description:
           type: string
         id:
@@ -16393,6 +16476,11 @@ components:
           items:
             type: string
           type: array
+        type:
+          enum:
+          - vlan
+          - vrf
+          type: string
         virtual_network:
           $ref: '#/components/schemas/Href'
         vnid:
@@ -16403,18 +16491,6 @@ components:
         updated_at:
           format: date-time
           type: string
-      required:
-      - bill
-      - description
-      - id
-      - name
-      - nni_vlan
-      - port
-      - project
-      - status
-      - tags
-      - virtual_network
-      - vnid
       type: object
     VlanVirtualCircuitCreateInput:
       properties:
@@ -16982,9 +17058,10 @@ components:
             type: string
           type: array
         local_asn:
-          description: The new `local_asn` value for the VRF. This field cannot be
-            updated when there are active Interconnection Virtual Circuits associated
-            to the VRF.
+          description: "The new `local_asn` value for the VRF. This field cannot be\
+            \ updated when there are active Interconnection Virtual Circuits associated\
+            \ to the VRF, or if any of the VLANs of the VRF's metal gateway has been\
+            \ assigned on an instance."
           format: int32
           type: integer
         name:
@@ -17071,6 +17148,10 @@ components:
           items:
             type: string
           type: array
+        type:
+          enum:
+          - vrf
+          type: string
         vrf:
           $ref: '#/components/schemas/Vrf'
         created_at:
@@ -17079,6 +17160,8 @@ components:
         updated_at:
           format: date-time
           type: string
+      required:
+      - vrf
       type: object
     VrfVirtualCircuitCreateInput:
       properties:
@@ -17432,11 +17515,6 @@ components:
         name:
           type: string
       type: object
-    Device_project:
-      allOf:
-      - $ref: '#/components/schemas/Href'
-      - description: Full version of project object when included
-        type: object
     Device_project_lite:
       allOf:
       - $ref: '#/components/schemas/Href'

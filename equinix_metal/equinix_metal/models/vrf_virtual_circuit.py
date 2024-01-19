@@ -43,9 +43,10 @@ class VrfVirtualCircuit(BaseModel):
     status: Optional[StrictStr] = Field(None, description="The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren't in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to 'waiting_on_peering_details' once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to `changing_peering_details` whenever an active VRF Virtual Circuit has any of its peering details updated.")
     subnet: Optional[StrictStr] = Field(None, description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.")
     tags: Optional[conlist(StrictStr)] = None
+    type: Optional[StrictStr] = None
     updated_at: Optional[datetime] = None
-    vrf: Optional[Vrf] = None
-    __properties = ["created_at", "customer_ip", "description", "href", "id", "md5", "metal_ip", "name", "nni_vlan", "peer_asn", "port", "project", "speed", "status", "subnet", "tags", "updated_at", "vrf"]
+    vrf: Vrf = Field(...)
+    __properties = ["created_at", "customer_ip", "description", "href", "id", "md5", "metal_ip", "name", "nni_vlan", "peer_asn", "port", "project", "speed", "status", "subnet", "tags", "type", "updated_at", "vrf"]
 
     @validator('status')
     def status_validate_enum(cls, value):
@@ -55,6 +56,16 @@ class VrfVirtualCircuit(BaseModel):
 
         if value not in ('pending', 'waiting_on_peering_details', 'activating', 'changing_peering_details', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_peering_details_failed', 'deactivation_failed', 'delete_failed'):
             raise ValueError("must be one of enum values ('pending', 'waiting_on_peering_details', 'activating', 'changing_peering_details', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_peering_details_failed', 'deactivation_failed', 'delete_failed')")
+        return value
+
+    @validator('type')
+    def type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in ('vrf'):
+            raise ValueError("must be one of enum values ('vrf')")
         return value
 
     class Config:
@@ -118,6 +129,7 @@ class VrfVirtualCircuit(BaseModel):
             "status": obj.get("status"),
             "subnet": obj.get("subnet"),
             "tags": obj.get("tags"),
+            "type": obj.get("type"),
             "updated_at": obj.get("updated_at"),
             "vrf": Vrf.from_dict(obj.get("vrf")) if obj.get("vrf") is not None else None
         })

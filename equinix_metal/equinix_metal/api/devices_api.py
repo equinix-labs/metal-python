@@ -1913,7 +1913,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_devices_all_pages(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_organization_devices_all_pages(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         This method is the same as find_organization_devices, but fetches resources from all the pages.
@@ -1921,7 +1921,7 @@ class DevicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_organization_devices(}id, , }search, , }categories, , }facility, , }hostname, , }reserved, , }tag, , }type, , }has_termination_time, , }include, , }exclude, , }, }per_page, , async_req=True)
+        >>> thread = api.find_organization_devices(}id, , }search, , }categories, , }facility, , }hostname, , }reserved, , }tag, , }type, , }has_termination_time, , }mac_address, , }include, , }exclude, , }, }per_page, , async_req=True)
         >>> result = thread.get()
 
  
@@ -1951,6 +1951,9 @@ class DevicesApi(object):
  
         :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
         :type has_termination_time: bool
+ 
+        :param mac_address: Filter by MAC address
+        :type mac_address: str
  
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
@@ -1980,7 +1983,7 @@ class DevicesApi(object):
             # Template comment: here we set var "page" to page number and then
             # we call the base method with all the parameters listed (including
             # page).
-            page_response = self.find_organization_devices(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
+            page_response = self.find_organization_devices(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, **kwargs)  # noqa: E501
             if all_pages is None:
                 all_pages = page_response
             else:
@@ -1992,14 +1995,14 @@ class DevicesApi(object):
         return all_pages
 
     @validate_arguments
-    def find_organization_devices(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_organization_devices(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         Provides a collection of devices for a given organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_organization_devices(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_organization_devices(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Organization UUID (required)
@@ -2020,6 +2023,8 @@ class DevicesApi(object):
         :type type: str
         :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
         :type has_termination_time: bool
+        :param mac_address: Filter by MAC address
+        :type mac_address: str
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -2042,17 +2047,17 @@ class DevicesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the find_organization_devices_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.find_organization_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
+        return self.find_organization_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         Provides a collection of devices for a given organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_organization_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_organization_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Organization UUID (required)
@@ -2073,6 +2078,8 @@ class DevicesApi(object):
         :type type: str
         :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
         :type has_termination_time: bool
+        :param mac_address: Filter by MAC address
+        :type mac_address: str
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -2118,6 +2125,7 @@ class DevicesApi(object):
             'tag',
             'type',
             'has_termination_time',
+            'mac_address',
             'include',
             'exclude',
             'page',
@@ -2180,6 +2188,9 @@ class DevicesApi(object):
         if _params.get('has_termination_time') is not None:  # noqa: E501
             _query_params.append(('has_termination_time', _params['has_termination_time']))
 
+        if _params.get('mac_address') is not None:  # noqa: E501
+            _query_params.append(('mac_address', _params['mac_address']))
+
         if _params.get('include') is not None:  # noqa: E501
             _query_params.append(('include', _params['include']))
             _collection_formats['include'] = 'csv'
@@ -2233,7 +2244,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_devices_all_pages(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_project_devices_all_pages(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         This method is the same as find_project_devices, but fetches resources from all the pages.
@@ -2241,7 +2252,7 @@ class DevicesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_project_devices(}id, , }search, , }categories, , }facility, , }hostname, , }reserved, , }tag, , }type, , }has_termination_time, , }include, , }exclude, , }, }per_page, , async_req=True)
+        >>> thread = api.find_project_devices(}id, , }search, , }categories, , }facility, , }metro, , }hostname, , }reserved, , }tag, , }type, , }has_termination_time, , }mac_address, , }include, , }exclude, , }, }per_page, , async_req=True)
         >>> result = thread.get()
 
  
@@ -2257,6 +2268,9 @@ class DevicesApi(object):
         :param facility: Filter by device facility
         :type facility: str
  
+        :param metro: Filter by device metro
+        :type metro: str
+ 
         :param hostname: Filter by partial hostname
         :type hostname: str
  
@@ -2271,6 +2285,9 @@ class DevicesApi(object):
  
         :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
         :type has_termination_time: bool
+ 
+        :param mac_address: Filter by MAC address
+        :type mac_address: str
  
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
@@ -2300,7 +2317,7 @@ class DevicesApi(object):
             # Template comment: here we set var "page" to page number and then
             # we call the base method with all the parameters listed (including
             # page).
-            page_response = self.find_project_devices(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
+            page_response = self.find_project_devices(id, search, categories, facility, metro, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, **kwargs)  # noqa: E501
             if all_pages is None:
                 all_pages = page_response
             else:
@@ -2312,14 +2329,14 @@ class DevicesApi(object):
         return all_pages
 
     @validate_arguments
-    def find_project_devices(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_project_devices(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         Provides a collection of devices for a given project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_project_devices(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_project_devices(id, search, categories, facility, metro, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
@@ -2330,6 +2347,8 @@ class DevicesApi(object):
         :type categories: List[str]
         :param facility: Filter by device facility
         :type facility: str
+        :param metro: Filter by device metro
+        :type metro: str
         :param hostname: Filter by partial hostname
         :type hostname: str
         :param reserved: Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.
@@ -2340,6 +2359,8 @@ class DevicesApi(object):
         :type type: str
         :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
         :type has_termination_time: bool
+        :param mac_address: Filter by MAC address
+        :type mac_address: str
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -2362,17 +2383,17 @@ class DevicesApi(object):
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
             raise ValueError("Error! Please call the find_project_devices_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.find_project_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, **kwargs)  # noqa: E501
+        return self.find_project_devices_with_http_info(id, search, categories, facility, metro, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         Provides a collection of devices for a given project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.find_project_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, include, exclude, page, per_page, async_req=True)
+        >>> thread = api.find_project_devices_with_http_info(id, search, categories, facility, metro, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, async_req=True)
         >>> result = thread.get()
 
         :param id: Project UUID (required)
@@ -2383,6 +2404,8 @@ class DevicesApi(object):
         :type categories: List[str]
         :param facility: Filter by device facility
         :type facility: str
+        :param metro: Filter by device metro
+        :type metro: str
         :param hostname: Filter by partial hostname
         :type hostname: str
         :param reserved: Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.
@@ -2393,6 +2416,8 @@ class DevicesApi(object):
         :type type: str
         :param has_termination_time: Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.
         :type has_termination_time: bool
+        :param mac_address: Filter by MAC address
+        :type mac_address: str
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -2433,11 +2458,13 @@ class DevicesApi(object):
             'search',
             'categories',
             'facility',
+            'metro',
             'hostname',
             'reserved',
             'tag',
             'type',
             'has_termination_time',
+            'mac_address',
             'include',
             'exclude',
             'page',
@@ -2485,6 +2512,9 @@ class DevicesApi(object):
         if _params.get('facility') is not None:  # noqa: E501
             _query_params.append(('facility', _params['facility']))
 
+        if _params.get('metro') is not None:  # noqa: E501
+            _query_params.append(('metro', _params['metro']))
+
         if _params.get('hostname') is not None:  # noqa: E501
             _query_params.append(('hostname', _params['hostname']))
 
@@ -2499,6 +2529,9 @@ class DevicesApi(object):
 
         if _params.get('has_termination_time') is not None:  # noqa: E501
             _query_params.append(('has_termination_time', _params['has_termination_time']))
+
+        if _params.get('mac_address') is not None:  # noqa: E501
+            _query_params.append(('mac_address', _params['mac_address']))
 
         if _params.get('include') is not None:  # noqa: E501
             _query_params.append(('include', _params['include']))

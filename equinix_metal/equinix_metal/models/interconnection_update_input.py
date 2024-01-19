@@ -31,9 +31,8 @@ class InterconnectionUpdateInput(BaseModel):
     href: Optional[StrictStr] = None
     mode: Optional[StrictStr] = Field(None, description="The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.")
     name: Optional[StrictStr] = None
-    redundancy: Optional[StrictStr] = Field(None, description="Updating from 'redundant' to 'primary' will remove a secondary port, while updating from 'primary' to 'redundant' will add one.")
     tags: Optional[conlist(StrictStr)] = None
-    __properties = ["contact_email", "description", "href", "mode", "name", "redundancy", "tags"]
+    __properties = ["contact_email", "description", "href", "mode", "name", "tags"]
 
     @validator('mode')
     def mode_validate_enum(cls, value):
@@ -86,7 +85,6 @@ class InterconnectionUpdateInput(BaseModel):
             "href": obj.get("href"),
             "mode": obj.get("mode"),
             "name": obj.get("name"),
-            "redundancy": obj.get("redundancy"),
             "tags": obj.get("tags")
         })
         return _obj

@@ -21,7 +21,6 @@ import json
 from datetime import datetime
 from typing import Optional, Union
 from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr
-from equinix_metal.models.device import Device
 from equinix_metal.models.facility import Facility
 from equinix_metal.models.plan import Plan
 from equinix_metal.models.project import Project
@@ -111,4 +110,6 @@ class HardwareReservation(BaseModel):
         })
         return _obj
 
+from equinix_metal.models.device import Device
+HardwareReservation.update_forward_refs()
 

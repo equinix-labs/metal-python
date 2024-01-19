@@ -1,20 +1,15 @@
-required:
-- bill
-- description
-- id
-- name
-- nni_vlan
-- port
-- project
-- status
-- tags
-- virtual_network
-- vnid
 properties:
   bill:
     type: boolean
     default: false
     description: True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal.
+  bill_type:
+    type: string
+    nullable: true
+    description: Fabric Billed if the Virtual Circuit is billed by Fabric. Metal Billed if the Virtual Circuit is billed by Metal. Legacy Virtual Circuits will have a value of nil.
+    enum:
+    - metal_billed
+    - fabric_billed
   description:
     type: string
   id:
@@ -60,6 +55,10 @@ properties:
     items:
       type: string
     type: array
+  type:
+    type: string
+    enum:
+    - vlan
   virtual_network:
     $ref: './Href.yaml'
   vnid:
