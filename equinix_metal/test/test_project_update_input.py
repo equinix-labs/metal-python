@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.project_update_input import ProjectUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.project_update_input import ProjectUpdateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestProjectUpdateInput(unittest.TestCase):
     """ProjectUpdateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestProjectUpdateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProjectUpdateInput`
         """
-        model = equinix_metal.models.project_update_input.ProjectUpdateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.project_update_input.ProjectUpdateInput()  # noqa: E501
         if include_optional :
             return ProjectUpdateInput(
                 backend_transfer_enabled = True, 

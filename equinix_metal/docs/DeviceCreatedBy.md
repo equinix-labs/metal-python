@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.device_created_by import DeviceCreatedBy
+from equinix_metal_t0mk.models.device_created_by import DeviceCreatedBy
 
 # TODO update the JSON string below
 json = "{}"

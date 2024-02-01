@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.ssh_key_create_input import SSHKeyCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ssh_key_create_input import SSHKeyCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSSHKeyCreateInput(unittest.TestCase):
     """SSHKeyCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestSSHKeyCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SSHKeyCreateInput`
         """
-        model = equinix_metal.models.ssh_key_create_input.SSHKeyCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.ssh_key_create_input.SSHKeyCreateInput()  # noqa: E501
         if include_optional :
             return SSHKeyCreateInput(
                 href = '', 

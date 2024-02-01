@@ -1,4 +1,4 @@
-# equinix_metal.FacilitiesApi
+# equinix_metal_t0mk.FacilitiesApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -22,14 +22,14 @@ Provides a listing of available datacenters where you can provision Packet devic
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.facility_list import FacilityList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.facility_list import FacilityList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -45,9 +45,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.FacilitiesApi(api_client)
+    api_instance = equinix_metal_t0mk.FacilitiesApi(api_client)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ["address"] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional) (default to ["address"])
 
@@ -103,14 +103,14 @@ Returns a listing of available datacenters for the given organization
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.facility_list import FacilityList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.facility_list import FacilityList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -126,9 +126,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.FacilitiesApi(api_client)
+    api_instance = equinix_metal_t0mk.FacilitiesApi(api_client)
     id = 'id_example' # str | Organization UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -188,14 +188,14 @@ Returns a listing of available datacenters for the given project
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.facility_list import FacilityList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.facility_list import FacilityList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -211,9 +211,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.FacilitiesApi(api_client)
+    api_instance = equinix_metal_t0mk.FacilitiesApi(api_client)
     id = 'id_example' # str | Project UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)

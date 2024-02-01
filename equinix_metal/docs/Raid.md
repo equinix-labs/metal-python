@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.raid import Raid
+from equinix_metal_t0mk.models.raid import Raid
 
 # TODO update the JSON string below
 json = "{}"

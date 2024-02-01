@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.vlan_fabric_vc_create_input import VlanFabricVcCreateInput
+from equinix_metal_t0mk.models.vlan_fabric_vc_create_input import VlanFabricVcCreateInput
 
 # TODO update the JSON string below
 json = "{}"

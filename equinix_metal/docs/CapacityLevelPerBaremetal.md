@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.capacity_level_per_baremetal import CapacityLevelPerBaremetal
+from equinix_metal_t0mk.models.capacity_level_per_baremetal import CapacityLevelPerBaremetal
 
 # TODO update the JSON string below
 json = "{}"

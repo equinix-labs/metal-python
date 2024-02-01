@@ -1,4 +1,4 @@
-# equinix_metal.MembershipsApi
+# equinix_metal_t0mk.MembershipsApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -22,13 +22,13 @@ Deletes the membership.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -44,9 +44,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MembershipsApi(api_client)
+    api_instance = equinix_metal_t0mk.MembershipsApi(api_client)
     id = 'id_example' # str | Membership UUID
 
     try:
@@ -100,14 +100,14 @@ Returns a single membership.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.membership import Membership
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.membership import Membership
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -123,9 +123,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MembershipsApi(api_client)
+    api_instance = equinix_metal_t0mk.MembershipsApi(api_client)
     id = 'id_example' # str | Membership UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
@@ -183,15 +183,15 @@ Updates the membership.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.membership import Membership
-from equinix_metal.models.membership_input import MembershipInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.membership import Membership
+from equinix_metal_t0mk.models.membership_input import MembershipInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -207,11 +207,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MembershipsApi(api_client)
+    api_instance = equinix_metal_t0mk.MembershipsApi(api_client)
     id = 'id_example' # str | Membership UUID
-    membership_input = equinix_metal.MembershipInput() # MembershipInput | Membership to update
+    membership_input = equinix_metal_t0mk.MembershipInput() # MembershipInput | Membership to update
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:

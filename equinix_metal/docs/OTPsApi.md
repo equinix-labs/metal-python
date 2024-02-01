@@ -1,4 +1,4 @@
-# equinix_metal.OTPsApi
+# equinix_metal_t0mk.OTPsApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -23,13 +23,13 @@ It verifies the user once a valid OTP is provided. It gives back a session token
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -45,9 +45,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.OTPsApi(api_client)
+    api_instance = equinix_metal_t0mk.OTPsApi(api_client)
     otp = 'otp_example' # str | OTP
 
     try:
@@ -100,14 +100,14 @@ Returns my recovery codes.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.recovery_code_list import RecoveryCodeList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.recovery_code_list import RecoveryCodeList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -123,9 +123,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.OTPsApi(api_client)
+    api_instance = equinix_metal_t0mk.OTPsApi(api_client)
 
     try:
         # Retrieve my recovery codes
@@ -177,13 +177,13 @@ Sends an OTP to the user's mobile phone.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -199,9 +199,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.OTPsApi(api_client)
+    api_instance = equinix_metal_t0mk.OTPsApi(api_client)
 
     try:
         # Receive an OTP per sms
@@ -252,14 +252,14 @@ Generate a new set of recovery codes.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.recovery_code_list import RecoveryCodeList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.recovery_code_list import RecoveryCodeList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -275,9 +275,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.OTPsApi(api_client)
+    api_instance = equinix_metal_t0mk.OTPsApi(api_client)
 
     try:
         # Generate new recovery codes

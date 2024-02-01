@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.port_assign_input import PortAssignInput
+from equinix_metal_t0mk.models.port_assign_input import PortAssignInput
 
 # TODO update the JSON string below
 json = "{}"

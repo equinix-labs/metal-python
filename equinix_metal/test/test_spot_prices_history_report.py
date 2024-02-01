@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_prices_history_report import SpotPricesHistoryReport  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.spot_prices_history_report import SpotPricesHistoryReport  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSpotPricesHistoryReport(unittest.TestCase):
     """SpotPricesHistoryReport unit test stubs"""
@@ -36,11 +36,11 @@ class TestSpotPricesHistoryReport(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SpotPricesHistoryReport`
         """
-        model = equinix_metal.models.spot_prices_history_report.SpotPricesHistoryReport()  # noqa: E501
+        model = equinix_metal_t0mk.models.spot_prices_history_report.SpotPricesHistoryReport()  # noqa: E501
         if include_optional :
             return SpotPricesHistoryReport(
                 href = '', 
-                prices_history = equinix_metal.models.spot_prices_datapoints.SpotPricesDatapoints(
+                prices_history = equinix_metal_t0mk.models.spot_prices_datapoints.SpotPricesDatapoints(
                     datapoints = [
                         [
                             1.337

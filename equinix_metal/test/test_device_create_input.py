@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.device_create_input import DeviceCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device_create_input import DeviceCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestDeviceCreateInput(unittest.TestCase):
     """DeviceCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestDeviceCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DeviceCreateInput`
         """
-        model = equinix_metal.models.device_create_input.DeviceCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.device_create_input.DeviceCreateInput()  # noqa: E501
         if include_optional :
             return DeviceCreateInput(
                 always_pxe = True, 
@@ -50,7 +50,7 @@ class TestDeviceCreateInput(unittest.TestCase):
                 hostname = '', 
                 href = '', 
                 ip_addresses = [
-                    equinix_metal.models.ip_address.IPAddress(
+                    equinix_metal_t0mk.models.ip_address.IPAddress(
                         address_family = 4, 
                         cidr = 28, 
                         href = '', 
@@ -73,7 +73,7 @@ class TestDeviceCreateInput(unittest.TestCase):
                 spot_instance = True, 
                 spot_price_max = 1.23, 
                 ssh_keys = [
-                    equinix_metal.models.ssh_key_input.SSHKeyInput(
+                    equinix_metal_t0mk.models.ssh_key_input.SSHKeyInput(
                         href = '', 
                         key = '', 
                         label = '', 
@@ -81,13 +81,13 @@ class TestDeviceCreateInput(unittest.TestCase):
                             ''
                             ], )
                     ], 
-                storage = equinix_metal.models.storage.Storage(
+                storage = equinix_metal_t0mk.models.storage.Storage(
                     disks = [
-                        equinix_metal.models.disk.Disk(
+                        equinix_metal_t0mk.models.disk.Disk(
                             device = '', 
                             href = '', 
                             partitions = [
-                                equinix_metal.models.partition.Partition(
+                                equinix_metal_t0mk.models.partition.Partition(
                                     href = '', 
                                     label = '', 
                                     number = 56, 
@@ -96,9 +96,9 @@ class TestDeviceCreateInput(unittest.TestCase):
                             wipe_table = True, )
                         ], 
                     filesystems = [
-                        equinix_metal.models.filesystem.Filesystem(
+                        equinix_metal_t0mk.models.filesystem.Filesystem(
                             href = '', 
-                            mount = equinix_metal.models.mount.Mount(
+                            mount = equinix_metal_t0mk.models.mount.Mount(
                                 device = '', 
                                 format = '', 
                                 href = '', 
@@ -109,7 +109,7 @@ class TestDeviceCreateInput(unittest.TestCase):
                         ], 
                     href = '', 
                     raid = [
-                        equinix_metal.models.raid.Raid(
+                        equinix_metal_t0mk.models.raid.Raid(
                             devices = [
                                 ''
                                 ], 

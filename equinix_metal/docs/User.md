@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.user import User
+from equinix_metal_t0mk.models.user import User
 
 # TODO update the JSON string below
 json = "{}"

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.fabric_service_token import FabricServiceToken  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.fabric_service_token import FabricServiceToken  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestFabricServiceToken(unittest.TestCase):
     """FabricServiceToken unit test stubs"""
@@ -36,7 +36,7 @@ class TestFabricServiceToken(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FabricServiceToken`
         """
-        model = equinix_metal.models.fabric_service_token.FabricServiceToken()  # noqa: E501
+        model = equinix_metal_t0mk.models.fabric_service_token.FabricServiceToken()  # noqa: E501
         if include_optional :
             return FabricServiceToken(
                 expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

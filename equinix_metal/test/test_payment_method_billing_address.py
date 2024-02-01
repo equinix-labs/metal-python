@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.payment_method_billing_address import PaymentMethodBillingAddress  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.payment_method_billing_address import PaymentMethodBillingAddress  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPaymentMethodBillingAddress(unittest.TestCase):
     """PaymentMethodBillingAddress unit test stubs"""
@@ -36,7 +36,7 @@ class TestPaymentMethodBillingAddress(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PaymentMethodBillingAddress`
         """
-        model = equinix_metal.models.payment_method_billing_address.PaymentMethodBillingAddress()  # noqa: E501
+        model = equinix_metal_t0mk.models.payment_method_billing_address.PaymentMethodBillingAddress()  # noqa: E501
         if include_optional :
             return PaymentMethodBillingAddress(
                 country_code_alpha2 = '', 

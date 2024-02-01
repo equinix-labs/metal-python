@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.auth_token_input import AuthTokenInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.auth_token_input import AuthTokenInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestAuthTokenInput(unittest.TestCase):
     """AuthTokenInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestAuthTokenInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AuthTokenInput`
         """
-        model = equinix_metal.models.auth_token_input.AuthTokenInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.auth_token_input.AuthTokenInput()  # noqa: E501
         if include_optional :
             return AuthTokenInput(
                 description = '', 

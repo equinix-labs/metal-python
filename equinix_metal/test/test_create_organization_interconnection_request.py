@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestCreateOrganizationInterconnectionRequest(unittest.TestCase):
     """CreateOrganizationInterconnectionRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestCreateOrganizationInterconnectionRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateOrganizationInterconnectionRequest`
         """
-        model = equinix_metal.models.create_organization_interconnection_request.CreateOrganizationInterconnectionRequest()  # noqa: E501
+        model = equinix_metal_t0mk.models.create_organization_interconnection_request.CreateOrganizationInterconnectionRequest()  # noqa: E501
         if include_optional :
             return CreateOrganizationInterconnectionRequest(
                 billing_account_name = '', 

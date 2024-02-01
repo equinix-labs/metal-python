@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.transfer_request_list import TransferRequestList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.transfer_request_list import TransferRequestList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestTransferRequestList(unittest.TestCase):
     """TransferRequestList unit test stubs"""
@@ -36,18 +36,18 @@ class TestTransferRequestList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `TransferRequestList`
         """
-        model = equinix_metal.models.transfer_request_list.TransferRequestList()  # noqa: E501
+        model = equinix_metal_t0mk.models.transfer_request_list.TransferRequestList()  # noqa: E501
         if include_optional :
             return TransferRequestList(
                 href = '', 
                 transfers = [
-                    equinix_metal.models.transfer_request.TransferRequest(
+                    equinix_metal_t0mk.models.transfer_request.TransferRequest(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         href = '', 
                         id = '', 
-                        project = equinix_metal.models.href.Href(
+                        project = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
-                        target_organization = equinix_metal.models.href.Href(
+                        target_organization = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ]

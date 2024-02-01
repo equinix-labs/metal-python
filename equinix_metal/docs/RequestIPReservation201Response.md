@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.request_ip_reservation201_response import RequestIPReservation201Response
+from equinix_metal_t0mk.models.request_ip_reservation201_response import RequestIPReservation201Response
 
 # TODO update the JSON string below
 json = "{}"

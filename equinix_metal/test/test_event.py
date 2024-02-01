@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.event import Event  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.event import Event  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestEvent(unittest.TestCase):
     """Event unit test stubs"""
@@ -36,7 +36,7 @@ class TestEvent(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Event`
         """
-        model = equinix_metal.models.event.Event()  # noqa: E501
+        model = equinix_metal_t0mk.models.event.Event()  # noqa: E501
         if include_optional :
             return Event(
                 body = '', 
@@ -45,9 +45,9 @@ class TestEvent(unittest.TestCase):
                 id = '', 
                 interpolated = '', 
                 ip = '', 
-                modified_by = equinix_metal.models.modified_by.modified_by(), 
+                modified_by = equinix_metal_t0mk.models.modified_by.modified_by(), 
                 relationships = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 state = '', 

@@ -1,4 +1,4 @@
-# equinix_metal.AuthenticationApi
+# equinix_metal_t0mk.AuthenticationApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -25,15 +25,15 @@ Creates a API key for the current user.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.auth_token import AuthToken
-from equinix_metal.models.auth_token_input import AuthTokenInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.auth_token import AuthToken
+from equinix_metal_t0mk.models.auth_token_input import AuthTokenInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -49,10 +49,10 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.AuthenticationApi(api_client)
-    auth_token_input = equinix_metal.AuthTokenInput() # AuthTokenInput | API key to create
+    api_instance = equinix_metal_t0mk.AuthenticationApi(api_client)
+    auth_token_input = equinix_metal_t0mk.AuthTokenInput() # AuthTokenInput | API key to create
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
@@ -109,15 +109,15 @@ Creates an API key for a project.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.auth_token import AuthToken
-from equinix_metal.models.auth_token_input import AuthTokenInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.auth_token import AuthToken
+from equinix_metal_t0mk.models.auth_token_input import AuthTokenInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -133,11 +133,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.AuthenticationApi(api_client)
+    api_instance = equinix_metal_t0mk.AuthenticationApi(api_client)
     id = 'id_example' # str | Project UUID
-    auth_token_input = equinix_metal.AuthTokenInput() # AuthTokenInput | API Key to create
+    auth_token_input = equinix_metal_t0mk.AuthTokenInput() # AuthTokenInput | API Key to create
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
@@ -195,13 +195,13 @@ Deletes the API key.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -217,9 +217,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.AuthenticationApi(api_client)
+    api_instance = equinix_metal_t0mk.AuthenticationApi(api_client)
     id = 'id_example' # str | API Key UUID
 
     try:
@@ -272,13 +272,13 @@ Deletes the current user API key.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -294,9 +294,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.AuthenticationApi(api_client)
+    api_instance = equinix_metal_t0mk.AuthenticationApi(api_client)
     id = 'id_example' # str | API Key UUID
 
     try:
@@ -349,14 +349,14 @@ Returns all API keys for the current user.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.auth_token_list import AuthTokenList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.auth_token_list import AuthTokenList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -372,9 +372,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.AuthenticationApi(api_client)
+    api_instance = equinix_metal_t0mk.AuthenticationApi(api_client)
     search = 'search_example' # str | Search by description (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
@@ -431,14 +431,14 @@ Returns all API keys for a specific project.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.auth_token_list import AuthTokenList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.auth_token_list import AuthTokenList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -454,9 +454,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.AuthenticationApi(api_client)
+    api_instance = equinix_metal_t0mk.AuthenticationApi(api_client)
     id = 'id_example' # str | Project UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 

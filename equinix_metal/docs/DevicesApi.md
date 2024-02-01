@@ -1,4 +1,4 @@
-# equinix_metal.DevicesApi
+# equinix_metal_t0mk.DevicesApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -41,15 +41,15 @@ Creates a BGP session.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.bgp_session_input import BGPSessionInput
-from equinix_metal.models.bgp_session import BgpSession
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bgp_session_input import BGPSessionInput
+from equinix_metal_t0mk.models.bgp_session import BgpSession
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -65,11 +65,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
-    bgp_session_input = equinix_metal.BGPSessionInput() # BGPSessionInput | BGP session to create
+    bgp_session_input = equinix_metal_t0mk.BGPSessionInput() # BGPSessionInput | BGP session to create
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
@@ -127,15 +127,15 @@ Creates a new device and provisions it in the specified location.  Device type-s
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.create_device_request import CreateDeviceRequest
-from equinix_metal.models.device import Device
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.create_device_request import CreateDeviceRequest
+from equinix_metal_t0mk.models.device import Device
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -151,11 +151,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Project UUID
-    create_device_request = equinix_metal.CreateDeviceRequest() # CreateDeviceRequest | Device to create
+    create_device_request = equinix_metal_t0mk.CreateDeviceRequest() # CreateDeviceRequest | Device to create
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
@@ -216,15 +216,15 @@ Creates an ip assignment for a device.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.ip_assignment import IPAssignment
-from equinix_metal.models.ip_assignment_input import IPAssignmentInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_assignment import IPAssignment
+from equinix_metal_t0mk.models.ip_assignment_input import IPAssignmentInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -240,11 +240,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
-    ip_assignment_input = equinix_metal.IPAssignmentInput() # IPAssignmentInput | IPAssignment to create
+    ip_assignment_input = equinix_metal_t0mk.IPAssignmentInput() # IPAssignmentInput | IPAssignment to create
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
@@ -304,13 +304,13 @@ Deletes a device and deprovisions it in our datacenter.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -326,9 +326,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
     force_delete = True # bool | Force the deletion of the device, by detaching any storage volume still active. (optional)
 
@@ -385,14 +385,14 @@ Provides a listing of available BGP sessions for the device.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.bgp_session_list import BgpSessionList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bgp_session_list import BgpSessionList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -408,9 +408,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
@@ -467,14 +467,14 @@ Type-specific options (such as facility for baremetal devices) will be included 
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.device import Device
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device import Device
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -490,9 +490,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -552,13 +552,13 @@ Provides the custom metadata stored for this instance in json format
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -574,9 +574,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Instance UUID
 
     try:
@@ -630,14 +630,14 @@ Retrieve device metadata
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.metadata import Metadata
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.metadata import Metadata
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -653,9 +653,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
 
     try:
@@ -711,14 +711,14 @@ Retrieve device userdata
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.userdata import Userdata
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.userdata import Userdata
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -734,9 +734,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
 
     try:
@@ -792,13 +792,13 @@ Retrieve an instance bandwidth for a given period of time.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -814,9 +814,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
     var_from = 'var_from_example' # str | Timestamp from range
     until = 'until_example' # str | Timestamp to range
@@ -873,13 +873,13 @@ Provides the custom metadata stored for this IP Assignment in json format
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -895,9 +895,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     instance_id = 'instance_id_example' # str | Instance UUID
     id = 'id_example' # str | Ip Assignment UUID
 
@@ -953,14 +953,14 @@ Returns all ip assignments for a device.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.ip_assignment_list import IPAssignmentList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_assignment_list import IPAssignmentList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -976,9 +976,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -1037,14 +1037,14 @@ Provides a collection of devices for a given organization.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.device_list import DeviceList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device_list import DeviceList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1060,9 +1060,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Organization UUID
     search = 'search_example' # str | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
     categories = ['categories_example'] # List[str] | Filter by plan category (optional)
@@ -1149,14 +1149,14 @@ Provides a collection of devices for a given project.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.device_list import DeviceList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device_list import DeviceList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1172,9 +1172,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Project UUID
     search = 'search_example' # str | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
     categories = ['categories_example'] # List[str] | Filter by plan category (optional)
@@ -1263,14 +1263,14 @@ Returns traffic for a specific device.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1286,14 +1286,14 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
     direction = 'direction_example' # str | Traffic direction
     interval = 'interval_example' # str | Traffic interval (optional)
     bucket = 'bucket_example' # str | Traffic bucket (optional)
-    timeframe = equinix_metal.FindTrafficTimeframeParameter() # FindTrafficTimeframeParameter |  (optional)
+    timeframe = equinix_metal_t0mk.FindTrafficTimeframeParameter() # FindTrafficTimeframeParameter |  (optional)
 
     try:
         # Retrieve device traffic
@@ -1350,14 +1350,14 @@ Provides a summary of the BGP neighbor data associated to the BGP sessions for t
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.bgp_session_neighbors import BgpSessionNeighbors
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bgp_session_neighbors import BgpSessionNeighbors
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1373,9 +1373,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
@@ -1433,14 +1433,14 @@ Returns the firmware set associated with the device. If a custom firmware set is
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.firmware_set_response import FirmwareSetResponse
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.firmware_set_response import FirmwareSetResponse
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1456,9 +1456,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
 
     try:
@@ -1514,14 +1514,14 @@ Returns the health rollup status of the device.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.device_health_rollup import DeviceHealthRollup
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device_health_rollup import DeviceHealthRollup
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1537,9 +1537,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
 
     try:
@@ -1595,14 +1595,14 @@ Performs an action for the given device.  Possible actions include: power_on, po
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.device_action_input import DeviceActionInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device_action_input import DeviceActionInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1618,11 +1618,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
-    device_action_input = equinix_metal.DeviceActionInput() # DeviceActionInput | Action to perform
+    device_action_input = equinix_metal_t0mk.DeviceActionInput() # DeviceActionInput | Action to perform
 
     try:
         # Perform an action
@@ -1676,15 +1676,15 @@ Updates the device.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.device import Device
-from equinix_metal.models.device_update_input import DeviceUpdateInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device import Device
+from equinix_metal_t0mk.models.device_update_input import DeviceUpdateInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1700,11 +1700,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.DevicesApi(api_client)
+    api_instance = equinix_metal_t0mk.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
-    device_update_input = equinix_metal.DeviceUpdateInput() # DeviceUpdateInput | Device to update
+    device_update_input = equinix_metal_t0mk.DeviceUpdateInput() # DeviceUpdateInput | Device to update
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 

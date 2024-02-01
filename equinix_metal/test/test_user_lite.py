@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.user_lite import UserLite  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.user_lite import UserLite  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestUserLite(unittest.TestCase):
     """UserLite unit test stubs"""
@@ -36,7 +36,7 @@ class TestUserLite(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UserLite`
         """
-        model = equinix_metal.models.user_lite.UserLite()  # noqa: E501
+        model = equinix_metal_t0mk.models.user_lite.UserLite()  # noqa: E501
         if include_optional :
             return UserLite(
                 avatar_thumb_url = '', 

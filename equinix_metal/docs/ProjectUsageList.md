@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.project_usage_list import ProjectUsageList
+from equinix_metal_t0mk.models.project_usage_list import ProjectUsageList
 
 # TODO update the JSON string below
 json = "{}"

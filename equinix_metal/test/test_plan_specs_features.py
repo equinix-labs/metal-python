@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.plan_specs_features import PlanSpecsFeatures  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.plan_specs_features import PlanSpecsFeatures  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPlanSpecsFeatures(unittest.TestCase):
     """PlanSpecsFeatures unit test stubs"""
@@ -36,7 +36,7 @@ class TestPlanSpecsFeatures(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PlanSpecsFeatures`
         """
-        model = equinix_metal.models.plan_specs_features.PlanSpecsFeatures()  # noqa: E501
+        model = equinix_metal_t0mk.models.plan_specs_features.PlanSpecsFeatures()  # noqa: E501
         if include_optional :
             return PlanSpecsFeatures(
                 href = '', 

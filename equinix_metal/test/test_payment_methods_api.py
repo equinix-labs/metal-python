@@ -15,16 +15,16 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.payment_methods_api import PaymentMethodsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.api.payment_methods_api import PaymentMethodsApi  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 
 class TestPaymentMethodsApi(unittest.TestCase):
     """PaymentMethodsApi unit test stubs"""
 
     def setUp(self):
-        self.api = equinix_metal.api.payment_methods_api.PaymentMethodsApi()  # noqa: E501
+        self.api = equinix_metal_t0mk.api.payment_methods_api.PaymentMethodsApi()  # noqa: E501
 
     def tearDown(self):
         pass

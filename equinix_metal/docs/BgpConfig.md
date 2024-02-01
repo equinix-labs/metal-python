@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.bgp_config import BgpConfig
+from equinix_metal_t0mk.models.bgp_config import BgpConfig
 
 # TODO update the JSON string below
 json = "{}"

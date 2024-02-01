@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.user_list import UserList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.user_list import UserList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestUserList(unittest.TestCase):
     """UserList unit test stubs"""
@@ -36,16 +36,16 @@ class TestUserList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UserList`
         """
-        model = equinix_metal.models.user_list.UserList()  # noqa: E501
+        model = equinix_metal_t0mk.models.user_list.UserList()  # noqa: E501
         if include_optional :
             return UserList(
                 href = '', 
-                meta = equinix_metal.models.meta.Meta(
+                meta = equinix_metal_t0mk.models.meta.Meta(
                     current_page = 56, 
-                    first = equinix_metal.models.href.Href(
+                    first = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     href = '', 
-                    last = equinix_metal.models.href.Href(
+                    last = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     last_page = 56, 
                     next = , 
@@ -53,16 +53,16 @@ class TestUserList(unittest.TestCase):
                     self = , 
                     total = 56, ), 
                 users = [
-                    equinix_metal.models.user.User(
+                    equinix_metal_t0mk.models.user.User(
                         avatar_thumb_url = '', 
                         avatar_url = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        customdata = equinix_metal.models.customdata.customdata(), 
+                        customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                         default_organization_id = '', 
                         default_project_id = '', 
                         email = '', 
                         emails = [
-                            equinix_metal.models.href.Href(
+                            equinix_metal_t0mk.models.href.Href(
                                 href = '', )
                             ], 
                         first_name = '', 

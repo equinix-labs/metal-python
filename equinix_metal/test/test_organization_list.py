@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.organization_list import OrganizationList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.organization_list import OrganizationList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestOrganizationList(unittest.TestCase):
     """OrganizationList unit test stubs"""
@@ -36,16 +36,16 @@ class TestOrganizationList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OrganizationList`
         """
-        model = equinix_metal.models.organization_list.OrganizationList()  # noqa: E501
+        model = equinix_metal_t0mk.models.organization_list.OrganizationList()  # noqa: E501
         if include_optional :
             return OrganizationList(
                 href = '', 
-                meta = equinix_metal.models.meta.Meta(
+                meta = equinix_metal_t0mk.models.meta.Meta(
                     current_page = 56, 
-                    first = equinix_metal.models.href.Href(
+                    first = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     href = '', 
-                    last = equinix_metal.models.href.Href(
+                    last = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     last_page = 56, 
                     next = , 
@@ -53,11 +53,11 @@ class TestOrganizationList(unittest.TestCase):
                     self = , 
                     total = 56, ), 
                 organizations = [
-                    equinix_metal.models.organization.Organization(
-                        address = equinix_metal.models.address.Address(
+                    equinix_metal_t0mk.models.organization.Organization(
+                        address = equinix_metal_t0mk.models.address.Address(
                             address2 = '', 
                             city = '', 
-                            coordinates = equinix_metal.models.coordinates.Coordinates(
+                            coordinates = equinix_metal_t0mk.models.coordinates.Coordinates(
                                 href = '', 
                                 latitude = '', 
                                 longitude = '', ), 
@@ -65,7 +65,7 @@ class TestOrganizationList(unittest.TestCase):
                             href = '', 
                             state = '', 
                             zip_code = '', ), 
-                        billing_address = equinix_metal.models.address.Address(
+                        billing_address = equinix_metal_t0mk.models.address.Address(
                             address2 = '', 
                             city = '', 
                             country = '', 
@@ -74,18 +74,18 @@ class TestOrganizationList(unittest.TestCase):
                             zip_code = '', ), 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         credit_amount = 1.337, 
-                        customdata = equinix_metal.models.customdata.customdata(), 
+                        customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                         description = '', 
                         enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         href = '', 
                         id = '', 
                         logo = '', 
                         members = [
-                            equinix_metal.models.href.Href(
+                            equinix_metal_t0mk.models.href.Href(
                                 href = '', )
                             ], 
                         memberships = [
-                            equinix_metal.models.href.Href(
+                            equinix_metal_t0mk.models.href.Href(
                                 href = '', )
                             ], 
                         name = '', 

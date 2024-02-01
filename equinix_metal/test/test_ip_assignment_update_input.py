@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_assignment_update_input import IPAssignmentUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_assignment_update_input import IPAssignmentUpdateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestIPAssignmentUpdateInput(unittest.TestCase):
     """IPAssignmentUpdateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestIPAssignmentUpdateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `IPAssignmentUpdateInput`
         """
-        model = equinix_metal.models.ip_assignment_update_input.IPAssignmentUpdateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.ip_assignment_update_input.IPAssignmentUpdateInput()  # noqa: E501
         if include_optional :
             return IPAssignmentUpdateInput(
                 customdata = None, 

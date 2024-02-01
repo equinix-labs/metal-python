@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.device_created_by import DeviceCreatedBy  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device_created_by import DeviceCreatedBy  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestDeviceCreatedBy(unittest.TestCase):
     """DeviceCreatedBy unit test stubs"""
@@ -36,7 +36,7 @@ class TestDeviceCreatedBy(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DeviceCreatedBy`
         """
-        model = equinix_metal.models.device_created_by.DeviceCreatedBy()  # noqa: E501
+        model = equinix_metal_t0mk.models.device_created_by.DeviceCreatedBy()  # noqa: E501
         if include_optional :
             return DeviceCreatedBy(
                 avatar_thumb_url = '', 

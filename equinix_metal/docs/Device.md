@@ -51,7 +51,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.device import Device
+from equinix_metal_t0mk.models.device import Device
 
 # TODO update the JSON string below
 json = "{}"

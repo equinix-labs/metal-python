@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.capacity_check_per_facility_info import CapacityCheckPerFacilityInfo  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_check_per_facility_info import CapacityCheckPerFacilityInfo  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestCapacityCheckPerFacilityInfo(unittest.TestCase):
     """CapacityCheckPerFacilityInfo unit test stubs"""
@@ -36,7 +36,7 @@ class TestCapacityCheckPerFacilityInfo(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CapacityCheckPerFacilityInfo`
         """
-        model = equinix_metal.models.capacity_check_per_facility_info.CapacityCheckPerFacilityInfo()  # noqa: E501
+        model = equinix_metal_t0mk.models.capacity_check_per_facility_info.CapacityCheckPerFacilityInfo()  # noqa: E501
         if include_optional :
             return CapacityCheckPerFacilityInfo(
                 available = True, 

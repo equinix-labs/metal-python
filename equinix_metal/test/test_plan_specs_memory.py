@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.plan_specs_memory import PlanSpecsMemory  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.plan_specs_memory import PlanSpecsMemory  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPlanSpecsMemory(unittest.TestCase):
     """PlanSpecsMemory unit test stubs"""
@@ -36,7 +36,7 @@ class TestPlanSpecsMemory(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PlanSpecsMemory`
         """
-        model = equinix_metal.models.plan_specs_memory.PlanSpecsMemory()  # noqa: E501
+        model = equinix_metal_t0mk.models.plan_specs_memory.PlanSpecsMemory()  # noqa: E501
         if include_optional :
             return PlanSpecsMemory(
                 href = '', 

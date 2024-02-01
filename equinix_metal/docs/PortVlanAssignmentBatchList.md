@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.port_vlan_assignment_batch_list import PortVlanAssignmentBatchList
+from equinix_metal_t0mk.models.port_vlan_assignment_batch_list import PortVlanAssignmentBatchList
 
 # TODO update the JSON string below
 json = "{}"

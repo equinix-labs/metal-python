@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_route_create_input import VrfRouteCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.vrf_route_create_input import VrfRouteCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVrfRouteCreateInput(unittest.TestCase):
     """VrfRouteCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestVrfRouteCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VrfRouteCreateInput`
         """
-        model = equinix_metal.models.vrf_route_create_input.VrfRouteCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.vrf_route_create_input.VrfRouteCreateInput()  # noqa: E501
         if include_optional :
             return VrfRouteCreateInput(
                 href = '', 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestFindTrafficTimeframeParameter(unittest.TestCase):
     """FindTrafficTimeframeParameter unit test stubs"""
@@ -36,7 +36,7 @@ class TestFindTrafficTimeframeParameter(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FindTrafficTimeframeParameter`
         """
-        model = equinix_metal.models.find_traffic_timeframe_parameter.FindTrafficTimeframeParameter()  # noqa: E501
+        model = equinix_metal_t0mk.models.find_traffic_timeframe_parameter.FindTrafficTimeframeParameter()  # noqa: E501
         if include_optional :
             return FindTrafficTimeframeParameter(
                 ended_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

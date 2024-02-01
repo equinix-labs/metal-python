@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.device_create_in_facility_input import DeviceCreateInFacilityInput
+from equinix_metal_t0mk.models.device_create_in_facility_input import DeviceCreateInFacilityInput
 
 # TODO update the JSON string below
 json = "{}"

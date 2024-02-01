@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.operating_system import OperatingSystem
+from equinix_metal_t0mk.models.operating_system import OperatingSystem
 
 # TODO update the JSON string below
 json = "{}"

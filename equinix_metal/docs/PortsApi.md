@@ -1,4 +1,4 @@
-# equinix_metal.PortsApi
+# equinix_metal_t0mk.PortsApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -33,14 +33,14 @@ Sets a virtual network on this port as a \"native VLAN\". The VLAN must have alr
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port import Port
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port import Port
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -56,9 +56,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
     vnid = 'vnid_example' # str | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
@@ -118,15 +118,15 @@ Assign a hardware port to a virtual network.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port import Port
-from equinix_metal.models.port_assign_input import PortAssignInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port import Port
+from equinix_metal_t0mk.models.port_assign_input import PortAssignInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -142,11 +142,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
-    port_assign_input = equinix_metal.PortAssignInput() # PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+    port_assign_input = equinix_metal_t0mk.PortAssignInput() # PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
@@ -205,14 +205,14 @@ Enabling bonding for one or all ports
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port import Port
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port import Port
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -228,9 +228,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
     bulk_enable = True # bool | enable both ports (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
@@ -291,15 +291,15 @@ Converts a bond port to Layer 2. IP assignments of the port will be removed.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port import Port
-from equinix_metal.models.port_assign_input import PortAssignInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port import Port
+from equinix_metal_t0mk.models.port_assign_input import PortAssignInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -315,11 +315,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
-    port_assign_input = equinix_metal.PortAssignInput() # PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+    port_assign_input = equinix_metal_t0mk.PortAssignInput() # PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
@@ -378,15 +378,15 @@ Converts a bond port to Layer 3. VLANs must first be unassigned.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port import Port
-from equinix_metal.models.port_convert_layer3_input import PortConvertLayer3Input
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port import Port
+from equinix_metal_t0mk.models.port_convert_layer3_input import PortConvertLayer3Input
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -402,12 +402,12 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    port_convert_layer3_input = equinix_metal.PortConvertLayer3Input() # PortConvertLayer3Input | IPs to request (optional)
+    port_convert_layer3_input = equinix_metal_t0mk.PortConvertLayer3Input() # PortConvertLayer3Input | IPs to request (optional)
 
     try:
         # Convert to Layer 3
@@ -465,15 +465,15 @@ Create a new asynchronous batch request which handles adding and/or removing the
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch import PortVlanAssignmentBatch
-from equinix_metal.models.port_vlan_assignment_batch_create_input import PortVlanAssignmentBatchCreateInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_vlan_assignment_batch import PortVlanAssignmentBatch
+from equinix_metal_t0mk.models.port_vlan_assignment_batch_create_input import PortVlanAssignmentBatchCreateInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -489,11 +489,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
-    port_vlan_assignment_batch_create_input = equinix_metal.PortVlanAssignmentBatchCreateInput() # PortVlanAssignmentBatchCreateInput | VLAN Assignment batch details
+    port_vlan_assignment_batch_create_input = equinix_metal_t0mk.PortVlanAssignmentBatchCreateInput() # PortVlanAssignmentBatchCreateInput | VLAN Assignment batch details
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
@@ -552,14 +552,14 @@ Removes the native VLAN from this port
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port import Port
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port import Port
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -575,9 +575,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
@@ -635,14 +635,14 @@ Disabling bonding for one or all ports
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port import Port
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port import Port
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -658,9 +658,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
     bulk_disable = True # bool | disable both ports (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
@@ -721,14 +721,14 @@ Returns a port
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port import Port
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port import Port
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -744,9 +744,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
@@ -803,14 +803,14 @@ Returns the details of an existing Port-VLAN Assignment batch, including the lis
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch import PortVlanAssignmentBatch
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_vlan_assignment_batch import PortVlanAssignmentBatch
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -826,9 +826,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
     batch_id = 'batch_id_example' # str | Batch ID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
@@ -888,14 +888,14 @@ Show all the VLAN assignment batches that have been created for managing this po
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch_list import PortVlanAssignmentBatchList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_vlan_assignment_batch_list import PortVlanAssignmentBatchList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -911,9 +911,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
 
     try:
@@ -969,14 +969,14 @@ Show the details of a specific Port-VLAN assignment, including the current state
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment import PortVlanAssignment
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_vlan_assignment import PortVlanAssignment
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -992,9 +992,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
     assignment_id = 'assignment_id_example' # str | Assignment ID
     include = ["port","virtual_network"] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional) (default to ["port","virtual_network"])
@@ -1054,14 +1054,14 @@ Show the port's current VLAN assignments, including if this VLAN is set as nativ
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_list import PortVlanAssignmentList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_vlan_assignment_list import PortVlanAssignmentList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1077,9 +1077,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
     include = ["port","virtual_network"] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional) (default to ["port","virtual_network"])
 
@@ -1137,15 +1137,15 @@ Unassign a port for a hardware.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.port import Port
-from equinix_metal.models.port_assign_input import PortAssignInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port import Port
+from equinix_metal_t0mk.models.port_assign_input import PortAssignInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -1161,11 +1161,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PortsApi(api_client)
+    api_instance = equinix_metal_t0mk.PortsApi(api_client)
     id = 'id_example' # str | Port UUID
-    port_assign_input = equinix_metal.PortAssignInput() # PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
+    port_assign_input = equinix_metal_t0mk.PortAssignInput() # PortAssignInput | Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:

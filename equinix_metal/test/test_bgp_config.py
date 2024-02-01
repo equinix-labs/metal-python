@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_config import BgpConfig  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bgp_config import BgpConfig  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestBgpConfig(unittest.TestCase):
     """BgpConfig unit test stubs"""
@@ -36,7 +36,7 @@ class TestBgpConfig(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BgpConfig`
         """
-        model = equinix_metal.models.bgp_config.BgpConfig()  # noqa: E501
+        model = equinix_metal_t0mk.models.bgp_config.BgpConfig()  # noqa: E501
         if include_optional :
             return BgpConfig(
                 asn = 65000, 
@@ -46,25 +46,25 @@ class TestBgpConfig(unittest.TestCase):
                 id = '', 
                 max_prefix = 56, 
                 md5 = '', 
-                project = equinix_metal.models.href.Href(
+                project = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 ranges = [
-                    equinix_metal.models.global_bgp_range.GlobalBgpRange(
+                    equinix_metal_t0mk.models.global_bgp_range.GlobalBgpRange(
                         address_family = 56, 
                         href = '', 
                         id = '', 
-                        project = equinix_metal.models.href.Href(
+                        project = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         range = '', )
                     ], 
                 requested_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 route_object = '', 
                 sessions = [
-                    equinix_metal.models.bgp_session.BgpSession(
+                    equinix_metal_t0mk.models.bgp_session.BgpSession(
                         address_family = 'ipv4', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         default_route = True, 
-                        device = equinix_metal.models.href.Href(
+                        device = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         href = '', 
                         id = '', 

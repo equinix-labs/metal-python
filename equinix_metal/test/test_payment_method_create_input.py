@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.payment_method_create_input import PaymentMethodCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.payment_method_create_input import PaymentMethodCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPaymentMethodCreateInput(unittest.TestCase):
     """PaymentMethodCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestPaymentMethodCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PaymentMethodCreateInput`
         """
-        model = equinix_metal.models.payment_method_create_input.PaymentMethodCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.payment_method_create_input.PaymentMethodCreateInput()  # noqa: E501
         if include_optional :
             return PaymentMethodCreateInput(
                 default = True, 

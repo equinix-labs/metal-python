@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch import PortVlanAssignmentBatch  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_vlan_assignment_batch import PortVlanAssignmentBatch  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPortVlanAssignmentBatch(unittest.TestCase):
     """PortVlanAssignmentBatch unit test stubs"""
@@ -36,7 +36,7 @@ class TestPortVlanAssignmentBatch(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PortVlanAssignmentBatch`
         """
-        model = equinix_metal.models.port_vlan_assignment_batch.PortVlanAssignmentBatch()  # noqa: E501
+        model = equinix_metal_t0mk.models.port_vlan_assignment_batch.PortVlanAssignmentBatch()  # noqa: E501
         if include_optional :
             return PortVlanAssignmentBatch(
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -45,12 +45,12 @@ class TestPortVlanAssignmentBatch(unittest.TestCase):
                     ], 
                 href = '', 
                 id = '', 
-                port = equinix_metal.models.port.Port(
-                    bond = equinix_metal.models.bond_port_data.BondPortData(
+                port = equinix_metal_t0mk.models.port.Port(
+                    bond = equinix_metal_t0mk.models.bond_port_data.BondPortData(
                         href = '', 
                         id = '', 
                         name = '', ), 
-                    data = equinix_metal.models.port_data.PortData(
+                    data = equinix_metal_t0mk.models.port_data.PortData(
                         bonded = True, 
                         href = '', 
                         mac = '', ), 
@@ -58,12 +58,12 @@ class TestPortVlanAssignmentBatch(unittest.TestCase):
                     href = '', 
                     id = '', 
                     name = 'bond0', 
-                    native_virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
-                        assigned_to = equinix_metal.models.href.Href(
+                    native_virtual_network = equinix_metal_t0mk.models.virtual_network.VirtualNetwork(
+                        assigned_to = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         assigned_to_virtual_circuit = True, 
                         description = '', 
-                        facility = equinix_metal.models.href.Href(
+                        facility = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         href = '', 
                         id = '', 
@@ -71,7 +71,7 @@ class TestPortVlanAssignmentBatch(unittest.TestCase):
                             
                             ], 
                         metal_gateways = [
-                            equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
+                            equinix_metal_t0mk.models.metal_gateway_lite.MetalGatewayLite(
                                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 gateway_address = '10.1.2.1/27', 
                                 href = '', 
@@ -91,13 +91,13 @@ class TestPortVlanAssignmentBatch(unittest.TestCase):
                     virtual_networks = [
                         
                         ], ), 
-                project = equinix_metal.models.href.Href(
+                project = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 quantity = 56, 
                 state = 'queued', 
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 vlan_assignments = [
-                    equinix_metal.models.port_vlan_assignment_batch_vlan_assignments_inner.PortVlanAssignmentBatch_vlan_assignments_inner(
+                    equinix_metal_t0mk.models.port_vlan_assignment_batch_vlan_assignments_inner.PortVlanAssignmentBatch_vlan_assignments_inner(
                         href = '', 
                         id = '', 
                         native = True, 

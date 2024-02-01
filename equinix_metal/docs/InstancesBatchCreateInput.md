@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.instances_batch_create_input import InstancesBatchCreateInput
+from equinix_metal_t0mk.models.instances_batch_create_input import InstancesBatchCreateInput
 
 # TODO update the JSON string below
 json = "{}"

@@ -15,16 +15,16 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.transfer_requests_api import TransferRequestsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.api.transfer_requests_api import TransferRequestsApi  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 
 class TestTransferRequestsApi(unittest.TestCase):
     """TransferRequestsApi unit test stubs"""
 
     def setUp(self):
-        self.api = equinix_metal.api.transfer_requests_api.TransferRequestsApi()  # noqa: E501
+        self.api = equinix_metal_t0mk.api.transfer_requests_api.TransferRequestsApi()  # noqa: E501
 
     def tearDown(self):
         pass

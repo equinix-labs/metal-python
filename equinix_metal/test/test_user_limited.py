@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.user_limited import UserLimited  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.user_limited import UserLimited  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestUserLimited(unittest.TestCase):
     """UserLimited unit test stubs"""
@@ -36,7 +36,7 @@ class TestUserLimited(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UserLimited`
         """
-        model = equinix_metal.models.user_limited.UserLimited()  # noqa: E501
+        model = equinix_metal_t0mk.models.user_limited.UserLimited()  # noqa: E501
         if include_optional :
             return UserLimited(
                 avatar_thumb_url = '', 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.raid import Raid  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.raid import Raid  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestRaid(unittest.TestCase):
     """Raid unit test stubs"""
@@ -36,7 +36,7 @@ class TestRaid(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Raid`
         """
-        model = equinix_metal.models.raid.Raid()  # noqa: E501
+        model = equinix_metal_t0mk.models.raid.Raid()  # noqa: E501
         if include_optional :
             return Raid(
                 devices = [

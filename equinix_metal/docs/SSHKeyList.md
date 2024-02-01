@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.ssh_key_list import SSHKeyList
+from equinix_metal_t0mk.models.ssh_key_list import SSHKeyList
 
 # TODO update the JSON string below
 json = "{}"

@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.virtual_circuit_create_input import VirtualCircuitCreateInput
+from equinix_metal_t0mk.models.virtual_circuit_create_input import VirtualCircuitCreateInput
 
 # TODO update the JSON string below
 json = "{}"

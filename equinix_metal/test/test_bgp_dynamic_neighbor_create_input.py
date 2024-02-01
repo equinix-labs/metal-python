@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestBgpDynamicNeighborCreateInput(unittest.TestCase):
     """BgpDynamicNeighborCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestBgpDynamicNeighborCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BgpDynamicNeighborCreateInput`
         """
-        model = equinix_metal.models.bgp_dynamic_neighbor_create_input.BgpDynamicNeighborCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.bgp_dynamic_neighbor_create_input.BgpDynamicNeighborCreateInput()  # noqa: E501
         if include_optional :
             return BgpDynamicNeighborCreateInput(
                 bgp_neighbor_asn = 12345, 

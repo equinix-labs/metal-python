@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.firmware_set_response import FirmwareSetResponse  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.firmware_set_response import FirmwareSetResponse  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestFirmwareSetResponse(unittest.TestCase):
     """FirmwareSetResponse unit test stubs"""
@@ -36,15 +36,15 @@ class TestFirmwareSetResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FirmwareSetResponse`
         """
-        model = equinix_metal.models.firmware_set_response.FirmwareSetResponse()  # noqa: E501
+        model = equinix_metal_t0mk.models.firmware_set_response.FirmwareSetResponse()  # noqa: E501
         if include_optional :
             return FirmwareSetResponse(
                 href = '', 
-                record = equinix_metal.models.firmware_set.FirmwareSet(
+                record = equinix_metal_t0mk.models.firmware_set.FirmwareSet(
                     attributes = [
-                        equinix_metal.models.attribute.Attribute(
+                        equinix_metal_t0mk.models.attribute.Attribute(
                             created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            data = equinix_metal.models.attribute_data.AttributeData(
+                            data = equinix_metal_t0mk.models.attribute_data.AttributeData(
                                 href = '', 
                                 latest = True, 
                                 model = '', 
@@ -55,7 +55,7 @@ class TestFirmwareSetResponse(unittest.TestCase):
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                         ], 
                     component_firmware = [
-                        equinix_metal.models.component.Component(
+                        equinix_metal_t0mk.models.component.Component(
                             checksum = '', 
                             component = 'bmc', 
                             created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

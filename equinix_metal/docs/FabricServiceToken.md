@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.fabric_service_token import FabricServiceToken
+from equinix_metal_t0mk.models.fabric_service_token import FabricServiceToken
 
 # TODO update the JSON string below
 json = "{}"

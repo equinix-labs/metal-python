@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest
+from equinix_metal_t0mk.models.create_metal_gateway_request import CreateMetalGatewayRequest
 
 # TODO update the JSON string below
 json = "{}"

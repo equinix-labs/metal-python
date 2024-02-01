@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.self_service_reservation_item_response import SelfServiceReservationItemResponse  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.self_service_reservation_item_response import SelfServiceReservationItemResponse  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSelfServiceReservationItemResponse(unittest.TestCase):
     """SelfServiceReservationItemResponse unit test stubs"""
@@ -36,7 +36,7 @@ class TestSelfServiceReservationItemResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SelfServiceReservationItemResponse`
         """
-        model = equinix_metal.models.self_service_reservation_item_response.SelfServiceReservationItemResponse()  # noqa: E501
+        model = equinix_metal_t0mk.models.self_service_reservation_item_response.SelfServiceReservationItemResponse()  # noqa: E501
         if include_optional :
             return SelfServiceReservationItemResponse(
                 amount = 1.337, 

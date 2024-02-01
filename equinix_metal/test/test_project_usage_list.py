@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.project_usage_list import ProjectUsageList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.project_usage_list import ProjectUsageList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestProjectUsageList(unittest.TestCase):
     """ProjectUsageList unit test stubs"""
@@ -36,12 +36,12 @@ class TestProjectUsageList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProjectUsageList`
         """
-        model = equinix_metal.models.project_usage_list.ProjectUsageList()  # noqa: E501
+        model = equinix_metal_t0mk.models.project_usage_list.ProjectUsageList()  # noqa: E501
         if include_optional :
             return ProjectUsageList(
                 href = '', 
                 usages = [
-                    equinix_metal.models.project_usage.ProjectUsage(
+                    equinix_metal_t0mk.models.project_usage.ProjectUsage(
                         facility = '', 
                         href = '', 
                         name = '', 

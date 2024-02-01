@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.attribute import Attribute  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.attribute import Attribute  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestAttribute(unittest.TestCase):
     """Attribute unit test stubs"""
@@ -36,11 +36,11 @@ class TestAttribute(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Attribute`
         """
-        model = equinix_metal.models.attribute.Attribute()  # noqa: E501
+        model = equinix_metal_t0mk.models.attribute.Attribute()  # noqa: E501
         if include_optional :
             return Attribute(
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                data = equinix_metal.models.attribute_data.AttributeData(
+                data = equinix_metal_t0mk.models.attribute_data.AttributeData(
                     href = '', 
                     latest = True, 
                     model = '', 

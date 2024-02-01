@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_assignment import IPAssignment  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_assignment import IPAssignment  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestIPAssignment(unittest.TestCase):
     """IPAssignment unit test stubs"""
@@ -36,12 +36,12 @@ class TestIPAssignment(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `IPAssignment`
         """
-        model = equinix_metal.models.ip_assignment.IPAssignment()  # noqa: E501
+        model = equinix_metal_t0mk.models.ip_assignment.IPAssignment()  # noqa: E501
         if include_optional :
             return IPAssignment(
                 address = '', 
                 address_family = 56, 
-                assigned_to = equinix_metal.models.href.Href(
+                assigned_to = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 cidr = 56, 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -56,7 +56,7 @@ class TestIPAssignment(unittest.TestCase):
                 netmask = '', 
                 network = '', 
                 next_hop = '', 
-                parent_block = equinix_metal.models.parent_block.ParentBlock(
+                parent_block = equinix_metal_t0mk.models.parent_block.ParentBlock(
                     cidr = 56, 
                     href = '', 
                     netmask = '', 
@@ -66,7 +66,7 @@ class TestIPAssignment(unittest.TestCase):
             )
         else :
             return IPAssignment(
-                assigned_to = equinix_metal.models.href.Href(
+                assigned_to = equinix_metal_t0mk.models.href.Href(
                     href = '', ),
         )
         """

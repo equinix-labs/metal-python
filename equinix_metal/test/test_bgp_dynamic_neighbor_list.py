@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestBgpDynamicNeighborList(unittest.TestCase):
     """BgpDynamicNeighborList unit test stubs"""
@@ -36,15 +36,15 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BgpDynamicNeighborList`
         """
-        model = equinix_metal.models.bgp_dynamic_neighbor_list.BgpDynamicNeighborList()  # noqa: E501
+        model = equinix_metal_t0mk.models.bgp_dynamic_neighbor_list.BgpDynamicNeighborList()  # noqa: E501
         if include_optional :
             return BgpDynamicNeighborList(
                 bgp_dynamic_neighbors = [
-                    equinix_metal.models.bgp_dynamic_neighbor.BgpDynamicNeighbor(
+                    equinix_metal_t0mk.models.bgp_dynamic_neighbor.BgpDynamicNeighbor(
                         bgp_neighbor_asn = 12345, 
                         bgp_neighbor_range = '192.168.1.0/25', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        created_by = equinix_metal.models.user_limited.UserLimited(
+                        created_by = equinix_metal_t0mk.models.user_limited.UserLimited(
                             avatar_thumb_url = '', 
                             avatar_url = '', 
                             full_name = '', 
@@ -52,24 +52,24 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                             id = '', ), 
                         href = '/bgp-dynamic-neighbors/aea82f16-57ec-412c-9523-b7f2b27635b2', 
                         id = 'aea82f16-57ec-412c-9523-b7f2b27635b2', 
-                        metal_gateway = equinix_metal.models.vrf_metal_gateway.VrfMetalGateway(
+                        metal_gateway = equinix_metal_t0mk.models.vrf_metal_gateway.VrfMetalGateway(
                             created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             href = '', 
                             id = '', 
-                            ip_reservation = equinix_metal.models.vrf_ip_reservation.VrfIpReservation(
+                            ip_reservation = equinix_metal_t0mk.models.vrf_ip_reservation.VrfIpReservation(
                                 address = '', 
                                 address_family = 56, 
                                 bill = True, 
                                 cidr = 56, 
                                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                customdata = equinix_metal.models.customdata.customdata(), 
+                                customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                                 details = '', 
                                 gateway = '', 
                                 href = '', 
                                 id = '', 
                                 manageable = True, 
                                 management = True, 
-                                metro = equinix_metal.models.metro.Metro(
+                                metro = equinix_metal_t0mk.models.metro.Metro(
                                     code = '', 
                                     country = '', 
                                     href = '', 
@@ -77,14 +77,14 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                                     name = '', ), 
                                 netmask = '', 
                                 network = '', 
-                                project = equinix_metal.models.project.Project(
+                                project = equinix_metal_t0mk.models.project.Project(
                                     backend_transfer_enabled = True, 
-                                    bgp_config = equinix_metal.models.href.Href(
+                                    bgp_config = equinix_metal_t0mk.models.href.Href(
                                         href = '', ), 
                                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                    customdata = equinix_metal.models.customdata.customdata(), 
+                                    customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                                     devices = [
-                                        equinix_metal.models.href.Href(
+                                        equinix_metal_t0mk.models.href.Href(
                                             href = '', )
                                         ], 
                                     href = '', 
@@ -92,7 +92,7 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                                     invitations = [
                                         
                                         ], 
-                                    max_devices = equinix_metal.models.max_devices.max_devices(), 
+                                    max_devices = equinix_metal_t0mk.models.max_devices.max_devices(), 
                                     members = [
                                         
                                         ], 
@@ -100,7 +100,7 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                                         
                                         ], 
                                     name = '0', 
-                                    network_status = equinix_metal.models.network_status.network_status(), 
+                                    network_status = equinix_metal_t0mk.models.network_status.network_status(), 
                                     organization = , 
                                     payment_method = , 
                                     ssh_keys = [
@@ -114,15 +114,15 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                                     volumes = [
                                         
                                         ], ), 
-                                project_lite = equinix_metal.models.project.Project(
+                                project_lite = equinix_metal_t0mk.models.project.Project(
                                     backend_transfer_enabled = True, 
                                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                    customdata = equinix_metal.models.customdata.customdata(), 
+                                    customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                                     href = '', 
                                     id = '', 
-                                    max_devices = equinix_metal.models.max_devices.max_devices(), 
+                                    max_devices = equinix_metal_t0mk.models.max_devices.max_devices(), 
                                     name = '0', 
-                                    network_status = equinix_metal.models.network_status.network_status(), 
+                                    network_status = equinix_metal_t0mk.models.network_status.network_status(), 
                                     type = 'default', 
                                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                                 public = True, 
@@ -131,7 +131,7 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                                     ''
                                     ], 
                                 type = 'vrf', 
-                                vrf = equinix_metal.models.vrf.Vrf(
+                                vrf = equinix_metal_t0mk.models.vrf.Vrf(
                                     bgp_dynamic_neighbors_bfd_enabled = True, 
                                     bgp_dynamic_neighbors_enabled = True, 
                                     bgp_dynamic_neighbors_export_route_map = True, 
@@ -147,7 +147,7 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                                     name = '', 
                                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                     virtual_circuits = [
-                                        equinix_metal.models.vrf_virtual_circuit.VrfVirtualCircuit(
+                                        equinix_metal_t0mk.models.vrf_virtual_circuit.VrfVirtualCircuit(
                                             created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                             customer_ip = '12.0.0.2', 
                                             description = '', 
@@ -164,7 +164,7 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                                             subnet = '12.0.0.0/30', 
                                             type = 'vrf', 
                                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                            vrf = equinix_metal.models.vrf.Vrf(
+                                            vrf = equinix_metal_t0mk.models.vrf.Vrf(
                                                 bgp_dynamic_neighbors_bfd_enabled = True, 
                                                 bgp_dynamic_neighbors_enabled = True, 
                                                 bgp_dynamic_neighbors_export_route_map = True, 
@@ -180,7 +180,7 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                             project = , 
                             state = 'ready', 
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
+                            virtual_network = equinix_metal_t0mk.models.virtual_network.VirtualNetwork(
                                 assigned_to = , 
                                 assigned_to_virtual_circuit = True, 
                                 description = '', 
@@ -191,7 +191,7 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                                     
                                     ], 
                                 metal_gateways = [
-                                    equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
+                                    equinix_metal_t0mk.models.metal_gateway_lite.MetalGatewayLite(
                                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                         gateway_address = '10.1.2.1/27', 
                                         href = '', 
@@ -208,12 +208,12 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ], 
                 href = '', 
-                meta = equinix_metal.models.meta.Meta(
+                meta = equinix_metal_t0mk.models.meta.Meta(
                     current_page = 56, 
-                    first = equinix_metal.models.href.Href(
+                    first = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     href = '', 
-                    last = equinix_metal.models.href.Href(
+                    last = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     last_page = 56, 
                     next = , 

@@ -1,4 +1,4 @@
-# equinix_metal.UsagesApi
+# equinix_metal_t0mk.UsagesApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -21,14 +21,14 @@ Returns all usages for a device.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.device_usage_list import DeviceUsageList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device_usage_list import DeviceUsageList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -44,9 +44,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.UsagesApi(api_client)
+    api_instance = equinix_metal_t0mk.UsagesApi(api_client)
     id = 'id_example' # str | Device UUID
     created_after = 'created_after_example' # str | Filter usages created after this date (optional)
     created_before = 'created_before_example' # str | Filter usages created before this date (optional)
@@ -105,14 +105,14 @@ Returns all usages for a project.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.project_usage_list import ProjectUsageList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.project_usage_list import ProjectUsageList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -128,9 +128,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.UsagesApi(api_client)
+    api_instance = equinix_metal_t0mk.UsagesApi(api_client)
     id = 'id_example' # str | Project UUID
     created_after = 'created_after_example' # str | Filter usages created after this date (optional)
     created_before = 'created_before_example' # str | Filter usages created before this date (optional)

@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.ssh_key import SSHKey
+from equinix_metal_t0mk.models.ssh_key import SSHKey
 
 # TODO update the JSON string below
 json = "{}"

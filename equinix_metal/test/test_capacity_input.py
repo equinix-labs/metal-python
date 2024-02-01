@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.capacity_input import CapacityInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_input import CapacityInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestCapacityInput(unittest.TestCase):
     """CapacityInput unit test stubs"""
@@ -36,12 +36,12 @@ class TestCapacityInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CapacityInput`
         """
-        model = equinix_metal.models.capacity_input.CapacityInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.capacity_input.CapacityInput()  # noqa: E501
         if include_optional :
             return CapacityInput(
                 href = '', 
                 servers = [
-                    equinix_metal.models.server_info.ServerInfo(
+                    equinix_metal_t0mk.models.server_info.ServerInfo(
                         facility = '', 
                         href = '', 
                         metro = '', 

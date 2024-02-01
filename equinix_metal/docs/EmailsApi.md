@@ -1,4 +1,4 @@
-# equinix_metal.EmailsApi
+# equinix_metal_t0mk.EmailsApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -23,15 +23,15 @@ Add a new email address to the current user.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.create_email_input import CreateEmailInput
-from equinix_metal.models.email import Email
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.create_email_input import CreateEmailInput
+from equinix_metal_t0mk.models.email import Email
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -47,10 +47,10 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.EmailsApi(api_client)
-    create_email_input = equinix_metal.CreateEmailInput() # CreateEmailInput | Email to create
+    api_instance = equinix_metal_t0mk.EmailsApi(api_client)
+    create_email_input = equinix_metal_t0mk.CreateEmailInput() # CreateEmailInput | Email to create
 
     try:
         # Create an email
@@ -104,13 +104,13 @@ Deletes the email.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -126,9 +126,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.EmailsApi(api_client)
+    api_instance = equinix_metal_t0mk.EmailsApi(api_client)
     id = 'id_example' # str | Email UUID
 
     try:
@@ -182,14 +182,14 @@ Provides one of the user’s emails.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.email import Email
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.email import Email
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -205,9 +205,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.EmailsApi(api_client)
+    api_instance = equinix_metal_t0mk.EmailsApi(api_client)
     id = 'id_example' # str | Email UUID
 
     try:
@@ -263,15 +263,15 @@ Updates the email.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.email import Email
-from equinix_metal.models.update_email_input import UpdateEmailInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.email import Email
+from equinix_metal_t0mk.models.update_email_input import UpdateEmailInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -287,11 +287,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.EmailsApi(api_client)
+    api_instance = equinix_metal_t0mk.EmailsApi(api_client)
     id = 'id_example' # str | Email UUID
-    update_email_input = equinix_metal.UpdateEmailInput() # UpdateEmailInput | email to update
+    update_email_input = equinix_metal_t0mk.UpdateEmailInput() # UpdateEmailInput | email to update
 
     try:
         # Update the email

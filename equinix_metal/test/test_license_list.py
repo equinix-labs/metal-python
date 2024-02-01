@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.license_list import LicenseList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.license_list import LicenseList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestLicenseList(unittest.TestCase):
     """LicenseList unit test stubs"""
@@ -36,19 +36,19 @@ class TestLicenseList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LicenseList`
         """
-        model = equinix_metal.models.license_list.LicenseList()  # noqa: E501
+        model = equinix_metal_t0mk.models.license_list.LicenseList()  # noqa: E501
         if include_optional :
             return LicenseList(
                 href = '', 
                 licenses = [
-                    equinix_metal.models.license.License(
+                    equinix_metal_t0mk.models.license.License(
                         description = '', 
                         href = '', 
                         id = '', 
                         license_key = '', 
-                        licensee_product = equinix_metal.models.href.Href(
+                        licensee_product = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
-                        project = equinix_metal.models.href.Href(
+                        project = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         size = 1.337, )
                     ]

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.device_usage_list import DeviceUsageList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device_usage_list import DeviceUsageList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestDeviceUsageList(unittest.TestCase):
     """DeviceUsageList unit test stubs"""
@@ -36,12 +36,12 @@ class TestDeviceUsageList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DeviceUsageList`
         """
-        model = equinix_metal.models.device_usage_list.DeviceUsageList()  # noqa: E501
+        model = equinix_metal_t0mk.models.device_usage_list.DeviceUsageList()  # noqa: E501
         if include_optional :
             return DeviceUsageList(
                 href = '', 
                 usages = [
-                    equinix_metal.models.device_usage.DeviceUsage(
+                    equinix_metal_t0mk.models.device_usage.DeviceUsage(
                         href = '', 
                         quantity = '', 
                         total = '', 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.plan import Plan  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.plan import Plan  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPlan(unittest.TestCase):
     """Plan unit test stubs"""
@@ -36,20 +36,20 @@ class TestPlan(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Plan`
         """
-        model = equinix_metal.models.plan.Plan()  # noqa: E501
+        model = equinix_metal_t0mk.models.plan.Plan()  # noqa: E501
         if include_optional :
             return Plan(
                 available_in = [
-                    equinix_metal.models.plan_available_in_inner.Plan_available_in_inner(
+                    equinix_metal_t0mk.models.plan_available_in_inner.Plan_available_in_inner(
                         href = '', 
-                        price = equinix_metal.models.plan_available_in_inner_price.Plan_available_in_inner_price(
+                        price = equinix_metal_t0mk.models.plan_available_in_inner_price.Plan_available_in_inner_price(
                             hour = 1.23, 
                             href = '', ), )
                     ], 
                 available_in_metros = [
-                    equinix_metal.models.plan_available_in_metros_inner.Plan_available_in_metros_inner(
+                    equinix_metal_t0mk.models.plan_available_in_metros_inner.Plan_available_in_metros_inner(
                         href = '', 
-                        price = equinix_metal.models.plan_available_in_inner_price.Plan_available_in_inner_price(
+                        price = equinix_metal_t0mk.models.plan_available_in_inner_price.Plan_available_in_inner_price(
                             hour = 1.23, 
                             href = '', ), )
                     ], 
@@ -66,34 +66,34 @@ class TestPlan(unittest.TestCase):
                 legacy = True, 
                 line = '', 
                 name = '', 
-                pricing = equinix_metal.models.pricing.pricing(), 
+                pricing = equinix_metal_t0mk.models.pricing.pricing(), 
                 slug = 'm3.large.x86', 
-                specs = equinix_metal.models.plan_specs.Plan_specs(
+                specs = equinix_metal_t0mk.models.plan_specs.Plan_specs(
                     cpus = [
-                        equinix_metal.models.plan_specs_cpus_inner.Plan_specs_cpus_inner(
+                        equinix_metal_t0mk.models.plan_specs_cpus_inner.Plan_specs_cpus_inner(
                             count = 56, 
                             href = '', 
                             type = '', )
                         ], 
                     drives = [
-                        equinix_metal.models.plan_specs_drives_inner.Plan_specs_drives_inner(
+                        equinix_metal_t0mk.models.plan_specs_drives_inner.Plan_specs_drives_inner(
                             category = 'boot', 
                             count = 56, 
                             href = '', 
                             size = '3.84TB', 
                             type = '', )
                         ], 
-                    features = equinix_metal.models.plan_specs_features.Plan_specs_features(
+                    features = equinix_metal_t0mk.models.plan_specs_features.Plan_specs_features(
                         href = '', 
                         raid = True, 
                         txt = True, 
                         uefi = True, ), 
                     href = '', 
-                    memory = equinix_metal.models.plan_specs_memory.Plan_specs_memory(
+                    memory = equinix_metal_t0mk.models.plan_specs_memory.Plan_specs_memory(
                         href = '', 
                         total = '', ), 
                     nics = [
-                        equinix_metal.models.plan_specs_nics_inner.Plan_specs_nics_inner(
+                        equinix_metal_t0mk.models.plan_specs_nics_inner.Plan_specs_nics_inner(
                             count = 2, 
                             href = '', 
                             type = '', )

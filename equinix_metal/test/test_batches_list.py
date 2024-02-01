@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.batches_list import BatchesList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.batches_list import BatchesList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestBatchesList(unittest.TestCase):
     """BatchesList unit test stubs"""
@@ -36,14 +36,14 @@ class TestBatchesList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BatchesList`
         """
-        model = equinix_metal.models.batches_list.BatchesList()  # noqa: E501
+        model = equinix_metal_t0mk.models.batches_list.BatchesList()  # noqa: E501
         if include_optional :
             return BatchesList(
                 batches = [
-                    equinix_metal.models.batch.Batch(
+                    equinix_metal_t0mk.models.batch.Batch(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         devices = [
-                            equinix_metal.models.href.Href(
+                            equinix_metal_t0mk.models.href.Href(
                                 href = '', )
                             ], 
                         error_messages = [
@@ -51,7 +51,7 @@ class TestBatchesList(unittest.TestCase):
                             ], 
                         href = '', 
                         id = '', 
-                        project = equinix_metal.models.href.Href(
+                        project = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         quantity = 56, 
                         state = '', 

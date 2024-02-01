@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_virtual_circuit_create_input import VrfVirtualCircuitCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.vrf_virtual_circuit_create_input import VrfVirtualCircuitCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVrfVirtualCircuitCreateInput(unittest.TestCase):
     """VrfVirtualCircuitCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestVrfVirtualCircuitCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VrfVirtualCircuitCreateInput`
         """
-        model = equinix_metal.models.vrf_virtual_circuit_create_input.VrfVirtualCircuitCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.vrf_virtual_circuit_create_input.VrfVirtualCircuitCreateInput()  # noqa: E501
         if include_optional :
             return VrfVirtualCircuitCreateInput(
                 customer_ip = '12.0.0.2', 

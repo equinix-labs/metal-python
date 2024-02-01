@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.payment_method import PaymentMethod  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.payment_method import PaymentMethod  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPaymentMethod(unittest.TestCase):
     """PaymentMethod unit test stubs"""
@@ -36,10 +36,10 @@ class TestPaymentMethod(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PaymentMethod`
         """
-        model = equinix_metal.models.payment_method.PaymentMethod()  # noqa: E501
+        model = equinix_metal_t0mk.models.payment_method.PaymentMethod()  # noqa: E501
         if include_optional :
             return PaymentMethod(
-                billing_address = equinix_metal.models.payment_method_billing_address.PaymentMethodBillingAddress(
+                billing_address = equinix_metal_t0mk.models.payment_method_billing_address.PaymentMethodBillingAddress(
                     country_code_alpha2 = '', 
                     href = '', 
                     postal_code = '', 
@@ -47,7 +47,7 @@ class TestPaymentMethod(unittest.TestCase):
                 card_type = '', 
                 cardholder_name = '', 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                created_by_user = equinix_metal.models.href.Href(
+                created_by_user = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 default = True, 
                 email = '', 
@@ -56,10 +56,10 @@ class TestPaymentMethod(unittest.TestCase):
                 href = '', 
                 id = '', 
                 name = '', 
-                organization = equinix_metal.models.href.Href(
+                organization = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 projects = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 type = '', 

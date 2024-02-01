@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.bond_port_data import BondPortData  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bond_port_data import BondPortData  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestBondPortData(unittest.TestCase):
     """BondPortData unit test stubs"""
@@ -36,7 +36,7 @@ class TestBondPortData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BondPortData`
         """
-        model = equinix_metal.models.bond_port_data.BondPortData()  # noqa: E501
+        model = equinix_metal_t0mk.models.bond_port_data.BondPortData()  # noqa: E501
         if include_optional :
             return BondPortData(
                 href = '', 

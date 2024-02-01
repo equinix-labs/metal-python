@@ -1,4 +1,4 @@
-# equinix_metal.UserVerificationTokensApi
+# equinix_metal_t0mk.UserVerificationTokensApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -21,14 +21,14 @@ Consumes an email verification token and verifies the user associated with it.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.verify_email import VerifyEmail
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.verify_email import VerifyEmail
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -44,10 +44,10 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.UserVerificationTokensApi(api_client)
-    verify_email = equinix_metal.VerifyEmail() # VerifyEmail | Email to create
+    api_instance = equinix_metal_t0mk.UserVerificationTokensApi(api_client)
+    verify_email = equinix_metal_t0mk.VerifyEmail() # VerifyEmail | Email to create
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:
@@ -101,13 +101,13 @@ Creates an email verification request
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -123,9 +123,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.UserVerificationTokensApi(api_client)
+    api_instance = equinix_metal_t0mk.UserVerificationTokensApi(api_client)
     login = 'login_example' # str | Email for verification request
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 

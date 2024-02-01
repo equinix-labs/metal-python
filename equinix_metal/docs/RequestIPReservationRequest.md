@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest
+from equinix_metal_t0mk.models.request_ip_reservation_request import RequestIPReservationRequest
 
 # TODO update the JSON string below
 json = "{}"

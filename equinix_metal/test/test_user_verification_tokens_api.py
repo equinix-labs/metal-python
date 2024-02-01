@@ -15,16 +15,16 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.user_verification_tokens_api import UserVerificationTokensApi  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.api.user_verification_tokens_api import UserVerificationTokensApi  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 
 class TestUserVerificationTokensApi(unittest.TestCase):
     """UserVerificationTokensApi unit test stubs"""
 
     def setUp(self):
-        self.api = equinix_metal.api.user_verification_tokens_api.UserVerificationTokensApi()  # noqa: E501
+        self.api = equinix_metal_t0mk.api.user_verification_tokens_api.UserVerificationTokensApi()  # noqa: E501
 
     def tearDown(self):
         pass

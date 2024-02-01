@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_create_input import VrfCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.vrf_create_input import VrfCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVrfCreateInput(unittest.TestCase):
     """VrfCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestVrfCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VrfCreateInput`
         """
-        model = equinix_metal.models.vrf_create_input.VrfCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.vrf_create_input.VrfCreateInput()  # noqa: E501
         if include_optional :
             return VrfCreateInput(
                 bgp_dynamic_neighbors_bfd_enabled = True, 

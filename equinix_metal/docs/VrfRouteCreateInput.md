@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.vrf_route_create_input import VrfRouteCreateInput
+from equinix_metal_t0mk.models.vrf_route_create_input import VrfRouteCreateInput
 
 # TODO update the JSON string below
 json = "{}"

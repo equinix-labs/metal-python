@@ -1,4 +1,4 @@
-# equinix_metal.HardwareReservationsApi
+# equinix_metal_t0mk.HardwareReservationsApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -24,15 +24,15 @@ Activate a spare hardware reservation
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest
-from equinix_metal.models.hardware_reservation import HardwareReservation
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest
+from equinix_metal_t0mk.models.hardware_reservation import HardwareReservation
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -48,13 +48,13 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.HardwareReservationsApi(api_client)
+    api_instance = equinix_metal_t0mk.HardwareReservationsApi(api_client)
     id = 'id_example' # str | Hardware Reservation UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
-    activate_hardware_reservation_request = equinix_metal.ActivateHardwareReservationRequest() # ActivateHardwareReservationRequest | Note to attach to the reservation (optional)
+    activate_hardware_reservation_request = equinix_metal_t0mk.ActivateHardwareReservationRequest() # ActivateHardwareReservationRequest | Note to attach to the reservation (optional)
 
     try:
         # Activate a spare hardware reservation
@@ -112,14 +112,14 @@ Returns a single hardware reservation
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.hardware_reservation import HardwareReservation
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.hardware_reservation import HardwareReservation
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -135,9 +135,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.HardwareReservationsApi(api_client)
+    api_instance = equinix_metal_t0mk.HardwareReservationsApi(api_client)
     id = 'id_example' # str | HardwareReservation UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -197,14 +197,14 @@ Provides a collection of hardware reservations for a given project.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.hardware_reservation_list import HardwareReservationList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.hardware_reservation_list import HardwareReservationList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -220,9 +220,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.HardwareReservationsApi(api_client)
+    api_instance = equinix_metal_t0mk.HardwareReservationsApi(api_client)
     id = 'id_example' # str | Project UUID
     query = 'query_example' # str | Search by facility code, plan name, project name, reservation short ID or device hostname (optional)
     state = 'state_example' # str | Filter by hardware reservation state (optional)
@@ -297,15 +297,15 @@ Move a hardware reservation to another project
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.hardware_reservation import HardwareReservation
-from equinix_metal.models.move_hardware_reservation_request import MoveHardwareReservationRequest
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.hardware_reservation import HardwareReservation
+from equinix_metal_t0mk.models.move_hardware_reservation_request import MoveHardwareReservationRequest
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -321,11 +321,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.HardwareReservationsApi(api_client)
+    api_instance = equinix_metal_t0mk.HardwareReservationsApi(api_client)
     id = 'id_example' # str | Hardware Reservation UUID
-    move_hardware_reservation_request = equinix_metal.MoveHardwareReservationRequest() # MoveHardwareReservationRequest | Destination Project UUID
+    move_hardware_reservation_request = equinix_metal_t0mk.MoveHardwareReservationRequest() # MoveHardwareReservationRequest | Destination Project UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 

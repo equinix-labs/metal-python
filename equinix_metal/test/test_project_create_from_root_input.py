@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.project_create_from_root_input import ProjectCreateFromRootInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.project_create_from_root_input import ProjectCreateFromRootInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestProjectCreateFromRootInput(unittest.TestCase):
     """ProjectCreateFromRootInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestProjectCreateFromRootInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProjectCreateFromRootInput`
         """
-        model = equinix_metal.models.project_create_from_root_input.ProjectCreateFromRootInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.project_create_from_root_input.ProjectCreateFromRootInput()  # noqa: E501
         if include_optional :
             return ProjectCreateFromRootInput(
                 customdata = None, 

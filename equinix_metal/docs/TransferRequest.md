@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.transfer_request import TransferRequest
+from equinix_metal_t0mk.models.transfer_request import TransferRequest
 
 # TODO update the JSON string below
 json = "{}"

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.vlan_virtual_circuit_create_input import VlanVirtualCircuitCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.vlan_virtual_circuit_create_input import VlanVirtualCircuitCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVlanVirtualCircuitCreateInput(unittest.TestCase):
     """VlanVirtualCircuitCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestVlanVirtualCircuitCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VlanVirtualCircuitCreateInput`
         """
-        model = equinix_metal.models.vlan_virtual_circuit_create_input.VlanVirtualCircuitCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.vlan_virtual_circuit_create_input.VlanVirtualCircuitCreateInput()  # noqa: E501
         if include_optional :
             return VlanVirtualCircuitCreateInput(
                 description = '', 

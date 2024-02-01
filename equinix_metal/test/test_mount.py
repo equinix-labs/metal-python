@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.mount import Mount  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.mount import Mount  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestMount(unittest.TestCase):
     """Mount unit test stubs"""
@@ -36,7 +36,7 @@ class TestMount(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Mount`
         """
-        model = equinix_metal.models.mount.Mount()  # noqa: E501
+        model = equinix_metal_t0mk.models.mount.Mount()  # noqa: E501
         if include_optional :
             return Mount(
                 device = '', 

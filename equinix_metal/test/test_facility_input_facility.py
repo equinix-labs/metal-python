@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.facility_input_facility import FacilityInputFacility  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.facility_input_facility import FacilityInputFacility  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestFacilityInputFacility(unittest.TestCase):
     """FacilityInputFacility unit test stubs"""
@@ -36,7 +36,7 @@ class TestFacilityInputFacility(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FacilityInputFacility`
         """
-        model = equinix_metal.models.facility_input_facility.FacilityInputFacility()  # noqa: E501
+        model = equinix_metal_t0mk.models.facility_input_facility.FacilityInputFacility()  # noqa: E501
         if include_optional :
             return FacilityInputFacility(
             )

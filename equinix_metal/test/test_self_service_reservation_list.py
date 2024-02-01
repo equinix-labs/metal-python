@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.self_service_reservation_list import SelfServiceReservationList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.self_service_reservation_list import SelfServiceReservationList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSelfServiceReservationList(unittest.TestCase):
     """SelfServiceReservationList unit test stubs"""
@@ -36,16 +36,16 @@ class TestSelfServiceReservationList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SelfServiceReservationList`
         """
-        model = equinix_metal.models.self_service_reservation_list.SelfServiceReservationList()  # noqa: E501
+        model = equinix_metal_t0mk.models.self_service_reservation_list.SelfServiceReservationList()  # noqa: E501
         if include_optional :
             return SelfServiceReservationList(
                 href = '', 
                 reservations = [
-                    equinix_metal.models.self_service_reservation_response.SelfServiceReservationResponse(
+                    equinix_metal_t0mk.models.self_service_reservation_response.SelfServiceReservationResponse(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         href = '', 
                         item = [
-                            equinix_metal.models.self_service_reservation_item_response.SelfServiceReservationItemResponse(
+                            equinix_metal_t0mk.models.self_service_reservation_item_response.SelfServiceReservationItemResponse(
                                 amount = 1.337, 
                                 href = '', 
                                 id = '', 
@@ -64,7 +64,7 @@ class TestSelfServiceReservationList(unittest.TestCase):
                         notes = '', 
                         organization = '', 
                         organization_id = '', 
-                        period = equinix_metal.models.create_self_service_reservation_request_period.CreateSelfServiceReservationRequest_period(
+                        period = equinix_metal_t0mk.models.create_self_service_reservation_request_period.CreateSelfServiceReservationRequest_period(
                             count = 12, 
                             href = '', 
                             unit = 'monthly', ), 

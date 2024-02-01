@@ -1,4 +1,4 @@
-# equinix_metal.MetrosApi
+# equinix_metal_t0mk.MetrosApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -21,14 +21,14 @@ Provides a listing of available metros
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.metro_list import MetroList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.metro_list import MetroList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -44,9 +44,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MetrosApi(api_client)
+    api_instance = equinix_metal_t0mk.MetrosApi(api_client)
 
     try:
         # Retrieve all metros
@@ -96,14 +96,14 @@ Show the details for a metro, including name, code, and country.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.metro import Metro
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.metro import Metro
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -119,9 +119,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MetrosApi(api_client)
+    api_instance = equinix_metal_t0mk.MetrosApi(api_client)
     id = 'id_example' # str | Metro UUID
 
     try:

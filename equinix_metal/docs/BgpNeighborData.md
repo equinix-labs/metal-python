@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.bgp_neighbor_data import BgpNeighborData
+from equinix_metal_t0mk.models.bgp_neighbor_data import BgpNeighborData
 
 # TODO update the JSON string below
 json = "{}"

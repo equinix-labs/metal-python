@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.support_request_input import SupportRequestInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.support_request_input import SupportRequestInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSupportRequestInput(unittest.TestCase):
     """SupportRequestInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestSupportRequestInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SupportRequestInput`
         """
-        model = equinix_metal.models.support_request_input.SupportRequestInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.support_request_input.SupportRequestInput()  # noqa: E501
         if include_optional :
             return SupportRequestInput(
                 device_id = '', 

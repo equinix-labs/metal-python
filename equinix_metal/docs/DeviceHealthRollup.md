@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.device_health_rollup import DeviceHealthRollup
+from equinix_metal_t0mk.models.device_health_rollup import DeviceHealthRollup
 
 # TODO update the JSON string below
 json = "{}"

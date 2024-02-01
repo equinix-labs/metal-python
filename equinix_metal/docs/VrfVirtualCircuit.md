@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.vrf_virtual_circuit import VrfVirtualCircuit
+from equinix_metal_t0mk.models.vrf_virtual_circuit import VrfVirtualCircuit
 
 # TODO update the JSON string below
 json = "{}"

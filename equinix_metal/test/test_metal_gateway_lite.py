@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.metal_gateway_lite import MetalGatewayLite  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.metal_gateway_lite import MetalGatewayLite  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestMetalGatewayLite(unittest.TestCase):
     """MetalGatewayLite unit test stubs"""
@@ -36,7 +36,7 @@ class TestMetalGatewayLite(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MetalGatewayLite`
         """
-        model = equinix_metal.models.metal_gateway_lite.MetalGatewayLite()  # noqa: E501
+        model = equinix_metal_t0mk.models.metal_gateway_lite.MetalGatewayLite()  # noqa: E501
         if include_optional :
             return MetalGatewayLite(
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

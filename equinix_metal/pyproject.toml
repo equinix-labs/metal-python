@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "equinix_metal"
+name = "equinix_metal_t0mk"
 version = "0.6.0"
 description = "Metal API"
 authors = ["Equinix Metal API Team <support@equinixmetal.com>"]
@@ -7,7 +7,7 @@ license = "Equinix Metal"
 readme = "README.md"
 repository = "https://github.com/equinix-labs/metal-python"
 keywords = ["OpenAPI", "OpenAPI-Generator", "Metal API"]
-include = ["equinix_metal/py.typed"]
+include = ["equinix_metal_t0mk/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.7"

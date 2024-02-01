@@ -1,4 +1,4 @@
-# equinix_metal.SupportRequestApi
+# equinix_metal_t0mk.SupportRequestApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -20,14 +20,14 @@ Support Ticket.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.support_request_input import SupportRequestInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.support_request_input import SupportRequestInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -43,10 +43,10 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.SupportRequestApi(api_client)
-    support_request_input = equinix_metal.SupportRequestInput() # SupportRequestInput | Support Request to create
+    api_instance = equinix_metal_t0mk.SupportRequestApi(api_client)
+    support_request_input = equinix_metal_t0mk.SupportRequestInput() # SupportRequestInput | Support Request to create
 
     try:
         # Create a support ticket

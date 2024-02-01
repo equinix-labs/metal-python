@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_reservation_facility import IPReservationFacility  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_reservation_facility import IPReservationFacility  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestIPReservationFacility(unittest.TestCase):
     """IPReservationFacility unit test stubs"""
@@ -36,13 +36,13 @@ class TestIPReservationFacility(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `IPReservationFacility`
         """
-        model = equinix_metal.models.ip_reservation_facility.IPReservationFacility()  # noqa: E501
+        model = equinix_metal_t0mk.models.ip_reservation_facility.IPReservationFacility()  # noqa: E501
         if include_optional :
             return IPReservationFacility(
-                address = equinix_metal.models.address.Address(
+                address = equinix_metal_t0mk.models.address.Address(
                     address2 = '', 
                     city = '', 
-                    coordinates = equinix_metal.models.coordinates.Coordinates(
+                    coordinates = equinix_metal_t0mk.models.coordinates.Coordinates(
                         href = '', 
                         latitude = '', 
                         longitude = '', ), 

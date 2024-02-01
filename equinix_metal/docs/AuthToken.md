@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.auth_token import AuthToken
+from equinix_metal_t0mk.models.auth_token import AuthToken
 
 # TODO update the JSON string below
 json = "{}"

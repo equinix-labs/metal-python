@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.event import Event
+from equinix_metal_t0mk.models.event import Event
 
 # TODO update the JSON string below
 json = "{}"

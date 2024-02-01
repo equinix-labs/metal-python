@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_session_neighbors import BgpSessionNeighbors  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bgp_session_neighbors import BgpSessionNeighbors  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestBgpSessionNeighbors(unittest.TestCase):
     """BgpSessionNeighbors unit test stubs"""
@@ -36,11 +36,11 @@ class TestBgpSessionNeighbors(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BgpSessionNeighbors`
         """
-        model = equinix_metal.models.bgp_session_neighbors.BgpSessionNeighbors()  # noqa: E501
+        model = equinix_metal_t0mk.models.bgp_session_neighbors.BgpSessionNeighbors()  # noqa: E501
         if include_optional :
             return BgpSessionNeighbors(
                 bgp_neighbors = [
-                    equinix_metal.models.bgp_neighbor_data.BgpNeighborData(
+                    equinix_metal_t0mk.models.bgp_neighbor_data.BgpNeighborData(
                         address_family = 4, 
                         customer_as = 65000, 
                         customer_ip = '10.32.16.1 (IPv4) or 2604:1380:4111:2700::1 (IPv6)', 

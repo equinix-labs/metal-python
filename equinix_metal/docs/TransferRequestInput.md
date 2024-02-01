@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.transfer_request_input import TransferRequestInput
+from equinix_metal_t0mk.models.transfer_request_input import TransferRequestInput
 
 # TODO update the JSON string below
 json = "{}"

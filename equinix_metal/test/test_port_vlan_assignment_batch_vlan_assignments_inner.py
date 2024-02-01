@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch_vlan_assignments_inner import PortVlanAssignmentBatchVlanAssignmentsInner  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_vlan_assignment_batch_vlan_assignments_inner import PortVlanAssignmentBatchVlanAssignmentsInner  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPortVlanAssignmentBatchVlanAssignmentsInner(unittest.TestCase):
     """PortVlanAssignmentBatchVlanAssignmentsInner unit test stubs"""
@@ -36,7 +36,7 @@ class TestPortVlanAssignmentBatchVlanAssignmentsInner(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PortVlanAssignmentBatchVlanAssignmentsInner`
         """
-        model = equinix_metal.models.port_vlan_assignment_batch_vlan_assignments_inner.PortVlanAssignmentBatchVlanAssignmentsInner()  # noqa: E501
+        model = equinix_metal_t0mk.models.port_vlan_assignment_batch_vlan_assignments_inner.PortVlanAssignmentBatchVlanAssignmentsInner()  # noqa: E501
         if include_optional :
             return PortVlanAssignmentBatchVlanAssignmentsInner(
                 href = '', 

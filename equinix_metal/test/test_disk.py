@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.disk import Disk  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.disk import Disk  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestDisk(unittest.TestCase):
     """Disk unit test stubs"""
@@ -36,13 +36,13 @@ class TestDisk(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Disk`
         """
-        model = equinix_metal.models.disk.Disk()  # noqa: E501
+        model = equinix_metal_t0mk.models.disk.Disk()  # noqa: E501
         if include_optional :
             return Disk(
                 device = '', 
                 href = '', 
                 partitions = [
-                    equinix_metal.models.partition.Partition(
+                    equinix_metal_t0mk.models.partition.Partition(
                         href = '', 
                         label = '', 
                         number = 56, 

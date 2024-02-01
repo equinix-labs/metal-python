@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.firmware_set_list_response import FirmwareSetListResponse  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.firmware_set_list_response import FirmwareSetListResponse  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestFirmwareSetListResponse(unittest.TestCase):
     """FirmwareSetListResponse unit test stubs"""
@@ -36,7 +36,7 @@ class TestFirmwareSetListResponse(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `FirmwareSetListResponse`
         """
-        model = equinix_metal.models.firmware_set_list_response.FirmwareSetListResponse()  # noqa: E501
+        model = equinix_metal_t0mk.models.firmware_set_list_response.FirmwareSetListResponse()  # noqa: E501
         if include_optional :
             return FirmwareSetListResponse(
                 href = '', 
@@ -44,11 +44,11 @@ class TestFirmwareSetListResponse(unittest.TestCase):
                 page_count = 56, 
                 page_size = 56, 
                 records = [
-                    equinix_metal.models.firmware_set.FirmwareSet(
+                    equinix_metal_t0mk.models.firmware_set.FirmwareSet(
                         attributes = [
-                            equinix_metal.models.attribute.Attribute(
+                            equinix_metal_t0mk.models.attribute.Attribute(
                                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                                data = equinix_metal.models.attribute_data.AttributeData(
+                                data = equinix_metal_t0mk.models.attribute_data.AttributeData(
                                     href = '', 
                                     latest = True, 
                                     model = '', 
@@ -59,7 +59,7 @@ class TestFirmwareSetListResponse(unittest.TestCase):
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                             ], 
                         component_firmware = [
-                            equinix_metal.models.component.Component(
+                            equinix_metal_t0mk.models.component.Component(
                                 checksum = '', 
                                 component = 'bmc', 
                                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

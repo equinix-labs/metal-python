@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.virtual_circuit import VirtualCircuit  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.virtual_circuit import VirtualCircuit  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVirtualCircuit(unittest.TestCase):
     """VirtualCircuit unit test stubs"""
@@ -36,7 +36,7 @@ class TestVirtualCircuit(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VirtualCircuit`
         """
-        model = equinix_metal.models.virtual_circuit.VirtualCircuit()  # noqa: E501
+        model = equinix_metal_t0mk.models.virtual_circuit.VirtualCircuit()  # noqa: E501
         if include_optional :
             return VirtualCircuit(
                 bill = True, 
@@ -47,9 +47,9 @@ class TestVirtualCircuit(unittest.TestCase):
                 id = '', 
                 name = '', 
                 nni_vlan = 56, 
-                port = equinix_metal.models.href.Href(
+                port = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
-                project = equinix_metal.models.href.Href(
+                project = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 speed = 56, 
                 status = 'pending', 
@@ -58,7 +58,7 @@ class TestVirtualCircuit(unittest.TestCase):
                     ], 
                 type = 'vlan', 
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                virtual_network = equinix_metal.models.href.Href(
+                virtual_network = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 vnid = 56, 
                 customer_ip = '12.0.0.2', 
@@ -66,22 +66,22 @@ class TestVirtualCircuit(unittest.TestCase):
                 metal_ip = '12.0.0.1', 
                 peer_asn = 56, 
                 subnet = '12.0.0.0/30', 
-                vrf = equinix_metal.models.vrf.Vrf(
+                vrf = equinix_metal_t0mk.models.vrf.Vrf(
                     bgp_dynamic_neighbors_bfd_enabled = True, 
                     bgp_dynamic_neighbors_enabled = True, 
                     bgp_dynamic_neighbors_export_route_map = True, 
                     bill = True, 
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    created_by = equinix_metal.models.user.User(
+                    created_by = equinix_metal_t0mk.models.user.User(
                         avatar_thumb_url = '', 
                         avatar_url = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        customdata = equinix_metal.models.customdata.customdata(), 
+                        customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                         default_organization_id = '', 
                         default_project_id = '', 
                         email = '', 
                         emails = [
-                            equinix_metal.models.href.Href(
+                            equinix_metal_t0mk.models.href.Href(
                                 href = '', )
                             ], 
                         first_name = '', 
@@ -105,19 +105,19 @@ class TestVirtualCircuit(unittest.TestCase):
                         ''
                         ], 
                     local_asn = 56, 
-                    metro = equinix_metal.models.metro.Metro(
+                    metro = equinix_metal_t0mk.models.metro.Metro(
                         code = '', 
                         country = '', 
                         href = '', 
                         id = '', 
                         name = '', ), 
                     name = '', 
-                    project = equinix_metal.models.project.Project(
+                    project = equinix_metal_t0mk.models.project.Project(
                         backend_transfer_enabled = True, 
-                        bgp_config = equinix_metal.models.href.Href(
+                        bgp_config = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        customdata = equinix_metal.models.customdata.customdata(), 
+                        customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                         devices = [
                             
                             ], 
@@ -126,7 +126,7 @@ class TestVirtualCircuit(unittest.TestCase):
                         invitations = [
                             
                             ], 
-                        max_devices = equinix_metal.models.max_devices.max_devices(), 
+                        max_devices = equinix_metal_t0mk.models.max_devices.max_devices(), 
                         members = [
                             
                             ], 
@@ -134,7 +134,7 @@ class TestVirtualCircuit(unittest.TestCase):
                             
                             ], 
                         name = '0', 
-                        network_status = equinix_metal.models.network_status.network_status(), 
+                        network_status = equinix_metal_t0mk.models.network_status.network_status(), 
                         organization = , 
                         payment_method = , 
                         ssh_keys = [
@@ -153,7 +153,7 @@ class TestVirtualCircuit(unittest.TestCase):
                         ], 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     virtual_circuits = [
-                        equinix_metal.models.vrf_virtual_circuit.VrfVirtualCircuit(
+                        equinix_metal_t0mk.models.vrf_virtual_circuit.VrfVirtualCircuit(
                             created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             customer_ip = '12.0.0.2', 
                             description = '', 
@@ -170,7 +170,7 @@ class TestVirtualCircuit(unittest.TestCase):
                             subnet = '12.0.0.0/30', 
                             type = 'vrf', 
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            vrf = equinix_metal.models.vrf.Vrf(
+                            vrf = equinix_metal_t0mk.models.vrf.Vrf(
                                 bgp_dynamic_neighbors_bfd_enabled = True, 
                                 bgp_dynamic_neighbors_enabled = True, 
                                 bgp_dynamic_neighbors_export_route_map = True, 
@@ -186,22 +186,22 @@ class TestVirtualCircuit(unittest.TestCase):
             )
         else :
             return VirtualCircuit(
-                vrf = equinix_metal.models.vrf.Vrf(
+                vrf = equinix_metal_t0mk.models.vrf.Vrf(
                     bgp_dynamic_neighbors_bfd_enabled = True, 
                     bgp_dynamic_neighbors_enabled = True, 
                     bgp_dynamic_neighbors_export_route_map = True, 
                     bill = True, 
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    created_by = equinix_metal.models.user.User(
+                    created_by = equinix_metal_t0mk.models.user.User(
                         avatar_thumb_url = '', 
                         avatar_url = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        customdata = equinix_metal.models.customdata.customdata(), 
+                        customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                         default_organization_id = '', 
                         default_project_id = '', 
                         email = '', 
                         emails = [
-                            equinix_metal.models.href.Href(
+                            equinix_metal_t0mk.models.href.Href(
                                 href = '', )
                             ], 
                         first_name = '', 
@@ -225,19 +225,19 @@ class TestVirtualCircuit(unittest.TestCase):
                         ''
                         ], 
                     local_asn = 56, 
-                    metro = equinix_metal.models.metro.Metro(
+                    metro = equinix_metal_t0mk.models.metro.Metro(
                         code = '', 
                         country = '', 
                         href = '', 
                         id = '', 
                         name = '', ), 
                     name = '', 
-                    project = equinix_metal.models.project.Project(
+                    project = equinix_metal_t0mk.models.project.Project(
                         backend_transfer_enabled = True, 
-                        bgp_config = equinix_metal.models.href.Href(
+                        bgp_config = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        customdata = equinix_metal.models.customdata.customdata(), 
+                        customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                         devices = [
                             
                             ], 
@@ -246,7 +246,7 @@ class TestVirtualCircuit(unittest.TestCase):
                         invitations = [
                             
                             ], 
-                        max_devices = equinix_metal.models.max_devices.max_devices(), 
+                        max_devices = equinix_metal_t0mk.models.max_devices.max_devices(), 
                         members = [
                             
                             ], 
@@ -254,7 +254,7 @@ class TestVirtualCircuit(unittest.TestCase):
                             
                             ], 
                         name = '0', 
-                        network_status = equinix_metal.models.network_status.network_status(), 
+                        network_status = equinix_metal_t0mk.models.network_status.network_status(), 
                         organization = , 
                         payment_method = , 
                         ssh_keys = [
@@ -273,7 +273,7 @@ class TestVirtualCircuit(unittest.TestCase):
                         ], 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     virtual_circuits = [
-                        equinix_metal.models.vrf_virtual_circuit.VrfVirtualCircuit(
+                        equinix_metal_t0mk.models.vrf_virtual_circuit.VrfVirtualCircuit(
                             created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             customer_ip = '12.0.0.2', 
                             description = '', 
@@ -290,7 +290,7 @@ class TestVirtualCircuit(unittest.TestCase):
                             subnet = '12.0.0.0/30', 
                             type = 'vrf', 
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                            vrf = equinix_metal.models.vrf.Vrf(
+                            vrf = equinix_metal_t0mk.models.vrf.Vrf(
                                 bgp_dynamic_neighbors_bfd_enabled = True, 
                                 bgp_dynamic_neighbors_enabled = True, 
                                 bgp_dynamic_neighbors_export_route_map = True, 

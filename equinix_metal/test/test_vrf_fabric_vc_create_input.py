@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_fabric_vc_create_input import VrfFabricVcCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.vrf_fabric_vc_create_input import VrfFabricVcCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVrfFabricVcCreateInput(unittest.TestCase):
     """VrfFabricVcCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestVrfFabricVcCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VrfFabricVcCreateInput`
         """
-        model = equinix_metal.models.vrf_fabric_vc_create_input.VrfFabricVcCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.vrf_fabric_vc_create_input.VrfFabricVcCreateInput()  # noqa: E501
         if include_optional :
             return VrfFabricVcCreateInput(
                 contact_email = '', 

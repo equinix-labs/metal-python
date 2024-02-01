@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.recovery_code_list import RecoveryCodeList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.recovery_code_list import RecoveryCodeList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestRecoveryCodeList(unittest.TestCase):
     """RecoveryCodeList unit test stubs"""
@@ -36,7 +36,7 @@ class TestRecoveryCodeList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `RecoveryCodeList`
         """
-        model = equinix_metal.models.recovery_code_list.RecoveryCodeList()  # noqa: E501
+        model = equinix_metal_t0mk.models.recovery_code_list.RecoveryCodeList()  # noqa: E501
         if include_optional :
             return RecoveryCodeList(
                 href = '', 

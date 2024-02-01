@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.organization import Organization  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.organization import Organization  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestOrganization(unittest.TestCase):
     """Organization unit test stubs"""
@@ -36,14 +36,14 @@ class TestOrganization(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Organization`
         """
-        model = equinix_metal.models.organization.Organization()  # noqa: E501
+        model = equinix_metal_t0mk.models.organization.Organization()  # noqa: E501
         if include_optional :
             return Organization(
-                address = equinix_metal.models.address.Address(
+                address = equinix_metal_t0mk.models.address.Address(
                     address = '', 
                     address2 = '', 
                     city = '', 
-                    coordinates = equinix_metal.models.coordinates.Coordinates(
+                    coordinates = equinix_metal_t0mk.models.coordinates.Coordinates(
                         href = '', 
                         latitude = '', 
                         longitude = '', ), 
@@ -51,11 +51,11 @@ class TestOrganization(unittest.TestCase):
                     href = '', 
                     state = '', 
                     zip_code = '', ), 
-                billing_address = equinix_metal.models.address.Address(
+                billing_address = equinix_metal_t0mk.models.address.Address(
                     address = '', 
                     address2 = '', 
                     city = '', 
-                    coordinates = equinix_metal.models.coordinates.Coordinates(
+                    coordinates = equinix_metal_t0mk.models.coordinates.Coordinates(
                         href = '', 
                         latitude = '', 
                         longitude = '', ), 
@@ -72,16 +72,16 @@ class TestOrganization(unittest.TestCase):
                 id = '', 
                 logo = '', 
                 members = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 memberships = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 name = '', 
                 projects = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 terms = 56, 

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.metadata_network import MetadataNetwork
+from equinix_metal_t0mk.models.metadata_network import MetadataNetwork
 
 # TODO update the JSON string below
 json = "{}"

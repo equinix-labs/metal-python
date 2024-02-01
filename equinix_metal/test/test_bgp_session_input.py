@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_session_input import BGPSessionInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bgp_session_input import BGPSessionInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestBGPSessionInput(unittest.TestCase):
     """BGPSessionInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestBGPSessionInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BGPSessionInput`
         """
-        model = equinix_metal.models.bgp_session_input.BGPSessionInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.bgp_session_input.BGPSessionInput()  # noqa: E501
         if include_optional :
             return BGPSessionInput(
                 address_family = 'ipv4', 

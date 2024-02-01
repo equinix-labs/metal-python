@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
+from equinix_metal_t0mk.models.vrf_ip_reservation import VrfIpReservation
 
 # TODO update the JSON string below
 json = "{}"

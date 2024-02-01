@@ -1,4 +1,4 @@
-# equinix_metal.IPAddressesApi
+# equinix_metal_t0mk.IPAddressesApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -26,13 +26,13 @@ This call can be used to un-assign an IP assignment or delete an IP reservation.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -48,9 +48,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.IPAddressesApi(api_client)
+    api_instance = equinix_metal_t0mk.IPAddressesApi(api_client)
     id = 'id_example' # str | IP Address UUID
 
     try:
@@ -104,14 +104,14 @@ Returns a single ip address if the user has access.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.find_ip_address_by_id200_response import FindIPAddressById200Response
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -127,9 +127,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.IPAddressesApi(api_client)
+    api_instance = equinix_metal_t0mk.IPAddressesApi(api_client)
     id = 'id_example' # str | IP Address UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -189,13 +189,13 @@ Provides the custom metadata stored for this IP Reservation or IP Assignment in 
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -211,9 +211,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.IPAddressesApi(api_client)
+    api_instance = equinix_metal_t0mk.IPAddressesApi(api_client)
     id = 'id_example' # str | Ip Reservation UUID
 
     try:
@@ -267,14 +267,14 @@ Provides a list of IP resevations for a single project.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.ip_availabilities_list import IPAvailabilitiesList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_availabilities_list import IPAvailabilitiesList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -290,9 +290,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.IPAddressesApi(api_client)
+    api_instance = equinix_metal_t0mk.IPAddressesApi(api_client)
     id = 'id_example' # str | IP Reservation UUID
     cidr = 'cidr_example' # str | Size of subnets in bits
 
@@ -350,14 +350,14 @@ Provides a paginated list of IP reservations for a single project.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.ip_reservation_list import IPReservationList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_reservation_list import IPReservationList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -373,9 +373,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.IPAddressesApi(api_client)
+    api_instance = equinix_metal_t0mk.IPAddressesApi(api_client)
     id = 'id_example' # str | Project UUID
     types = ['types_example'] # List[str] | Filter project IP reservations by reservation type (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
@@ -439,15 +439,15 @@ Request more IP space for a project in order to have additional IP addresses to 
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.request_ip_reservation201_response import RequestIPReservation201Response
-from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.request_ip_reservation201_response import RequestIPReservation201Response
+from equinix_metal_t0mk.models.request_ip_reservation_request import RequestIPReservationRequest
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -463,11 +463,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.IPAddressesApi(api_client)
+    api_instance = equinix_metal_t0mk.IPAddressesApi(api_client)
     id = 'id_example' # str | Project UUID
-    request_ip_reservation_request = equinix_metal.RequestIPReservationRequest() # RequestIPReservationRequest | IP Reservation Request to create
+    request_ip_reservation_request = equinix_metal_t0mk.RequestIPReservationRequest() # RequestIPReservationRequest | IP Reservation Request to create
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
@@ -528,15 +528,15 @@ Update details about an ip address
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
-from equinix_metal.models.ip_assignment_update_input import IPAssignmentUpdateInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.find_ip_address_by_id200_response import FindIPAddressById200Response
+from equinix_metal_t0mk.models.ip_assignment_update_input import IPAssignmentUpdateInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -552,13 +552,13 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.IPAddressesApi(api_client)
+    api_instance = equinix_metal_t0mk.IPAddressesApi(api_client)
     id = 'id_example' # str | IP Address UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
-    ip_assignment_update_input = equinix_metal.IPAssignmentUpdateInput() # IPAssignmentUpdateInput |  (optional)
+    ip_assignment_update_input = equinix_metal_t0mk.IPAssignmentUpdateInput() # IPAssignmentUpdateInput |  (optional)
 
     try:
         # Update an ip address

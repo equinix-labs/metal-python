@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.user_create_input import UserCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.user_create_input import UserCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestUserCreateInput(unittest.TestCase):
     """UserCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestUserCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `UserCreateInput`
         """
-        model = equinix_metal.models.user_create_input.UserCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.user_create_input.UserCreateInput()  # noqa: E501
         if include_optional :
             return UserCreateInput(
                 avatar = bytes(b'blah'), 
@@ -44,7 +44,7 @@ class TestUserCreateInput(unittest.TestCase):
                 company_url = '', 
                 customdata = None, 
                 emails = [
-                    equinix_metal.models.email_input.EmailInput(
+                    equinix_metal_t0mk.models.email_input.EmailInput(
                         address = '', 
                         default = True, 
                         href = '', )
@@ -66,7 +66,7 @@ class TestUserCreateInput(unittest.TestCase):
         else :
             return UserCreateInput(
                 emails = [
-                    equinix_metal.models.email_input.EmailInput(
+                    equinix_metal_t0mk.models.email_input.EmailInput(
                         address = '', 
                         default = True, 
                         href = '', )

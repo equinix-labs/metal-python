@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_list import InterconnectionList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.interconnection_list import InterconnectionList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestInterconnectionList(unittest.TestCase):
     """InterconnectionList unit test stubs"""
@@ -36,26 +36,26 @@ class TestInterconnectionList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `InterconnectionList`
         """
-        model = equinix_metal.models.interconnection_list.InterconnectionList()  # noqa: E501
+        model = equinix_metal_t0mk.models.interconnection_list.InterconnectionList()  # noqa: E501
         if include_optional :
             return InterconnectionList(
                 href = '', 
                 interconnections = [
-                    equinix_metal.models.interconnection.Interconnection(
+                    equinix_metal_t0mk.models.interconnection.Interconnection(
                         contact_email = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         description = '', 
-                        facility = equinix_metal.models.href.Href(
+                        facility = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         href = '', 
                         id = '', 
                         metro = null, 
                         mode = 'standard', 
                         name = '', 
-                        organization = equinix_metal.models.href.Href(
+                        organization = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         ports = [
-                            equinix_metal.models.interconnection_port.InterconnectionPort(
+                            equinix_metal_t0mk.models.interconnection_port.InterconnectionPort(
                                 href = '', 
                                 id = '', 
                                 link_status = '', 
@@ -71,7 +71,7 @@ class TestInterconnectionList(unittest.TestCase):
                         redundancy = 'primary', 
                         requested_by = , 
                         service_tokens = [
-                            equinix_metal.models.fabric_service_token.FabricServiceToken(
+                            equinix_metal_t0mk.models.fabric_service_token.FabricServiceToken(
                                 expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 href = '', 
                                 id = '', 
@@ -89,12 +89,12 @@ class TestInterconnectionList(unittest.TestCase):
                         type = 'shared', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ], 
-                meta = equinix_metal.models.meta.Meta(
+                meta = equinix_metal_t0mk.models.meta.Meta(
                     current_page = 56, 
-                    first = equinix_metal.models.href.Href(
+                    first = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     href = '', 
-                    last = equinix_metal.models.href.Href(
+                    last = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     last_page = 56, 
                     next = , 

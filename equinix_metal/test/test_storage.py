@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.storage import Storage  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.storage import Storage  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestStorage(unittest.TestCase):
     """Storage unit test stubs"""
@@ -36,15 +36,15 @@ class TestStorage(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Storage`
         """
-        model = equinix_metal.models.storage.Storage()  # noqa: E501
+        model = equinix_metal_t0mk.models.storage.Storage()  # noqa: E501
         if include_optional :
             return Storage(
                 disks = [
-                    equinix_metal.models.disk.Disk(
+                    equinix_metal_t0mk.models.disk.Disk(
                         device = '', 
                         href = '', 
                         partitions = [
-                            equinix_metal.models.partition.Partition(
+                            equinix_metal_t0mk.models.partition.Partition(
                                 href = '', 
                                 label = '', 
                                 number = 56, 
@@ -53,9 +53,9 @@ class TestStorage(unittest.TestCase):
                         wipe_table = True, )
                     ], 
                 filesystems = [
-                    equinix_metal.models.filesystem.Filesystem(
+                    equinix_metal_t0mk.models.filesystem.Filesystem(
                         href = '', 
-                        mount = equinix_metal.models.mount.Mount(
+                        mount = equinix_metal_t0mk.models.mount.Mount(
                             device = '', 
                             format = '', 
                             href = '', 
@@ -66,7 +66,7 @@ class TestStorage(unittest.TestCase):
                     ], 
                 href = '', 
                 raid = [
-                    equinix_metal.models.raid.Raid(
+                    equinix_metal_t0mk.models.raid.Raid(
                         devices = [
                             ''
                             ], 

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.global_bgp_range_list import GlobalBgpRangeList
+from equinix_metal_t0mk.models.global_bgp_range_list import GlobalBgpRangeList
 
 # TODO update the JSON string below
 json = "{}"

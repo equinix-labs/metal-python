@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.metadata_network_network_bonding import MetadataNetworkNetworkBonding
+from equinix_metal_t0mk.models.metadata_network_network_bonding import MetadataNetworkNetworkBonding
 
 # TODO update the JSON string below
 json = "{}"

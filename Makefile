@@ -1,4 +1,5 @@
-PACKAGE_VERSION=0.6.0
+VERSION_FILE=version
+PACKAGE_VERSION := $(shell cat ${VERSION_FILE})
 
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
 OPENAPI_CODEGEN_TAG=v7.0.0
@@ -50,6 +51,6 @@ generate: clean patch-spec
 		--git-repo-id ${GIT_REPO} \
 		--git-user-id ${GIT_ORG}  \
 		--http-user-agent ${USER_AGENT} \
-	    --additional-properties=packageName=${PACKAGE_NAME},packageVersion=${PACKAGE_VERSION}
+	    --additional-properties=packageName=equinix_metal_t0mk,packageVersion=${PACKAGE_VERSION}
 	rm -rf equinix_metal/.github
 	rm -rf equinix_metal/.gitlab-ci.yml

@@ -15,16 +15,16 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.ip_addresses_api import IPAddressesApi  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.api.ip_addresses_api import IPAddressesApi  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 
 class TestIPAddressesApi(unittest.TestCase):
     """IPAddressesApi unit test stubs"""
 
     def setUp(self):
-        self.api = equinix_metal.api.ip_addresses_api.IPAddressesApi()  # noqa: E501
+        self.api = equinix_metal_t0mk.api.ip_addresses_api.IPAddressesApi()  # noqa: E501
 
     def tearDown(self):
         pass

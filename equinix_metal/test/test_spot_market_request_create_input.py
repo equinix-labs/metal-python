@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_market_request_create_input import SpotMarketRequestCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.spot_market_request_create_input import SpotMarketRequestCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSpotMarketRequestCreateInput(unittest.TestCase):
     """SpotMarketRequestCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestSpotMarketRequestCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SpotMarketRequestCreateInput`
         """
-        model = equinix_metal.models.spot_market_request_create_input.SpotMarketRequestCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.spot_market_request_create_input.SpotMarketRequestCreateInput()  # noqa: E501
         if include_optional :
             return SpotMarketRequestCreateInput(
                 devices_max = 56, 
@@ -46,10 +46,10 @@ class TestSpotMarketRequestCreateInput(unittest.TestCase):
                     ''
                     ], 
                 href = '', 
-                instance_parameters = equinix_metal.models.spot_market_request_create_input_instance_parameters.SpotMarketRequestCreateInput_instance_parameters(
+                instance_parameters = equinix_metal_t0mk.models.spot_market_request_create_input_instance_parameters.SpotMarketRequestCreateInput_instance_parameters(
                     always_pxe = True, 
                     billing_cycle = '', 
-                    customdata = equinix_metal.models.customdata.customdata(), 
+                    customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                     description = '', 
                     features = [
                         ''

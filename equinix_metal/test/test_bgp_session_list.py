@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_session_list import BgpSessionList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.bgp_session_list import BgpSessionList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestBgpSessionList(unittest.TestCase):
     """BgpSessionList unit test stubs"""
@@ -36,15 +36,15 @@ class TestBgpSessionList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `BgpSessionList`
         """
-        model = equinix_metal.models.bgp_session_list.BgpSessionList()  # noqa: E501
+        model = equinix_metal_t0mk.models.bgp_session_list.BgpSessionList()  # noqa: E501
         if include_optional :
             return BgpSessionList(
                 bgp_sessions = [
-                    equinix_metal.models.bgp_session.BgpSession(
+                    equinix_metal_t0mk.models.bgp_session.BgpSession(
                         address_family = 'ipv4', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         default_route = True, 
-                        device = equinix_metal.models.href.Href(
+                        device = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         href = '', 
                         id = '', 

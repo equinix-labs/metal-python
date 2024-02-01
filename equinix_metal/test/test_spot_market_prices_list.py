@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_market_prices_list import SpotMarketPricesList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.spot_market_prices_list import SpotMarketPricesList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSpotMarketPricesList(unittest.TestCase):
     """SpotMarketPricesList unit test stubs"""
@@ -36,16 +36,16 @@ class TestSpotMarketPricesList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SpotMarketPricesList`
         """
-        model = equinix_metal.models.spot_market_prices_list.SpotMarketPricesList()  # noqa: E501
+        model = equinix_metal_t0mk.models.spot_market_prices_list.SpotMarketPricesList()  # noqa: E501
         if include_optional :
             return SpotMarketPricesList(
                 href = '', 
-                spot_market_prices = equinix_metal.models.spot_prices_report.SpotPricesReport(
-                    ams1 = equinix_metal.models.spot_prices_per_facility.SpotPricesPerFacility(
-                        baremetal_0 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                spot_market_prices = equinix_metal_t0mk.models.spot_prices_report.SpotPricesReport(
+                    ams1 = equinix_metal_t0mk.models.spot_prices_per_facility.SpotPricesPerFacility(
+                        baremetal_0 = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                             href = '', 
                             price = 1.337, ), 
-                        baremetal_1 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                        baremetal_1 = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                             href = '', 
                             price = 1.337, ), 
                         baremetal_2 = , 
@@ -56,12 +56,12 @@ class TestSpotMarketPricesList(unittest.TestCase):
                         c2/medium/x86 = , 
                         href = '', 
                         m2/xlarge/x86 = , ), 
-                    atl1 = equinix_metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    atl1 = equinix_metal_t0mk.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
                         baremetal_1e = , 
                         href = '', ), 
-                    dfw1 = equinix_metal.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
+                    dfw1 = equinix_metal_t0mk.models.spot_prices_per_new_facility.SpotPricesPerNewFacility(
                         href = '', ), 
-                    ewr1 = equinix_metal.models.spot_prices_per_facility.SpotPricesPerFacility(
+                    ewr1 = equinix_metal_t0mk.models.spot_prices_per_facility.SpotPricesPerFacility(
                         href = '', ), 
                     fra1 = , 
                     href = '', 

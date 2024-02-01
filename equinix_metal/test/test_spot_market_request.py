@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_market_request import SpotMarketRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.spot_market_request import SpotMarketRequest  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSpotMarketRequest(unittest.TestCase):
     """SpotMarketRequest unit test stubs"""
@@ -36,22 +36,22 @@ class TestSpotMarketRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SpotMarketRequest`
         """
-        model = equinix_metal.models.spot_market_request.SpotMarketRequest()  # noqa: E501
+        model = equinix_metal_t0mk.models.spot_market_request.SpotMarketRequest()  # noqa: E501
         if include_optional :
             return SpotMarketRequest(
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 devices_max = 56, 
                 devices_min = 56, 
                 end_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                facilities = equinix_metal.models.href.Href(
+                facilities = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 href = '', 
                 id = '', 
-                instances = equinix_metal.models.href.Href(
+                instances = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 max_bid_price = 1.337, 
                 metro = None, 
-                project = equinix_metal.models.href.Href(
+                project = equinix_metal_t0mk.models.href.Href(
                     href = '', )
             )
         else :

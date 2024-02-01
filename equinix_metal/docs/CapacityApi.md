@@ -1,4 +1,4 @@
-# equinix_metal.CapacityApi
+# equinix_metal_t0mk.CapacityApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -25,15 +25,15 @@ Validates if a deploy can be fulfilled.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.capacity_check_per_facility_list import CapacityCheckPerFacilityList
-from equinix_metal.models.capacity_input import CapacityInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_check_per_facility_list import CapacityCheckPerFacilityList
+from equinix_metal_t0mk.models.capacity_input import CapacityInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -49,10 +49,10 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.CapacityApi(api_client)
-    capacity_input = equinix_metal.CapacityInput() # CapacityInput | Facility to check capacity in
+    api_instance = equinix_metal_t0mk.CapacityApi(api_client)
+    capacity_input = equinix_metal_t0mk.CapacityInput() # CapacityInput | Facility to check capacity in
 
     try:
         # Check capacity
@@ -106,15 +106,15 @@ Validates if a deploy can be fulfilled in a metro.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.capacity_check_per_metro_list import CapacityCheckPerMetroList
-from equinix_metal.models.capacity_input import CapacityInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_check_per_metro_list import CapacityCheckPerMetroList
+from equinix_metal_t0mk.models.capacity_input import CapacityInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -130,10 +130,10 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.CapacityApi(api_client)
-    capacity_input = equinix_metal.CapacityInput() # CapacityInput | Metro to check capacity in
+    api_instance = equinix_metal_t0mk.CapacityApi(api_client)
+    capacity_input = equinix_metal_t0mk.CapacityInput() # CapacityInput | Metro to check capacity in
 
     try:
         # Check capacity for a metro
@@ -187,14 +187,14 @@ Returns a list of facilities and plans with their current capacity.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.capacity_list import CapacityList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_list import CapacityList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -210,9 +210,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.CapacityApi(api_client)
+    api_instance = equinix_metal_t0mk.CapacityApi(api_client)
 
     try:
         # View capacity
@@ -262,14 +262,14 @@ Returns a list of metros and plans with their current capacity.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.capacity_list import CapacityList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_list import CapacityList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -285,9 +285,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.CapacityApi(api_client)
+    api_instance = equinix_metal_t0mk.CapacityApi(api_client)
 
     try:
         # View capacity for metros
@@ -337,14 +337,14 @@ Returns a list of facilities and plans with their current capacity.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.capacity_list import CapacityList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_list import CapacityList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -360,9 +360,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.CapacityApi(api_client)
+    api_instance = equinix_metal_t0mk.CapacityApi(api_client)
     id = 'id_example' # str | Organization UUID
 
     try:
@@ -417,14 +417,14 @@ Returns a list of metros and plans with their current capacity.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.capacity_list import CapacityList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_list import CapacityList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -440,9 +440,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.CapacityApi(api_client)
+    api_instance = equinix_metal_t0mk.CapacityApi(api_client)
     id = 'id_example' # str | Organization UUID
 
     try:

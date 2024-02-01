@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.vrf_ip_reservation_create_input import VrfIpReservationCreateInput
+from equinix_metal_t0mk.models.vrf_ip_reservation_create_input import VrfIpReservationCreateInput
 
 # TODO update the JSON string below
 json = "{}"

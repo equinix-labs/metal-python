@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.user_create_input import UserCreateInput
+from equinix_metal_t0mk.models.user_create_input import UserCreateInput
 
 # TODO update the JSON string below
 json = "{}"

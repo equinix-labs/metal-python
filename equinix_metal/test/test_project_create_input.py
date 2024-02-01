@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.project_create_input import ProjectCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.project_create_input import ProjectCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestProjectCreateInput(unittest.TestCase):
     """ProjectCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestProjectCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ProjectCreateInput`
         """
-        model = equinix_metal.models.project_create_input.ProjectCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.project_create_input.ProjectCreateInput()  # noqa: E501
         if include_optional :
             return ProjectCreateInput(
                 customdata = None, 

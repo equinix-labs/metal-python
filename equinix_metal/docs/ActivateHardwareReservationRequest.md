@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest
+from equinix_metal_t0mk.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest
 
 # TODO update the JSON string below
 json = "{}"

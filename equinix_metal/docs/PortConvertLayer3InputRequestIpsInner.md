@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.port_convert_layer3_input_request_ips_inner import PortConvertLayer3InputRequestIpsInner
+from equinix_metal_t0mk.models.port_convert_layer3_input_request_ips_inner import PortConvertLayer3InputRequestIpsInner
 
 # TODO update the JSON string below
 json = "{}"

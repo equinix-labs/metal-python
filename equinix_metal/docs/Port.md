@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.port import Port
+from equinix_metal_t0mk.models.port import Port
 
 # TODO update the JSON string below
 json = "{}"

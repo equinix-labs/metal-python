@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
+from equinix_metal_t0mk.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
 
 # TODO update the JSON string below
 json = "{}"

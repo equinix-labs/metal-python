@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.global_bgp_range import GlobalBgpRange  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.global_bgp_range import GlobalBgpRange  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestGlobalBgpRange(unittest.TestCase):
     """GlobalBgpRange unit test stubs"""
@@ -36,13 +36,13 @@ class TestGlobalBgpRange(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `GlobalBgpRange`
         """
-        model = equinix_metal.models.global_bgp_range.GlobalBgpRange()  # noqa: E501
+        model = equinix_metal_t0mk.models.global_bgp_range.GlobalBgpRange()  # noqa: E501
         if include_optional :
             return GlobalBgpRange(
                 address_family = 56, 
                 href = '', 
                 id = '', 
-                project = equinix_metal.models.href.Href(
+                project = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 range = ''
             )

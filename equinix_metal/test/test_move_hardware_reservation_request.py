@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.move_hardware_reservation_request import MoveHardwareReservationRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.move_hardware_reservation_request import MoveHardwareReservationRequest  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestMoveHardwareReservationRequest(unittest.TestCase):
     """MoveHardwareReservationRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestMoveHardwareReservationRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MoveHardwareReservationRequest`
         """
-        model = equinix_metal.models.move_hardware_reservation_request.MoveHardwareReservationRequest()  # noqa: E501
+        model = equinix_metal_t0mk.models.move_hardware_reservation_request.MoveHardwareReservationRequest()  # noqa: E501
         if include_optional :
             return MoveHardwareReservationRequest(
                 href = '', 

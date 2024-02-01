@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.mount import Mount
+from equinix_metal_t0mk.models.mount import Mount
 
 # TODO update the JSON string below
 json = "{}"

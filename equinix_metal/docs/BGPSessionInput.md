@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.bgp_session_input import BGPSessionInput
+from equinix_metal_t0mk.models.bgp_session_input import BGPSessionInput
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.ssh_key_create_input import SSHKeyCreateInput
+from equinix_metal_t0mk.models.ssh_key_create_input import SSHKeyCreateInput
 
 # TODO update the JSON string below
 json = "{}"

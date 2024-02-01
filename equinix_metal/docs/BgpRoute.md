@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.bgp_route import BgpRoute
+from equinix_metal_t0mk.models.bgp_route import BgpRoute
 
 # TODO update the JSON string below
 json = "{}"

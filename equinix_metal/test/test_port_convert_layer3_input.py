@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.port_convert_layer3_input import PortConvertLayer3Input  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_convert_layer3_input import PortConvertLayer3Input  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPortConvertLayer3Input(unittest.TestCase):
     """PortConvertLayer3Input unit test stubs"""
@@ -36,12 +36,12 @@ class TestPortConvertLayer3Input(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PortConvertLayer3Input`
         """
-        model = equinix_metal.models.port_convert_layer3_input.PortConvertLayer3Input()  # noqa: E501
+        model = equinix_metal_t0mk.models.port_convert_layer3_input.PortConvertLayer3Input()  # noqa: E501
         if include_optional :
             return PortConvertLayer3Input(
                 href = '', 
                 request_ips = [
-                    equinix_metal.models.port_convert_layer3_input_request_ips_inner.PortConvertLayer3Input_request_ips_inner(
+                    equinix_metal_t0mk.models.port_convert_layer3_input_request_ips_inner.PortConvertLayer3Input_request_ips_inner(
                         address_family = 56, 
                         href = '', 
                         public = True, )

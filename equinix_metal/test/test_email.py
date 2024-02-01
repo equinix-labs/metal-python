@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.email import Email  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.email import Email  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestEmail(unittest.TestCase):
     """Email unit test stubs"""
@@ -36,7 +36,7 @@ class TestEmail(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Email`
         """
-        model = equinix_metal.models.email.Email()  # noqa: E501
+        model = equinix_metal_t0mk.models.email.Email()  # noqa: E501
         if include_optional :
             return Email(
                 address = '', 

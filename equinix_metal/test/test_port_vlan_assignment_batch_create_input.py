@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch_create_input import PortVlanAssignmentBatchCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_vlan_assignment_batch_create_input import PortVlanAssignmentBatchCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPortVlanAssignmentBatchCreateInput(unittest.TestCase):
     """PortVlanAssignmentBatchCreateInput unit test stubs"""
@@ -36,12 +36,12 @@ class TestPortVlanAssignmentBatchCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PortVlanAssignmentBatchCreateInput`
         """
-        model = equinix_metal.models.port_vlan_assignment_batch_create_input.PortVlanAssignmentBatchCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.port_vlan_assignment_batch_create_input.PortVlanAssignmentBatchCreateInput()  # noqa: E501
         if include_optional :
             return PortVlanAssignmentBatchCreateInput(
                 href = '', 
                 vlan_assignments = [
-                    equinix_metal.models.port_vlan_assignment_batch_create_input_vlan_assignments_inner.PortVlanAssignmentBatchCreateInput_vlan_assignments_inner(
+                    equinix_metal_t0mk.models.port_vlan_assignment_batch_create_input_vlan_assignments_inner.PortVlanAssignmentBatchCreateInput_vlan_assignments_inner(
                         href = '', 
                         native = True, 
                         state = 'assigned', 

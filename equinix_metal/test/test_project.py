@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.project import Project  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.project import Project  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestProject(unittest.TestCase):
     """Project unit test stubs"""
@@ -36,41 +36,41 @@ class TestProject(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Project`
         """
-        model = equinix_metal.models.project.Project()  # noqa: E501
+        model = equinix_metal_t0mk.models.project.Project()  # noqa: E501
         if include_optional :
             return Project(
                 backend_transfer_enabled = True, 
-                bgp_config = equinix_metal.models.href.Href(
+                bgp_config = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                customdata = equinix_metal.models.customdata.customdata(), 
+                customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                 devices = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 href = '', 
                 id = '', 
                 invitations = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
-                max_devices = equinix_metal.models.max_devices.max_devices(), 
+                max_devices = equinix_metal_t0mk.models.max_devices.max_devices(), 
                 members = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 memberships = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 name = '0', 
-                network_status = equinix_metal.models.network_status.network_status(), 
-                organization = equinix_metal.models.href.Href(
+                network_status = equinix_metal_t0mk.models.network_status.network_status(), 
+                organization = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
-                payment_method = equinix_metal.models.href.Href(
+                payment_method = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 ssh_keys = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 tags = [
@@ -79,7 +79,7 @@ class TestProject(unittest.TestCase):
                 type = 'default', 
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 volumes = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ]
             )

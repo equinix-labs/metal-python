@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.device_update_input import DeviceUpdateInput
+from equinix_metal_t0mk.models.device_update_input import DeviceUpdateInput
 
 # TODO update the JSON string below
 json = "{}"

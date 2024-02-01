@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput
+from equinix_metal_t0mk.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput
 
 # TODO update the JSON string below
 json = "{}"

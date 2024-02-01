@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.license_update_input import LicenseUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.license_update_input import LicenseUpdateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestLicenseUpdateInput(unittest.TestCase):
     """LicenseUpdateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestLicenseUpdateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `LicenseUpdateInput`
         """
-        model = equinix_metal.models.license_update_input.LicenseUpdateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.license_update_input.LicenseUpdateInput()  # noqa: E501
         if include_optional :
             return LicenseUpdateInput(
                 description = '', 

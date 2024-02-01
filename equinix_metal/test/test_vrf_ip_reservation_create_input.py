@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_ip_reservation_create_input import VrfIpReservationCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.vrf_ip_reservation_create_input import VrfIpReservationCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVrfIpReservationCreateInput(unittest.TestCase):
     """VrfIpReservationCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestVrfIpReservationCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VrfIpReservationCreateInput`
         """
-        model = equinix_metal.models.vrf_ip_reservation_create_input.VrfIpReservationCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.vrf_ip_reservation_create_input.VrfIpReservationCreateInput()  # noqa: E501
         if include_optional :
             return VrfIpReservationCreateInput(
                 cidr = 16, 

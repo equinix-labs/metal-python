@@ -1,4 +1,4 @@
-# equinix_metal.MetalGatewaysApi
+# equinix_metal_t0mk.MetalGatewaysApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -26,15 +26,15 @@ Create a metal gateway in a project
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest
-from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.create_metal_gateway_request import CreateMetalGatewayRequest
+from equinix_metal_t0mk.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -50,11 +50,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MetalGatewaysApi(api_client)
+    api_instance = equinix_metal_t0mk.MetalGatewaysApi(api_client)
     project_id = 'project_id_example' # str | Project UUID
-    create_metal_gateway_request = equinix_metal.CreateMetalGatewayRequest() # CreateMetalGatewayRequest | Metal Gateway to create
+    create_metal_gateway_request = equinix_metal_t0mk.CreateMetalGatewayRequest() # CreateMetalGatewayRequest | Metal Gateway to create
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
@@ -118,15 +118,15 @@ Create a new Elastic IP on this Metal Gateway.  Assign an IPv4 range as an elast
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.ip_assignment import IPAssignment
-from equinix_metal.models.metal_gateway_elastic_ip_create_input import MetalGatewayElasticIpCreateInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_assignment import IPAssignment
+from equinix_metal_t0mk.models.metal_gateway_elastic_ip_create_input import MetalGatewayElasticIpCreateInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -142,11 +142,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MetalGatewaysApi(api_client)
+    api_instance = equinix_metal_t0mk.MetalGatewaysApi(api_client)
     id = 'id_example' # str | Metal Gateway UUID
-    metal_gateway_elastic_ip_create_input = equinix_metal.MetalGatewayElasticIpCreateInput() # MetalGatewayElasticIpCreateInput | 
+    metal_gateway_elastic_ip_create_input = equinix_metal_t0mk.MetalGatewayElasticIpCreateInput() # MetalGatewayElasticIpCreateInput | 
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
@@ -207,14 +207,14 @@ Deletes a metal gateway and any elastic IP assignments associated with this meta
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -230,9 +230,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MetalGatewaysApi(api_client)
+    api_instance = equinix_metal_t0mk.MetalGatewaysApi(api_client)
     id = 'id_example' # str | Metal Gateway UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -291,14 +291,14 @@ Returns a specific metal gateway
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -314,9 +314,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MetalGatewaysApi(api_client)
+    api_instance = equinix_metal_t0mk.MetalGatewaysApi(api_client)
     id = 'id_example' # str | Metal Gateway UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -375,14 +375,14 @@ Return all metal gateways for a project
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.metal_gateway_list import MetalGatewayList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.metal_gateway_list import MetalGatewayList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -398,9 +398,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MetalGatewaysApi(api_client)
+    api_instance = equinix_metal_t0mk.MetalGatewaysApi(api_client)
     project_id = 'project_id_example' # str | Project UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -468,14 +468,14 @@ Returns the list of Elastic IPs assigned to this Metal Gateway
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.ip_assignment_list import IPAssignmentList
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_assignment_list import IPAssignmentList
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -491,9 +491,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.MetalGatewaysApi(api_client)
+    api_instance = equinix_metal_t0mk.MetalGatewaysApi(api_client)
     id = 'id_example' # str | Metal Gateway UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)

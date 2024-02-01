@@ -1,4 +1,4 @@
-# equinix-metal
+# equinix-metal-t0mk
 # Introduction
 Equinix Metal provides a RESTful HTTP API which can be reached at <https://api.equinix.com/metal/v1>. This document describes the API and how to use it.
 
@@ -104,7 +104,7 @@ pip install git+https://github.com/equinix-labs/metal-python.git
 
 Then import the package:
 ```python
-import equinix_metal
+import equinix_metal_t0mk
 ```
 
 ### Setuptools
@@ -118,7 +118,7 @@ python setup.py install --user
 
 Then import the package:
 ```python
-import equinix_metal
+import equinix_metal_t0mk
 ```
 
 ### Tests
@@ -132,13 +132,13 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```python
 
 import time
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -155,10 +155,10 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.AuthenticationApi(api_client)
-    auth_token_input = equinix_metal.AuthTokenInput() # AuthTokenInput | API key to create
+    api_instance = equinix_metal_t0mk.AuthenticationApi(api_client)
+    auth_token_input = equinix_metal_t0mk.AuthTokenInput() # AuthTokenInput | API key to create
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.metadata_network import MetadataNetwork  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.metadata_network import MetadataNetwork  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestMetadataNetwork(unittest.TestCase):
     """MetadataNetwork unit test stubs"""
@@ -36,7 +36,7 @@ class TestMetadataNetwork(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MetadataNetwork`
         """
-        model = equinix_metal.models.metadata_network.MetadataNetwork()  # noqa: E501
+        model = equinix_metal_t0mk.models.metadata_network.MetadataNetwork()  # noqa: E501
         if include_optional :
             return MetadataNetwork(
                 addresses = [
@@ -46,8 +46,8 @@ class TestMetadataNetwork(unittest.TestCase):
                 interfaces = [
                     None
                     ], 
-                network = equinix_metal.models.metadata_network_network.Metadata_network_network(
-                    bonding = equinix_metal.models.metadata_network_network_bonding.Metadata_network_network_bonding(
+                network = equinix_metal_t0mk.models.metadata_network_network.Metadata_network_network(
+                    bonding = equinix_metal_t0mk.models.metadata_network_network_bonding.Metadata_network_network_bonding(
                         href = '', 
                         link_aggregation = '', 
                         mac = '', 

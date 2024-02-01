@@ -1,7 +1,7 @@
-name: Release Package to PyPI
+name: Do GitHub release  and publish to PyPI
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+
 env:
   PACKAGE_DIR: equinix_metal
   DIST_DIR: equinix_metal/dist
@@ -14,6 +14,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -36,5 +38,20 @@ jobs:
         user: __token__
         password: ${{ secrets.PYPI_API_TOKEN }}
         packages-dir: ${{ env.DIST_DIR }}
+
+    - name: Do GitHub release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          semantic_version: 19.0.5
+          extra_plugins: |
+            @semantic-release/exec@6.0.3
+            @semantic-release/git@10.0.0
+            conventional-changelog-conventionalcommits@4.6.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_AUTHOR_NAME: equinix-labs@auto-commit-workflow
+          GIT_AUTHOR_EMAIL: bot@equinix.noreply.github.com
+          GIT_COMMITTER_NAME: equinix-labs@auto-commit-workflow
+          GIT_COMMITTER_EMAIL: bot@equinix.noreply.github.com
 
 

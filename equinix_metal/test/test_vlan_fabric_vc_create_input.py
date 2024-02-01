@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.vlan_fabric_vc_create_input import VlanFabricVcCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.vlan_fabric_vc_create_input import VlanFabricVcCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVlanFabricVcCreateInput(unittest.TestCase):
     """VlanFabricVcCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestVlanFabricVcCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VlanFabricVcCreateInput`
         """
-        model = equinix_metal.models.vlan_fabric_vc_create_input.VlanFabricVcCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.vlan_fabric_vc_create_input.VlanFabricVcCreateInput()  # noqa: E501
         if include_optional :
             return VlanFabricVcCreateInput(
                 contact_email = '', 

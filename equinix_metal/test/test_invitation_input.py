@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.invitation_input import InvitationInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.invitation_input import InvitationInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestInvitationInput(unittest.TestCase):
     """InvitationInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestInvitationInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `InvitationInput`
         """
-        model = equinix_metal.models.invitation_input.InvitationInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.invitation_input.InvitationInput()  # noqa: E501
         if include_optional :
             return InvitationInput(
                 href = '', 

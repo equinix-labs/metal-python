@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.auth_token import AuthToken  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.auth_token import AuthToken  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestAuthToken(unittest.TestCase):
     """AuthToken unit test stubs"""
@@ -36,7 +36,7 @@ class TestAuthToken(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AuthToken`
         """
-        model = equinix_metal.models.auth_token.AuthToken()  # noqa: E501
+        model = equinix_metal_t0mk.models.auth_token.AuthToken()  # noqa: E501
         if include_optional :
             return AuthToken(
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

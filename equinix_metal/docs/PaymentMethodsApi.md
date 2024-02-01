@@ -1,4 +1,4 @@
-# equinix_metal.PaymentMethodsApi
+# equinix_metal_t0mk.PaymentMethodsApi
 
 All URIs are relative to *https://api.equinix.com/metal/v1*
 
@@ -22,13 +22,13 @@ Deletes the payment method.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -44,9 +44,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PaymentMethodsApi(api_client)
+    api_instance = equinix_metal_t0mk.PaymentMethodsApi(api_client)
     id = 'id_example' # str | Payment Method UUID
 
     try:
@@ -99,14 +99,14 @@ Returns a payment method
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.payment_method import PaymentMethod
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.payment_method import PaymentMethod
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -122,9 +122,9 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PaymentMethodsApi(api_client)
+    api_instance = equinix_metal_t0mk.PaymentMethodsApi(api_client)
     id = 'id_example' # str | Payment Method UUID
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
@@ -181,15 +181,15 @@ Updates the payment method.
 ```python
 import time
 import os
-import equinix_metal
-from equinix_metal.models.payment_method import PaymentMethod
-from equinix_metal.models.payment_method_update_input import PaymentMethodUpdateInput
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.payment_method import PaymentMethod
+from equinix_metal_t0mk.models.payment_method_update_input import PaymentMethodUpdateInput
+from equinix_metal_t0mk.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to https://api.equinix.com/metal/v1
 # See configuration.py for a list of all supported configuration parameters.
-configuration = equinix_metal.Configuration(
+configuration = equinix_metal_t0mk.Configuration(
     host = "https://api.equinix.com/metal/v1"
 )
 
@@ -205,11 +205,11 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['x_auth_token'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with equinix_metal.ApiClient(configuration) as api_client:
+with equinix_metal_t0mk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = equinix_metal.PaymentMethodsApi(api_client)
+    api_instance = equinix_metal_t0mk.PaymentMethodsApi(api_client)
     id = 'id_example' # str | Payment Method UUID
-    payment_method_update_input = equinix_metal.PaymentMethodUpdateInput() # PaymentMethodUpdateInput | Payment Method to update
+    payment_method_update_input = equinix_metal_t0mk.PaymentMethodUpdateInput() # PaymentMethodUpdateInput | Payment Method to update
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
 
     try:

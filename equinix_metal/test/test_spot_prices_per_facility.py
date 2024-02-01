@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_prices_per_facility import SpotPricesPerFacility  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.spot_prices_per_facility import SpotPricesPerFacility  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSpotPricesPerFacility(unittest.TestCase):
     """SpotPricesPerFacility unit test stubs"""
@@ -36,35 +36,35 @@ class TestSpotPricesPerFacility(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SpotPricesPerFacility`
         """
-        model = equinix_metal.models.spot_prices_per_facility.SpotPricesPerFacility()  # noqa: E501
+        model = equinix_metal_t0mk.models.spot_prices_per_facility.SpotPricesPerFacility()  # noqa: E501
         if include_optional :
             return SpotPricesPerFacility(
-                baremetal_0 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                baremetal_0 = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, ), 
-                baremetal_1 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                baremetal_1 = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, ), 
-                baremetal_2 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                baremetal_2 = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, ), 
-                baremetal_2a = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                baremetal_2a = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, ), 
-                baremetal_2a2 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                baremetal_2a2 = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, ), 
-                baremetal_3 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                baremetal_3 = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, ), 
-                baremetal_s = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                baremetal_s = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, ), 
-                c2_medium_x86 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                c2_medium_x86 = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, ), 
                 href = '', 
-                m2_xlarge_x86 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
+                m2_xlarge_x86 = equinix_metal_t0mk.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, )
             )

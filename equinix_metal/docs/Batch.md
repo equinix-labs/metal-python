@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.batch import Batch
+from equinix_metal_t0mk.models.batch import Batch
 
 # TODO update the JSON string below
 json = "{}"

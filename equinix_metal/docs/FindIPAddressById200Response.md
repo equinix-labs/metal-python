@@ -42,7 +42,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
+from equinix_metal_t0mk.models.find_ip_address_by_id200_response import FindIPAddressById200Response
 
 # TODO update the JSON string below
 json = "{}"

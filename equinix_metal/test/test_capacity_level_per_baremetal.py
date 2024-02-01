@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.capacity_level_per_baremetal import CapacityLevelPerBaremetal  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_level_per_baremetal import CapacityLevelPerBaremetal  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestCapacityLevelPerBaremetal(unittest.TestCase):
     """CapacityLevelPerBaremetal unit test stubs"""
@@ -36,7 +36,7 @@ class TestCapacityLevelPerBaremetal(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CapacityLevelPerBaremetal`
         """
-        model = equinix_metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal()  # noqa: E501
+        model = equinix_metal_t0mk.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal()  # noqa: E501
         if include_optional :
             return CapacityLevelPerBaremetal(
                 href = '', 

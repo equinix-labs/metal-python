@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.metal_gateway_list import MetalGatewayList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.metal_gateway_list import MetalGatewayList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestMetalGatewayList(unittest.TestCase):
     """MetalGatewayList unit test stubs"""
@@ -36,16 +36,16 @@ class TestMetalGatewayList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MetalGatewayList`
         """
-        model = equinix_metal.models.metal_gateway_list.MetalGatewayList()  # noqa: E501
+        model = equinix_metal_t0mk.models.metal_gateway_list.MetalGatewayList()  # noqa: E501
         if include_optional :
             return MetalGatewayList(
                 href = '', 
-                meta = equinix_metal.models.meta.Meta(
+                meta = equinix_metal_t0mk.models.meta.Meta(
                     current_page = 56, 
-                    first = equinix_metal.models.href.Href(
+                    first = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     href = '', 
-                    last = equinix_metal.models.href.Href(
+                    last = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     last_page = 56, 
                     next = , 

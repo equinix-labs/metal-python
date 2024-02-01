@@ -15,16 +15,16 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.spot_market_api import SpotMarketApi  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.api.spot_market_api import SpotMarketApi  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 
 class TestSpotMarketApi(unittest.TestCase):
     """SpotMarketApi unit test stubs"""
 
     def setUp(self):
-        self.api = equinix_metal.api.spot_market_api.SpotMarketApi()  # noqa: E501
+        self.api = equinix_metal_t0mk.api.spot_market_api.SpotMarketApi()  # noqa: E501
 
     def tearDown(self):
         pass

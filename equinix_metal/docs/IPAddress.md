@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.ip_address import IPAddress
+from equinix_metal_t0mk.models.ip_address import IPAddress
 
 # TODO update the JSON string below
 json = "{}"

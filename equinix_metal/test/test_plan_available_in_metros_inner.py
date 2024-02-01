@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.plan_available_in_metros_inner import PlanAvailableInMetrosInner  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.plan_available_in_metros_inner import PlanAvailableInMetrosInner  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPlanAvailableInMetrosInner(unittest.TestCase):
     """PlanAvailableInMetrosInner unit test stubs"""
@@ -36,11 +36,11 @@ class TestPlanAvailableInMetrosInner(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PlanAvailableInMetrosInner`
         """
-        model = equinix_metal.models.plan_available_in_metros_inner.PlanAvailableInMetrosInner()  # noqa: E501
+        model = equinix_metal_t0mk.models.plan_available_in_metros_inner.PlanAvailableInMetrosInner()  # noqa: E501
         if include_optional :
             return PlanAvailableInMetrosInner(
                 href = '', 
-                price = equinix_metal.models.plan_available_in_inner_price.Plan_available_in_inner_price(
+                price = equinix_metal_t0mk.models.plan_available_in_inner_price.Plan_available_in_inner_price(
                     hour = 1.23, 
                     href = '', )
             )

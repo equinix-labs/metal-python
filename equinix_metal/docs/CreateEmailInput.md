@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.create_email_input import CreateEmailInput
+from equinix_metal_t0mk.models.create_email_input import CreateEmailInput
 
 # TODO update the JSON string below
 json = "{}"

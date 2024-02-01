@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.error import Error
+from equinix_metal_t0mk.models.error import Error
 
 # TODO update the JSON string below
 json = "{}"

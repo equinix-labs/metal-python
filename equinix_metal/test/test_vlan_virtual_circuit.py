@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.vlan_virtual_circuit import VlanVirtualCircuit  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.vlan_virtual_circuit import VlanVirtualCircuit  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVlanVirtualCircuit(unittest.TestCase):
     """VlanVirtualCircuit unit test stubs"""
@@ -36,7 +36,7 @@ class TestVlanVirtualCircuit(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VlanVirtualCircuit`
         """
-        model = equinix_metal.models.vlan_virtual_circuit.VlanVirtualCircuit()  # noqa: E501
+        model = equinix_metal_t0mk.models.vlan_virtual_circuit.VlanVirtualCircuit()  # noqa: E501
         if include_optional :
             return VlanVirtualCircuit(
                 bill = True, 
@@ -47,9 +47,9 @@ class TestVlanVirtualCircuit(unittest.TestCase):
                 id = '', 
                 name = '', 
                 nni_vlan = 56, 
-                port = equinix_metal.models.href.Href(
+                port = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
-                project = equinix_metal.models.href.Href(
+                project = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 speed = 56, 
                 status = 'pending', 
@@ -58,7 +58,7 @@ class TestVlanVirtualCircuit(unittest.TestCase):
                     ], 
                 type = 'vlan', 
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                virtual_network = equinix_metal.models.href.Href(
+                virtual_network = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 vnid = 56
             )

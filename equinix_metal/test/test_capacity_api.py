@@ -15,16 +15,16 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.capacity_api import CapacityApi  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.api.capacity_api import CapacityApi  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 
 class TestCapacityApi(unittest.TestCase):
     """CapacityApi unit test stubs"""
 
     def setUp(self):
-        self.api = equinix_metal.api.capacity_api.CapacityApi()  # noqa: E501
+        self.api = equinix_metal_t0mk.api.capacity_api.CapacityApi()  # noqa: E501
 
     def tearDown(self):
         pass

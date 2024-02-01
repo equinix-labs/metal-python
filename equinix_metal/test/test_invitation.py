@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.invitation import Invitation  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.invitation import Invitation  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestInvitation(unittest.TestCase):
     """Invitation unit test stubs"""
@@ -36,22 +36,22 @@ class TestInvitation(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Invitation`
         """
-        model = equinix_metal.models.invitation.Invitation()  # noqa: E501
+        model = equinix_metal_t0mk.models.invitation.Invitation()  # noqa: E501
         if include_optional :
             return Invitation(
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 href = '', 
                 id = '', 
-                invitation = equinix_metal.models.href.Href(
+                invitation = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
-                invited_by = equinix_metal.models.href.Href(
+                invited_by = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 invitee = '', 
                 nonce = '', 
-                organization = equinix_metal.models.href.Href(
+                organization = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 projects = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 roles = [

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.address import Address  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.address import Address  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestAddress(unittest.TestCase):
     """Address unit test stubs"""
@@ -36,13 +36,13 @@ class TestAddress(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Address`
         """
-        model = equinix_metal.models.address.Address()  # noqa: E501
+        model = equinix_metal_t0mk.models.address.Address()  # noqa: E501
         if include_optional :
             return Address(
                 address = '', 
                 address2 = '', 
                 city = '', 
-                coordinates = equinix_metal.models.coordinates.Coordinates(
+                coordinates = equinix_metal_t0mk.models.coordinates.Coordinates(
                     href = '', 
                     latitude = '', 
                     longitude = '', ), 

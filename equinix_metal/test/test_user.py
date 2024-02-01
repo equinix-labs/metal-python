@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.user import User  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.user import User  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestUser(unittest.TestCase):
     """User unit test stubs"""
@@ -36,18 +36,18 @@ class TestUser(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `User`
         """
-        model = equinix_metal.models.user.User()  # noqa: E501
+        model = equinix_metal_t0mk.models.user.User()  # noqa: E501
         if include_optional :
             return User(
                 avatar_thumb_url = '', 
                 avatar_url = '', 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                customdata = equinix_metal.models.customdata.customdata(), 
+                customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                 default_organization_id = '', 
                 default_project_id = '', 
                 email = '', 
                 emails = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 first_name = '', 

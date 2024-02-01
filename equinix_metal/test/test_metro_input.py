@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.metro_input import MetroInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.metro_input import MetroInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestMetroInput(unittest.TestCase):
     """MetroInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestMetroInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `MetroInput`
         """
-        model = equinix_metal.models.metro_input.MetroInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.metro_input.MetroInput()  # noqa: E501
         if include_optional :
             return MetroInput(
                 href = '', 

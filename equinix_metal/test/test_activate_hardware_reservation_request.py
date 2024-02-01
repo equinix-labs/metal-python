@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestActivateHardwareReservationRequest(unittest.TestCase):
     """ActivateHardwareReservationRequest unit test stubs"""
@@ -36,7 +36,7 @@ class TestActivateHardwareReservationRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `ActivateHardwareReservationRequest`
         """
-        model = equinix_metal.models.activate_hardware_reservation_request.ActivateHardwareReservationRequest()  # noqa: E501
+        model = equinix_metal_t0mk.models.activate_hardware_reservation_request.ActivateHardwareReservationRequest()  # noqa: E501
         if include_optional :
             return ActivateHardwareReservationRequest(
                 description = '', 

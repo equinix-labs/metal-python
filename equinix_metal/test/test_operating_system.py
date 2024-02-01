@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.operating_system import OperatingSystem  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.operating_system import OperatingSystem  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestOperatingSystem(unittest.TestCase):
     """OperatingSystem unit test stubs"""
@@ -36,7 +36,7 @@ class TestOperatingSystem(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `OperatingSystem`
         """
-        model = equinix_metal.models.operating_system.OperatingSystem()  # noqa: E501
+        model = equinix_metal_t0mk.models.operating_system.OperatingSystem()  # noqa: E501
         if include_optional :
             return OperatingSystem(
                 default_operating_system = True, 
@@ -47,7 +47,7 @@ class TestOperatingSystem(unittest.TestCase):
                 licensed = True, 
                 name = '', 
                 preinstallable = True, 
-                pricing = equinix_metal.models.pricing.pricing(), 
+                pricing = equinix_metal_t0mk.models.pricing.pricing(), 
                 provisionable_on = [
                     ''
                     ], 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.auth_token_list import AuthTokenList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.auth_token_list import AuthTokenList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestAuthTokenList(unittest.TestCase):
     """AuthTokenList unit test stubs"""
@@ -36,11 +36,11 @@ class TestAuthTokenList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AuthTokenList`
         """
-        model = equinix_metal.models.auth_token_list.AuthTokenList()  # noqa: E501
+        model = equinix_metal_t0mk.models.auth_token_list.AuthTokenList()  # noqa: E501
         if include_optional :
             return AuthTokenList(
                 api_keys = [
-                    equinix_metal.models.auth_token.AuthToken(
+                    equinix_metal_t0mk.models.auth_token.AuthToken(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         description = '', 
                         href = '', 

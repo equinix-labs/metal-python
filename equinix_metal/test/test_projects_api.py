@@ -15,16 +15,16 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.projects_api import ProjectsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.api.projects_api import ProjectsApi  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 
 class TestProjectsApi(unittest.TestCase):
     """ProjectsApi unit test stubs"""
 
     def setUp(self):
-        self.api = equinix_metal.api.projects_api.ProjectsApi()  # noqa: E501
+        self.api = equinix_metal_t0mk.api.projects_api.ProjectsApi()  # noqa: E501
 
     def tearDown(self):
         pass

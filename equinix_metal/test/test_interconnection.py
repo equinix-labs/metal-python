@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection import Interconnection  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.interconnection import Interconnection  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestInterconnection(unittest.TestCase):
     """Interconnection unit test stubs"""
@@ -36,17 +36,17 @@ class TestInterconnection(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Interconnection`
         """
-        model = equinix_metal.models.interconnection.Interconnection()  # noqa: E501
+        model = equinix_metal_t0mk.models.interconnection.Interconnection()  # noqa: E501
         if include_optional :
             return Interconnection(
                 contact_email = '', 
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 description = '', 
-                facility = equinix_metal.models.href.Href(
+                facility = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 href = '', 
                 id = '', 
-                metro = equinix_metal.models.metro.Metro(
+                metro = equinix_metal_t0mk.models.metro.Metro(
                     code = '', 
                     country = '', 
                     href = '', 
@@ -54,15 +54,15 @@ class TestInterconnection(unittest.TestCase):
                     name = '', ), 
                 mode = 'standard', 
                 name = '', 
-                organization = equinix_metal.models.href.Href(
+                organization = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 ports = [
-                    equinix_metal.models.interconnection_port.InterconnectionPort(
+                    equinix_metal_t0mk.models.interconnection_port.InterconnectionPort(
                         href = '', 
                         id = '', 
                         link_status = '', 
                         name = '', 
-                        organization = equinix_metal.models.href.Href(
+                        organization = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         role = 'primary', 
                         speed = 56, 
@@ -73,10 +73,10 @@ class TestInterconnection(unittest.TestCase):
                             ], )
                     ], 
                 redundancy = 'primary', 
-                requested_by = equinix_metal.models.href.Href(
+                requested_by = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 service_tokens = [
-                    equinix_metal.models.fabric_service_token.FabricServiceToken(
+                    equinix_metal_t0mk.models.fabric_service_token.FabricServiceToken(
                         expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         href = '', 
                         id = '', 

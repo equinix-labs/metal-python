@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.ip_reservation_list_ip_addresses_inner import IPReservationListIpAddressesInner
+from equinix_metal_t0mk.models.ip_reservation_list_ip_addresses_inner import IPReservationListIpAddressesInner
 
 # TODO update the JSON string below
 json = "{}"

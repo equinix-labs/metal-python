@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.create_self_service_reservation_request import CreateSelfServiceReservationRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.create_self_service_reservation_request import CreateSelfServiceReservationRequest  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestCreateSelfServiceReservationRequest(unittest.TestCase):
     """CreateSelfServiceReservationRequest unit test stubs"""
@@ -36,12 +36,12 @@ class TestCreateSelfServiceReservationRequest(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CreateSelfServiceReservationRequest`
         """
-        model = equinix_metal.models.create_self_service_reservation_request.CreateSelfServiceReservationRequest()  # noqa: E501
+        model = equinix_metal_t0mk.models.create_self_service_reservation_request.CreateSelfServiceReservationRequest()  # noqa: E501
         if include_optional :
             return CreateSelfServiceReservationRequest(
                 href = '', 
                 item = [
-                    equinix_metal.models.self_service_reservation_item_request.SelfServiceReservationItemRequest(
+                    equinix_metal_t0mk.models.self_service_reservation_item_request.SelfServiceReservationItemRequest(
                         amount = 1.337, 
                         href = '', 
                         metro_id = '', 
@@ -50,7 +50,7 @@ class TestCreateSelfServiceReservationRequest(unittest.TestCase):
                         term = '', )
                     ], 
                 notes = '', 
-                period = equinix_metal.models.create_self_service_reservation_request_period.CreateSelfServiceReservationRequest_period(
+                period = equinix_metal_t0mk.models.create_self_service_reservation_request_period.CreateSelfServiceReservationRequest_period(
                     count = 12, 
                     href = '', 
                     unit = 'monthly', ), 

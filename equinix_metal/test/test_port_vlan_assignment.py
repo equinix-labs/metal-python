@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment import PortVlanAssignment  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.port_vlan_assignment import PortVlanAssignment  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPortVlanAssignment(unittest.TestCase):
     """PortVlanAssignment unit test stubs"""
@@ -36,18 +36,18 @@ class TestPortVlanAssignment(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `PortVlanAssignment`
         """
-        model = equinix_metal.models.port_vlan_assignment.PortVlanAssignment()  # noqa: E501
+        model = equinix_metal_t0mk.models.port_vlan_assignment.PortVlanAssignment()  # noqa: E501
         if include_optional :
             return PortVlanAssignment(
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 href = '', 
                 id = '', 
                 native = True, 
-                port = equinix_metal.models.href.Href(
+                port = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 state = 'assigned', 
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                virtual_network = equinix_metal.models.href.Href(
+                virtual_network = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 vlan = 56
             )

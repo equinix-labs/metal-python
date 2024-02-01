@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.device_project_lite import DeviceProjectLite  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.device_project_lite import DeviceProjectLite  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestDeviceProjectLite(unittest.TestCase):
     """DeviceProjectLite unit test stubs"""
@@ -36,7 +36,7 @@ class TestDeviceProjectLite(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `DeviceProjectLite`
         """
-        model = equinix_metal.models.device_project_lite.DeviceProjectLite()  # noqa: E501
+        model = equinix_metal_t0mk.models.device_project_lite.DeviceProjectLite()  # noqa: E501
         if include_optional :
             return DeviceProjectLite(
                 href = ''

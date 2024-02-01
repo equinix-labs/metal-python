@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.ssh_key_list import SSHKeyList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ssh_key_list import SSHKeyList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestSSHKeyList(unittest.TestCase):
     """SSHKeyList unit test stubs"""
@@ -36,14 +36,14 @@ class TestSSHKeyList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `SSHKeyList`
         """
-        model = equinix_metal.models.ssh_key_list.SSHKeyList()  # noqa: E501
+        model = equinix_metal_t0mk.models.ssh_key_list.SSHKeyList()  # noqa: E501
         if include_optional :
             return SSHKeyList(
                 href = '', 
                 ssh_keys = [
-                    equinix_metal.models.ssh_key.SSHKey(
+                    equinix_metal_t0mk.models.ssh_key.SSHKey(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                        entity = equinix_metal.models.href.Href(
+                        entity = equinix_metal_t0mk.models.href.Href(
                             href = '', ), 
                         fingerprint = '', 
                         href = '', 

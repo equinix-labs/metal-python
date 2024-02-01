@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.filesystem import Filesystem  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.filesystem import Filesystem  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestFilesystem(unittest.TestCase):
     """Filesystem unit test stubs"""
@@ -36,11 +36,11 @@ class TestFilesystem(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Filesystem`
         """
-        model = equinix_metal.models.filesystem.Filesystem()  # noqa: E501
+        model = equinix_metal_t0mk.models.filesystem.Filesystem()  # noqa: E501
         if include_optional :
             return Filesystem(
                 href = '', 
-                mount = equinix_metal.models.mount.Mount(
+                mount = equinix_metal_t0mk.models.mount.Mount(
                     device = '', 
                     format = '', 
                     href = '', 

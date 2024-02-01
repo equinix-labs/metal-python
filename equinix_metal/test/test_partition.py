@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.partition import Partition  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.partition import Partition  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestPartition(unittest.TestCase):
     """Partition unit test stubs"""
@@ -36,7 +36,7 @@ class TestPartition(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `Partition`
         """
-        model = equinix_metal.models.partition.Partition()  # noqa: E501
+        model = equinix_metal_t0mk.models.partition.Partition()  # noqa: E501
         if include_optional :
             return Partition(
                 href = '', 

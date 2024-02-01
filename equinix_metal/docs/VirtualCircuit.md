@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.virtual_circuit import VirtualCircuit
+from equinix_metal_t0mk.models.virtual_circuit import VirtualCircuit
 
 # TODO update the JSON string below
 json = "{}"

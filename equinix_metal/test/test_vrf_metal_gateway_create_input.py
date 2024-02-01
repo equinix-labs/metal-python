@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_metal_gateway_create_input import VrfMetalGatewayCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.vrf_metal_gateway_create_input import VrfMetalGatewayCreateInput  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestVrfMetalGatewayCreateInput(unittest.TestCase):
     """VrfMetalGatewayCreateInput unit test stubs"""
@@ -36,7 +36,7 @@ class TestVrfMetalGatewayCreateInput(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `VrfMetalGatewayCreateInput`
         """
-        model = equinix_metal.models.vrf_metal_gateway_create_input.VrfMetalGatewayCreateInput()  # noqa: E501
+        model = equinix_metal_t0mk.models.vrf_metal_gateway_create_input.VrfMetalGatewayCreateInput()  # noqa: E501
         if include_optional :
             return VrfMetalGatewayCreateInput(
                 href = '', 

@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.attribute_data import AttributeData  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.attribute_data import AttributeData  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestAttributeData(unittest.TestCase):
     """AttributeData unit test stubs"""
@@ -36,7 +36,7 @@ class TestAttributeData(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `AttributeData`
         """
-        model = equinix_metal.models.attribute_data.AttributeData()  # noqa: E501
+        model = equinix_metal_t0mk.models.attribute_data.AttributeData()  # noqa: E501
         if include_optional :
             return AttributeData(
                 href = '', 

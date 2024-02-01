@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_reservation import IPReservation  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.ip_reservation import IPReservation  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestIPReservation(unittest.TestCase):
     """IPReservation unit test stubs"""
@@ -36,14 +36,14 @@ class TestIPReservation(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `IPReservation`
         """
-        model = equinix_metal.models.ip_reservation.IPReservation()  # noqa: E501
+        model = equinix_metal_t0mk.models.ip_reservation.IPReservation()  # noqa: E501
         if include_optional :
             return IPReservation(
                 addon = True, 
                 address = '', 
                 address_family = 56, 
                 assignments = [
-                    equinix_metal.models.href.Href(
+                    equinix_metal_t0mk.models.href.Href(
                         href = '', )
                     ], 
                 available = '', 
@@ -60,7 +60,7 @@ class TestIPReservation(unittest.TestCase):
                 id = '', 
                 manageable = True, 
                 management = True, 
-                metal_gateway = equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
+                metal_gateway = equinix_metal_t0mk.models.metal_gateway_lite.MetalGatewayLite(
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     gateway_address = '10.1.2.1/27', 
                     href = '', 
@@ -71,14 +71,14 @@ class TestIPReservation(unittest.TestCase):
                 metro = None, 
                 netmask = '', 
                 network = '', 
-                project = equinix_metal.models.project.Project(
+                project = equinix_metal_t0mk.models.project.Project(
                     backend_transfer_enabled = True, 
-                    bgp_config = equinix_metal.models.href.Href(
+                    bgp_config = equinix_metal_t0mk.models.href.Href(
                         href = '', ), 
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    customdata = equinix_metal.models.customdata.customdata(), 
+                    customdata = equinix_metal_t0mk.models.customdata.customdata(), 
                     devices = [
-                        equinix_metal.models.href.Href(
+                        equinix_metal_t0mk.models.href.Href(
                             href = '', )
                         ], 
                     href = '', 
@@ -86,7 +86,7 @@ class TestIPReservation(unittest.TestCase):
                     invitations = [
                         
                         ], 
-                    max_devices = equinix_metal.models.max_devices.max_devices(), 
+                    max_devices = equinix_metal_t0mk.models.max_devices.max_devices(), 
                     members = [
                         
                         ], 
@@ -94,7 +94,7 @@ class TestIPReservation(unittest.TestCase):
                         
                         ], 
                     name = '0', 
-                    network_status = equinix_metal.models.network_status.network_status(), 
+                    network_status = equinix_metal_t0mk.models.network_status.network_status(), 
                     organization = , 
                     payment_method = , 
                     ssh_keys = [
@@ -108,10 +108,10 @@ class TestIPReservation(unittest.TestCase):
                     volumes = [
                         
                         ], ), 
-                project_lite = equinix_metal.models.href.Href(
+                project_lite = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 public = True, 
-                requested_by = equinix_metal.models.href.Href(
+                requested_by = equinix_metal_t0mk.models.href.Href(
                     href = '', ), 
                 state = '', 
                 tags = [

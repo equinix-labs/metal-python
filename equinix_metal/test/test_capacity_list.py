@@ -16,9 +16,9 @@
 import unittest
 import datetime
 
-import equinix_metal
-from equinix_metal.models.capacity_list import CapacityList  # noqa: E501
-from equinix_metal.rest import ApiException
+import equinix_metal_t0mk
+from equinix_metal_t0mk.models.capacity_list import CapacityList  # noqa: E501
+from equinix_metal_t0mk.rest import ApiException
 
 class TestCapacityList(unittest.TestCase):
     """CapacityList unit test stubs"""
@@ -36,12 +36,12 @@ class TestCapacityList(unittest.TestCase):
             optional params are included """
         # uncomment below to create an instance of `CapacityList`
         """
-        model = equinix_metal.models.capacity_list.CapacityList()  # noqa: E501
+        model = equinix_metal_t0mk.models.capacity_list.CapacityList()  # noqa: E501
         if include_optional :
             return CapacityList(
                 capacity = {
                     'key' : {
-                        'key' : equinix_metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
+                        'key' : equinix_metal_t0mk.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal(
                             href = '', 
                             level = '', )
                         }

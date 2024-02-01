@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from equinix_metal.models.vrf_route import VrfRoute
+from equinix_metal_t0mk.models.vrf_route import VrfRoute
 
 # TODO update the JSON string below
 json = "{}"
