@@ -1,13 +1,13 @@
 name: Do GitHub release  and publish to PyPI
 on:
-  workflow_dispatch:
+  workflow_dispatch: null
 
 env:
   PACKAGE_DIR: equinix_metal
   DIST_DIR: equinix_metal/dist
   PYTHON_VERSION: 3.8
 jobs:
-  build:
+  release:
     name: Build and publish package
     runs-on: ubuntu-latest
 
