@@ -1,4 +1,5 @@
-PACKAGE_VERSION=0.6.0
+VERSION_FILE=version
+PACKAGE_VERSION := $(shell cat ${VERSION_FILE})
 
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
 OPENAPI_CODEGEN_TAG=v7.0.0
