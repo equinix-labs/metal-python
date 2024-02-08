@@ -2,6 +2,7 @@ VERSION_FILE=version
 PACKAGE_VERSION := $(shell cat ${VERSION_FILE})
 
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
+
 OPENAPI_CODEGEN_TAG=v7.0.0
 OPENAPI_CODEGEN_IMAGE=openapitools/openapi-generator-cli:${OPENAPI_CODEGEN_TAG}
 CURRENT_UID := $(shell id -u)
