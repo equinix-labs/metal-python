@@ -1,4 +1,5 @@
-PACKAGE_VERSION=0.6.0
+VERSION_FILE=version
+PACKAGE_VERSION := $(shell cat ${VERSION_FILE})
 
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
 OPENAPI_CODEGEN_TAG=v7.0.0
@@ -9,7 +10,7 @@ OPENAPI_COMMAND=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/l
 GIT_REPO=metal-python
 GIT_ORG=equinix-labs
 OPENAPI_CONFIG:=config/openapi-generator.json
-PACKAGE_NAME=equinix_metal
+PACKAGE_NAME=equinix_metal_t0mk
 STITCHED_DIR=oas3.stitched
 STITCHED_FILE=metal_openapi.yaml
 FETCH_SPEC_COMMAND=docker run --rm -u ${CURRENT_UID}:${CURRENT_GID} -v $(CURDIR):/workdir --entrypoint sh mikefarah/yq:4.30.8 scripts/download_spec.sh
