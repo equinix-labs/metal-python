@@ -1,4 +1,5 @@
 VERSION_FILE=version
+
 PACKAGE_VERSION := $(shell cat ${VERSION_FILE})
 
 SPEC_PATCHED_FILE=./metal_openapi.fixed.yaml
