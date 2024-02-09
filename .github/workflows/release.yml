@@ -3,8 +3,8 @@ on:
   workflow_dispatch: null
 
 env:
-  PACKAGE_DIR: equinix_metal
-  DIST_DIR: equinix_metal/dist
+  PACKAGE_DIR: equinix_metal_t0mk
+  DIST_DIR: equinix_metal_t0mk/dist
   PYTHON_VERSION: 3.8
 jobs:
   build:
@@ -56,5 +56,5 @@ jobs:
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
         packages-dir: ${{ env.DIST_DIR }}
+#        password: ${{ secrets.PYPI_API_TOKEN }}

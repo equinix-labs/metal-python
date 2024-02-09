@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "equinix_metal_t0mk"
+version = ""
+description = "Metal API"
+authors = ["Equinix Metal API Team <support@equinixmetal.com>"]
+license = "Equinix Metal"
+readme = "README.md"
+repository = "https://github.com/equinix-labs/metal-python"
+keywords = ["OpenAPI", "OpenAPI-Generator", "Metal API"]
+include = ["equinix_metal_t0mk/py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+urllib3 = ">= 1.25.3"
+python-dateutil = ">=2.8.2"
+pydantic = "^1.10.5, <2"
+aenum = ">=3.1.11"
+
+[tool.poetry.dev-dependencies]
+pytest = ">=7.2.1"
+tox = ">=3.9.0"
+flake8 = ">=4.0.0"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.pylint.'MESSAGES CONTROL']
+extension-pkg-whitelist = "pydantic"
