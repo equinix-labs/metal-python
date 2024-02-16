@@ -22,12 +22,14 @@ import re  # noqa: F401
 from typing import Any, List, Optional
 from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from equinix_metal.models.dedicated_port_create_input import DedicatedPortCreateInput
+from equinix_metal.models.shared_port_vc_vlan_create_input import SharedPortVCVlanCreateInput
+from equinix_metal.models.vlan_csp_connection_create_input import VlanCSPConnectionCreateInput
 from equinix_metal.models.vlan_fabric_vc_create_input import VlanFabricVcCreateInput
 from equinix_metal.models.vrf_fabric_vc_create_input import VrfFabricVcCreateInput
 from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
 
-CREATEORGANIZATIONINTERCONNECTIONREQUEST_ONE_OF_SCHEMAS = ["DedicatedPortCreateInput", "VlanFabricVcCreateInput", "VrfFabricVcCreateInput"]
+CREATEORGANIZATIONINTERCONNECTIONREQUEST_ONE_OF_SCHEMAS = ["DedicatedPortCreateInput", "SharedPortVCVlanCreateInput", "VlanCSPConnectionCreateInput", "VlanFabricVcCreateInput", "VrfFabricVcCreateInput"]
 
 class CreateOrganizationInterconnectionRequest(BaseModel):
     """
@@ -39,8 +41,12 @@ class CreateOrganizationInterconnectionRequest(BaseModel):
     oneof_schema_2_validator: Optional[VlanFabricVcCreateInput] = None
     # data type: VrfFabricVcCreateInput
     oneof_schema_3_validator: Optional[VrfFabricVcCreateInput] = None
+    # data type: SharedPortVCVlanCreateInput
+    oneof_schema_4_validator: Optional[SharedPortVCVlanCreateInput] = None
+    # data type: VlanCSPConnectionCreateInput
+    oneof_schema_5_validator: Optional[VlanCSPConnectionCreateInput] = None
     if TYPE_CHECKING:
-        actual_instance: Union[DedicatedPortCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput]
+        actual_instance: Union[DedicatedPortCreateInput, SharedPortVCVlanCreateInput, VlanCSPConnectionCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput]
     else:
         actual_instance: Any
     one_of_schemas: List[str] = Field(CREATEORGANIZATIONINTERCONNECTIONREQUEST_ONE_OF_SCHEMAS, const=True)
@@ -78,12 +84,22 @@ class CreateOrganizationInterconnectionRequest(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `VrfFabricVcCreateInput`")
         else:
             match += 1
+        # validate data type: SharedPortVCVlanCreateInput
+        if not isinstance(v, SharedPortVCVlanCreateInput):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `SharedPortVCVlanCreateInput`")
+        else:
+            match += 1
+        # validate data type: VlanCSPConnectionCreateInput
+        if not isinstance(v, VlanCSPConnectionCreateInput):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `VlanCSPConnectionCreateInput`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CreateOrganizationInterconnectionRequest with oneOf schemas: DedicatedPortCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CreateOrganizationInterconnectionRequest with oneOf schemas: DedicatedPortCreateInput, SharedPortVCVlanCreateInput, VlanCSPConnectionCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CreateOrganizationInterconnectionRequest with oneOf schemas: DedicatedPortCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CreateOrganizationInterconnectionRequest with oneOf schemas: DedicatedPortCreateInput, SharedPortVCVlanCreateInput, VlanCSPConnectionCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -116,13 +132,25 @@ class CreateOrganizationInterconnectionRequest(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into SharedPortVCVlanCreateInput
+        try:
+            instance.actual_instance = SharedPortVCVlanCreateInput.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        # deserialize data into VlanCSPConnectionCreateInput
+        try:
+            instance.actual_instance = VlanCSPConnectionCreateInput.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CreateOrganizationInterconnectionRequest with oneOf schemas: DedicatedPortCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CreateOrganizationInterconnectionRequest with oneOf schemas: DedicatedPortCreateInput, SharedPortVCVlanCreateInput, VlanCSPConnectionCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CreateOrganizationInterconnectionRequest with oneOf schemas: DedicatedPortCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CreateOrganizationInterconnectionRequest with oneOf schemas: DedicatedPortCreateInput, SharedPortVCVlanCreateInput, VlanCSPConnectionCreateInput, VlanFabricVcCreateInput, VrfFabricVcCreateInput. Details: " + ", ".join(error_messages))
         else:
             return instance
 

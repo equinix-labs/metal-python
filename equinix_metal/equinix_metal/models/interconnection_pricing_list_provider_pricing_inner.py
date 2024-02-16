@@ -20,43 +20,17 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, StrictStr, conlist
+from equinix_metal.models.interconnection_pricing_list_provider_pricing_inner_tiers_inner import InterconnectionPricingListProviderPricingInnerTiersInner
 
-class DedicatedPortCreateInput(BaseModel):
+class InterconnectionPricingListProviderPricingInner(BaseModel):
     """
-    DedicatedPortCreateInput
+    InterconnectionPricingListProviderPricingInner
     """
-    billing_account_name: Optional[StrictStr] = Field(None, description="The billing account name of the Equinix Fabric account.")
-    contact_email: Optional[StrictStr] = Field(None, description="The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key.")
-    description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
-    metro: StrictStr = Field(..., description="A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports.")
-    mode: Optional[StrictStr] = Field(None, description="The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.")
-    name: StrictStr = Field(...)
-    project: Optional[StrictStr] = None
-    redundancy: StrictStr = Field(..., description="Either 'primary' or 'redundant'.")
-    speed: Optional[StrictInt] = Field(None, description="A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps.")
-    tags: Optional[conlist(StrictStr)] = None
-    type: StrictStr = Field(..., description="When requesting for a dedicated port, the value of this field should be 'dedicated'.")
-    use_case: Optional[StrictStr] = Field(None, description="The intended use case of the dedicated port.")
-    __properties = ["billing_account_name", "contact_email", "description", "href", "metro", "mode", "name", "project", "redundancy", "speed", "tags", "type", "use_case"]
-
-    @validator('mode')
-    def mode_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('standard', 'tunnel'):
-            raise ValueError("must be one of enum values ('standard', 'tunnel')")
-        return value
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in ('dedicated', 'shared', 'shared_port_vlan', 'shared_port_vlan_to_csp'):
-            raise ValueError("must be one of enum values ('dedicated', 'shared', 'shared_port_vlan', 'shared_port_vlan_to_csp')")
-        return value
+    provider: Optional[StrictStr] = None
+    tiers: Optional[conlist(InterconnectionPricingListProviderPricingInnerTiersInner)] = None
+    __properties = ["href", "provider", "tiers"]
 
     class Config:
         """Pydantic configuration"""
@@ -72,8 +46,8 @@ class DedicatedPortCreateInput(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> DedicatedPortCreateInput:
-        """Create an instance of DedicatedPortCreateInput from a JSON string"""
+    def from_json(cls, json_str: str) -> InterconnectionPricingListProviderPricingInner:
+        """Create an instance of InterconnectionPricingListProviderPricingInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -82,31 +56,28 @@ class DedicatedPortCreateInput(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of each item in tiers (list)
+        _items = []
+        if self.tiers:
+            for _item in self.tiers:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['tiers'] = _items
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> DedicatedPortCreateInput:
-        """Create an instance of DedicatedPortCreateInput from a dict"""
+    def from_dict(cls, obj: dict) -> InterconnectionPricingListProviderPricingInner:
+        """Create an instance of InterconnectionPricingListProviderPricingInner from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return DedicatedPortCreateInput.parse_obj(obj)
+            return InterconnectionPricingListProviderPricingInner.parse_obj(obj)
 
-        _obj = DedicatedPortCreateInput.parse_obj({
-            "billing_account_name": obj.get("billing_account_name"),
-            "contact_email": obj.get("contact_email"),
-            "description": obj.get("description"),
+        _obj = InterconnectionPricingListProviderPricingInner.parse_obj({
             "href": obj.get("href"),
-            "metro": obj.get("metro"),
-            "mode": obj.get("mode"),
-            "name": obj.get("name"),
-            "project": obj.get("project"),
-            "redundancy": obj.get("redundancy"),
-            "speed": obj.get("speed"),
-            "tags": obj.get("tags"),
-            "type": obj.get("type"),
-            "use_case": obj.get("use_case")
+            "provider": obj.get("provider"),
+            "tiers": [InterconnectionPricingListProviderPricingInnerTiersInner.from_dict(_item) for _item in obj.get("tiers")] if obj.get("tiers") is not None else None
         })
         return _obj
 
