@@ -100,6 +100,23 @@ components:
       description: Error responses are included with 4xx and 5xx HTTP responses from
         the API service. Either "error" or "errors" will be set.
   schemas:
+    AWSFabricProvider:
+      properties:
+        account_id:
+          description: AWS Account ID
+          example: '129312'
+          type: string
+        href:
+          format: uri
+          type: string
+        type:
+          enum:
+          - CSP_AWS
+          type: string
+      required:
+      - account_id
+      - type
+      type: object
     Address:
       properties:
         address:
@@ -871,6 +888,8 @@ components:
           enum:
           - dedicated
           - shared
+          - shared_port_vlan
+          - shared_port_vlan_to_csp
           type: string
         use_case:
           description: The intended use case of the dedicated port.
@@ -2288,6 +2307,12 @@ components:
         - $ref: '#/components/schemas/DeviceCreateInFacilityInput'
     Interconnection:
       properties:
+        authorization_code:
+          description: For Fabric VCs (Metal Billed), this allows Fabric to connect
+            the Metal network to any connection Fabric facilitates. Fabric uses this
+            token to be able to give more detailed information about the Metal end
+            of the network, when viewing resources from within Fabric.
+          type: string
         contact_email:
           type: string
         created_at:
@@ -2403,6 +2428,48 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       type: object
+    InterconnectionMetroList:
+      properties:
+        href:
+          format: uri
+          type: string
+        meta:
+          $ref: '#/components/schemas/Meta'
+        metros:
+          items:
+            $ref: '#/components/schemas/InterconnectionMetroList_metros_inner'
+          type: array
+      type: object
+    InterconnectionMetroList_metros_inner:
+      allOf:
+      - $ref: '#/components/schemas/Metro'
+      - properties:
+          providers:
+            description: A list of providers and their equivalent regions available
+              for connecting to the provider network.
+            items:
+              $ref: '#/components/schemas/InterconnectionMetroList_metros_inner_allOf_providers_inner'
+            type: array
+        type: object
+    InterconnectionMetroList_metros_inner_allOf_providers_inner:
+      properties:
+        href:
+          format: uri
+          type: string
+        locations:
+          items:
+            description: The provider's network region name that is equivalent to
+              the Equinix Metro.
+            example: us-east-1
+            type: string
+          type: array
+        name:
+          example: AWS Direct Connect
+          type: string
+        type:
+          example: CSP_AWS
+          type: string
+      type: object
     InterconnectionPort:
       properties:
         href:
@@ -2455,6 +2522,47 @@ components:
           items:
             $ref: '#/components/schemas/InterconnectionPort'
           type: array
+      type: object
+    InterconnectionPricingList:
+      properties:
+        href:
+          format: uri
+          type: string
+        provider_pricing:
+          description: Pricing information per connection provider.
+          items:
+            $ref: '#/components/schemas/InterconnectionPricingList_provider_pricing_inner'
+          type: array
+      type: object
+    InterconnectionPricingList_provider_pricing_inner:
+      properties:
+        href:
+          format: uri
+          type: string
+        provider:
+          example: CSP_AWS
+          type: string
+        tiers:
+          items:
+            $ref: '#/components/schemas/InterconnectionPricingList_provider_pricing_inner_tiers_inner'
+          type: array
+      type: object
+    InterconnectionPricingList_provider_pricing_inner_tiers_inner:
+      properties:
+        bandwidth:
+          description: Bandwidth tier in Mbps
+          example: 500
+          type: integer
+        billing_cycle:
+          example: monthly
+          type: string
+        href:
+          format: uri
+          type: string
+        price:
+          example: 10.04
+          format: float
+          type: number
       type: object
     InterconnectionUpdateInput:
       properties:
@@ -4172,6 +4280,74 @@ components:
           description: The number of servers to check the capacity of.
           type: string
       type: object
+    SharedPortVCVlanCreateInput:
+      properties:
+        contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
+          type: string
+        description:
+          type: string
+        href:
+          format: uri
+          type: string
+        metro:
+          description: A Metro ID or code. When creating Fabric VCs (Metal Billed),
+            this is where interconnection will be originating from, as we pre-authorize
+            the use of one of our shared ports as the origin of the interconnection
+            using A-Side service tokens. We only allow local connections for Fabric
+            VCs (Metal Billed), so the destination location must be the same as the
+            origin. For Fabric VCs (Fabric Billed), or shared connections, this will
+            be the destination of the interconnection. We allow remote connections
+            for Fabric VCs (Fabric Billed), so the origin of the interconnection can
+            be a different metro set here.
+          type: string
+        name:
+          type: string
+        project:
+          type: string
+        speed:
+          description: 'A interconnection speed, in bps, mbps, or gbps. For Fabric
+            VCs, this represents the maximum speed of the interconnection. For Fabric
+            VCs (Metal Billed), this can only be one of the following:
+
+            ''''50mbps'''', ''''200mbps'''', ''''500mbps'''', ''''1gbps'''', ''''2gbps'''',
+            ''''5gbps'''' or ''''10gbps'''', and is required for creation. For Fabric
+            VCs (Fabric Billed), this field will always default to ''''10gbps''''
+            even if it is not provided.
+
+            For example, ''''500000000'''', ''''50m'''', or'' ''''500mbps'''' will
+            all work as valid inputs.'
+          example: 10000000000
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - shared_port_vlan
+          type: string
+        vlans:
+          description: A list of one or two metro-based VLANs that will be set on
+            the virtual circuits of primary and/or secondary interconnections respectively
+            when creating Fabric VCs. VLANs can also be set after the interconnection
+            is created, but are required to fully activate the virtual circuits.
+          example:
+          - 1000
+          - 1001
+          items:
+            type: integer
+          type: array
+      required:
+      - metro
+      - name
+      - type
+      - vlans
+      type: object
     SpotMarketPricesList:
       properties:
         href:
@@ -4839,6 +5015,82 @@ components:
             $ref: '#/components/schemas/VirtualNetwork'
           type: array
       type: object
+    VlanCSPConnectionCreateInput:
+      properties:
+        contact_email:
+          description: The preferred email used for communication and notifications
+            about the Equinix Fabric interconnection. Required when using a Project
+            API key. Optional and defaults to the primary user email address when
+            using a User API key.
+          format: email
+          type: string
+        description:
+          type: string
+        fabric_provider:
+          $ref: '#/components/schemas/VlanCSPConnectionCreateInput_fabric_provider'
+        href:
+          format: uri
+          type: string
+        metro:
+          description: A Metro ID or code. When creating Fabric VCs (Metal Billed),
+            this is where interconnection will be originating from, as we pre-authorize
+            the use of one of our shared ports as the origin of the interconnection
+            using A-Side service tokens. We only allow local connections for Fabric
+            VCs (Metal Billed), so the destination location must be the same as the
+            origin. For Fabric VCs (Fabric Billed), or shared connections, this will
+            be the destination of the interconnection. We allow remote connections
+            for Fabric VCs (Fabric Billed), so the origin of the interconnection can
+            be a different metro set here.
+          type: string
+        name:
+          type: string
+        project:
+          type: string
+        speed:
+          description: 'A interconnection speed, in bps, mbps, or gbps. For Fabric
+            VCs, this represents the maximum speed of the interconnection. For Fabric
+            VCs (Metal Billed), this can only be one of the following:
+
+            ''''50mbps'''', ''''200mbps'''', ''''500mbps'''', ''''1gbps'''', ''''2gbps'''',
+            ''''5gbps'''' or ''''10gbps'''', and is required for creation. For Fabric
+            VCs (Fabric Billed), this field will always default to ''''10gbps''''
+            even if it is not provided.
+
+            For example, ''''500000000'''', ''''50m'''', or'' ''''500mbps'''' will
+            all work as valid inputs.'
+          example: 10000000000
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - shared_port_vlan_to_csp
+          type: string
+        vlans:
+          description: A list of one or two metro-based VLANs that will be set on
+            the virtual circuits of primary and/or secondary interconnections respectively
+            when creating Fabric VCs. VLANs can also be set after the interconnection
+            is created, but are required to fully activate the virtual circuits.
+          example:
+          - 1000
+          - 1001
+          items:
+            type: integer
+          type: array
+      required:
+      - fabric_provider
+      - metro
+      - name
+      - type
+      - vlans
+      type: object
+    VlanCSPConnectionCreateInput_fabric_provider:
+      description: Configuration information for connecting to external cloud service
+        provider.
+      oneOf:
+      - $ref: '#/components/schemas/AWSFabricProvider'
     VlanFabricVcCreateInput:
       properties:
         contact_email:
@@ -5896,6 +6148,8 @@ components:
       - $ref: '#/components/schemas/DedicatedPortCreateInput'
       - $ref: '#/components/schemas/VlanFabricVcCreateInput'
       - $ref: '#/components/schemas/VrfFabricVcCreateInput'
+      - $ref: '#/components/schemas/SharedPortVCVlanCreateInput'
+      - $ref: '#/components/schemas/VlanCSPConnectionCreateInput'
     findIPAddressById_200_response:
       oneOf:
       - $ref: '#/components/schemas/IPAssignment'
@@ -6535,6 +6789,60 @@ paths:
       summary: Check capacity for a metro
       tags:
       - Capacity
+  /connections/metros:
+    get:
+      description: Displays which providers you can connect to directly from Equinix
+        Metal Metros.
+      operationId: getInterconnectionMetros
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InterconnectionMetroList'
+          description: ok
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Get connectivity to network provider by metro
+      tags:
+      - Interconnections
+  /connections/prices:
+    get:
+      description: Displays pricing information for connecting to networks outside
+        of Equinix.
+      operationId: getInterconnectionPricing
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InterconnectionPricingList'
+          description: ok
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Get Interconnection Pricing
+      tags:
+      - Interconnections
   /connections/{connection_id}:
     delete:
       description: Delete a interconnection, its associated ports and virtual circuits.
