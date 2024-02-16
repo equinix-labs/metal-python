@@ -30,6 +30,7 @@ class Interconnection(BaseModel):
     """
     Interconnection
     """
+    authorization_code: Optional[StrictStr] = Field(None, description="For Fabric VCs (Metal Billed), this allows Fabric to connect the Metal network to any connection Fabric facilitates. Fabric uses this token to be able to give more detailed information about the Metal end of the network, when viewing resources from within Fabric.")
     contact_email: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
     description: Optional[StrictStr] = None
@@ -50,7 +51,7 @@ class Interconnection(BaseModel):
     token: Optional[StrictStr] = Field(None, description="This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated.")
     type: Optional[StrictStr] = Field(None, description="The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports.")
     updated_at: Optional[datetime] = None
-    __properties = ["contact_email", "created_at", "description", "facility", "href", "id", "metro", "mode", "name", "organization", "ports", "redundancy", "requested_by", "service_tokens", "speed", "status", "tags", "token", "type", "updated_at"]
+    __properties = ["authorization_code", "contact_email", "created_at", "description", "facility", "href", "id", "metro", "mode", "name", "organization", "ports", "redundancy", "requested_by", "service_tokens", "speed", "status", "tags", "token", "type", "updated_at"]
 
     @validator('mode')
     def mode_validate_enum(cls, value):
@@ -144,6 +145,7 @@ class Interconnection(BaseModel):
             return Interconnection.parse_obj(obj)
 
         _obj = Interconnection.parse_obj({
+            "authorization_code": obj.get("authorization_code"),
             "contact_email": obj.get("contact_email"),
             "created_at": obj.get("created_at"),
             "description": obj.get("description"),

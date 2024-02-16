@@ -22,40 +22,27 @@ import json
 from typing import List, Optional
 from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
 
-class DedicatedPortCreateInput(BaseModel):
+class SharedPortVCVlanCreateInput(BaseModel):
     """
-    DedicatedPortCreateInput
+    SharedPortVCVlanCreateInput
     """
-    billing_account_name: Optional[StrictStr] = Field(None, description="The billing account name of the Equinix Fabric account.")
     contact_email: Optional[StrictStr] = Field(None, description="The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key.")
     description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
-    metro: StrictStr = Field(..., description="A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports.")
-    mode: Optional[StrictStr] = Field(None, description="The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.")
+    metro: StrictStr = Field(..., description="A Metro ID or code. When creating Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed), or shared connections, this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here.")
     name: StrictStr = Field(...)
     project: Optional[StrictStr] = None
-    redundancy: StrictStr = Field(..., description="Either 'primary' or 'redundant'.")
-    speed: Optional[StrictInt] = Field(None, description="A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps.")
+    speed: Optional[StrictInt] = Field(None, description="A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following: ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.")
     tags: Optional[conlist(StrictStr)] = None
-    type: StrictStr = Field(..., description="When requesting for a dedicated port, the value of this field should be 'dedicated'.")
-    use_case: Optional[StrictStr] = Field(None, description="The intended use case of the dedicated port.")
-    __properties = ["billing_account_name", "contact_email", "description", "href", "metro", "mode", "name", "project", "redundancy", "speed", "tags", "type", "use_case"]
-
-    @validator('mode')
-    def mode_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('standard', 'tunnel'):
-            raise ValueError("must be one of enum values ('standard', 'tunnel')")
-        return value
+    type: StrictStr = Field(...)
+    vlans: conlist(StrictInt) = Field(..., description="A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the virtual circuits.")
+    __properties = ["contact_email", "description", "href", "metro", "name", "project", "speed", "tags", "type", "vlans"]
 
     @validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('dedicated', 'shared', 'shared_port_vlan', 'shared_port_vlan_to_csp'):
-            raise ValueError("must be one of enum values ('dedicated', 'shared', 'shared_port_vlan', 'shared_port_vlan_to_csp')")
+        if value not in ('shared_port_vlan'):
+            raise ValueError("must be one of enum values ('shared_port_vlan')")
         return value
 
     class Config:
@@ -72,8 +59,8 @@ class DedicatedPortCreateInput(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> DedicatedPortCreateInput:
-        """Create an instance of DedicatedPortCreateInput from a JSON string"""
+    def from_json(cls, json_str: str) -> SharedPortVCVlanCreateInput:
+        """Create an instance of SharedPortVCVlanCreateInput from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -85,28 +72,25 @@ class DedicatedPortCreateInput(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> DedicatedPortCreateInput:
-        """Create an instance of DedicatedPortCreateInput from a dict"""
+    def from_dict(cls, obj: dict) -> SharedPortVCVlanCreateInput:
+        """Create an instance of SharedPortVCVlanCreateInput from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return DedicatedPortCreateInput.parse_obj(obj)
+            return SharedPortVCVlanCreateInput.parse_obj(obj)
 
-        _obj = DedicatedPortCreateInput.parse_obj({
-            "billing_account_name": obj.get("billing_account_name"),
+        _obj = SharedPortVCVlanCreateInput.parse_obj({
             "contact_email": obj.get("contact_email"),
             "description": obj.get("description"),
             "href": obj.get("href"),
             "metro": obj.get("metro"),
-            "mode": obj.get("mode"),
             "name": obj.get("name"),
             "project": obj.get("project"),
-            "redundancy": obj.get("redundancy"),
             "speed": obj.get("speed"),
             "tags": obj.get("tags"),
             "type": obj.get("type"),
-            "use_case": obj.get("use_case")
+            "vlans": obj.get("vlans")
         })
         return _obj
 

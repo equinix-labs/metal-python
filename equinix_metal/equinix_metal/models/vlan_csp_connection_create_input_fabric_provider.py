@@ -14,100 +14,115 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
+import json
 import pprint
 import re  # noqa: F401
-import json
 
+from typing import Any, List, Optional
+from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
+from equinix_metal.models.aws_fabric_provider import AWSFabricProvider
+from typing import Union, Any, List, TYPE_CHECKING
+from pydantic import StrictStr, Field
 
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
+VLANCSPCONNECTIONCREATEINPUTFABRICPROVIDER_ONE_OF_SCHEMAS = ["AWSFabricProvider"]
 
-class DedicatedPortCreateInput(BaseModel):
+class VlanCSPConnectionCreateInputFabricProvider(BaseModel):
     """
-    DedicatedPortCreateInput
+    Configuration information for connecting to external cloud service provider.
     """
-    billing_account_name: Optional[StrictStr] = Field(None, description="The billing account name of the Equinix Fabric account.")
-    contact_email: Optional[StrictStr] = Field(None, description="The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key.")
-    description: Optional[StrictStr] = None
-    href: Optional[StrictStr] = None
-    metro: StrictStr = Field(..., description="A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports.")
-    mode: Optional[StrictStr] = Field(None, description="The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.")
-    name: StrictStr = Field(...)
-    project: Optional[StrictStr] = None
-    redundancy: StrictStr = Field(..., description="Either 'primary' or 'redundant'.")
-    speed: Optional[StrictInt] = Field(None, description="A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps.")
-    tags: Optional[conlist(StrictStr)] = None
-    type: StrictStr = Field(..., description="When requesting for a dedicated port, the value of this field should be 'dedicated'.")
-    use_case: Optional[StrictStr] = Field(None, description="The intended use case of the dedicated port.")
-    __properties = ["billing_account_name", "contact_email", "description", "href", "metro", "mode", "name", "project", "redundancy", "speed", "tags", "type", "use_case"]
-
-    @validator('mode')
-    def mode_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in ('standard', 'tunnel'):
-            raise ValueError("must be one of enum values ('standard', 'tunnel')")
-        return value
-
-    @validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in ('dedicated', 'shared', 'shared_port_vlan', 'shared_port_vlan_to_csp'):
-            raise ValueError("must be one of enum values ('dedicated', 'shared', 'shared_port_vlan', 'shared_port_vlan_to_csp')")
-        return value
+    # data type: AWSFabricProvider
+    oneof_schema_1_validator: Optional[AWSFabricProvider] = None
+    if TYPE_CHECKING:
+        actual_instance: Union[AWSFabricProvider]
+    else:
+        actual_instance: Any
+    one_of_schemas: List[str] = Field(VLANCSPCONNECTIONCREATEINPUTFABRICPROVIDER_ONE_OF_SCHEMAS, const=True)
 
     class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
         validate_assignment = True
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+    def __init__(self, *args, **kwargs):
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @validator('actual_instance')
+    def actual_instance_must_validate_oneof(cls, v):
+        instance = VlanCSPConnectionCreateInputFabricProvider.construct()
+        error_messages = []
+        match = 0
+        # validate data type: AWSFabricProvider
+        if not isinstance(v, AWSFabricProvider):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `AWSFabricProvider`")
+        else:
+            match += 1
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when setting `actual_instance` in VlanCSPConnectionCreateInputFabricProvider with oneOf schemas: AWSFabricProvider. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when setting `actual_instance` in VlanCSPConnectionCreateInputFabricProvider with oneOf schemas: AWSFabricProvider. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> VlanCSPConnectionCreateInputFabricProvider:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> VlanCSPConnectionCreateInputFabricProvider:
+        """Returns the object represented by the json string"""
+        instance = VlanCSPConnectionCreateInputFabricProvider.construct()
+        error_messages = []
+        match = 0
+
+        # deserialize data into AWSFabricProvider
+        try:
+            instance.actual_instance = AWSFabricProvider.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when deserializing the JSON string into VlanCSPConnectionCreateInputFabricProvider with oneOf schemas: AWSFabricProvider. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into VlanCSPConnectionCreateInputFabricProvider with oneOf schemas: AWSFabricProvider. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> DedicatedPortCreateInput:
-        """Create an instance of DedicatedPortCreateInput from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: dict) -> DedicatedPortCreateInput:
-        """Create an instance of DedicatedPortCreateInput from a dict"""
-        if obj is None:
+    def to_dict(self) -> dict:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return DedicatedPortCreateInput.parse_obj(obj)
+        to_dict = getattr(self.actual_instance, "to_dict", None)
+        if callable(to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            # primitive type
+            return self.actual_instance
 
-        _obj = DedicatedPortCreateInput.parse_obj({
-            "billing_account_name": obj.get("billing_account_name"),
-            "contact_email": obj.get("contact_email"),
-            "description": obj.get("description"),
-            "href": obj.get("href"),
-            "metro": obj.get("metro"),
-            "mode": obj.get("mode"),
-            "name": obj.get("name"),
-            "project": obj.get("project"),
-            "redundancy": obj.get("redundancy"),
-            "speed": obj.get("speed"),
-            "tags": obj.get("tags"),
-            "type": obj.get("type"),
-            "use_case": obj.get("use_case")
-        })
-        return _obj
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.dict())
 
 
