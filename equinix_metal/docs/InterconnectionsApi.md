@@ -10,7 +10,9 @@ Method | HTTP request | Description
 [**delete_interconnection**](InterconnectionsApi.md#delete_interconnection) | **DELETE** /connections/{connection_id} | Delete interconnection
 [**delete_virtual_circuit**](InterconnectionsApi.md#delete_virtual_circuit) | **DELETE** /virtual-circuits/{id} | Delete a virtual circuit
 [**get_interconnection**](InterconnectionsApi.md#get_interconnection) | **GET** /connections/{connection_id} | Get interconnection
+[**get_interconnection_metros**](InterconnectionsApi.md#get_interconnection_metros) | **GET** /connections/metros | Get connectivity to network provider by metro
 [**get_interconnection_port**](InterconnectionsApi.md#get_interconnection_port) | **GET** /connections/{connection_id}/ports/{id} | Get a interconnection port
+[**get_interconnection_pricing**](InterconnectionsApi.md#get_interconnection_pricing) | **GET** /connections/prices | Get Interconnection Pricing
 [**get_virtual_circuit**](InterconnectionsApi.md#get_virtual_circuit) | **GET** /virtual-circuits/{id} | Get a virtual circuit
 [**list_interconnection_port_virtual_circuits**](InterconnectionsApi.md#list_interconnection_port_virtual_circuits) | **GET** /connections/{connection_id}/ports/{port_id}/virtual-circuits | List a interconnection port&#39;s virtual circuits
 [**list_interconnection_ports**](InterconnectionsApi.md#list_interconnection_ports) | **GET** /connections/{connection_id}/ports | List a interconnection&#39;s ports
@@ -534,6 +536,82 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_interconnection_metros**
+> InterconnectionMetroList get_interconnection_metros()
+
+Get connectivity to network provider by metro
+
+Displays which providers you can connect to directly from Equinix Metal Metros.
+
+### Example
+
+* Api Key Authentication (x_auth_token):
+```python
+import time
+import os
+import equinix_metal
+from equinix_metal.models.interconnection_metro_list import InterconnectionMetroList
+from equinix_metal.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.equinix.com/metal/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = equinix_metal.Configuration(
+    host = "https://api.equinix.com/metal/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: x_auth_token
+configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x_auth_token'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with equinix_metal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = equinix_metal.InterconnectionsApi(api_client)
+
+    try:
+        # Get connectivity to network provider by metro
+        api_response = api_instance.get_interconnection_metros()
+        print("The response of InterconnectionsApi->get_interconnection_metros:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling InterconnectionsApi->get_interconnection_metros: %s\n" % e)
+```
+
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**InterconnectionMetroList**](InterconnectionMetroList.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | ok |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_interconnection_port**
 > InterconnectionPort get_interconnection_port(connection_id, id, include=include, exclude=exclude)
 
@@ -601,6 +679,82 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InterconnectionPort**](InterconnectionPort.md)
+
+### Authorization
+
+[x_auth_token](../README.md#x_auth_token)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | ok |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_interconnection_pricing**
+> InterconnectionPricingList get_interconnection_pricing()
+
+Get Interconnection Pricing
+
+Displays pricing information for connecting to networks outside of Equinix.
+
+### Example
+
+* Api Key Authentication (x_auth_token):
+```python
+import time
+import os
+import equinix_metal
+from equinix_metal.models.interconnection_pricing_list import InterconnectionPricingList
+from equinix_metal.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.equinix.com/metal/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = equinix_metal.Configuration(
+    host = "https://api.equinix.com/metal/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: x_auth_token
+configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['x_auth_token'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with equinix_metal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = equinix_metal.InterconnectionsApi(api_client)
+
+    try:
+        # Get Interconnection Pricing
+        api_response = api_instance.get_interconnection_pricing()
+        print("The response of InterconnectionsApi->get_interconnection_pricing:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling InterconnectionsApi->get_interconnection_pricing: %s\n" % e)
+```
+
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**InterconnectionPricingList**](InterconnectionPricingList.md)
 
 ### Authorization
 
