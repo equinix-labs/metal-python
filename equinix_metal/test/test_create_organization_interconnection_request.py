@@ -58,7 +58,8 @@ class TestCreateOrganizationInterconnectionRequest(unittest.TestCase):
                 vlans = [1000,1001], 
                 vrfs = [
                     ''
-                    ]
+                    ], 
+                fabric_provider = None
             )
         else :
             return CreateOrganizationInterconnectionRequest(
@@ -67,9 +68,11 @@ class TestCreateOrganizationInterconnectionRequest(unittest.TestCase):
                 redundancy = '',
                 type = 'dedicated',
                 service_token_type = 'a_side',
+                vlans = [1000,1001],
                 vrfs = [
                     ''
                     ],
+                fabric_provider = None,
         )
         """
 

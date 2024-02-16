@@ -71,10 +71,24 @@ class TestInterconnectionsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_interconnection_metros(self):
+        """Test case for get_interconnection_metros
+
+        Get connectivity to network provider by metro  # noqa: E501
+        """
+        pass
+
     def test_get_interconnection_port(self):
         """Test case for get_interconnection_port
 
         Get a interconnection port  # noqa: E501
+        """
+        pass
+
+    def test_get_interconnection_pricing(self):
+        """Test case for get_interconnection_pricing
+
+        Get Interconnection Pricing  # noqa: E501
         """
         pass
 
