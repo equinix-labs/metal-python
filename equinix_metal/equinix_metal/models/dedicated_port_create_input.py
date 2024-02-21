@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, Field, StrictStr, conlist, validator
 
 class DedicatedPortCreateInput(BaseModel):
     """
@@ -35,7 +35,7 @@ class DedicatedPortCreateInput(BaseModel):
     name: StrictStr = Field(...)
     project: Optional[StrictStr] = None
     redundancy: StrictStr = Field(..., description="Either 'primary' or 'redundant'.")
-    speed: Optional[StrictInt] = Field(None, description="A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps.")
+    speed: Optional[StrictStr] = Field(None, description="A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps.")
     tags: Optional[conlist(StrictStr)] = None
     type: StrictStr = Field(..., description="When requesting for a dedicated port, the value of this field should be 'dedicated'.")
     use_case: Optional[StrictStr] = Field(None, description="The intended use case of the dedicated port.")
