@@ -876,8 +876,8 @@ components:
         speed:
           description: A interconnection speed, in bps, mbps, or gbps. For Dedicated
             Ports, this can be 10Gbps or 100Gbps.
-          example: 10000000000
-          type: integer
+          example: '10000000000'
+          type: string
         tags:
           items:
             type: string
@@ -1694,6 +1694,7 @@ components:
             \ '200mbps', '500mbps', '1gbps', '2gbps', '5gbps' or '10gbps'. For Fabric\
             \ VCs\n(Fabric Billed), this will default to 10Gbps."
           example: 10000000000
+          format: int64
           type: integer
         role:
           description: Either primary or secondary, depending on which interconnection
@@ -2391,6 +2392,7 @@ components:
             field refers to the maximum speed of the interconnection in bps. This
             value will default to 10Gbps for Fabric VCs (Fabric Billed).
           example: 10000000000
+          format: int64
           type: integer
         status:
           type: string
@@ -2490,6 +2492,7 @@ components:
           - secondary
           type: string
         speed:
+          format: int64
           type: integer
         status:
           description: For both Fabric VCs and Dedicated Ports, this will be 'requested'
@@ -4321,8 +4324,8 @@ components:
 
             For example, ''''500000000'''', ''''50m'''', or'' ''''500mbps'''' will
             all work as valid inputs.'
-          example: 10000000000
-          type: integer
+          example: '10000000000'
+          type: string
         tags:
           items:
             type: string
@@ -5058,8 +5061,8 @@ components:
 
             For example, ''''500000000'''', ''''50m'''', or'' ''''500mbps'''' will
             all work as valid inputs.'
-          example: 10000000000
-          type: integer
+          example: '10000000000'
+          type: string
         tags:
           items:
             type: string
@@ -5144,8 +5147,8 @@ components:
             \ and is required for creation. For Fabric VCs (Fabric Billed), this field\
             \ will always default to ''10gbps'' even if it is not provided.\nFor example,\
             \ ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs."
-          example: 10000000000
-          type: integer
+          example: '10000000000'
+          type: string
         tags:
           items:
             type: string
@@ -5221,6 +5224,7 @@ components:
             on the Fabric Portal. Details on Fabric VCs are included in the specification
             as a developer preview and is generally unavailable. Please contact our
             Support team for more details.
+          format: int64
           type: integer
         status:
           description: The status of a Virtual Circuit is always 'pending' on creation.
@@ -5300,7 +5304,7 @@ components:
         speed:
           description: speed can be passed as integer number representing bps speed
             or string (e.g. '52m' or '100g' or '4 gbps')
-          type: integer
+          type: string
         tags:
           items:
             type: string
@@ -5488,8 +5492,8 @@ components:
             \ and is required for creation. For Fabric VCs (Fabric Billed), this field\
             \ will always default to ''10gbps'' even if it is not provided.\nFor example,\
             \ ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs."
-          example: 10000000000
-          type: integer
+          example: '10000000000'
+          type: string
         tags:
           items:
             type: string
@@ -5936,6 +5940,7 @@ components:
           $ref: '#/components/schemas/Href'
         speed:
           description: integer representing bps speed
+          format: int64
           type: integer
         status:
           description: The status changes of a VRF virtual circuit are generally the
@@ -6040,7 +6045,7 @@ components:
         speed:
           description: speed can be passed as integer number representing bps speed
             or string (e.g. '52m' or '100g' or '4 gbps')
-          type: integer
+          type: string
         subnet:
           description: The /30 or /31 subnet of one of the VRF IP Blocks that will
             be used with the VRF for the Virtual Circuit. This subnet does not have
@@ -13529,8 +13534,12 @@ paths:
       - Projects
       x-equinix-metal-paginated-property: projects
     post:
-      description: Creates a new project for the user default organization. If the
-        user don't have an organization, a new one will be created.
+      description: Creates a new project for the user's default organization. If the
+        user does not have a default organization, the API will look for a personal
+        organization belonging to the user with the name "{User's Full Name} Projects"
+        to associate the project with. If that organization does not exist a new organization
+        named "{User's Full Name} Projects" will be created and the new project will
+        be tied to that organization.
       operationId: createProject
       parameters:
       - description: 'Nested attributes to include. Included objects will return their
