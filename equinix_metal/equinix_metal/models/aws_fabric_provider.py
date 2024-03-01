@@ -28,8 +28,9 @@ class AWSFabricProvider(BaseModel):
     """
     account_id: StrictStr = Field(..., description="AWS Account ID")
     href: Optional[StrictStr] = None
+    location: Optional[StrictStr] = None
     type: StrictStr = Field(...)
-    __properties = ["account_id", "href", "type"]
+    __properties = ["account_id", "href", "location", "type"]
 
     @validator('type')
     def type_validate_enum(cls, value):
@@ -76,6 +77,7 @@ class AWSFabricProvider(BaseModel):
         _obj = AWSFabricProvider.parse_obj({
             "account_id": obj.get("account_id"),
             "href": obj.get("href"),
+            "location": obj.get("location"),
             "type": obj.get("type")
         })
         return _obj

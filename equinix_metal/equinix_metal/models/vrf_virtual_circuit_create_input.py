@@ -35,7 +35,7 @@ class VrfVirtualCircuitCreateInput(BaseModel):
     nni_vlan: conint(strict=True, le=4094, ge=2) = Field(...)
     peer_asn: StrictInt = Field(..., description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
     project_id: StrictStr = Field(...)
-    speed: Optional[StrictInt] = Field(None, description="speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')")
+    speed: Optional[StrictStr] = Field(None, description="speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')")
     subnet: StrictStr = Field(..., description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF.")
     tags: Optional[conlist(StrictStr)] = None
     vrf: StrictStr = Field(..., description="The UUID of the VRF that will be associated with the Virtual Circuit.")

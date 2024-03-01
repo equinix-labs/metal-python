@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **nni_vlan** | **int** |  | 
 **peer_asn** | **int** | The peer ASN that will be used with the VRF on the Virtual Circuit. | 
 **project_id** | **str** |  | 
-**speed** | **int** | speed can be passed as integer number representing bps speed or string (e.g. &#39;52m&#39; or &#39;100g&#39; or &#39;4 gbps&#39;) | [optional] 
+**speed** | **str** | speed can be passed as integer number representing bps speed or string (e.g. &#39;52m&#39; or &#39;100g&#39; or &#39;4 gbps&#39;) | [optional] 
 **subnet** | **str** | The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF. | 
 **tags** | **List[str]** |  | [optional] 
 **vrf** | **str** | The UUID of the VRF that will be associated with the Virtual Circuit. | 

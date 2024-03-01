@@ -59,7 +59,7 @@ class ProjectsApi(object):
     def create_project(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(..., description="Project to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
         """Create a project  # noqa: E501
 
-        Creates a new project for the user default organization. If the user don't have an organization, a new one will be created.  # noqa: E501
+        Creates a new project for the user's default organization. If the user does not have a default organization, the API will look for a personal organization belonging to the user with the name \"{User's Full Name} Projects\" to associate the project with. If that organization does not exist a new organization named \"{User's Full Name} Projects\" will be created and the new project will be tied to that organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -92,7 +92,7 @@ class ProjectsApi(object):
     def create_project_with_http_info(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(..., description="Project to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a project  # noqa: E501
 
-        Creates a new project for the user default organization. If the user don't have an organization, a new one will be created.  # noqa: E501
+        Creates a new project for the user's default organization. If the user does not have a default organization, the API will look for a personal organization belonging to the user with the name \"{User's Full Name} Projects\" to associate the project with. If that organization does not exist a new organization named \"{User's Full Name} Projects\" will be created and the new project will be tied to that organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

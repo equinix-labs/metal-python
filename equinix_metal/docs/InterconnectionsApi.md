@@ -150,7 +150,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     organization_id = 'organization_id_example' # str | UUID of the organization
-    create_organization_interconnection_request = equinix_metal.CreateOrganizationInterconnectionRequest() # CreateOrganizationInterconnectionRequest | Dedicated port or shared interconnection (also known as Fabric VC) creation request
+    create_organization_interconnection_request = equinix_metal.CreateOrganizationInterconnectionRequest() # CreateOrganizationInterconnectionRequest | Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. 
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
@@ -170,7 +170,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization_id** | **str**| UUID of the organization | 
- **create_organization_interconnection_request** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md)| Dedicated port or shared interconnection (also known as Fabric VC) creation request | 
+ **create_organization_interconnection_request** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md)| Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * &#x60;VlanCSPConnectionCreateInput&#x60; creates a layer 2 interconnection directly to your Cloud Service Provider. * &#x60;SharedPortVCVlanCreateInput&#x60; creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to &#x60;VlanFabricVCCreateInput&#x60;. * &#x60;VlanFabricVCCreateInput&#x60; creates a layer 2 interconnection that you can connect through Fabric with a service token. * &#x60;VrfFabricVCCreateInput&#x60; creates a layer 3 interconnection that you can connect through Fabric with a service token.  | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
@@ -238,7 +238,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.InterconnectionsApi(api_client)
     project_id = 'project_id_example' # str | UUID of the project
-    create_organization_interconnection_request = equinix_metal.CreateOrganizationInterconnectionRequest() # CreateOrganizationInterconnectionRequest | Dedicated port or shared interconnection (also known as Fabric VC) creation request
+    create_organization_interconnection_request = equinix_metal.CreateOrganizationInterconnectionRequest() # CreateOrganizationInterconnectionRequest | Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. 
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
@@ -258,7 +258,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| UUID of the project | 
- **create_organization_interconnection_request** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md)| Dedicated port or shared interconnection (also known as Fabric VC) creation request | 
+ **create_organization_interconnection_request** | [**CreateOrganizationInterconnectionRequest**](CreateOrganizationInterconnectionRequest.md)| Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * &#x60;VlanCSPConnectionCreateInput&#x60; creates a layer 2 interconnection directly to your Cloud Service Provider. * &#x60;SharedPortVCVlanCreateInput&#x60; creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to &#x60;VlanFabricVCCreateInput&#x60;. * &#x60;VlanFabricVCCreateInput&#x60; creates a layer 2 interconnection that you can connect through Fabric with a service token. * &#x60;VrfFabricVCCreateInput&#x60; creates a layer 3 interconnection that you can connect through Fabric with a service token.  | 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
 
