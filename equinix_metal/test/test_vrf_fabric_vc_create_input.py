@@ -47,7 +47,7 @@ class TestVrfFabricVcCreateInput(unittest.TestCase):
                 project = '', 
                 redundancy = '', 
                 service_token_type = 'a_side', 
-                speed = 10000000000, 
+                speed = '10000000000', 
                 tags = [
                     ''
                     ], 

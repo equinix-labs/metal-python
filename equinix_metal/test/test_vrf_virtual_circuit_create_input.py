@@ -48,7 +48,7 @@ class TestVrfVirtualCircuitCreateInput(unittest.TestCase):
                 nni_vlan = 2, 
                 peer_asn = 56, 
                 project_id = '', 
-                speed = 56, 
+                speed = '', 
                 subnet = '12.0.0.0/30', 
                 tags = [
                     ''

@@ -41,6 +41,7 @@ class TestVlanCSPConnectionCreateInputFabricProvider(unittest.TestCase):
             return VlanCSPConnectionCreateInputFabricProvider(
                 account_id = '129312', 
                 href = '', 
+                location = 'us-west-1', 
                 type = 'CSP_AWS'
             )
         else :

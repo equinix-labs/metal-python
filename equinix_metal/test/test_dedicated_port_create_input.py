@@ -48,7 +48,7 @@ class TestDedicatedPortCreateInput(unittest.TestCase):
                 name = '', 
                 project = '', 
                 redundancy = '', 
-                speed = 10000000000, 
+                speed = '10000000000', 
                 tags = [
                     ''
                     ], 

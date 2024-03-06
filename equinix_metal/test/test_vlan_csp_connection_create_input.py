@@ -46,7 +46,7 @@ class TestVlanCSPConnectionCreateInput(unittest.TestCase):
                 metro = '', 
                 name = '', 
                 project = '', 
-                speed = 10000000000, 
+                speed = '10000000000', 
                 tags = [
                     ''
                     ], 
@@ -58,6 +58,7 @@ class TestVlanCSPConnectionCreateInput(unittest.TestCase):
                 fabric_provider = None,
                 metro = '',
                 name = '',
+                project = '',
                 type = 'shared_port_vlan_to_csp',
                 vlans = [1000,1001],
         )

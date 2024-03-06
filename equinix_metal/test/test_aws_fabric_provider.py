@@ -41,6 +41,7 @@ class TestAWSFabricProvider(unittest.TestCase):
             return AWSFabricProvider(
                 account_id = '129312', 
                 href = '', 
+                location = 'us-west-1', 
                 type = 'CSP_AWS'
             )
         else :

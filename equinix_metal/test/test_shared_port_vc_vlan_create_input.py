@@ -45,7 +45,7 @@ class TestSharedPortVCVlanCreateInput(unittest.TestCase):
                 metro = '', 
                 name = '', 
                 project = '', 
-                speed = 10000000000, 
+                speed = '10000000000', 
                 tags = [
                     ''
                     ], 
@@ -56,6 +56,7 @@ class TestSharedPortVCVlanCreateInput(unittest.TestCase):
             return SharedPortVCVlanCreateInput(
                 metro = '',
                 name = '',
+                project = '',
                 type = 'shared_port_vlan',
                 vlans = [1000,1001],
         )

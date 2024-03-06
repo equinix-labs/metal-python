@@ -44,7 +44,7 @@ class TestVirtualCircuitCreateInput(unittest.TestCase):
                 name = '', 
                 nni_vlan = 2, 
                 project_id = '', 
-                speed = 56, 
+                speed = '', 
                 tags = [
                     ''
                     ], 

@@ -48,7 +48,7 @@ class TestCreateOrganizationInterconnectionRequest(unittest.TestCase):
                 name = '', 
                 project = '', 
                 redundancy = '', 
-                speed = 10000000000, 
+                speed = '10000000000', 
                 tags = [
                     ''
                     ], 
@@ -65,6 +65,7 @@ class TestCreateOrganizationInterconnectionRequest(unittest.TestCase):
             return CreateOrganizationInterconnectionRequest(
                 metro = '',
                 name = '',
+                project = '',
                 redundancy = '',
                 type = 'dedicated',
                 service_token_type = 'a_side',
