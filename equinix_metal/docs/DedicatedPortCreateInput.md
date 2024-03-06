@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **project** | **str** |  | [optional] 
 **redundancy** | **str** | Either &#39;primary&#39; or &#39;redundant&#39;. | 
-**speed** | **int** | A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps. | [optional] 
+**speed** | **str** | A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps. | [optional] 
 **tags** | **List[str]** |  | [optional] 
 **type** | **str** | When requesting for a dedicated port, the value of this field should be &#39;dedicated&#39;. | 
 **use_case** | **str** | The intended use case of the dedicated port. | [optional] 

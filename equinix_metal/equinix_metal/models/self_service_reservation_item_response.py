@@ -21,6 +21,7 @@ import json
 
 from typing import List, Optional, Union
 from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr, conlist
+from equinix_metal.models.plan import Plan
 
 class SelfServiceReservationItemResponse(BaseModel):
     """
@@ -32,13 +33,14 @@ class SelfServiceReservationItemResponse(BaseModel):
     metro_code: Optional[StrictStr] = None
     metro_id: Optional[StrictStr] = None
     metro_name: Optional[StrictStr] = None
+    plan: Optional[Plan] = None
     plan_categories: Optional[conlist(StrictStr)] = None
     plan_id: Optional[StrictStr] = None
     plan_name: Optional[StrictStr] = None
     plan_slug: Optional[StrictStr] = None
     quantity: Optional[StrictInt] = None
     term: Optional[StrictStr] = None
-    __properties = ["amount", "href", "id", "metro_code", "metro_id", "metro_name", "plan_categories", "plan_id", "plan_name", "plan_slug", "quantity", "term"]
+    __properties = ["amount", "href", "id", "metro_code", "metro_id", "metro_name", "plan", "plan_categories", "plan_id", "plan_name", "plan_slug", "quantity", "term"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,6 +66,9 @@ class SelfServiceReservationItemResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
+        # override the default output from pydantic by calling `to_dict()` of plan
+        if self.plan:
+            _dict['plan'] = self.plan.to_dict()
         return _dict
 
     @classmethod
@@ -82,6 +87,7 @@ class SelfServiceReservationItemResponse(BaseModel):
             "metro_code": obj.get("metro_code"),
             "metro_id": obj.get("metro_id"),
             "metro_name": obj.get("metro_name"),
+            "plan": Plan.from_dict(obj.get("plan")) if obj.get("plan") is not None else None,
             "plan_categories": obj.get("plan_categories"),
             "plan_id": obj.get("plan_id"),
             "plan_name": obj.get("plan_name"),

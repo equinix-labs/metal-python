@@ -49,7 +49,7 @@ class Interconnection(BaseModel):
     status: Optional[StrictStr] = None
     tags: Optional[conlist(StrictStr)] = None
     token: Optional[StrictStr] = Field(None, description="This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated.")
-    type: Optional[StrictStr] = Field(None, description="The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports.")
+    type: Optional[StrictStr] = Field(None, description="The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports. The 'shared_port_vlan' type of interconnection refers to shared connections created without service tokens. The 'shared_port_vlan_to_csp' type of interconnection refers to connections created directly to a supported cloud service provider.")
     updated_at: Optional[datetime] = None
     __properties = ["authorization_code", "contact_email", "created_at", "description", "facility", "href", "id", "metro", "mode", "name", "organization", "ports", "redundancy", "requested_by", "service_tokens", "speed", "status", "tags", "token", "type", "updated_at"]
 
@@ -79,8 +79,8 @@ class Interconnection(BaseModel):
         if value is None:
             return value
 
-        if value not in ('shared', 'dedicated'):
-            raise ValueError("must be one of enum values ('shared', 'dedicated')")
+        if value not in ('shared', 'dedicated', 'shared_port_vlan', 'shared_port_vlan_to_csp'):
+            raise ValueError("must be one of enum values ('shared', 'dedicated', 'shared_port_vlan', 'shared_port_vlan_to_csp')")
         return value
 
     class Config:

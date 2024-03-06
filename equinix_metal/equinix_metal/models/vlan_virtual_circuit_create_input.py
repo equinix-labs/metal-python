@@ -20,7 +20,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conint, conlist
+from pydantic import BaseModel, Field, StrictStr, conint, conlist
 
 class VlanVirtualCircuitCreateInput(BaseModel):
     """
@@ -31,7 +31,7 @@ class VlanVirtualCircuitCreateInput(BaseModel):
     name: Optional[StrictStr] = None
     nni_vlan: Optional[conint(strict=True, le=4094, ge=2)] = None
     project_id: StrictStr = Field(...)
-    speed: Optional[StrictInt] = Field(None, description="speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')")
+    speed: Optional[StrictStr] = Field(None, description="speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')")
     tags: Optional[conlist(StrictStr)] = None
     vnid: Optional[StrictStr] = Field(None, description="A Virtual Network record UUID or the VNID of a Metro Virtual Network in your project (sent as integer).")
     __properties = ["description", "href", "name", "nni_vlan", "project_id", "speed", "tags", "vnid"]

@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **status** | **str** |  | [optional] 
 **tags** | **List[str]** |  | [optional] 
 **token** | **str** | This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated. | [optional] 
-**type** | **str** | The &#39;shared&#39; type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The &#39;dedicated&#39; type of interconnection refers to interconnections created with Dedicated Ports. | [optional] 
+**type** | **str** | The &#39;shared&#39; type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The &#39;dedicated&#39; type of interconnection refers to interconnections created with Dedicated Ports. The &#39;shared_port_vlan&#39; type of interconnection refers to shared connections created without service tokens. The &#39;shared_port_vlan_to_csp&#39; type of interconnection refers to connections created directly to a supported cloud service provider. | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 
 ## Example
