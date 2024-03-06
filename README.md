@@ -64,28 +64,13 @@ pip install ./equinix_metal
 
 ## Release
 
-If you want to do a new release:
-- make sure that `make generate` doesn't taint git status 
-- change `PACKAGE_VERSION` in Makefile
-- run `make generate`
-- check `git diff`, the version number should be updated in 
-```
-  M equinix_metal/README.md
-  M equinix_metal/equinix_metal/__init__.py
-  M equinix_metal/equinix_metal/api_client.py
-  M equinix_metal/equinix_metal/configuration.py
-  M equinix_metal/pyproject.toml
-  M equinix_metal/setup.py
-```
+If you want to do a new release from main branch, make sure that `make generate` doesn't taint git status.
 
-Then submit a PR with the changes. Once the PR is merged, go to [https://github.com/equinix-labs/metal-python/releases/new](https://github.com/equinix-labs/metal-python/releases/new) and create a new release from `main`. Don't choose an existing tag, but create a new one called `v{PACKAGE_VERSION}`. For example, if PACKAGE_VERSION is "0.1.2", create tag "v0.1.2". Put the tag name also to the "Release title" field.
+To craft a new release, use [the release GitHub action](https://github.com/equinix-labs/metal-python/actions/workflows/release.yml). Run it for main branch.
 
-Add release notes in format of [Terraform Provider Equinix](https://github.com/equinix/terraform-provider-equinix/releases), with at least one of the sections (NOTES, FEATURES, BUG FIXES, ENHANCEMENTS).
+The workflow derives new version number based on conventional commits syntax from titles of PRs since last release. It will then build new PyPi wheel package, upload it to PyPi and create new GitHub release.
 
-Click "Publish release", and the manual part should be over.
-
-The release will create a tag, and we have a Github action in place that should create a PyPI release for version from PACKAGE_VERSION.
-
-Verify that the [releasing Github action](https://github.com/equinix-labs/metal-python/actions) succeeded.
-
-Verify that new version of [equinix-metal](https://pypi.org/project/equinix-metal/#history) is avaiable on Pypi.
+Once you run the workflow, verify that:
+* the [release GitHub action](https://github.com/equinix-labs/metal-python/actions/workflows/release.yml) succeeded
+* there's new [release in this GitHub project](https://github.com/equinix-labs/metal-python/releases)
+* new version of [equinix-metal](https://pypi.org/project/equinix-metal/#history) is avaiable on Pypi
