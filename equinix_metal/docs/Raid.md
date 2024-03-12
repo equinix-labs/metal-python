@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **devices** | **List[str]** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of Raid from a JSON string
 raid_instance = Raid.from_json(json)
 # print the JSON string representation of the object
-print Raid.to_json()
+print(Raid.to_json())
 
 # convert the object into a dict
 raid_dict = raid_instance.to_dict()

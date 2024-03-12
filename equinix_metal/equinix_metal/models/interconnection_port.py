@@ -18,72 +18,88 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.virtual_circuit import VirtualCircuit
+from typing import Optional, Set
+from typing_extensions import Self
 
 class InterconnectionPort(BaseModel):
     """
     InterconnectionPort
-    """
+    """ # noqa: E501
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     link_status: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     organization: Optional[Href] = None
-    role: Optional[StrictStr] = Field(None, description="Either 'primary' or 'secondary'.")
+    role: Optional[StrictStr] = Field(default=None, description="Either 'primary' or 'secondary'.")
     speed: Optional[StrictInt] = None
-    status: Optional[StrictStr] = Field(None, description="For both Fabric VCs and Dedicated Ports, this will be 'requested' on creation and 'deleting' on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to 'active'. For Dedicated Ports, once the dedicated port is associated, this will also turn to 'active'. For Fabric VCs, this can turn into an 'expired' state if the service token associated is expired.")
-    switch_id: Optional[StrictStr] = Field(None, description="A switch 'short ID'")
-    virtual_circuits: Optional[conlist(VirtualCircuit)] = None
-    __properties = ["href", "id", "link_status", "name", "organization", "role", "speed", "status", "switch_id", "virtual_circuits"]
+    status: Optional[StrictStr] = Field(default=None, description="For both Fabric VCs and Dedicated Ports, this will be 'requested' on creation and 'deleting' on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to 'active'. For Dedicated Ports, once the dedicated port is associated, this will also turn to 'active'. For Fabric VCs, this can turn into an 'expired' state if the service token associated is expired.")
+    switch_id: Optional[StrictStr] = Field(default=None, description="A switch 'short ID'")
+    virtual_circuits: Optional[List[VirtualCircuit]] = None
+    __properties: ClassVar[List[str]] = ["href", "id", "link_status", "name", "organization", "role", "speed", "status", "switch_id", "virtual_circuits"]
 
-    @validator('role')
+    @field_validator('role')
     def role_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('primary', 'secondary'):
+        if value not in set(['primary', 'secondary']):
             raise ValueError("must be one of enum values ('primary', 'secondary')")
         return value
 
-    @validator('status')
+    @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('requested', 'active', 'deleting', 'expired', 'delete_failed'):
+        if value not in set(['requested', 'active', 'deleting', 'expired', 'delete_failed']):
             raise ValueError("must be one of enum values ('requested', 'active', 'deleting', 'expired', 'delete_failed')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> InterconnectionPort:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of InterconnectionPort from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of organization
         if self.organization:
             _dict['organization'] = self.organization.to_dict()
@@ -97,25 +113,25 @@ class InterconnectionPort(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> InterconnectionPort:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of InterconnectionPort from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return InterconnectionPort.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = InterconnectionPort.parse_obj({
+        _obj = cls.model_validate({
             "href": obj.get("href"),
             "id": obj.get("id"),
             "link_status": obj.get("link_status"),
             "name": obj.get("name"),
-            "organization": Href.from_dict(obj.get("organization")) if obj.get("organization") is not None else None,
+            "organization": Href.from_dict(obj["organization"]) if obj.get("organization") is not None else None,
             "role": obj.get("role"),
             "speed": obj.get("speed"),
             "status": obj.get("status"),
             "switch_id": obj.get("switch_id"),
-            "virtual_circuits": [VirtualCircuit.from_dict(_item) for _item in obj.get("virtual_circuits")] if obj.get("virtual_circuits") is not None else None
+            "virtual_circuits": [VirtualCircuit.from_dict(_item) for _item in obj["virtual_circuits"]] if obj.get("virtual_circuits") is not None else None
         })
         return _obj
 

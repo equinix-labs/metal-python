@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_session_neighbors import BgpSessionNeighbors  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.bgp_session_neighbors import BgpSessionNeighbors
 
 class TestBgpSessionNeighbors(unittest.TestCase):
     """BgpSessionNeighbors unit test stubs"""
@@ -29,15 +26,15 @@ class TestBgpSessionNeighbors(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BgpSessionNeighbors:
         """Test BgpSessionNeighbors
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BgpSessionNeighbors`
         """
-        model = equinix_metal.models.bgp_session_neighbors.BgpSessionNeighbors()  # noqa: E501
-        if include_optional :
+        model = BgpSessionNeighbors()
+        if include_optional:
             return BgpSessionNeighbors(
                 bgp_neighbors = [
                     equinix_metal.models.bgp_neighbor_data.BgpNeighborData(
@@ -52,10 +49,10 @@ class TestBgpSessionNeighbors(unittest.TestCase):
                         peer_ips = ["169.254.255.1","169.254.255.2"], 
                         routes_in = [{"exact":true,"route":"10.32.16.0/31"}], 
                         routes_out = [{"exact":true,"route":"0.0.0.0/0"}], )
-                    ], 
+                    ],
                 href = ''
             )
-        else :
+        else:
             return BgpSessionNeighbors(
         )
         """

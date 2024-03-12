@@ -21,7 +21,7 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-
+from typing_extensions import Annotated
 from equinix_metal.models.metro import Metro
 from equinix_metal.models.metro_list import MetroList
 
@@ -178,7 +178,7 @@ class MetrosApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_metro(self, id : Annotated[StrictStr, Field(..., description="Metro UUID")], **kwargs) -> Metro:  # noqa: E501
+    def get_metro(self, id : Annotated[StrictStr, Field(description="Metro UUID")], **kwargs) -> Metro:  # noqa: E501
         """Retrieve a specific Metro's details  # noqa: E501
 
         Show the details for a metro, including name, code, and country.  # noqa: E501
@@ -207,7 +207,7 @@ class MetrosApi(object):
         return self.get_metro_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_metro_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metro UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_metro_with_http_info(self, id : Annotated[StrictStr, Field(description="Metro UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a specific Metro's details  # noqa: E501
 
         Show the details for a metro, including name, code, and country.  # noqa: E501

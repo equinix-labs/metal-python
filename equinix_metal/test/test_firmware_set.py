@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.firmware_set import FirmwareSet  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.firmware_set import FirmwareSet
 
 class TestFirmwareSet(unittest.TestCase):
     """FirmwareSet unit test stubs"""
@@ -29,15 +26,15 @@ class TestFirmwareSet(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> FirmwareSet:
         """Test FirmwareSet
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `FirmwareSet`
         """
-        model = equinix_metal.models.firmware_set.FirmwareSet()  # noqa: E501
-        if include_optional :
+        model = FirmwareSet()
+        if include_optional:
             return FirmwareSet(
                 attributes = [
                     equinix_metal.models.attribute.Attribute(
@@ -51,7 +48,7 @@ class TestFirmwareSet(unittest.TestCase):
                         href = '', 
                         namespace = '', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ], 
+                    ],
                 component_firmware = [
                     equinix_metal.models.component.Component(
                         checksum = '', 
@@ -68,14 +65,14 @@ class TestFirmwareSet(unittest.TestCase):
                         uuid = '0516463a-47ee-4809-9a66-ece8c740eed9', 
                         vendor = 'equinix', 
                         version = '1.5.0', )
-                    ], 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
-                name = '', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    ],
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
+                name = '',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 uuid = '0516463a-47ee-4809-9a66-ece8c740eed9'
             )
-        else :
+        else:
             return FirmwareSet(
                 name = '',
                 uuid = '0516463a-47ee-4809-9a66-ece8c740eed9',

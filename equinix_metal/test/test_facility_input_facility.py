@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.facility_input_facility import FacilityInputFacility  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.facility_input_facility import FacilityInputFacility
 
 class TestFacilityInputFacility(unittest.TestCase):
     """FacilityInputFacility unit test stubs"""
@@ -29,18 +26,18 @@ class TestFacilityInputFacility(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> FacilityInputFacility:
         """Test FacilityInputFacility
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `FacilityInputFacility`
         """
-        model = equinix_metal.models.facility_input_facility.FacilityInputFacility()  # noqa: E501
-        if include_optional :
+        model = FacilityInputFacility()
+        if include_optional:
             return FacilityInputFacility(
             )
-        else :
+        else:
             return FacilityInputFacility(
         )
         """

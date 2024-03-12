@@ -21,7 +21,7 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-
+from typing_extensions import Annotated
 from equinix_metal.models.recovery_code_list import RecoveryCodeList
 
 from equinix_metal.api_client import ApiClient
@@ -45,7 +45,7 @@ class OTPsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def find_ensure_otp(self, otp : Annotated[StrictStr, Field(..., description="OTP")], **kwargs) -> None:  # noqa: E501
+    def find_ensure_otp(self, otp : Annotated[StrictStr, Field(description="OTP")], **kwargs) -> None:  # noqa: E501
         """Verify user by providing an OTP  # noqa: E501
 
         It verifies the user once a valid OTP is provided. It gives back a session token, essentially logging in the user.  # noqa: E501
@@ -74,7 +74,7 @@ class OTPsApi(object):
         return self.find_ensure_otp_with_http_info(otp, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ensure_otp_with_http_info(self, otp : Annotated[StrictStr, Field(..., description="OTP")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ensure_otp_with_http_info(self, otp : Annotated[StrictStr, Field(description="OTP")], **kwargs) -> ApiResponse:  # noqa: E501
         """Verify user by providing an OTP  # noqa: E501
 
         It verifies the user once a valid OTP is provided. It gives back a session token, essentially logging in the user.  # noqa: E501

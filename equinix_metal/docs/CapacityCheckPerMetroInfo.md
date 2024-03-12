@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **available** | **bool** | Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough. | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of CapacityCheckPerMetroInfo from a JSON string
 capacity_check_per_metro_info_instance = CapacityCheckPerMetroInfo.from_json(json)
 # print the JSON string representation of the object
-print CapacityCheckPerMetroInfo.to_json()
+print(CapacityCheckPerMetroInfo.to_json())
 
 # convert the object into a dict
 capacity_check_per_metro_info_dict = capacity_check_per_metro_info_instance.to_dict()

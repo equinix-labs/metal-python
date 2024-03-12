@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conint, conlist, validator
-
-from typing import Optional
-
+from pydantic import Field, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
 from equinix_metal.models.ip_assignment_update_input import IPAssignmentUpdateInput
 from equinix_metal.models.ip_availabilities_list import IPAvailabilitiesList
@@ -52,7 +51,7 @@ class IPAddressesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def delete_ip_address(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_ip_address(self, id : Annotated[StrictStr, Field(description="IP Address UUID")], **kwargs) -> None:  # noqa: E501
         """Unassign an ip address  # noqa: E501
 
         This call can be used to un-assign an IP assignment or delete an IP reservation.  Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device or metal gateway and will make the IP address available to be assigned to another device, once the IP has been un-configured from the network.  Delete an IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.   # noqa: E501
@@ -81,7 +80,7 @@ class IPAddressesApi(object):
         return self.delete_ip_address_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_ip_address_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_ip_address_with_http_info(self, id : Annotated[StrictStr, Field(description="IP Address UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Unassign an ip address  # noqa: E501
 
         This call can be used to un-assign an IP assignment or delete an IP reservation.  Un-assign an IP address record. Use the assignment UUID you get after attaching the IP. This will remove the relationship between an IP and the device or metal gateway and will make the IP address available to be assigned to another device, once the IP has been un-configured from the network.  Delete an IP reservation. Use the reservation UUID you get after adding the IP to the project. This will permanently delete the IP block reservation from the project.   # noqa: E501
@@ -189,7 +188,7 @@ class IPAddressesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_ip_address_by_id(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> FindIPAddressById200Response:  # noqa: E501
+    def find_ip_address_by_id(self, id : Annotated[StrictStr, Field(description="IP Address UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> FindIPAddressById200Response:  # noqa: E501
         """Retrieve an ip address  # noqa: E501
 
         Returns a single ip address if the user has access.  # noqa: E501
@@ -222,7 +221,7 @@ class IPAddressesApi(object):
         return self.find_ip_address_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_address_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ip_address_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="IP Address UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve an ip address  # noqa: E501
 
         Returns a single ip address if the user has access.  # noqa: E501
@@ -349,7 +348,7 @@ class IPAddressesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_ip_address_customdata(self, id : Annotated[StrictStr, Field(..., description="Ip Reservation UUID")], **kwargs) -> None:  # noqa: E501
+    def find_ip_address_customdata(self, id : Annotated[StrictStr, Field(description="Ip Reservation UUID")], **kwargs) -> None:  # noqa: E501
         """Retrieve the custom metadata of an IP Reservation or IP Assignment  # noqa: E501
 
         Provides the custom metadata stored for this IP Reservation or IP Assignment in json format  # noqa: E501
@@ -378,7 +377,7 @@ class IPAddressesApi(object):
         return self.find_ip_address_customdata_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_address_customdata_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Ip Reservation UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ip_address_customdata_with_http_info(self, id : Annotated[StrictStr, Field(description="Ip Reservation UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of an IP Reservation or IP Assignment  # noqa: E501
 
         Provides the custom metadata stored for this IP Reservation or IP Assignment in json format  # noqa: E501
@@ -486,7 +485,7 @@ class IPAddressesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_ip_availabilities(self, id : Annotated[StrictStr, Field(..., description="IP Reservation UUID")], cidr : Annotated[StrictStr, Field(..., description="Size of subnets in bits")], **kwargs) -> IPAvailabilitiesList:  # noqa: E501
+    def find_ip_availabilities(self, id : Annotated[StrictStr, Field(description="IP Reservation UUID")], cidr : Annotated[StrictStr, Field(description="Size of subnets in bits")], **kwargs) -> IPAvailabilitiesList:  # noqa: E501
         """Retrieve all available subnets of a particular reservation  # noqa: E501
 
         Provides a list of IP resevations for a single project.  # noqa: E501
@@ -517,7 +516,7 @@ class IPAddressesApi(object):
         return self.find_ip_availabilities_with_http_info(id, cidr, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_availabilities_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Reservation UUID")], cidr : Annotated[StrictStr, Field(..., description="Size of subnets in bits")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ip_availabilities_with_http_info(self, id : Annotated[StrictStr, Field(description="IP Reservation UUID")], cidr : Annotated[StrictStr, Field(description="Size of subnets in bits")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all available subnets of a particular reservation  # noqa: E501
 
         Provides a list of IP resevations for a single project.  # noqa: E501
@@ -636,7 +635,7 @@ class IPAddressesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_ip_reservations(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], types : Annotated[Optional[conlist(StrictStr)], Field(description="Filter project IP reservations by reservation type")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> IPReservationList:  # noqa: E501
+    def find_ip_reservations(self, id : Annotated[StrictStr, Field(description="Project UUID")], types : Annotated[Optional[List[StrictStr]], Field(description="Filter project IP reservations by reservation type")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> IPReservationList:  # noqa: E501
         """Retrieve all ip reservations  # noqa: E501
 
         Provides a paginated list of IP reservations for a single project.  # noqa: E501
@@ -673,7 +672,7 @@ class IPAddressesApi(object):
         return self.find_ip_reservations_with_http_info(id, types, include, exclude, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_reservations_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], types : Annotated[Optional[conlist(StrictStr)], Field(description="Filter project IP reservations by reservation type")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ip_reservations_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], types : Annotated[Optional[List[StrictStr]], Field(description="Filter project IP reservations by reservation type")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all ip reservations  # noqa: E501
 
         Provides a paginated list of IP reservations for a single project.  # noqa: E501
@@ -813,7 +812,7 @@ class IPAddressesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def request_ip_reservation(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], request_ip_reservation_request : Annotated[RequestIPReservationRequest, Field(..., description="IP Reservation Request to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> RequestIPReservation201Response:  # noqa: E501
+    def request_ip_reservation(self, id : Annotated[StrictStr, Field(description="Project UUID")], request_ip_reservation_request : Annotated[RequestIPReservationRequest, Field(description="IP Reservation Request to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> RequestIPReservation201Response:  # noqa: E501
         """Requesting IP reservations  # noqa: E501
 
         Request more IP space for a project in order to have additional IP addresses to assign to devices.  If the request is within the max quota, an IP reservation will be created. If the project will exceed its IP quota, a request will be submitted for review, and will return an IP Reservation with a `state` of `pending`. You can automatically have the request fail with HTTP status 422 instead of triggering the review process by providing the `fail_on_approval_required` parameter set to `true` in the request.  # noqa: E501
@@ -848,7 +847,7 @@ class IPAddressesApi(object):
         return self.request_ip_reservation_with_http_info(id, request_ip_reservation_request, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def request_ip_reservation_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], request_ip_reservation_request : Annotated[RequestIPReservationRequest, Field(..., description="IP Reservation Request to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def request_ip_reservation_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], request_ip_reservation_request : Annotated[RequestIPReservationRequest, Field(description="IP Reservation Request to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Requesting IP reservations  # noqa: E501
 
         Request more IP space for a project in order to have additional IP addresses to assign to devices.  If the request is within the max quota, an IP reservation will be created. If the project will exceed its IP quota, a request will be submitted for review, and will return an IP Reservation with a `state` of `pending`. You can automatically have the request fail with HTTP status 422 instead of triggering the review process by providing the `fail_on_approval_required` parameter set to `true` in the request.  # noqa: E501
@@ -989,7 +988,7 @@ class IPAddressesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_ip_address(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, ip_assignment_update_input : Optional[IPAssignmentUpdateInput] = None, **kwargs) -> FindIPAddressById200Response:  # noqa: E501
+    def update_ip_address(self, id : Annotated[StrictStr, Field(description="IP Address UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, ip_assignment_update_input : Optional[IPAssignmentUpdateInput] = None, **kwargs) -> FindIPAddressById200Response:  # noqa: E501
         """Update an ip address  # noqa: E501
 
         Update details about an ip address  # noqa: E501
@@ -1024,7 +1023,7 @@ class IPAddressesApi(object):
         return self.update_ip_address_with_http_info(id, include, exclude, ip_assignment_update_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_ip_address_with_http_info(self, id : Annotated[StrictStr, Field(..., description="IP Address UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, ip_assignment_update_input : Optional[IPAssignmentUpdateInput] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_ip_address_with_http_info(self, id : Annotated[StrictStr, Field(description="IP Address UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, ip_assignment_update_input : Optional[IPAssignmentUpdateInput] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update an ip address  # noqa: E501
 
         Update details about an ip address  # noqa: E501

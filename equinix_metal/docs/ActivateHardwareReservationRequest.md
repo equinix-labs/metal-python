@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of ActivateHardwareReservationRequest from a JSON string
 activate_hardware_reservation_request_instance = ActivateHardwareReservationRequest.from_json(json)
 # print the JSON string representation of the object
-print ActivateHardwareReservationRequest.to_json()
+print(ActivateHardwareReservationRequest.to_json())
 
 # convert the object into a dict
 activate_hardware_reservation_request_dict = activate_hardware_reservation_request_instance.to_dict()

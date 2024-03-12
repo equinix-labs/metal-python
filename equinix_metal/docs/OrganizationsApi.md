@@ -33,9 +33,8 @@ Creates an organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.organization import Organization
 from equinix_metal.models.organization_input import OrganizationInput
@@ -119,9 +118,8 @@ In order to add a user to an organization, they must first be invited. To invite
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invitation import Invitation
 from equinix_metal.models.invitation_input import InvitationInput
@@ -206,9 +204,8 @@ Creates a new project for the organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.project import Project
 from equinix_metal.models.project_create_input import ProjectCreateInput
@@ -293,9 +290,8 @@ Creates a payment method.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.payment_method import PaymentMethod
 from equinix_metal.models.payment_method_create_input import PaymentMethodCreateInput
@@ -379,9 +375,8 @@ Deletes the organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -456,9 +451,8 @@ Returns a listing of available operating systems for the given organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.operating_system_list import OperatingSystemList
 from equinix_metal.rest import ApiException
@@ -539,9 +533,8 @@ Returns a single organization's details, if the user is authorized to view it.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.organization import Organization
 from equinix_metal.rest import ApiException
@@ -624,9 +617,8 @@ Provides the custom metadata stored for this organization in json format
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -702,9 +694,8 @@ Returns all invitations in an organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invitation_list import InvitationList
 from equinix_metal.rest import ApiException
@@ -789,9 +780,8 @@ Returns all payment methods of an organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.payment_method_list import PaymentMethodList
 from equinix_metal.rest import ApiException
@@ -875,9 +865,8 @@ Returns a collection of projects that belong to the organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.project_list import ProjectList
 from equinix_metal.rest import ApiException
@@ -969,9 +958,8 @@ Provides a collection of project transfer requests from or to the organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.transfer_request_list import TransferRequestList
 from equinix_metal.rest import ApiException
@@ -1051,9 +1039,8 @@ Returns a list of organizations that are accessible to the current user.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.organization_list import OrganizationList
 from equinix_metal.rest import ApiException
@@ -1145,9 +1132,8 @@ Returns a listing of available plans for the given organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.plan_list import PlanList
 from equinix_metal.rest import ApiException
@@ -1230,9 +1216,8 @@ Updates the organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.organization import Organization
 from equinix_metal.models.organization_input import OrganizationInput

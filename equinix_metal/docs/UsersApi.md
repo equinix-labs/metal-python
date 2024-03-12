@@ -24,9 +24,8 @@ Creates a user.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.user import User
 from equinix_metal.models.user_create_input import UserCreateInput
@@ -109,9 +108,8 @@ Returns the user object for the currently logged-in user.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.user import User
 from equinix_metal.rest import ApiException
@@ -190,9 +188,8 @@ Returns all invitations in current user.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invitation_list import InvitationList
 from equinix_metal.rest import ApiException
@@ -275,9 +272,8 @@ Returns a single user if the user has access
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.user import User
 from equinix_metal.rest import ApiException
@@ -360,9 +356,8 @@ Provides the custom metadata stored for this user in json format
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -438,9 +433,8 @@ Returns a list of users that the are accessible to the current user (all users i
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.user_list import UserList
 from equinix_metal.rest import ApiException
@@ -528,9 +522,8 @@ Updates the currently logged-in user.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.user import User
 from equinix_metal.models.user_update_input import UserUpdateInput

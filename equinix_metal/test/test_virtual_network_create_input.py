@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.virtual_network_create_input import VirtualNetworkCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.virtual_network_create_input import VirtualNetworkCreateInput
 
 class TestVirtualNetworkCreateInput(unittest.TestCase):
     """VirtualNetworkCreateInput unit test stubs"""
@@ -29,26 +26,26 @@ class TestVirtualNetworkCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VirtualNetworkCreateInput:
         """Test VirtualNetworkCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VirtualNetworkCreateInput`
         """
-        model = equinix_metal.models.virtual_network_create_input.VirtualNetworkCreateInput()  # noqa: E501
-        if include_optional :
+        model = VirtualNetworkCreateInput()
+        if include_optional:
             return VirtualNetworkCreateInput(
-                description = '', 
-                facility = '', 
-                href = '', 
-                metro = '', 
+                description = '',
+                facility = '',
+                href = '',
+                metro = '',
                 tags = [
                     ''
-                    ], 
+                    ],
                 vxlan = 1099
             )
-        else :
+        else:
             return VirtualNetworkCreateInput(
         )
         """

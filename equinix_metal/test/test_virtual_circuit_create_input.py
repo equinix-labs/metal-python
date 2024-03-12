@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.virtual_circuit_create_input import VirtualCircuitCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.virtual_circuit_create_input import VirtualCircuitCreateInput
 
 class TestVirtualCircuitCreateInput(unittest.TestCase):
     """VirtualCircuitCreateInput unit test stubs"""
@@ -29,34 +26,34 @@ class TestVirtualCircuitCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VirtualCircuitCreateInput:
         """Test VirtualCircuitCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VirtualCircuitCreateInput`
         """
-        model = equinix_metal.models.virtual_circuit_create_input.VirtualCircuitCreateInput()  # noqa: E501
-        if include_optional :
+        model = VirtualCircuitCreateInput()
+        if include_optional:
             return VirtualCircuitCreateInput(
-                description = '', 
-                href = '', 
-                name = '', 
-                nni_vlan = 2, 
-                project_id = '', 
-                speed = '', 
+                description = '',
+                href = '',
+                name = '',
+                nni_vlan = 2,
+                project_id = '',
+                speed = '',
                 tags = [
                     ''
-                    ], 
-                vnid = '', 
-                customer_ip = '12.0.0.2', 
-                md5 = 'jUR,rZ#UM/?R,Fp^l6$ARjeJk C>i H'qT\\{<?'es#)#iK.YM{Rag2/!KB!k@5oXh.:Ts\";mGL,i&z5[P@M\"lzfB+Y,Twzfu~N^z\"mfqecVU{SE{QA<Y8XX0<}J;Krm9W'g~?)DvDDL7BlwpCDcpNjORpuEG', 
-                metal_ip = '12.0.0.1', 
-                peer_asn = 56, 
-                subnet = '12.0.0.0/30', 
+                    ],
+                vnid = '',
+                customer_ip = '12.0.0.2',
+                md5 = 'jUR,rZ#UM/?R,Fp^l6$ARjeJk C>i H'qT\\{<?'es#)#iK.YM{Rag2/!KB!k@5oXh.:Ts\";mGL,i&z5[P@M\"lzfB+Y,Twzfu~N^z\"mfqecVU{SE{QA<Y8XX0<}J;Krm9W'g~?)DvDDL7BlwpCDcpNjORpuEG',
+                metal_ip = '12.0.0.1',
+                peer_asn = 56,
+                subnet = '12.0.0.0/30',
                 vrf = ''
             )
-        else :
+        else:
             return VirtualCircuitCreateInput(
                 nni_vlan = 2,
                 project_id = '',

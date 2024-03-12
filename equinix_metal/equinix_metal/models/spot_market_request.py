@@ -19,15 +19,17 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Optional, Union
-from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from equinix_metal.models.href import Href
 from equinix_metal.models.spot_market_request_metro import SpotMarketRequestMetro
+from typing import Optional, Set
+from typing_extensions import Self
 
 class SpotMarketRequest(BaseModel):
     """
     SpotMarketRequest
-    """
+    """ # noqa: E501
     created_at: Optional[datetime] = None
     devices_max: Optional[StrictInt] = None
     devices_min: Optional[StrictInt] = None
@@ -39,32 +41,47 @@ class SpotMarketRequest(BaseModel):
     max_bid_price: Optional[Union[StrictFloat, StrictInt]] = None
     metro: Optional[SpotMarketRequestMetro] = None
     project: Optional[Href] = None
-    __properties = ["created_at", "devices_max", "devices_min", "end_at", "facilities", "href", "id", "instances", "max_bid_price", "metro", "project"]
+    __properties: ClassVar[List[str]] = ["created_at", "devices_max", "devices_min", "end_at", "facilities", "href", "id", "instances", "max_bid_price", "metro", "project"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SpotMarketRequest:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SpotMarketRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of facilities
         if self.facilities:
             _dict['facilities'] = self.facilities.to_dict()
@@ -80,26 +97,26 @@ class SpotMarketRequest(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SpotMarketRequest:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SpotMarketRequest from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SpotMarketRequest.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = SpotMarketRequest.parse_obj({
+        _obj = cls.model_validate({
             "created_at": obj.get("created_at"),
             "devices_max": obj.get("devices_max"),
             "devices_min": obj.get("devices_min"),
             "end_at": obj.get("end_at"),
-            "facilities": Href.from_dict(obj.get("facilities")) if obj.get("facilities") is not None else None,
+            "facilities": Href.from_dict(obj["facilities"]) if obj.get("facilities") is not None else None,
             "href": obj.get("href"),
             "id": obj.get("id"),
-            "instances": Href.from_dict(obj.get("instances")) if obj.get("instances") is not None else None,
+            "instances": Href.from_dict(obj["instances"]) if obj.get("instances") is not None else None,
             "max_bid_price": obj.get("max_bid_price"),
-            "metro": SpotMarketRequestMetro.from_dict(obj.get("metro")) if obj.get("metro") is not None else None,
-            "project": Href.from_dict(obj.get("project")) if obj.get("project") is not None else None
+            "metro": SpotMarketRequestMetro.from_dict(obj["metro"]) if obj.get("metro") is not None else None,
+            "project": Href.from_dict(obj["project"]) if obj.get("project") is not None else None
         })
         return _obj
 

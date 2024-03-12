@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.attribute import Attribute  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.attribute import Attribute
 
 class TestAttribute(unittest.TestCase):
     """Attribute unit test stubs"""
@@ -29,28 +26,28 @@ class TestAttribute(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Attribute:
         """Test Attribute
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Attribute`
         """
-        model = equinix_metal.models.attribute.Attribute()  # noqa: E501
-        if include_optional :
+        model = Attribute()
+        if include_optional:
             return Attribute(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 data = equinix_metal.models.attribute_data.AttributeData(
                     href = '', 
                     latest = True, 
                     model = '', 
                     plan = '', 
-                    vendor = '', ), 
-                href = '', 
-                namespace = '', 
+                    vendor = '', ),
+                href = '',
+                namespace = '',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return Attribute(
         )
         """

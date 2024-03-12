@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **avatar** | **bytearray** |  | [optional] 
@@ -33,7 +34,7 @@ json = "{}"
 # create an instance of UserCreateInput from a JSON string
 user_create_input_instance = UserCreateInput.from_json(json)
 # print the JSON string representation of the object
-print UserCreateInput.to_json()
+print(UserCreateInput.to_json())
 
 # convert the object into a dict
 user_create_input_dict = user_create_input_instance.to_dict()

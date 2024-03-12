@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList
 
 class TestBgpDynamicNeighborList(unittest.TestCase):
     """BgpDynamicNeighborList unit test stubs"""
@@ -29,15 +26,15 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BgpDynamicNeighborList:
         """Test BgpDynamicNeighborList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BgpDynamicNeighborList`
         """
-        model = equinix_metal.models.bgp_dynamic_neighbor_list.BgpDynamicNeighborList()  # noqa: E501
-        if include_optional :
+        model = BgpDynamicNeighborList()
+        if include_optional:
             return BgpDynamicNeighborList(
                 bgp_dynamic_neighbors = [
                     equinix_metal.models.bgp_dynamic_neighbor.BgpDynamicNeighbor(
@@ -206,8 +203,8 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                         state = 'active', 
                         tags = , 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ], 
-                href = '', 
+                    ],
+                href = '',
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -221,7 +218,7 @@ class TestBgpDynamicNeighborList(unittest.TestCase):
                     self = , 
                     total = 56, )
             )
-        else :
+        else:
             return BgpDynamicNeighborList(
         )
         """

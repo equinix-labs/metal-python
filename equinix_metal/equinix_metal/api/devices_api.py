@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, conint, conlist, validator
-
-from typing import Optional
-
+from pydantic import Field, StrictBool, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.bgp_session_input import BGPSessionInput
 from equinix_metal.models.bgp_session import BgpSession
 from equinix_metal.models.bgp_session_list import BgpSessionList
@@ -63,7 +62,7 @@ class DevicesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_bgp_session(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(..., description="BGP session to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSession:  # noqa: E501
+    def create_bgp_session(self, id : Annotated[StrictStr, Field(description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(description="BGP session to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSession:  # noqa: E501
         """Create a BGP session  # noqa: E501
 
         Creates a BGP session.  # noqa: E501
@@ -96,7 +95,7 @@ class DevicesApi(object):
         return self.create_bgp_session_with_http_info(id, bgp_session_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(..., description="BGP session to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], bgp_session_input : Annotated[BGPSessionInput, Field(description="BGP session to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a BGP session  # noqa: E501
 
         Creates a BGP session.  # noqa: E501
@@ -229,7 +228,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_device(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(..., description="Device to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Device:  # noqa: E501
+    def create_device(self, id : Annotated[StrictStr, Field(description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(description="Device to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Device:  # noqa: E501
         """Create a device  # noqa: E501
 
         Creates a new device and provisions it in the specified location.  Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.  # noqa: E501
@@ -264,7 +263,7 @@ class DevicesApi(object):
         return self.create_device_with_http_info(id, create_device_request, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(..., description="Device to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_device_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], create_device_request : Annotated[CreateDeviceRequest, Field(description="Device to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a device  # noqa: E501
 
         Creates a new device and provisions it in the specified location.  Device type-specific options are accepted.  For example, `baremetal` devices accept `operating_system`, `hostname`, and `plan`. These parameters may not be accepted for other device types. The default device type is `baremetal`.  # noqa: E501
@@ -405,7 +404,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_ip_assignment(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(..., description="IPAssignment to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignment:  # noqa: E501
+    def create_ip_assignment(self, id : Annotated[StrictStr, Field(description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(description="IPAssignment to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignment:  # noqa: E501
         """Create an ip assignment  # noqa: E501
 
         Creates an ip assignment for a device.  # noqa: E501
@@ -440,7 +439,7 @@ class DevicesApi(object):
         return self.create_ip_assignment_with_http_info(id, ip_assignment_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_ip_assignment_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(..., description="IPAssignment to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_ip_assignment_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], ip_assignment_input : Annotated[IPAssignmentInput, Field(description="IPAssignment to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create an ip assignment  # noqa: E501
 
         Creates an ip assignment for a device.  # noqa: E501
@@ -580,7 +579,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_device(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], force_delete : Annotated[Optional[StrictBool], Field(description="Force the deletion of the device, by detaching any storage volume still active.")] = None, **kwargs) -> None:  # noqa: E501
+    def delete_device(self, id : Annotated[StrictStr, Field(description="Device UUID")], force_delete : Annotated[Optional[StrictBool], Field(description="Force the deletion of the device, by detaching any storage volume still active.")] = None, **kwargs) -> None:  # noqa: E501
         """Delete the device  # noqa: E501
 
         Deletes a device and deprovisions it in our datacenter.  # noqa: E501
@@ -611,7 +610,7 @@ class DevicesApi(object):
         return self.delete_device_with_http_info(id, force_delete, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], force_delete : Annotated[Optional[StrictBool], Field(description="Force the deletion of the device, by detaching any storage volume still active.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_device_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], force_delete : Annotated[Optional[StrictBool], Field(description="Force the deletion of the device, by detaching any storage volume still active.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the device  # noqa: E501
 
         Deletes a device and deprovisions it in our datacenter.  # noqa: E501
@@ -725,7 +724,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_bgp_sessions(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSessionList:  # noqa: E501
+    def find_bgp_sessions(self, id : Annotated[StrictStr, Field(description="Device UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSessionList:  # noqa: E501
         """Retrieve all BGP sessions  # noqa: E501
 
         Provides a listing of available BGP sessions for the device.  # noqa: E501
@@ -756,7 +755,7 @@ class DevicesApi(object):
         return self.find_bgp_sessions_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_bgp_sessions_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_bgp_sessions_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all BGP sessions  # noqa: E501
 
         Provides a listing of available BGP sessions for the device.  # noqa: E501
@@ -875,7 +874,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_device_by_id(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Device:  # noqa: E501
+    def find_device_by_id(self, id : Annotated[StrictStr, Field(description="Device UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Device:  # noqa: E501
         """Retrieve a device  # noqa: E501
 
         Type-specific options (such as facility for baremetal devices) will be included as part of the main data structure.                          State value can be one of: active inactive queued or provisioning  # noqa: E501
@@ -908,7 +907,7 @@ class DevicesApi(object):
         return self.find_device_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_device_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a device  # noqa: E501
 
         Type-specific options (such as facility for baremetal devices) will be included as part of the main data structure.                          State value can be one of: active inactive queued or provisioning  # noqa: E501
@@ -1035,7 +1034,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_device_customdata(self, id : Annotated[StrictStr, Field(..., description="Instance UUID")], **kwargs) -> None:  # noqa: E501
+    def find_device_customdata(self, id : Annotated[StrictStr, Field(description="Instance UUID")], **kwargs) -> None:  # noqa: E501
         """Retrieve the custom metadata of an instance  # noqa: E501
 
         Provides the custom metadata stored for this instance in json format  # noqa: E501
@@ -1064,7 +1063,7 @@ class DevicesApi(object):
         return self.find_device_customdata_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_customdata_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Instance UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_device_customdata_with_http_info(self, id : Annotated[StrictStr, Field(description="Instance UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of an instance  # noqa: E501
 
         Provides the custom metadata stored for this instance in json format  # noqa: E501
@@ -1172,7 +1171,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_device_metadata_by_id(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> Metadata:  # noqa: E501
+    def find_device_metadata_by_id(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> Metadata:  # noqa: E501
         """Retrieve metadata  # noqa: E501
 
         Retrieve device metadata  # noqa: E501
@@ -1201,7 +1200,7 @@ class DevicesApi(object):
         return self.find_device_metadata_by_id_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_metadata_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_device_metadata_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve metadata  # noqa: E501
 
         Retrieve device metadata  # noqa: E501
@@ -1314,7 +1313,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_device_userdata_by_id(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> Userdata:  # noqa: E501
+    def find_device_userdata_by_id(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> Userdata:  # noqa: E501
         """Retrieve userdata  # noqa: E501
 
         Retrieve device userdata  # noqa: E501
@@ -1343,7 +1342,7 @@ class DevicesApi(object):
         return self.find_device_userdata_by_id_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_userdata_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_device_userdata_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve userdata  # noqa: E501
 
         Retrieve device userdata  # noqa: E501
@@ -1456,7 +1455,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_instance_bandwidth(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], var_from : Annotated[StrictStr, Field(..., description="Timestamp from range")], until : Annotated[StrictStr, Field(..., description="Timestamp to range")], **kwargs) -> None:  # noqa: E501
+    def find_instance_bandwidth(self, id : Annotated[StrictStr, Field(description="Device UUID")], var_from : Annotated[StrictStr, Field(description="Timestamp from range")], until : Annotated[StrictStr, Field(description="Timestamp to range")], **kwargs) -> None:  # noqa: E501
         """Retrieve an instance bandwidth  # noqa: E501
 
         Retrieve an instance bandwidth for a given period of time.  # noqa: E501
@@ -1489,7 +1488,7 @@ class DevicesApi(object):
         return self.find_instance_bandwidth_with_http_info(id, var_from, until, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_instance_bandwidth_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], var_from : Annotated[StrictStr, Field(..., description="Timestamp from range")], until : Annotated[StrictStr, Field(..., description="Timestamp to range")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_instance_bandwidth_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], var_from : Annotated[StrictStr, Field(description="Timestamp from range")], until : Annotated[StrictStr, Field(description="Timestamp to range")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve an instance bandwidth  # noqa: E501
 
         Retrieve an instance bandwidth for a given period of time.  # noqa: E501
@@ -1609,7 +1608,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_ip_assignment_customdata(self, instance_id : Annotated[StrictStr, Field(..., description="Instance UUID")], id : Annotated[StrictStr, Field(..., description="Ip Assignment UUID")], **kwargs) -> None:  # noqa: E501
+    def find_ip_assignment_customdata(self, instance_id : Annotated[StrictStr, Field(description="Instance UUID")], id : Annotated[StrictStr, Field(description="Ip Assignment UUID")], **kwargs) -> None:  # noqa: E501
         """Retrieve the custom metadata of an IP Assignment  # noqa: E501
 
         Provides the custom metadata stored for this IP Assignment in json format  # noqa: E501
@@ -1640,7 +1639,7 @@ class DevicesApi(object):
         return self.find_ip_assignment_customdata_with_http_info(instance_id, id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_assignment_customdata_with_http_info(self, instance_id : Annotated[StrictStr, Field(..., description="Instance UUID")], id : Annotated[StrictStr, Field(..., description="Ip Assignment UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ip_assignment_customdata_with_http_info(self, instance_id : Annotated[StrictStr, Field(description="Instance UUID")], id : Annotated[StrictStr, Field(description="Ip Assignment UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of an IP Assignment  # noqa: E501
 
         Provides the custom metadata stored for this IP Assignment in json format  # noqa: E501
@@ -1754,7 +1753,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_ip_assignments(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignmentList:  # noqa: E501
+    def find_ip_assignments(self, id : Annotated[StrictStr, Field(description="Device UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignmentList:  # noqa: E501
         """Retrieve all ip assignments  # noqa: E501
 
         Returns all ip assignments for a device.  # noqa: E501
@@ -1787,7 +1786,7 @@ class DevicesApi(object):
         return self.find_ip_assignments_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_assignments_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ip_assignments_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all ip assignments  # noqa: E501
 
         Returns all ip assignments for a device.  # noqa: E501
@@ -1913,7 +1912,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_devices_all_pages(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_organization_devices_all_pages(self, id : Annotated[StrictStr, Field(description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         This method is the same as find_organization_devices, but fetches resources from all the pages.
@@ -1995,7 +1994,7 @@ class DevicesApi(object):
         return all_pages
 
     @validate_arguments
-    def find_organization_devices(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_organization_devices(self, id : Annotated[StrictStr, Field(description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         Provides a collection of devices for a given organization.  # noqa: E501
@@ -2050,7 +2049,7 @@ class DevicesApi(object):
         return self.find_organization_devices_with_http_info(id, search, categories, facility, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_devices_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         Provides a collection of devices for a given organization.  # noqa: E501
@@ -2244,7 +2243,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_devices_all_pages(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_project_devices_all_pages(self, id : Annotated[StrictStr, Field(description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         This method is the same as find_project_devices, but fetches resources from all the pages.
@@ -2329,7 +2328,7 @@ class DevicesApi(object):
         return all_pages
 
     @validate_arguments
-    def find_project_devices(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_project_devices(self, id : Annotated[StrictStr, Field(description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         Provides a collection of devices for a given project.  # noqa: E501
@@ -2386,7 +2385,7 @@ class DevicesApi(object):
         return self.find_project_devices_with_http_info(id, search, categories, facility, metro, hostname, reserved, tag, type, has_termination_time, mac_address, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_devices_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         Provides a collection of devices for a given project.  # noqa: E501
@@ -2586,7 +2585,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_traffic(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], direction : Annotated[StrictStr, Field(..., description="Traffic direction")], interval : Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None, bucket : Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None, timeframe : Optional[FindTrafficTimeframeParameter] = None, **kwargs) -> None:  # noqa: E501
+    def find_traffic(self, id : Annotated[StrictStr, Field(description="Device UUID")], direction : Annotated[StrictStr, Field(description="Traffic direction")], interval : Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None, bucket : Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None, timeframe : Optional[FindTrafficTimeframeParameter] = None, **kwargs) -> None:  # noqa: E501
         """Retrieve device traffic  # noqa: E501
 
         Returns traffic for a specific device.  # noqa: E501
@@ -2623,7 +2622,7 @@ class DevicesApi(object):
         return self.find_traffic_with_http_info(id, direction, interval, bucket, timeframe, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_traffic_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], direction : Annotated[StrictStr, Field(..., description="Traffic direction")], interval : Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None, bucket : Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None, timeframe : Optional[FindTrafficTimeframeParameter] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_traffic_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], direction : Annotated[StrictStr, Field(description="Traffic direction")], interval : Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None, bucket : Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None, timeframe : Optional[FindTrafficTimeframeParameter] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve device traffic  # noqa: E501
 
         Returns traffic for a specific device.  # noqa: E501
@@ -2755,7 +2754,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_bgp_neighbor_data(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSessionNeighbors:  # noqa: E501
+    def get_bgp_neighbor_data(self, id : Annotated[StrictStr, Field(description="Device UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSessionNeighbors:  # noqa: E501
         """Retrieve BGP neighbor data for this device  # noqa: E501
 
         Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.  # noqa: E501
@@ -2786,7 +2785,7 @@ class DevicesApi(object):
         return self.get_bgp_neighbor_data_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_bgp_neighbor_data_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_bgp_neighbor_data_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve BGP neighbor data for this device  # noqa: E501
 
         Provides a summary of the BGP neighbor data associated to the BGP sessions for this device.  # noqa: E501
@@ -2906,7 +2905,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_device_firmware_sets(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> FirmwareSetResponse:  # noqa: E501
+    def get_device_firmware_sets(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> FirmwareSetResponse:  # noqa: E501
         """Get Device's associated Firmware Set  # noqa: E501
 
         Returns the firmware set associated with the device. If a custom firmware set is associated with the device, then it is returned. Otherwise, if a default firmware set is available it is returned.  # noqa: E501
@@ -2935,7 +2934,7 @@ class DevicesApi(object):
         return self.get_device_firmware_sets_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_device_firmware_sets_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_device_firmware_sets_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Get Device's associated Firmware Set  # noqa: E501
 
         Returns the firmware set associated with the device. If a custom firmware set is associated with the device, then it is returned. Otherwise, if a default firmware set is available it is returned.  # noqa: E501
@@ -3048,7 +3047,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_device_health_rollup(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> DeviceHealthRollup:  # noqa: E501
+    def get_device_health_rollup(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> DeviceHealthRollup:  # noqa: E501
         """Get Device's Health Status  # noqa: E501
 
         Returns the health rollup status of the device.  # noqa: E501
@@ -3077,7 +3076,7 @@ class DevicesApi(object):
         return self.get_device_health_rollup_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_device_health_rollup_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_device_health_rollup_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Get Device's Health Status  # noqa: E501
 
         Returns the health rollup status of the device.  # noqa: E501
@@ -3190,7 +3189,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def perform_action(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_action_input : Annotated[DeviceActionInput, Field(..., description="Action to perform")], **kwargs) -> None:  # noqa: E501
+    def perform_action(self, id : Annotated[StrictStr, Field(description="Device UUID")], device_action_input : Annotated[DeviceActionInput, Field(description="Action to perform")], **kwargs) -> None:  # noqa: E501
         """Perform an action  # noqa: E501
 
         Performs an action for the given device.  Possible actions include: power_on, power_off, reboot, reinstall, and rescue (reboot the device into rescue OS.)  # noqa: E501
@@ -3221,7 +3220,7 @@ class DevicesApi(object):
         return self.perform_action_with_http_info(id, device_action_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def perform_action_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_action_input : Annotated[DeviceActionInput, Field(..., description="Action to perform")], **kwargs) -> ApiResponse:  # noqa: E501
+    def perform_action_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], device_action_input : Annotated[DeviceActionInput, Field(description="Action to perform")], **kwargs) -> ApiResponse:  # noqa: E501
         """Perform an action  # noqa: E501
 
         Performs an action for the given device.  Possible actions include: power_on, power_off, reboot, reinstall, and rescue (reboot the device into rescue OS.)  # noqa: E501
@@ -3342,7 +3341,7 @@ class DevicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_device(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(..., description="Device to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Device:  # noqa: E501
+    def update_device(self, id : Annotated[StrictStr, Field(description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(description="Device to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Device:  # noqa: E501
         """Update the device  # noqa: E501
 
         Updates the device.  # noqa: E501
@@ -3377,7 +3376,7 @@ class DevicesApi(object):
         return self.update_device_with_http_info(id, device_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_device_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(..., description="Device to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_device_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], device_update_input : Annotated[DeviceUpdateInput, Field(description="Device to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the device  # noqa: E501
 
         Updates the device.  # noqa: E501

@@ -38,9 +38,8 @@ Creates a BGP session.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_session_input import BGPSessionInput
 from equinix_metal.models.bgp_session import BgpSession
@@ -124,9 +123,8 @@ Creates a new device and provisions it in the specified location.  Device type-s
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.create_device_request import CreateDeviceRequest
 from equinix_metal.models.device import Device
@@ -213,9 +211,8 @@ Creates an ip assignment for a device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.ip_assignment_input import IPAssignmentInput
@@ -301,9 +298,8 @@ Deletes a device and deprovisions it in our datacenter.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -382,9 +378,8 @@ Provides a listing of available BGP sessions for the device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_session_list import BgpSessionList
 from equinix_metal.rest import ApiException
@@ -464,9 +459,8 @@ Type-specific options (such as facility for baremetal devices) will be included 
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device import Device
 from equinix_metal.rest import ApiException
@@ -549,9 +543,8 @@ Provides the custom metadata stored for this instance in json format
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -627,9 +620,8 @@ Retrieve device metadata
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.metadata import Metadata
 from equinix_metal.rest import ApiException
@@ -708,9 +700,8 @@ Retrieve device userdata
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.userdata import Userdata
 from equinix_metal.rest import ApiException
@@ -789,9 +780,8 @@ Retrieve an instance bandwidth for a given period of time.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -870,9 +860,8 @@ Provides the custom metadata stored for this IP Assignment in json format
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -950,9 +939,8 @@ Returns all ip assignments for a device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_assignment_list import IPAssignmentList
 from equinix_metal.rest import ApiException
@@ -1034,9 +1022,8 @@ Provides a collection of devices for a given organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.rest import ApiException
@@ -1146,9 +1133,8 @@ Provides a collection of devices for a given project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.rest import ApiException
@@ -1260,9 +1246,8 @@ Returns traffic for a specific device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
 from equinix_metal.rest import ApiException
@@ -1347,9 +1332,8 @@ Provides a summary of the BGP neighbor data associated to the BGP sessions for t
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_session_neighbors import BgpSessionNeighbors
 from equinix_metal.rest import ApiException
@@ -1430,9 +1414,8 @@ Returns the firmware set associated with the device. If a custom firmware set is
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.firmware_set_response import FirmwareSetResponse
 from equinix_metal.rest import ApiException
@@ -1511,9 +1494,8 @@ Returns the health rollup status of the device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device_health_rollup import DeviceHealthRollup
 from equinix_metal.rest import ApiException
@@ -1592,9 +1574,8 @@ Performs an action for the given device.  Possible actions include: power_on, po
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device_action_input import DeviceActionInput
 from equinix_metal.rest import ApiException
@@ -1673,9 +1654,8 @@ Updates the device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device import Device
 from equinix_metal.models.device_update_input import DeviceUpdateInput

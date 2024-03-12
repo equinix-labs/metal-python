@@ -18,9 +18,8 @@ Provides a listing of available plans to provision your device on.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.plan_list import PlanList
 from equinix_metal.rest import ApiException
@@ -105,9 +104,8 @@ Returns a listing of available plans for the given project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.plan_list import PlanList
 from equinix_metal.rest import ApiException

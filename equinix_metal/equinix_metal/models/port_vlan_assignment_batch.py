@@ -19,18 +19,20 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.port import Port
 from equinix_metal.models.port_vlan_assignment_batch_vlan_assignments_inner import PortVlanAssignmentBatchVlanAssignmentsInner
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PortVlanAssignmentBatch(BaseModel):
     """
     PortVlanAssignmentBatch
-    """
+    """ # noqa: E501
     created_at: Optional[datetime] = None
-    error_messages: Optional[conlist(StrictStr)] = None
+    error_messages: Optional[List[StrictStr]] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     port: Optional[Port] = None
@@ -38,43 +40,58 @@ class PortVlanAssignmentBatch(BaseModel):
     quantity: Optional[StrictInt] = None
     state: Optional[StrictStr] = None
     updated_at: Optional[datetime] = None
-    vlan_assignments: Optional[conlist(PortVlanAssignmentBatchVlanAssignmentsInner)] = None
-    __properties = ["created_at", "error_messages", "href", "id", "port", "project", "quantity", "state", "updated_at", "vlan_assignments"]
+    vlan_assignments: Optional[List[PortVlanAssignmentBatchVlanAssignmentsInner]] = None
+    __properties: ClassVar[List[str]] = ["created_at", "error_messages", "href", "id", "port", "project", "quantity", "state", "updated_at", "vlan_assignments"]
 
-    @validator('state')
+    @field_validator('state')
     def state_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('queued', 'in_progress', 'completed', 'failed'):
+        if value not in set(['queued', 'in_progress', 'completed', 'failed']):
             raise ValueError("must be one of enum values ('queued', 'in_progress', 'completed', 'failed')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PortVlanAssignmentBatch:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PortVlanAssignmentBatch from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of port
         if self.port:
             _dict['port'] = self.port.to_dict()
@@ -91,25 +108,25 @@ class PortVlanAssignmentBatch(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PortVlanAssignmentBatch:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PortVlanAssignmentBatch from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PortVlanAssignmentBatch.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = PortVlanAssignmentBatch.parse_obj({
+        _obj = cls.model_validate({
             "created_at": obj.get("created_at"),
             "error_messages": obj.get("error_messages"),
             "href": obj.get("href"),
             "id": obj.get("id"),
-            "port": Port.from_dict(obj.get("port")) if obj.get("port") is not None else None,
-            "project": Href.from_dict(obj.get("project")) if obj.get("project") is not None else None,
+            "port": Port.from_dict(obj["port"]) if obj.get("port") is not None else None,
+            "project": Href.from_dict(obj["project"]) if obj.get("project") is not None else None,
             "quantity": obj.get("quantity"),
             "state": obj.get("state"),
             "updated_at": obj.get("updated_at"),
-            "vlan_assignments": [PortVlanAssignmentBatchVlanAssignmentsInner.from_dict(_item) for _item in obj.get("vlan_assignments")] if obj.get("vlan_assignments") is not None else None
+            "vlan_assignments": [PortVlanAssignmentBatchVlanAssignmentsInner.from_dict(_item) for _item in obj["vlan_assignments"]] if obj.get("vlan_assignments") is not None else None
         })
         return _obj
 

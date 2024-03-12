@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conint, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.invitation import Invitation
 from equinix_metal.models.invitation_input import InvitationInput
 from equinix_metal.models.invitation_list import InvitationList
@@ -61,7 +60,7 @@ class OrganizationsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_organization(self, organization_input : Annotated[OrganizationInput, Field(..., description="Organization to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Organization:  # noqa: E501
+    def create_organization(self, organization_input : Annotated[OrganizationInput, Field(description="Organization to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Organization:  # noqa: E501
         """Create an organization  # noqa: E501
 
         Creates an organization.  # noqa: E501
@@ -94,7 +93,7 @@ class OrganizationsApi(object):
         return self.create_organization_with_http_info(organization_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_organization_with_http_info(self, organization_input : Annotated[OrganizationInput, Field(..., description="Organization to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_organization_with_http_info(self, organization_input : Annotated[OrganizationInput, Field(description="Organization to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create an organization  # noqa: E501
 
         Creates an organization.  # noqa: E501
@@ -228,7 +227,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_organization_invitation(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], invitation_input : Annotated[InvitationInput, Field(..., description="Invitation to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Invitation:  # noqa: E501
+    def create_organization_invitation(self, id : Annotated[StrictStr, Field(description="Organization UUID")], invitation_input : Annotated[InvitationInput, Field(description="Invitation to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Invitation:  # noqa: E501
         """Create an invitation for an organization  # noqa: E501
 
         In order to add a user to an organization, they must first be invited. To invite to several projects the parameter `projects_ids:[a,b,c]` can be used  # noqa: E501
@@ -261,7 +260,7 @@ class OrganizationsApi(object):
         return self.create_organization_invitation_with_http_info(id, invitation_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_organization_invitation_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], invitation_input : Annotated[InvitationInput, Field(..., description="Invitation to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_organization_invitation_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], invitation_input : Annotated[InvitationInput, Field(description="Invitation to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create an invitation for an organization  # noqa: E501
 
         In order to add a user to an organization, they must first be invited. To invite to several projects the parameter `projects_ids:[a,b,c]` can be used  # noqa: E501
@@ -395,7 +394,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_organization_project(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], project_create_input : Annotated[ProjectCreateInput, Field(..., description="Project to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
+    def create_organization_project(self, id : Annotated[StrictStr, Field(description="Organization UUID")], project_create_input : Annotated[ProjectCreateInput, Field(description="Project to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
         """Create a project for the organization  # noqa: E501
 
         Creates a new project for the organization  # noqa: E501
@@ -430,7 +429,7 @@ class OrganizationsApi(object):
         return self.create_organization_project_with_http_info(id, project_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_organization_project_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], project_create_input : Annotated[ProjectCreateInput, Field(..., description="Project to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_organization_project_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], project_create_input : Annotated[ProjectCreateInput, Field(description="Project to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a project for the organization  # noqa: E501
 
         Creates a new project for the organization  # noqa: E501
@@ -569,7 +568,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_payment_method(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], payment_method_create_input : Annotated[PaymentMethodCreateInput, Field(..., description="Payment Method to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PaymentMethod:  # noqa: E501
+    def create_payment_method(self, id : Annotated[StrictStr, Field(description="Organization UUID")], payment_method_create_input : Annotated[PaymentMethodCreateInput, Field(description="Payment Method to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PaymentMethod:  # noqa: E501
         """Create a payment method for the given organization  # noqa: E501
 
         Creates a payment method.  # noqa: E501
@@ -602,7 +601,7 @@ class OrganizationsApi(object):
         return self.create_payment_method_with_http_info(id, payment_method_create_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_payment_method_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], payment_method_create_input : Annotated[PaymentMethodCreateInput, Field(..., description="Payment Method to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_payment_method_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], payment_method_create_input : Annotated[PaymentMethodCreateInput, Field(description="Payment Method to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a payment method for the given organization  # noqa: E501
 
         Creates a payment method.  # noqa: E501
@@ -735,7 +734,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_organization(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_organization(self, id : Annotated[StrictStr, Field(description="Organization UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the organization  # noqa: E501
 
         Deletes the organization.  # noqa: E501
@@ -764,7 +763,7 @@ class OrganizationsApi(object):
         return self.delete_organization_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_organization_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_organization_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the organization  # noqa: E501
 
         Deletes the organization.  # noqa: E501
@@ -872,7 +871,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_operating_systems_by_organization(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> OperatingSystemList:  # noqa: E501
+    def find_operating_systems_by_organization(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> OperatingSystemList:  # noqa: E501
         """Retrieve all operating systems visible by the organization  # noqa: E501
 
         Returns a listing of available operating systems for the given organization  # noqa: E501
@@ -903,7 +902,7 @@ class OrganizationsApi(object):
         return self.find_operating_systems_by_organization_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_operating_systems_by_organization_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_operating_systems_by_organization_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all operating systems visible by the organization  # noqa: E501
 
         Returns a listing of available operating systems for the given organization  # noqa: E501
@@ -1023,7 +1022,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_by_id(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Organization:  # noqa: E501
+    def find_organization_by_id(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Organization:  # noqa: E501
         """Retrieve an organization's details  # noqa: E501
 
         Returns a single organization's details, if the user is authorized to view it.  # noqa: E501
@@ -1056,7 +1055,7 @@ class OrganizationsApi(object):
         return self.find_organization_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve an organization's details  # noqa: E501
 
         Returns a single organization's details, if the user is authorized to view it.  # noqa: E501
@@ -1183,7 +1182,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_customdata(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], **kwargs) -> None:  # noqa: E501
+    def find_organization_customdata(self, id : Annotated[StrictStr, Field(description="Organization UUID")], **kwargs) -> None:  # noqa: E501
         """Retrieve the custom metadata of an organization  # noqa: E501
 
         Provides the custom metadata stored for this organization in json format  # noqa: E501
@@ -1212,7 +1211,7 @@ class OrganizationsApi(object):
         return self.find_organization_customdata_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_customdata_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_customdata_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of an organization  # noqa: E501
 
         Provides the custom metadata stored for this organization in json format  # noqa: E501
@@ -1320,7 +1319,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_invitations(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> InvitationList:  # noqa: E501
+    def find_organization_invitations(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> InvitationList:  # noqa: E501
         """Retrieve organization invitations  # noqa: E501
 
         Returns all invitations in an organization.  # noqa: E501
@@ -1355,7 +1354,7 @@ class OrganizationsApi(object):
         return self.find_organization_invitations_with_http_info(id, include, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_invitations_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_invitations_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve organization invitations  # noqa: E501
 
         Returns all invitations in an organization.  # noqa: E501
@@ -1487,7 +1486,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_payment_methods(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> PaymentMethodList:  # noqa: E501
+    def find_organization_payment_methods(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> PaymentMethodList:  # noqa: E501
         """Retrieve all payment methods of an organization  # noqa: E501
 
         Returns all payment methods of an organization.  # noqa: E501
@@ -1522,7 +1521,7 @@ class OrganizationsApi(object):
         return self.find_organization_payment_methods_with_http_info(id, include, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_payment_methods_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_payment_methods_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all payment methods of an organization  # noqa: E501
 
         Returns all payment methods of an organization.  # noqa: E501
@@ -1653,7 +1652,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_projects_all_pages(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ProjectList:  # noqa: E501
+    def find_organization_projects_all_pages(self, id : Annotated[StrictStr, Field(description="Organization UUID")], name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ProjectList:  # noqa: E501
         """Retrieve all projects of an organization  # noqa: E501
 
         This method is the same as find_organization_projects, but fetches resources from all the pages.
@@ -1711,7 +1710,7 @@ class OrganizationsApi(object):
         return all_pages
 
     @validate_arguments
-    def find_organization_projects(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ProjectList:  # noqa: E501
+    def find_organization_projects(self, id : Annotated[StrictStr, Field(description="Organization UUID")], name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ProjectList:  # noqa: E501
         """Retrieve all projects of an organization  # noqa: E501
 
         Returns a collection of projects that belong to the organization.  # noqa: E501
@@ -1750,7 +1749,7 @@ class OrganizationsApi(object):
         return self.find_organization_projects_with_http_info(id, name, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_projects_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_projects_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all projects of an organization  # noqa: E501
 
         Returns a collection of projects that belong to the organization.  # noqa: E501
@@ -1893,7 +1892,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_transfers(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> TransferRequestList:  # noqa: E501
+    def find_organization_transfers(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> TransferRequestList:  # noqa: E501
         """Retrieve all project transfer requests from or to an organization  # noqa: E501
 
         Provides a collection of project transfer requests from or to the organization.  # noqa: E501
@@ -1924,7 +1923,7 @@ class OrganizationsApi(object):
         return self.find_organization_transfers_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_transfers_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_transfers_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all project transfer requests from or to an organization  # noqa: E501
 
         Provides a collection of project transfer requests from or to the organization.  # noqa: E501
@@ -2043,7 +2042,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organizations_all_pages(self, personal : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None, without_projects : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> OrganizationList:  # noqa: E501
+    def find_organizations_all_pages(self, personal : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None, without_projects : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> OrganizationList:  # noqa: E501
         """Retrieve all organizations  # noqa: E501
 
         This method is the same as find_organizations, but fetches resources from all the pages.
@@ -2101,7 +2100,7 @@ class OrganizationsApi(object):
         return all_pages
 
     @validate_arguments
-    def find_organizations(self, personal : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None, without_projects : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> OrganizationList:  # noqa: E501
+    def find_organizations(self, personal : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None, without_projects : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> OrganizationList:  # noqa: E501
         """Retrieve all organizations  # noqa: E501
 
         Returns a list of organizations that are accessible to the current user.  # noqa: E501
@@ -2140,7 +2139,7 @@ class OrganizationsApi(object):
         return self.find_organizations_with_http_info(personal, without_projects, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organizations_with_http_info(self, personal : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None, without_projects : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organizations_with_http_info(self, personal : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None, without_projects : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all organizations  # noqa: E501
 
         Returns a list of organizations that are accessible to the current user.  # noqa: E501
@@ -2283,7 +2282,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_plans_by_organization(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> PlanList:  # noqa: E501
+    def find_plans_by_organization(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> PlanList:  # noqa: E501
         """Retrieve all plans visible by the organization  # noqa: E501
 
         Returns a listing of available plans for the given organization  # noqa: E501
@@ -2316,7 +2315,7 @@ class OrganizationsApi(object):
         return self.find_plans_by_organization_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_plans_by_organization_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_plans_by_organization_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all plans visible by the organization  # noqa: E501
 
         Returns a listing of available plans for the given organization  # noqa: E501
@@ -2443,7 +2442,7 @@ class OrganizationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_organization(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], organization_input : Annotated[OrganizationInput, Field(..., description="Organization to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Organization:  # noqa: E501
+    def update_organization(self, id : Annotated[StrictStr, Field(description="Organization UUID")], organization_input : Annotated[OrganizationInput, Field(description="Organization to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Organization:  # noqa: E501
         """Update the organization  # noqa: E501
 
         Updates the organization.  # noqa: E501
@@ -2478,7 +2477,7 @@ class OrganizationsApi(object):
         return self.update_organization_with_http_info(id, organization_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_organization_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], organization_input : Annotated[OrganizationInput, Field(..., description="Organization to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_organization_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], organization_input : Annotated[OrganizationInput, Field(description="Organization to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the organization  # noqa: E501
 
         Updates the organization.  # noqa: E501

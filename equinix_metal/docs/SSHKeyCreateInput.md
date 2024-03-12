@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of SSHKeyCreateInput from a JSON string
 ssh_key_create_input_instance = SSHKeyCreateInput.from_json(json)
 # print the JSON string representation of the object
-print SSHKeyCreateInput.to_json()
+print(SSHKeyCreateInput.to_json())
 
 # convert the object into a dict
 ssh_key_create_input_dict = ssh_key_create_input_instance.to_dict()

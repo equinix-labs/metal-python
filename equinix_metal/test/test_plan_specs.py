@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.plan_specs import PlanSpecs  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.plan_specs import PlanSpecs
 
 class TestPlanSpecs(unittest.TestCase):
     """PlanSpecs unit test stubs"""
@@ -29,22 +26,22 @@ class TestPlanSpecs(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PlanSpecs:
         """Test PlanSpecs
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PlanSpecs`
         """
-        model = equinix_metal.models.plan_specs.PlanSpecs()  # noqa: E501
-        if include_optional :
+        model = PlanSpecs()
+        if include_optional:
             return PlanSpecs(
                 cpus = [
                     equinix_metal.models.plan_specs_cpus_inner.Plan_specs_cpus_inner(
                         count = 56, 
                         href = '', 
                         type = '', )
-                    ], 
+                    ],
                 drives = [
                     equinix_metal.models.plan_specs_drives_inner.Plan_specs_drives_inner(
                         category = 'boot', 
@@ -52,16 +49,16 @@ class TestPlanSpecs(unittest.TestCase):
                         href = '', 
                         size = '3.84TB', 
                         type = '', )
-                    ], 
+                    ],
                 features = equinix_metal.models.plan_specs_features.Plan_specs_features(
                     href = '', 
                     raid = True, 
                     txt = True, 
-                    uefi = True, ), 
-                href = '', 
+                    uefi = True, ),
+                href = '',
                 memory = equinix_metal.models.plan_specs_memory.Plan_specs_memory(
                     href = '', 
-                    total = '', ), 
+                    total = '', ),
                 nics = [
                     equinix_metal.models.plan_specs_nics_inner.Plan_specs_nics_inner(
                         count = 2, 
@@ -69,7 +66,7 @@ class TestPlanSpecs(unittest.TestCase):
                         type = '', )
                     ]
             )
-        else :
+        else:
             return PlanSpecs(
         )
         """

@@ -20,9 +20,8 @@ Creates new devices in batch and provisions them in our datacenter.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.batches_list import BatchesList
 from equinix_metal.models.instances_batch_create_input import InstancesBatchCreateInput
@@ -105,9 +104,8 @@ Deletes the Batch.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -184,9 +182,8 @@ Returns a Batch
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.batch import Batch
 from equinix_metal.rest import ApiException
@@ -266,9 +263,8 @@ Returns all batches for the given project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.batches_list import BatchesList
 from equinix_metal.rest import ApiException

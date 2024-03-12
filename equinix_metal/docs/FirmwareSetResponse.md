@@ -3,6 +3,7 @@
 Represents single Firmware set response
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of FirmwareSetResponse from a JSON string
 firmware_set_response_instance = FirmwareSetResponse.from_json(json)
 # print the JSON string representation of the object
-print FirmwareSetResponse.to_json()
+print(FirmwareSetResponse.to_json())
 
 # convert the object into a dict
 firmware_set_response_dict = firmware_set_response_instance.to_dict()

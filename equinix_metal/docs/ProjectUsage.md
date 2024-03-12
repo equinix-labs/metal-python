@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **facility** | **str** |  | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of ProjectUsage from a JSON string
 project_usage_instance = ProjectUsage.from_json(json)
 # print the JSON string representation of the object
-print ProjectUsage.to_json()
+print(ProjectUsage.to_json())
 
 # convert the object into a dict
 project_usage_dict = project_usage_instance.to_dict()

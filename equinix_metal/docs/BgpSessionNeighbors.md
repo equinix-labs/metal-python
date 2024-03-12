@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bgp_neighbors** | [**List[BgpNeighborData]**](BgpNeighborData.md) | A list of BGP session neighbor data | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of BgpSessionNeighbors from a JSON string
 bgp_session_neighbors_instance = BgpSessionNeighbors.from_json(json)
 # print the JSON string representation of the object
-print BgpSessionNeighbors.to_json()
+print(BgpSessionNeighbors.to_json())
 
 # convert the object into a dict
 bgp_session_neighbors_dict = bgp_session_neighbors_instance.to_dict()

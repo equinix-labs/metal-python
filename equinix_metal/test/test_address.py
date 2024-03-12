@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.address import Address  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.address import Address
 
 class TestAddress(unittest.TestCase):
     """Address unit test stubs"""
@@ -29,29 +26,29 @@ class TestAddress(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Address:
         """Test Address
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Address`
         """
-        model = equinix_metal.models.address.Address()  # noqa: E501
-        if include_optional :
+        model = Address()
+        if include_optional:
             return Address(
-                address = '', 
-                address2 = '', 
-                city = '', 
+                address = '',
+                address2 = '',
+                city = '',
                 coordinates = equinix_metal.models.coordinates.Coordinates(
                     href = '', 
                     latitude = '', 
-                    longitude = '', ), 
-                country = '', 
-                href = '', 
-                state = '', 
+                    longitude = '', ),
+                country = '',
+                href = '',
+                state = '',
                 zip_code = ''
             )
-        else :
+        else:
             return Address(
         )
         """

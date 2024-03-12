@@ -18,9 +18,8 @@ Creates a password reset token
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -95,9 +94,8 @@ Resets current user password.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.new_password import NewPassword
 from equinix_metal.rest import ApiException

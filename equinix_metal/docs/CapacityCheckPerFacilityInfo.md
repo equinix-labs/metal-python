@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **available** | **bool** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of CapacityCheckPerFacilityInfo from a JSON string
 capacity_check_per_facility_info_instance = CapacityCheckPerFacilityInfo.from_json(json)
 # print the JSON string representation of the object
-print CapacityCheckPerFacilityInfo.to_json()
+print(CapacityCheckPerFacilityInfo.to_json())
 
 # convert the object into a dict
 capacity_check_per_facility_info_dict = capacity_check_per_facility_info_instance.to_dict()

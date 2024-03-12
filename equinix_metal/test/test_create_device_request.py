@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.create_device_request import CreateDeviceRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.create_device_request import CreateDeviceRequest
 
 class TestCreateDeviceRequest(unittest.TestCase):
     """CreateDeviceRequest unit test stubs"""
@@ -29,27 +26,27 @@ class TestCreateDeviceRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CreateDeviceRequest:
         """Test CreateDeviceRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CreateDeviceRequest`
         """
-        model = equinix_metal.models.create_device_request.CreateDeviceRequest()  # noqa: E501
-        if include_optional :
+        model = CreateDeviceRequest()
+        if include_optional:
             return CreateDeviceRequest(
-                href = '', 
-                metro = 'sv', 
-                always_pxe = True, 
-                billing_cycle = 'hourly', 
-                customdata = { }, 
-                description = '', 
+                href = '',
+                metro = 'sv',
+                always_pxe = True,
+                billing_cycle = 'hourly',
+                customdata = { },
+                description = '',
                 features = [
                     ''
-                    ], 
-                hardware_reservation_id = 'next-available', 
-                hostname = '', 
+                    ],
+                hardware_reservation_id = 'next-available',
+                hostname = '',
                 ip_addresses = [
                     equinix_metal.models.ip_address.IPAddress(
                         address_family = 4, 
@@ -59,20 +56,20 @@ class TestCreateDeviceRequest(unittest.TestCase):
                             ''
                             ], 
                         public = False, )
-                    ], 
-                ipxe_script_url = '', 
-                locked = True, 
-                network_frozen = True, 
-                no_ssh_keys = True, 
-                operating_system = '', 
-                plan = 'c3.large.x86', 
-                private_ipv4_subnet_size = 56, 
+                    ],
+                ipxe_script_url = '',
+                locked = True,
+                network_frozen = True,
+                no_ssh_keys = True,
+                operating_system = '',
+                plan = 'c3.large.x86',
+                private_ipv4_subnet_size = 56,
                 project_ssh_keys = [
                     ''
-                    ], 
-                public_ipv4_subnet_size = 56, 
-                spot_instance = True, 
-                spot_price_max = 1.23, 
+                    ],
+                public_ipv4_subnet_size = 56,
+                spot_instance = True,
+                spot_price_max = 1.23,
                 ssh_keys = [
                     equinix_metal.models.ssh_key_input.SSHKeyInput(
                         href = '', 
@@ -81,7 +78,7 @@ class TestCreateDeviceRequest(unittest.TestCase):
                         tags = [
                             ''
                             ], )
-                    ], 
+                    ],
                 storage = equinix_metal.models.storage.Storage(
                     disks = [
                         equinix_metal.models.disk.Disk(
@@ -117,18 +114,18 @@ class TestCreateDeviceRequest(unittest.TestCase):
                             href = '', 
                             level = '', 
                             name = '', )
-                        ], ), 
+                        ], ),
                 tags = [
                     ''
-                    ], 
-                termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    ],
+                termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user_ssh_keys = [
                     ''
-                    ], 
-                userdata = '', 
+                    ],
+                userdata = '',
                 facility = None
             )
-        else :
+        else:
             return CreateDeviceRequest(
                 metro = 'sv',
                 operating_system = '',

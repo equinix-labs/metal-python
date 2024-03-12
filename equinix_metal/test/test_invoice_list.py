@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.invoice_list import InvoiceList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.invoice_list import InvoiceList
 
 class TestInvoiceList(unittest.TestCase):
     """InvoiceList unit test stubs"""
@@ -29,17 +26,17 @@ class TestInvoiceList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InvoiceList:
         """Test InvoiceList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InvoiceList`
         """
-        model = equinix_metal.models.invoice_list.InvoiceList()  # noqa: E501
-        if include_optional :
+        model = InvoiceList()
+        if include_optional:
             return InvoiceList(
-                href = '', 
+                href = '',
                 invoices = [
                     equinix_metal.models.invoice.Invoice(
                         amount = 1.337, 
@@ -129,7 +126,7 @@ class TestInvoiceList(unittest.TestCase):
                         target_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), )
                     ]
             )
-        else :
+        else:
             return InvoiceList(
         )
         """

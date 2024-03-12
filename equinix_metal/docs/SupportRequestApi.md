@@ -17,9 +17,8 @@ Support Ticket.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.support_request_input import SupportRequestInput
 from equinix_metal.rest import ApiException

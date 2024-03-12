@@ -19,9 +19,8 @@ Accept an invitation.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.membership import Membership
 from equinix_metal.rest import ApiException
@@ -102,9 +101,8 @@ Decline an invitation.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -180,9 +178,8 @@ Returns a single invitation. (It include the `invitable` to maintain backward co
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invitation import Invitation
 from equinix_metal.rest import ApiException

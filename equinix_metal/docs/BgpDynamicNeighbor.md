@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bgp_neighbor_asn** | **int** | The ASN of the dynamic BGP neighbor | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of BgpDynamicNeighbor from a JSON string
 bgp_dynamic_neighbor_instance = BgpDynamicNeighbor.from_json(json)
 # print the JSON string representation of the object
-print BgpDynamicNeighbor.to_json()
+print(BgpDynamicNeighbor.to_json())
 
 # convert the object into a dict
 bgp_dynamic_neighbor_dict = bgp_dynamic_neighbor_instance.to_dict()

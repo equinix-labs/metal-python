@@ -21,9 +21,7 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-
-from typing import Union
-
+from typing_extensions import Annotated
 
 from equinix_metal.api_client import ApiClient
 from equinix_metal.api_response import ApiResponse
@@ -46,7 +44,7 @@ class ConsoleLogDetailsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def capture_screenshot(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> bytearray:  # noqa: E501
+    def capture_screenshot(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> bytearray:  # noqa: E501
         """capture_screenshot  # noqa: E501
 
         Capture a screenshot from the device, if supported, via the BMC.  # noqa: E501
@@ -75,7 +73,7 @@ class ConsoleLogDetailsApi(object):
         return self.capture_screenshot_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def capture_screenshot_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def capture_screenshot_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """capture_screenshot  # noqa: E501
 
         Capture a screenshot from the device, if supported, via the BMC.  # noqa: E501

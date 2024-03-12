@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment import PortVlanAssignment  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.port_vlan_assignment import PortVlanAssignment
 
 class TestPortVlanAssignment(unittest.TestCase):
     """PortVlanAssignment unit test stubs"""
@@ -29,29 +26,29 @@ class TestPortVlanAssignment(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PortVlanAssignment:
         """Test PortVlanAssignment
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PortVlanAssignment`
         """
-        model = equinix_metal.models.port_vlan_assignment.PortVlanAssignment()  # noqa: E501
-        if include_optional :
+        model = PortVlanAssignment()
+        if include_optional:
             return PortVlanAssignment(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
-                id = '', 
-                native = True, 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
+                id = '',
+                native = True,
                 port = equinix_metal.models.href.Href(
-                    href = '', ), 
-                state = 'assigned', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    href = '', ),
+                state = 'assigned',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 virtual_network = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 vlan = 56
             )
-        else :
+        else:
             return PortVlanAssignment(
         )
         """

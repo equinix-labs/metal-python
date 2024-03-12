@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.plan_available_in_metros_inner import PlanAvailableInMetrosInner  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.plan_available_in_metros_inner import PlanAvailableInMetrosInner
 
 class TestPlanAvailableInMetrosInner(unittest.TestCase):
     """PlanAvailableInMetrosInner unit test stubs"""
@@ -29,22 +26,22 @@ class TestPlanAvailableInMetrosInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PlanAvailableInMetrosInner:
         """Test PlanAvailableInMetrosInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PlanAvailableInMetrosInner`
         """
-        model = equinix_metal.models.plan_available_in_metros_inner.PlanAvailableInMetrosInner()  # noqa: E501
-        if include_optional :
+        model = PlanAvailableInMetrosInner()
+        if include_optional:
             return PlanAvailableInMetrosInner(
-                href = '', 
+                href = '',
                 price = equinix_metal.models.plan_available_in_inner_price.Plan_available_in_inner_price(
                     hour = 1.23, 
                     href = '', )
             )
-        else :
+        else:
             return PlanAvailableInMetrosInner(
         )
         """

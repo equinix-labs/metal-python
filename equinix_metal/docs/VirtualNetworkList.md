@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of VirtualNetworkList from a JSON string
 virtual_network_list_instance = VirtualNetworkList.from_json(json)
 # print the JSON string representation of the object
-print VirtualNetworkList.to_json()
+print(VirtualNetworkList.to_json())
 
 # convert the object into a dict
 virtual_network_list_dict = virtual_network_list_instance.to_dict()

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.dedicated_port_create_input import DedicatedPortCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.dedicated_port_create_input import DedicatedPortCreateInput
 
 class TestDedicatedPortCreateInput(unittest.TestCase):
     """DedicatedPortCreateInput unit test stubs"""
@@ -29,33 +26,33 @@ class TestDedicatedPortCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DedicatedPortCreateInput:
         """Test DedicatedPortCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DedicatedPortCreateInput`
         """
-        model = equinix_metal.models.dedicated_port_create_input.DedicatedPortCreateInput()  # noqa: E501
-        if include_optional :
+        model = DedicatedPortCreateInput()
+        if include_optional:
             return DedicatedPortCreateInput(
-                billing_account_name = '', 
-                contact_email = '', 
-                description = '', 
-                href = '', 
-                metro = '', 
-                mode = 'standard', 
-                name = '', 
-                project = '', 
-                redundancy = '', 
-                speed = '10000000000', 
+                billing_account_name = '',
+                contact_email = '',
+                description = '',
+                href = '',
+                metro = '',
+                mode = 'standard',
+                name = '',
+                project = '',
+                redundancy = '',
+                speed = '10000000000',
                 tags = [
                     ''
-                    ], 
-                type = 'dedicated', 
+                    ],
+                type = 'dedicated',
                 use_case = ''
             )
-        else :
+        else:
             return DedicatedPortCreateInput(
                 metro = '',
                 name = '',

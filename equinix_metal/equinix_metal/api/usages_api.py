@@ -21,9 +21,8 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-
 from typing import Optional
-
+from typing_extensions import Annotated
 from equinix_metal.models.device_usage_list import DeviceUsageList
 from equinix_metal.models.project_usage_list import ProjectUsageList
 
@@ -48,7 +47,7 @@ class UsagesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def find_device_usages(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], created_after : Annotated[Optional[StrictStr], Field(description="Filter usages created after this date")] = None, created_before : Annotated[Optional[StrictStr], Field(description="Filter usages created before this date")] = None, **kwargs) -> DeviceUsageList:  # noqa: E501
+    def find_device_usages(self, id : Annotated[StrictStr, Field(description="Device UUID")], created_after : Annotated[Optional[StrictStr], Field(description="Filter usages created after this date")] = None, created_before : Annotated[Optional[StrictStr], Field(description="Filter usages created before this date")] = None, **kwargs) -> DeviceUsageList:  # noqa: E501
         """Retrieve all usages for device  # noqa: E501
 
         Returns all usages for a device.  # noqa: E501
@@ -81,7 +80,7 @@ class UsagesApi(object):
         return self.find_device_usages_with_http_info(id, created_after, created_before, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_usages_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Device UUID")], created_after : Annotated[Optional[StrictStr], Field(description="Filter usages created after this date")] = None, created_before : Annotated[Optional[StrictStr], Field(description="Filter usages created before this date")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_device_usages_with_http_info(self, id : Annotated[StrictStr, Field(description="Device UUID")], created_after : Annotated[Optional[StrictStr], Field(description="Filter usages created after this date")] = None, created_before : Annotated[Optional[StrictStr], Field(description="Filter usages created before this date")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all usages for device  # noqa: E501
 
         Returns all usages for a device.  # noqa: E501
@@ -205,7 +204,7 @@ class UsagesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_usage(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], created_after : Annotated[Optional[StrictStr], Field(description="Filter usages created after this date")] = None, created_before : Annotated[Optional[StrictStr], Field(description="Filter usages created before this date")] = None, **kwargs) -> ProjectUsageList:  # noqa: E501
+    def find_project_usage(self, id : Annotated[StrictStr, Field(description="Project UUID")], created_after : Annotated[Optional[StrictStr], Field(description="Filter usages created after this date")] = None, created_before : Annotated[Optional[StrictStr], Field(description="Filter usages created before this date")] = None, **kwargs) -> ProjectUsageList:  # noqa: E501
         """Retrieve all usages for project  # noqa: E501
 
         Returns all usages for a project.  # noqa: E501
@@ -238,7 +237,7 @@ class UsagesApi(object):
         return self.find_project_usage_with_http_info(id, created_after, created_before, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_usage_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], created_after : Annotated[Optional[StrictStr], Field(description="Filter usages created after this date")] = None, created_before : Annotated[Optional[StrictStr], Field(description="Filter usages created before this date")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_usage_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], created_after : Annotated[Optional[StrictStr], Field(description="Filter usages created after this date")] = None, created_before : Annotated[Optional[StrictStr], Field(description="Filter usages created before this date")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all usages for project  # noqa: E501
 
         Returns all usages for a project.  # noqa: E501

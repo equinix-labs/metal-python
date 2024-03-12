@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.user_list import UserList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.user_list import UserList
 
 class TestUserList(unittest.TestCase):
     """UserList unit test stubs"""
@@ -29,17 +26,17 @@ class TestUserList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> UserList:
         """Test UserList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UserList`
         """
-        model = equinix_metal.models.user_list.UserList()  # noqa: E501
-        if include_optional :
+        model = UserList()
+        if include_optional:
             return UserList(
-                href = '', 
+                href = '',
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -51,7 +48,7 @@ class TestUserList(unittest.TestCase):
                     next = , 
                     previous = , 
                     self = , 
-                    total = 56, ), 
+                    total = 56, ),
                 users = [
                     equinix_metal.models.user.User(
                         avatar_thumb_url = '', 
@@ -81,7 +78,7 @@ class TestUserList(unittest.TestCase):
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ]
             )
-        else :
+        else:
             return UserList(
         )
         """

@@ -21,7 +21,7 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-
+from typing_extensions import Annotated
 from equinix_metal.models.capacity_check_per_facility_list import CapacityCheckPerFacilityList
 from equinix_metal.models.capacity_check_per_metro_list import CapacityCheckPerMetroList
 from equinix_metal.models.capacity_input import CapacityInput
@@ -48,7 +48,7 @@ class CapacityApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def check_capacity_for_facility(self, capacity_input : Annotated[CapacityInput, Field(..., description="Facility to check capacity in")], **kwargs) -> CapacityCheckPerFacilityList:  # noqa: E501
+    def check_capacity_for_facility(self, capacity_input : Annotated[CapacityInput, Field(description="Facility to check capacity in")], **kwargs) -> CapacityCheckPerFacilityList:  # noqa: E501
         """(Deprecated) Check capacity  # noqa: E501
 
         Validates if a deploy can be fulfilled.  # noqa: E501
@@ -77,7 +77,7 @@ class CapacityApi(object):
         return self.check_capacity_for_facility_with_http_info(capacity_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def check_capacity_for_facility_with_http_info(self, capacity_input : Annotated[CapacityInput, Field(..., description="Facility to check capacity in")], **kwargs) -> ApiResponse:  # noqa: E501
+    def check_capacity_for_facility_with_http_info(self, capacity_input : Annotated[CapacityInput, Field(description="Facility to check capacity in")], **kwargs) -> ApiResponse:  # noqa: E501
         """(Deprecated) Check capacity  # noqa: E501
 
         Validates if a deploy can be fulfilled.  # noqa: E501
@@ -198,7 +198,7 @@ class CapacityApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def check_capacity_for_metro(self, capacity_input : Annotated[CapacityInput, Field(..., description="Metro to check capacity in")], **kwargs) -> CapacityCheckPerMetroList:  # noqa: E501
+    def check_capacity_for_metro(self, capacity_input : Annotated[CapacityInput, Field(description="Metro to check capacity in")], **kwargs) -> CapacityCheckPerMetroList:  # noqa: E501
         """Check capacity for a metro  # noqa: E501
 
         Validates if a deploy can be fulfilled in a metro.  # noqa: E501
@@ -227,7 +227,7 @@ class CapacityApi(object):
         return self.check_capacity_for_metro_with_http_info(capacity_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def check_capacity_for_metro_with_http_info(self, capacity_input : Annotated[CapacityInput, Field(..., description="Metro to check capacity in")], **kwargs) -> ApiResponse:  # noqa: E501
+    def check_capacity_for_metro_with_http_info(self, capacity_input : Annotated[CapacityInput, Field(description="Metro to check capacity in")], **kwargs) -> ApiResponse:  # noqa: E501
         """Check capacity for a metro  # noqa: E501
 
         Validates if a deploy can be fulfilled in a metro.  # noqa: E501
@@ -610,7 +610,7 @@ class CapacityApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_capacity_per_facility(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], **kwargs) -> CapacityList:  # noqa: E501
+    def find_organization_capacity_per_facility(self, id : Annotated[StrictStr, Field(description="Organization UUID")], **kwargs) -> CapacityList:  # noqa: E501
         """View available hardware plans per Facility for given organization  # noqa: E501
 
         Returns a list of facilities and plans with their current capacity.  # noqa: E501
@@ -639,7 +639,7 @@ class CapacityApi(object):
         return self.find_organization_capacity_per_facility_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_capacity_per_facility_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_capacity_per_facility_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """View available hardware plans per Facility for given organization  # noqa: E501
 
         Returns a list of facilities and plans with their current capacity.  # noqa: E501
@@ -751,7 +751,7 @@ class CapacityApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_organization_capacity_per_metro(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], **kwargs) -> CapacityList:  # noqa: E501
+    def find_organization_capacity_per_metro(self, id : Annotated[StrictStr, Field(description="Organization UUID")], **kwargs) -> CapacityList:  # noqa: E501
         """View available hardware plans per Metro for given organization  # noqa: E501
 
         Returns a list of metros and plans with their current capacity.  # noqa: E501
@@ -780,7 +780,7 @@ class CapacityApi(object):
         return self.find_organization_capacity_per_metro_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_capacity_per_metro_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_capacity_per_metro_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """View available hardware plans per Metro for given organization  # noqa: E501
 
         Returns a list of metros and plans with their current capacity.  # noqa: E501

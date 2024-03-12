@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.server_info import ServerInfo  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.server_info import ServerInfo
 
 class TestServerInfo(unittest.TestCase):
     """ServerInfo unit test stubs"""
@@ -29,23 +26,23 @@ class TestServerInfo(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> ServerInfo:
         """Test ServerInfo
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ServerInfo`
         """
-        model = equinix_metal.models.server_info.ServerInfo()  # noqa: E501
-        if include_optional :
+        model = ServerInfo()
+        if include_optional:
             return ServerInfo(
-                facility = '', 
-                href = '', 
-                metro = '', 
-                plan = '', 
+                facility = '',
+                href = '',
+                metro = '',
+                plan = '',
                 quantity = ''
             )
-        else :
+        else:
             return ServerInfo(
         )
         """

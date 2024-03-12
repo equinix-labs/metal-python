@@ -17,9 +17,8 @@ Capture a screenshot from the device, if supported, via the BMC.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint

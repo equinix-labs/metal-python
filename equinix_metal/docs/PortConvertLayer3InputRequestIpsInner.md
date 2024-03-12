@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address_family** | **int** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of PortConvertLayer3InputRequestIpsInner from a JSON string
 port_convert_layer3_input_request_ips_inner_instance = PortConvertLayer3InputRequestIpsInner.from_json(json)
 # print the JSON string representation of the object
-print PortConvertLayer3InputRequestIpsInner.to_json()
+print(PortConvertLayer3InputRequestIpsInner.to_json())
 
 # convert the object into a dict
 port_convert_layer3_input_request_ips_inner_dict = port_convert_layer3_input_request_ips_inner_instance.to_dict()

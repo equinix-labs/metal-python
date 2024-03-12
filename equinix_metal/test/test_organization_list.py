@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.organization_list import OrganizationList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.organization_list import OrganizationList
 
 class TestOrganizationList(unittest.TestCase):
     """OrganizationList unit test stubs"""
@@ -29,17 +26,17 @@ class TestOrganizationList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> OrganizationList:
         """Test OrganizationList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `OrganizationList`
         """
-        model = equinix_metal.models.organization_list.OrganizationList()  # noqa: E501
-        if include_optional :
+        model = OrganizationList()
+        if include_optional:
             return OrganizationList(
-                href = '', 
+                href = '',
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -51,7 +48,7 @@ class TestOrganizationList(unittest.TestCase):
                     next = , 
                     previous = , 
                     self = , 
-                    total = 56, ), 
+                    total = 56, ),
                 organizations = [
                     equinix_metal.models.organization.Organization(
                         address = equinix_metal.models.address.Address(
@@ -98,7 +95,7 @@ class TestOrganizationList(unittest.TestCase):
                         website = '', )
                     ]
             )
-        else :
+        else:
             return OrganizationList(
         )
         """

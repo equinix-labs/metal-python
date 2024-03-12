@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.mount import Mount  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.mount import Mount
 
 class TestMount(unittest.TestCase):
     """Mount unit test stubs"""
@@ -29,25 +26,25 @@ class TestMount(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Mount:
         """Test Mount
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Mount`
         """
-        model = equinix_metal.models.mount.Mount()  # noqa: E501
-        if include_optional :
+        model = Mount()
+        if include_optional:
             return Mount(
-                device = '', 
-                format = '', 
-                href = '', 
+                device = '',
+                format = '',
+                href = '',
                 options = [
                     ''
-                    ], 
+                    ],
                 point = ''
             )
-        else :
+        else:
             return Mount(
         )
         """

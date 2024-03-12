@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.metadata_network import MetadataNetwork  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.metadata_network import MetadataNetwork
 
 class TestMetadataNetwork(unittest.TestCase):
     """MetadataNetwork unit test stubs"""
@@ -29,23 +26,23 @@ class TestMetadataNetwork(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> MetadataNetwork:
         """Test MetadataNetwork
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MetadataNetwork`
         """
-        model = equinix_metal.models.metadata_network.MetadataNetwork()  # noqa: E501
-        if include_optional :
+        model = MetadataNetwork()
+        if include_optional:
             return MetadataNetwork(
                 addresses = [
                     ''
-                    ], 
-                href = '', 
+                    ],
+                href = '',
                 interfaces = [
                     None
-                    ], 
+                    ],
                 network = equinix_metal.models.metadata_network_network.Metadata_network_network(
                     bonding = equinix_metal.models.metadata_network_network_bonding.Metadata_network_network_bonding(
                         href = '', 
@@ -54,7 +51,7 @@ class TestMetadataNetwork(unittest.TestCase):
                         mode = 56, ), 
                     href = '', )
             )
-        else :
+        else:
             return MetadataNetwork(
         )
         """

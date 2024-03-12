@@ -28,9 +28,8 @@ Creates a new project for the user's default organization. If the user does not 
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.project import Project
 from equinix_metal.models.project_create_from_root_input import ProjectCreateFromRootInput
@@ -113,9 +112,8 @@ In order to add a user to a project, they must first be invited.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invitation import Invitation
 from equinix_metal.models.invitation_input import InvitationInput
@@ -200,9 +198,8 @@ Organization owners can transfer their projects to other organizations.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.transfer_request import TransferRequest
 from equinix_metal.models.transfer_request_input import TransferRequestInput
@@ -287,9 +284,8 @@ Deletes the project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -365,9 +361,8 @@ Provides the custom metadata stored for this IP Reservation in json format
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -445,9 +440,8 @@ Returns a single project if the user has access
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.project import Project
 from equinix_metal.rest import ApiException
@@ -530,9 +524,8 @@ Provides the custom metadata stored for this project in json format
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -608,9 +601,8 @@ Returns all invitations in a project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invitation_list import InvitationList
 from equinix_metal.rest import ApiException
@@ -695,9 +687,8 @@ Returns all memberships in a project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.membership_list import MembershipList
 from equinix_metal.rest import ApiException
@@ -784,9 +775,8 @@ Returns a collection of projects that the current user is a member of.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.project_list import ProjectList
 from equinix_metal.rest import ApiException
@@ -876,9 +866,8 @@ Updates the project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.project import Project
 from equinix_metal.models.project_update_input import ProjectUpdateInput

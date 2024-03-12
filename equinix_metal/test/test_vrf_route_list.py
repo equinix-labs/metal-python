@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_route_list import VrfRouteList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_route_list import VrfRouteList
 
 class TestVrfRouteList(unittest.TestCase):
     """VrfRouteList unit test stubs"""
@@ -29,17 +26,17 @@ class TestVrfRouteList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfRouteList:
         """Test VrfRouteList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfRouteList`
         """
-        model = equinix_metal.models.vrf_route_list.VrfRouteList()  # noqa: E501
-        if include_optional :
+        model = VrfRouteList()
+        if include_optional:
             return VrfRouteList(
-                href = '', 
+                href = '',
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -51,7 +48,7 @@ class TestVrfRouteList(unittest.TestCase):
                     next = , 
                     previous = , 
                     self = , 
-                    total = 56, ), 
+                    total = 56, ),
                 routes = [
                     equinix_metal.models.vrf_route.VrfRoute(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -225,7 +222,7 @@ class TestVrfRouteList(unittest.TestCase):
                         vrf = , )
                     ]
             )
-        else :
+        else:
             return VrfRouteList(
         )
         """

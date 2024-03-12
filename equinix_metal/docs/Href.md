@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | 
@@ -16,7 +17,7 @@ json = "{}"
 # create an instance of Href from a JSON string
 href_instance = Href.from_json(json)
 # print the JSON string representation of the object
-print Href.to_json()
+print(Href.to_json())
 
 # convert the object into a dict
 href_dict = href_instance.to_dict()

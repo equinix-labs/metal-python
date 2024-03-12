@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.verify_email import VerifyEmail
 
 from equinix_metal.api_client import ApiClient
@@ -47,7 +46,7 @@ class UserVerificationTokensApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def consume_verification_request(self, verify_email : Annotated[VerifyEmail, Field(..., description="Email to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> None:  # noqa: E501
+    def consume_verification_request(self, verify_email : Annotated[VerifyEmail, Field(description="Email to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> None:  # noqa: E501
         """Verify a user using an email verification token  # noqa: E501
 
         Consumes an email verification token and verifies the user associated with it.  # noqa: E501
@@ -78,7 +77,7 @@ class UserVerificationTokensApi(object):
         return self.consume_verification_request_with_http_info(verify_email, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def consume_verification_request_with_http_info(self, verify_email : Annotated[VerifyEmail, Field(..., description="Email to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def consume_verification_request_with_http_info(self, verify_email : Annotated[VerifyEmail, Field(description="Email to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Verify a user using an email verification token  # noqa: E501
 
         Consumes an email verification token and verifies the user associated with it.  # noqa: E501
@@ -200,7 +199,7 @@ class UserVerificationTokensApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_validation_request(self, login : Annotated[StrictStr, Field(..., description="Email for verification request")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> None:  # noqa: E501
+    def create_validation_request(self, login : Annotated[StrictStr, Field(description="Email for verification request")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> None:  # noqa: E501
         """Create an email verification request  # noqa: E501
 
         Creates an email verification request  # noqa: E501
@@ -231,7 +230,7 @@ class UserVerificationTokensApi(object):
         return self.create_validation_request_with_http_info(login, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_validation_request_with_http_info(self, login : Annotated[StrictStr, Field(..., description="Email for verification request")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_validation_request_with_http_info(self, login : Annotated[StrictStr, Field(description="Email for verification request")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create an email verification request  # noqa: E501
 
         Creates an email verification request  # noqa: E501

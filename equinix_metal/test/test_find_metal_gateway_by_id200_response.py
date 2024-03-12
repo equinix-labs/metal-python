@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 
 class TestFindMetalGatewayById200Response(unittest.TestCase):
     """FindMetalGatewayById200Response unit test stubs"""
@@ -29,21 +26,21 @@ class TestFindMetalGatewayById200Response(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> FindMetalGatewayById200Response:
         """Test FindMetalGatewayById200Response
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `FindMetalGatewayById200Response`
         """
-        model = equinix_metal.models.find_metal_gateway_by_id200_response.FindMetalGatewayById200Response()  # noqa: E501
-        if include_optional :
+        model = FindMetalGatewayById200Response()
+        if include_optional:
             return FindMetalGatewayById200Response(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_by = equinix_metal.models.href.Href(
-                    href = '', ), 
-                href = '', 
-                id = '', 
+                    href = '', ),
+                href = '',
+                id = '',
                 ip_reservation = equinix_metal.models.vrf_ip_reservation.VrfIpReservation(
                     address = '', 
                     address_family = 56, 
@@ -173,7 +170,7 @@ class TestFindMetalGatewayById200Response(unittest.TestCase):
                                     local_asn = 56, 
                                     name = '', 
                                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
-                            ], ), ), 
+                            ], ), ),
                 project = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -210,9 +207,9 @@ class TestFindMetalGatewayById200Response(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
-                state = 'ready', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        ], ),
+                state = 'ready',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
                     assigned_to = equinix_metal.models.href.Href(
                         href = '', ), 
@@ -240,7 +237,7 @@ class TestFindMetalGatewayById200Response(unittest.TestCase):
                     tags = [
                         ''
                         ], 
-                    vxlan = 56, ), 
+                    vxlan = 56, ),
                 vrf = equinix_metal.models.vrf.Vrf(
                     bgp_dynamic_neighbors_bfd_enabled = True, 
                     bgp_dynamic_neighbors_enabled = True, 
@@ -359,7 +356,7 @@ class TestFindMetalGatewayById200Response(unittest.TestCase):
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], )
             )
-        else :
+        else:
             return FindMetalGatewayById200Response(
         )
         """

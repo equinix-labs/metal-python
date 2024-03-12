@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of InterconnectionMetroList from a JSON string
 interconnection_metro_list_instance = InterconnectionMetroList.from_json(json)
 # print the JSON string representation of the object
-print InterconnectionMetroList.to_json()
+print(InterconnectionMetroList.to_json())
 
 # convert the object into a dict
 interconnection_metro_list_dict = interconnection_metro_list_instance.to_dict()

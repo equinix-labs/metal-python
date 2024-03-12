@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.support_request_input import SupportRequestInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.support_request_input import SupportRequestInput
 
 class TestSupportRequestInput(unittest.TestCase):
     """SupportRequestInput unit test stubs"""
@@ -29,24 +26,24 @@ class TestSupportRequestInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SupportRequestInput:
         """Test SupportRequestInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SupportRequestInput`
         """
-        model = equinix_metal.models.support_request_input.SupportRequestInput()  # noqa: E501
-        if include_optional :
+        model = SupportRequestInput()
+        if include_optional:
             return SupportRequestInput(
-                device_id = '', 
-                href = '', 
-                message = '', 
-                priority = 'urgent', 
-                project_id = '', 
+                device_id = '',
+                href = '',
+                message = '',
+                priority = 'urgent',
+                project_id = '',
                 subject = ''
             )
-        else :
+        else:
             return SupportRequestInput(
                 message = '',
                 subject = '',

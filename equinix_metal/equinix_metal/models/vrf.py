@@ -19,59 +19,76 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.metro import Metro
 from equinix_metal.models.project import Project
 from equinix_metal.models.user import User
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Vrf(BaseModel):
     """
     Vrf
-    """
-    bgp_dynamic_neighbors_bfd_enabled: Optional[StrictBool] = Field(None, description="Toggle BFD on dynamic bgp neighbors sessions")
-    bgp_dynamic_neighbors_enabled: Optional[StrictBool] = Field(None, description="Toggle to enable the dynamic bgp neighbors feature on the VRF")
-    bgp_dynamic_neighbors_export_route_map: Optional[StrictBool] = Field(None, description="Toggle to export the VRF route-map to the dynamic bgp neighbors")
-    bill: Optional[StrictBool] = Field(False, description="True if the VRF is being billed. Usage will start when the first VRF Virtual Circuit is active, and will only stop when the VRF has been deleted.")
+    """ # noqa: E501
+    bgp_dynamic_neighbors_bfd_enabled: Optional[StrictBool] = Field(default=None, description="Toggle BFD on dynamic bgp neighbors sessions")
+    bgp_dynamic_neighbors_enabled: Optional[StrictBool] = Field(default=None, description="Toggle to enable the dynamic bgp neighbors feature on the VRF")
+    bgp_dynamic_neighbors_export_route_map: Optional[StrictBool] = Field(default=None, description="Toggle to export the VRF route-map to the dynamic bgp neighbors")
+    bill: Optional[StrictBool] = Field(default=False, description="True if the VRF is being billed. Usage will start when the first VRF Virtual Circuit is active, and will only stop when the VRF has been deleted.")
     created_at: Optional[datetime] = None
     created_by: Optional[User] = None
-    description: Optional[StrictStr] = Field(None, description="Optional field that can be set to describe the VRF")
+    description: Optional[StrictStr] = Field(default=None, description="Optional field that can be set to describe the VRF")
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    ip_ranges: Optional[conlist(StrictStr)] = Field(None, description="A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].")
-    local_asn: Optional[StrictInt] = Field(None, description="A 4-byte ASN associated with the VRF.")
+    ip_ranges: Optional[List[StrictStr]] = Field(default=None, description="A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].")
+    local_asn: Optional[StrictInt] = Field(default=None, description="A 4-byte ASN associated with the VRF.")
     metro: Optional[Metro] = None
     name: Optional[StrictStr] = None
     project: Optional[Project] = None
-    tags: Optional[conlist(StrictStr)] = None
+    tags: Optional[List[StrictStr]] = None
     updated_at: Optional[datetime] = None
-    virtual_circuits: Optional[conlist(VrfVirtualCircuit)] = Field(None, description="Virtual circuits that are in the VRF")
-    __properties = ["bgp_dynamic_neighbors_bfd_enabled", "bgp_dynamic_neighbors_enabled", "bgp_dynamic_neighbors_export_route_map", "bill", "created_at", "created_by", "description", "href", "id", "ip_ranges", "local_asn", "metro", "name", "project", "tags", "updated_at", "virtual_circuits"]
+    virtual_circuits: Optional[List[VrfVirtualCircuit]] = Field(default=None, description="Virtual circuits that are in the VRF")
+    __properties: ClassVar[List[str]] = ["bgp_dynamic_neighbors_bfd_enabled", "bgp_dynamic_neighbors_enabled", "bgp_dynamic_neighbors_export_route_map", "bill", "created_at", "created_by", "description", "href", "id", "ip_ranges", "local_asn", "metro", "name", "project", "tags", "updated_at", "virtual_circuits"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Vrf:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Vrf from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of created_by
         if self.created_by:
             _dict['created_by'] = self.created_by.to_dict()
@@ -91,35 +108,36 @@ class Vrf(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Vrf:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Vrf from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Vrf.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Vrf.parse_obj({
+        _obj = cls.model_validate({
             "bgp_dynamic_neighbors_bfd_enabled": obj.get("bgp_dynamic_neighbors_bfd_enabled"),
             "bgp_dynamic_neighbors_enabled": obj.get("bgp_dynamic_neighbors_enabled"),
             "bgp_dynamic_neighbors_export_route_map": obj.get("bgp_dynamic_neighbors_export_route_map"),
             "bill": obj.get("bill") if obj.get("bill") is not None else False,
             "created_at": obj.get("created_at"),
-            "created_by": User.from_dict(obj.get("created_by")) if obj.get("created_by") is not None else None,
+            "created_by": User.from_dict(obj["created_by"]) if obj.get("created_by") is not None else None,
             "description": obj.get("description"),
             "href": obj.get("href"),
             "id": obj.get("id"),
             "ip_ranges": obj.get("ip_ranges"),
             "local_asn": obj.get("local_asn"),
-            "metro": Metro.from_dict(obj.get("metro")) if obj.get("metro") is not None else None,
+            "metro": Metro.from_dict(obj["metro"]) if obj.get("metro") is not None else None,
             "name": obj.get("name"),
-            "project": Project.from_dict(obj.get("project")) if obj.get("project") is not None else None,
+            "project": Project.from_dict(obj["project"]) if obj.get("project") is not None else None,
             "tags": obj.get("tags"),
             "updated_at": obj.get("updated_at"),
-            "virtual_circuits": [VrfVirtualCircuit.from_dict(_item) for _item in obj.get("virtual_circuits")] if obj.get("virtual_circuits") is not None else None
+            "virtual_circuits": [VrfVirtualCircuit.from_dict(_item) for _item in obj["virtual_circuits"]] if obj.get("virtual_circuits") is not None else None
         })
         return _obj
 
 from equinix_metal.models.vrf_virtual_circuit import VrfVirtualCircuit
-Vrf.update_forward_refs()
+# TODO: Rewrite to not use raise_errors
+Vrf.model_rebuild(raise_errors=False)
 

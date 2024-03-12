@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_list import InterconnectionList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection_list import InterconnectionList
 
 class TestInterconnectionList(unittest.TestCase):
     """InterconnectionList unit test stubs"""
@@ -29,17 +26,17 @@ class TestInterconnectionList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InterconnectionList:
         """Test InterconnectionList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InterconnectionList`
         """
-        model = equinix_metal.models.interconnection_list.InterconnectionList()  # noqa: E501
-        if include_optional :
+        model = InterconnectionList()
+        if include_optional:
             return InterconnectionList(
-                href = '', 
+                href = '',
                 interconnections = [
                     equinix_metal.models.interconnection.Interconnection(
                         authorization_code = '', 
@@ -89,7 +86,7 @@ class TestInterconnectionList(unittest.TestCase):
                         token = '', 
                         type = 'shared', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ], 
+                    ],
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -103,7 +100,7 @@ class TestInterconnectionList(unittest.TestCase):
                     self = , 
                     total = 56, )
             )
-        else :
+        else:
             return InterconnectionList(
         )
         """

@@ -19,22 +19,24 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.ip_reservation_facility import IPReservationFacility
 from equinix_metal.models.ip_reservation_metro import IPReservationMetro
 from equinix_metal.models.metal_gateway_lite import MetalGatewayLite
 from equinix_metal.models.project import Project
+from typing import Optional, Set
+from typing_extensions import Self
 
 class IPReservation(BaseModel):
     """
     IPReservation
-    """
+    """ # noqa: E501
     addon: Optional[StrictBool] = None
     address: Optional[StrictStr] = None
     address_family: Optional[StrictInt] = None
-    assignments: Optional[conlist(Href)] = None
+    assignments: Optional[List[Href]] = None
     available: Optional[StrictStr] = None
     bill: Optional[StrictBool] = None
     cidr: Optional[StrictInt] = None
@@ -58,41 +60,56 @@ class IPReservation(BaseModel):
     public: Optional[StrictBool] = None
     requested_by: Optional[Href] = None
     state: Optional[StrictStr] = None
-    tags: Optional[conlist(StrictStr)] = None
-    type: StrictStr = Field(...)
-    __properties = ["addon", "address", "address_family", "assignments", "available", "bill", "cidr", "created_at", "customdata", "details", "enabled", "facility", "gateway", "global_ip", "href", "id", "manageable", "management", "metal_gateway", "metro", "netmask", "network", "project", "project_lite", "public", "requested_by", "state", "tags", "type"]
+    tags: Optional[List[StrictStr]] = None
+    type: StrictStr
+    __properties: ClassVar[List[str]] = ["addon", "address", "address_family", "assignments", "available", "bill", "cidr", "created_at", "customdata", "details", "enabled", "facility", "gateway", "global_ip", "href", "id", "manageable", "management", "metal_gateway", "metro", "netmask", "network", "project", "project_lite", "public", "requested_by", "state", "tags", "type"]
 
-    @validator('type')
+    @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6', 'vrf'):
-            raise ValueError("must be one of enum values ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6', 'vrf')")
+        if value not in set(['global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6']):
+            raise ValueError("must be one of enum values ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IPReservation:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of IPReservation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in assignments (list)
         _items = []
         if self.assignments:
@@ -121,19 +138,19 @@ class IPReservation(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IPReservation:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of IPReservation from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IPReservation.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IPReservation.parse_obj({
+        _obj = cls.model_validate({
             "addon": obj.get("addon"),
             "address": obj.get("address"),
             "address_family": obj.get("address_family"),
-            "assignments": [Href.from_dict(_item) for _item in obj.get("assignments")] if obj.get("assignments") is not None else None,
+            "assignments": [Href.from_dict(_item) for _item in obj["assignments"]] if obj.get("assignments") is not None else None,
             "available": obj.get("available"),
             "bill": obj.get("bill"),
             "cidr": obj.get("cidr"),
@@ -141,21 +158,21 @@ class IPReservation(BaseModel):
             "customdata": obj.get("customdata"),
             "details": obj.get("details"),
             "enabled": obj.get("enabled"),
-            "facility": IPReservationFacility.from_dict(obj.get("facility")) if obj.get("facility") is not None else None,
+            "facility": IPReservationFacility.from_dict(obj["facility"]) if obj.get("facility") is not None else None,
             "gateway": obj.get("gateway"),
             "global_ip": obj.get("global_ip"),
             "href": obj.get("href"),
             "id": obj.get("id"),
             "manageable": obj.get("manageable"),
             "management": obj.get("management"),
-            "metal_gateway": MetalGatewayLite.from_dict(obj.get("metal_gateway")) if obj.get("metal_gateway") is not None else None,
-            "metro": IPReservationMetro.from_dict(obj.get("metro")) if obj.get("metro") is not None else None,
+            "metal_gateway": MetalGatewayLite.from_dict(obj["metal_gateway"]) if obj.get("metal_gateway") is not None else None,
+            "metro": IPReservationMetro.from_dict(obj["metro"]) if obj.get("metro") is not None else None,
             "netmask": obj.get("netmask"),
             "network": obj.get("network"),
-            "project": Project.from_dict(obj.get("project")) if obj.get("project") is not None else None,
-            "project_lite": Href.from_dict(obj.get("project_lite")) if obj.get("project_lite") is not None else None,
+            "project": Project.from_dict(obj["project"]) if obj.get("project") is not None else None,
+            "project_lite": Href.from_dict(obj["project_lite"]) if obj.get("project_lite") is not None else None,
             "public": obj.get("public"),
-            "requested_by": Href.from_dict(obj.get("requested_by")) if obj.get("requested_by") is not None else None,
+            "requested_by": Href.from_dict(obj["requested_by"]) if obj.get("requested_by") is not None else None,
             "state": obj.get("state"),
             "tags": obj.get("tags"),
             "type": obj.get("type")

@@ -20,9 +20,8 @@ Creates an virtual network.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.models.virtual_network_create_input import VirtualNetworkCreateInput
@@ -109,9 +108,8 @@ Deletes a virtual network.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.rest import ApiException
@@ -195,9 +193,8 @@ Provides a list of virtual networks for a single project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_network_list import VirtualNetworkList
 from equinix_metal.rest import ApiException
@@ -284,9 +281,8 @@ Get a virtual network.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.rest import ApiException

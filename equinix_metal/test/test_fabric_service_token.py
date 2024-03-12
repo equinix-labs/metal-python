@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.fabric_service_token import FabricServiceToken  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.fabric_service_token import FabricServiceToken
 
 class TestFabricServiceToken(unittest.TestCase):
     """FabricServiceToken unit test stubs"""
@@ -29,25 +26,25 @@ class TestFabricServiceToken(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> FabricServiceToken:
         """Test FabricServiceToken
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `FabricServiceToken`
         """
-        model = equinix_metal.models.fabric_service_token.FabricServiceToken()  # noqa: E501
-        if include_optional :
+        model = FabricServiceToken()
+        if include_optional:
             return FabricServiceToken(
-                expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
-                id = '', 
-                max_allowed_speed = 10000000000, 
-                role = 'primary', 
-                service_token_type = 'a_side', 
+                expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
+                id = '',
+                max_allowed_speed = 10000000000,
+                role = 'primary',
+                service_token_type = 'a_side',
                 state = 'inactive'
             )
-        else :
+        else:
             return FabricServiceToken(
         )
         """

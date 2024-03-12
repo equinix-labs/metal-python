@@ -14,18 +14,16 @@
 
 
 from __future__ import annotations
-from inspect import getfullargspec
 import json
 import pprint
-import re  # noqa: F401
-
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.ip_reservation import IPReservation
 from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
-from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
+from typing import Union, List, Optional, Dict
+from typing_extensions import Literal, Self
 
 FINDIPADDRESSBYID200RESPONSE_ONE_OF_SCHEMAS = ["IPAssignment", "IPReservation", "VrfIpReservation"]
 
@@ -39,16 +37,16 @@ class FindIPAddressById200Response(BaseModel):
     oneof_schema_2_validator: Optional[IPReservation] = None
     # data type: VrfIpReservation
     oneof_schema_3_validator: Optional[VrfIpReservation] = None
-    if TYPE_CHECKING:
-        actual_instance: Union[IPAssignment, IPReservation, VrfIpReservation]
-    else:
-        actual_instance: Any
-    one_of_schemas: List[str] = Field(FINDIPADDRESSBYID200RESPONSE_ONE_OF_SCHEMAS, const=True)
+    actual_instance: Optional[Union[IPAssignment, IPReservation, VrfIpReservation]] = None
+    one_of_schemas: List[str] = Field(default=Literal["IPAssignment", "IPReservation", "VrfIpReservation"])
 
-    class Config:
-        validate_assignment = True
+    model_config = ConfigDict(
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
-    def __init__(self, *args, **kwargs):
+
+    def __init__(self, *args, **kwargs) -> None:
         if args:
             if len(args) > 1:
                 raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
@@ -58,9 +56,9 @@ class FindIPAddressById200Response(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @validator('actual_instance')
+    @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = FindIPAddressById200Response.construct()
+        instance = FindIPAddressById200Response.model_construct()
         error_messages = []
         match = 0
         # validate data type: IPAssignment
@@ -88,13 +86,13 @@ class FindIPAddressById200Response(BaseModel):
             return v
 
     @classmethod
-    def from_dict(cls, obj: dict) -> FindIPAddressById200Response:
+    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> FindIPAddressById200Response:
+    def from_json(cls, json_str: str) -> Self:
         """Returns the object represented by the json string"""
-        instance = FindIPAddressById200Response.construct()
+        instance = cls.model_construct()
         error_messages = []
         match = 0
 
@@ -131,19 +129,17 @@ class FindIPAddressById200Response(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        to_json = getattr(self.actual_instance, "to_json", None)
-        if callable(to_json):
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], IPAssignment, IPReservation, VrfIpReservation]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        to_dict = getattr(self.actual_instance, "to_dict", None)
-        if callable(to_dict):
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -151,6 +147,6 @@ class FindIPAddressById200Response(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.dict())
+        return pprint.pformat(self.model_dump())
 
 

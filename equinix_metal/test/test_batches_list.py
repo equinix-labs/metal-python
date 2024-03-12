@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.batches_list import BatchesList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.batches_list import BatchesList
 
 class TestBatchesList(unittest.TestCase):
     """BatchesList unit test stubs"""
@@ -29,15 +26,15 @@ class TestBatchesList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BatchesList:
         """Test BatchesList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BatchesList`
         """
-        model = equinix_metal.models.batches_list.BatchesList()  # noqa: E501
-        if include_optional :
+        model = BatchesList()
+        if include_optional:
             return BatchesList(
                 batches = [
                     equinix_metal.models.batch.Batch(
@@ -56,10 +53,10 @@ class TestBatchesList(unittest.TestCase):
                         quantity = 56, 
                         state = '', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ], 
+                    ],
                 href = ''
             )
-        else :
+        else:
             return BatchesList(
         )
         """

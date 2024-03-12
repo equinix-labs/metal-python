@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_metro_list import InterconnectionMetroList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection_metro_list import InterconnectionMetroList
 
 class TestInterconnectionMetroList(unittest.TestCase):
     """InterconnectionMetroList unit test stubs"""
@@ -29,17 +26,17 @@ class TestInterconnectionMetroList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InterconnectionMetroList:
         """Test InterconnectionMetroList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InterconnectionMetroList`
         """
-        model = equinix_metal.models.interconnection_metro_list.InterconnectionMetroList()  # noqa: E501
-        if include_optional :
+        model = InterconnectionMetroList()
+        if include_optional:
             return InterconnectionMetroList(
-                href = '', 
+                href = '',
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -51,12 +48,12 @@ class TestInterconnectionMetroList(unittest.TestCase):
                     next = , 
                     previous = , 
                     self = , 
-                    total = 56, ), 
+                    total = 56, ),
                 metros = [
                     null
                     ]
             )
-        else :
+        else:
             return InterconnectionMetroList(
         )
         """

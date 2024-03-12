@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.metal_gateway_elastic_ip_create_input import MetalGatewayElasticIpCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.metal_gateway_elastic_ip_create_input import MetalGatewayElasticIpCreateInput
 
 class TestMetalGatewayElasticIpCreateInput(unittest.TestCase):
     """MetalGatewayElasticIpCreateInput unit test stubs"""
@@ -29,23 +26,23 @@ class TestMetalGatewayElasticIpCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> MetalGatewayElasticIpCreateInput:
         """Test MetalGatewayElasticIpCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MetalGatewayElasticIpCreateInput`
         """
-        model = equinix_metal.models.metal_gateway_elastic_ip_create_input.MetalGatewayElasticIpCreateInput()  # noqa: E501
-        if include_optional :
+        model = MetalGatewayElasticIpCreateInput()
+        if include_optional:
             return MetalGatewayElasticIpCreateInput(
-                address = '147.75.234.8/31', 
-                customdata = { }, 
-                href = '', 
-                next_hop = '192.168.12.13', 
+                address = '147.75.234.8/31',
+                customdata = { },
+                href = '',
+                next_hop = '192.168.12.13',
                 tags = ["NY","prod","public"]
             )
-        else :
+        else:
             return MetalGatewayElasticIpCreateInput(
                 address = '147.75.234.8/31',
                 next_hop = '192.168.12.13',

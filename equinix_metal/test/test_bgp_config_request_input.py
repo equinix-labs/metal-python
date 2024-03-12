@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_config_request_input import BgpConfigRequestInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.bgp_config_request_input import BgpConfigRequestInput
 
 class TestBgpConfigRequestInput(unittest.TestCase):
     """BgpConfigRequestInput unit test stubs"""
@@ -29,23 +26,23 @@ class TestBgpConfigRequestInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BgpConfigRequestInput:
         """Test BgpConfigRequestInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BgpConfigRequestInput`
         """
-        model = equinix_metal.models.bgp_config_request_input.BgpConfigRequestInput()  # noqa: E501
-        if include_optional :
+        model = BgpConfigRequestInput()
+        if include_optional:
             return BgpConfigRequestInput(
-                asn = 65000, 
-                deployment_type = 'local', 
-                href = '', 
-                md5 = 'jUR,rZ#UM/?R,Fp^l6$ARjeJk C>i H'qT\\{<?'es#)#iK.YM{Rag2/!KB!k@5oXh.:Ts\";mGL,i&z5[P@M\"lzfB+Y,Twzfu~N^z\"mfqecVU{SE{QA<Y8XX0<}J;Krm9W'g~?)DvDDL7BlwpCDcpNjORpuEG', 
+                asn = 65000,
+                deployment_type = 'local',
+                href = '',
+                md5 = 'jUR,rZ#UM/?R,Fp^l6$ARjeJk C>i H'qT\\{<?'es#)#iK.YM{Rag2/!KB!k@5oXh.:Ts\";mGL,i&z5[P@M\"lzfB+Y,Twzfu~N^z\"mfqecVU{SE{QA<Y8XX0<}J;Krm9W'g~?)DvDDL7BlwpCDcpNjORpuEG',
                 use_case = ''
             )
-        else :
+        else:
             return BgpConfigRequestInput(
                 asn = 65000,
                 deployment_type = 'local',

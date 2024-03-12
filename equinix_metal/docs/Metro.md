@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **str** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of Metro from a JSON string
 metro_instance = Metro.from_json(json)
 # print the JSON string representation of the object
-print Metro.to_json()
+print(Metro.to_json())
 
 # convert the object into a dict
 metro_dict = metro_instance.to_dict()

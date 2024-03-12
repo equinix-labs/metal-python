@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.capacity_list import CapacityList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.capacity_list import CapacityList
 
 class TestCapacityList(unittest.TestCase):
     """CapacityList unit test stubs"""
@@ -29,15 +26,15 @@ class TestCapacityList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CapacityList:
         """Test CapacityList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CapacityList`
         """
-        model = equinix_metal.models.capacity_list.CapacityList()  # noqa: E501
-        if include_optional :
+        model = CapacityList()
+        if include_optional:
             return CapacityList(
                 capacity = {
                     'key' : {
@@ -45,10 +42,10 @@ class TestCapacityList(unittest.TestCase):
                             href = '', 
                             level = '', )
                         }
-                    }, 
+                    },
                 href = ''
             )
-        else :
+        else:
             return CapacityList(
         )
         """

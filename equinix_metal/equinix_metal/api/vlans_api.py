@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.models.virtual_network_create_input import VirtualNetworkCreateInput
 from equinix_metal.models.virtual_network_list import VirtualNetworkList
@@ -49,7 +48,7 @@ class VLANsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_virtual_network(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], virtual_network_create_input : Annotated[VirtualNetworkCreateInput, Field(..., description="Virtual Network to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualNetwork:  # noqa: E501
+    def create_virtual_network(self, id : Annotated[StrictStr, Field(description="Project UUID")], virtual_network_create_input : Annotated[VirtualNetworkCreateInput, Field(description="Virtual Network to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualNetwork:  # noqa: E501
         """Create a virtual network  # noqa: E501
 
         Creates an virtual network.  # noqa: E501
@@ -84,7 +83,7 @@ class VLANsApi(object):
         return self.create_virtual_network_with_http_info(id, virtual_network_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_virtual_network_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], virtual_network_create_input : Annotated[VirtualNetworkCreateInput, Field(..., description="Virtual Network to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_virtual_network_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], virtual_network_create_input : Annotated[VirtualNetworkCreateInput, Field(description="Virtual Network to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a virtual network  # noqa: E501
 
         Creates an virtual network.  # noqa: E501
@@ -225,7 +224,7 @@ class VLANsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_virtual_network(self, id : Annotated[StrictStr, Field(..., description="Virtual Network UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualNetwork:  # noqa: E501
+    def delete_virtual_network(self, id : Annotated[StrictStr, Field(description="Virtual Network UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualNetwork:  # noqa: E501
         """Delete a virtual network  # noqa: E501
 
         Deletes a virtual network.  # noqa: E501
@@ -258,7 +257,7 @@ class VLANsApi(object):
         return self.delete_virtual_network_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_virtual_network_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Network UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_virtual_network_with_http_info(self, id : Annotated[StrictStr, Field(description="Virtual Network UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete a virtual network  # noqa: E501
 
         Deletes a virtual network.  # noqa: E501
@@ -386,7 +385,7 @@ class VLANsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_virtual_networks(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by Facility ID (uuid) or Facility Code")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by Metro ID (uuid) or Metro Code")] = None, **kwargs) -> VirtualNetworkList:  # noqa: E501
+    def find_virtual_networks(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by Facility ID (uuid) or Facility Code")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by Metro ID (uuid) or Metro Code")] = None, **kwargs) -> VirtualNetworkList:  # noqa: E501
         """Retrieve all virtual networks  # noqa: E501
 
         Provides a list of virtual networks for a single project.  # noqa: E501
@@ -423,7 +422,7 @@ class VLANsApi(object):
         return self.find_virtual_networks_with_http_info(id, include, exclude, facility, metro, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_virtual_networks_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by Facility ID (uuid) or Facility Code")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by Metro ID (uuid) or Metro Code")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_virtual_networks_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by Facility ID (uuid) or Facility Code")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by Metro ID (uuid) or Metro Code")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all virtual networks  # noqa: E501
 
         Provides a list of virtual networks for a single project.  # noqa: E501
@@ -562,7 +561,7 @@ class VLANsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_virtual_network(self, id : Annotated[StrictStr, Field(..., description="Virtual Network UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualNetwork:  # noqa: E501
+    def get_virtual_network(self, id : Annotated[StrictStr, Field(description="Virtual Network UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualNetwork:  # noqa: E501
         """Get a virtual network  # noqa: E501
 
         Get a virtual network.  # noqa: E501
@@ -595,7 +594,7 @@ class VLANsApi(object):
         return self.get_virtual_network_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_virtual_network_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Network UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_virtual_network_with_http_info(self, id : Annotated[StrictStr, Field(description="Virtual Network UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get a virtual network  # noqa: E501
 
         Get a virtual network.  # noqa: E501

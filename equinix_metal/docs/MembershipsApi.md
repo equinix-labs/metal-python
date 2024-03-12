@@ -19,9 +19,8 @@ Deletes the membership.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -97,9 +96,8 @@ Returns a single membership.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.membership import Membership
 from equinix_metal.rest import ApiException
@@ -180,9 +178,8 @@ Updates the membership.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.membership import Membership
 from equinix_metal.models.membership_input import MembershipInput

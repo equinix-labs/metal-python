@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.raid import Raid  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.raid import Raid
 
 class TestRaid(unittest.TestCase):
     """Raid unit test stubs"""
@@ -29,24 +26,24 @@ class TestRaid(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Raid:
         """Test Raid
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Raid`
         """
-        model = equinix_metal.models.raid.Raid()  # noqa: E501
-        if include_optional :
+        model = Raid()
+        if include_optional:
             return Raid(
                 devices = [
                     ''
-                    ], 
-                href = '', 
-                level = '', 
+                    ],
+                href = '',
+                level = '',
                 name = ''
             )
-        else :
+        else:
             return Raid(
         )
         """

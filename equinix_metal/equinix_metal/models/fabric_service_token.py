@@ -19,88 +19,105 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from typing import Optional, Set
+from typing_extensions import Self
 
 class FabricServiceToken(BaseModel):
     """
     FabricServiceToken
-    """
-    expires_at: Optional[datetime] = Field(None, description="The expiration date and time of the Fabric service token. Once a service token is expired, it is no longer redeemable.")
+    """ # noqa: E501
+    expires_at: Optional[datetime] = Field(default=None, description="The expiration date and time of the Fabric service token. Once a service token is expired, it is no longer redeemable.")
     href: Optional[StrictStr] = None
-    id: Optional[StrictStr] = Field(None, description="The UUID that can be used on the Fabric Portal to redeem either an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this UUID will represent an A-Side Service Token, which will allow interconnections to be made from Equinix Metal to other Service Providers on Fabric. For Fabric VCs (Fabric Billed), this UUID will represent a Z-Side Service Token, which will allow interconnections to be made to connect an owned Fabric Port or  Virtual Device to Equinix Metal.")
-    max_allowed_speed: Optional[StrictInt] = Field(None, description="The maximum speed that can be selected on the Fabric Portal when configuring a interconnection with either  an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this is what the billing is based off of, and can be one of the following options, '50mbps', '200mbps', '500mbps', '1gbps', '2gbps', '5gbps' or '10gbps'. For Fabric VCs (Fabric Billed), this will default to 10Gbps.")
-    role: Optional[StrictStr] = Field(None, description="Either primary or secondary, depending on which interconnection the service token is associated to.")
-    service_token_type: Optional[StrictStr] = Field(None, description="Either 'a_side' or 'z_side', depending on which type of Fabric VC was requested.")
-    state: Optional[StrictStr] = Field(None, description="The state of the service token that corresponds with the service token state on Fabric. An 'inactive' state refers to a token that has not been redeemed yet on the Fabric side, an 'active' state refers to a token that has already been redeemed, and an 'expired' state refers to a token that has reached its expiry time.")
-    __properties = ["expires_at", "href", "id", "max_allowed_speed", "role", "service_token_type", "state"]
+    id: Optional[StrictStr] = Field(default=None, description="The UUID that can be used on the Fabric Portal to redeem either an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this UUID will represent an A-Side Service Token, which will allow interconnections to be made from Equinix Metal to other Service Providers on Fabric. For Fabric VCs (Fabric Billed), this UUID will represent a Z-Side Service Token, which will allow interconnections to be made to connect an owned Fabric Port or  Virtual Device to Equinix Metal.")
+    max_allowed_speed: Optional[StrictInt] = Field(default=None, description="The maximum speed that can be selected on the Fabric Portal when configuring a interconnection with either  an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this is what the billing is based off of, and can be one of the following options, '50mbps', '200mbps', '500mbps', '1gbps', '2gbps', '5gbps' or '10gbps'. For Fabric VCs (Fabric Billed), this will default to 10Gbps.")
+    role: Optional[StrictStr] = Field(default=None, description="Either primary or secondary, depending on which interconnection the service token is associated to.")
+    service_token_type: Optional[StrictStr] = Field(default=None, description="Either 'a_side' or 'z_side', depending on which type of Fabric VC was requested.")
+    state: Optional[StrictStr] = Field(default=None, description="The state of the service token that corresponds with the service token state on Fabric. An 'inactive' state refers to a token that has not been redeemed yet on the Fabric side, an 'active' state refers to a token that has already been redeemed, and an 'expired' state refers to a token that has reached its expiry time.")
+    __properties: ClassVar[List[str]] = ["expires_at", "href", "id", "max_allowed_speed", "role", "service_token_type", "state"]
 
-    @validator('role')
+    @field_validator('role')
     def role_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('primary', 'secondary'):
+        if value not in set(['primary', 'secondary']):
             raise ValueError("must be one of enum values ('primary', 'secondary')")
         return value
 
-    @validator('service_token_type')
+    @field_validator('service_token_type')
     def service_token_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('a_side', 'z_side'):
+        if value not in set(['a_side', 'z_side']):
             raise ValueError("must be one of enum values ('a_side', 'z_side')")
         return value
 
-    @validator('state')
+    @field_validator('state')
     def state_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('inactive', 'active', 'expired'):
+        if value not in set(['inactive', 'active', 'expired']):
             raise ValueError("must be one of enum values ('inactive', 'active', 'expired')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> FabricServiceToken:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of FabricServiceToken from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> FabricServiceToken:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of FabricServiceToken from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return FabricServiceToken.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = FabricServiceToken.parse_obj({
+        _obj = cls.model_validate({
             "expires_at": obj.get("expires_at"),
             "href": obj.get("href"),
             "id": obj.get("id"),

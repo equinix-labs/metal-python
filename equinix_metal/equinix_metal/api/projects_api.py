@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conint, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.invitation import Invitation
 from equinix_metal.models.invitation_input import InvitationInput
 from equinix_metal.models.invitation_list import InvitationList
@@ -56,7 +55,7 @@ class ProjectsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_project(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(..., description="Project to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
+    def create_project(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(description="Project to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
         """Create a project  # noqa: E501
 
         Creates a new project for the user's default organization. If the user does not have a default organization, the API will look for a personal organization belonging to the user with the name \"{User's Full Name} Projects\" to associate the project with. If that organization does not exist a new organization named \"{User's Full Name} Projects\" will be created and the new project will be tied to that organization.  # noqa: E501
@@ -89,7 +88,7 @@ class ProjectsApi(object):
         return self.create_project_with_http_info(project_create_from_root_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_project_with_http_info(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(..., description="Project to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_project_with_http_info(self, project_create_from_root_input : Annotated[ProjectCreateFromRootInput, Field(description="Project to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a project  # noqa: E501
 
         Creates a new project for the user's default organization. If the user does not have a default organization, the API will look for a personal organization belonging to the user with the name \"{User's Full Name} Projects\" to associate the project with. If that organization does not exist a new organization named \"{User's Full Name} Projects\" will be created and the new project will be tied to that organization.  # noqa: E501
@@ -222,7 +221,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_project_invitation(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], invitation_input : Annotated[InvitationInput, Field(..., description="Invitation to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Invitation:  # noqa: E501
+    def create_project_invitation(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], invitation_input : Annotated[InvitationInput, Field(description="Invitation to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Invitation:  # noqa: E501
         """Create an invitation for a project  # noqa: E501
 
         In order to add a user to a project, they must first be invited.  # noqa: E501
@@ -255,7 +254,7 @@ class ProjectsApi(object):
         return self.create_project_invitation_with_http_info(project_id, invitation_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_project_invitation_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], invitation_input : Annotated[InvitationInput, Field(..., description="Invitation to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_project_invitation_with_http_info(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], invitation_input : Annotated[InvitationInput, Field(description="Invitation to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create an invitation for a project  # noqa: E501
 
         In order to add a user to a project, they must first be invited.  # noqa: E501
@@ -389,7 +388,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_transfer_request(self, id : Annotated[StrictStr, Field(..., description="UUID of the project to be transferred")], transfer_request_input : Annotated[TransferRequestInput, Field(..., description="Transfer Request to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> TransferRequest:  # noqa: E501
+    def create_transfer_request(self, id : Annotated[StrictStr, Field(description="UUID of the project to be transferred")], transfer_request_input : Annotated[TransferRequestInput, Field(description="Transfer Request to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> TransferRequest:  # noqa: E501
         """(Deprecated) Create a transfer request  # noqa: E501
 
         Organization owners can transfer their projects to other organizations.  # noqa: E501
@@ -422,7 +421,7 @@ class ProjectsApi(object):
         return self.create_transfer_request_with_http_info(id, transfer_request_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_transfer_request_with_http_info(self, id : Annotated[StrictStr, Field(..., description="UUID of the project to be transferred")], transfer_request_input : Annotated[TransferRequestInput, Field(..., description="Transfer Request to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_transfer_request_with_http_info(self, id : Annotated[StrictStr, Field(description="UUID of the project to be transferred")], transfer_request_input : Annotated[TransferRequestInput, Field(description="Transfer Request to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """(Deprecated) Create a transfer request  # noqa: E501
 
         Organization owners can transfer their projects to other organizations.  # noqa: E501
@@ -558,7 +557,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_project(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_project(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the project  # noqa: E501
 
         Deletes the project.  # noqa: E501
@@ -587,7 +586,7 @@ class ProjectsApi(object):
         return self.delete_project_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_project_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_project_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the project  # noqa: E501
 
         Deletes the project.  # noqa: E501
@@ -695,7 +694,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_ip_reservation_customdata(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], id : Annotated[StrictStr, Field(..., description="Ip Reservation UUID")], **kwargs) -> None:  # noqa: E501
+    def find_ip_reservation_customdata(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], id : Annotated[StrictStr, Field(description="Ip Reservation UUID")], **kwargs) -> None:  # noqa: E501
         """Retrieve the custom metadata of an IP Reservation  # noqa: E501
 
         Provides the custom metadata stored for this IP Reservation in json format  # noqa: E501
@@ -726,7 +725,7 @@ class ProjectsApi(object):
         return self.find_ip_reservation_customdata_with_http_info(project_id, id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ip_reservation_customdata_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], id : Annotated[StrictStr, Field(..., description="Ip Reservation UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ip_reservation_customdata_with_http_info(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], id : Annotated[StrictStr, Field(description="Ip Reservation UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of an IP Reservation  # noqa: E501
 
         Provides the custom metadata stored for this IP Reservation in json format  # noqa: E501
@@ -840,7 +839,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_by_id(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
+    def find_project_by_id(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
         """Retrieve a project  # noqa: E501
 
         Returns a single project if the user has access  # noqa: E501
@@ -873,7 +872,7 @@ class ProjectsApi(object):
         return self.find_project_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a project  # noqa: E501
 
         Returns a single project if the user has access  # noqa: E501
@@ -1000,7 +999,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_customdata(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> None:  # noqa: E501
+    def find_project_customdata(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> None:  # noqa: E501
         """Retrieve the custom metadata of a project  # noqa: E501
 
         Provides the custom metadata stored for this project in json format  # noqa: E501
@@ -1029,7 +1028,7 @@ class ProjectsApi(object):
         return self.find_project_customdata_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_customdata_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_customdata_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of a project  # noqa: E501
 
         Provides the custom metadata stored for this project in json format  # noqa: E501
@@ -1137,7 +1136,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_invitations(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> InvitationList:  # noqa: E501
+    def find_project_invitations(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> InvitationList:  # noqa: E501
         """Retrieve project invitations  # noqa: E501
 
         Returns all invitations in a project.  # noqa: E501
@@ -1172,7 +1171,7 @@ class ProjectsApi(object):
         return self.find_project_invitations_with_http_info(project_id, include, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_invitations_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_invitations_with_http_info(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve project invitations  # noqa: E501
 
         Returns all invitations in a project.  # noqa: E501
@@ -1304,7 +1303,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_memberships(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by member full name, id and email.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> MembershipList:  # noqa: E501
+    def find_project_memberships(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by member full name, id and email.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> MembershipList:  # noqa: E501
         """Retrieve project memberships  # noqa: E501
 
         Returns all memberships in a project.  # noqa: E501
@@ -1341,7 +1340,7 @@ class ProjectsApi(object):
         return self.find_project_memberships_with_http_info(project_id, search, include, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_memberships_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by member full name, id and email.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_memberships_with_http_info(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by member full name, id and email.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve project memberships  # noqa: E501
 
         Returns all memberships in a project.  # noqa: E501
@@ -1479,7 +1478,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_projects_all_pages(self, name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ProjectList:  # noqa: E501
+    def find_projects_all_pages(self, name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ProjectList:  # noqa: E501
         """Retrieve all projects  # noqa: E501
 
         This method is the same as find_projects, but fetches resources from all the pages.
@@ -1534,7 +1533,7 @@ class ProjectsApi(object):
         return all_pages
 
     @validate_arguments
-    def find_projects(self, name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ProjectList:  # noqa: E501
+    def find_projects(self, name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ProjectList:  # noqa: E501
         """Retrieve all projects  # noqa: E501
 
         Returns a collection of projects that the current user is a member of.  # noqa: E501
@@ -1571,7 +1570,7 @@ class ProjectsApi(object):
         return self.find_projects_with_http_info(name, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_projects_with_http_info(self, name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_projects_with_http_info(self, name : Annotated[Optional[StrictStr], Field(description="Filter results by name.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all projects  # noqa: E501
 
         Returns a collection of projects that the current user is a member of.  # noqa: E501
@@ -1708,7 +1707,7 @@ class ProjectsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_project(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], project_update_input : Annotated[ProjectUpdateInput, Field(..., description="Project to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
+    def update_project(self, id : Annotated[StrictStr, Field(description="Project UUID")], project_update_input : Annotated[ProjectUpdateInput, Field(description="Project to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Project:  # noqa: E501
         """Update the project  # noqa: E501
 
         Updates the project.  # noqa: E501
@@ -1743,7 +1742,7 @@ class ProjectsApi(object):
         return self.update_project_with_http_info(id, project_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_project_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], project_update_input : Annotated[ProjectUpdateInput, Field(..., description="Project to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_project_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], project_update_input : Annotated[ProjectUpdateInput, Field(description="Project to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the project  # noqa: E501
 
         Updates the project.  # noqa: E501

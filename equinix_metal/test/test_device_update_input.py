@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device_update_input import DeviceUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device_update_input import DeviceUpdateInput
 
 class TestDeviceUpdateInput(unittest.TestCase):
     """DeviceUpdateInput unit test stubs"""
@@ -29,33 +26,33 @@ class TestDeviceUpdateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DeviceUpdateInput:
         """Test DeviceUpdateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DeviceUpdateInput`
         """
-        model = equinix_metal.models.device_update_input.DeviceUpdateInput()  # noqa: E501
-        if include_optional :
+        model = DeviceUpdateInput()
+        if include_optional:
             return DeviceUpdateInput(
-                always_pxe = True, 
-                billing_cycle = '', 
-                customdata = { }, 
-                description = '', 
-                firmware_set_id = '', 
-                hostname = '', 
-                href = '', 
-                ipxe_script_url = '', 
-                locked = True, 
-                network_frozen = True, 
-                spot_instance = True, 
+                always_pxe = True,
+                billing_cycle = '',
+                customdata = { },
+                description = '',
+                firmware_set_id = '',
+                hostname = '',
+                href = '',
+                ipxe_script_url = '',
+                locked = True,
+                network_frozen = True,
+                spot_instance = True,
                 tags = [
                     ''
-                    ], 
+                    ],
                 userdata = ''
             )
-        else :
+        else:
             return DeviceUpdateInput(
         )
         """

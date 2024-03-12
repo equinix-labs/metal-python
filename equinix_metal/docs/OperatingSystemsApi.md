@@ -18,9 +18,8 @@ Provides a listing of available operating system versions.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.operating_system_list import OperatingSystemList
 from equinix_metal.rest import ApiException
@@ -93,9 +92,8 @@ Provides a listing of available operating systems to provision your new device w
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.operating_system_list import OperatingSystemList
 from equinix_metal.rest import ApiException

@@ -3,6 +3,7 @@
 Port is a hardware port associated with a reserved or instantiated hardware device.
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bond** | [**BondPortData**](BondPortData.md) |  | [optional] 
@@ -26,7 +27,7 @@ json = "{}"
 # create an instance of Port from a JSON string
 port_instance = Port.from_json(json)
 # print the JSON string representation of the object
-print Port.to_json()
+print(Port.to_json())
 
 # convert the object into a dict
 port_dict = port_instance.to_dict()

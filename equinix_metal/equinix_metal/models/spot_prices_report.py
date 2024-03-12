@@ -18,16 +18,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.spot_prices_per_facility import SpotPricesPerFacility
 from equinix_metal.models.spot_prices_per_new_facility import SpotPricesPerNewFacility
+from typing import Optional, Set
+from typing_extensions import Self
 
 class SpotPricesReport(BaseModel):
     """
     SpotPricesReport
-    """
+    """ # noqa: E501
     ams1: Optional[SpotPricesPerFacility] = None
     atl1: Optional[SpotPricesPerNewFacility] = None
     dfw1: Optional[SpotPricesPerNewFacility] = None
@@ -43,32 +44,47 @@ class SpotPricesReport(BaseModel):
     sjc1: Optional[SpotPricesPerFacility] = None
     syd1: Optional[SpotPricesPerNewFacility] = None
     yyz1: Optional[SpotPricesPerNewFacility] = None
-    __properties = ["ams1", "atl1", "dfw1", "ewr1", "fra1", "href", "iad1", "lax1", "nrt1", "ord1", "sea1", "sin1", "sjc1", "syd1", "yyz1"]
+    __properties: ClassVar[List[str]] = ["ams1", "atl1", "dfw1", "ewr1", "fra1", "href", "iad1", "lax1", "nrt1", "ord1", "sea1", "sin1", "sjc1", "syd1", "yyz1"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SpotPricesReport:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SpotPricesReport from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of ams1
         if self.ams1:
             _dict['ams1'] = self.ams1.to_dict()
@@ -114,30 +130,30 @@ class SpotPricesReport(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SpotPricesReport:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SpotPricesReport from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SpotPricesReport.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = SpotPricesReport.parse_obj({
-            "ams1": SpotPricesPerFacility.from_dict(obj.get("ams1")) if obj.get("ams1") is not None else None,
-            "atl1": SpotPricesPerNewFacility.from_dict(obj.get("atl1")) if obj.get("atl1") is not None else None,
-            "dfw1": SpotPricesPerNewFacility.from_dict(obj.get("dfw1")) if obj.get("dfw1") is not None else None,
-            "ewr1": SpotPricesPerFacility.from_dict(obj.get("ewr1")) if obj.get("ewr1") is not None else None,
-            "fra1": SpotPricesPerNewFacility.from_dict(obj.get("fra1")) if obj.get("fra1") is not None else None,
+        _obj = cls.model_validate({
+            "ams1": SpotPricesPerFacility.from_dict(obj["ams1"]) if obj.get("ams1") is not None else None,
+            "atl1": SpotPricesPerNewFacility.from_dict(obj["atl1"]) if obj.get("atl1") is not None else None,
+            "dfw1": SpotPricesPerNewFacility.from_dict(obj["dfw1"]) if obj.get("dfw1") is not None else None,
+            "ewr1": SpotPricesPerFacility.from_dict(obj["ewr1"]) if obj.get("ewr1") is not None else None,
+            "fra1": SpotPricesPerNewFacility.from_dict(obj["fra1"]) if obj.get("fra1") is not None else None,
             "href": obj.get("href"),
-            "iad1": SpotPricesPerNewFacility.from_dict(obj.get("iad1")) if obj.get("iad1") is not None else None,
-            "lax1": SpotPricesPerNewFacility.from_dict(obj.get("lax1")) if obj.get("lax1") is not None else None,
-            "nrt1": SpotPricesPerFacility.from_dict(obj.get("nrt1")) if obj.get("nrt1") is not None else None,
-            "ord1": SpotPricesPerNewFacility.from_dict(obj.get("ord1")) if obj.get("ord1") is not None else None,
-            "sea1": SpotPricesPerNewFacility.from_dict(obj.get("sea1")) if obj.get("sea1") is not None else None,
-            "sin1": SpotPricesPerNewFacility.from_dict(obj.get("sin1")) if obj.get("sin1") is not None else None,
-            "sjc1": SpotPricesPerFacility.from_dict(obj.get("sjc1")) if obj.get("sjc1") is not None else None,
-            "syd1": SpotPricesPerNewFacility.from_dict(obj.get("syd1")) if obj.get("syd1") is not None else None,
-            "yyz1": SpotPricesPerNewFacility.from_dict(obj.get("yyz1")) if obj.get("yyz1") is not None else None
+            "iad1": SpotPricesPerNewFacility.from_dict(obj["iad1"]) if obj.get("iad1") is not None else None,
+            "lax1": SpotPricesPerNewFacility.from_dict(obj["lax1"]) if obj.get("lax1") is not None else None,
+            "nrt1": SpotPricesPerFacility.from_dict(obj["nrt1"]) if obj.get("nrt1") is not None else None,
+            "ord1": SpotPricesPerNewFacility.from_dict(obj["ord1"]) if obj.get("ord1") is not None else None,
+            "sea1": SpotPricesPerNewFacility.from_dict(obj["sea1"]) if obj.get("sea1") is not None else None,
+            "sin1": SpotPricesPerNewFacility.from_dict(obj["sin1"]) if obj.get("sin1") is not None else None,
+            "sjc1": SpotPricesPerFacility.from_dict(obj["sjc1"]) if obj.get("sjc1") is not None else None,
+            "syd1": SpotPricesPerNewFacility.from_dict(obj["syd1"]) if obj.get("syd1") is not None else None,
+            "yyz1": SpotPricesPerNewFacility.from_dict(obj["yyz1"]) if obj.get("yyz1") is not None else None
         })
         return _obj
 

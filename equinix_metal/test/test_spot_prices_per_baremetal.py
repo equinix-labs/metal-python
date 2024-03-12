@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_prices_per_baremetal import SpotPricesPerBaremetal  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.spot_prices_per_baremetal import SpotPricesPerBaremetal
 
 class TestSpotPricesPerBaremetal(unittest.TestCase):
     """SpotPricesPerBaremetal unit test stubs"""
@@ -29,20 +26,20 @@ class TestSpotPricesPerBaremetal(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SpotPricesPerBaremetal:
         """Test SpotPricesPerBaremetal
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SpotPricesPerBaremetal`
         """
-        model = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal()  # noqa: E501
-        if include_optional :
+        model = SpotPricesPerBaremetal()
+        if include_optional:
             return SpotPricesPerBaremetal(
-                href = '', 
+                href = '',
                 price = 1.337
             )
-        else :
+        else:
             return SpotPricesPerBaremetal(
         )
         """

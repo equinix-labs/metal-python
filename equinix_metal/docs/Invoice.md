@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **float** |  | [optional] 
@@ -30,7 +31,7 @@ json = "{}"
 # create an instance of Invoice from a JSON string
 invoice_instance = Invoice.from_json(json)
 # print the JSON string representation of the object
-print Invoice.to_json()
+print(Invoice.to_json())
 
 # convert the object into a dict
 invoice_dict = invoice_instance.to_dict()

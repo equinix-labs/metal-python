@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** |  | 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of IPAssignmentInput from a JSON string
 ip_assignment_input_instance = IPAssignmentInput.from_json(json)
 # print the JSON string representation of the object
-print IPAssignmentInput.to_json()
+print(IPAssignmentInput.to_json())
 
 # convert the object into a dict
 ip_assignment_input_dict = ip_assignment_input_instance.to_dict()

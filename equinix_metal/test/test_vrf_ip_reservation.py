@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_ip_reservation import VrfIpReservation  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
 
 class TestVrfIpReservation(unittest.TestCase):
     """VrfIpReservation unit test stubs"""
@@ -29,30 +26,30 @@ class TestVrfIpReservation(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfIpReservation:
         """Test VrfIpReservation
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfIpReservation`
         """
-        model = equinix_metal.models.vrf_ip_reservation.VrfIpReservation()  # noqa: E501
-        if include_optional :
+        model = VrfIpReservation()
+        if include_optional:
             return VrfIpReservation(
-                address = '', 
-                address_family = 56, 
-                bill = True, 
-                cidr = 56, 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                address = '',
+                address_family = 56,
+                bill = True,
+                cidr = 56,
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_by = equinix_metal.models.href.Href(
-                    href = '', ), 
-                customdata = equinix_metal.models.customdata.customdata(), 
-                details = '', 
-                gateway = '', 
-                href = '', 
-                id = '', 
-                manageable = True, 
-                management = True, 
+                    href = '', ),
+                customdata = equinix_metal.models.customdata.customdata(),
+                details = '',
+                gateway = '',
+                href = '',
+                id = '',
+                manageable = True,
+                management = True,
                 metal_gateway = equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     gateway_address = '10.1.2.1/27', 
@@ -60,15 +57,15 @@ class TestVrfIpReservation(unittest.TestCase):
                     id = '', 
                     state = 'ready', 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    vlan = 1001, ), 
+                    vlan = 1001, ),
                 metro = equinix_metal.models.metro.Metro(
                     code = '', 
                     country = '', 
                     href = '', 
                     id = '', 
-                    name = '', ), 
-                netmask = '', 
-                network = '', 
+                    name = '', ),
+                netmask = '',
+                network = '',
                 project = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -105,7 +102,7 @@ class TestVrfIpReservation(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
+                        ], ),
                 project_lite = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -142,13 +139,13 @@ class TestVrfIpReservation(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
-                public = True, 
-                state = '', 
+                        ], ),
+                public = True,
+                state = '',
                 tags = [
                     ''
-                    ], 
-                type = 'vrf', 
+                    ],
+                type = 'vrf',
                 vrf = equinix_metal.models.vrf.Vrf(
                     bgp_dynamic_neighbors_bfd_enabled = True, 
                     bgp_dynamic_neighbors_enabled = True, 
@@ -267,7 +264,7 @@ class TestVrfIpReservation(unittest.TestCase):
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], )
             )
-        else :
+        else:
             return VrfIpReservation(
                 type = 'vrf',
                 vrf = equinix_metal.models.vrf.Vrf(

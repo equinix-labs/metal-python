@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **expires_at** | **datetime** | The expiration date and time of the Fabric service token. Once a service token is expired, it is no longer redeemable. | [optional] 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of FabricServiceToken from a JSON string
 fabric_service_token_instance = FabricServiceToken.from_json(json)
 # print the JSON string representation of the object
-print FabricServiceToken.to_json()
+print(FabricServiceToken.to_json())
 
 # convert the object into a dict
 fabric_service_token_dict = fabric_service_token_instance.to_dict()

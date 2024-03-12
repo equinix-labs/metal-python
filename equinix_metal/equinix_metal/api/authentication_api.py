@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.auth_token import AuthToken
 from equinix_metal.models.auth_token_input import AuthTokenInput
 from equinix_metal.models.auth_token_list import AuthTokenList
@@ -49,7 +48,7 @@ class AuthenticationApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_api_key(self, auth_token_input : Annotated[AuthTokenInput, Field(..., description="API key to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> AuthToken:  # noqa: E501
+    def create_api_key(self, auth_token_input : Annotated[AuthTokenInput, Field(description="API key to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> AuthToken:  # noqa: E501
         """Create an API key  # noqa: E501
 
         Creates a API key for the current user.  # noqa: E501
@@ -80,7 +79,7 @@ class AuthenticationApi(object):
         return self.create_api_key_with_http_info(auth_token_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_api_key_with_http_info(self, auth_token_input : Annotated[AuthTokenInput, Field(..., description="API key to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_api_key_with_http_info(self, auth_token_input : Annotated[AuthTokenInput, Field(description="API key to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create an API key  # noqa: E501
 
         Creates a API key for the current user.  # noqa: E501
@@ -207,7 +206,7 @@ class AuthenticationApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_project_api_key(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], auth_token_input : Annotated[AuthTokenInput, Field(..., description="API Key to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> AuthToken:  # noqa: E501
+    def create_project_api_key(self, id : Annotated[StrictStr, Field(description="Project UUID")], auth_token_input : Annotated[AuthTokenInput, Field(description="API Key to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> AuthToken:  # noqa: E501
         """Create an API key for a project.  # noqa: E501
 
         Creates an API key for a project.  # noqa: E501
@@ -240,7 +239,7 @@ class AuthenticationApi(object):
         return self.create_project_api_key_with_http_info(id, auth_token_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_project_api_key_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], auth_token_input : Annotated[AuthTokenInput, Field(..., description="API Key to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_project_api_key_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], auth_token_input : Annotated[AuthTokenInput, Field(description="API Key to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create an API key for a project.  # noqa: E501
 
         Creates an API key for a project.  # noqa: E501
@@ -373,7 +372,7 @@ class AuthenticationApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_api_key(self, id : Annotated[StrictStr, Field(..., description="API Key UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_api_key(self, id : Annotated[StrictStr, Field(description="API Key UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the API key  # noqa: E501
 
         Deletes the API key.  # noqa: E501
@@ -402,7 +401,7 @@ class AuthenticationApi(object):
         return self.delete_api_key_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_api_key_with_http_info(self, id : Annotated[StrictStr, Field(..., description="API Key UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_api_key_with_http_info(self, id : Annotated[StrictStr, Field(description="API Key UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the API key  # noqa: E501
 
         Deletes the API key.  # noqa: E501
@@ -510,7 +509,7 @@ class AuthenticationApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_user_api_key(self, id : Annotated[StrictStr, Field(..., description="API Key UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_user_api_key(self, id : Annotated[StrictStr, Field(description="API Key UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the API key  # noqa: E501
 
         Deletes the current user API key.  # noqa: E501
@@ -539,7 +538,7 @@ class AuthenticationApi(object):
         return self.delete_user_api_key_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_user_api_key_with_http_info(self, id : Annotated[StrictStr, Field(..., description="API Key UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_user_api_key_with_http_info(self, id : Annotated[StrictStr, Field(description="API Key UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the API key  # noqa: E501
 
         Deletes the current user API key.  # noqa: E501
@@ -647,7 +646,7 @@ class AuthenticationApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_api_keys(self, search : Annotated[Optional[StrictStr], Field(description="Search by description")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> AuthTokenList:  # noqa: E501
+    def find_api_keys(self, search : Annotated[Optional[StrictStr], Field(description="Search by description")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> AuthTokenList:  # noqa: E501
         """Retrieve all user API keys  # noqa: E501
 
         Returns all API keys for the current user.  # noqa: E501
@@ -678,7 +677,7 @@ class AuthenticationApi(object):
         return self.find_api_keys_with_http_info(search, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_api_keys_with_http_info(self, search : Annotated[Optional[StrictStr], Field(description="Search by description")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_api_keys_with_http_info(self, search : Annotated[Optional[StrictStr], Field(description="Search by description")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all user API keys  # noqa: E501
 
         Returns all API keys for the current user.  # noqa: E501
@@ -797,7 +796,7 @@ class AuthenticationApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_api_keys(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> AuthTokenList:  # noqa: E501
+    def find_project_api_keys(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> AuthTokenList:  # noqa: E501
         """Retrieve all API keys for the project.  # noqa: E501
 
         Returns all API keys for a specific project.  # noqa: E501
@@ -828,7 +827,7 @@ class AuthenticationApi(object):
         return self.find_project_api_keys_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_api_keys_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_api_keys_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all API keys for the project.  # noqa: E501
 
         Returns all API keys for a specific project.  # noqa: E501

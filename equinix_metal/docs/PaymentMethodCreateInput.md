@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default** | **bool** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of PaymentMethodCreateInput from a JSON string
 payment_method_create_input_instance = PaymentMethodCreateInput.from_json(json)
 # print the JSON string representation of the object
-print PaymentMethodCreateInput.to_json()
+print(PaymentMethodCreateInput.to_json())
 
 # convert the object into a dict
 payment_method_create_input_dict = payment_method_create_input_instance.to_dict()

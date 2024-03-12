@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.virtual_network import VirtualNetwork  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.virtual_network import VirtualNetwork
 
 class TestVirtualNetwork(unittest.TestCase):
     """VirtualNetwork unit test stubs"""
@@ -29,28 +26,28 @@ class TestVirtualNetwork(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VirtualNetwork:
         """Test VirtualNetwork
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VirtualNetwork`
         """
-        model = equinix_metal.models.virtual_network.VirtualNetwork()  # noqa: E501
-        if include_optional :
+        model = VirtualNetwork()
+        if include_optional:
             return VirtualNetwork(
                 assigned_to = equinix_metal.models.href.Href(
-                    href = '', ), 
-                assigned_to_virtual_circuit = True, 
-                description = '', 
+                    href = '', ),
+                assigned_to_virtual_circuit = True,
+                description = '',
                 facility = equinix_metal.models.href.Href(
-                    href = '', ), 
-                href = '', 
-                id = '', 
+                    href = '', ),
+                href = '',
+                id = '',
                 instances = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
+                    ],
                 metal_gateways = [
                     equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -60,16 +57,16 @@ class TestVirtualNetwork(unittest.TestCase):
                         state = 'ready', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         vlan = 1001, )
-                    ], 
+                    ],
                 metro = equinix_metal.models.href.Href(
-                    href = '', ), 
-                metro_code = '', 
+                    href = '', ),
+                metro_code = '',
                 tags = [
                     ''
-                    ], 
+                    ],
                 vxlan = 56
             )
-        else :
+        else:
             return VirtualNetwork(
         )
         """

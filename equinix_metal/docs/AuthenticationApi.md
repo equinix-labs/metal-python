@@ -22,9 +22,8 @@ Creates a API key for the current user.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.auth_token import AuthToken
 from equinix_metal.models.auth_token_input import AuthTokenInput
@@ -106,9 +105,8 @@ Creates an API key for a project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.auth_token import AuthToken
 from equinix_metal.models.auth_token_input import AuthTokenInput
@@ -192,9 +190,8 @@ Deletes the API key.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -269,9 +266,8 @@ Deletes the current user API key.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -346,9 +342,8 @@ Returns all API keys for the current user.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.auth_token_list import AuthTokenList
 from equinix_metal.rest import ApiException
@@ -428,9 +423,8 @@ Returns all API keys for a specific project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.auth_token_list import AuthTokenList
 from equinix_metal.rest import ApiException

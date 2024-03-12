@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vlan_virtual_circuit import VlanVirtualCircuit  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vlan_virtual_circuit import VlanVirtualCircuit
 
 class TestVlanVirtualCircuit(unittest.TestCase):
     """VlanVirtualCircuit unit test stubs"""
@@ -29,40 +26,40 @@ class TestVlanVirtualCircuit(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VlanVirtualCircuit:
         """Test VlanVirtualCircuit
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VlanVirtualCircuit`
         """
-        model = equinix_metal.models.vlan_virtual_circuit.VlanVirtualCircuit()  # noqa: E501
-        if include_optional :
+        model = VlanVirtualCircuit()
+        if include_optional:
             return VlanVirtualCircuit(
-                bill = True, 
-                bill_type = 'metal_billed', 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                description = '', 
-                href = '', 
-                id = '', 
-                name = '', 
-                nni_vlan = 56, 
+                bill = True,
+                bill_type = 'metal_billed',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                description = '',
+                href = '',
+                id = '',
+                name = '',
+                nni_vlan = 56,
                 port = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 project = equinix_metal.models.href.Href(
-                    href = '', ), 
-                speed = 56, 
-                status = 'pending', 
+                    href = '', ),
+                speed = 56,
+                status = 'pending',
                 tags = [
                     ''
-                    ], 
-                type = 'vlan', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    ],
+                type = 'vlan',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 virtual_network = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 vnid = 56
             )
-        else :
+        else:
             return VlanVirtualCircuit(
         )
         """

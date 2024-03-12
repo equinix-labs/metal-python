@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_account_name** | **str** | The billing account name of the Equinix Fabric account. | [optional] 
@@ -28,7 +29,7 @@ json = "{}"
 # create an instance of DedicatedPortCreateInput from a JSON string
 dedicated_port_create_input_instance = DedicatedPortCreateInput.from_json(json)
 # print the JSON string representation of the object
-print DedicatedPortCreateInput.to_json()
+print(DedicatedPortCreateInput.to_json())
 
 # convert the object into a dict
 dedicated_port_create_input_dict = dedicated_port_create_input_instance.to_dict()

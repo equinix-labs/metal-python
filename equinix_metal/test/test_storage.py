@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.storage import Storage  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.storage import Storage
 
 class TestStorage(unittest.TestCase):
     """Storage unit test stubs"""
@@ -29,15 +26,15 @@ class TestStorage(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Storage:
         """Test Storage
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Storage`
         """
-        model = equinix_metal.models.storage.Storage()  # noqa: E501
-        if include_optional :
+        model = Storage()
+        if include_optional:
             return Storage(
                 disks = [
                     equinix_metal.models.disk.Disk(
@@ -51,7 +48,7 @@ class TestStorage(unittest.TestCase):
                                 size = '', )
                             ], 
                         wipe_table = True, )
-                    ], 
+                    ],
                 filesystems = [
                     equinix_metal.models.filesystem.Filesystem(
                         href = '', 
@@ -63,8 +60,8 @@ class TestStorage(unittest.TestCase):
                                 ''
                                 ], 
                             point = '', ), )
-                    ], 
-                href = '', 
+                    ],
+                href = '',
                 raid = [
                     equinix_metal.models.raid.Raid(
                         devices = [
@@ -75,7 +72,7 @@ class TestStorage(unittest.TestCase):
                         name = '', )
                     ]
             )
-        else :
+        else:
             return Storage(
         )
         """

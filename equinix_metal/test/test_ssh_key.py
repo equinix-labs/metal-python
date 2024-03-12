@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ssh_key import SSHKey  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ssh_key import SSHKey
 
 class TestSSHKey(unittest.TestCase):
     """SSHKey unit test stubs"""
@@ -29,30 +26,30 @@ class TestSSHKey(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SSHKey:
         """Test SSHKey
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SSHKey`
         """
-        model = equinix_metal.models.ssh_key.SSHKey()  # noqa: E501
-        if include_optional :
+        model = SSHKey()
+        if include_optional:
             return SSHKey(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 entity = equinix_metal.models.href.Href(
-                    href = '', ), 
-                fingerprint = '', 
-                href = '', 
-                id = '', 
-                key = '', 
-                label = '', 
+                    href = '', ),
+                fingerprint = '',
+                href = '',
+                id = '',
+                key = '',
+                label = '',
                 tags = [
                     ''
-                    ], 
+                    ],
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return SSHKey(
         )
         """

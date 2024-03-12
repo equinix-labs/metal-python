@@ -19,15 +19,17 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.payment_method_billing_address import PaymentMethodBillingAddress
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PaymentMethod(BaseModel):
     """
     PaymentMethod
-    """
+    """ # noqa: E501
     billing_address: Optional[PaymentMethodBillingAddress] = None
     card_type: Optional[StrictStr] = None
     cardholder_name: Optional[StrictStr] = None
@@ -41,35 +43,50 @@ class PaymentMethod(BaseModel):
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     organization: Optional[Href] = None
-    projects: Optional[conlist(Href)] = None
+    projects: Optional[List[Href]] = None
     type: Optional[StrictStr] = None
     updated_at: Optional[datetime] = None
-    __properties = ["billing_address", "card_type", "cardholder_name", "created_at", "created_by_user", "default", "email", "expiration_month", "expiration_year", "href", "id", "name", "organization", "projects", "type", "updated_at"]
+    __properties: ClassVar[List[str]] = ["billing_address", "card_type", "cardholder_name", "created_at", "created_by_user", "default", "email", "expiration_month", "expiration_year", "href", "id", "name", "organization", "projects", "type", "updated_at"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PaymentMethod:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PaymentMethod from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of billing_address
         if self.billing_address:
             _dict['billing_address'] = self.billing_address.to_dict()
@@ -89,20 +106,20 @@ class PaymentMethod(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PaymentMethod:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PaymentMethod from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PaymentMethod.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = PaymentMethod.parse_obj({
-            "billing_address": PaymentMethodBillingAddress.from_dict(obj.get("billing_address")) if obj.get("billing_address") is not None else None,
+        _obj = cls.model_validate({
+            "billing_address": PaymentMethodBillingAddress.from_dict(obj["billing_address"]) if obj.get("billing_address") is not None else None,
             "card_type": obj.get("card_type"),
             "cardholder_name": obj.get("cardholder_name"),
             "created_at": obj.get("created_at"),
-            "created_by_user": Href.from_dict(obj.get("created_by_user")) if obj.get("created_by_user") is not None else None,
+            "created_by_user": Href.from_dict(obj["created_by_user"]) if obj.get("created_by_user") is not None else None,
             "default": obj.get("default"),
             "email": obj.get("email"),
             "expiration_month": obj.get("expiration_month"),
@@ -110,8 +127,8 @@ class PaymentMethod(BaseModel):
             "href": obj.get("href"),
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "organization": Href.from_dict(obj.get("organization")) if obj.get("organization") is not None else None,
-            "projects": [Href.from_dict(_item) for _item in obj.get("projects")] if obj.get("projects") is not None else None,
+            "organization": Href.from_dict(obj["organization"]) if obj.get("organization") is not None else None,
+            "projects": [Href.from_dict(_item) for _item in obj["projects"]] if obj.get("projects") is not None else None,
             "type": obj.get("type"),
             "updated_at": obj.get("updated_at")
         })

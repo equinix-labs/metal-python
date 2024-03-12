@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_virtual_circuit_create_input import VrfVirtualCircuitCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_virtual_circuit_create_input import VrfVirtualCircuitCreateInput
 
 class TestVrfVirtualCircuitCreateInput(unittest.TestCase):
     """VrfVirtualCircuitCreateInput unit test stubs"""
@@ -29,33 +26,33 @@ class TestVrfVirtualCircuitCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfVirtualCircuitCreateInput:
         """Test VrfVirtualCircuitCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfVirtualCircuitCreateInput`
         """
-        model = equinix_metal.models.vrf_virtual_circuit_create_input.VrfVirtualCircuitCreateInput()  # noqa: E501
-        if include_optional :
+        model = VrfVirtualCircuitCreateInput()
+        if include_optional:
             return VrfVirtualCircuitCreateInput(
-                customer_ip = '12.0.0.2', 
-                description = '', 
-                href = '', 
-                md5 = 'jUR,rZ#UM/?R,Fp^l6$ARjeJk C>i H'qT\\{<?'es#)#iK.YM{Rag2/!KB!k@5oXh.:Ts\";mGL,i&z5[P@M\"lzfB+Y,Twzfu~N^z\"mfqecVU{SE{QA<Y8XX0<}J;Krm9W'g~?)DvDDL7BlwpCDcpNjORpuEG', 
-                metal_ip = '12.0.0.1', 
-                name = '', 
-                nni_vlan = 2, 
-                peer_asn = 56, 
-                project_id = '', 
-                speed = '', 
-                subnet = '12.0.0.0/30', 
+                customer_ip = '12.0.0.2',
+                description = '',
+                href = '',
+                md5 = 'jUR,rZ#UM/?R,Fp^l6$ARjeJk C>i H'qT\\{<?'es#)#iK.YM{Rag2/!KB!k@5oXh.:Ts\";mGL,i&z5[P@M\"lzfB+Y,Twzfu~N^z\"mfqecVU{SE{QA<Y8XX0<}J;Krm9W'g~?)DvDDL7BlwpCDcpNjORpuEG',
+                metal_ip = '12.0.0.1',
+                name = '',
+                nni_vlan = 2,
+                peer_asn = 56,
+                project_id = '',
+                speed = '',
+                subnet = '12.0.0.0/30',
                 tags = [
                     ''
-                    ], 
+                    ],
                 vrf = ''
             )
-        else :
+        else:
             return VrfVirtualCircuitCreateInput(
                 nni_vlan = 2,
                 peer_asn = 56,

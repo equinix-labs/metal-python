@@ -34,9 +34,8 @@ Create a new Virtual Circuit on a Dedicated Port. To create a regular Virtual Ci
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_circuit import VirtualCircuit
 from equinix_metal.models.virtual_circuit_create_input import VirtualCircuitCreateInput
@@ -119,9 +118,8 @@ Creates a new interconnection request. A Project ID must be specified in the req
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest
 from equinix_metal.models.interconnection import Interconnection
@@ -207,9 +205,8 @@ Creates a new interconnection request
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest
 from equinix_metal.models.interconnection import Interconnection
@@ -294,9 +291,8 @@ Delete a interconnection, its associated ports and virtual circuits.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.interconnection import Interconnection
 from equinix_metal.rest import ApiException
@@ -378,9 +374,8 @@ Delete a virtual circuit from a Dedicated Port.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_circuit import VirtualCircuit
 from equinix_metal.rest import ApiException
@@ -462,9 +457,8 @@ Get the details of a interconnection
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.interconnection import Interconnection
 from equinix_metal.rest import ApiException
@@ -546,9 +540,8 @@ Displays which providers you can connect to directly from Equinix Metal Metros.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.interconnection_metro_list import InterconnectionMetroList
 from equinix_metal.rest import ApiException
@@ -622,9 +615,8 @@ Get the details of an interconnection port.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.interconnection_port import InterconnectionPort
 from equinix_metal.rest import ApiException
@@ -708,9 +700,8 @@ Displays pricing information for connecting to networks outside of Equinix.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.interconnection_pricing_list import InterconnectionPricingList
 from equinix_metal.rest import ApiException
@@ -784,9 +775,8 @@ Get the details of a virtual circuit
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_circuit import VirtualCircuit
 from equinix_metal.rest import ApiException
@@ -868,9 +858,8 @@ List the virtual circuit record(s) associatiated with a particular interconnecti
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_circuit_list import VirtualCircuitList
 from equinix_metal.rest import ApiException
@@ -954,9 +943,8 @@ List the ports associated to an interconnection.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.interconnection_port_list import InterconnectionPortList
 from equinix_metal.rest import ApiException
@@ -1034,9 +1022,8 @@ List the virtual circuit record(s) associated with a particular interconnection 
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_circuit_list import VirtualCircuitList
 from equinix_metal.rest import ApiException
@@ -1114,9 +1101,8 @@ List the connections belonging to the organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.interconnection_list import InterconnectionList
 from equinix_metal.rest import ApiException
@@ -1198,9 +1184,8 @@ List the connections belonging to the project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.interconnection_list import InterconnectionList
 from equinix_metal.rest import ApiException
@@ -1291,9 +1276,8 @@ Update the details of a interconnection
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.interconnection import Interconnection
 from equinix_metal.models.interconnection_update_input import InterconnectionUpdateInput
@@ -1378,9 +1362,8 @@ Update the details of a virtual circuit.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_circuit import VirtualCircuit
 from equinix_metal.models.virtual_circuit_update_input import VirtualCircuitUpdateInput

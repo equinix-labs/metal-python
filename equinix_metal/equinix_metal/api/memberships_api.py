@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.membership import Membership
 from equinix_metal.models.membership_input import MembershipInput
 
@@ -48,7 +47,7 @@ class MembershipsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def delete_membership(self, id : Annotated[StrictStr, Field(..., description="Membership UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_membership(self, id : Annotated[StrictStr, Field(description="Membership UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the membership  # noqa: E501
 
         Deletes the membership.  # noqa: E501
@@ -77,7 +76,7 @@ class MembershipsApi(object):
         return self.delete_membership_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_membership_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Membership UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_membership_with_http_info(self, id : Annotated[StrictStr, Field(description="Membership UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the membership  # noqa: E501
 
         Deletes the membership.  # noqa: E501
@@ -185,7 +184,7 @@ class MembershipsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_membership_by_id(self, id : Annotated[StrictStr, Field(..., description="Membership UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Membership:  # noqa: E501
+    def find_membership_by_id(self, id : Annotated[StrictStr, Field(description="Membership UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Membership:  # noqa: E501
         """Retrieve a membership  # noqa: E501
 
         Returns a single membership.  # noqa: E501
@@ -216,7 +215,7 @@ class MembershipsApi(object):
         return self.find_membership_by_id_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_membership_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Membership UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_membership_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Membership UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a membership  # noqa: E501
 
         Returns a single membership.  # noqa: E501
@@ -336,7 +335,7 @@ class MembershipsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_membership(self, id : Annotated[StrictStr, Field(..., description="Membership UUID")], membership_input : Annotated[MembershipInput, Field(..., description="Membership to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Membership:  # noqa: E501
+    def update_membership(self, id : Annotated[StrictStr, Field(description="Membership UUID")], membership_input : Annotated[MembershipInput, Field(description="Membership to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Membership:  # noqa: E501
         """Update the membership  # noqa: E501
 
         Updates the membership.  # noqa: E501
@@ -369,7 +368,7 @@ class MembershipsApi(object):
         return self.update_membership_with_http_info(id, membership_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_membership_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Membership UUID")], membership_input : Annotated[MembershipInput, Field(..., description="Membership to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_membership_with_http_info(self, id : Annotated[StrictStr, Field(description="Membership UUID")], membership_input : Annotated[MembershipInput, Field(description="Membership to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the membership  # noqa: E501
 
         Updates the membership.  # noqa: E501

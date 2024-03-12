@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.plan import Plan  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.plan import Plan
 
 class TestPlan(unittest.TestCase):
     """Plan unit test stubs"""
@@ -29,15 +26,15 @@ class TestPlan(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Plan:
         """Test Plan
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Plan`
         """
-        model = equinix_metal.models.plan.Plan()  # noqa: E501
-        if include_optional :
+        model = Plan()
+        if include_optional:
             return Plan(
                 available_in = [
                     equinix_metal.models.plan_available_in_inner.Plan_available_in_inner(
@@ -45,29 +42,29 @@ class TestPlan(unittest.TestCase):
                         price = equinix_metal.models.plan_available_in_inner_price.Plan_available_in_inner_price(
                             hour = 1.23, 
                             href = '', ), )
-                    ], 
+                    ],
                 available_in_metros = [
                     equinix_metal.models.plan_available_in_metros_inner.Plan_available_in_metros_inner(
                         href = '', 
                         price = equinix_metal.models.plan_available_in_inner_price.Plan_available_in_inner_price(
                             hour = 1.23, 
                             href = '', ), )
-                    ], 
+                    ],
                 categories = [
                     ''
-                    ], 
-                var_class = 'm3.large.x86', 
+                    ],
+                var_class = 'm3.large.x86',
                 deployment_types = [
                     'on_demand'
-                    ], 
-                description = '', 
-                href = '', 
-                id = '', 
-                legacy = True, 
-                line = '', 
-                name = '', 
-                pricing = equinix_metal.models.pricing.pricing(), 
-                slug = 'm3.large.x86', 
+                    ],
+                description = '',
+                href = '',
+                id = '',
+                legacy = True,
+                line = '',
+                name = '',
+                pricing = equinix_metal.models.pricing.pricing(),
+                slug = 'm3.large.x86',
                 specs = equinix_metal.models.plan_specs.Plan_specs(
                     cpus = [
                         equinix_metal.models.plan_specs_cpus_inner.Plan_specs_cpus_inner(
@@ -97,10 +94,10 @@ class TestPlan(unittest.TestCase):
                             count = 2, 
                             href = '', 
                             type = '', )
-                        ], ), 
+                        ], ),
                 type = 'standard'
             )
-        else :
+        else:
             return Plan(
         )
         """

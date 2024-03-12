@@ -18,74 +18,90 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.bond_port_data import BondPortData
 from equinix_metal.models.href import Href
 from equinix_metal.models.port_data import PortData
 from equinix_metal.models.virtual_network import VirtualNetwork
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Port(BaseModel):
     """
     Port is a hardware port associated with a reserved or instantiated hardware device.
-    """
+    """ # noqa: E501
     bond: Optional[BondPortData] = None
     data: Optional[PortData] = None
-    disbond_operation_supported: Optional[StrictBool] = Field(None, description="Indicates whether or not the bond can be broken on the port (when applicable).")
+    disbond_operation_supported: Optional[StrictBool] = Field(default=None, description="Indicates whether or not the bond can be broken on the port (when applicable).")
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     native_virtual_network: Optional[VirtualNetwork] = None
-    network_type: Optional[StrictStr] = Field(None, description="Composite network type of the bond")
-    type: Optional[StrictStr] = Field(None, description="Type is either \"NetworkBondPort\" for bond ports or \"NetworkPort\" for bondable ethernet ports")
-    virtual_networks: Optional[conlist(Href)] = None
-    __properties = ["bond", "data", "disbond_operation_supported", "href", "id", "name", "native_virtual_network", "network_type", "type", "virtual_networks"]
+    network_type: Optional[StrictStr] = Field(default=None, description="Composite network type of the bond")
+    type: Optional[StrictStr] = Field(default=None, description="Type is either \"NetworkBondPort\" for bond ports or \"NetworkPort\" for bondable ethernet ports")
+    virtual_networks: Optional[List[Href]] = None
+    __properties: ClassVar[List[str]] = ["bond", "data", "disbond_operation_supported", "href", "id", "name", "native_virtual_network", "network_type", "type", "virtual_networks"]
 
-    @validator('network_type')
+    @field_validator('network_type')
     def network_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded'):
+        if value not in set(['layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded']):
             raise ValueError("must be one of enum values ('layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded')")
         return value
 
-    @validator('type')
+    @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('NetworkPort', 'NetworkBondPort'):
+        if value not in set(['NetworkPort', 'NetworkBondPort']):
             raise ValueError("must be one of enum values ('NetworkPort', 'NetworkBondPort')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Port:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Port from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of bond
         if self.bond:
             _dict['bond'] = self.bond.to_dict()
@@ -105,25 +121,25 @@ class Port(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Port:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Port from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Port.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Port.parse_obj({
-            "bond": BondPortData.from_dict(obj.get("bond")) if obj.get("bond") is not None else None,
-            "data": PortData.from_dict(obj.get("data")) if obj.get("data") is not None else None,
+        _obj = cls.model_validate({
+            "bond": BondPortData.from_dict(obj["bond"]) if obj.get("bond") is not None else None,
+            "data": PortData.from_dict(obj["data"]) if obj.get("data") is not None else None,
             "disbond_operation_supported": obj.get("disbond_operation_supported"),
             "href": obj.get("href"),
             "id": obj.get("id"),
             "name": obj.get("name"),
-            "native_virtual_network": VirtualNetwork.from_dict(obj.get("native_virtual_network")) if obj.get("native_virtual_network") is not None else None,
+            "native_virtual_network": VirtualNetwork.from_dict(obj["native_virtual_network"]) if obj.get("native_virtual_network") is not None else None,
             "network_type": obj.get("network_type"),
             "type": obj.get("type"),
-            "virtual_networks": [Href.from_dict(_item) for _item in obj.get("virtual_networks")] if obj.get("virtual_networks") is not None else None
+            "virtual_networks": [Href.from_dict(_item) for _item in obj["virtual_networks"]] if obj.get("virtual_networks") is not None else None
         })
         return _obj
 

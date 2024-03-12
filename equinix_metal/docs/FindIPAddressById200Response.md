@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** |  | [optional] 
@@ -49,7 +50,7 @@ json = "{}"
 # create an instance of FindIPAddressById200Response from a JSON string
 find_ip_address_by_id200_response_instance = FindIPAddressById200Response.from_json(json)
 # print the JSON string representation of the object
-print FindIPAddressById200Response.to_json()
+print(FindIPAddressById200Response.to_json())
 
 # convert the object into a dict
 find_ip_address_by_id200_response_dict = find_ip_address_by_id200_response_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **facility** | **str** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of ServerInfo from a JSON string
 server_info_instance = ServerInfo.from_json(json)
 # print the JSON string representation of the object
-print ServerInfo.to_json()
+print(ServerInfo.to_json())
 
 # convert the object into a dict
 server_info_dict = server_info_instance.to_dict()

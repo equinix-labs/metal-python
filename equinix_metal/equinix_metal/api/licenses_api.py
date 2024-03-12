@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conint, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.license import License
 from equinix_metal.models.license_create_input import LicenseCreateInput
 from equinix_metal.models.license_list import LicenseList
@@ -50,7 +49,7 @@ class LicensesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_license(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], license_create_input : Annotated[LicenseCreateInput, Field(..., description="License to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> License:  # noqa: E501
+    def create_license(self, id : Annotated[StrictStr, Field(description="Project UUID")], license_create_input : Annotated[LicenseCreateInput, Field(description="License to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> License:  # noqa: E501
         """Create a License  # noqa: E501
 
         Creates a new license for the given project  # noqa: E501
@@ -85,7 +84,7 @@ class LicensesApi(object):
         return self.create_license_with_http_info(id, license_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_license_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], license_create_input : Annotated[LicenseCreateInput, Field(..., description="License to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_license_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], license_create_input : Annotated[LicenseCreateInput, Field(description="License to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a License  # noqa: E501
 
         Creates a new license for the given project  # noqa: E501
@@ -226,7 +225,7 @@ class LicensesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_license(self, id : Annotated[StrictStr, Field(..., description="License UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_license(self, id : Annotated[StrictStr, Field(description="License UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the license  # noqa: E501
 
         Deletes a license.  # noqa: E501
@@ -255,7 +254,7 @@ class LicensesApi(object):
         return self.delete_license_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_license_with_http_info(self, id : Annotated[StrictStr, Field(..., description="License UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_license_with_http_info(self, id : Annotated[StrictStr, Field(description="License UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the license  # noqa: E501
 
         Deletes a license.  # noqa: E501
@@ -363,7 +362,7 @@ class LicensesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_license_by_id(self, id : Annotated[StrictStr, Field(..., description="License UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> License:  # noqa: E501
+    def find_license_by_id(self, id : Annotated[StrictStr, Field(description="License UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> License:  # noqa: E501
         """Retrieve a license  # noqa: E501
 
         Returns a license  # noqa: E501
@@ -396,7 +395,7 @@ class LicensesApi(object):
         return self.find_license_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_license_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="License UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_license_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="License UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a license  # noqa: E501
 
         Returns a license  # noqa: E501
@@ -523,7 +522,7 @@ class LicensesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_licenses(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> LicenseList:  # noqa: E501
+    def find_project_licenses(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> LicenseList:  # noqa: E501
         """Retrieve all licenses  # noqa: E501
 
         Provides a collection of licenses for a given project.  # noqa: E501
@@ -560,7 +559,7 @@ class LicensesApi(object):
         return self.find_project_licenses_with_http_info(id, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_licenses_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_licenses_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all licenses  # noqa: E501
 
         Provides a collection of licenses for a given project.  # noqa: E501
@@ -699,7 +698,7 @@ class LicensesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_license(self, id : Annotated[StrictStr, Field(..., description="License UUID")], license_update_input : Annotated[LicenseUpdateInput, Field(..., description="License to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> License:  # noqa: E501
+    def update_license(self, id : Annotated[StrictStr, Field(description="License UUID")], license_update_input : Annotated[LicenseUpdateInput, Field(description="License to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> License:  # noqa: E501
         """Update the license  # noqa: E501
 
         Updates the license.  # noqa: E501
@@ -734,7 +733,7 @@ class LicensesApi(object):
         return self.update_license_with_http_info(id, license_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_license_with_http_info(self, id : Annotated[StrictStr, Field(..., description="License UUID")], license_update_input : Annotated[LicenseUpdateInput, Field(..., description="License to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_license_with_http_info(self, id : Annotated[StrictStr, Field(description="License UUID")], license_update_input : Annotated[LicenseUpdateInput, Field(description="License to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the license  # noqa: E501
 
         Updates the license.  # noqa: E501

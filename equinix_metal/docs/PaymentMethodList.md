@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of PaymentMethodList from a JSON string
 payment_method_list_instance = PaymentMethodList.from_json(json)
 # print the JSON string representation of the object
-print PaymentMethodList.to_json()
+print(PaymentMethodList.to_json())
 
 # convert the object into a dict
 payment_method_list_dict = payment_method_list_instance.to_dict()

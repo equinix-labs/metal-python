@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.license_create_input import LicenseCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.license_create_input import LicenseCreateInput
 
 class TestLicenseCreateInput(unittest.TestCase):
     """LicenseCreateInput unit test stubs"""
@@ -29,22 +26,22 @@ class TestLicenseCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> LicenseCreateInput:
         """Test LicenseCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `LicenseCreateInput`
         """
-        model = equinix_metal.models.license_create_input.LicenseCreateInput()  # noqa: E501
-        if include_optional :
+        model = LicenseCreateInput()
+        if include_optional:
             return LicenseCreateInput(
-                description = '', 
-                href = '', 
-                licensee_product_id = '', 
+                description = '',
+                href = '',
+                licensee_product_id = '',
                 size = 1.337
             )
-        else :
+        else:
             return LicenseCreateInput(
         )
         """

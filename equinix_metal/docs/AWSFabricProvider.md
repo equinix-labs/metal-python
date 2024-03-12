@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_id** | **str** | AWS Account ID | 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of AWSFabricProvider from a JSON string
 aws_fabric_provider_instance = AWSFabricProvider.from_json(json)
 # print the JSON string representation of the object
-print AWSFabricProvider.to_json()
+print(AWSFabricProvider.to_json())
 
 # convert the object into a dict
 aws_fabric_provider_dict = aws_fabric_provider_instance.to_dict()

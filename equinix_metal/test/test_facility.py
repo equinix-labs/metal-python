@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.facility import Facility  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.facility import Facility
 
 class TestFacility(unittest.TestCase):
     """Facility unit test stubs"""
@@ -29,15 +26,15 @@ class TestFacility(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Facility:
         """Test Facility
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Facility`
         """
-        model = equinix_metal.models.facility.Facility()  # noqa: E501
-        if include_optional :
+        model = Facility()
+        if include_optional:
             return Facility(
                 address = equinix_metal.models.address.Address(
                     address2 = '', 
@@ -49,16 +46,16 @@ class TestFacility(unittest.TestCase):
                     country = '', 
                     href = '', 
                     state = '', 
-                    zip_code = '', ), 
-                code = '', 
-                features = ["baremetal","backend_transfer","global_ipv4"], 
-                href = '', 
-                id = '', 
-                ip_ranges = ["2604:1380::/36","147.75.192.0/21"], 
-                metro = None, 
+                    zip_code = '', ),
+                code = '',
+                features = ["baremetal","backend_transfer","global_ipv4"],
+                href = '',
+                id = '',
+                ip_ranges = ["2604:1380::/36","147.75.192.0/21"],
+                metro = None,
                 name = ''
             )
-        else :
+        else:
             return Facility(
         )
         """

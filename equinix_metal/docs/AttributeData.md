@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of AttributeData from a JSON string
 attribute_data_instance = AttributeData.from_json(json)
 # print the JSON string representation of the object
-print AttributeData.to_json()
+print(AttributeData.to_json())
 
 # convert the object into a dict
 attribute_data_dict = attribute_data_instance.to_dict()

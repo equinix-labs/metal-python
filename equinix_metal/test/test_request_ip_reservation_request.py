@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest
 
 class TestRequestIPReservationRequest(unittest.TestCase):
     """RequestIPReservationRequest unit test stubs"""
@@ -29,33 +26,33 @@ class TestRequestIPReservationRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> RequestIPReservationRequest:
         """Test RequestIPReservationRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `RequestIPReservationRequest`
         """
-        model = equinix_metal.models.request_ip_reservation_request.RequestIPReservationRequest()  # noqa: E501
-        if include_optional :
+        model = RequestIPReservationRequest()
+        if include_optional:
             return RequestIPReservationRequest(
-                comments = '', 
-                customdata = equinix_metal.models.customdata.customdata(), 
-                details = '', 
-                facility = '', 
-                fail_on_approval_required = True, 
-                href = '', 
-                metro = 'SV', 
-                quantity = 56, 
+                comments = '',
+                customdata = equinix_metal.models.customdata.customdata(),
+                details = '',
+                facility = '',
+                fail_on_approval_required = True,
+                href = '',
+                metro = 'SV',
+                quantity = 56,
                 tags = [
                     ''
-                    ], 
-                type = 'vrf', 
-                cidr = 16, 
-                network = '10.1.2.0', 
+                    ],
+                type = 'vrf',
+                cidr = 16,
+                network = '10.1.2.0',
                 vrf_id = ''
             )
-        else :
+        else:
             return RequestIPReservationRequest(
                 quantity = 56,
                 type = 'vrf',

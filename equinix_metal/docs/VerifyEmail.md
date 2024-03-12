@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of VerifyEmail from a JSON string
 verify_email_instance = VerifyEmail.from_json(json)
 # print the JSON string representation of the object
-print VerifyEmail.to_json()
+print(VerifyEmail.to_json())
 
 # convert the object into a dict
 verify_email_dict = verify_email_instance.to_dict()

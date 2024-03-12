@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.parent_block import ParentBlock  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.parent_block import ParentBlock
 
 class TestParentBlock(unittest.TestCase):
     """ParentBlock unit test stubs"""
@@ -29,22 +26,22 @@ class TestParentBlock(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> ParentBlock:
         """Test ParentBlock
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ParentBlock`
         """
-        model = equinix_metal.models.parent_block.ParentBlock()  # noqa: E501
-        if include_optional :
+        model = ParentBlock()
+        if include_optional:
             return ParentBlock(
-                cidr = 56, 
-                href = '', 
-                netmask = '', 
+                cidr = 56,
+                href = '',
+                netmask = '',
                 network = ''
             )
-        else :
+        else:
             return ParentBlock(
         )
         """

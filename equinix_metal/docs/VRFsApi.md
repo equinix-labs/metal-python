@@ -32,9 +32,8 @@ Return a single BGP Dynamic Neighbor resource
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.rest import ApiException
@@ -116,9 +115,8 @@ Create a VRF BGP Dynamic Neighbor range.  BGP Dynamic Neighbor records are limit
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput
@@ -205,9 +203,8 @@ Creates a new VRF in the specified project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.models.vrf_create_input import VrfCreateInput
@@ -293,9 +290,8 @@ Create a route in a VRF. Currently only static default routes are supported.  No
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.models.vrf_route_create_input import VrfRouteCreateInput
@@ -382,9 +378,8 @@ Trigger the removal of a BGP Neighbor range from a VRF
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.rest import ApiException
@@ -467,9 +462,8 @@ Deletes the VRF
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -545,9 +539,8 @@ Trigger the deletion of a VRF Route resource. The status of the route will updat
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.rest import ApiException
@@ -630,9 +623,8 @@ Returns a single VRF resource
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.rest import ApiException
@@ -715,9 +707,8 @@ Returns the IP Reservation for the VRF.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
 from equinix_metal.rest import ApiException
@@ -801,9 +792,8 @@ Returns the list of VRF IP Reservations for the VRF.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_ip_reservation_list import VrfIpReservationList
 from equinix_metal.rest import ApiException
@@ -885,9 +875,8 @@ Returns a single VRF Route resource
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.rest import ApiException
@@ -969,9 +958,8 @@ Returns the list of VRFs for a single project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_list import VrfList
 from equinix_metal.rest import ApiException
@@ -1055,9 +1043,8 @@ Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList
 from equinix_metal.rest import ApiException
@@ -1139,9 +1126,8 @@ Returns the list of routes for the VRF
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route_list import VrfRouteList
 from equinix_metal.rest import ApiException
@@ -1223,9 +1209,8 @@ Updates the VRF.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.models.vrf_update_input import VrfUpdateInput
@@ -1312,9 +1297,8 @@ Requests a VRF Route be redeployed across the network. Updating the prefix or ne
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.models.vrf_route_update_input import VrfRouteUpdateInput

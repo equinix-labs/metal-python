@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest
 
 class TestCreateMetalGatewayRequest(unittest.TestCase):
     """CreateMetalGatewayRequest unit test stubs"""
@@ -29,22 +26,22 @@ class TestCreateMetalGatewayRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CreateMetalGatewayRequest:
         """Test CreateMetalGatewayRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CreateMetalGatewayRequest`
         """
-        model = equinix_metal.models.create_metal_gateway_request.CreateMetalGatewayRequest()  # noqa: E501
-        if include_optional :
+        model = CreateMetalGatewayRequest()
+        if include_optional:
             return CreateMetalGatewayRequest(
-                href = '', 
-                ip_reservation_id = '', 
-                private_ipv4_subnet_size = 56, 
+                href = '',
+                ip_reservation_id = '',
+                private_ipv4_subnet_size = 56,
                 virtual_network_id = ''
             )
-        else :
+        else:
             return CreateMetalGatewayRequest(
                 ip_reservation_id = '',
                 virtual_network_id = '',

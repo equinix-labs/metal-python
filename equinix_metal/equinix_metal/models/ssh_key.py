@@ -19,14 +19,16 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
+from typing import Optional, Set
+from typing_extensions import Self
 
 class SSHKey(BaseModel):
     """
     SSHKey
-    """
+    """ # noqa: E501
     created_at: Optional[datetime] = None
     entity: Optional[Href] = None
     fingerprint: Optional[StrictStr] = None
@@ -34,51 +36,66 @@ class SSHKey(BaseModel):
     id: Optional[StrictStr] = None
     key: Optional[StrictStr] = None
     label: Optional[StrictStr] = None
-    tags: Optional[conlist(StrictStr)] = None
+    tags: Optional[List[StrictStr]] = None
     updated_at: Optional[datetime] = None
-    __properties = ["created_at", "entity", "fingerprint", "href", "id", "key", "label", "tags", "updated_at"]
+    __properties: ClassVar[List[str]] = ["created_at", "entity", "fingerprint", "href", "id", "key", "label", "tags", "updated_at"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SSHKey:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SSHKey from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of entity
         if self.entity:
             _dict['entity'] = self.entity.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SSHKey:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SSHKey from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SSHKey.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = SSHKey.parse_obj({
+        _obj = cls.model_validate({
             "created_at": obj.get("created_at"),
-            "entity": Href.from_dict(obj.get("entity")) if obj.get("entity") is not None else None,
+            "entity": Href.from_dict(obj["entity"]) if obj.get("entity") is not None else None,
             "fingerprint": obj.get("fingerprint"),
             "href": obj.get("href"),
             "id": obj.get("id"),

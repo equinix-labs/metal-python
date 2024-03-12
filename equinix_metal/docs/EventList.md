@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **events** | [**List[Event]**](Event.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of EventList from a JSON string
 event_list_instance = EventList.from_json(json)
 # print the JSON string representation of the object
-print EventList.to_json()
+print(EventList.to_json())
 
 # convert the object into a dict
 event_list_dict = event_list_instance.to_dict()

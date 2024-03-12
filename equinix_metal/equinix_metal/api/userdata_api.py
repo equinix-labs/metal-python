@@ -21,9 +21,8 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-
 from typing import Optional
-
+from typing_extensions import Annotated
 
 from equinix_metal.api_client import ApiClient
 from equinix_metal.api_response import ApiResponse

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of PlanList from a JSON string
 plan_list_instance = PlanList.from_json(json)
 # print the JSON string representation of the object
-print PlanList.to_json()
+print(PlanList.to_json())
 
 # convert the object into a dict
 plan_list_dict = plan_list_instance.to_dict()

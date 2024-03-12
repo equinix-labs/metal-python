@@ -18,9 +18,8 @@ Consumes an email verification token and verifies the user associated with it.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.verify_email import VerifyEmail
 from equinix_metal.rest import ApiException
@@ -98,9 +97,8 @@ Creates an email verification request
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint

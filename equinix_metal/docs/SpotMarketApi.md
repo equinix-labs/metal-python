@@ -23,9 +23,8 @@ Creates a new spot market request.  Type-specific options (such as operating_sys
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.spot_market_request import SpotMarketRequest
 from equinix_metal.models.spot_market_request_create_input import SpotMarketRequestCreateInput
@@ -107,9 +106,8 @@ Deletes the spot market request.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -187,9 +185,8 @@ Get Equinix Metal current spot market prices for all metros.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.spot_market_prices_per_metro_list import SpotMarketPricesPerMetroList
 from equinix_metal.rest import ApiException
@@ -269,9 +266,8 @@ Get Equinix Metal current spot market prices.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.spot_market_prices_list import SpotMarketPricesList
 from equinix_metal.rest import ApiException
@@ -351,9 +347,8 @@ Get spot market prices for a given plan and facility in a fixed period of time  
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.spot_prices_history_report import SpotPricesHistoryReport
 from equinix_metal.rest import ApiException
@@ -439,9 +434,8 @@ Returns a single spot market request
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.spot_market_request import SpotMarketRequest
 from equinix_metal.rest import ApiException
@@ -522,9 +516,8 @@ View all spot market requests for a given project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.spot_market_request_list import SpotMarketRequestList
 from equinix_metal.rest import ApiException

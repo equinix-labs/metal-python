@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vlan_virtual_circuit_create_input import VlanVirtualCircuitCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vlan_virtual_circuit_create_input import VlanVirtualCircuitCreateInput
 
 class TestVlanVirtualCircuitCreateInput(unittest.TestCase):
     """VlanVirtualCircuitCreateInput unit test stubs"""
@@ -29,28 +26,28 @@ class TestVlanVirtualCircuitCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VlanVirtualCircuitCreateInput:
         """Test VlanVirtualCircuitCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VlanVirtualCircuitCreateInput`
         """
-        model = equinix_metal.models.vlan_virtual_circuit_create_input.VlanVirtualCircuitCreateInput()  # noqa: E501
-        if include_optional :
+        model = VlanVirtualCircuitCreateInput()
+        if include_optional:
             return VlanVirtualCircuitCreateInput(
-                description = '', 
-                href = '', 
-                name = '', 
-                nni_vlan = 2, 
-                project_id = '', 
-                speed = '', 
+                description = '',
+                href = '',
+                name = '',
+                nni_vlan = 2,
+                project_id = '',
+                speed = '',
                 tags = [
                     ''
-                    ], 
+                    ],
                 vnid = ''
             )
-        else :
+        else:
             return VlanVirtualCircuitCreateInput(
                 project_id = '',
         )

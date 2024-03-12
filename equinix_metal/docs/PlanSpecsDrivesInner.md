@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **category** | **str** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of PlanSpecsDrivesInner from a JSON string
 plan_specs_drives_inner_instance = PlanSpecsDrivesInner.from_json(json)
 # print the JSON string representation of the object
-print PlanSpecsDrivesInner.to_json()
+print(PlanSpecsDrivesInner.to_json())
 
 # convert the object into a dict
 plan_specs_drives_inner_dict = plan_specs_drives_inner_instance.to_dict()

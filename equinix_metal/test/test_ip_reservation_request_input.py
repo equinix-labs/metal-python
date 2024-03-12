@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_reservation_request_input import IPReservationRequestInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ip_reservation_request_input import IPReservationRequestInput
 
 class TestIPReservationRequestInput(unittest.TestCase):
     """IPReservationRequestInput unit test stubs"""
@@ -29,30 +26,30 @@ class TestIPReservationRequestInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> IPReservationRequestInput:
         """Test IPReservationRequestInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `IPReservationRequestInput`
         """
-        model = equinix_metal.models.ip_reservation_request_input.IPReservationRequestInput()  # noqa: E501
-        if include_optional :
+        model = IPReservationRequestInput()
+        if include_optional:
             return IPReservationRequestInput(
-                comments = '', 
-                customdata = None, 
-                details = '', 
-                facility = '', 
-                fail_on_approval_required = True, 
-                href = '', 
-                metro = 'SV', 
-                quantity = 56, 
+                comments = '',
+                customdata = None,
+                details = '',
+                facility = '',
+                fail_on_approval_required = True,
+                href = '',
+                metro = 'SV',
+                quantity = 56,
                 tags = [
                     ''
-                    ], 
+                    ],
                 type = ''
             )
-        else :
+        else:
             return IPReservationRequestInput(
                 quantity = 56,
                 type = '',

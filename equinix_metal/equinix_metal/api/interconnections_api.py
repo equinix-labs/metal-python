@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conint, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest
 from equinix_metal.models.interconnection import Interconnection
 from equinix_metal.models.interconnection_list import InterconnectionList
@@ -58,7 +57,7 @@ class InterconnectionsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_interconnection_port_virtual_circuit(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection port")], virtual_circuit_create_input : Annotated[VirtualCircuitCreateInput, Field(..., description="Virtual Circuit details")], **kwargs) -> VirtualCircuit:  # noqa: E501
+    def create_interconnection_port_virtual_circuit(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(description="UUID of the interconnection port")], virtual_circuit_create_input : Annotated[VirtualCircuitCreateInput, Field(description="Virtual Circuit details")], **kwargs) -> VirtualCircuit:  # noqa: E501
         """Create a new Virtual Circuit  # noqa: E501
 
         Create a new Virtual Circuit on a Dedicated Port. To create a regular Virtual Circuit, specify a Virtual Network record and an NNI VLAN value. To create a VRF-based Virtual Circuit, specify the VRF ID and subnet, along with the NNI VLAN value.  # noqa: E501
@@ -91,7 +90,7 @@ class InterconnectionsApi(object):
         return self.create_interconnection_port_virtual_circuit_with_http_info(connection_id, port_id, virtual_circuit_create_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_interconnection_port_virtual_circuit_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection port")], virtual_circuit_create_input : Annotated[VirtualCircuitCreateInput, Field(..., description="Virtual Circuit details")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_interconnection_port_virtual_circuit_with_http_info(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(description="UUID of the interconnection port")], virtual_circuit_create_input : Annotated[VirtualCircuitCreateInput, Field(description="Virtual Circuit details")], **kwargs) -> ApiResponse:  # noqa: E501
         """Create a new Virtual Circuit  # noqa: E501
 
         Create a new Virtual Circuit on a Dedicated Port. To create a regular Virtual Circuit, specify a Virtual Network record and an NNI VLAN value. To create a VRF-based Virtual Circuit, specify the VRF ID and subnet, along with the NNI VLAN value.  # noqa: E501
@@ -222,7 +221,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_organization_interconnection(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(..., description="Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. ")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
+    def create_organization_interconnection(self, organization_id : Annotated[StrictStr, Field(description="UUID of the organization")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(description="Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. ")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Request a new interconnection for the organization  # noqa: E501
 
         Creates a new interconnection request. A Project ID must be specified in the request body for connections on shared ports.  # noqa: E501
@@ -257,7 +256,7 @@ class InterconnectionsApi(object):
         return self.create_organization_interconnection_with_http_info(organization_id, create_organization_interconnection_request, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_organization_interconnection_with_http_info(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(..., description="Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. ")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_organization_interconnection_with_http_info(self, organization_id : Annotated[StrictStr, Field(description="UUID of the organization")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(description="Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. ")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Request a new interconnection for the organization  # noqa: E501
 
         Creates a new interconnection request. A Project ID must be specified in the request body for connections on shared ports.  # noqa: E501
@@ -397,7 +396,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_project_interconnection(self, project_id : Annotated[StrictStr, Field(..., description="UUID of the project")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(..., description="Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. ")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
+    def create_project_interconnection(self, project_id : Annotated[StrictStr, Field(description="UUID of the project")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(description="Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. ")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Request a new interconnection for the project's organization  # noqa: E501
 
         Creates a new interconnection request  # noqa: E501
@@ -432,7 +431,7 @@ class InterconnectionsApi(object):
         return self.create_project_interconnection_with_http_info(project_id, create_organization_interconnection_request, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_project_interconnection_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="UUID of the project")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(..., description="Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. ")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_project_interconnection_with_http_info(self, project_id : Annotated[StrictStr, Field(description="UUID of the project")], create_organization_interconnection_request : Annotated[CreateOrganizationInterconnectionRequest, Field(description="Dedicated port or shared interconnection (also known as Fabric VC) creation request.  Shared interconnections can be created with the following request types: * `VlanCSPConnectionCreateInput` creates a layer 2 interconnection directly to your Cloud Service Provider. * `SharedPortVCVlanCreateInput` creates a layer 2 interconnection that you can finish configuration in Fabric. For new connections, this type is preferred to `VlanFabricVCCreateInput`. * `VlanFabricVCCreateInput` creates a layer 2 interconnection that you can connect through Fabric with a service token. * `VrfFabricVCCreateInput` creates a layer 3 interconnection that you can connect through Fabric with a service token. ")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Request a new interconnection for the project's organization  # noqa: E501
 
         Creates a new interconnection request  # noqa: E501
@@ -571,7 +570,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_interconnection(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
+    def delete_interconnection(self, connection_id : Annotated[StrictStr, Field(description="Interconnection UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Delete interconnection  # noqa: E501
 
         Delete a interconnection, its associated ports and virtual circuits.  # noqa: E501
@@ -604,7 +603,7 @@ class InterconnectionsApi(object):
         return self.delete_interconnection_with_http_info(connection_id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(description="Interconnection UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete interconnection  # noqa: E501
 
         Delete a interconnection, its associated ports and virtual circuits.  # noqa: E501
@@ -730,7 +729,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_virtual_circuit(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuit:  # noqa: E501
+    def delete_virtual_circuit(self, id : Annotated[StrictStr, Field(description="Virtual Circuit UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuit:  # noqa: E501
         """Delete a virtual circuit  # noqa: E501
 
         Delete a virtual circuit from a Dedicated Port.  # noqa: E501
@@ -763,7 +762,7 @@ class InterconnectionsApi(object):
         return self.delete_virtual_circuit_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(description="Virtual Circuit UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete a virtual circuit  # noqa: E501
 
         Delete a virtual circuit from a Dedicated Port.  # noqa: E501
@@ -889,7 +888,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_interconnection(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
+    def get_interconnection(self, connection_id : Annotated[StrictStr, Field(description="Interconnection UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Get interconnection  # noqa: E501
 
         Get the details of a interconnection  # noqa: E501
@@ -922,7 +921,7 @@ class InterconnectionsApi(object):
         return self.get_interconnection_with_http_info(connection_id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(description="Interconnection UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get interconnection  # noqa: E501
 
         Get the details of a interconnection  # noqa: E501
@@ -1181,7 +1180,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_interconnection_port(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> InterconnectionPort:  # noqa: E501
+    def get_interconnection_port(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> InterconnectionPort:  # noqa: E501
         """Get a interconnection port  # noqa: E501
 
         Get the details of an interconnection port.  # noqa: E501
@@ -1216,7 +1215,7 @@ class InterconnectionsApi(object):
         return self.get_interconnection_port_with_http_info(connection_id, id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_interconnection_port_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_interconnection_port_with_http_info(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get a interconnection port  # noqa: E501
 
         Get the details of an interconnection port.  # noqa: E501
@@ -1481,7 +1480,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_virtual_circuit(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuit:  # noqa: E501
+    def get_virtual_circuit(self, id : Annotated[StrictStr, Field(description="Virtual Circuit UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuit:  # noqa: E501
         """Get a virtual circuit  # noqa: E501
 
         Get the details of a virtual circuit  # noqa: E501
@@ -1514,7 +1513,7 @@ class InterconnectionsApi(object):
         return self.get_virtual_circuit_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(description="Virtual Circuit UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get a virtual circuit  # noqa: E501
 
         Get the details of a virtual circuit  # noqa: E501
@@ -1640,7 +1639,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def list_interconnection_port_virtual_circuits(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection port")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuitList:  # noqa: E501
+    def list_interconnection_port_virtual_circuits(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(description="UUID of the interconnection port")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuitList:  # noqa: E501
         """List a interconnection port's virtual circuits  # noqa: E501
 
         List the virtual circuit record(s) associatiated with a particular interconnection port.  # noqa: E501
@@ -1675,7 +1674,7 @@ class InterconnectionsApi(object):
         return self.list_interconnection_port_virtual_circuits_with_http_info(connection_id, port_id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_interconnection_port_virtual_circuits_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection port")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def list_interconnection_port_virtual_circuits_with_http_info(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], port_id : Annotated[StrictStr, Field(description="UUID of the interconnection port")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List a interconnection port's virtual circuits  # noqa: E501
 
         List the virtual circuit record(s) associatiated with a particular interconnection port.  # noqa: E501
@@ -1807,7 +1806,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def list_interconnection_ports(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], **kwargs) -> InterconnectionPortList:  # noqa: E501
+    def list_interconnection_ports(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], **kwargs) -> InterconnectionPortList:  # noqa: E501
         """List a interconnection's ports  # noqa: E501
 
         List the ports associated to an interconnection.  # noqa: E501
@@ -1836,7 +1835,7 @@ class InterconnectionsApi(object):
         return self.list_interconnection_ports_with_http_info(connection_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_interconnection_ports_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], **kwargs) -> ApiResponse:  # noqa: E501
+    def list_interconnection_ports_with_http_info(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], **kwargs) -> ApiResponse:  # noqa: E501
         """List a interconnection's ports  # noqa: E501
 
         List the ports associated to an interconnection.  # noqa: E501
@@ -1948,7 +1947,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def list_interconnection_virtual_circuits(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], **kwargs) -> VirtualCircuitList:  # noqa: E501
+    def list_interconnection_virtual_circuits(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], **kwargs) -> VirtualCircuitList:  # noqa: E501
         """List a interconnection's virtual circuits  # noqa: E501
 
         List the virtual circuit record(s) associated with a particular interconnection id.  # noqa: E501
@@ -1977,7 +1976,7 @@ class InterconnectionsApi(object):
         return self.list_interconnection_virtual_circuits_with_http_info(connection_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_interconnection_virtual_circuits_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="UUID of the interconnection")], **kwargs) -> ApiResponse:  # noqa: E501
+    def list_interconnection_virtual_circuits_with_http_info(self, connection_id : Annotated[StrictStr, Field(description="UUID of the interconnection")], **kwargs) -> ApiResponse:  # noqa: E501
         """List a interconnection's virtual circuits  # noqa: E501
 
         List the virtual circuit record(s) associated with a particular interconnection id.  # noqa: E501
@@ -2089,7 +2088,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def organization_list_interconnections(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> InterconnectionList:  # noqa: E501
+    def organization_list_interconnections(self, organization_id : Annotated[StrictStr, Field(description="UUID of the organization")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> InterconnectionList:  # noqa: E501
         """List organization connections  # noqa: E501
 
         List the connections belonging to the organization  # noqa: E501
@@ -2122,7 +2121,7 @@ class InterconnectionsApi(object):
         return self.organization_list_interconnections_with_http_info(organization_id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def organization_list_interconnections_with_http_info(self, organization_id : Annotated[StrictStr, Field(..., description="UUID of the organization")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def organization_list_interconnections_with_http_info(self, organization_id : Annotated[StrictStr, Field(description="UUID of the organization")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List organization connections  # noqa: E501
 
         List the connections belonging to the organization  # noqa: E501
@@ -2248,7 +2247,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def project_list_interconnections_all_pages(self, project_id : Annotated[StrictStr, Field(..., description="UUID of the project")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> InterconnectionList:  # noqa: E501
+    def project_list_interconnections_all_pages(self, project_id : Annotated[StrictStr, Field(description="UUID of the project")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> InterconnectionList:  # noqa: E501
         """List project connections  # noqa: E501
 
         This method is the same as project_list_interconnections, but fetches resources from all the pages.
@@ -2303,7 +2302,7 @@ class InterconnectionsApi(object):
         return all_pages
 
     @validate_arguments
-    def project_list_interconnections(self, project_id : Annotated[StrictStr, Field(..., description="UUID of the project")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> InterconnectionList:  # noqa: E501
+    def project_list_interconnections(self, project_id : Annotated[StrictStr, Field(description="UUID of the project")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> InterconnectionList:  # noqa: E501
         """List project connections  # noqa: E501
 
         List the connections belonging to the project  # noqa: E501
@@ -2340,7 +2339,7 @@ class InterconnectionsApi(object):
         return self.project_list_interconnections_with_http_info(project_id, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def project_list_interconnections_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="UUID of the project")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def project_list_interconnections_with_http_info(self, project_id : Annotated[StrictStr, Field(description="UUID of the project")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List project connections  # noqa: E501
 
         List the connections belonging to the project  # noqa: E501
@@ -2478,7 +2477,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_interconnection(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], interconnection_update_input : Annotated[InterconnectionUpdateInput, Field(..., description="Updated interconnection details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
+    def update_interconnection(self, connection_id : Annotated[StrictStr, Field(description="Interconnection UUID")], interconnection_update_input : Annotated[InterconnectionUpdateInput, Field(description="Updated interconnection details")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Interconnection:  # noqa: E501
         """Update interconnection  # noqa: E501
 
         Update the details of a interconnection  # noqa: E501
@@ -2513,7 +2512,7 @@ class InterconnectionsApi(object):
         return self.update_interconnection_with_http_info(connection_id, interconnection_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(..., description="Interconnection UUID")], interconnection_update_input : Annotated[InterconnectionUpdateInput, Field(..., description="Updated interconnection details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_interconnection_with_http_info(self, connection_id : Annotated[StrictStr, Field(description="Interconnection UUID")], interconnection_update_input : Annotated[InterconnectionUpdateInput, Field(description="Updated interconnection details")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update interconnection  # noqa: E501
 
         Update the details of a interconnection  # noqa: E501
@@ -2652,7 +2651,7 @@ class InterconnectionsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_virtual_circuit(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], virtual_circuit_update_input : Annotated[VirtualCircuitUpdateInput, Field(..., description="Updated Virtual Circuit details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuit:  # noqa: E501
+    def update_virtual_circuit(self, id : Annotated[StrictStr, Field(description="Virtual Circuit UUID")], virtual_circuit_update_input : Annotated[VirtualCircuitUpdateInput, Field(description="Updated Virtual Circuit details")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VirtualCircuit:  # noqa: E501
         """Update a virtual circuit  # noqa: E501
 
         Update the details of a virtual circuit.  # noqa: E501
@@ -2687,7 +2686,7 @@ class InterconnectionsApi(object):
         return self.update_virtual_circuit_with_http_info(id, virtual_circuit_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Virtual Circuit UUID")], virtual_circuit_update_input : Annotated[VirtualCircuitUpdateInput, Field(..., description="Updated Virtual Circuit details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_virtual_circuit_with_http_info(self, id : Annotated[StrictStr, Field(description="Virtual Circuit UUID")], virtual_circuit_update_input : Annotated[VirtualCircuitUpdateInput, Field(description="Updated Virtual Circuit details")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update a virtual circuit  # noqa: E501
 
         Update the details of a virtual circuit.  # noqa: E501

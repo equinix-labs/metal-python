@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch_list import PortVlanAssignmentBatchList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.port_vlan_assignment_batch_list import PortVlanAssignmentBatchList
 
 class TestPortVlanAssignmentBatchList(unittest.TestCase):
     """PortVlanAssignmentBatchList unit test stubs"""
@@ -29,15 +26,15 @@ class TestPortVlanAssignmentBatchList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PortVlanAssignmentBatchList:
         """Test PortVlanAssignmentBatchList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PortVlanAssignmentBatchList`
         """
-        model = equinix_metal.models.port_vlan_assignment_batch_list.PortVlanAssignmentBatchList()  # noqa: E501
-        if include_optional :
+        model = PortVlanAssignmentBatchList()
+        if include_optional:
             return PortVlanAssignmentBatchList(
                 batches = [
                     equinix_metal.models.port_vlan_assignment_batch.PortVlanAssignmentBatch(
@@ -105,10 +102,10 @@ class TestPortVlanAssignmentBatchList(unittest.TestCase):
                                 state = 'assigned', 
                                 vlan = 56, )
                             ], )
-                    ], 
+                    ],
                 href = ''
             )
-        else :
+        else:
             return PortVlanAssignmentBatchList(
         )
         """

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of TransferRequest from a JSON string
 transfer_request_instance = TransferRequest.from_json(json)
 # print the JSON string representation of the object
-print TransferRequest.to_json()
+print(TransferRequest.to_json())
 
 # convert the object into a dict
 transfer_request_dict = transfer_request_instance.to_dict()

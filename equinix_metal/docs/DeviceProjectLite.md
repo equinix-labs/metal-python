@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | 
@@ -16,7 +17,7 @@ json = "{}"
 # create an instance of DeviceProjectLite from a JSON string
 device_project_lite_instance = DeviceProjectLite.from_json(json)
 # print the JSON string representation of the object
-print DeviceProjectLite.to_json()
+print(DeviceProjectLite.to_json())
 
 # convert the object into a dict
 device_project_lite_dict = device_project_lite_instance.to_dict()

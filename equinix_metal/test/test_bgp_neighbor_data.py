@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_neighbor_data import BgpNeighborData  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.bgp_neighbor_data import BgpNeighborData
 
 class TestBgpNeighborData(unittest.TestCase):
     """BgpNeighborData unit test stubs"""
@@ -29,29 +26,29 @@ class TestBgpNeighborData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BgpNeighborData:
         """Test BgpNeighborData
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BgpNeighborData`
         """
-        model = equinix_metal.models.bgp_neighbor_data.BgpNeighborData()  # noqa: E501
-        if include_optional :
+        model = BgpNeighborData()
+        if include_optional:
             return BgpNeighborData(
-                address_family = 4, 
-                customer_as = 65000, 
-                customer_ip = '10.32.16.1 (IPv4) or 2604:1380:4111:2700::1 (IPv6)', 
-                href = '', 
-                md5_enabled = True, 
-                md5_password = '', 
-                multihop = True, 
-                peer_as = 65530, 
-                peer_ips = ["169.254.255.1","169.254.255.2"], 
-                routes_in = [{"exact":true,"route":"10.32.16.0/31"}], 
+                address_family = 4,
+                customer_as = 65000,
+                customer_ip = '10.32.16.1 (IPv4) or 2604:1380:4111:2700::1 (IPv6)',
+                href = '',
+                md5_enabled = True,
+                md5_password = '',
+                multihop = True,
+                peer_as = 65530,
+                peer_ips = ["169.254.255.1","169.254.255.2"],
+                routes_in = [{"exact":true,"route":"10.32.16.0/31"}],
                 routes_out = [{"exact":true,"route":"0.0.0.0/0"}]
             )
-        else :
+        else:
             return BgpNeighborData(
         )
         """

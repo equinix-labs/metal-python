@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **global_bgp_ranges** | [**List[GlobalBgpRange]**](GlobalBgpRange.md) |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of GlobalBgpRangeList from a JSON string
 global_bgp_range_list_instance = GlobalBgpRangeList.from_json(json)
 # print the JSON string representation of the object
-print GlobalBgpRangeList.to_json()
+print(GlobalBgpRangeList.to_json())
 
 # convert the object into a dict
 global_bgp_range_list_dict = global_bgp_range_list_instance.to_dict()

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_address import IPAddress  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ip_address import IPAddress
 
 class TestIPAddress(unittest.TestCase):
     """IPAddress unit test stubs"""
@@ -29,25 +26,25 @@ class TestIPAddress(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> IPAddress:
         """Test IPAddress
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `IPAddress`
         """
-        model = equinix_metal.models.ip_address.IPAddress()  # noqa: E501
-        if include_optional :
+        model = IPAddress()
+        if include_optional:
             return IPAddress(
-                address_family = 4, 
-                cidr = 28, 
-                href = '', 
+                address_family = 4,
+                cidr = 28,
+                href = '',
                 ip_reservations = [
                     ''
-                    ], 
+                    ],
                 public = False
             )
-        else :
+        else:
             return IPAddress(
         )
         """

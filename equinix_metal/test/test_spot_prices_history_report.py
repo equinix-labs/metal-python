@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_prices_history_report import SpotPricesHistoryReport  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.spot_prices_history_report import SpotPricesHistoryReport
 
 class TestSpotPricesHistoryReport(unittest.TestCase):
     """SpotPricesHistoryReport unit test stubs"""
@@ -29,17 +26,17 @@ class TestSpotPricesHistoryReport(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SpotPricesHistoryReport:
         """Test SpotPricesHistoryReport
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SpotPricesHistoryReport`
         """
-        model = equinix_metal.models.spot_prices_history_report.SpotPricesHistoryReport()  # noqa: E501
-        if include_optional :
+        model = SpotPricesHistoryReport()
+        if include_optional:
             return SpotPricesHistoryReport(
-                href = '', 
+                href = '',
                 prices_history = equinix_metal.models.spot_prices_datapoints.SpotPricesDatapoints(
                     datapoints = [
                         [
@@ -48,7 +45,7 @@ class TestSpotPricesHistoryReport(unittest.TestCase):
                         ], 
                     href = '', )
             )
-        else :
+        else:
             return SpotPricesHistoryReport(
         )
         """

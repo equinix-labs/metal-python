@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.membership_list import MembershipList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.membership_list import MembershipList
 
 class TestMembershipList(unittest.TestCase):
     """MembershipList unit test stubs"""
@@ -29,17 +26,17 @@ class TestMembershipList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> MembershipList:
         """Test MembershipList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MembershipList`
         """
-        model = equinix_metal.models.membership_list.MembershipList()  # noqa: E501
-        if include_optional :
+        model = MembershipList()
+        if include_optional:
             return MembershipList(
-                href = '', 
+                href = '',
                 memberships = [
                     equinix_metal.models.membership.Membership(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -55,7 +52,7 @@ class TestMembershipList(unittest.TestCase):
                             href = '', ), )
                     ]
             )
-        else :
+        else:
             return MembershipList(
         )
         """

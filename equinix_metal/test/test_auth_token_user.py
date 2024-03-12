@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.auth_token_user import AuthTokenUser  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.auth_token_user import AuthTokenUser
 
 class TestAuthTokenUser(unittest.TestCase):
     """AuthTokenUser unit test stubs"""
@@ -29,43 +26,43 @@ class TestAuthTokenUser(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> AuthTokenUser:
         """Test AuthTokenUser
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `AuthTokenUser`
         """
-        model = equinix_metal.models.auth_token_user.AuthTokenUser()  # noqa: E501
-        if include_optional :
+        model = AuthTokenUser()
+        if include_optional:
             return AuthTokenUser(
-                avatar_thumb_url = '', 
-                avatar_url = '', 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                customdata = equinix_metal.models.customdata.customdata(), 
-                default_organization_id = '', 
-                default_project_id = '', 
-                email = '', 
+                avatar_thumb_url = '',
+                avatar_url = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                customdata = equinix_metal.models.customdata.customdata(),
+                default_organization_id = '',
+                default_project_id = '',
+                email = '',
                 emails = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
-                first_name = '', 
-                fraud_score = '', 
-                full_name = '', 
-                href = '', 
-                id = '', 
-                last_login_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                last_name = '', 
-                max_organizations = 56, 
-                max_projects = 56, 
-                phone_number = '', 
-                short_id = '', 
-                timezone = '', 
-                two_factor_auth = '', 
+                    ],
+                first_name = '',
+                fraud_score = '',
+                full_name = '',
+                href = '',
+                id = '',
+                last_login_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                last_name = '',
+                max_organizations = 56,
+                max_projects = 56,
+                phone_number = '',
+                short_id = '',
+                timezone = '',
+                two_factor_auth = '',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return AuthTokenUser(
         )
         """

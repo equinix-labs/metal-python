@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of VrfRouteList from a JSON string
 vrf_route_list_instance = VrfRouteList.from_json(json)
 # print the JSON string representation of the object
-print VrfRouteList.to_json()
+print(VrfRouteList.to_json())
 
 # convert the object into a dict
 vrf_route_list_dict = vrf_route_list_instance.to_dict()

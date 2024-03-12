@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **var_class** | **str** |  | [optional] 
@@ -34,7 +35,7 @@ json = "{}"
 # create an instance of Metadata from a JSON string
 metadata_instance = Metadata.from_json(json)
 # print the JSON string representation of the object
-print Metadata.to_json()
+print(Metadata.to_json())
 
 # convert the object into a dict
 metadata_dict = metadata_instance.to_dict()

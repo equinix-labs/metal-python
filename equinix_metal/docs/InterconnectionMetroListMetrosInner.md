@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **str** |  | [optional] 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of InterconnectionMetroListMetrosInner from a JSON string
 interconnection_metro_list_metros_inner_instance = InterconnectionMetroListMetrosInner.from_json(json)
 # print the JSON string representation of the object
-print InterconnectionMetroListMetrosInner.to_json()
+print(InterconnectionMetroListMetrosInner.to_json())
 
 # convert the object into a dict
 interconnection_metro_list_metros_inner_dict = interconnection_metro_list_metros_inner_instance.to_dict()

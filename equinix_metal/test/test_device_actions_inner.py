@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device_actions_inner import DeviceActionsInner  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device_actions_inner import DeviceActionsInner
 
 class TestDeviceActionsInner(unittest.TestCase):
     """DeviceActionsInner unit test stubs"""
@@ -29,21 +26,21 @@ class TestDeviceActionsInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DeviceActionsInner:
         """Test DeviceActionsInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DeviceActionsInner`
         """
-        model = equinix_metal.models.device_actions_inner.DeviceActionsInner()  # noqa: E501
-        if include_optional :
+        model = DeviceActionsInner()
+        if include_optional:
             return DeviceActionsInner(
-                href = '', 
-                name = '', 
+                href = '',
+                name = '',
                 type = ''
             )
-        else :
+        else:
             return DeviceActionsInner(
         )
         """

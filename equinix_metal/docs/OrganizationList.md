@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of OrganizationList from a JSON string
 organization_list_instance = OrganizationList.from_json(json)
 # print the JSON string representation of the object
-print OrganizationList.to_json()
+print(OrganizationList.to_json())
 
 # convert the object into a dict
 organization_list_dict = organization_list_instance.to_dict()

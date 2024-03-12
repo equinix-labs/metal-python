@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_availabilities_list import IPAvailabilitiesList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ip_availabilities_list import IPAvailabilitiesList
 
 class TestIPAvailabilitiesList(unittest.TestCase):
     """IPAvailabilitiesList unit test stubs"""
@@ -29,22 +26,22 @@ class TestIPAvailabilitiesList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> IPAvailabilitiesList:
         """Test IPAvailabilitiesList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `IPAvailabilitiesList`
         """
-        model = equinix_metal.models.ip_availabilities_list.IPAvailabilitiesList()  # noqa: E501
-        if include_optional :
+        model = IPAvailabilitiesList()
+        if include_optional:
             return IPAvailabilitiesList(
                 available = [
                     ''
-                    ], 
+                    ],
                 href = ''
             )
-        else :
+        else:
             return IPAvailabilitiesList(
         )
         """

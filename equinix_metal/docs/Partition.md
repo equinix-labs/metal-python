@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of Partition from a JSON string
 partition_instance = Partition.from_json(json)
 # print the JSON string representation of the object
-print Partition.to_json()
+print(Partition.to_json())
 
 # convert the object into a dict
 partition_dict = partition_instance.to_dict()

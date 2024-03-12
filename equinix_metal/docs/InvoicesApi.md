@@ -18,9 +18,8 @@ Returns all invoices for an organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invoice_list import InvoiceList
 from equinix_metal.rest import ApiException
@@ -104,9 +103,8 @@ Returns the invoice identified by the provided id
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invoice import Invoice
 from equinix_metal.rest import ApiException

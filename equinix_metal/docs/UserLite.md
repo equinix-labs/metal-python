@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **avatar_thumb_url** | **str** | Avatar thumbnail URL of the User | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of UserLite from a JSON string
 user_lite_instance = UserLite.from_json(json)
 # print the JSON string representation of the object
-print UserLite.to_json()
+print(UserLite.to_json())
 
 # convert the object into a dict
 user_lite_dict = user_lite_instance.to_dict()

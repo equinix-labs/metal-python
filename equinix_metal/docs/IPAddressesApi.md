@@ -23,9 +23,8 @@ This call can be used to un-assign an IP assignment or delete an IP reservation.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -101,9 +100,8 @@ Returns a single ip address if the user has access.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
 from equinix_metal.rest import ApiException
@@ -186,9 +184,8 @@ Provides the custom metadata stored for this IP Reservation or IP Assignment in 
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -264,9 +261,8 @@ Provides a list of IP resevations for a single project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_availabilities_list import IPAvailabilitiesList
 from equinix_metal.rest import ApiException
@@ -347,9 +343,8 @@ Provides a paginated list of IP reservations for a single project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_reservation_list import IPReservationList
 from equinix_metal.rest import ApiException
@@ -436,9 +431,8 @@ Request more IP space for a project in order to have additional IP addresses to 
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.request_ip_reservation201_response import RequestIPReservation201Response
 from equinix_metal.models.request_ip_reservation_request import RequestIPReservationRequest
@@ -525,9 +519,8 @@ Update details about an ip address
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
 from equinix_metal.models.ip_assignment_update_input import IPAssignmentUpdateInput

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.payment_method import PaymentMethod  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.payment_method import PaymentMethod
 
 class TestPaymentMethod(unittest.TestCase):
     """PaymentMethod unit test stubs"""
@@ -29,43 +26,43 @@ class TestPaymentMethod(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PaymentMethod:
         """Test PaymentMethod
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PaymentMethod`
         """
-        model = equinix_metal.models.payment_method.PaymentMethod()  # noqa: E501
-        if include_optional :
+        model = PaymentMethod()
+        if include_optional:
             return PaymentMethod(
                 billing_address = equinix_metal.models.payment_method_billing_address.PaymentMethodBillingAddress(
                     country_code_alpha2 = '', 
                     href = '', 
                     postal_code = '', 
-                    street_address = '', ), 
-                card_type = '', 
-                cardholder_name = '', 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    street_address = '', ),
+                card_type = '',
+                cardholder_name = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_by_user = equinix_metal.models.href.Href(
-                    href = '', ), 
-                default = True, 
-                email = '', 
-                expiration_month = '', 
-                expiration_year = '', 
-                href = '', 
-                id = '', 
-                name = '', 
+                    href = '', ),
+                default = True,
+                email = '',
+                expiration_month = '',
+                expiration_year = '',
+                href = '',
+                id = '',
+                name = '',
                 organization = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 projects = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
-                type = '', 
+                    ],
+                type = '',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return PaymentMethod(
         )
         """

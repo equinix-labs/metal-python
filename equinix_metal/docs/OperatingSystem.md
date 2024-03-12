@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **default_operating_system** | **bool** | Default operating system for the distro. | [optional] [readonly] 
@@ -27,7 +28,7 @@ json = "{}"
 # create an instance of OperatingSystem from a JSON string
 operating_system_instance = OperatingSystem.from_json(json)
 # print the JSON string representation of the object
-print OperatingSystem.to_json()
+print(OperatingSystem.to_json())
 
 # convert the object into a dict
 operating_system_dict = operating_system_instance.to_dict()

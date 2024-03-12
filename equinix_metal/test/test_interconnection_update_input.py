@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_update_input import InterconnectionUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection_update_input import InterconnectionUpdateInput
 
 class TestInterconnectionUpdateInput(unittest.TestCase):
     """InterconnectionUpdateInput unit test stubs"""
@@ -29,26 +26,26 @@ class TestInterconnectionUpdateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InterconnectionUpdateInput:
         """Test InterconnectionUpdateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InterconnectionUpdateInput`
         """
-        model = equinix_metal.models.interconnection_update_input.InterconnectionUpdateInput()  # noqa: E501
-        if include_optional :
+        model = InterconnectionUpdateInput()
+        if include_optional:
             return InterconnectionUpdateInput(
-                contact_email = '', 
-                description = '', 
-                href = '', 
-                mode = 'standard', 
-                name = '', 
+                contact_email = '',
+                description = '',
+                href = '',
+                mode = 'standard',
+                name = '',
                 tags = [
                     ''
                     ]
             )
-        else :
+        else:
             return InterconnectionUpdateInput(
         )
         """

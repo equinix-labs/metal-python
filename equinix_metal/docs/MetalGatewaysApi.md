@@ -23,9 +23,8 @@ Create a metal gateway in a project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest
 from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
@@ -115,9 +114,8 @@ Create a new Elastic IP on this Metal Gateway.  Assign an IPv4 range as an elast
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.metal_gateway_elastic_ip_create_input import MetalGatewayElasticIpCreateInput
@@ -204,9 +202,8 @@ Deletes a metal gateway and any elastic IP assignments associated with this meta
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 from equinix_metal.rest import ApiException
@@ -288,9 +285,8 @@ Returns a specific metal gateway
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 from equinix_metal.rest import ApiException
@@ -372,9 +368,8 @@ Return all metal gateways for a project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.metal_gateway_list import MetalGatewayList
 from equinix_metal.rest import ApiException
@@ -465,9 +460,8 @@ Returns the list of Elastic IPs assigned to this Metal Gateway
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_assignment_list import IPAssignmentList
 from equinix_metal.rest import ApiException

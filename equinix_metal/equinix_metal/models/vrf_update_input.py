@@ -18,61 +18,77 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from typing import Optional, Set
+from typing_extensions import Self
 
 class VrfUpdateInput(BaseModel):
     """
     VrfUpdateInput
-    """
-    bgp_dynamic_neighbors_bfd_enabled: Optional[StrictBool] = Field(None, description="Toggle BFD on dynamic bgp neighbors sessions")
-    bgp_dynamic_neighbors_enabled: Optional[StrictBool] = Field(None, description="Toggle to enable the dynamic bgp neighbors feature on the VRF")
-    bgp_dynamic_neighbors_export_route_map: Optional[StrictBool] = Field(None, description="Toggle to export the VRF route-map to the dynamic bgp neighbors")
+    """ # noqa: E501
+    bgp_dynamic_neighbors_bfd_enabled: Optional[StrictBool] = Field(default=None, description="Toggle BFD on dynamic bgp neighbors sessions")
+    bgp_dynamic_neighbors_enabled: Optional[StrictBool] = Field(default=None, description="Toggle to enable the dynamic bgp neighbors feature on the VRF")
+    bgp_dynamic_neighbors_export_route_map: Optional[StrictBool] = Field(default=None, description="Toggle to export the VRF route-map to the dynamic bgp neighbors")
     description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
-    ip_ranges: Optional[conlist(StrictStr)] = Field(None, description="A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"]. IPv4 blocks must be between /8 and /29 in size. IPv6 blocks must be between /56 and /64. A VRF\\'s IP ranges must be defined in order to create VRF IP Reservations, which can then be used for Metal Gateways or Virtual Circuits. Adding a new CIDR address to the list will result in the creation of a new IP Range for this VRF. Removal of an existing CIDR address from the list will result in the deletion of an existing IP Range for this VRF. Deleting an IP Range will result in the deletion of any VRF IP Reservations contained within the IP Range, as well as the VRF IP Reservation\\'s associated Metal Gateways or Virtual Circuits. If you do not wish to add or remove IP Ranges, either include the full existing list of IP Ranges in the update request, or do not specify the `ip_ranges` field in the update request. Specifying a value of `[]` will remove all existing IP Ranges from the VRF.")
-    local_asn: Optional[StrictInt] = Field(None, description="The new `local_asn` value for the VRF. This field cannot be updated when there are active Interconnection Virtual Circuits associated to the VRF, or if any of the VLANs of the VRF's metal gateway has been assigned on an instance.")
+    ip_ranges: Optional[List[StrictStr]] = Field(default=None, description="A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"]. IPv4 blocks must be between /8 and /29 in size. IPv6 blocks must be between /56 and /64. A VRF\\'s IP ranges must be defined in order to create VRF IP Reservations, which can then be used for Metal Gateways or Virtual Circuits. Adding a new CIDR address to the list will result in the creation of a new IP Range for this VRF. Removal of an existing CIDR address from the list will result in the deletion of an existing IP Range for this VRF. Deleting an IP Range will result in the deletion of any VRF IP Reservations contained within the IP Range, as well as the VRF IP Reservation\\'s associated Metal Gateways or Virtual Circuits. If you do not wish to add or remove IP Ranges, either include the full existing list of IP Ranges in the update request, or do not specify the `ip_ranges` field in the update request. Specifying a value of `[]` will remove all existing IP Ranges from the VRF.")
+    local_asn: Optional[StrictInt] = Field(default=None, description="The new `local_asn` value for the VRF. This field cannot be updated when there are active Interconnection Virtual Circuits associated to the VRF, or if any of the VLANs of the VRF's metal gateway has been assigned on an instance.")
     name: Optional[StrictStr] = None
-    tags: Optional[conlist(StrictStr)] = None
-    __properties = ["bgp_dynamic_neighbors_bfd_enabled", "bgp_dynamic_neighbors_enabled", "bgp_dynamic_neighbors_export_route_map", "description", "href", "ip_ranges", "local_asn", "name", "tags"]
+    tags: Optional[List[StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["bgp_dynamic_neighbors_bfd_enabled", "bgp_dynamic_neighbors_enabled", "bgp_dynamic_neighbors_export_route_map", "description", "href", "ip_ranges", "local_asn", "name", "tags"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> VrfUpdateInput:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of VrfUpdateInput from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> VrfUpdateInput:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of VrfUpdateInput from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return VrfUpdateInput.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = VrfUpdateInput.parse_obj({
+        _obj = cls.model_validate({
             "bgp_dynamic_neighbors_bfd_enabled": obj.get("bgp_dynamic_neighbors_bfd_enabled"),
             "bgp_dynamic_neighbors_enabled": obj.get("bgp_dynamic_neighbors_enabled"),
             "bgp_dynamic_neighbors_export_route_map": obj.get("bgp_dynamic_neighbors_export_route_map"),

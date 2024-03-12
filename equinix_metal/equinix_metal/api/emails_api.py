@@ -21,7 +21,7 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-
+from typing_extensions import Annotated
 from equinix_metal.models.create_email_input import CreateEmailInput
 from equinix_metal.models.email import Email
 from equinix_metal.models.update_email_input import UpdateEmailInput
@@ -47,7 +47,7 @@ class EmailsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_email(self, create_email_input : Annotated[CreateEmailInput, Field(..., description="Email to create")], **kwargs) -> Email:  # noqa: E501
+    def create_email(self, create_email_input : Annotated[CreateEmailInput, Field(description="Email to create")], **kwargs) -> Email:  # noqa: E501
         """Create an email  # noqa: E501
 
         Add a new email address to the current user.  # noqa: E501
@@ -76,7 +76,7 @@ class EmailsApi(object):
         return self.create_email_with_http_info(create_email_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_email_with_http_info(self, create_email_input : Annotated[CreateEmailInput, Field(..., description="Email to create")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_email_with_http_info(self, create_email_input : Annotated[CreateEmailInput, Field(description="Email to create")], **kwargs) -> ApiResponse:  # noqa: E501
         """Create an email  # noqa: E501
 
         Add a new email address to the current user.  # noqa: E501
@@ -195,7 +195,7 @@ class EmailsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_email(self, id : Annotated[StrictStr, Field(..., description="Email UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_email(self, id : Annotated[StrictStr, Field(description="Email UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the email  # noqa: E501
 
         Deletes the email.  # noqa: E501
@@ -224,7 +224,7 @@ class EmailsApi(object):
         return self.delete_email_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_email_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Email UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_email_with_http_info(self, id : Annotated[StrictStr, Field(description="Email UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the email  # noqa: E501
 
         Deletes the email.  # noqa: E501
@@ -332,7 +332,7 @@ class EmailsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_email_by_id(self, id : Annotated[StrictStr, Field(..., description="Email UUID")], **kwargs) -> Email:  # noqa: E501
+    def find_email_by_id(self, id : Annotated[StrictStr, Field(description="Email UUID")], **kwargs) -> Email:  # noqa: E501
         """Retrieve an email  # noqa: E501
 
         Provides one of the user’s emails.  # noqa: E501
@@ -361,7 +361,7 @@ class EmailsApi(object):
         return self.find_email_by_id_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_email_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Email UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_email_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Email UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve an email  # noqa: E501
 
         Provides one of the user’s emails.  # noqa: E501
@@ -474,7 +474,7 @@ class EmailsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_email(self, id : Annotated[StrictStr, Field(..., description="Email UUID")], update_email_input : Annotated[UpdateEmailInput, Field(..., description="email to update")], **kwargs) -> Email:  # noqa: E501
+    def update_email(self, id : Annotated[StrictStr, Field(description="Email UUID")], update_email_input : Annotated[UpdateEmailInput, Field(description="email to update")], **kwargs) -> Email:  # noqa: E501
         """Update the email  # noqa: E501
 
         Updates the email.  # noqa: E501
@@ -505,7 +505,7 @@ class EmailsApi(object):
         return self.update_email_with_http_info(id, update_email_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_email_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Email UUID")], update_email_input : Annotated[UpdateEmailInput, Field(..., description="email to update")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_email_with_http_info(self, id : Annotated[StrictStr, Field(description="Email UUID")], update_email_input : Annotated[UpdateEmailInput, Field(description="email to update")], **kwargs) -> ApiResponse:  # noqa: E501
         """Update the email  # noqa: E501
 
         Updates the email.  # noqa: E501

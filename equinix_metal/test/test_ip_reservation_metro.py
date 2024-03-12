@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_reservation_metro import IPReservationMetro  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ip_reservation_metro import IPReservationMetro
 
 class TestIPReservationMetro(unittest.TestCase):
     """IPReservationMetro unit test stubs"""
@@ -29,23 +26,23 @@ class TestIPReservationMetro(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> IPReservationMetro:
         """Test IPReservationMetro
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `IPReservationMetro`
         """
-        model = equinix_metal.models.ip_reservation_metro.IPReservationMetro()  # noqa: E501
-        if include_optional :
+        model = IPReservationMetro()
+        if include_optional:
             return IPReservationMetro(
-                code = '', 
-                country = '', 
-                href = '', 
-                id = '', 
+                code = '',
+                country = '',
+                href = '',
+                id = '',
                 name = ''
             )
-        else :
+        else:
             return IPReservationMetro(
         )
         """

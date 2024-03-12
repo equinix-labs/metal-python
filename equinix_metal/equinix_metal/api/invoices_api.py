@@ -21,9 +21,8 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictInt, StrictStr
-
 from typing import Optional
-
+from typing_extensions import Annotated
 from equinix_metal.models.invoice import Invoice
 from equinix_metal.models.invoice_list import InvoiceList
 
@@ -48,7 +47,7 @@ class InvoicesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def find_organization_invoices(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], page : Annotated[Optional[StrictInt], Field(description="page number")] = None, per_page : Annotated[Optional[StrictInt], Field(description="per page")] = None, status : Annotated[Optional[StrictStr], Field(description="filter by status")] = None, **kwargs) -> InvoiceList:  # noqa: E501
+    def find_organization_invoices(self, id : Annotated[StrictStr, Field(description="Organization UUID")], page : Annotated[Optional[StrictInt], Field(description="page number")] = None, per_page : Annotated[Optional[StrictInt], Field(description="per page")] = None, status : Annotated[Optional[StrictStr], Field(description="filter by status")] = None, **kwargs) -> InvoiceList:  # noqa: E501
         """Retrieve all invoices for an organization  # noqa: E501
 
         Returns all invoices for an organization  # noqa: E501
@@ -83,7 +82,7 @@ class InvoicesApi(object):
         return self.find_organization_invoices_with_http_info(id, page, per_page, status, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_organization_invoices_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], page : Annotated[Optional[StrictInt], Field(description="page number")] = None, per_page : Annotated[Optional[StrictInt], Field(description="per page")] = None, status : Annotated[Optional[StrictStr], Field(description="filter by status")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_organization_invoices_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], page : Annotated[Optional[StrictInt], Field(description="page number")] = None, per_page : Annotated[Optional[StrictInt], Field(description="per page")] = None, status : Annotated[Optional[StrictStr], Field(description="filter by status")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all invoices for an organization  # noqa: E501
 
         Returns all invoices for an organization  # noqa: E501
@@ -213,7 +212,7 @@ class InvoicesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_invoice_by_id(self, id : Annotated[StrictStr, Field(..., description="Invoice UUID")], **kwargs) -> Invoice:  # noqa: E501
+    def get_invoice_by_id(self, id : Annotated[StrictStr, Field(description="Invoice UUID")], **kwargs) -> Invoice:  # noqa: E501
         """Retrieve an invoice  # noqa: E501
 
         Returns the invoice identified by the provided id  # noqa: E501
@@ -242,7 +241,7 @@ class InvoicesApi(object):
         return self.get_invoice_by_id_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_invoice_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Invoice UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def get_invoice_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Invoice UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve an invoice  # noqa: E501
 
         Returns the invoice identified by the provided id  # noqa: E501

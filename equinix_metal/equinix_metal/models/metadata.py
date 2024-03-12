@@ -18,86 +18,102 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.metadata_network import MetadataNetwork
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Metadata(BaseModel):
     """
     Metadata
-    """
-    var_class: Optional[StrictStr] = Field(None, alias="class")
+    """ # noqa: E501
+    var_class: Optional[StrictStr] = Field(default=None, alias="class")
     customdata: Optional[Dict[str, Any]] = None
-    facility: Optional[StrictStr] = Field(None, description="The facility code of the instance")
+    facility: Optional[StrictStr] = Field(default=None, description="The facility code of the instance")
     hostname: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     iqn: Optional[StrictStr] = None
-    metro: Optional[StrictStr] = Field(None, description="The metro code of the instance")
+    metro: Optional[StrictStr] = Field(default=None, description="The metro code of the instance")
     network: Optional[MetadataNetwork] = None
     operating_system: Optional[Dict[str, Any]] = None
-    plan: Optional[StrictStr] = Field(None, description="The plan slug of the instance")
-    private_subnets: Optional[conlist(StrictStr)] = Field(None, description="An array of the private subnets")
+    plan: Optional[StrictStr] = Field(default=None, description="The plan slug of the instance")
+    private_subnets: Optional[List[StrictStr]] = Field(default=None, description="An array of the private subnets")
     reserved: Optional[StrictBool] = None
-    specs: Optional[Dict[str, Any]] = Field(None, description="The specs of the plan version of the instance")
-    ssh_keys: Optional[conlist(StrictStr)] = None
-    state: Optional[StrictStr] = Field(None, description="The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.")
+    specs: Optional[Dict[str, Any]] = Field(default=None, description="The specs of the plan version of the instance")
+    ssh_keys: Optional[List[StrictStr]] = None
+    state: Optional[StrictStr] = Field(default=None, description="The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.")
     switch_short_id: Optional[StrictStr] = None
-    tags: Optional[conlist(StrictStr)] = None
-    volumes: Optional[conlist(StrictStr)] = None
-    __properties = ["class", "customdata", "facility", "hostname", "href", "id", "iqn", "metro", "network", "operating_system", "plan", "private_subnets", "reserved", "specs", "ssh_keys", "state", "switch_short_id", "tags", "volumes"]
+    tags: Optional[List[StrictStr]] = None
+    volumes: Optional[List[StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["class", "customdata", "facility", "hostname", "href", "id", "iqn", "metro", "network", "operating_system", "plan", "private_subnets", "reserved", "specs", "ssh_keys", "state", "switch_short_id", "tags", "volumes"]
 
-    @validator('state')
+    @field_validator('state')
     def state_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('queued', 'provisioning', 'deprovisioning', 'reinstalling', 'active', 'inactive', 'failed', 'powering_on', 'powering_off', 'deleted'):
+        if value not in set(['queued', 'provisioning', 'deprovisioning', 'reinstalling', 'active', 'inactive', 'failed', 'powering_on', 'powering_off', 'deleted']):
             raise ValueError("must be one of enum values ('queued', 'provisioning', 'deprovisioning', 'reinstalling', 'active', 'inactive', 'failed', 'powering_on', 'powering_off', 'deleted')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Metadata:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Metadata from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of network
         if self.network:
             _dict['network'] = self.network.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Metadata:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Metadata from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Metadata.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Metadata.parse_obj({
-            "var_class": obj.get("class"),
+        _obj = cls.model_validate({
+            "class": obj.get("class"),
             "customdata": obj.get("customdata"),
             "facility": obj.get("facility"),
             "hostname": obj.get("hostname"),
@@ -105,7 +121,7 @@ class Metadata(BaseModel):
             "id": obj.get("id"),
             "iqn": obj.get("iqn"),
             "metro": obj.get("metro"),
-            "network": MetadataNetwork.from_dict(obj.get("network")) if obj.get("network") is not None else None,
+            "network": MetadataNetwork.from_dict(obj["network"]) if obj.get("network") is not None else None,
             "operating_system": obj.get("operating_system"),
             "plan": obj.get("plan"),
             "private_subnets": obj.get("private_subnets"),

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address_family** | **int** | Address Family for IP Address | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of IPAddress from a JSON string
 ip_address_instance = IPAddress.from_json(json)
 # print the JSON string representation of the object
-print IPAddress.to_json()
+print(IPAddress.to_json())
 
 # convert the object into a dict
 ip_address_dict = ip_address_instance.to_dict()

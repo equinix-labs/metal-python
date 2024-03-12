@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **exact** | **bool** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of BgpRoute from a JSON string
 bgp_route_instance = BgpRoute.from_json(json)
 # print the JSON string representation of the object
-print BgpRoute.to_json()
+print(BgpRoute.to_json())
 
 # convert the object into a dict
 bgp_route_dict = bgp_route_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **facility** | [**FacilityInputFacility**](FacilityInputFacility.md) |  | 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of FacilityInput from a JSON string
 facility_input_instance = FacilityInput.from_json(json)
 # print the JSON string representation of the object
-print FacilityInput.to_json()
+print(FacilityInput.to_json())
 
 # convert the object into a dict
 facility_input_dict = facility_input_instance.to_dict()

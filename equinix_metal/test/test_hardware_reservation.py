@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.hardware_reservation import HardwareReservation  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.hardware_reservation import HardwareReservation
 
 class TestHardwareReservation(unittest.TestCase):
     """HardwareReservation unit test stubs"""
@@ -29,18 +26,18 @@ class TestHardwareReservation(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> HardwareReservation:
         """Test HardwareReservation
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `HardwareReservation`
         """
-        model = equinix_metal.models.hardware_reservation.HardwareReservation()  # noqa: E501
-        if include_optional :
+        model = HardwareReservation()
+        if include_optional:
             return HardwareReservation(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                custom_rate = 1050.5, 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                custom_rate = 1050.5,
                 device = equinix_metal.models.device.Device(
                     actions = [
                         equinix_metal.models.device_actions_inner.Device_actions_inner(
@@ -356,7 +353,7 @@ class TestHardwareReservation(unittest.TestCase):
                     userdata = '', 
                     volumes = [
                         
-                        ], ), 
+                        ], ),
                 facility = equinix_metal.models.facility.Facility(
                     address = equinix_metal.models.address.Address(
                         address2 = '', 
@@ -375,10 +372,10 @@ class TestHardwareReservation(unittest.TestCase):
                     id = '', 
                     ip_ranges = ["2604:1380::/36","147.75.192.0/21"], 
                     metro = null, 
-                    name = '', ), 
-                href = '', 
-                id = '', 
-                need_of_service = True, 
+                    name = '', ),
+                href = '',
+                id = '',
+                need_of_service = True,
                 plan = equinix_metal.models.plan.Plan(
                     available_in = [
                         equinix_metal.models.plan_available_in_inner.Plan_available_in_inner(
@@ -436,7 +433,7 @@ class TestHardwareReservation(unittest.TestCase):
                                 href = '', 
                                 type = '', )
                             ], ), 
-                    type = 'standard', ), 
+                    type = 'standard', ),
                 project = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -473,14 +470,14 @@ class TestHardwareReservation(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
-                provisionable = True, 
-                short_id = '', 
-                spare = True, 
-                switch_uuid = '', 
+                        ], ),
+                provisionable = True,
+                short_id = '',
+                spare = True,
+                switch_uuid = '',
                 termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return HardwareReservation(
         )
         """

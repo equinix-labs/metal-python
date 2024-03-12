@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -24,7 +25,7 @@ json = "{}"
 # create an instance of MetalGateway from a JSON string
 metal_gateway_instance = MetalGateway.from_json(json)
 # print the JSON string representation of the object
-print MetalGateway.to_json()
+print(MetalGateway.to_json())
 
 # convert the object into a dict
 metal_gateway_dict = metal_gateway_instance.to_dict()

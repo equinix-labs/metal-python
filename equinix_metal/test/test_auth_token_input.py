@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.auth_token_input import AuthTokenInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.auth_token_input import AuthTokenInput
 
 class TestAuthTokenInput(unittest.TestCase):
     """AuthTokenInput unit test stubs"""
@@ -29,21 +26,21 @@ class TestAuthTokenInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> AuthTokenInput:
         """Test AuthTokenInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `AuthTokenInput`
         """
-        model = equinix_metal.models.auth_token_input.AuthTokenInput()  # noqa: E501
-        if include_optional :
+        model = AuthTokenInput()
+        if include_optional:
             return AuthTokenInput(
-                description = '', 
-                href = '', 
+                description = '',
+                href = '',
                 read_only = True
             )
-        else :
+        else:
             return AuthTokenInput(
         )
         """

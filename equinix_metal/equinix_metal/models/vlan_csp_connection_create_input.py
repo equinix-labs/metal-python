@@ -18,77 +18,93 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.vlan_csp_connection_create_input_fabric_provider import VlanCSPConnectionCreateInputFabricProvider
+from typing import Optional, Set
+from typing_extensions import Self
 
 class VlanCSPConnectionCreateInput(BaseModel):
     """
     VlanCSPConnectionCreateInput
-    """
-    contact_email: Optional[StrictStr] = Field(None, description="The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key.")
+    """ # noqa: E501
+    contact_email: Optional[StrictStr] = Field(default=None, description="The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key.")
     description: Optional[StrictStr] = None
-    fabric_provider: VlanCSPConnectionCreateInputFabricProvider = Field(...)
+    fabric_provider: VlanCSPConnectionCreateInputFabricProvider
     href: Optional[StrictStr] = None
-    metro: StrictStr = Field(..., description="A Metro ID or code. When creating Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed), or shared connections, this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here.")
-    name: StrictStr = Field(...)
-    project: StrictStr = Field(...)
-    speed: Optional[StrictStr] = Field(None, description="A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following: ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.")
-    tags: Optional[conlist(StrictStr)] = None
-    type: StrictStr = Field(...)
-    vlans: conlist(StrictInt) = Field(..., description="A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the virtual circuits.")
-    __properties = ["contact_email", "description", "fabric_provider", "href", "metro", "name", "project", "speed", "tags", "type", "vlans"]
+    metro: StrictStr = Field(description="A Metro ID or code. When creating Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed), or shared connections, this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here.")
+    name: StrictStr
+    project: StrictStr
+    speed: Optional[StrictStr] = Field(default=None, description="A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following: ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.")
+    tags: Optional[List[StrictStr]] = None
+    type: StrictStr
+    vlans: List[StrictInt] = Field(description="A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the virtual circuits.")
+    __properties: ClassVar[List[str]] = ["contact_email", "description", "fabric_provider", "href", "metro", "name", "project", "speed", "tags", "type", "vlans"]
 
-    @validator('type')
+    @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in ('shared_port_vlan_to_csp'):
+        if value not in set(['shared_port_vlan_to_csp']):
             raise ValueError("must be one of enum values ('shared_port_vlan_to_csp')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> VlanCSPConnectionCreateInput:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of VlanCSPConnectionCreateInput from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of fabric_provider
         if self.fabric_provider:
             _dict['fabric_provider'] = self.fabric_provider.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> VlanCSPConnectionCreateInput:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of VlanCSPConnectionCreateInput from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return VlanCSPConnectionCreateInput.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = VlanCSPConnectionCreateInput.parse_obj({
+        _obj = cls.model_validate({
             "contact_email": obj.get("contact_email"),
             "description": obj.get("description"),
-            "fabric_provider": VlanCSPConnectionCreateInputFabricProvider.from_dict(obj.get("fabric_provider")) if obj.get("fabric_provider") is not None else None,
+            "fabric_provider": VlanCSPConnectionCreateInputFabricProvider.from_dict(obj["fabric_provider"]) if obj.get("fabric_provider") is not None else None,
             "href": obj.get("href"),
             "metro": obj.get("metro"),
             "name": obj.get("name"),

@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conint, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.invitation_list import InvitationList
 from equinix_metal.models.user import User
 from equinix_metal.models.user_create_input import UserCreateInput
@@ -51,7 +50,7 @@ class UsersApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_user(self, user_create_input : Annotated[UserCreateInput, Field(..., description="User to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> User:  # noqa: E501
+    def create_user(self, user_create_input : Annotated[UserCreateInput, Field(description="User to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> User:  # noqa: E501
         """Create a user  # noqa: E501
 
         Creates a user.  # noqa: E501
@@ -84,7 +83,7 @@ class UsersApi(object):
         return self.create_user_with_http_info(user_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_user_with_http_info(self, user_create_input : Annotated[UserCreateInput, Field(..., description="User to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_user_with_http_info(self, user_create_input : Annotated[UserCreateInput, Field(description="User to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a user  # noqa: E501
 
         Creates a user.  # noqa: E501
@@ -217,7 +216,7 @@ class UsersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_current_user(self, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> User:  # noqa: E501
+    def find_current_user(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> User:  # noqa: E501
         """Retrieve the current user  # noqa: E501
 
         Returns the user object for the currently logged-in user.  # noqa: E501
@@ -248,7 +247,7 @@ class UsersApi(object):
         return self.find_current_user_with_http_info(include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_current_user_with_http_info(self, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_current_user_with_http_info(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the current user  # noqa: E501
 
         Returns the user object for the currently logged-in user.  # noqa: E501
@@ -367,7 +366,7 @@ class UsersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_invitations(self, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> InvitationList:  # noqa: E501
+    def find_invitations(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> InvitationList:  # noqa: E501
         """Retrieve current user invitations  # noqa: E501
 
         Returns all invitations in current user.  # noqa: E501
@@ -400,7 +399,7 @@ class UsersApi(object):
         return self.find_invitations_with_http_info(include, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_invitations_with_http_info(self, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_invitations_with_http_info(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve current user invitations  # noqa: E501
 
         Returns all invitations in current user.  # noqa: E501
@@ -526,7 +525,7 @@ class UsersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_user_by_id(self, id : Annotated[StrictStr, Field(..., description="User UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> User:  # noqa: E501
+    def find_user_by_id(self, id : Annotated[StrictStr, Field(description="User UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> User:  # noqa: E501
         """Retrieve a user  # noqa: E501
 
         Returns a single user if the user has access  # noqa: E501
@@ -559,7 +558,7 @@ class UsersApi(object):
         return self.find_user_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_user_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="User UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_user_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="User UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a user  # noqa: E501
 
         Returns a single user if the user has access  # noqa: E501
@@ -686,7 +685,7 @@ class UsersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_user_customdata(self, id : Annotated[StrictStr, Field(..., description="User UUID")], **kwargs) -> None:  # noqa: E501
+    def find_user_customdata(self, id : Annotated[StrictStr, Field(description="User UUID")], **kwargs) -> None:  # noqa: E501
         """Retrieve the custom metadata of a user  # noqa: E501
 
         Provides the custom metadata stored for this user in json format  # noqa: E501
@@ -715,7 +714,7 @@ class UsersApi(object):
         return self.find_user_customdata_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_user_customdata_with_http_info(self, id : Annotated[StrictStr, Field(..., description="User UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_user_customdata_with_http_info(self, id : Annotated[StrictStr, Field(description="User UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve the custom metadata of a user  # noqa: E501
 
         Provides the custom metadata stored for this user in json format  # noqa: E501
@@ -823,7 +822,7 @@ class UsersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_users_all_pages(self, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> UserList:  # noqa: E501
+    def find_users_all_pages(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> UserList:  # noqa: E501
         """Retrieve all users  # noqa: E501
 
         This method is the same as find_users, but fetches resources from all the pages.
@@ -875,7 +874,7 @@ class UsersApi(object):
         return all_pages
 
     @validate_arguments
-    def find_users(self, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> UserList:  # noqa: E501
+    def find_users(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> UserList:  # noqa: E501
         """Retrieve all users  # noqa: E501
 
         Returns a list of users that the are accessible to the current user (all users in the current user’s projects, essentially).  # noqa: E501
@@ -910,7 +909,7 @@ class UsersApi(object):
         return self.find_users_with_http_info(include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_users_with_http_info(self, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_users_with_http_info(self, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all users  # noqa: E501
 
         Returns a list of users that the are accessible to the current user (all users in the current user’s projects, essentially).  # noqa: E501
@@ -1041,7 +1040,7 @@ class UsersApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_current_user(self, user_update_input : Annotated[UserUpdateInput, Field(..., description="User to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> User:  # noqa: E501
+    def update_current_user(self, user_update_input : Annotated[UserUpdateInput, Field(description="User to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> User:  # noqa: E501
         """Update the current user  # noqa: E501
 
         Updates the currently logged-in user.  # noqa: E501
@@ -1074,7 +1073,7 @@ class UsersApi(object):
         return self.update_current_user_with_http_info(user_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_current_user_with_http_info(self, user_update_input : Annotated[UserUpdateInput, Field(..., description="User to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_current_user_with_http_info(self, user_update_input : Annotated[UserUpdateInput, Field(description="User to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the current user  # noqa: E501
 
         Updates the currently logged-in user.  # noqa: E501

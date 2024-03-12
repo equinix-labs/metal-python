@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.plan_specs_features import PlanSpecsFeatures  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.plan_specs_features import PlanSpecsFeatures
 
 class TestPlanSpecsFeatures(unittest.TestCase):
     """PlanSpecsFeatures unit test stubs"""
@@ -29,22 +26,22 @@ class TestPlanSpecsFeatures(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PlanSpecsFeatures:
         """Test PlanSpecsFeatures
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PlanSpecsFeatures`
         """
-        model = equinix_metal.models.plan_specs_features.PlanSpecsFeatures()  # noqa: E501
-        if include_optional :
+        model = PlanSpecsFeatures()
+        if include_optional:
             return PlanSpecsFeatures(
-                href = '', 
-                raid = True, 
-                txt = True, 
+                href = '',
+                raid = True,
+                txt = True,
                 uefi = True
             )
-        else :
+        else:
             return PlanSpecsFeatures(
         )
         """

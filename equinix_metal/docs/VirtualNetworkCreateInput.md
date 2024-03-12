@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of VirtualNetworkCreateInput from a JSON string
 virtual_network_create_input_instance = VirtualNetworkCreateInput.from_json(json)
 # print the JSON string representation of the object
-print VirtualNetworkCreateInput.to_json()
+print(VirtualNetworkCreateInput.to_json())
 
 # convert the object into a dict
 virtual_network_create_input_dict = virtual_network_create_input_instance.to_dict()

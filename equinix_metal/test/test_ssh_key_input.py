@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ssh_key_input import SSHKeyInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ssh_key_input import SSHKeyInput
 
 class TestSSHKeyInput(unittest.TestCase):
     """SSHKeyInput unit test stubs"""
@@ -29,24 +26,24 @@ class TestSSHKeyInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SSHKeyInput:
         """Test SSHKeyInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SSHKeyInput`
         """
-        model = equinix_metal.models.ssh_key_input.SSHKeyInput()  # noqa: E501
-        if include_optional :
+        model = SSHKeyInput()
+        if include_optional:
             return SSHKeyInput(
-                href = '', 
-                key = '', 
-                label = '', 
+                href = '',
+                key = '',
+                label = '',
                 tags = [
                     ''
                     ]
             )
-        else :
+        else:
             return SSHKeyInput(
         )
         """

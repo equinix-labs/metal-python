@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictBool, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.spot_market_prices_list import SpotMarketPricesList
 from equinix_metal.models.spot_market_prices_per_metro_list import SpotMarketPricesPerMetroList
 from equinix_metal.models.spot_market_request import SpotMarketRequest
@@ -52,7 +51,7 @@ class SpotMarketApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_spot_market_request(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], spot_market_request_create_input : Annotated[SpotMarketRequestCreateInput, Field(..., description="Spot Market Request to create")], **kwargs) -> SpotMarketRequest:  # noqa: E501
+    def create_spot_market_request(self, id : Annotated[StrictStr, Field(description="Project UUID")], spot_market_request_create_input : Annotated[SpotMarketRequestCreateInput, Field(description="Spot Market Request to create")], **kwargs) -> SpotMarketRequest:  # noqa: E501
         """Create a spot market request  # noqa: E501
 
         Creates a new spot market request.  Type-specific options (such as operating_system for baremetal devices) should be included in the main data structure alongside hostname and plan.  The features attribute allows you to optionally specify what features your server should have. For example, if you require a server with a TPM chip, you may specify `{ \"features\": { \"tpm\": \"required\" } }` (or `{ \"features\": [\"tpm\"] }` in shorthand).  The request will fail if there are no available servers matching your criteria. Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a preferred value (see the example request below).  The request will not fail if we have no servers with that feature in our inventory.  # noqa: E501
@@ -83,7 +82,7 @@ class SpotMarketApi(object):
         return self.create_spot_market_request_with_http_info(id, spot_market_request_create_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_spot_market_request_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], spot_market_request_create_input : Annotated[SpotMarketRequestCreateInput, Field(..., description="Spot Market Request to create")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_spot_market_request_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], spot_market_request_create_input : Annotated[SpotMarketRequestCreateInput, Field(description="Spot Market Request to create")], **kwargs) -> ApiResponse:  # noqa: E501
         """Create a spot market request  # noqa: E501
 
         Creates a new spot market request.  Type-specific options (such as operating_system for baremetal devices) should be included in the main data structure alongside hostname and plan.  The features attribute allows you to optionally specify what features your server should have. For example, if you require a server with a TPM chip, you may specify `{ \"features\": { \"tpm\": \"required\" } }` (or `{ \"features\": [\"tpm\"] }` in shorthand).  The request will fail if there are no available servers matching your criteria. Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a preferred value (see the example request below).  The request will not fail if we have no servers with that feature in our inventory.  # noqa: E501
@@ -209,7 +208,7 @@ class SpotMarketApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_spot_market_request(self, id : Annotated[StrictStr, Field(..., description="SpotMarketRequest UUID")], force_termination : Annotated[Optional[StrictBool], Field(description="Terminate associated spot instances")] = None, **kwargs) -> None:  # noqa: E501
+    def delete_spot_market_request(self, id : Annotated[StrictStr, Field(description="SpotMarketRequest UUID")], force_termination : Annotated[Optional[StrictBool], Field(description="Terminate associated spot instances")] = None, **kwargs) -> None:  # noqa: E501
         """Delete the spot market request  # noqa: E501
 
         Deletes the spot market request.  # noqa: E501
@@ -240,7 +239,7 @@ class SpotMarketApi(object):
         return self.delete_spot_market_request_with_http_info(id, force_termination, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_spot_market_request_with_http_info(self, id : Annotated[StrictStr, Field(..., description="SpotMarketRequest UUID")], force_termination : Annotated[Optional[StrictBool], Field(description="Terminate associated spot instances")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_spot_market_request_with_http_info(self, id : Annotated[StrictStr, Field(description="SpotMarketRequest UUID")], force_termination : Annotated[Optional[StrictBool], Field(description="Terminate associated spot instances")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the spot market request  # noqa: E501
 
         Deletes the spot market request.  # noqa: E501
@@ -652,7 +651,7 @@ class SpotMarketApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_spot_market_prices_history(self, facility : Annotated[StrictStr, Field(..., description="Facility to check spot market prices")], plan : Annotated[StrictStr, Field(..., description="Plan to check spot market prices")], var_from : Annotated[StrictStr, Field(..., description="Timestamp from range")], until : Annotated[StrictStr, Field(..., description="Timestamp to range")], metro : Annotated[Optional[StrictStr], Field(description="Metro to check spot market price history")] = None, **kwargs) -> SpotPricesHistoryReport:  # noqa: E501
+    def find_spot_market_prices_history(self, facility : Annotated[StrictStr, Field(description="Facility to check spot market prices")], plan : Annotated[StrictStr, Field(description="Plan to check spot market prices")], var_from : Annotated[StrictStr, Field(description="Timestamp from range")], until : Annotated[StrictStr, Field(description="Timestamp to range")], metro : Annotated[Optional[StrictStr], Field(description="Metro to check spot market price history")] = None, **kwargs) -> SpotPricesHistoryReport:  # noqa: E501
         """Get spot market prices for a given period of time  # noqa: E501
 
         Get spot market prices for a given plan and facility in a fixed period of time  *Note: In the `200` response, the property `datapoints` contains arrays of `[float, integer]`.*  # noqa: E501
@@ -689,7 +688,7 @@ class SpotMarketApi(object):
         return self.find_spot_market_prices_history_with_http_info(facility, plan, var_from, until, metro, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_spot_market_prices_history_with_http_info(self, facility : Annotated[StrictStr, Field(..., description="Facility to check spot market prices")], plan : Annotated[StrictStr, Field(..., description="Plan to check spot market prices")], var_from : Annotated[StrictStr, Field(..., description="Timestamp from range")], until : Annotated[StrictStr, Field(..., description="Timestamp to range")], metro : Annotated[Optional[StrictStr], Field(description="Metro to check spot market price history")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_spot_market_prices_history_with_http_info(self, facility : Annotated[StrictStr, Field(description="Facility to check spot market prices")], plan : Annotated[StrictStr, Field(description="Plan to check spot market prices")], var_from : Annotated[StrictStr, Field(description="Timestamp from range")], until : Annotated[StrictStr, Field(description="Timestamp to range")], metro : Annotated[Optional[StrictStr], Field(description="Metro to check spot market price history")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get spot market prices for a given period of time  # noqa: E501
 
         Get spot market prices for a given plan and facility in a fixed period of time  *Note: In the `200` response, the property `datapoints` contains arrays of `[float, integer]`.*  # noqa: E501
@@ -825,7 +824,7 @@ class SpotMarketApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_spot_market_request_by_id(self, id : Annotated[StrictStr, Field(..., description="SpotMarketRequest UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SpotMarketRequest:  # noqa: E501
+    def find_spot_market_request_by_id(self, id : Annotated[StrictStr, Field(description="SpotMarketRequest UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SpotMarketRequest:  # noqa: E501
         """Retrieve a spot market request  # noqa: E501
 
         Returns a single spot market request  # noqa: E501
@@ -856,7 +855,7 @@ class SpotMarketApi(object):
         return self.find_spot_market_request_by_id_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_spot_market_request_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="SpotMarketRequest UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_spot_market_request_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="SpotMarketRequest UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a spot market request  # noqa: E501
 
         Returns a single spot market request  # noqa: E501
@@ -976,7 +975,7 @@ class SpotMarketApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def list_spot_market_requests(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> SpotMarketRequestList:  # noqa: E501
+    def list_spot_market_requests(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> SpotMarketRequestList:  # noqa: E501
         """List spot market requests  # noqa: E501
 
         View all spot market requests for a given project.  # noqa: E501
@@ -1005,7 +1004,7 @@ class SpotMarketApi(object):
         return self.list_spot_market_requests_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def list_spot_market_requests_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def list_spot_market_requests_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """List spot market requests  # noqa: E501
 
         View all spot market requests for a given project.  # noqa: E501

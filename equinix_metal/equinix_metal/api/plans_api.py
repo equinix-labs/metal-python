@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist, validator
-
-from typing import Optional
-
+from pydantic import Field, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.plan_list import PlanList
 
 from equinix_metal.api_client import ApiClient
@@ -47,7 +46,7 @@ class PlansApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def find_plans(self, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter plans by its category")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None, slug : Annotated[Optional[StrictStr], Field(description="Filter plans by slug")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> PlanList:  # noqa: E501
+    def find_plans(self, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter plans by its category")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None, slug : Annotated[Optional[StrictStr], Field(description="Filter plans by slug")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> PlanList:  # noqa: E501
         """Retrieve all plans  # noqa: E501
 
         Provides a listing of available plans to provision your device on.  # noqa: E501
@@ -84,7 +83,7 @@ class PlansApi(object):
         return self.find_plans_with_http_info(categories, type, slug, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_plans_with_http_info(self, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter plans by its category")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None, slug : Annotated[Optional[StrictStr], Field(description="Filter plans by slug")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_plans_with_http_info(self, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter plans by its category")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None, slug : Annotated[Optional[StrictStr], Field(description="Filter plans by slug")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all plans  # noqa: E501
 
         Provides a listing of available plans to provision your device on.  # noqa: E501
@@ -222,7 +221,7 @@ class PlansApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_plans_by_project(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> PlanList:  # noqa: E501
+    def find_plans_by_project(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> PlanList:  # noqa: E501
         """Retrieve all plans visible by the project  # noqa: E501
 
         Returns a listing of available plans for the given project  # noqa: E501
@@ -255,7 +254,7 @@ class PlansApi(object):
         return self.find_plans_by_project_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_plans_by_project_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_plans_by_project_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all plans visible by the project  # noqa: E501
 
         Returns a listing of available plans for the given project  # noqa: E501

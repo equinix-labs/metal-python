@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.ssh_key import SSHKey
 from equinix_metal.models.ssh_key_create_input import SSHKeyCreateInput
 from equinix_metal.models.ssh_key_input import SSHKeyInput
@@ -50,7 +49,7 @@ class SSHKeysApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_project_ssh_key(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], ssh_key_create_input : Annotated[SSHKeyCreateInput, Field(..., description="ssh key to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKey:  # noqa: E501
+    def create_project_ssh_key(self, id : Annotated[StrictStr, Field(description="Project UUID")], ssh_key_create_input : Annotated[SSHKeyCreateInput, Field(description="ssh key to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKey:  # noqa: E501
         """Create a ssh key for the given project  # noqa: E501
 
         Creates a ssh key.  # noqa: E501
@@ -83,7 +82,7 @@ class SSHKeysApi(object):
         return self.create_project_ssh_key_with_http_info(id, ssh_key_create_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_project_ssh_key_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], ssh_key_create_input : Annotated[SSHKeyCreateInput, Field(..., description="ssh key to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_project_ssh_key_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], ssh_key_create_input : Annotated[SSHKeyCreateInput, Field(description="ssh key to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a ssh key for the given project  # noqa: E501
 
         Creates a ssh key.  # noqa: E501
@@ -215,7 +214,7 @@ class SSHKeysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_ssh_key(self, ssh_key_create_input : Annotated[SSHKeyCreateInput, Field(..., description="ssh key to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKey:  # noqa: E501
+    def create_ssh_key(self, ssh_key_create_input : Annotated[SSHKeyCreateInput, Field(description="ssh key to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKey:  # noqa: E501
         """Create a ssh key for the current user  # noqa: E501
 
         Creates a ssh key.  # noqa: E501
@@ -246,7 +245,7 @@ class SSHKeysApi(object):
         return self.create_ssh_key_with_http_info(ssh_key_create_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_ssh_key_with_http_info(self, ssh_key_create_input : Annotated[SSHKeyCreateInput, Field(..., description="ssh key to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_ssh_key_with_http_info(self, ssh_key_create_input : Annotated[SSHKeyCreateInput, Field(description="ssh key to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a ssh key for the current user  # noqa: E501
 
         Creates a ssh key.  # noqa: E501
@@ -372,7 +371,7 @@ class SSHKeysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_ssh_key(self, id : Annotated[StrictStr, Field(..., description="ssh key UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_ssh_key(self, id : Annotated[StrictStr, Field(description="ssh key UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the ssh key  # noqa: E501
 
         Deletes the ssh key.  # noqa: E501
@@ -401,7 +400,7 @@ class SSHKeysApi(object):
         return self.delete_ssh_key_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_ssh_key_with_http_info(self, id : Annotated[StrictStr, Field(..., description="ssh key UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_ssh_key_with_http_info(self, id : Annotated[StrictStr, Field(description="ssh key UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the ssh key  # noqa: E501
 
         Deletes the ssh key.  # noqa: E501
@@ -509,7 +508,7 @@ class SSHKeysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_device_ssh_keys(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search_string : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKeyList:  # noqa: E501
+    def find_device_ssh_keys(self, id : Annotated[StrictStr, Field(description="Project UUID")], search_string : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKeyList:  # noqa: E501
         """Retrieve a device's ssh keys  # noqa: E501
 
         Returns a collection of the device's ssh keys.  # noqa: E501
@@ -542,7 +541,7 @@ class SSHKeysApi(object):
         return self.find_device_ssh_keys_with_http_info(id, search_string, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_device_ssh_keys_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], search_string : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_device_ssh_keys_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], search_string : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a device's ssh keys  # noqa: E501
 
         Returns a collection of the device's ssh keys.  # noqa: E501
@@ -666,7 +665,7 @@ class SSHKeysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_ssh_keys(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], query : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKeyList:  # noqa: E501
+    def find_project_ssh_keys(self, id : Annotated[StrictStr, Field(description="Project UUID")], query : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKeyList:  # noqa: E501
         """Retrieve a project's ssh keys  # noqa: E501
 
         Returns a collection of the project's ssh keys.  # noqa: E501
@@ -699,7 +698,7 @@ class SSHKeysApi(object):
         return self.find_project_ssh_keys_with_http_info(id, query, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_ssh_keys_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], query : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_ssh_keys_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], query : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a project's ssh keys  # noqa: E501
 
         Returns a collection of the project's ssh keys.  # noqa: E501
@@ -823,7 +822,7 @@ class SSHKeysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_ssh_key_by_id(self, id : Annotated[StrictStr, Field(..., description="SSH Key UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKey:  # noqa: E501
+    def find_ssh_key_by_id(self, id : Annotated[StrictStr, Field(description="SSH Key UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKey:  # noqa: E501
         """Retrieve a ssh key  # noqa: E501
 
         Returns a single ssh key if the user has access  # noqa: E501
@@ -854,7 +853,7 @@ class SSHKeysApi(object):
         return self.find_ssh_key_by_id_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ssh_key_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="SSH Key UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ssh_key_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="SSH Key UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a ssh key  # noqa: E501
 
         Returns a single ssh key if the user has access  # noqa: E501
@@ -974,7 +973,7 @@ class SSHKeysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_ssh_keys(self, search : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKeyList:  # noqa: E501
+    def find_ssh_keys(self, search : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKeyList:  # noqa: E501
         """Retrieve all ssh keys  # noqa: E501
 
         Returns a collection of the user’s ssh keys.  # noqa: E501
@@ -1005,7 +1004,7 @@ class SSHKeysApi(object):
         return self.find_ssh_keys_with_http_info(search, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_ssh_keys_with_http_info(self, search : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_ssh_keys_with_http_info(self, search : Annotated[Optional[StrictStr], Field(description="Search by key, label, or fingerprint")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all ssh keys  # noqa: E501
 
         Returns a collection of the user’s ssh keys.  # noqa: E501
@@ -1123,7 +1122,7 @@ class SSHKeysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_ssh_key(self, id : Annotated[StrictStr, Field(..., description="SSH Key UUID")], ssh_key_input : Annotated[SSHKeyInput, Field(..., description="ssh key to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKey:  # noqa: E501
+    def update_ssh_key(self, id : Annotated[StrictStr, Field(description="SSH Key UUID")], ssh_key_input : Annotated[SSHKeyInput, Field(description="ssh key to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> SSHKey:  # noqa: E501
         """Update the ssh key  # noqa: E501
 
         Updates the ssh key.  # noqa: E501
@@ -1156,7 +1155,7 @@ class SSHKeysApi(object):
         return self.update_ssh_key_with_http_info(id, ssh_key_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_ssh_key_with_http_info(self, id : Annotated[StrictStr, Field(..., description="SSH Key UUID")], ssh_key_input : Annotated[SSHKeyInput, Field(..., description="ssh key to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_ssh_key_with_http_info(self, id : Annotated[StrictStr, Field(description="SSH Key UUID")], ssh_key_input : Annotated[SSHKeyInput, Field(description="ssh key to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the ssh key  # noqa: E501
 
         Updates the ssh key.  # noqa: E501

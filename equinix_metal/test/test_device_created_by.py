@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device_created_by import DeviceCreatedBy  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device_created_by import DeviceCreatedBy
 
 class TestDeviceCreatedBy(unittest.TestCase):
     """DeviceCreatedBy unit test stubs"""
@@ -29,28 +26,28 @@ class TestDeviceCreatedBy(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DeviceCreatedBy:
         """Test DeviceCreatedBy
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DeviceCreatedBy`
         """
-        model = equinix_metal.models.device_created_by.DeviceCreatedBy()  # noqa: E501
-        if include_optional :
+        model = DeviceCreatedBy()
+        if include_optional:
             return DeviceCreatedBy(
-                avatar_thumb_url = '', 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                email = '', 
-                first_name = '', 
-                full_name = '', 
-                href = '', 
-                id = '', 
-                last_name = '', 
-                short_id = '', 
+                avatar_thumb_url = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                email = '',
+                first_name = '',
+                full_name = '',
+                href = '',
+                id = '',
+                last_name = '',
+                short_id = '',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return DeviceCreatedBy(
                 id = '',
                 short_id = '',

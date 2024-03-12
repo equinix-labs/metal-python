@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **avatar_thumb_url** | **str** | Avatar thumbnail URL of the User | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of DeviceCreatedBy from a JSON string
 device_created_by_instance = DeviceCreatedBy.from_json(json)
 # print the JSON string representation of the object
-print DeviceCreatedBy.to_json()
+print(DeviceCreatedBy.to_json())
 
 # convert the object into a dict
 device_created_by_dict = device_created_by_instance.to_dict()

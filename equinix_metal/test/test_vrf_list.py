@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_list import VrfList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_list import VrfList
 
 class TestVrfList(unittest.TestCase):
     """VrfList unit test stubs"""
@@ -29,17 +26,17 @@ class TestVrfList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfList:
         """Test VrfList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfList`
         """
-        model = equinix_metal.models.vrf_list.VrfList()  # noqa: E501
-        if include_optional :
+        model = VrfList()
+        if include_optional:
             return VrfList(
-                href = '', 
+                href = '',
                 vrfs = [
                     equinix_metal.models.vrf.Vrf(
                         bgp_dynamic_neighbors_bfd_enabled = True, 
@@ -160,7 +157,7 @@ class TestVrfList(unittest.TestCase):
                             ], )
                     ]
             )
-        else :
+        else:
             return VrfList(
         )
         """

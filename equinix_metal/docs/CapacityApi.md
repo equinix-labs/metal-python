@@ -22,9 +22,8 @@ Validates if a deploy can be fulfilled.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.capacity_check_per_facility_list import CapacityCheckPerFacilityList
 from equinix_metal.models.capacity_input import CapacityInput
@@ -103,9 +102,8 @@ Validates if a deploy can be fulfilled in a metro.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.capacity_check_per_metro_list import CapacityCheckPerMetroList
 from equinix_metal.models.capacity_input import CapacityInput
@@ -184,9 +182,8 @@ Returns a list of facilities and plans with their current capacity.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.capacity_list import CapacityList
 from equinix_metal.rest import ApiException
@@ -259,9 +256,8 @@ Returns a list of metros and plans with their current capacity.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.capacity_list import CapacityList
 from equinix_metal.rest import ApiException
@@ -334,9 +330,8 @@ Returns a list of facilities and plans with their current capacity.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.capacity_list import CapacityList
 from equinix_metal.rest import ApiException
@@ -414,9 +409,8 @@ Returns a list of metros and plans with their current capacity.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.capacity_list import CapacityList
 from equinix_metal.rest import ApiException

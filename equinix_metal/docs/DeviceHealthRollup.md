@@ -3,6 +3,7 @@
 Represents a Device Health Status
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **health_rollup** | **str** | Health Status | [optional] [readonly] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of DeviceHealthRollup from a JSON string
 device_health_rollup_instance = DeviceHealthRollup.from_json(json)
 # print the JSON string representation of the object
-print DeviceHealthRollup.to_json()
+print(DeviceHealthRollup.to_json())
 
 # convert the object into a dict
 device_health_rollup_dict = device_health_rollup_instance.to_dict()

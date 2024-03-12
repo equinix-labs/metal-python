@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of InvoiceList from a JSON string
 invoice_list_instance = InvoiceList.from_json(json)
 # print the JSON string representation of the object
-print InvoiceList.to_json()
+print(InvoiceList.to_json())
 
 # convert the object into a dict
 invoice_list_dict = invoice_list_instance.to_dict()

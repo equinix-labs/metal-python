@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.transfer_request import TransferRequest
 
 from equinix_metal.api_client import ApiClient
@@ -47,7 +46,7 @@ class TransferRequestsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def accept_transfer_request(self, id : Annotated[StrictStr, Field(..., description="Transfer request UUID")], **kwargs) -> None:  # noqa: E501
+    def accept_transfer_request(self, id : Annotated[StrictStr, Field(description="Transfer request UUID")], **kwargs) -> None:  # noqa: E501
         """Accept a transfer request  # noqa: E501
 
         Accept a transfer request.  # noqa: E501
@@ -76,7 +75,7 @@ class TransferRequestsApi(object):
         return self.accept_transfer_request_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def accept_transfer_request_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Transfer request UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def accept_transfer_request_with_http_info(self, id : Annotated[StrictStr, Field(description="Transfer request UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Accept a transfer request  # noqa: E501
 
         Accept a transfer request.  # noqa: E501
@@ -184,7 +183,7 @@ class TransferRequestsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def decline_transfer_request(self, id : Annotated[StrictStr, Field(..., description="Transfer request UUID")], **kwargs) -> None:  # noqa: E501
+    def decline_transfer_request(self, id : Annotated[StrictStr, Field(description="Transfer request UUID")], **kwargs) -> None:  # noqa: E501
         """Decline a transfer request  # noqa: E501
 
         Decline a transfer request.  # noqa: E501
@@ -213,7 +212,7 @@ class TransferRequestsApi(object):
         return self.decline_transfer_request_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def decline_transfer_request_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Transfer request UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def decline_transfer_request_with_http_info(self, id : Annotated[StrictStr, Field(description="Transfer request UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Decline a transfer request  # noqa: E501
 
         Decline a transfer request.  # noqa: E501
@@ -321,7 +320,7 @@ class TransferRequestsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_transfer_request_by_id(self, id : Annotated[StrictStr, Field(..., description="Transfer request UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> TransferRequest:  # noqa: E501
+    def find_transfer_request_by_id(self, id : Annotated[StrictStr, Field(description="Transfer request UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> TransferRequest:  # noqa: E501
         """View a transfer request  # noqa: E501
 
         Returns a single transfer request.  # noqa: E501
@@ -352,7 +351,7 @@ class TransferRequestsApi(object):
         return self.find_transfer_request_by_id_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_transfer_request_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Transfer request UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_transfer_request_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Transfer request UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """View a transfer request  # noqa: E501
 
         Returns a single transfer request.  # noqa: E501

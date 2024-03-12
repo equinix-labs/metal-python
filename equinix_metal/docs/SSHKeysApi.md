@@ -24,9 +24,8 @@ Creates a ssh key.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ssh_key import SSHKey
 from equinix_metal.models.ssh_key_create_input import SSHKeyCreateInput
@@ -109,9 +108,8 @@ Creates a ssh key.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ssh_key import SSHKey
 from equinix_metal.models.ssh_key_create_input import SSHKeyCreateInput
@@ -192,9 +190,8 @@ Deletes the ssh key.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -270,9 +267,8 @@ Returns a collection of the device's ssh keys.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ssh_key_list import SSHKeyList
 from equinix_metal.rest import ApiException
@@ -353,9 +349,8 @@ Returns a collection of the project's ssh keys.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ssh_key_list import SSHKeyList
 from equinix_metal.rest import ApiException
@@ -436,9 +431,8 @@ Returns a single ssh key if the user has access
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ssh_key import SSHKey
 from equinix_metal.rest import ApiException
@@ -519,9 +513,8 @@ Returns a collection of the user’s ssh keys.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ssh_key_list import SSHKeyList
 from equinix_metal.rest import ApiException
@@ -600,9 +593,8 @@ Updates the ssh key.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ssh_key import SSHKey
 from equinix_metal.models.ssh_key_input import SSHKeyInput

@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.invitation import Invitation
 from equinix_metal.models.membership import Membership
 
@@ -48,7 +47,7 @@ class InvitationsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def accept_invitation(self, id : Annotated[StrictStr, Field(..., description="Invitation UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Membership:  # noqa: E501
+    def accept_invitation(self, id : Annotated[StrictStr, Field(description="Invitation UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Membership:  # noqa: E501
         """Accept an invitation  # noqa: E501
 
         Accept an invitation.  # noqa: E501
@@ -79,7 +78,7 @@ class InvitationsApi(object):
         return self.accept_invitation_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def accept_invitation_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Invitation UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def accept_invitation_with_http_info(self, id : Annotated[StrictStr, Field(description="Invitation UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Accept an invitation  # noqa: E501
 
         Accept an invitation.  # noqa: E501
@@ -199,7 +198,7 @@ class InvitationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def decline_invitation(self, id : Annotated[StrictStr, Field(..., description="Invitation UUID")], **kwargs) -> None:  # noqa: E501
+    def decline_invitation(self, id : Annotated[StrictStr, Field(description="Invitation UUID")], **kwargs) -> None:  # noqa: E501
         """Decline an invitation  # noqa: E501
 
         Decline an invitation.  # noqa: E501
@@ -228,7 +227,7 @@ class InvitationsApi(object):
         return self.decline_invitation_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def decline_invitation_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Invitation UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def decline_invitation_with_http_info(self, id : Annotated[StrictStr, Field(description="Invitation UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Decline an invitation  # noqa: E501
 
         Decline an invitation.  # noqa: E501
@@ -336,7 +335,7 @@ class InvitationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_invitation_by_id(self, id : Annotated[StrictStr, Field(..., description="Invitation UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Invitation:  # noqa: E501
+    def find_invitation_by_id(self, id : Annotated[StrictStr, Field(description="Invitation UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Invitation:  # noqa: E501
         """View an invitation  # noqa: E501
 
         Returns a single invitation. (It include the `invitable` to maintain backward compatibility but will be removed soon)  # noqa: E501
@@ -367,7 +366,7 @@ class InvitationsApi(object):
         return self.find_invitation_by_id_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_invitation_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Invitation UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_invitation_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Invitation UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """View an invitation  # noqa: E501
 
         Returns a single invitation. (It include the `invitable` to maintain backward compatibility but will be removed soon)  # noqa: E501

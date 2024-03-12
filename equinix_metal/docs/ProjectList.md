@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of ProjectList from a JSON string
 project_list_instance = ProjectList.from_json(json)
 # print the JSON string representation of the object
-print ProjectList.to_json()
+print(ProjectList.to_json())
 
 # convert the object into a dict
 project_list_dict = project_list_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **addon** | **bool** |  | [optional] 
@@ -46,7 +47,7 @@ json = "{}"
 # create an instance of IPReservationListIpAddressesInner from a JSON string
 ip_reservation_list_ip_addresses_inner_instance = IPReservationListIpAddressesInner.from_json(json)
 # print the JSON string representation of the object
-print IPReservationListIpAddressesInner.to_json()
+print(IPReservationListIpAddressesInner.to_json())
 
 # convert the object into a dict
 ip_reservation_list_ip_addresses_inner_dict = ip_reservation_list_ip_addresses_inner_instance.to_dict()

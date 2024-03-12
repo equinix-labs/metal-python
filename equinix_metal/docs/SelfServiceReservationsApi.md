@@ -19,9 +19,8 @@ Creates a reservation.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.create_self_service_reservation_request import CreateSelfServiceReservationRequest
 from equinix_metal.models.self_service_reservation_response import SelfServiceReservationResponse
@@ -102,9 +101,8 @@ Returns a reservation
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.self_service_reservation_response import SelfServiceReservationResponse
 from equinix_metal.rest import ApiException
@@ -184,9 +182,8 @@ Returns all reservations.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.self_service_reservation_list import SelfServiceReservationList
 from equinix_metal.rest import ApiException

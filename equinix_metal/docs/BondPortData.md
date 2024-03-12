@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of BondPortData from a JSON string
 bond_port_data_instance = BondPortData.from_json(json)
 # print the JSON string representation of the object
-print BondPortData.to_json()
+print(BondPortData.to_json())
 
 # convert the object into a dict
 bond_port_data_dict = bond_port_data_instance.to_dict()

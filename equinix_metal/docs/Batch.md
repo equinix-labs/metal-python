@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -24,7 +25,7 @@ json = "{}"
 # create an instance of Batch from a JSON string
 batch_instance = Batch.from_json(json)
 # print the JSON string representation of the object
-print Batch.to_json()
+print(Batch.to_json())
 
 # convert the object into a dict
 batch_dict = batch_instance.to_dict()

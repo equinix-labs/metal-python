@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bgp_dynamic_neighbors** | [**List[BgpDynamicNeighbor]**](BgpDynamicNeighbor.md) |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of BgpDynamicNeighborList from a JSON string
 bgp_dynamic_neighbor_list_instance = BgpDynamicNeighborList.from_json(json)
 # print the JSON string representation of the object
-print BgpDynamicNeighborList.to_json()
+print(BgpDynamicNeighborList.to_json())
 
 # convert the object into a dict
 bgp_dynamic_neighbor_list_dict = bgp_dynamic_neighbor_list_instance.to_dict()

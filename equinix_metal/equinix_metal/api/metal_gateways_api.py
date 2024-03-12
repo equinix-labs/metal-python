@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conint, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest
 from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 from equinix_metal.models.ip_assignment import IPAssignment
@@ -52,7 +51,7 @@ class MetalGatewaysApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_metal_gateway(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], create_metal_gateway_request : Annotated[CreateMetalGatewayRequest, Field(..., description="Metal Gateway to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> FindMetalGatewayById200Response:  # noqa: E501
+    def create_metal_gateway(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], create_metal_gateway_request : Annotated[CreateMetalGatewayRequest, Field(description="Metal Gateway to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> FindMetalGatewayById200Response:  # noqa: E501
         """Create a metal gateway  # noqa: E501
 
         Create a metal gateway in a project  # noqa: E501
@@ -91,7 +90,7 @@ class MetalGatewaysApi(object):
         return self.create_metal_gateway_with_http_info(project_id, create_metal_gateway_request, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_metal_gateway_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], create_metal_gateway_request : Annotated[CreateMetalGatewayRequest, Field(..., description="Metal Gateway to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_metal_gateway_with_http_info(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], create_metal_gateway_request : Annotated[CreateMetalGatewayRequest, Field(description="Metal Gateway to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a metal gateway  # noqa: E501
 
         Create a metal gateway in a project  # noqa: E501
@@ -243,7 +242,7 @@ class MetalGatewaysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_metal_gateway_elastic_ip(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], metal_gateway_elastic_ip_create_input : MetalGatewayElasticIpCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignment:  # noqa: E501
+    def create_metal_gateway_elastic_ip(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], metal_gateway_elastic_ip_create_input : MetalGatewayElasticIpCreateInput, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignment:  # noqa: E501
         """Create a Metal Gateway Elastic IP  # noqa: E501
 
         Create a new Elastic IP on this Metal Gateway.  Assign an IPv4 range as an elastic IP to the Metal Gateway, with a specified next-hop address contained within the Metal Gateway.  Notice: Elastic IPs on Metal Gateways are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
@@ -278,7 +277,7 @@ class MetalGatewaysApi(object):
         return self.create_metal_gateway_elastic_ip_with_http_info(id, metal_gateway_elastic_ip_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_metal_gateway_elastic_ip_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], metal_gateway_elastic_ip_create_input : MetalGatewayElasticIpCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_metal_gateway_elastic_ip_with_http_info(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], metal_gateway_elastic_ip_create_input : MetalGatewayElasticIpCreateInput, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a Metal Gateway Elastic IP  # noqa: E501
 
         Create a new Elastic IP on this Metal Gateway.  Assign an IPv4 range as an elastic IP to the Metal Gateway, with a specified next-hop address contained within the Metal Gateway.  Notice: Elastic IPs on Metal Gateways are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
@@ -419,7 +418,7 @@ class MetalGatewaysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_metal_gateway(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> FindMetalGatewayById200Response:  # noqa: E501
+    def delete_metal_gateway(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> FindMetalGatewayById200Response:  # noqa: E501
         """Deletes the metal gateway  # noqa: E501
 
         Deletes a metal gateway and any elastic IP assignments associated with this metal gateway.  # noqa: E501
@@ -452,7 +451,7 @@ class MetalGatewaysApi(object):
         return self.delete_metal_gateway_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_metal_gateway_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_metal_gateway_with_http_info(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Deletes the metal gateway  # noqa: E501
 
         Deletes a metal gateway and any elastic IP assignments associated with this metal gateway.  # noqa: E501
@@ -578,7 +577,7 @@ class MetalGatewaysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_metal_gateway_by_id(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> FindMetalGatewayById200Response:  # noqa: E501
+    def find_metal_gateway_by_id(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> FindMetalGatewayById200Response:  # noqa: E501
         """Returns the metal gateway  # noqa: E501
 
         Returns a specific metal gateway  # noqa: E501
@@ -611,7 +610,7 @@ class MetalGatewaysApi(object):
         return self.find_metal_gateway_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_metal_gateway_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_metal_gateway_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Returns the metal gateway  # noqa: E501
 
         Returns a specific metal gateway  # noqa: E501
@@ -737,7 +736,7 @@ class MetalGatewaysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_metal_gateways_by_project_all_pages(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> MetalGatewayList:  # noqa: E501
+    def find_metal_gateways_by_project_all_pages(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> MetalGatewayList:  # noqa: E501
         """Returns all metal gateways for a project  # noqa: E501
 
         This method is the same as find_metal_gateways_by_project, but fetches resources from all the pages.
@@ -792,7 +791,7 @@ class MetalGatewaysApi(object):
         return all_pages
 
     @validate_arguments
-    def find_metal_gateways_by_project(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> MetalGatewayList:  # noqa: E501
+    def find_metal_gateways_by_project(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> MetalGatewayList:  # noqa: E501
         """Returns all metal gateways for a project  # noqa: E501
 
         Return all metal gateways for a project  # noqa: E501
@@ -829,7 +828,7 @@ class MetalGatewaysApi(object):
         return self.find_metal_gateways_by_project_with_http_info(project_id, include, exclude, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_metal_gateways_by_project_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_metal_gateways_by_project_with_http_info(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Returns all metal gateways for a project  # noqa: E501
 
         Return all metal gateways for a project  # noqa: E501
@@ -967,7 +966,7 @@ class MetalGatewaysApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_metal_gateway_elastic_ips(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignmentList:  # noqa: E501
+    def get_metal_gateway_elastic_ips(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> IPAssignmentList:  # noqa: E501
         """List Metal Gateway Elastic IPs  # noqa: E501
 
         Returns the list of Elastic IPs assigned to this Metal Gateway  # noqa: E501
@@ -1000,7 +999,7 @@ class MetalGatewaysApi(object):
         return self.get_metal_gateway_elastic_ips_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_metal_gateway_elastic_ips_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_metal_gateway_elastic_ips_with_http_info(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List Metal Gateway Elastic IPs  # noqa: E501
 
         Returns the list of Elastic IPs assigned to this Metal Gateway  # noqa: E501

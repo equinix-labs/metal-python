@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.meta import Meta  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.meta import Meta
 
 class TestMeta(unittest.TestCase):
     """Meta unit test stubs"""
@@ -29,32 +26,32 @@ class TestMeta(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Meta:
         """Test Meta
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Meta`
         """
-        model = equinix_metal.models.meta.Meta()  # noqa: E501
-        if include_optional :
+        model = Meta()
+        if include_optional:
             return Meta(
-                current_page = 56, 
+                current_page = 56,
                 first = equinix_metal.models.href.Href(
-                    href = '', ), 
-                href = '', 
+                    href = '', ),
+                href = '',
                 last = equinix_metal.models.href.Href(
-                    href = '', ), 
-                last_page = 56, 
+                    href = '', ),
+                last_page = 56,
                 next = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 previous = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 var_self = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 total = 56
             )
-        else :
+        else:
             return Meta(
         )
         """

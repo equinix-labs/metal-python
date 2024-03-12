@@ -21,9 +21,8 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictInt, StrictStr
-
 from typing import Optional
-
+from typing_extensions import Annotated
 from equinix_metal.models.firmware_set_list_response import FirmwareSetListResponse
 
 from equinix_metal.api_client import ApiClient
@@ -47,7 +46,7 @@ class FirmwareSetsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def get_organization_firmware_sets(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], page : Annotated[Optional[StrictInt], Field(description="page number to return")] = None, per_page : Annotated[Optional[StrictInt], Field(description="items returned per page.")] = None, **kwargs) -> FirmwareSetListResponse:  # noqa: E501
+    def get_organization_firmware_sets(self, id : Annotated[StrictStr, Field(description="Organization UUID")], page : Annotated[Optional[StrictInt], Field(description="page number to return")] = None, per_page : Annotated[Optional[StrictInt], Field(description="items returned per page.")] = None, **kwargs) -> FirmwareSetListResponse:  # noqa: E501
         """Get Organization's Firmware Sets  # noqa: E501
 
         Returns all firmware sets associated with the organization.  # noqa: E501
@@ -80,7 +79,7 @@ class FirmwareSetsApi(object):
         return self.get_organization_firmware_sets_with_http_info(id, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_organization_firmware_sets_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Organization UUID")], page : Annotated[Optional[StrictInt], Field(description="page number to return")] = None, per_page : Annotated[Optional[StrictInt], Field(description="items returned per page.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_organization_firmware_sets_with_http_info(self, id : Annotated[StrictStr, Field(description="Organization UUID")], page : Annotated[Optional[StrictInt], Field(description="page number to return")] = None, per_page : Annotated[Optional[StrictInt], Field(description="items returned per page.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Organization's Firmware Sets  # noqa: E501
 
         Returns all firmware sets associated with the organization.  # noqa: E501
@@ -205,7 +204,7 @@ class FirmwareSetsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_project_firmware_sets(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], page : Annotated[Optional[StrictInt], Field(description="page number to return")] = None, per_page : Annotated[Optional[StrictInt], Field(description="items returned per page.")] = None, **kwargs) -> FirmwareSetListResponse:  # noqa: E501
+    def get_project_firmware_sets(self, id : Annotated[StrictStr, Field(description="Project UUID")], page : Annotated[Optional[StrictInt], Field(description="page number to return")] = None, per_page : Annotated[Optional[StrictInt], Field(description="items returned per page.")] = None, **kwargs) -> FirmwareSetListResponse:  # noqa: E501
         """Get Project's Firmware Sets  # noqa: E501
 
         Returns all firmware sets associated with the project or organization.  # noqa: E501
@@ -238,7 +237,7 @@ class FirmwareSetsApi(object):
         return self.get_project_firmware_sets_with_http_info(id, page, per_page, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_project_firmware_sets_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], page : Annotated[Optional[StrictInt], Field(description="page number to return")] = None, per_page : Annotated[Optional[StrictInt], Field(description="items returned per page.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_project_firmware_sets_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], page : Annotated[Optional[StrictInt], Field(description="page number to return")] = None, per_page : Annotated[Optional[StrictInt], Field(description="items returned per page.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Get Project's Firmware Sets  # noqa: E501
 
         Returns all firmware sets associated with the project or organization.  # noqa: E501

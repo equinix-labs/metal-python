@@ -30,9 +30,8 @@ Sets a virtual network on this port as a \"native VLAN\". The VLAN must have alr
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
@@ -115,9 +114,8 @@ Assign a hardware port to a virtual network.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port import Port
 from equinix_metal.models.port_assign_input import PortAssignInput
@@ -202,9 +200,8 @@ Enabling bonding for one or all ports
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
@@ -288,9 +285,8 @@ Converts a bond port to Layer 2. IP assignments of the port will be removed.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port import Port
 from equinix_metal.models.port_assign_input import PortAssignInput
@@ -375,9 +371,8 @@ Converts a bond port to Layer 3. VLANs must first be unassigned.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port import Port
 from equinix_metal.models.port_convert_layer3_input import PortConvertLayer3Input
@@ -462,9 +457,8 @@ Create a new asynchronous batch request which handles adding and/or removing the
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port_vlan_assignment_batch import PortVlanAssignmentBatch
 from equinix_metal.models.port_vlan_assignment_batch_create_input import PortVlanAssignmentBatchCreateInput
@@ -549,9 +543,8 @@ Removes the native VLAN from this port
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
@@ -632,9 +625,8 @@ Disabling bonding for one or all ports
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
@@ -718,9 +710,8 @@ Returns a port
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port import Port
 from equinix_metal.rest import ApiException
@@ -800,9 +791,8 @@ Returns the details of an existing Port-VLAN Assignment batch, including the lis
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port_vlan_assignment_batch import PortVlanAssignmentBatch
 from equinix_metal.rest import ApiException
@@ -885,9 +875,8 @@ Show all the VLAN assignment batches that have been created for managing this po
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port_vlan_assignment_batch_list import PortVlanAssignmentBatchList
 from equinix_metal.rest import ApiException
@@ -966,9 +955,8 @@ Show the details of a specific Port-VLAN assignment, including the current state
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port_vlan_assignment import PortVlanAssignment
 from equinix_metal.rest import ApiException
@@ -1051,9 +1039,8 @@ Show the port's current VLAN assignments, including if this VLAN is set as nativ
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port_vlan_assignment_list import PortVlanAssignmentList
 from equinix_metal.rest import ApiException
@@ -1134,9 +1121,8 @@ Unassign a port for a hardware.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.port import Port
 from equinix_metal.models.port_assign_input import PortAssignInput

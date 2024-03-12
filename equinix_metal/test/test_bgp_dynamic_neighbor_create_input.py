@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput
 
 class TestBgpDynamicNeighborCreateInput(unittest.TestCase):
     """BgpDynamicNeighborCreateInput unit test stubs"""
@@ -29,24 +26,24 @@ class TestBgpDynamicNeighborCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BgpDynamicNeighborCreateInput:
         """Test BgpDynamicNeighborCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BgpDynamicNeighborCreateInput`
         """
-        model = equinix_metal.models.bgp_dynamic_neighbor_create_input.BgpDynamicNeighborCreateInput()  # noqa: E501
-        if include_optional :
+        model = BgpDynamicNeighborCreateInput()
+        if include_optional:
             return BgpDynamicNeighborCreateInput(
-                bgp_neighbor_asn = 12345, 
-                bgp_neighbor_range = '192.168.1.0/25', 
-                href = '', 
+                bgp_neighbor_asn = 12345,
+                bgp_neighbor_range = '192.168.1.0/25',
+                href = '',
                 tags = [
                     ''
                     ]
             )
-        else :
+        else:
             return BgpDynamicNeighborCreateInput(
                 bgp_neighbor_asn = 12345,
                 bgp_neighbor_range = '192.168.1.0/25',

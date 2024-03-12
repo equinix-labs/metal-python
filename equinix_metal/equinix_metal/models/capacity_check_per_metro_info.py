@@ -18,57 +18,73 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from typing import Optional, Set
+from typing_extensions import Self
 
 class CapacityCheckPerMetroInfo(BaseModel):
     """
     CapacityCheckPerMetroInfo
-    """
-    available: Optional[StrictBool] = Field(None, description="Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough.")
+    """ # noqa: E501
+    available: Optional[StrictBool] = Field(default=None, description="Returns true if there is enough capacity in the metro to fulfill the quantity set. Returns false if there is not enough.")
     href: Optional[StrictStr] = None
-    metro: Optional[StrictStr] = Field(None, description="The metro ID or code sent to check capacity.")
-    plan: Optional[StrictStr] = Field(None, description="The plan ID or slug sent to check capacity.")
-    quantity: Optional[StrictStr] = Field(None, description="The number of servers sent to check capacity.")
-    __properties = ["available", "href", "metro", "plan", "quantity"]
+    metro: Optional[StrictStr] = Field(default=None, description="The metro ID or code sent to check capacity.")
+    plan: Optional[StrictStr] = Field(default=None, description="The plan ID or slug sent to check capacity.")
+    quantity: Optional[StrictStr] = Field(default=None, description="The number of servers sent to check capacity.")
+    __properties: ClassVar[List[str]] = ["available", "href", "metro", "plan", "quantity"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> CapacityCheckPerMetroInfo:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of CapacityCheckPerMetroInfo from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> CapacityCheckPerMetroInfo:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of CapacityCheckPerMetroInfo from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return CapacityCheckPerMetroInfo.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = CapacityCheckPerMetroInfo.parse_obj({
+        _obj = cls.model_validate({
             "available": obj.get("available"),
             "href": obj.get("href"),
             "metro": obj.get("metro"),

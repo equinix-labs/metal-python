@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customdata** | **object** |  | [optional] 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of ProjectCreateInput from a JSON string
 project_create_input_instance = ProjectCreateInput.from_json(json)
 # print the JSON string representation of the object
-print ProjectCreateInput.to_json()
+print(ProjectCreateInput.to_json())
 
 # convert the object into a dict
 project_create_input_dict = project_create_input_instance.to_dict()

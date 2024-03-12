@@ -30,9 +30,8 @@ Returns a list of events pertaining to a specific device
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -124,9 +123,8 @@ Returns a single event if the user has access
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
@@ -209,9 +207,8 @@ Returns a list of the current user’s events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -299,9 +296,8 @@ Returns a list of the interconnection events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -393,9 +389,8 @@ Returns a list of the interconnection port events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
@@ -484,9 +479,8 @@ Returns a list of events for a single organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -578,9 +572,8 @@ Returns a list of events for a single project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -672,9 +665,8 @@ Returns a list of the virtual circuit events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
@@ -761,9 +753,8 @@ Returns a list of the VRF route events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.metal_gateway import MetalGateway  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.metal_gateway import MetalGateway
 
 class TestMetalGateway(unittest.TestCase):
     """MetalGateway unit test stubs"""
@@ -29,21 +26,21 @@ class TestMetalGateway(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> MetalGateway:
         """Test MetalGateway
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MetalGateway`
         """
-        model = equinix_metal.models.metal_gateway.MetalGateway()  # noqa: E501
-        if include_optional :
+        model = MetalGateway()
+        if include_optional:
             return MetalGateway(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_by = equinix_metal.models.href.Href(
-                    href = '', ), 
-                href = '', 
-                id = '', 
+                    href = '', ),
+                href = '',
+                id = '',
                 ip_reservation = equinix_metal.models.ip_reservation.IPReservation(
                     addon = True, 
                     address = '', 
@@ -120,7 +117,7 @@ class TestMetalGateway(unittest.TestCase):
                     tags = [
                         ''
                         ], 
-                    type = 'global_ipv4', ), 
+                    type = 'global_ipv4', ),
                 project = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -157,9 +154,9 @@ class TestMetalGateway(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
-                state = 'ready', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        ], ),
+                state = 'ready',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
                     assigned_to = equinix_metal.models.href.Href(
                         href = '', ), 
@@ -189,7 +186,7 @@ class TestMetalGateway(unittest.TestCase):
                         ], 
                     vxlan = 56, )
             )
-        else :
+        else:
             return MetalGateway(
         )
         """

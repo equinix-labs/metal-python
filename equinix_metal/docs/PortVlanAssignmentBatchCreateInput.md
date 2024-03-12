@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of PortVlanAssignmentBatchCreateInput from a JSON string
 port_vlan_assignment_batch_create_input_instance = PortVlanAssignmentBatchCreateInput.from_json(json)
 # print the JSON string representation of the object
-print PortVlanAssignmentBatchCreateInput.to_json()
+print(PortVlanAssignmentBatchCreateInput.to_json())
 
 # convert the object into a dict
 port_vlan_assignment_batch_create_input_dict = port_vlan_assignment_batch_create_input_instance.to_dict()

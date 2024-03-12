@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.shared_port_vc_vlan_create_input import SharedPortVCVlanCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.shared_port_vc_vlan_create_input import SharedPortVCVlanCreateInput
 
 class TestSharedPortVCVlanCreateInput(unittest.TestCase):
     """SharedPortVCVlanCreateInput unit test stubs"""
@@ -29,30 +26,30 @@ class TestSharedPortVCVlanCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SharedPortVCVlanCreateInput:
         """Test SharedPortVCVlanCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SharedPortVCVlanCreateInput`
         """
-        model = equinix_metal.models.shared_port_vc_vlan_create_input.SharedPortVCVlanCreateInput()  # noqa: E501
-        if include_optional :
+        model = SharedPortVCVlanCreateInput()
+        if include_optional:
             return SharedPortVCVlanCreateInput(
-                contact_email = '', 
-                description = '', 
-                href = '', 
-                metro = '', 
-                name = '', 
-                project = '', 
-                speed = '10000000000', 
+                contact_email = '',
+                description = '',
+                href = '',
+                metro = '',
+                name = '',
+                project = '',
+                speed = '10000000000',
                 tags = [
                     ''
-                    ], 
-                type = 'shared_port_vlan', 
+                    ],
+                type = 'shared_port_vlan',
                 vlans = [1000,1001]
             )
-        else :
+        else:
             return SharedPortVCVlanCreateInput(
                 metro = '',
                 name = '',

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.port_convert_layer3_input_request_ips_inner import PortConvertLayer3InputRequestIpsInner  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.port_convert_layer3_input_request_ips_inner import PortConvertLayer3InputRequestIpsInner
 
 class TestPortConvertLayer3InputRequestIpsInner(unittest.TestCase):
     """PortConvertLayer3InputRequestIpsInner unit test stubs"""
@@ -29,21 +26,21 @@ class TestPortConvertLayer3InputRequestIpsInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PortConvertLayer3InputRequestIpsInner:
         """Test PortConvertLayer3InputRequestIpsInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PortConvertLayer3InputRequestIpsInner`
         """
-        model = equinix_metal.models.port_convert_layer3_input_request_ips_inner.PortConvertLayer3InputRequestIpsInner()  # noqa: E501
-        if include_optional :
+        model = PortConvertLayer3InputRequestIpsInner()
+        if include_optional:
             return PortConvertLayer3InputRequestIpsInner(
-                address_family = 56, 
-                href = '', 
+                address_family = 56,
+                href = '',
                 public = True
             )
-        else :
+        else:
             return PortConvertLayer3InputRequestIpsInner(
         )
         """

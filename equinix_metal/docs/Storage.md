@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **disks** | [**List[Disk]**](Disk.md) |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of Storage from a JSON string
 storage_instance = Storage.from_json(json)
 # print the JSON string representation of the object
-print Storage.to_json()
+print(Storage.to_json())
 
 # convert the object into a dict
 storage_dict = storage_instance.to_dict()

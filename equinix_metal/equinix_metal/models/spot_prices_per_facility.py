@@ -18,15 +18,16 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.spot_prices_per_baremetal import SpotPricesPerBaremetal
+from typing import Optional, Set
+from typing_extensions import Self
 
 class SpotPricesPerFacility(BaseModel):
     """
     SpotPricesPerFacility
-    """
+    """ # noqa: E501
     baremetal_0: Optional[SpotPricesPerBaremetal] = None
     baremetal_1: Optional[SpotPricesPerBaremetal] = None
     baremetal_2: Optional[SpotPricesPerBaremetal] = None
@@ -34,35 +35,50 @@ class SpotPricesPerFacility(BaseModel):
     baremetal_2a2: Optional[SpotPricesPerBaremetal] = None
     baremetal_3: Optional[SpotPricesPerBaremetal] = None
     baremetal_s: Optional[SpotPricesPerBaremetal] = None
-    c2_medium_x86: Optional[SpotPricesPerBaremetal] = Field(None, alias="c2.medium.x86")
+    c2_medium_x86: Optional[SpotPricesPerBaremetal] = Field(default=None, alias="c2.medium.x86")
     href: Optional[StrictStr] = None
-    m2_xlarge_x86: Optional[SpotPricesPerBaremetal] = Field(None, alias="m2.xlarge.x86")
-    __properties = ["baremetal_0", "baremetal_1", "baremetal_2", "baremetal_2a", "baremetal_2a2", "baremetal_3", "baremetal_s", "c2.medium.x86", "href", "m2.xlarge.x86"]
+    m2_xlarge_x86: Optional[SpotPricesPerBaremetal] = Field(default=None, alias="m2.xlarge.x86")
+    __properties: ClassVar[List[str]] = ["baremetal_0", "baremetal_1", "baremetal_2", "baremetal_2a", "baremetal_2a2", "baremetal_3", "baremetal_s", "c2.medium.x86", "href", "m2.xlarge.x86"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> SpotPricesPerFacility:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of SpotPricesPerFacility from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of baremetal_0
         if self.baremetal_0:
             _dict['baremetal_0'] = self.baremetal_0.to_dict()
@@ -93,25 +109,25 @@ class SpotPricesPerFacility(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> SpotPricesPerFacility:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of SpotPricesPerFacility from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return SpotPricesPerFacility.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = SpotPricesPerFacility.parse_obj({
-            "baremetal_0": SpotPricesPerBaremetal.from_dict(obj.get("baremetal_0")) if obj.get("baremetal_0") is not None else None,
-            "baremetal_1": SpotPricesPerBaremetal.from_dict(obj.get("baremetal_1")) if obj.get("baremetal_1") is not None else None,
-            "baremetal_2": SpotPricesPerBaremetal.from_dict(obj.get("baremetal_2")) if obj.get("baremetal_2") is not None else None,
-            "baremetal_2a": SpotPricesPerBaremetal.from_dict(obj.get("baremetal_2a")) if obj.get("baremetal_2a") is not None else None,
-            "baremetal_2a2": SpotPricesPerBaremetal.from_dict(obj.get("baremetal_2a2")) if obj.get("baremetal_2a2") is not None else None,
-            "baremetal_3": SpotPricesPerBaremetal.from_dict(obj.get("baremetal_3")) if obj.get("baremetal_3") is not None else None,
-            "baremetal_s": SpotPricesPerBaremetal.from_dict(obj.get("baremetal_s")) if obj.get("baremetal_s") is not None else None,
-            "c2_medium_x86": SpotPricesPerBaremetal.from_dict(obj.get("c2.medium.x86")) if obj.get("c2.medium.x86") is not None else None,
+        _obj = cls.model_validate({
+            "baremetal_0": SpotPricesPerBaremetal.from_dict(obj["baremetal_0"]) if obj.get("baremetal_0") is not None else None,
+            "baremetal_1": SpotPricesPerBaremetal.from_dict(obj["baremetal_1"]) if obj.get("baremetal_1") is not None else None,
+            "baremetal_2": SpotPricesPerBaremetal.from_dict(obj["baremetal_2"]) if obj.get("baremetal_2") is not None else None,
+            "baremetal_2a": SpotPricesPerBaremetal.from_dict(obj["baremetal_2a"]) if obj.get("baremetal_2a") is not None else None,
+            "baremetal_2a2": SpotPricesPerBaremetal.from_dict(obj["baremetal_2a2"]) if obj.get("baremetal_2a2") is not None else None,
+            "baremetal_3": SpotPricesPerBaremetal.from_dict(obj["baremetal_3"]) if obj.get("baremetal_3") is not None else None,
+            "baremetal_s": SpotPricesPerBaremetal.from_dict(obj["baremetal_s"]) if obj.get("baremetal_s") is not None else None,
+            "c2.medium.x86": SpotPricesPerBaremetal.from_dict(obj["c2.medium.x86"]) if obj.get("c2.medium.x86") is not None else None,
             "href": obj.get("href"),
-            "m2_xlarge_x86": SpotPricesPerBaremetal.from_dict(obj.get("m2.xlarge.x86")) if obj.get("m2.xlarge.x86") is not None else None
+            "m2.xlarge.x86": SpotPricesPerBaremetal.from_dict(obj["m2.xlarge.x86"]) if obj.get("m2.xlarge.x86") is not None else None
         })
         return _obj
 

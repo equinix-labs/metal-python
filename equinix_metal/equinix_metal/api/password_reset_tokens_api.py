@@ -21,7 +21,7 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
-
+from typing_extensions import Annotated
 from equinix_metal.models.new_password import NewPassword
 
 from equinix_metal.api_client import ApiClient
@@ -45,7 +45,7 @@ class PasswordResetTokensApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_password_reset_token(self, email : Annotated[StrictStr, Field(..., description="Email of user to create password reset token")], **kwargs) -> None:  # noqa: E501
+    def create_password_reset_token(self, email : Annotated[StrictStr, Field(description="Email of user to create password reset token")], **kwargs) -> None:  # noqa: E501
         """Create a password reset token  # noqa: E501
 
         Creates a password reset token  # noqa: E501
@@ -74,7 +74,7 @@ class PasswordResetTokensApi(object):
         return self.create_password_reset_token_with_http_info(email, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_password_reset_token_with_http_info(self, email : Annotated[StrictStr, Field(..., description="Email of user to create password reset token")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_password_reset_token_with_http_info(self, email : Annotated[StrictStr, Field(description="Email of user to create password reset token")], **kwargs) -> ApiResponse:  # noqa: E501
         """Create a password reset token  # noqa: E501
 
         Creates a password reset token  # noqa: E501

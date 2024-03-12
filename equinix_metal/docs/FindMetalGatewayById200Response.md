@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of FindMetalGatewayById200Response from a JSON string
 find_metal_gateway_by_id200_response_instance = FindMetalGatewayById200Response.from_json(json)
 # print the JSON string representation of the object
-print FindMetalGatewayById200Response.to_json()
+print(FindMetalGatewayById200Response.to_json())
 
 # convert the object into a dict
 find_metal_gateway_by_id200_response_dict = find_metal_gateway_by_id200_response_instance.to_dict()

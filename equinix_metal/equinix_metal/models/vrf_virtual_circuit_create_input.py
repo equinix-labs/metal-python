@@ -18,30 +18,32 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conint, conlist, constr, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
+from typing import Optional, Set
+from typing_extensions import Self
 
 class VrfVirtualCircuitCreateInput(BaseModel):
     """
     VrfVirtualCircuitCreateInput
-    """
-    customer_ip: Optional[StrictStr] = Field(None, description="An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.")
+    """ # noqa: E501
+    customer_ip: Optional[StrictStr] = Field(default=None, description="An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.")
     description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
-    md5: Optional[constr(strict=True)] = Field(None, description="The plaintext BGP peering password shared by neighbors as an MD5 checksum: * must be 10-20 characters long * may not include punctuation * must be a combination of numbers and letters * must contain at least one lowercase, uppercase, and digit character ")
-    metal_ip: Optional[StrictStr] = Field(None, description="An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.")
+    md5: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The plaintext BGP peering password shared by neighbors as an MD5 checksum: * must be 10-20 characters long * may not include punctuation * must be a combination of numbers and letters * must contain at least one lowercase, uppercase, and digit character ")
+    metal_ip: Optional[StrictStr] = Field(default=None, description="An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.")
     name: Optional[StrictStr] = None
-    nni_vlan: conint(strict=True, le=4094, ge=2) = Field(...)
-    peer_asn: StrictInt = Field(..., description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
-    project_id: StrictStr = Field(...)
-    speed: Optional[StrictStr] = Field(None, description="speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')")
-    subnet: StrictStr = Field(..., description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF.")
-    tags: Optional[conlist(StrictStr)] = None
-    vrf: StrictStr = Field(..., description="The UUID of the VRF that will be associated with the Virtual Circuit.")
-    __properties = ["customer_ip", "description", "href", "md5", "metal_ip", "name", "nni_vlan", "peer_asn", "project_id", "speed", "subnet", "tags", "vrf"]
+    nni_vlan: Annotated[int, Field(le=4094, strict=True, ge=2)]
+    peer_asn: StrictInt = Field(description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
+    project_id: StrictStr
+    speed: Optional[StrictStr] = Field(default=None, description="speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')")
+    subnet: StrictStr = Field(description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF.")
+    tags: Optional[List[StrictStr]] = None
+    vrf: StrictStr = Field(description="The UUID of the VRF that will be associated with the Virtual Circuit.")
+    __properties: ClassVar[List[str]] = ["customer_ip", "description", "href", "md5", "metal_ip", "name", "nni_vlan", "peer_asn", "project_id", "speed", "subnet", "tags", "vrf"]
 
-    @validator('md5')
+    @field_validator('md5')
     def md5_validate_regular_expression(cls, value):
         """Validates the regular expression"""
         if value is None:
@@ -51,47 +53,62 @@ class VrfVirtualCircuitCreateInput(BaseModel):
             raise ValueError(r"must validate the regular expression /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{10,20}$/")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> VrfVirtualCircuitCreateInput:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of VrfVirtualCircuitCreateInput from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # set to None if md5 (nullable) is None
-        # and __fields_set__ contains the field
-        if self.md5 is None and "md5" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.md5 is None and "md5" in self.model_fields_set:
             _dict['md5'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> VrfVirtualCircuitCreateInput:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of VrfVirtualCircuitCreateInput from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return VrfVirtualCircuitCreateInput.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = VrfVirtualCircuitCreateInput.parse_obj({
+        _obj = cls.model_validate({
             "customer_ip": obj.get("customer_ip"),
             "description": obj.get("description"),
             "href": obj.get("href"),

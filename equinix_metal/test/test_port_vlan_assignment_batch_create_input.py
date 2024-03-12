@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch_create_input import PortVlanAssignmentBatchCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.port_vlan_assignment_batch_create_input import PortVlanAssignmentBatchCreateInput
 
 class TestPortVlanAssignmentBatchCreateInput(unittest.TestCase):
     """PortVlanAssignmentBatchCreateInput unit test stubs"""
@@ -29,17 +26,17 @@ class TestPortVlanAssignmentBatchCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PortVlanAssignmentBatchCreateInput:
         """Test PortVlanAssignmentBatchCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PortVlanAssignmentBatchCreateInput`
         """
-        model = equinix_metal.models.port_vlan_assignment_batch_create_input.PortVlanAssignmentBatchCreateInput()  # noqa: E501
-        if include_optional :
+        model = PortVlanAssignmentBatchCreateInput()
+        if include_optional:
             return PortVlanAssignmentBatchCreateInput(
-                href = '', 
+                href = '',
                 vlan_assignments = [
                     equinix_metal.models.port_vlan_assignment_batch_create_input_vlan_assignments_inner.PortVlanAssignmentBatchCreateInput_vlan_assignments_inner(
                         href = '', 
@@ -48,7 +45,7 @@ class TestPortVlanAssignmentBatchCreateInput(unittest.TestCase):
                         vlan = '', )
                     ]
             )
-        else :
+        else:
             return PortVlanAssignmentBatchCreateInput(
         )
         """

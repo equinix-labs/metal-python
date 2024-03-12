@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **baremetal_1e** | [**SpotPricesPerBaremetal**](SpotPricesPerBaremetal.md) |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of SpotPricesPerNewFacility from a JSON string
 spot_prices_per_new_facility_instance = SpotPricesPerNewFacility.from_json(json)
 # print the JSON string representation of the object
-print SpotPricesPerNewFacility.to_json()
+print(SpotPricesPerNewFacility.to_json())
 
 # convert the object into a dict
 spot_prices_per_new_facility_dict = spot_prices_per_new_facility_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asn** | **int** | Autonomous System Number for local BGP deployment. | 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of BgpConfigRequestInput from a JSON string
 bgp_config_request_input_instance = BgpConfigRequestInput.from_json(json)
 # print the JSON string representation of the object
-print BgpConfigRequestInput.to_json()
+print(BgpConfigRequestInput.to_json())
 
 # convert the object into a dict
 bgp_config_request_input_dict = bgp_config_request_input_instance.to_dict()

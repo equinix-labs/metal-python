@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.create_email_input import CreateEmailInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.create_email_input import CreateEmailInput
 
 class TestCreateEmailInput(unittest.TestCase):
     """CreateEmailInput unit test stubs"""
@@ -29,20 +26,20 @@ class TestCreateEmailInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CreateEmailInput:
         """Test CreateEmailInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CreateEmailInput`
         """
-        model = equinix_metal.models.create_email_input.CreateEmailInput()  # noqa: E501
-        if include_optional :
+        model = CreateEmailInput()
+        if include_optional:
             return CreateEmailInput(
-                address = '', 
+                address = '',
                 href = ''
             )
-        else :
+        else:
             return CreateEmailInput(
                 address = '',
         )

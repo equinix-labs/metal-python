@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
@@ -27,7 +28,7 @@ json = "{}"
 # create an instance of Entitlement from a JSON string
 entitlement_instance = Entitlement.from_json(json)
 # print the JSON string representation of the object
-print Entitlement.to_json()
+print(Entitlement.to_json())
 
 # convert the object into a dict
 entitlement_dict = entitlement_instance.to_dict()

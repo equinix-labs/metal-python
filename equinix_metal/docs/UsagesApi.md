@@ -18,9 +18,8 @@ Returns all usages for a device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device_usage_list import DeviceUsageList
 from equinix_metal.rest import ApiException
@@ -102,9 +101,8 @@ Returns all usages for a project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.project_usage_list import ProjectUsageList
 from equinix_metal.rest import ApiException

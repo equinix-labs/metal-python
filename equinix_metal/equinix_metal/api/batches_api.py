@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictBool, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.batch import Batch
 from equinix_metal.models.batches_list import BatchesList
 from equinix_metal.models.instances_batch_create_input import InstancesBatchCreateInput
@@ -49,7 +48,7 @@ class BatchesApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_device_batch(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], instances_batch_create_input : Annotated[InstancesBatchCreateInput, Field(..., description="Batches to create")], **kwargs) -> BatchesList:  # noqa: E501
+    def create_device_batch(self, id : Annotated[StrictStr, Field(description="Project UUID")], instances_batch_create_input : Annotated[InstancesBatchCreateInput, Field(description="Batches to create")], **kwargs) -> BatchesList:  # noqa: E501
         """Create a devices batch  # noqa: E501
 
         Creates new devices in batch and provisions them in our datacenter.  # noqa: E501
@@ -80,7 +79,7 @@ class BatchesApi(object):
         return self.create_device_batch_with_http_info(id, instances_batch_create_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_device_batch_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], instances_batch_create_input : Annotated[InstancesBatchCreateInput, Field(..., description="Batches to create")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_device_batch_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], instances_batch_create_input : Annotated[InstancesBatchCreateInput, Field(description="Batches to create")], **kwargs) -> ApiResponse:  # noqa: E501
         """Create a devices batch  # noqa: E501
 
         Creates new devices in batch and provisions them in our datacenter.  # noqa: E501
@@ -207,7 +206,7 @@ class BatchesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_batch(self, id : Annotated[StrictStr, Field(..., description="Batch UUID")], remove_associated_instances : Annotated[Optional[StrictBool], Field(description="Delete all instances created from this batch")] = None, **kwargs) -> None:  # noqa: E501
+    def delete_batch(self, id : Annotated[StrictStr, Field(description="Batch UUID")], remove_associated_instances : Annotated[Optional[StrictBool], Field(description="Delete all instances created from this batch")] = None, **kwargs) -> None:  # noqa: E501
         """Delete the Batch  # noqa: E501
 
         Deletes the Batch.  # noqa: E501
@@ -238,7 +237,7 @@ class BatchesApi(object):
         return self.delete_batch_with_http_info(id, remove_associated_instances, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_batch_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Batch UUID")], remove_associated_instances : Annotated[Optional[StrictBool], Field(description="Delete all instances created from this batch")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_batch_with_http_info(self, id : Annotated[StrictStr, Field(description="Batch UUID")], remove_associated_instances : Annotated[Optional[StrictBool], Field(description="Delete all instances created from this batch")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the Batch  # noqa: E501
 
         Deletes the Batch.  # noqa: E501
@@ -352,7 +351,7 @@ class BatchesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_batch_by_id(self, id : Annotated[StrictStr, Field(..., description="Batch UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Batch:  # noqa: E501
+    def find_batch_by_id(self, id : Annotated[StrictStr, Field(description="Batch UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Batch:  # noqa: E501
         """Retrieve a Batch  # noqa: E501
 
         Returns a Batch  # noqa: E501
@@ -383,7 +382,7 @@ class BatchesApi(object):
         return self.find_batch_by_id_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_batch_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Batch UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_batch_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Batch UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a Batch  # noqa: E501
 
         Returns a Batch  # noqa: E501
@@ -502,7 +501,7 @@ class BatchesApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_batches_by_project(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BatchesList:  # noqa: E501
+    def find_batches_by_project(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BatchesList:  # noqa: E501
         """Retrieve all batches by project  # noqa: E501
 
         Returns all batches for the given project  # noqa: E501
@@ -533,7 +532,7 @@ class BatchesApi(object):
         return self.find_batches_by_project_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_batches_by_project_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_batches_by_project_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all batches by project  # noqa: E501
 
         Returns all batches for the given project  # noqa: E501

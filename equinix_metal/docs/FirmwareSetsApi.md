@@ -18,9 +18,8 @@ Returns all firmware sets associated with the organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.firmware_set_list_response import FirmwareSetListResponse
 from equinix_metal.rest import ApiException
@@ -103,9 +102,8 @@ Returns all firmware sets associated with the project or organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.firmware_set_list_response import FirmwareSetListResponse
 from equinix_metal.rest import ApiException

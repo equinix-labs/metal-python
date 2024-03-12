@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_metro_list_metros_inner import InterconnectionMetroListMetrosInner  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection_metro_list_metros_inner import InterconnectionMetroListMetrosInner
 
 class TestInterconnectionMetroListMetrosInner(unittest.TestCase):
     """InterconnectionMetroListMetrosInner unit test stubs"""
@@ -29,21 +26,21 @@ class TestInterconnectionMetroListMetrosInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InterconnectionMetroListMetrosInner:
         """Test InterconnectionMetroListMetrosInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InterconnectionMetroListMetrosInner`
         """
-        model = equinix_metal.models.interconnection_metro_list_metros_inner.InterconnectionMetroListMetrosInner()  # noqa: E501
-        if include_optional :
+        model = InterconnectionMetroListMetrosInner()
+        if include_optional:
             return InterconnectionMetroListMetrosInner(
-                code = '', 
-                country = '', 
-                href = '', 
-                id = '', 
-                name = '', 
+                code = '',
+                country = '',
+                href = '',
+                id = '',
+                name = '',
                 providers = [
                     equinix_metal.models.interconnection_metro_list_metros_inner_all_of_providers_inner.InterconnectionMetroList_metros_inner_allOf_providers_inner(
                         href = '', 
@@ -54,7 +51,7 @@ class TestInterconnectionMetroListMetrosInner(unittest.TestCase):
                         type = 'CSP_AWS', )
                     ]
             )
-        else :
+        else:
             return InterconnectionMetroListMetrosInner(
         )
         """

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.payment_method_create_input import PaymentMethodCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.payment_method_create_input import PaymentMethodCreateInput
 
 class TestPaymentMethodCreateInput(unittest.TestCase):
     """PaymentMethodCreateInput unit test stubs"""
@@ -29,22 +26,22 @@ class TestPaymentMethodCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PaymentMethodCreateInput:
         """Test PaymentMethodCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PaymentMethodCreateInput`
         """
-        model = equinix_metal.models.payment_method_create_input.PaymentMethodCreateInput()  # noqa: E501
-        if include_optional :
+        model = PaymentMethodCreateInput()
+        if include_optional:
             return PaymentMethodCreateInput(
-                default = True, 
-                href = '', 
-                name = '', 
+                default = True,
+                href = '',
+                name = '',
                 nonce = ''
             )
-        else :
+        else:
             return PaymentMethodCreateInput(
                 name = '',
                 nonce = '',

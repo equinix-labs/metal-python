@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.license import License  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.license import License
 
 class TestLicense(unittest.TestCase):
     """License unit test stubs"""
@@ -29,27 +26,27 @@ class TestLicense(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> License:
         """Test License
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `License`
         """
-        model = equinix_metal.models.license.License()  # noqa: E501
-        if include_optional :
+        model = License()
+        if include_optional:
             return License(
-                description = '', 
-                href = '', 
-                id = '', 
-                license_key = '', 
+                description = '',
+                href = '',
+                id = '',
+                license_key = '',
                 licensee_product = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 project = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 size = 1.337
             )
-        else :
+        else:
             return License(
         )
         """

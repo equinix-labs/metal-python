@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_market_request_create_input import SpotMarketRequestCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.spot_market_request_create_input import SpotMarketRequestCreateInput
 
 class TestSpotMarketRequestCreateInput(unittest.TestCase):
     """SpotMarketRequestCreateInput unit test stubs"""
@@ -29,23 +26,23 @@ class TestSpotMarketRequestCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SpotMarketRequestCreateInput:
         """Test SpotMarketRequestCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SpotMarketRequestCreateInput`
         """
-        model = equinix_metal.models.spot_market_request_create_input.SpotMarketRequestCreateInput()  # noqa: E501
-        if include_optional :
+        model = SpotMarketRequestCreateInput()
+        if include_optional:
             return SpotMarketRequestCreateInput(
-                devices_max = 56, 
-                devices_min = 56, 
-                end_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                devices_max = 56,
+                devices_min = 56,
+                end_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 facilities = [
                     ''
-                    ], 
-                href = '', 
+                    ],
+                href = '',
                 instance_parameters = equinix_metal.models.spot_market_request_create_input_instance_parameters.SpotMarketRequestCreateInput_instance_parameters(
                     always_pxe = True, 
                     billing_cycle = '', 
@@ -75,11 +72,11 @@ class TestSpotMarketRequestCreateInput(unittest.TestCase):
                     user_ssh_keys = [
                         ''
                         ], 
-                    userdata = '', ), 
-                max_bid_price = 1.337, 
+                    userdata = '', ),
+                max_bid_price = 1.337,
                 metro = ''
             )
-        else :
+        else:
             return SpotMarketRequestCreateInput(
         )
         """

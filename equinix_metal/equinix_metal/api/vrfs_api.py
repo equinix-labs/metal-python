@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput
 from equinix_metal.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList
@@ -59,7 +58,7 @@ class VRFsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def bgp_dynamic_neighbors_id_get(self, id : Annotated[StrictStr, Field(..., description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighbor:  # noqa: E501
+    def bgp_dynamic_neighbors_id_get(self, id : Annotated[StrictStr, Field(description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighbor:  # noqa: E501
         """Retrieve a BGP Dynamic Neighbor  # noqa: E501
 
         Return a single BGP Dynamic Neighbor resource  # noqa: E501
@@ -92,7 +91,7 @@ class VRFsApi(object):
         return self.bgp_dynamic_neighbors_id_get_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def bgp_dynamic_neighbors_id_get_with_http_info(self, id : Annotated[StrictStr, Field(..., description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def bgp_dynamic_neighbors_id_get_with_http_info(self, id : Annotated[StrictStr, Field(description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a BGP Dynamic Neighbor  # noqa: E501
 
         Return a single BGP Dynamic Neighbor resource  # noqa: E501
@@ -218,7 +217,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_bgp_dynamic_neighbor(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], bgp_dynamic_neighbor_create_input : BgpDynamicNeighborCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighbor:  # noqa: E501
+    def create_bgp_dynamic_neighbor(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], bgp_dynamic_neighbor_create_input : BgpDynamicNeighborCreateInput, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighbor:  # noqa: E501
         """Create a VRF BGP Dynamic Neighbor range  # noqa: E501
 
         Create a VRF BGP Dynamic Neighbor range.  BGP Dynamic Neighbor records are limited to 2 per Virtual Network.  Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
@@ -253,7 +252,7 @@ class VRFsApi(object):
         return self.create_bgp_dynamic_neighbor_with_http_info(id, bgp_dynamic_neighbor_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_bgp_dynamic_neighbor_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], bgp_dynamic_neighbor_create_input : BgpDynamicNeighborCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_bgp_dynamic_neighbor_with_http_info(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], bgp_dynamic_neighbor_create_input : BgpDynamicNeighborCreateInput, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a VRF BGP Dynamic Neighbor range  # noqa: E501
 
         Create a VRF BGP Dynamic Neighbor range.  BGP Dynamic Neighbor records are limited to 2 per Virtual Network.  Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
@@ -394,7 +393,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_vrf(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], vrf_create_input : Annotated[VrfCreateInput, Field(..., description="VRF to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Vrf:  # noqa: E501
+    def create_vrf(self, id : Annotated[StrictStr, Field(description="Project UUID")], vrf_create_input : Annotated[VrfCreateInput, Field(description="VRF to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Vrf:  # noqa: E501
         """Create a new VRF in the specified project  # noqa: E501
 
         Creates a new VRF in the specified project  # noqa: E501
@@ -429,7 +428,7 @@ class VRFsApi(object):
         return self.create_vrf_with_http_info(id, vrf_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_vrf_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], vrf_create_input : Annotated[VrfCreateInput, Field(..., description="VRF to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_vrf_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], vrf_create_input : Annotated[VrfCreateInput, Field(description="VRF to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a new VRF in the specified project  # noqa: E501
 
         Creates a new VRF in the specified project  # noqa: E501
@@ -569,7 +568,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_vrf_route(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], vrf_route_create_input : VrfRouteCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
+    def create_vrf_route(self, id : Annotated[StrictStr, Field(description="VRF UUID")], vrf_route_create_input : VrfRouteCreateInput, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
         """Create a VRF route  # noqa: E501
 
         Create a route in a VRF. Currently only static default routes are supported.  Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
@@ -604,7 +603,7 @@ class VRFsApi(object):
         return self.create_vrf_route_with_http_info(id, vrf_route_create_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_vrf_route_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], vrf_route_create_input : VrfRouteCreateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_vrf_route_with_http_info(self, id : Annotated[StrictStr, Field(description="VRF UUID")], vrf_route_create_input : VrfRouteCreateInput, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a VRF route  # noqa: E501
 
         Create a route in a VRF. Currently only static default routes are supported.  Notice: VRFs are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.   # noqa: E501
@@ -745,7 +744,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_bgp_dynamic_neighbor_by_id(self, id : Annotated[StrictStr, Field(..., description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighbor:  # noqa: E501
+    def delete_bgp_dynamic_neighbor_by_id(self, id : Annotated[StrictStr, Field(description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighbor:  # noqa: E501
         """Delete a VRF BGP Dynamic Neighbor  # noqa: E501
 
         Trigger the removal of a BGP Neighbor range from a VRF  # noqa: E501
@@ -778,7 +777,7 @@ class VRFsApi(object):
         return self.delete_bgp_dynamic_neighbor_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_bgp_dynamic_neighbor_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_bgp_dynamic_neighbor_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="BGP Dynamic Neighbor UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete a VRF BGP Dynamic Neighbor  # noqa: E501
 
         Trigger the removal of a BGP Neighbor range from a VRF  # noqa: E501
@@ -905,7 +904,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_vrf(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_vrf(self, id : Annotated[StrictStr, Field(description="VRF UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the VRF  # noqa: E501
 
         Deletes the VRF  # noqa: E501
@@ -934,7 +933,7 @@ class VRFsApi(object):
         return self.delete_vrf_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_vrf_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_vrf_with_http_info(self, id : Annotated[StrictStr, Field(description="VRF UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the VRF  # noqa: E501
 
         Deletes the VRF  # noqa: E501
@@ -1042,7 +1041,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_vrf_route_by_id(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
+    def delete_vrf_route_by_id(self, id : Annotated[StrictStr, Field(description="VRF Route UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
         """Delete a VRF Route  # noqa: E501
 
         Trigger the deletion of a VRF Route resource. The status of the route will update to 'deleting', and the route resource will remain accessible while background operations remove the route from the network. Once the route has been removed from the network, the resource will be fully deleted.  # noqa: E501
@@ -1075,7 +1074,7 @@ class VRFsApi(object):
         return self.delete_vrf_route_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_vrf_route_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_vrf_route_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="VRF Route UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Delete a VRF Route  # noqa: E501
 
         Trigger the deletion of a VRF Route resource. The status of the route will update to 'deleting', and the route resource will remain accessible while background operations remove the route from the network. Once the route has been removed from the network, the resource will be fully deleted.  # noqa: E501
@@ -1202,7 +1201,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_vrf_by_id(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Vrf:  # noqa: E501
+    def find_vrf_by_id(self, id : Annotated[StrictStr, Field(description="VRF UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Vrf:  # noqa: E501
         """Retrieve a VRF  # noqa: E501
 
         Returns a single VRF resource  # noqa: E501
@@ -1235,7 +1234,7 @@ class VRFsApi(object):
         return self.find_vrf_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_vrf_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_vrf_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="VRF UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a VRF  # noqa: E501
 
         Returns a single VRF resource  # noqa: E501
@@ -1362,7 +1361,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_vrf_ip_reservation(self, vrf_id : Annotated[StrictStr, Field(..., description="VRF UUID")], id : Annotated[StrictStr, Field(..., description="IP UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfIpReservation:  # noqa: E501
+    def find_vrf_ip_reservation(self, vrf_id : Annotated[StrictStr, Field(description="VRF UUID")], id : Annotated[StrictStr, Field(description="IP UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfIpReservation:  # noqa: E501
         """Retrieve all VRF IP Reservations in the VRF  # noqa: E501
 
         Returns the IP Reservation for the VRF.  # noqa: E501
@@ -1397,7 +1396,7 @@ class VRFsApi(object):
         return self.find_vrf_ip_reservation_with_http_info(vrf_id, id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_vrf_ip_reservation_with_http_info(self, vrf_id : Annotated[StrictStr, Field(..., description="VRF UUID")], id : Annotated[StrictStr, Field(..., description="IP UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_vrf_ip_reservation_with_http_info(self, vrf_id : Annotated[StrictStr, Field(description="VRF UUID")], id : Annotated[StrictStr, Field(description="IP UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all VRF IP Reservations in the VRF  # noqa: E501
 
         Returns the IP Reservation for the VRF.  # noqa: E501
@@ -1529,7 +1528,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_vrf_ip_reservations(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfIpReservationList:  # noqa: E501
+    def find_vrf_ip_reservations(self, id : Annotated[StrictStr, Field(description="VRF UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfIpReservationList:  # noqa: E501
         """Retrieve all VRF IP Reservations in the VRF  # noqa: E501
 
         Returns the list of VRF IP Reservations for the VRF.  # noqa: E501
@@ -1562,7 +1561,7 @@ class VRFsApi(object):
         return self.find_vrf_ip_reservations_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_vrf_ip_reservations_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_vrf_ip_reservations_with_http_info(self, id : Annotated[StrictStr, Field(description="VRF UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all VRF IP Reservations in the VRF  # noqa: E501
 
         Returns the list of VRF IP Reservations for the VRF.  # noqa: E501
@@ -1688,7 +1687,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_vrf_route_by_id(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
+    def find_vrf_route_by_id(self, id : Annotated[StrictStr, Field(description="VRF Route UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
         """Retrieve a VRF Route  # noqa: E501
 
         Returns a single VRF Route resource  # noqa: E501
@@ -1721,7 +1720,7 @@ class VRFsApi(object):
         return self.find_vrf_route_by_id_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_vrf_route_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_vrf_route_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="VRF Route UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a VRF Route  # noqa: E501
 
         Returns a single VRF Route resource  # noqa: E501
@@ -1847,7 +1846,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_vrfs(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by Metro ID (uuid) or Metro Code")] = None, **kwargs) -> VrfList:  # noqa: E501
+    def find_vrfs(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by Metro ID (uuid) or Metro Code")] = None, **kwargs) -> VrfList:  # noqa: E501
         """Retrieve all VRFs in the project  # noqa: E501
 
         Returns the list of VRFs for a single project.  # noqa: E501
@@ -1882,7 +1881,7 @@ class VRFsApi(object):
         return self.find_vrfs_with_http_info(id, include, exclude, metro, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_vrfs_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by Metro ID (uuid) or Metro Code")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_vrfs_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by Metro ID (uuid) or Metro Code")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all VRFs in the project  # noqa: E501
 
         Returns the list of VRFs for a single project.  # noqa: E501
@@ -2014,7 +2013,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_bgp_dynamic_neighbors(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighborList:  # noqa: E501
+    def get_bgp_dynamic_neighbors(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> BgpDynamicNeighborList:  # noqa: E501
         """List BGP Dynamic Neighbors  # noqa: E501
 
         Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway  # noqa: E501
@@ -2047,7 +2046,7 @@ class VRFsApi(object):
         return self.get_bgp_dynamic_neighbors_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_bgp_dynamic_neighbors_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Metal Gateway UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_bgp_dynamic_neighbors_with_http_info(self, id : Annotated[StrictStr, Field(description="Metal Gateway UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List BGP Dynamic Neighbors  # noqa: E501
 
         Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway  # noqa: E501
@@ -2173,7 +2172,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_vrf_routes(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRouteList:  # noqa: E501
+    def get_vrf_routes(self, id : Annotated[StrictStr, Field(description="VRF UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRouteList:  # noqa: E501
         """Retrieve all routes in the VRF  # noqa: E501
 
         Returns the list of routes for the VRF  # noqa: E501
@@ -2206,7 +2205,7 @@ class VRFsApi(object):
         return self.get_vrf_routes_with_http_info(id, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_vrf_routes_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def get_vrf_routes_with_http_info(self, id : Annotated[StrictStr, Field(description="VRF UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all routes in the VRF  # noqa: E501
 
         Returns the list of routes for the VRF  # noqa: E501
@@ -2332,7 +2331,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_vrf(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], vrf_update_input : Annotated[VrfUpdateInput, Field(..., description="VRF to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Vrf:  # noqa: E501
+    def update_vrf(self, id : Annotated[StrictStr, Field(description="VRF UUID")], vrf_update_input : Annotated[VrfUpdateInput, Field(description="VRF to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> Vrf:  # noqa: E501
         """Update the VRF  # noqa: E501
 
         Updates the VRF.  # noqa: E501
@@ -2367,7 +2366,7 @@ class VRFsApi(object):
         return self.update_vrf_with_http_info(id, vrf_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_vrf_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF UUID")], vrf_update_input : Annotated[VrfUpdateInput, Field(..., description="VRF to update")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_vrf_with_http_info(self, id : Annotated[StrictStr, Field(description="VRF UUID")], vrf_update_input : Annotated[VrfUpdateInput, Field(description="VRF to update")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update the VRF  # noqa: E501
 
         Updates the VRF.  # noqa: E501
@@ -2508,7 +2507,7 @@ class VRFsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_vrf_route_by_id(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], vrf_route_update_input : VrfRouteUpdateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
+    def update_vrf_route_by_id(self, id : Annotated[StrictStr, Field(description="VRF Route UUID")], vrf_route_update_input : VrfRouteUpdateInput, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> VrfRoute:  # noqa: E501
         """Update a VRF Route  # noqa: E501
 
         Requests a VRF Route be redeployed across the network. Updating the prefix or next-hop address on a route is not currently supported.  # noqa: E501
@@ -2543,7 +2542,7 @@ class VRFsApi(object):
         return self.update_vrf_route_by_id_with_http_info(id, vrf_route_update_input, include, exclude, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_vrf_route_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="VRF Route UUID")], vrf_route_update_input : VrfRouteUpdateInput, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def update_vrf_route_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="VRF Route UUID")], vrf_route_update_input : VrfRouteUpdateInput, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Update a VRF Route  # noqa: E501
 
         Requests a VRF Route be redeployed across the network. Updating the prefix or next-hop address on a route is not currently supported.  # noqa: E501

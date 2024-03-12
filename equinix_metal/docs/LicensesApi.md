@@ -21,9 +21,8 @@ Creates a new license for the given project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.license import License
 from equinix_metal.models.license_create_input import LicenseCreateInput
@@ -110,9 +109,8 @@ Deletes a license.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -188,9 +186,8 @@ Returns a license
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.license import License
 from equinix_metal.rest import ApiException
@@ -273,9 +270,8 @@ Provides a collection of licenses for a given project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.license_list import LicenseList
 from equinix_metal.rest import ApiException
@@ -362,9 +358,8 @@ Updates the license.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.license import License
 from equinix_metal.models.license_update_input import LicenseUpdateInput

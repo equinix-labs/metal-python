@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | [**Address**](Address.md) |  | [optional] 
@@ -33,7 +34,7 @@ json = "{}"
 # create an instance of Organization from a JSON string
 organization_instance = Organization.from_json(json)
 # print the JSON string representation of the object
-print Organization.to_json()
+print(Organization.to_json())
 
 # convert the object into a dict
 organization_dict = organization_instance.to_dict()

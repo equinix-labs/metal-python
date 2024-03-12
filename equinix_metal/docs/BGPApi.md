@@ -23,9 +23,8 @@ Deletes the BGP session.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -101,9 +100,8 @@ Returns a bgp config
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_config import BgpConfig
 from equinix_metal.rest import ApiException
@@ -184,9 +182,8 @@ Returns a BGP session
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_session import BgpSession
 from equinix_metal.rest import ApiException
@@ -267,9 +264,8 @@ Returns all global bgp ranges for a project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.global_bgp_range_list import GlobalBgpRangeList
 from equinix_metal.rest import ApiException
@@ -348,9 +344,8 @@ Provides a listing of available BGP sessions for the project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_session_list import BgpSessionList
 from equinix_metal.rest import ApiException
@@ -428,9 +423,8 @@ Requests to enable bgp configuration for a project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_config_request_input import BgpConfigRequestInput
 from equinix_metal.rest import ApiException
@@ -512,9 +506,8 @@ Updates the BGP session by either enabling or disabling the default route functi
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint

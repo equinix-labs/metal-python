@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.membership import Membership  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.membership import Membership
 
 class TestMembership(unittest.TestCase):
     """Membership unit test stubs"""
@@ -29,29 +26,29 @@ class TestMembership(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Membership:
         """Test Membership
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Membership`
         """
-        model = equinix_metal.models.membership.Membership()  # noqa: E501
-        if include_optional :
+        model = Membership()
+        if include_optional:
             return Membership(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
-                id = '', 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
+                id = '',
                 project = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 roles = [
                     ''
-                    ], 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    ],
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user = equinix_metal.models.href.Href(
                     href = '', )
             )
-        else :
+        else:
             return Membership(
         )
         """

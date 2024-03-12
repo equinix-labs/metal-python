@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of MembershipList from a JSON string
 membership_list_instance = MembershipList.from_json(json)
 # print the JSON string representation of the object
-print MembershipList.to_json()
+print(MembershipList.to_json())
 
 # convert the object into a dict
 membership_list_dict = membership_list_instance.to_dict()

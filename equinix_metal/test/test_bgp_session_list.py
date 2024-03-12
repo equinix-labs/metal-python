@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_session_list import BgpSessionList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.bgp_session_list import BgpSessionList
 
 class TestBgpSessionList(unittest.TestCase):
     """BgpSessionList unit test stubs"""
@@ -29,15 +26,15 @@ class TestBgpSessionList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BgpSessionList:
         """Test BgpSessionList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BgpSessionList`
         """
-        model = equinix_metal.models.bgp_session_list.BgpSessionList()  # noqa: E501
-        if include_optional :
+        model = BgpSessionList()
+        if include_optional:
             return BgpSessionList(
                 bgp_sessions = [
                     equinix_metal.models.bgp_session.BgpSession(
@@ -53,10 +50,10 @@ class TestBgpSessionList(unittest.TestCase):
                             ], 
                         status = 'up,down', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ], 
+                    ],
                 href = ''
             )
-        else :
+        else:
             return BgpSessionList(
         )
         """

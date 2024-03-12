@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of PlanSpecsFeatures from a JSON string
 plan_specs_features_instance = PlanSpecsFeatures.from_json(json)
 # print the JSON string representation of the object
-print PlanSpecsFeatures.to_json()
+print(PlanSpecsFeatures.to_json())
 
 # convert the object into a dict
 plan_specs_features_dict = plan_specs_features_instance.to_dict()

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.line_item import LineItem  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.line_item import LineItem
 
 class TestLineItem(unittest.TestCase):
     """LineItem unit test stubs"""
@@ -29,21 +26,21 @@ class TestLineItem(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> LineItem:
         """Test LineItem
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `LineItem`
         """
-        model = equinix_metal.models.line_item.LineItem()  # noqa: E501
-        if include_optional :
+        model = LineItem()
+        if include_optional:
             return LineItem(
-                amount = 1.337, 
-                currency = '', 
-                description = '', 
-                details = '', 
-                href = '', 
+                amount = 1.337,
+                currency = '',
+                description = '',
+                details = '',
+                href = '',
                 plan = equinix_metal.models.plan.Plan(
                     available_in = [
                         equinix_metal.models.plan_available_in_inner.Plan_available_in_inner(
@@ -101,11 +98,11 @@ class TestLineItem(unittest.TestCase):
                                 href = '', 
                                 type = '', )
                             ], ), 
-                    type = 'standard', ), 
-                unit = '', 
+                    type = 'standard', ),
+                unit = '',
                 unit_price = 1.337
             )
-        else :
+        else:
             return LineItem(
         )
         """

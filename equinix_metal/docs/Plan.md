@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **available_in** | [**List[PlanAvailableInInner]**](PlanAvailableInInner.md) | Shows which facilities the plan is available in, and the facility-based price if it is different from the default price. | [optional] 
@@ -30,7 +31,7 @@ json = "{}"
 # create an instance of Plan from a JSON string
 plan_instance = Plan.from_json(json)
 # print the JSON string representation of the object
-print Plan.to_json()
+print(Plan.to_json())
 
 # convert the object into a dict
 plan_dict = plan_instance.to_dict()

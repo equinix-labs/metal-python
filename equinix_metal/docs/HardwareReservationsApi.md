@@ -21,9 +21,8 @@ Activate a spare hardware reservation
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest
 from equinix_metal.models.hardware_reservation import HardwareReservation
@@ -109,9 +108,8 @@ Returns a single hardware reservation
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.hardware_reservation import HardwareReservation
 from equinix_metal.rest import ApiException
@@ -194,9 +192,8 @@ Provides a collection of hardware reservations for a given project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.hardware_reservation_list import HardwareReservationList
 from equinix_metal.rest import ApiException
@@ -294,9 +291,8 @@ Move a hardware reservation to another project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.hardware_reservation import HardwareReservation
 from equinix_metal.models.move_hardware_reservation_request import MoveHardwareReservationRequest

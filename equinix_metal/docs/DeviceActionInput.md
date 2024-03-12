@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **deprovision_fast** | **bool** | When type is &#x60;reinstall&#x60;, enabling fast deprovisioning will bypass full disk wiping. | [optional] 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of DeviceActionInput from a JSON string
 device_action_input_instance = DeviceActionInput.from_json(json)
 # print the JSON string representation of the object
-print DeviceActionInput.to_json()
+print(DeviceActionInput.to_json())
 
 # convert the object into a dict
 device_action_input_dict = device_action_input_instance.to_dict()

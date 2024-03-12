@@ -18,79 +18,96 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.plan_available_in_inner import PlanAvailableInInner
 from equinix_metal.models.plan_available_in_metros_inner import PlanAvailableInMetrosInner
 from equinix_metal.models.plan_specs import PlanSpecs
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Plan(BaseModel):
     """
     Plan
-    """
-    available_in: Optional[conlist(PlanAvailableInInner)] = Field(None, description="Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.")
-    available_in_metros: Optional[conlist(PlanAvailableInMetrosInner)] = Field(None, description="Shows which metros the plan is available in, and the metro-based price if it is different from the default price.")
-    categories: Optional[conlist(StrictStr)] = Field(None, description="Categories of the plan, like compute or storage. A Plan can belong to multiple categories.")
-    var_class: Optional[StrictStr] = Field(None, alias="class")
-    deployment_types: Optional[conlist(StrictStr, min_items=0, unique_items=True)] = None
+    """ # noqa: E501
+    available_in: Optional[List[PlanAvailableInInner]] = Field(default=None, description="Shows which facilities the plan is available in, and the facility-based price if it is different from the default price.")
+    available_in_metros: Optional[List[PlanAvailableInMetrosInner]] = Field(default=None, description="Shows which metros the plan is available in, and the metro-based price if it is different from the default price.")
+    categories: Optional[List[StrictStr]] = Field(default=None, description="Categories of the plan, like compute or storage. A Plan can belong to multiple categories.")
+    var_class: Optional[StrictStr] = Field(default=None, alias="class")
+    deployment_types: Optional[Annotated[List[StrictStr], Field(min_length=0)]] = None
     description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    legacy: Optional[StrictBool] = Field(None, description="Deprecated. Always return false")
+    legacy: Optional[StrictBool] = Field(default=None, description="Deprecated. Always return false")
     line: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     pricing: Optional[Dict[str, Any]] = None
     slug: Optional[StrictStr] = None
     specs: Optional[PlanSpecs] = None
-    type: Optional[StrictStr] = Field(None, description="The plan type")
-    __properties = ["available_in", "available_in_metros", "categories", "class", "deployment_types", "description", "href", "id", "legacy", "line", "name", "pricing", "slug", "specs", "type"]
+    type: Optional[StrictStr] = Field(default=None, description="The plan type")
+    __properties: ClassVar[List[str]] = ["available_in", "available_in_metros", "categories", "class", "deployment_types", "description", "href", "id", "legacy", "line", "name", "pricing", "slug", "specs", "type"]
 
-    @validator('deployment_types')
+    @field_validator('deployment_types')
     def deployment_types_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
         for i in value:
-            if i not in ('on_demand', 'spot_market'):
+            if i not in set(['on_demand', 'spot_market']):
                 raise ValueError("each list item must be one of ('on_demand', 'spot_market')")
         return value
 
-    @validator('type')
+    @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('standard', 'workload_optimized', 'custom'):
+        if value not in set(['standard', 'workload_optimized', 'custom']):
             raise ValueError("must be one of enum values ('standard', 'workload_optimized', 'custom')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Plan:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Plan from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in available_in (list)
         _items = []
         if self.available_in:
@@ -111,19 +128,19 @@ class Plan(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Plan:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Plan from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Plan.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Plan.parse_obj({
-            "available_in": [PlanAvailableInInner.from_dict(_item) for _item in obj.get("available_in")] if obj.get("available_in") is not None else None,
-            "available_in_metros": [PlanAvailableInMetrosInner.from_dict(_item) for _item in obj.get("available_in_metros")] if obj.get("available_in_metros") is not None else None,
+        _obj = cls.model_validate({
+            "available_in": [PlanAvailableInInner.from_dict(_item) for _item in obj["available_in"]] if obj.get("available_in") is not None else None,
+            "available_in_metros": [PlanAvailableInMetrosInner.from_dict(_item) for _item in obj["available_in_metros"]] if obj.get("available_in_metros") is not None else None,
             "categories": obj.get("categories"),
-            "var_class": obj.get("class"),
+            "class": obj.get("class"),
             "deployment_types": obj.get("deployment_types"),
             "description": obj.get("description"),
             "href": obj.get("href"),
@@ -133,7 +150,7 @@ class Plan(BaseModel):
             "name": obj.get("name"),
             "pricing": obj.get("pricing"),
             "slug": obj.get("slug"),
-            "specs": PlanSpecs.from_dict(obj.get("specs")) if obj.get("specs") is not None else None,
+            "specs": PlanSpecs.from_dict(obj["specs"]) if obj.get("specs") is not None else None,
             "type": obj.get("type")
         })
         return _obj

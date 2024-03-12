@@ -20,9 +20,8 @@ It verifies the user once a valid OTP is provided. It gives back a session token
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -97,9 +96,8 @@ Returns my recovery codes.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.recovery_code_list import RecoveryCodeList
 from equinix_metal.rest import ApiException
@@ -174,9 +172,8 @@ Sends an OTP to the user's mobile phone.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -249,9 +246,8 @@ Generate a new set of recovery codes.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.recovery_code_list import RecoveryCodeList
 from equinix_metal.rest import ApiException

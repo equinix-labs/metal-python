@@ -18,9 +18,8 @@ Provides a listing of available metros
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.metro_list import MetroList
 from equinix_metal.rest import ApiException
@@ -93,9 +92,8 @@ Show the details for a metro, including name, code, and country.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.metro import Metro
 from equinix_metal.rest import ApiException

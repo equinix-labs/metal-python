@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** |  | 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of EmailInput from a JSON string
 email_input_instance = EmailInput.from_json(json)
 # print the JSON string representation of the object
-print EmailInput.to_json()
+print(EmailInput.to_json())
 
 # convert the object into a dict
 email_input_dict = email_input_instance.to_dict()

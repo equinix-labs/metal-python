@@ -20,9 +20,8 @@ Add a new email address to the current user.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.create_email_input import CreateEmailInput
 from equinix_metal.models.email import Email
@@ -101,9 +100,8 @@ Deletes the email.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -179,9 +177,8 @@ Provides one of the user’s emails.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.email import Email
 from equinix_metal.rest import ApiException
@@ -260,9 +257,8 @@ Updates the email.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.email import Email
 from equinix_metal.models.update_email_input import UpdateEmailInput

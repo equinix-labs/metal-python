@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictBool, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.port import Port
 from equinix_metal.models.port_assign_input import PortAssignInput
 from equinix_metal.models.port_convert_layer3_input import PortConvertLayer3Input
@@ -54,7 +53,7 @@ class PortsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def assign_native_vlan(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], vnid : Annotated[StrictStr, Field(..., description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
+    def assign_native_vlan(self, id : Annotated[StrictStr, Field(description="Port UUID")], vnid : Annotated[StrictStr, Field(description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
         """Assign a native VLAN  # noqa: E501
 
         Sets a virtual network on this port as a \"native VLAN\". The VLAN must have already been assigned using the using the \"Assign a port to a virtual network\" operation.  # noqa: E501
@@ -87,7 +86,7 @@ class PortsApi(object):
         return self.assign_native_vlan_with_http_info(id, vnid, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def assign_native_vlan_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], vnid : Annotated[StrictStr, Field(..., description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def assign_native_vlan_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], vnid : Annotated[StrictStr, Field(description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Assign a native VLAN  # noqa: E501
 
         Sets a virtual network on this port as a \"native VLAN\". The VLAN must have already been assigned using the using the \"Assign a port to a virtual network\" operation.  # noqa: E501
@@ -213,7 +212,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def assign_port(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(..., description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
+    def assign_port(self, id : Annotated[StrictStr, Field(description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
         """Assign a port to virtual network  # noqa: E501
 
         Assign a hardware port to a virtual network.  # noqa: E501
@@ -246,7 +245,7 @@ class PortsApi(object):
         return self.assign_port_with_http_info(id, port_assign_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def assign_port_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(..., description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def assign_port_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Assign a port to virtual network  # noqa: E501
 
         Assign a hardware port to a virtual network.  # noqa: E501
@@ -380,7 +379,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def bond_port(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], bulk_enable : Annotated[Optional[StrictBool], Field(description="enable both ports")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
+    def bond_port(self, id : Annotated[StrictStr, Field(description="Port UUID")], bulk_enable : Annotated[Optional[StrictBool], Field(description="enable both ports")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
         """Enabling bonding  # noqa: E501
 
         Enabling bonding for one or all ports  # noqa: E501
@@ -413,7 +412,7 @@ class PortsApi(object):
         return self.bond_port_with_http_info(id, bulk_enable, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def bond_port_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], bulk_enable : Annotated[Optional[StrictBool], Field(description="enable both ports")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def bond_port_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], bulk_enable : Annotated[Optional[StrictBool], Field(description="enable both ports")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Enabling bonding  # noqa: E501
 
         Enabling bonding for one or all ports  # noqa: E501
@@ -540,7 +539,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def convert_layer2(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(..., description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
+    def convert_layer2(self, id : Annotated[StrictStr, Field(description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
         """Convert to Layer 2  # noqa: E501
 
         Converts a bond port to Layer 2. IP assignments of the port will be removed.  # noqa: E501
@@ -573,7 +572,7 @@ class PortsApi(object):
         return self.convert_layer2_with_http_info(id, port_assign_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def convert_layer2_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(..., description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def convert_layer2_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Convert to Layer 2  # noqa: E501
 
         Converts a bond port to Layer 2. IP assignments of the port will be removed.  # noqa: E501
@@ -707,7 +706,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def convert_layer3(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, port_convert_layer3_input : Annotated[Optional[PortConvertLayer3Input], Field(description="IPs to request")] = None, **kwargs) -> Port:  # noqa: E501
+    def convert_layer3(self, id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, port_convert_layer3_input : Annotated[Optional[PortConvertLayer3Input], Field(description="IPs to request")] = None, **kwargs) -> Port:  # noqa: E501
         """Convert to Layer 3  # noqa: E501
 
         Converts a bond port to Layer 3. VLANs must first be unassigned.  # noqa: E501
@@ -740,7 +739,7 @@ class PortsApi(object):
         return self.convert_layer3_with_http_info(id, include, port_convert_layer3_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def convert_layer3_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, port_convert_layer3_input : Annotated[Optional[PortConvertLayer3Input], Field(description="IPs to request")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def convert_layer3_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, port_convert_layer3_input : Annotated[Optional[PortConvertLayer3Input], Field(description="IPs to request")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Convert to Layer 3  # noqa: E501
 
         Converts a bond port to Layer 3. VLANs must first be unassigned.  # noqa: E501
@@ -874,7 +873,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def create_port_vlan_assignment_batch(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], port_vlan_assignment_batch_create_input : Annotated[PortVlanAssignmentBatchCreateInput, Field(..., description="VLAN Assignment batch details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PortVlanAssignmentBatch:  # noqa: E501
+    def create_port_vlan_assignment_batch(self, id : Annotated[StrictStr, Field(description="Port UUID")], port_vlan_assignment_batch_create_input : Annotated[PortVlanAssignmentBatchCreateInput, Field(description="VLAN Assignment batch details")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PortVlanAssignmentBatch:  # noqa: E501
         """Create a new Port-VLAN Assignment management batch  # noqa: E501
 
         Create a new asynchronous batch request which handles adding and/or removing the VLANs to which the port is assigned.  # noqa: E501
@@ -907,7 +906,7 @@ class PortsApi(object):
         return self.create_port_vlan_assignment_batch_with_http_info(id, port_vlan_assignment_batch_create_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_port_vlan_assignment_batch_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], port_vlan_assignment_batch_create_input : Annotated[PortVlanAssignmentBatchCreateInput, Field(..., description="VLAN Assignment batch details")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def create_port_vlan_assignment_batch_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], port_vlan_assignment_batch_create_input : Annotated[PortVlanAssignmentBatchCreateInput, Field(description="VLAN Assignment batch details")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Create a new Port-VLAN Assignment management batch  # noqa: E501
 
         Create a new asynchronous batch request which handles adding and/or removing the VLANs to which the port is assigned.  # noqa: E501
@@ -1041,7 +1040,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_native_vlan(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
+    def delete_native_vlan(self, id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
         """Remove native VLAN  # noqa: E501
 
         Removes the native VLAN from this port  # noqa: E501
@@ -1072,7 +1071,7 @@ class PortsApi(object):
         return self.delete_native_vlan_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_native_vlan_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_native_vlan_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Remove native VLAN  # noqa: E501
 
         Removes the native VLAN from this port  # noqa: E501
@@ -1192,7 +1191,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def disbond_port(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], bulk_disable : Annotated[Optional[StrictBool], Field(description="disable both ports")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
+    def disbond_port(self, id : Annotated[StrictStr, Field(description="Port UUID")], bulk_disable : Annotated[Optional[StrictBool], Field(description="disable both ports")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
         """Disabling bonding  # noqa: E501
 
         Disabling bonding for one or all ports  # noqa: E501
@@ -1225,7 +1224,7 @@ class PortsApi(object):
         return self.disbond_port_with_http_info(id, bulk_disable, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def disbond_port_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], bulk_disable : Annotated[Optional[StrictBool], Field(description="disable both ports")] = None, include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def disbond_port_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], bulk_disable : Annotated[Optional[StrictBool], Field(description="disable both ports")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Disabling bonding  # noqa: E501
 
         Disabling bonding for one or all ports  # noqa: E501
@@ -1352,7 +1351,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_port_by_id(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
+    def find_port_by_id(self, id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
         """Retrieve a port  # noqa: E501
 
         Returns a port  # noqa: E501
@@ -1383,7 +1382,7 @@ class PortsApi(object):
         return self.find_port_by_id_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_port_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_port_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a port  # noqa: E501
 
         Returns a port  # noqa: E501
@@ -1502,7 +1501,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_port_vlan_assignment_batch_by_port_id_and_batch_id(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], batch_id : Annotated[StrictStr, Field(..., description="Batch ID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PortVlanAssignmentBatch:  # noqa: E501
+    def find_port_vlan_assignment_batch_by_port_id_and_batch_id(self, id : Annotated[StrictStr, Field(description="Port UUID")], batch_id : Annotated[StrictStr, Field(description="Batch ID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PortVlanAssignmentBatch:  # noqa: E501
         """Retrieve a VLAN Assignment Batch's details  # noqa: E501
 
         Returns the details of an existing Port-VLAN Assignment batch, including the list of VLANs to assign or unassign, and the current state of the batch.  # noqa: E501
@@ -1535,7 +1534,7 @@ class PortsApi(object):
         return self.find_port_vlan_assignment_batch_by_port_id_and_batch_id_with_http_info(id, batch_id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_port_vlan_assignment_batch_by_port_id_and_batch_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], batch_id : Annotated[StrictStr, Field(..., description="Batch ID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_port_vlan_assignment_batch_by_port_id_and_batch_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], batch_id : Annotated[StrictStr, Field(description="Batch ID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a VLAN Assignment Batch's details  # noqa: E501
 
         Returns the details of an existing Port-VLAN Assignment batch, including the list of VLANs to assign or unassign, and the current state of the batch.  # noqa: E501
@@ -1661,7 +1660,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_port_vlan_assignment_batches(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], **kwargs) -> PortVlanAssignmentBatchList:  # noqa: E501
+    def find_port_vlan_assignment_batches(self, id : Annotated[StrictStr, Field(description="Port UUID")], **kwargs) -> PortVlanAssignmentBatchList:  # noqa: E501
         """List the VLAN Assignment Batches for a port  # noqa: E501
 
         Show all the VLAN assignment batches that have been created for managing this port's VLAN assignments  # noqa: E501
@@ -1690,7 +1689,7 @@ class PortsApi(object):
         return self.find_port_vlan_assignment_batches_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_port_vlan_assignment_batches_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_port_vlan_assignment_batches_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """List the VLAN Assignment Batches for a port  # noqa: E501
 
         Show all the VLAN assignment batches that have been created for managing this port's VLAN assignments  # noqa: E501
@@ -1803,7 +1802,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_port_vlan_assignment_by_port_id_and_assignment_id(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], assignment_id : Annotated[StrictStr, Field(..., description="Assignment ID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PortVlanAssignment:  # noqa: E501
+    def find_port_vlan_assignment_by_port_id_and_assignment_id(self, id : Annotated[StrictStr, Field(description="Port UUID")], assignment_id : Annotated[StrictStr, Field(description="Assignment ID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PortVlanAssignment:  # noqa: E501
         """Show a particular Port VLAN assignment's details  # noqa: E501
 
         Show the details of a specific Port-VLAN assignment, including the current state and if the VLAN is set as native.  # noqa: E501
@@ -1836,7 +1835,7 @@ class PortsApi(object):
         return self.find_port_vlan_assignment_by_port_id_and_assignment_id_with_http_info(id, assignment_id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_port_vlan_assignment_by_port_id_and_assignment_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], assignment_id : Annotated[StrictStr, Field(..., description="Assignment ID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_port_vlan_assignment_by_port_id_and_assignment_id_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], assignment_id : Annotated[StrictStr, Field(description="Assignment ID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Show a particular Port VLAN assignment's details  # noqa: E501
 
         Show the details of a specific Port-VLAN assignment, including the current state and if the VLAN is set as native.  # noqa: E501
@@ -1962,7 +1961,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_port_vlan_assignments(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PortVlanAssignmentList:  # noqa: E501
+    def find_port_vlan_assignments(self, id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> PortVlanAssignmentList:  # noqa: E501
         """List Current VLAN assignments for a port  # noqa: E501
 
         Show the port's current VLAN assignments, including if this VLAN is set as native, and the current state of the assignment (ex. 'assigned' or 'unassigning')  # noqa: E501
@@ -1993,7 +1992,7 @@ class PortsApi(object):
         return self.find_port_vlan_assignments_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_port_vlan_assignments_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_port_vlan_assignments_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """List Current VLAN assignments for a port  # noqa: E501
 
         Show the port's current VLAN assignments, including if this VLAN is set as native, and the current state of the assignment (ex. 'assigned' or 'unassigning')  # noqa: E501
@@ -2113,7 +2112,7 @@ class PortsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def unassign_port(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(..., description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
+    def unassign_port(self, id : Annotated[StrictStr, Field(description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> Port:  # noqa: E501
         """Unassign a port  # noqa: E501
 
         Unassign a port for a hardware.  # noqa: E501
@@ -2146,7 +2145,7 @@ class PortsApi(object):
         return self.unassign_port_with_http_info(id, port_assign_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def unassign_port_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(..., description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def unassign_port_with_http_info(self, id : Annotated[StrictStr, Field(description="Port UUID")], port_assign_input : Annotated[PortAssignInput, Field(description="Virtual Network ID. May be the UUID of the Virtual Network record, or the VLAN value itself (ex: '1001').")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Unassign a port  # noqa: E501
 
         Unassign a port for a hardware.  # noqa: E501

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.user_lite import UserLite  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.user_lite import UserLite
 
 class TestUserLite(unittest.TestCase):
     """UserLite unit test stubs"""
@@ -29,28 +26,28 @@ class TestUserLite(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> UserLite:
         """Test UserLite
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UserLite`
         """
-        model = equinix_metal.models.user_lite.UserLite()  # noqa: E501
-        if include_optional :
+        model = UserLite()
+        if include_optional:
             return UserLite(
-                avatar_thumb_url = '', 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                email = '', 
-                first_name = '', 
-                full_name = '', 
-                href = '', 
-                id = '', 
-                last_name = '', 
-                short_id = '', 
+                avatar_thumb_url = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                email = '',
+                first_name = '',
+                full_name = '',
+                href = '',
+                id = '',
+                last_name = '',
+                short_id = '',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return UserLite(
                 id = '',
                 short_id = '',

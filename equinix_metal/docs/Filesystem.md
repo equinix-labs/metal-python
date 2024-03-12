@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of Filesystem from a JSON string
 filesystem_instance = Filesystem.from_json(json)
 # print the JSON string representation of the object
-print Filesystem.to_json()
+print(Filesystem.to_json())
 
 # convert the object into a dict
 filesystem_dict = filesystem_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of VirtualCircuitList from a JSON string
 virtual_circuit_list_instance = VirtualCircuitList.from_json(json)
 # print the JSON string representation of the object
-print VirtualCircuitList.to_json()
+print(VirtualCircuitList.to_json())
 
 # convert the object into a dict
 virtual_circuit_list_dict = virtual_circuit_list_instance.to_dict()

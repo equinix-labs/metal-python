@@ -19,9 +19,8 @@ Deletes the payment method.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -96,9 +95,8 @@ Returns a payment method
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.payment_method import PaymentMethod
 from equinix_metal.rest import ApiException
@@ -178,9 +176,8 @@ Updates the payment method.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.payment_method import PaymentMethod
 from equinix_metal.models.payment_method_update_input import PaymentMethodUpdateInput

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customer_ip** | **str** | An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used. | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of VrfVirtualCircuitUpdateInput from a JSON string
 vrf_virtual_circuit_update_input_instance = VrfVirtualCircuitUpdateInput.from_json(json)
 # print the JSON string representation of the object
-print VrfVirtualCircuitUpdateInput.to_json()
+print(VrfVirtualCircuitUpdateInput.to_json())
 
 # convert the object into a dict
 vrf_virtual_circuit_update_input_dict = vrf_virtual_circuit_update_input_instance.to_dict()

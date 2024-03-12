@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_metal_gateway_create_input import VrfMetalGatewayCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_metal_gateway_create_input import VrfMetalGatewayCreateInput
 
 class TestVrfMetalGatewayCreateInput(unittest.TestCase):
     """VrfMetalGatewayCreateInput unit test stubs"""
@@ -29,21 +26,21 @@ class TestVrfMetalGatewayCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfMetalGatewayCreateInput:
         """Test VrfMetalGatewayCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfMetalGatewayCreateInput`
         """
-        model = equinix_metal.models.vrf_metal_gateway_create_input.VrfMetalGatewayCreateInput()  # noqa: E501
-        if include_optional :
+        model = VrfMetalGatewayCreateInput()
+        if include_optional:
             return VrfMetalGatewayCreateInput(
-                href = '', 
-                ip_reservation_id = '', 
+                href = '',
+                ip_reservation_id = '',
                 virtual_network_id = ''
             )
-        else :
+        else:
             return VrfMetalGatewayCreateInput(
                 ip_reservation_id = '',
                 virtual_network_id = '',

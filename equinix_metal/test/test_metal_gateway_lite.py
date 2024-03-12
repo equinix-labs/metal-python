@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.metal_gateway_lite import MetalGatewayLite  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.metal_gateway_lite import MetalGatewayLite
 
 class TestMetalGatewayLite(unittest.TestCase):
     """MetalGatewayLite unit test stubs"""
@@ -29,25 +26,25 @@ class TestMetalGatewayLite(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> MetalGatewayLite:
         """Test MetalGatewayLite
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MetalGatewayLite`
         """
-        model = equinix_metal.models.metal_gateway_lite.MetalGatewayLite()  # noqa: E501
-        if include_optional :
+        model = MetalGatewayLite()
+        if include_optional:
             return MetalGatewayLite(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                gateway_address = '10.1.2.1/27', 
-                href = '', 
-                id = '', 
-                state = 'ready', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                gateway_address = '10.1.2.1/27',
+                href = '',
+                id = '',
+                state = 'ready',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 vlan = 1001
             )
-        else :
+        else:
             return MetalGatewayLite(
         )
         """

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.project_create_from_root_input import ProjectCreateFromRootInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.project_create_from_root_input import ProjectCreateFromRootInput
 
 class TestProjectCreateFromRootInput(unittest.TestCase):
     """ProjectCreateFromRootInput unit test stubs"""
@@ -29,27 +26,27 @@ class TestProjectCreateFromRootInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> ProjectCreateFromRootInput:
         """Test ProjectCreateFromRootInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ProjectCreateFromRootInput`
         """
-        model = equinix_metal.models.project_create_from_root_input.ProjectCreateFromRootInput()  # noqa: E501
-        if include_optional :
+        model = ProjectCreateFromRootInput()
+        if include_optional:
             return ProjectCreateFromRootInput(
-                customdata = None, 
-                href = '', 
-                name = '0', 
-                organization_id = '', 
-                payment_method_id = '', 
+                customdata = None,
+                href = '',
+                name = '0',
+                organization_id = '',
+                payment_method_id = '',
                 tags = [
                     ''
-                    ], 
+                    ],
                 type = 'default'
             )
-        else :
+        else:
             return ProjectCreateFromRootInput(
                 name = '0',
         )

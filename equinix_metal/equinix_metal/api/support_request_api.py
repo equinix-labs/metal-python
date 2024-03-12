@@ -21,7 +21,7 @@ from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field
-
+from typing_extensions import Annotated
 from equinix_metal.models.support_request_input import SupportRequestInput
 
 from equinix_metal.api_client import ApiClient
@@ -45,7 +45,7 @@ class SupportRequestApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def request_suppert(self, support_request_input : Annotated[SupportRequestInput, Field(..., description="Support Request to create")], **kwargs) -> None:  # noqa: E501
+    def request_suppert(self, support_request_input : Annotated[SupportRequestInput, Field(description="Support Request to create")], **kwargs) -> None:  # noqa: E501
         """Create a support ticket  # noqa: E501
 
         Support Ticket.  # noqa: E501
@@ -74,7 +74,7 @@ class SupportRequestApi(object):
         return self.request_suppert_with_http_info(support_request_input, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def request_suppert_with_http_info(self, support_request_input : Annotated[SupportRequestInput, Field(..., description="Support Request to create")], **kwargs) -> ApiResponse:  # noqa: E501
+    def request_suppert_with_http_info(self, support_request_input : Annotated[SupportRequestInput, Field(description="Support Request to create")], **kwargs) -> ApiResponse:  # noqa: E501
         """Create a support ticket  # noqa: E501
 
         Support Ticket.  # noqa: E501

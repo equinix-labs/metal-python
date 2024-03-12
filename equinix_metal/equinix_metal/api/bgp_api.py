@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, conlist
-
-from typing import Optional
-
+from pydantic import Field, StrictBool, StrictStr
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.bgp_config import BgpConfig
 from equinix_metal.models.bgp_config_request_input import BgpConfigRequestInput
 from equinix_metal.models.bgp_session import BgpSession
@@ -51,7 +50,7 @@ class BGPApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def delete_bgp_session(self, id : Annotated[StrictStr, Field(..., description="BGP session UUID")], **kwargs) -> None:  # noqa: E501
+    def delete_bgp_session(self, id : Annotated[StrictStr, Field(description="BGP session UUID")], **kwargs) -> None:  # noqa: E501
         """Delete the BGP session  # noqa: E501
 
         Deletes the BGP session.  # noqa: E501
@@ -80,7 +79,7 @@ class BGPApi(object):
         return self.delete_bgp_session_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(..., description="BGP session UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def delete_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(description="BGP session UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete the BGP session  # noqa: E501
 
         Deletes the BGP session.  # noqa: E501
@@ -188,7 +187,7 @@ class BGPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_bgp_config_by_project(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpConfig:  # noqa: E501
+    def find_bgp_config_by_project(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpConfig:  # noqa: E501
         """Retrieve a bgp config  # noqa: E501
 
         Returns a bgp config  # noqa: E501
@@ -219,7 +218,7 @@ class BGPApi(object):
         return self.find_bgp_config_by_project_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_bgp_config_by_project_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_bgp_config_by_project_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a bgp config  # noqa: E501
 
         Returns a bgp config  # noqa: E501
@@ -339,7 +338,7 @@ class BGPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_bgp_session_by_id(self, id : Annotated[StrictStr, Field(..., description="BGP session UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSession:  # noqa: E501
+    def find_bgp_session_by_id(self, id : Annotated[StrictStr, Field(description="BGP session UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> BgpSession:  # noqa: E501
         """Retrieve a BGP session  # noqa: E501
 
         Returns a BGP session  # noqa: E501
@@ -370,7 +369,7 @@ class BGPApi(object):
         return self.find_bgp_session_by_id_with_http_info(id, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_bgp_session_by_id_with_http_info(self, id : Annotated[StrictStr, Field(..., description="BGP session UUID")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_bgp_session_by_id_with_http_info(self, id : Annotated[StrictStr, Field(description="BGP session UUID")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a BGP session  # noqa: E501
 
         Returns a BGP session  # noqa: E501
@@ -490,7 +489,7 @@ class BGPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_global_bgp_ranges(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> GlobalBgpRangeList:  # noqa: E501
+    def find_global_bgp_ranges(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> GlobalBgpRangeList:  # noqa: E501
         """Retrieve all global bgp ranges  # noqa: E501
 
         Returns all global bgp ranges for a project  # noqa: E501
@@ -519,7 +518,7 @@ class BGPApi(object):
         return self.find_global_bgp_ranges_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_global_bgp_ranges_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_global_bgp_ranges_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all global bgp ranges  # noqa: E501
 
         Returns all global bgp ranges for a project  # noqa: E501
@@ -632,7 +631,7 @@ class BGPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_project_bgp_sessions(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> BgpSessionList:  # noqa: E501
+    def find_project_bgp_sessions(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> BgpSessionList:  # noqa: E501
         """Retrieve all BGP sessions for project  # noqa: E501
 
         Provides a listing of available BGP sessions for the project.  # noqa: E501
@@ -661,7 +660,7 @@ class BGPApi(object):
         return self.find_project_bgp_sessions_with_http_info(id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_project_bgp_sessions_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_project_bgp_sessions_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all BGP sessions for project  # noqa: E501
 
         Provides a listing of available BGP sessions for the project.  # noqa: E501
@@ -773,7 +772,7 @@ class BGPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def request_bgp_config(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], bgp_config_request_input : Annotated[BgpConfigRequestInput, Field(..., description="BGP config Request to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> None:  # noqa: E501
+    def request_bgp_config(self, id : Annotated[StrictStr, Field(description="Project UUID")], bgp_config_request_input : Annotated[BgpConfigRequestInput, Field(description="BGP config Request to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> None:  # noqa: E501
         """Requesting bgp config  # noqa: E501
 
         Requests to enable bgp configuration for a project.  # noqa: E501
@@ -806,7 +805,7 @@ class BGPApi(object):
         return self.request_bgp_config_with_http_info(id, bgp_config_request_input, include, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def request_bgp_config_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Project UUID")], bgp_config_request_input : Annotated[BgpConfigRequestInput, Field(..., description="BGP config Request to create")], include : Annotated[Optional[conlist(StrictStr)], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def request_bgp_config_with_http_info(self, id : Annotated[StrictStr, Field(description="Project UUID")], bgp_config_request_input : Annotated[BgpConfigRequestInput, Field(description="BGP config Request to create")], include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Requesting bgp config  # noqa: E501
 
         Requests to enable bgp configuration for a project.  # noqa: E501
@@ -934,7 +933,7 @@ class BGPApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_bgp_session(self, id : Annotated[StrictStr, Field(..., description="BGP session UUID")], body : Annotated[StrictBool, Field(..., description="Default route")], **kwargs) -> None:  # noqa: E501
+    def update_bgp_session(self, id : Annotated[StrictStr, Field(description="BGP session UUID")], body : Annotated[StrictBool, Field(description="Default route")], **kwargs) -> None:  # noqa: E501
         """Update the BGP session  # noqa: E501
 
         Updates the BGP session by either enabling or disabling the default route functionality.  # noqa: E501
@@ -965,7 +964,7 @@ class BGPApi(object):
         return self.update_bgp_session_with_http_info(id, body, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(..., description="BGP session UUID")], body : Annotated[StrictBool, Field(..., description="Default route")], **kwargs) -> ApiResponse:  # noqa: E501
+    def update_bgp_session_with_http_info(self, id : Annotated[StrictStr, Field(description="BGP session UUID")], body : Annotated[StrictBool, Field(description="Default route")], **kwargs) -> ApiResponse:  # noqa: E501
         """Update the BGP session  # noqa: E501
 
         Updates the BGP session by either enabling or disabling the default route functionality.  # noqa: E501

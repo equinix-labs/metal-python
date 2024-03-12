@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -24,7 +25,7 @@ json = "{}"
 # create an instance of SSHKey from a JSON string
 ssh_key_instance = SSHKey.from_json(json)
 # print the JSON string representation of the object
-print SSHKey.to_json()
+print(SSHKey.to_json())
 
 # convert the object into a dict
 ssh_key_dict = ssh_key_instance.to_dict()

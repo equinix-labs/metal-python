@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asn** | **int** | Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned. | [optional] 
@@ -28,7 +29,7 @@ json = "{}"
 # create an instance of BgpConfig from a JSON string
 bgp_config_instance = BgpConfig.from_json(json)
 # print the JSON string representation of the object
-print BgpConfig.to_json()
+print(BgpConfig.to_json())
 
 # convert the object into a dict
 bgp_config_dict = bgp_config_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of DeviceActionsInner from a JSON string
 device_actions_inner_instance = DeviceActionsInner.from_json(json)
 # print the JSON string representation of the object
-print DeviceActionsInner.to_json()
+print(DeviceActionsInner.to_json())
 
 # convert the object into a dict
 device_actions_inner_dict = device_actions_inner_instance.to_dict()

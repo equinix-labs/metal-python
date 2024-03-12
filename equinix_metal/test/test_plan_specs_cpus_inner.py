@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.plan_specs_cpus_inner import PlanSpecsCpusInner  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.plan_specs_cpus_inner import PlanSpecsCpusInner
 
 class TestPlanSpecsCpusInner(unittest.TestCase):
     """PlanSpecsCpusInner unit test stubs"""
@@ -29,21 +26,21 @@ class TestPlanSpecsCpusInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PlanSpecsCpusInner:
         """Test PlanSpecsCpusInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PlanSpecsCpusInner`
         """
-        model = equinix_metal.models.plan_specs_cpus_inner.PlanSpecsCpusInner()  # noqa: E501
-        if include_optional :
+        model = PlanSpecsCpusInner()
+        if include_optional:
             return PlanSpecsCpusInner(
-                count = 56, 
-                href = '', 
+                count = 56,
+                href = '',
                 type = ''
             )
-        else :
+        else:
             return PlanSpecsCpusInner(
         )
         """

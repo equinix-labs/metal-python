@@ -20,10 +20,9 @@ import warnings
 from pydantic import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, conint, conlist, validator
-
-from typing import Optional
-
+from pydantic import Field, StrictStr, field_validator
+from typing import List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.create_self_service_reservation_request import CreateSelfServiceReservationRequest
 from equinix_metal.models.self_service_reservation_list import SelfServiceReservationList
 from equinix_metal.models.self_service_reservation_response import SelfServiceReservationResponse
@@ -49,7 +48,7 @@ class SelfServiceReservationsApi(object):
         self.api_client = api_client
 
     @validate_arguments
-    def create_self_service_reservation(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], create_self_service_reservation_request : Annotated[CreateSelfServiceReservationRequest, Field(..., description="reservation to create")], **kwargs) -> SelfServiceReservationResponse:  # noqa: E501
+    def create_self_service_reservation(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], create_self_service_reservation_request : Annotated[CreateSelfServiceReservationRequest, Field(description="reservation to create")], **kwargs) -> SelfServiceReservationResponse:  # noqa: E501
         """Create a reservation  # noqa: E501
 
         Creates a reservation.  # noqa: E501
@@ -80,7 +79,7 @@ class SelfServiceReservationsApi(object):
         return self.create_self_service_reservation_with_http_info(project_id, create_self_service_reservation_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def create_self_service_reservation_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], create_self_service_reservation_request : Annotated[CreateSelfServiceReservationRequest, Field(..., description="reservation to create")], **kwargs) -> ApiResponse:  # noqa: E501
+    def create_self_service_reservation_with_http_info(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], create_self_service_reservation_request : Annotated[CreateSelfServiceReservationRequest, Field(description="reservation to create")], **kwargs) -> ApiResponse:  # noqa: E501
         """Create a reservation  # noqa: E501
 
         Creates a reservation.  # noqa: E501
@@ -205,7 +204,7 @@ class SelfServiceReservationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_self_service_reservation(self, id : Annotated[StrictStr, Field(..., description="Reservation short_id")], project_id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> SelfServiceReservationResponse:  # noqa: E501
+    def find_self_service_reservation(self, id : Annotated[StrictStr, Field(description="Reservation short_id")], project_id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> SelfServiceReservationResponse:  # noqa: E501
         """Retrieve a reservation  # noqa: E501
 
         Returns a reservation  # noqa: E501
@@ -236,7 +235,7 @@ class SelfServiceReservationsApi(object):
         return self.find_self_service_reservation_with_http_info(id, project_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_self_service_reservation_with_http_info(self, id : Annotated[StrictStr, Field(..., description="Reservation short_id")], project_id : Annotated[StrictStr, Field(..., description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
+    def find_self_service_reservation_with_http_info(self, id : Annotated[StrictStr, Field(description="Reservation short_id")], project_id : Annotated[StrictStr, Field(description="Project UUID")], **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve a reservation  # noqa: E501
 
         Returns a reservation  # noqa: E501
@@ -354,7 +353,7 @@ class SelfServiceReservationsApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def find_self_service_reservations(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter reservations by items category")] = None, **kwargs) -> SelfServiceReservationList:  # noqa: E501
+    def find_self_service_reservations(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter reservations by items category")] = None, **kwargs) -> SelfServiceReservationList:  # noqa: E501
         """Retrieve all reservations  # noqa: E501
 
         Returns all reservations.  # noqa: E501
@@ -389,7 +388,7 @@ class SelfServiceReservationsApi(object):
         return self.find_self_service_reservations_with_http_info(project_id, page, per_page, categories, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def find_self_service_reservations_with_http_info(self, project_id : Annotated[StrictStr, Field(..., description="Project UUID")], page : Annotated[Optional[conint(strict=True, le=100000, ge=1)], Field(description="Page to return")] = None, per_page : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description="Items returned per page")] = None, categories : Annotated[Optional[conlist(StrictStr)], Field(description="Filter reservations by items category")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def find_self_service_reservations_with_http_info(self, project_id : Annotated[StrictStr, Field(description="Project UUID")], page : Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter reservations by items category")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve all reservations  # noqa: E501
 
         Returns all reservations.  # noqa: E501
