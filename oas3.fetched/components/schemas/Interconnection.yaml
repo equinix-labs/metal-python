@@ -4,7 +4,8 @@ properties:
   description:
     type: string
   facility:
-    $ref: './Href.yaml'
+    $ref: './Facility.yaml'
+    x-deprecated: true
   id:
     format: uuid
     type: string
@@ -29,12 +30,14 @@ properties:
   name:
     type: string
   organization:
-    $ref: './Href.yaml'
+    $ref: './Organization.yaml'
   ports:
     items:
       $ref: './InterconnectionPort.yaml'
     type: array
     description: For Fabric VCs, these represent Virtual Port(s) created for the interconnection. For dedicated interconnections, these represent the Dedicated Port(s).
+  project:
+    $ref: './Project.yaml'
   redundancy:
     type: string
     enum:

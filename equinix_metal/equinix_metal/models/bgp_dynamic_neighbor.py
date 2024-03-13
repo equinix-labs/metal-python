@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.user_limited import UserLimited
 from equinix_metal.models.vrf_metal_gateway import VrfMetalGateway
 from typing import Optional, Set
@@ -30,7 +31,7 @@ class BgpDynamicNeighbor(BaseModel):
     """
     BgpDynamicNeighbor
     """ # noqa: E501
-    bgp_neighbor_asn: Optional[StrictInt] = Field(default=None, description="The ASN of the dynamic BGP neighbor")
+    bgp_neighbor_asn: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = Field(default=None, description="The ASN of the dynamic BGP neighbor")
     bgp_neighbor_range: Optional[StrictStr] = Field(default=None, description="Network range of the dynamic BGP neighbor in CIDR format")
     created_at: Optional[datetime] = None
     created_by: Optional[UserLimited] = None

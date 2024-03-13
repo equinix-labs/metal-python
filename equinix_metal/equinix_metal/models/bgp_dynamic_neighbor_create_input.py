@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class BgpDynamicNeighborCreateInput(BaseModel):
     """
     BgpDynamicNeighborCreateInput
     """ # noqa: E501
-    bgp_neighbor_asn: StrictInt = Field(description="The ASN of the dynamic BGP neighbor")
+    bgp_neighbor_asn: Annotated[int, Field(le=4294967295, strict=True, ge=0)] = Field(description="The ASN of the dynamic BGP neighbor")
     bgp_neighbor_range: StrictStr = Field(description="Network range of the dynamic BGP neighbor in CIDR format")
     href: Optional[StrictStr] = None
     tags: Optional[List[StrictStr]] = None

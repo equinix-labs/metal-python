@@ -32,7 +32,7 @@ class DeviceCreateInMetroInput(BaseModel):
     DeviceCreateInMetroInput
     """ # noqa: E501
     href: Optional[StrictStr] = None
-    metro: StrictStr = Field(description="Metro code or ID of where the instance should be provisioned in. Either metro or facility must be provided.")
+    metro: StrictStr = Field(description="Metro code or ID of where the device should be provisioned in, or it can be instructed to create the device in the best available metro with `{ \"metro\": \"any\" }`. The special metro value of any means anywhere, any metro. When any is chosen in the request, the metro location is picked per our scheduling algorithms that favor the following factors: hardware reservation location (if requesting reserved hardware), ip reservations, spot instances, etc. The any keyword *does not* optimize for cost, this means that usage costs (instance, transfer, other features dependent on location) will vary. Please check metro value in response to see where the device was created. Either metro or facility must be provided.")
     always_pxe: Optional[StrictBool] = Field(default=None, description="When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.")
     billing_cycle: Optional[StrictStr] = Field(default=None, description="The billing cycle of the device.")
     customdata: Optional[Dict[str, Any]] = Field(default=None, description="Customdata is an arbitrary JSON value that can be accessed via the metadata service.")

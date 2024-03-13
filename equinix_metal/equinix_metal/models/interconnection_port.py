@@ -21,7 +21,6 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
-from equinix_metal.models.virtual_circuit import VirtualCircuit
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -135,4 +134,7 @@ class InterconnectionPort(BaseModel):
         })
         return _obj
 
+from equinix_metal.models.virtual_circuit import VirtualCircuit
+# TODO: Rewrite to not use raise_errors
+InterconnectionPort.model_rebuild(raise_errors=False)
 

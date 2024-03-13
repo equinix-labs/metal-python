@@ -319,7 +319,9 @@ components:
           description: Autonomous System Number. ASN is required with Global BGP.
             With Local BGP the private ASN, 65000, is assigned.
           example: 65000
-          format: int32
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           type: integer
         created_at:
           format: date-time
@@ -385,6 +387,7 @@ components:
         asn:
           description: Autonomous System Number for local BGP deployment.
           example: 65000
+          format: int64
           maximum: 4294967295
           minimum: 0
           type: integer
@@ -427,6 +430,9 @@ components:
         bgp_neighbor_asn:
           description: The ASN of the dynamic BGP neighbor
           example: 12345
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           type: integer
         bgp_neighbor_range:
           description: Network range of the dynamic BGP neighbor in CIDR format
@@ -472,6 +478,9 @@ components:
         bgp_neighbor_asn:
           description: The ASN of the dynamic BGP neighbor
           example: 12345
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           type: integer
         bgp_neighbor_range:
           description: Network range of the dynamic BGP neighbor in CIDR format
@@ -865,6 +874,9 @@ components:
           type: string
         description:
           type: string
+        facility_id:
+          type: string
+          x-deprecated: true
         href:
           format: uri
           type: string
@@ -2337,7 +2349,7 @@ components:
         description:
           type: string
         facility:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/Facility'
         href:
           format: uri
           type: string
@@ -2374,7 +2386,7 @@ components:
         name:
           type: string
         organization:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/Organization'
         ports:
           description: For Fabric VCs, these represent Virtual Port(s) created for
             the interconnection. For dedicated interconnections, these represent the
@@ -2382,6 +2394,8 @@ components:
           items:
             $ref: '#/components/schemas/InterconnectionPort'
           type: array
+        project:
+          $ref: '#/components/schemas/Project'
         redundancy:
           description: Either 'primary', meaning a single interconnection, or 'redundant',
             meaning a redundant interconnection.
@@ -3176,8 +3190,18 @@ components:
           format: uri
           type: string
         metro:
-          description: 'Metro code or ID of where the instance should be provisioned
-            in.
+          description: 'Metro code or ID of where the device should be provisioned
+            in, or it can be instructed to create the device in the best available
+            metro with `{ "metro": "any" }`.
+
+            The special metro value of any means anywhere, any metro. When any is
+            chosen in the request, the metro location is picked per our scheduling
+            algorithms that favor the following factors: hardware reservation location
+            (if requesting reserved hardware), ip reservations, spot instances, etc.
+
+            The any keyword *does not* optimize for cost, this means that usage costs
+            (instance, transfer, other features dependent on location) will vary.
+            Please check metro value in response to see where the device was created.
 
             Either metro or facility must be provided.'
           example: sv
@@ -3704,7 +3728,7 @@ components:
           type: string
         virtual_networks:
           items:
-            $ref: '#/components/schemas/Href'
+            $ref: '#/components/schemas/VirtualNetwork'
           type: array
       type: object
     PortAssignInput:
@@ -3943,6 +3967,8 @@ components:
           type: string
         updated_at:
           format: date-time
+          type: string
+        url:
           type: string
         volumes:
           items:
@@ -4968,11 +4994,14 @@ components:
     VirtualNetwork:
       properties:
         assigned_to:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/Project'
         assigned_to_virtual_circuit:
           description: True if the virtual network is attached to a virtual circuit.
             False if not.
           type: boolean
+        created_at:
+          format: date-time
+          type: string
         description:
           type: string
         facility:
@@ -4986,7 +5015,7 @@ components:
           description: A list of instances with ports currently associated to this
             Virtual Network.
           items:
-            $ref: '#/components/schemas/Href'
+            $ref: '#/components/schemas/Device'
           type: array
         metal_gateways:
           description: A list of metal gateways currently associated to this Virtual
@@ -4995,7 +5024,7 @@ components:
             $ref: '#/components/schemas/MetalGatewayLite'
           type: array
         metro:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/Metro'
         metro_code:
           description: The Metro code of the metro in which this Virtual Network is
             defined.
@@ -5133,6 +5162,9 @@ components:
           type: string
         description:
           type: string
+        facility_id:
+          type: string
+          x-deprecated: true
         href:
           format: uri
           type: string
@@ -5205,6 +5237,7 @@ components:
       - redundancy
       - service_token_type
       - type
+      - vlans
       type: object
     VlanVirtualCircuit:
       properties:
@@ -5240,9 +5273,9 @@ components:
         nni_vlan:
           type: integer
         port:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/InterconnectionPort'
         project:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/Project'
         speed:
           description: For Virtual Circuits on shared and dedicated connections, this
             speed should match the one set on their Interconnection Ports. For Virtual
@@ -5403,7 +5436,10 @@ components:
           type: array
         local_asn:
           description: A 4-byte ASN associated with the VRF.
-          format: int32
+          example: 65000
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           type: integer
         metro:
           $ref: '#/components/schemas/Metro'
@@ -5423,6 +5459,32 @@ components:
           items:
             $ref: '#/components/schemas/VrfVirtualCircuit'
           type: array
+      type: object
+    VrfBGPNeighbors:
+      properties:
+        bgp_neighbors:
+          items:
+            properties:
+              peer_as:
+                description: The ASN of the peer that advertised the prefix.
+                example: 65000
+                format: int64
+                maximum: 4294967295
+                minimum: 0
+                type: integer
+              peer_ip:
+                example: 8.8.8.8
+                type: string
+              state:
+                description: The current status of the connection to the BGP peer.
+                  State is either up or down.
+                example: up
+                type: string
+            type: object
+          type: object
+        href:
+          format: uri
+          type: string
       type: object
     VrfCreateInput:
       properties:
@@ -5450,7 +5512,10 @@ components:
             type: string
           type: array
         local_asn:
-          format: int32
+          example: 65000
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           type: integer
         metro:
           description: The UUID (or metro code) for the Metro in which to create this
@@ -5477,6 +5542,9 @@ components:
           type: string
         description:
           type: string
+        facility_id:
+          type: string
+          x-deprecated: true
         href:
           format: uri
           type: string
@@ -5688,6 +5756,27 @@ components:
           items:
             $ref: '#/components/schemas/VrfIpReservation'
           type: array
+      type: object
+    VrfLearnedRoutes:
+      properties:
+        href:
+          format: uri
+          type: string
+        learned_routes:
+          items:
+            properties:
+              origin_as:
+                description: The ASN of the peer that advertised the prefix.
+                example: 65000
+                format: int64
+                maximum: 4294967295
+                minimum: 0
+                type: integer
+              prefix:
+                example: 8.8.8.0/24
+                type: string
+            type: object
+          type: object
       type: object
     VrfList:
       properties:
@@ -5960,11 +6049,15 @@ components:
         peer_asn:
           description: The peer ASN that will be used with the VRF on the Virtual
             Circuit.
+          example: 65000
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           type: integer
         port:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/InterconnectionPort'
         project:
-          $ref: '#/components/schemas/Href'
+          $ref: '#/components/schemas/Project'
         speed:
           description: integer representing bps speed
           format: int64
@@ -6065,6 +6158,10 @@ components:
         peer_asn:
           description: The peer ASN that will be used with the VRF on the Virtual
             Circuit.
+          example: 65000
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           type: integer
         project_id:
           format: uuid
@@ -6140,6 +6237,10 @@ components:
         peer_asn:
           description: The peer ASN that will be used with the VRF on the Virtual
             Circuit.
+          example: 65000
+          format: int64
+          maximum: 4294967295
+          minimum: 0
           type: integer
         speed:
           description: Speed can be changed only if it is an interconnection on a
@@ -18818,6 +18919,41 @@ paths:
       summary: Update the VRF
       tags:
       - VRFs
+  /vrfs/{id}/bgp-neighbors:
+    get:
+      description: Provides BGP peering information such as the IP and state of the
+        neighbor.
+      operationId: getVrfBGPNeighbors
+      parameters:
+      - description: VRF UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VrfBGPNeighbors'
+          description: ok
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retreive BGP neighbor states for the VRF
+      tags:
+      - VRFs
   /vrfs/{id}/ips:
     get:
       description: Returns the list of VRF IP Reservations for the VRF.
@@ -18870,6 +19006,41 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: not found
       summary: Retrieve all VRF IP Reservations in the VRF
+      tags:
+      - VRFs
+  /vrfs/{id}/learned-routes:
+    get:
+      description: Provides information about learned routes for the VRF. The VRF
+        builds this information dynamically though BGP from other routers in the network.
+      operationId: getVrfLearnedRoutes
+      parameters:
+      - description: VRF UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VrfLearnedRoutes'
+          description: ok
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+      summary: Retreive learned L3 routes within the VRF
       tags:
       - VRFs
   /vrfs/{id}/routes:

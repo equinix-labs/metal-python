@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **tags** | **List[str]** |  | [optional] 
 **type** | **str** | The type of the project. Projects of type &#x60;vmce&#x60; are part of an in development feature and not available to all customers. | [optional] 
 **updated_at** | **datetime** |  | [optional] 
+**url** | **str** |  | [optional] 
 **volumes** | [**List[Href]**](Href.md) |  | [optional] 
 
 ## Example

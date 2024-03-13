@@ -21,6 +21,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.bgp_session import BgpSession
 from equinix_metal.models.global_bgp_range import GlobalBgpRange
 from equinix_metal.models.href import Href
@@ -31,7 +32,7 @@ class BgpConfig(BaseModel):
     """
     BgpConfig
     """ # noqa: E501
-    asn: Optional[StrictInt] = Field(default=None, description="Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.")
+    asn: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = Field(default=None, description="Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.")
     created_at: Optional[datetime] = None
     deployment_type: Optional[StrictStr] = Field(default=None, description="In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space. ")
     href: Optional[StrictStr] = None

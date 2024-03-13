@@ -31,7 +31,6 @@ from equinix_metal.models.href import Href
 from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.operating_system import OperatingSystem
 from equinix_metal.models.plan import Plan
-from equinix_metal.models.port import Port
 from equinix_metal.models.project import Project
 from equinix_metal.models.storage import Storage
 from typing import Optional, Set
@@ -263,6 +262,7 @@ class Device(BaseModel):
         return _obj
 
 from equinix_metal.models.hardware_reservation import HardwareReservation
+from equinix_metal.models.port import Port
 # TODO: Rewrite to not use raise_errors
 Device.model_rebuild(raise_errors=False)
 

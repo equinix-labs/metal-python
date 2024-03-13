@@ -21,7 +21,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from equinix_metal.models.href import Href
+from typing_extensions import Annotated
+from equinix_metal.models.project import Project
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -38,9 +39,9 @@ class VrfVirtualCircuit(BaseModel):
     metal_ip: Optional[StrictStr] = Field(default=None, description="An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.")
     name: Optional[StrictStr] = None
     nni_vlan: Optional[StrictInt] = None
-    peer_asn: Optional[StrictInt] = Field(default=None, description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
-    port: Optional[Href] = None
-    project: Optional[Href] = None
+    peer_asn: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = Field(default=None, description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
+    port: Optional[InterconnectionPort] = None
+    project: Optional[Project] = None
     speed: Optional[StrictInt] = Field(default=None, description="integer representing bps speed")
     status: Optional[StrictStr] = Field(default=None, description="The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren't in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to 'waiting_on_peering_details' once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to `changing_peering_details` whenever an active VRF Virtual Circuit has any of its peering details updated.")
     subnet: Optional[StrictStr] = Field(default=None, description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.")
@@ -140,8 +141,8 @@ class VrfVirtualCircuit(BaseModel):
             "name": obj.get("name"),
             "nni_vlan": obj.get("nni_vlan"),
             "peer_asn": obj.get("peer_asn"),
-            "port": Href.from_dict(obj["port"]) if obj.get("port") is not None else None,
-            "project": Href.from_dict(obj["project"]) if obj.get("project") is not None else None,
+            "port": InterconnectionPort.from_dict(obj["port"]) if obj.get("port") is not None else None,
+            "project": Project.from_dict(obj["project"]) if obj.get("project") is not None else None,
             "speed": obj.get("speed"),
             "status": obj.get("status"),
             "subnet": obj.get("subnet"),
@@ -152,6 +153,7 @@ class VrfVirtualCircuit(BaseModel):
         })
         return _obj
 
+from equinix_metal.models.interconnection_port import InterconnectionPort
 from equinix_metal.models.vrf import Vrf
 # TODO: Rewrite to not use raise_errors
 VrfVirtualCircuit.model_rebuild(raise_errors=False)
