@@ -15,38 +15,36 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.transfer_requests_api import TransferRequestsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.transfer_requests_api import TransferRequestsApi
 
 
 class TestTransferRequestsApi(unittest.TestCase):
     """TransferRequestsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.transfer_requests_api.TransferRequestsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = TransferRequestsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_accept_transfer_request(self):
+    def test_accept_transfer_request(self) -> None:
         """Test case for accept_transfer_request
 
-        Accept a transfer request  # noqa: E501
+        Accept a transfer request
         """
         pass
 
-    def test_decline_transfer_request(self):
+    def test_decline_transfer_request(self) -> None:
         """Test case for decline_transfer_request
 
-        Decline a transfer request  # noqa: E501
+        Decline a transfer request
         """
         pass
 
-    def test_find_transfer_request_by_id(self):
+    def test_find_transfer_request_by_id(self) -> None:
         """Test case for find_transfer_request_by_id
 
-        View a transfer request  # noqa: E501
+        View a transfer request
         """
         pass
 

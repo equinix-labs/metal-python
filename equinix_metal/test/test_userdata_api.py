@@ -15,24 +15,22 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.userdata_api import UserdataApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.userdata_api import UserdataApi
 
 
 class TestUserdataApi(unittest.TestCase):
     """UserdataApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.userdata_api.UserdataApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = UserdataApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_validate_userdata(self):
+    def test_validate_userdata(self) -> None:
         """Test case for validate_userdata
 
-        Validate user data  # noqa: E501
+        Validate user data
         """
         pass
 

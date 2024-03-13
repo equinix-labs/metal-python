@@ -15,31 +15,29 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.plans_api import PlansApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.plans_api import PlansApi
 
 
 class TestPlansApi(unittest.TestCase):
     """PlansApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.plans_api.PlansApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = PlansApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_find_plans(self):
+    def test_find_plans(self) -> None:
         """Test case for find_plans
 
-        Retrieve all plans  # noqa: E501
+        Retrieve all plans
         """
         pass
 
-    def test_find_plans_by_project(self):
+    def test_find_plans_by_project(self) -> None:
         """Test case for find_plans_by_project
 
-        Retrieve all plans visible by the project  # noqa: E501
+        Retrieve all plans visible by the project
         """
         pass
 

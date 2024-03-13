@@ -15,108 +15,106 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.devices_api import DevicesApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.devices_api import DevicesApi
 
 
 class TestDevicesApi(unittest.TestCase):
     """DevicesApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.devices_api.DevicesApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = DevicesApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_bgp_session(self):
+    def test_create_bgp_session(self) -> None:
         """Test case for create_bgp_session
 
-        Create a BGP session  # noqa: E501
+        Create a BGP session
         """
         pass
 
-    def test_create_device(self):
+    def test_create_device(self) -> None:
         """Test case for create_device
 
-        Create a device  # noqa: E501
+        Create a device
         """
         pass
 
-    def test_create_ip_assignment(self):
+    def test_create_ip_assignment(self) -> None:
         """Test case for create_ip_assignment
 
-        Create an ip assignment  # noqa: E501
+        Create an ip assignment
         """
         pass
 
-    def test_delete_device(self):
+    def test_delete_device(self) -> None:
         """Test case for delete_device
 
-        Delete the device  # noqa: E501
+        Delete the device
         """
         pass
 
-    def test_find_bgp_sessions(self):
+    def test_find_bgp_sessions(self) -> None:
         """Test case for find_bgp_sessions
 
-        Retrieve all BGP sessions  # noqa: E501
+        Retrieve all BGP sessions
         """
         pass
 
-    def test_find_device_by_id(self):
+    def test_find_device_by_id(self) -> None:
         """Test case for find_device_by_id
 
-        Retrieve a device  # noqa: E501
+        Retrieve a device
         """
         pass
 
-    def test_find_device_customdata(self):
+    def test_find_device_customdata(self) -> None:
         """Test case for find_device_customdata
 
-        Retrieve the custom metadata of an instance  # noqa: E501
+        Retrieve the custom metadata of an instance
         """
         pass
 
-    def test_find_device_metadata_by_id(self):
+    def test_find_device_metadata_by_id(self) -> None:
         """Test case for find_device_metadata_by_id
 
-        Retrieve metadata  # noqa: E501
+        Retrieve metadata
         """
         pass
 
-    def test_find_device_userdata_by_id(self):
+    def test_find_device_userdata_by_id(self) -> None:
         """Test case for find_device_userdata_by_id
 
-        Retrieve userdata  # noqa: E501
+        Retrieve userdata
         """
         pass
 
-    def test_find_instance_bandwidth(self):
+    def test_find_instance_bandwidth(self) -> None:
         """Test case for find_instance_bandwidth
 
-        Retrieve an instance bandwidth  # noqa: E501
+        Retrieve an instance bandwidth
         """
         pass
 
-    def test_find_ip_assignment_customdata(self):
+    def test_find_ip_assignment_customdata(self) -> None:
         """Test case for find_ip_assignment_customdata
 
-        Retrieve the custom metadata of an IP Assignment  # noqa: E501
+        Retrieve the custom metadata of an IP Assignment
         """
         pass
 
-    def test_find_ip_assignments(self):
+    def test_find_ip_assignments(self) -> None:
         """Test case for find_ip_assignments
 
-        Retrieve all ip assignments  # noqa: E501
+        Retrieve all ip assignments
         """
         pass
 
-    def test_find_organization_devices(self):
+    def test_find_organization_devices(self) -> None:
         """Test case for find_organization_devices
 
-        Retrieve all devices of an organization  # noqa: E501
+        Retrieve all devices of an organization
         """
         pass
 
@@ -127,10 +125,10 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_find_project_devices(self):
+    def test_find_project_devices(self) -> None:
         """Test case for find_project_devices
 
-        Retrieve all devices of a project  # noqa: E501
+        Retrieve all devices of a project
         """
         pass
 
@@ -141,45 +139,45 @@ class TestDevicesApi(unittest.TestCase):
         """
         pass
 
-    def test_find_traffic(self):
+    def test_find_traffic(self) -> None:
         """Test case for find_traffic
 
-        Retrieve device traffic  # noqa: E501
+        Retrieve device traffic
         """
         pass
 
-    def test_get_bgp_neighbor_data(self):
+    def test_get_bgp_neighbor_data(self) -> None:
         """Test case for get_bgp_neighbor_data
 
-        Retrieve BGP neighbor data for this device  # noqa: E501
+        Retrieve BGP neighbor data for this device
         """
         pass
 
-    def test_get_device_firmware_sets(self):
+    def test_get_device_firmware_sets(self) -> None:
         """Test case for get_device_firmware_sets
 
-        Get Device's associated Firmware Set  # noqa: E501
+        Get Device's associated Firmware Set
         """
         pass
 
-    def test_get_device_health_rollup(self):
+    def test_get_device_health_rollup(self) -> None:
         """Test case for get_device_health_rollup
 
-        Get Device's Health Status  # noqa: E501
+        Get Device's Health Status
         """
         pass
 
-    def test_perform_action(self):
+    def test_perform_action(self) -> None:
         """Test case for perform_action
 
-        Perform an action  # noqa: E501
+        Perform an action
         """
         pass
 
-    def test_update_device(self):
+    def test_update_device(self) -> None:
         """Test case for update_device
 
-        Update the device  # noqa: E501
+        Update the device
         """
         pass
 

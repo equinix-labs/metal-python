@@ -15,31 +15,29 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.metros_api import MetrosApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.metros_api import MetrosApi
 
 
 class TestMetrosApi(unittest.TestCase):
     """MetrosApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.metros_api.MetrosApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = MetrosApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_find_metros(self):
+    def test_find_metros(self) -> None:
         """Test case for find_metros
 
-        Retrieve all metros  # noqa: E501
+        Retrieve all metros
         """
         pass
 
-    def test_get_metro(self):
+    def test_get_metro(self) -> None:
         """Test case for get_metro
 
-        Retrieve a specific Metro's details  # noqa: E501
+        Retrieve a specific Metro's details
         """
         pass
 

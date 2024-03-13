@@ -15,115 +15,113 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.ports_api import PortsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.ports_api import PortsApi
 
 
 class TestPortsApi(unittest.TestCase):
     """PortsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.ports_api.PortsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = PortsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_assign_native_vlan(self):
+    def test_assign_native_vlan(self) -> None:
         """Test case for assign_native_vlan
 
-        Assign a native VLAN  # noqa: E501
+        Assign a native VLAN
         """
         pass
 
-    def test_assign_port(self):
+    def test_assign_port(self) -> None:
         """Test case for assign_port
 
-        Assign a port to virtual network  # noqa: E501
+        Assign a port to virtual network
         """
         pass
 
-    def test_bond_port(self):
+    def test_bond_port(self) -> None:
         """Test case for bond_port
 
-        Enabling bonding  # noqa: E501
+        Enabling bonding
         """
         pass
 
-    def test_convert_layer2(self):
+    def test_convert_layer2(self) -> None:
         """Test case for convert_layer2
 
-        Convert to Layer 2  # noqa: E501
+        Convert to Layer 2
         """
         pass
 
-    def test_convert_layer3(self):
+    def test_convert_layer3(self) -> None:
         """Test case for convert_layer3
 
-        Convert to Layer 3  # noqa: E501
+        Convert to Layer 3
         """
         pass
 
-    def test_create_port_vlan_assignment_batch(self):
+    def test_create_port_vlan_assignment_batch(self) -> None:
         """Test case for create_port_vlan_assignment_batch
 
-        Create a new Port-VLAN Assignment management batch  # noqa: E501
+        Create a new Port-VLAN Assignment management batch
         """
         pass
 
-    def test_delete_native_vlan(self):
+    def test_delete_native_vlan(self) -> None:
         """Test case for delete_native_vlan
 
-        Remove native VLAN  # noqa: E501
+        Remove native VLAN
         """
         pass
 
-    def test_disbond_port(self):
+    def test_disbond_port(self) -> None:
         """Test case for disbond_port
 
-        Disabling bonding  # noqa: E501
+        Disabling bonding
         """
         pass
 
-    def test_find_port_by_id(self):
+    def test_find_port_by_id(self) -> None:
         """Test case for find_port_by_id
 
-        Retrieve a port  # noqa: E501
+        Retrieve a port
         """
         pass
 
-    def test_find_port_vlan_assignment_batch_by_port_id_and_batch_id(self):
+    def test_find_port_vlan_assignment_batch_by_port_id_and_batch_id(self) -> None:
         """Test case for find_port_vlan_assignment_batch_by_port_id_and_batch_id
 
-        Retrieve a VLAN Assignment Batch's details  # noqa: E501
+        Retrieve a VLAN Assignment Batch's details
         """
         pass
 
-    def test_find_port_vlan_assignment_batches(self):
+    def test_find_port_vlan_assignment_batches(self) -> None:
         """Test case for find_port_vlan_assignment_batches
 
-        List the VLAN Assignment Batches for a port  # noqa: E501
+        List the VLAN Assignment Batches for a port
         """
         pass
 
-    def test_find_port_vlan_assignment_by_port_id_and_assignment_id(self):
+    def test_find_port_vlan_assignment_by_port_id_and_assignment_id(self) -> None:
         """Test case for find_port_vlan_assignment_by_port_id_and_assignment_id
 
-        Show a particular Port VLAN assignment's details  # noqa: E501
+        Show a particular Port VLAN assignment's details
         """
         pass
 
-    def test_find_port_vlan_assignments(self):
+    def test_find_port_vlan_assignments(self) -> None:
         """Test case for find_port_vlan_assignments
 
-        List Current VLAN assignments for a port  # noqa: E501
+        List Current VLAN assignments for a port
         """
         pass
 
-    def test_unassign_port(self):
+    def test_unassign_port(self) -> None:
         """Test case for unassign_port
 
-        Unassign a port  # noqa: E501
+        Unassign a port
         """
         pass
 

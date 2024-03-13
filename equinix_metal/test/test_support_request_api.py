@@ -15,24 +15,22 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.support_request_api import SupportRequestApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.support_request_api import SupportRequestApi
 
 
 class TestSupportRequestApi(unittest.TestCase):
     """SupportRequestApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.support_request_api.SupportRequestApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = SupportRequestApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_request_suppert(self):
+    def test_request_suppert(self) -> None:
         """Test case for request_suppert
 
-        Create a support ticket  # noqa: E501
+        Create a support ticket
         """
         pass
 

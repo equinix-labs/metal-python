@@ -15,38 +15,36 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.hardware_reservations_api import HardwareReservationsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.hardware_reservations_api import HardwareReservationsApi
 
 
 class TestHardwareReservationsApi(unittest.TestCase):
     """HardwareReservationsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.hardware_reservations_api.HardwareReservationsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = HardwareReservationsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_activate_hardware_reservation(self):
+    def test_activate_hardware_reservation(self) -> None:
         """Test case for activate_hardware_reservation
 
-        Activate a spare hardware reservation  # noqa: E501
+        Activate a spare hardware reservation
         """
         pass
 
-    def test_find_hardware_reservation_by_id(self):
+    def test_find_hardware_reservation_by_id(self) -> None:
         """Test case for find_hardware_reservation_by_id
 
-        Retrieve a hardware reservation  # noqa: E501
+        Retrieve a hardware reservation
         """
         pass
 
-    def test_find_project_hardware_reservations(self):
+    def test_find_project_hardware_reservations(self) -> None:
         """Test case for find_project_hardware_reservations
 
-        Retrieve all hardware reservations for a given project  # noqa: E501
+        Retrieve all hardware reservations for a given project
         """
         pass
 
@@ -57,10 +55,10 @@ class TestHardwareReservationsApi(unittest.TestCase):
         """
         pass
 
-    def test_move_hardware_reservation(self):
+    def test_move_hardware_reservation(self) -> None:
         """Test case for move_hardware_reservation
 
-        Move a hardware reservation  # noqa: E501
+        Move a hardware reservation
         """
         pass
 

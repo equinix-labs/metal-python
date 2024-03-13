@@ -15,38 +15,36 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.invitations_api import InvitationsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.invitations_api import InvitationsApi
 
 
 class TestInvitationsApi(unittest.TestCase):
     """InvitationsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.invitations_api.InvitationsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = InvitationsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_accept_invitation(self):
+    def test_accept_invitation(self) -> None:
         """Test case for accept_invitation
 
-        Accept an invitation  # noqa: E501
+        Accept an invitation
         """
         pass
 
-    def test_decline_invitation(self):
+    def test_decline_invitation(self) -> None:
         """Test case for decline_invitation
 
-        Decline an invitation  # noqa: E501
+        Decline an invitation
         """
         pass
 
-    def test_find_invitation_by_id(self):
+    def test_find_invitation_by_id(self) -> None:
         """Test case for find_invitation_by_id
 
-        View an invitation  # noqa: E501
+        View an invitation
         """
         pass
 

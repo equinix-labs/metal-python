@@ -15,31 +15,29 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.password_reset_tokens_api import PasswordResetTokensApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.password_reset_tokens_api import PasswordResetTokensApi
 
 
 class TestPasswordResetTokensApi(unittest.TestCase):
     """PasswordResetTokensApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.password_reset_tokens_api.PasswordResetTokensApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = PasswordResetTokensApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_password_reset_token(self):
+    def test_create_password_reset_token(self) -> None:
         """Test case for create_password_reset_token
 
-        Create a password reset token  # noqa: E501
+        Create a password reset token
         """
         pass
 
-    def test_reset_password(self):
+    def test_reset_password(self) -> None:
         """Test case for reset_password
 
-        Reset current user password  # noqa: E501
+        Reset current user password
         """
         pass
 

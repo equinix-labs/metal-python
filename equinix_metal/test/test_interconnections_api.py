@@ -15,122 +15,120 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.interconnections_api import InterconnectionsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.interconnections_api import InterconnectionsApi
 
 
 class TestInterconnectionsApi(unittest.TestCase):
     """InterconnectionsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.interconnections_api.InterconnectionsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = InterconnectionsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_interconnection_port_virtual_circuit(self):
+    def test_create_interconnection_port_virtual_circuit(self) -> None:
         """Test case for create_interconnection_port_virtual_circuit
 
-        Create a new Virtual Circuit  # noqa: E501
+        Create a new Virtual Circuit
         """
         pass
 
-    def test_create_organization_interconnection(self):
+    def test_create_organization_interconnection(self) -> None:
         """Test case for create_organization_interconnection
 
-        Request a new interconnection for the organization  # noqa: E501
+        Request a new interconnection for the organization
         """
         pass
 
-    def test_create_project_interconnection(self):
+    def test_create_project_interconnection(self) -> None:
         """Test case for create_project_interconnection
 
-        Request a new interconnection for the project's organization  # noqa: E501
+        Request a new interconnection for the project's organization
         """
         pass
 
-    def test_delete_interconnection(self):
+    def test_delete_interconnection(self) -> None:
         """Test case for delete_interconnection
 
-        Delete interconnection  # noqa: E501
+        Delete interconnection
         """
         pass
 
-    def test_delete_virtual_circuit(self):
+    def test_delete_virtual_circuit(self) -> None:
         """Test case for delete_virtual_circuit
 
-        Delete a virtual circuit  # noqa: E501
+        Delete a virtual circuit
         """
         pass
 
-    def test_get_interconnection(self):
+    def test_get_interconnection(self) -> None:
         """Test case for get_interconnection
 
-        Get interconnection  # noqa: E501
+        Get interconnection
         """
         pass
 
-    def test_get_interconnection_metros(self):
+    def test_get_interconnection_metros(self) -> None:
         """Test case for get_interconnection_metros
 
-        Get connectivity to network provider by metro  # noqa: E501
+        Get connectivity to network provider by metro
         """
         pass
 
-    def test_get_interconnection_port(self):
+    def test_get_interconnection_port(self) -> None:
         """Test case for get_interconnection_port
 
-        Get a interconnection port  # noqa: E501
+        Get a interconnection port
         """
         pass
 
-    def test_get_interconnection_pricing(self):
+    def test_get_interconnection_pricing(self) -> None:
         """Test case for get_interconnection_pricing
 
-        Get Interconnection Pricing  # noqa: E501
+        Get Interconnection Pricing
         """
         pass
 
-    def test_get_virtual_circuit(self):
+    def test_get_virtual_circuit(self) -> None:
         """Test case for get_virtual_circuit
 
-        Get a virtual circuit  # noqa: E501
+        Get a virtual circuit
         """
         pass
 
-    def test_list_interconnection_port_virtual_circuits(self):
+    def test_list_interconnection_port_virtual_circuits(self) -> None:
         """Test case for list_interconnection_port_virtual_circuits
 
-        List a interconnection port's virtual circuits  # noqa: E501
+        List a interconnection port's virtual circuits
         """
         pass
 
-    def test_list_interconnection_ports(self):
+    def test_list_interconnection_ports(self) -> None:
         """Test case for list_interconnection_ports
 
-        List a interconnection's ports  # noqa: E501
+        List a interconnection's ports
         """
         pass
 
-    def test_list_interconnection_virtual_circuits(self):
+    def test_list_interconnection_virtual_circuits(self) -> None:
         """Test case for list_interconnection_virtual_circuits
 
-        List a interconnection's virtual circuits  # noqa: E501
+        List a interconnection's virtual circuits
         """
         pass
 
-    def test_organization_list_interconnections(self):
+    def test_organization_list_interconnections(self) -> None:
         """Test case for organization_list_interconnections
 
-        List organization connections  # noqa: E501
+        List organization connections
         """
         pass
 
-    def test_project_list_interconnections(self):
+    def test_project_list_interconnections(self) -> None:
         """Test case for project_list_interconnections
 
-        List project connections  # noqa: E501
+        List project connections
         """
         pass
 
@@ -141,17 +139,17 @@ class TestInterconnectionsApi(unittest.TestCase):
         """
         pass
 
-    def test_update_interconnection(self):
+    def test_update_interconnection(self) -> None:
         """Test case for update_interconnection
 
-        Update interconnection  # noqa: E501
+        Update interconnection
         """
         pass
 
-    def test_update_virtual_circuit(self):
+    def test_update_virtual_circuit(self) -> None:
         """Test case for update_virtual_circuit
 
-        Update a virtual circuit  # noqa: E501
+        Update a virtual circuit
         """
         pass
 

@@ -15,38 +15,36 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.self_service_reservations_api import SelfServiceReservationsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.self_service_reservations_api import SelfServiceReservationsApi
 
 
 class TestSelfServiceReservationsApi(unittest.TestCase):
     """SelfServiceReservationsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.self_service_reservations_api.SelfServiceReservationsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = SelfServiceReservationsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_self_service_reservation(self):
+    def test_create_self_service_reservation(self) -> None:
         """Test case for create_self_service_reservation
 
-        Create a reservation  # noqa: E501
+        Create a reservation
         """
         pass
 
-    def test_find_self_service_reservation(self):
+    def test_find_self_service_reservation(self) -> None:
         """Test case for find_self_service_reservation
 
-        Retrieve a reservation  # noqa: E501
+        Retrieve a reservation
         """
         pass
 
-    def test_find_self_service_reservations(self):
+    def test_find_self_service_reservations(self) -> None:
         """Test case for find_self_service_reservations
 
-        Retrieve all reservations  # noqa: E501
+        Retrieve all reservations
         """
         pass
 

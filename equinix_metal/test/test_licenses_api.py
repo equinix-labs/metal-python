@@ -15,52 +15,50 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.licenses_api import LicensesApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.licenses_api import LicensesApi
 
 
 class TestLicensesApi(unittest.TestCase):
     """LicensesApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.licenses_api.LicensesApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = LicensesApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_license(self):
+    def test_create_license(self) -> None:
         """Test case for create_license
 
-        Create a License  # noqa: E501
+        Create a License
         """
         pass
 
-    def test_delete_license(self):
+    def test_delete_license(self) -> None:
         """Test case for delete_license
 
-        Delete the license  # noqa: E501
+        Delete the license
         """
         pass
 
-    def test_find_license_by_id(self):
+    def test_find_license_by_id(self) -> None:
         """Test case for find_license_by_id
 
-        Retrieve a license  # noqa: E501
+        Retrieve a license
         """
         pass
 
-    def test_find_project_licenses(self):
+    def test_find_project_licenses(self) -> None:
         """Test case for find_project_licenses
 
-        Retrieve all licenses  # noqa: E501
+        Retrieve all licenses
         """
         pass
 
-    def test_update_license(self):
+    def test_update_license(self) -> None:
         """Test case for update_license
 
-        Update the license  # noqa: E501
+        Update the license
         """
         pass
 

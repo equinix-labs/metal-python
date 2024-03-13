@@ -15,24 +15,22 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.events_api import EventsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.events_api import EventsApi
 
 
 class TestEventsApi(unittest.TestCase):
     """EventsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.events_api.EventsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = EventsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_find_device_events(self):
+    def test_find_device_events(self) -> None:
         """Test case for find_device_events
 
-        Retrieve device's events  # noqa: E501
+        Retrieve device's events
         """
         pass
 
@@ -43,17 +41,17 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
-    def test_find_event_by_id(self):
+    def test_find_event_by_id(self) -> None:
         """Test case for find_event_by_id
 
-        Retrieve an event  # noqa: E501
+        Retrieve an event
         """
         pass
 
-    def test_find_events(self):
+    def test_find_events(self) -> None:
         """Test case for find_events
 
-        Retrieve current user's events  # noqa: E501
+        Retrieve current user's events
         """
         pass
 
@@ -64,10 +62,10 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
-    def test_find_interconnection_events(self):
+    def test_find_interconnection_events(self) -> None:
         """Test case for find_interconnection_events
 
-        Retrieve interconnection events  # noqa: E501
+        Retrieve interconnection events
         """
         pass
 
@@ -78,17 +76,17 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
-    def test_find_interconnection_port_events(self):
+    def test_find_interconnection_port_events(self) -> None:
         """Test case for find_interconnection_port_events
 
-        Retrieve interconnection port events  # noqa: E501
+        Retrieve interconnection port events
         """
         pass
 
-    def test_find_organization_events(self):
+    def test_find_organization_events(self) -> None:
         """Test case for find_organization_events
 
-        Retrieve organization's events  # noqa: E501
+        Retrieve organization's events
         """
         pass
 
@@ -99,10 +97,10 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
-    def test_find_project_events(self):
+    def test_find_project_events(self) -> None:
         """Test case for find_project_events
 
-        Retrieve project's events  # noqa: E501
+        Retrieve project's events
         """
         pass
 
@@ -113,17 +111,17 @@ class TestEventsApi(unittest.TestCase):
         """
         pass
 
-    def test_find_virtual_circuit_events(self):
+    def test_find_virtual_circuit_events(self) -> None:
         """Test case for find_virtual_circuit_events
 
-        Retrieve virtual circuit events  # noqa: E501
+        Retrieve virtual circuit events
         """
         pass
 
-    def test_find_vrf_route_events(self):
+    def test_find_vrf_route_events(self) -> None:
         """Test case for find_vrf_route_events
 
-        Retrieve VRF route events  # noqa: E501
+        Retrieve VRF route events
         """
         pass
 

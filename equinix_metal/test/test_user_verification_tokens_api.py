@@ -15,31 +15,29 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.user_verification_tokens_api import UserVerificationTokensApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.user_verification_tokens_api import UserVerificationTokensApi
 
 
 class TestUserVerificationTokensApi(unittest.TestCase):
     """UserVerificationTokensApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.user_verification_tokens_api.UserVerificationTokensApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = UserVerificationTokensApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_consume_verification_request(self):
+    def test_consume_verification_request(self) -> None:
         """Test case for consume_verification_request
 
-        Verify a user using an email verification token  # noqa: E501
+        Verify a user using an email verification token
         """
         pass
 
-    def test_create_validation_request(self):
+    def test_create_validation_request(self) -> None:
         """Test case for create_validation_request
 
-        Create an email verification request  # noqa: E501
+        Create an email verification request
         """
         pass
 

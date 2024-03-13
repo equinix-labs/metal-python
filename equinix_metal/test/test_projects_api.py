@@ -15,87 +15,85 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.projects_api import ProjectsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.projects_api import ProjectsApi
 
 
 class TestProjectsApi(unittest.TestCase):
     """ProjectsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.projects_api.ProjectsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = ProjectsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_project(self):
+    def test_create_project(self) -> None:
         """Test case for create_project
 
-        Create a project  # noqa: E501
+        Create a project
         """
         pass
 
-    def test_create_project_invitation(self):
+    def test_create_project_invitation(self) -> None:
         """Test case for create_project_invitation
 
-        Create an invitation for a project  # noqa: E501
+        Create an invitation for a project
         """
         pass
 
-    def test_create_transfer_request(self):
+    def test_create_transfer_request(self) -> None:
         """Test case for create_transfer_request
 
-        Create a transfer request  # noqa: E501
+        Create a transfer request
         """
         pass
 
-    def test_delete_project(self):
+    def test_delete_project(self) -> None:
         """Test case for delete_project
 
-        Delete the project  # noqa: E501
+        Delete the project
         """
         pass
 
-    def test_find_ip_reservation_customdata(self):
+    def test_find_ip_reservation_customdata(self) -> None:
         """Test case for find_ip_reservation_customdata
 
-        Retrieve the custom metadata of an IP Reservation  # noqa: E501
+        Retrieve the custom metadata of an IP Reservation
         """
         pass
 
-    def test_find_project_by_id(self):
+    def test_find_project_by_id(self) -> None:
         """Test case for find_project_by_id
 
-        Retrieve a project  # noqa: E501
+        Retrieve a project
         """
         pass
 
-    def test_find_project_customdata(self):
+    def test_find_project_customdata(self) -> None:
         """Test case for find_project_customdata
 
-        Retrieve the custom metadata of a project  # noqa: E501
+        Retrieve the custom metadata of a project
         """
         pass
 
-    def test_find_project_invitations(self):
+    def test_find_project_invitations(self) -> None:
         """Test case for find_project_invitations
 
-        Retrieve project invitations  # noqa: E501
+        Retrieve project invitations
         """
         pass
 
-    def test_find_project_memberships(self):
+    def test_find_project_memberships(self) -> None:
         """Test case for find_project_memberships
 
-        Retrieve project memberships  # noqa: E501
+        Retrieve project memberships
         """
         pass
 
-    def test_find_projects(self):
+    def test_find_projects(self) -> None:
         """Test case for find_projects
 
-        Retrieve all projects  # noqa: E501
+        Retrieve all projects
         """
         pass
 
@@ -106,10 +104,10 @@ class TestProjectsApi(unittest.TestCase):
         """
         pass
 
-    def test_update_project(self):
+    def test_update_project(self) -> None:
         """Test case for update_project
 
-        Update the project  # noqa: E501
+        Update the project
         """
         pass
 

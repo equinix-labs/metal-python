@@ -15,38 +15,36 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.memberships_api import MembershipsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.memberships_api import MembershipsApi
 
 
 class TestMembershipsApi(unittest.TestCase):
     """MembershipsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.memberships_api.MembershipsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = MembershipsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_delete_membership(self):
+    def test_delete_membership(self) -> None:
         """Test case for delete_membership
 
-        Delete the membership  # noqa: E501
+        Delete the membership
         """
         pass
 
-    def test_find_membership_by_id(self):
+    def test_find_membership_by_id(self) -> None:
         """Test case for find_membership_by_id
 
-        Retrieve a membership  # noqa: E501
+        Retrieve a membership
         """
         pass
 
-    def test_update_membership(self):
+    def test_update_membership(self) -> None:
         """Test case for update_membership
 
-        Update the membership  # noqa: E501
+        Update the membership
         """
         pass
 

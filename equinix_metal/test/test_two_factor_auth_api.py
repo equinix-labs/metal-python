@@ -15,45 +15,43 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.two_factor_auth_api import TwoFactorAuthApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.two_factor_auth_api import TwoFactorAuthApi
 
 
 class TestTwoFactorAuthApi(unittest.TestCase):
     """TwoFactorAuthApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.two_factor_auth_api.TwoFactorAuthApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = TwoFactorAuthApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_disable_tfa_app(self):
+    def test_disable_tfa_app(self) -> None:
         """Test case for disable_tfa_app
 
-        Disable two factor authentication  # noqa: E501
+        Disable two factor authentication
         """
         pass
 
-    def test_disable_tfa_sms(self):
+    def test_disable_tfa_sms(self) -> None:
         """Test case for disable_tfa_sms
 
-        Disable two factor authentication  # noqa: E501
+        Disable two factor authentication
         """
         pass
 
-    def test_enable_tfa_app(self):
+    def test_enable_tfa_app(self) -> None:
         """Test case for enable_tfa_app
 
-        Enable two factor auth using app  # noqa: E501
+        Enable two factor auth using app
         """
         pass
 
-    def test_enable_tfa_sms(self):
+    def test_enable_tfa_sms(self) -> None:
         """Test case for enable_tfa_sms
 
-        Enable two factor auth using sms  # noqa: E501
+        Enable two factor auth using sms
         """
         pass
 

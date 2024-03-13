@@ -15,94 +15,92 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.organizations_api import OrganizationsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.organizations_api import OrganizationsApi
 
 
 class TestOrganizationsApi(unittest.TestCase):
     """OrganizationsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.organizations_api.OrganizationsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = OrganizationsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_organization(self):
+    def test_create_organization(self) -> None:
         """Test case for create_organization
 
-        Create an organization  # noqa: E501
+        Create an organization
         """
         pass
 
-    def test_create_organization_invitation(self):
+    def test_create_organization_invitation(self) -> None:
         """Test case for create_organization_invitation
 
-        Create an invitation for an organization  # noqa: E501
+        Create an invitation for an organization
         """
         pass
 
-    def test_create_organization_project(self):
+    def test_create_organization_project(self) -> None:
         """Test case for create_organization_project
 
-        Create a project for the organization  # noqa: E501
+        Create a project for the organization
         """
         pass
 
-    def test_create_payment_method(self):
+    def test_create_payment_method(self) -> None:
         """Test case for create_payment_method
 
-        Create a payment method for the given organization  # noqa: E501
+        Create a payment method for the given organization
         """
         pass
 
-    def test_delete_organization(self):
+    def test_delete_organization(self) -> None:
         """Test case for delete_organization
 
-        Delete the organization  # noqa: E501
+        Delete the organization
         """
         pass
 
-    def test_find_operating_systems_by_organization(self):
+    def test_find_operating_systems_by_organization(self) -> None:
         """Test case for find_operating_systems_by_organization
 
-        Retrieve all operating systems visible by the organization  # noqa: E501
+        Retrieve all operating systems visible by the organization
         """
         pass
 
-    def test_find_organization_by_id(self):
+    def test_find_organization_by_id(self) -> None:
         """Test case for find_organization_by_id
 
-        Retrieve an organization's details  # noqa: E501
+        Retrieve an organization's details
         """
         pass
 
-    def test_find_organization_customdata(self):
+    def test_find_organization_customdata(self) -> None:
         """Test case for find_organization_customdata
 
-        Retrieve the custom metadata of an organization  # noqa: E501
+        Retrieve the custom metadata of an organization
         """
         pass
 
-    def test_find_organization_invitations(self):
+    def test_find_organization_invitations(self) -> None:
         """Test case for find_organization_invitations
 
-        Retrieve organization invitations  # noqa: E501
+        Retrieve organization invitations
         """
         pass
 
-    def test_find_organization_payment_methods(self):
+    def test_find_organization_payment_methods(self) -> None:
         """Test case for find_organization_payment_methods
 
-        Retrieve all payment methods of an organization  # noqa: E501
+        Retrieve all payment methods of an organization
         """
         pass
 
-    def test_find_organization_projects(self):
+    def test_find_organization_projects(self) -> None:
         """Test case for find_organization_projects
 
-        Retrieve all projects of an organization  # noqa: E501
+        Retrieve all projects of an organization
         """
         pass
 
@@ -113,17 +111,17 @@ class TestOrganizationsApi(unittest.TestCase):
         """
         pass
 
-    def test_find_organization_transfers(self):
+    def test_find_organization_transfers(self) -> None:
         """Test case for find_organization_transfers
 
-        Retrieve all project transfer requests from or to an organization  # noqa: E501
+        Retrieve all project transfer requests from or to an organization
         """
         pass
 
-    def test_find_organizations(self):
+    def test_find_organizations(self) -> None:
         """Test case for find_organizations
 
-        Retrieve all organizations  # noqa: E501
+        Retrieve all organizations
         """
         pass
 
@@ -134,17 +132,17 @@ class TestOrganizationsApi(unittest.TestCase):
         """
         pass
 
-    def test_find_plans_by_organization(self):
+    def test_find_plans_by_organization(self) -> None:
         """Test case for find_plans_by_organization
 
-        Retrieve all plans visible by the organization  # noqa: E501
+        Retrieve all plans visible by the organization
         """
         pass
 
-    def test_update_organization(self):
+    def test_update_organization(self) -> None:
         """Test case for update_organization
 
-        Update the organization  # noqa: E501
+        Update the organization
         """
         pass
 

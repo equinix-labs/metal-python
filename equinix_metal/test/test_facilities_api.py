@@ -15,38 +15,36 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.facilities_api import FacilitiesApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.facilities_api import FacilitiesApi
 
 
 class TestFacilitiesApi(unittest.TestCase):
     """FacilitiesApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.facilities_api.FacilitiesApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = FacilitiesApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_find_facilities(self):
+    def test_find_facilities(self) -> None:
         """Test case for find_facilities
 
-        Retrieve all facilities  # noqa: E501
+        Retrieve all facilities
         """
         pass
 
-    def test_find_facilities_by_organization(self):
+    def test_find_facilities_by_organization(self) -> None:
         """Test case for find_facilities_by_organization
 
-        Retrieve all facilities visible by the organization  # noqa: E501
+        Retrieve all facilities visible by the organization
         """
         pass
 
-    def test_find_facilities_by_project(self):
+    def test_find_facilities_by_project(self) -> None:
         """Test case for find_facilities_by_project
 
-        Retrieve all facilities visible by the project  # noqa: E501
+        Retrieve all facilities visible by the project
         """
         pass
 

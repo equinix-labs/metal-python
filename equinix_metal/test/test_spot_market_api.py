@@ -15,66 +15,64 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.spot_market_api import SpotMarketApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.spot_market_api import SpotMarketApi
 
 
 class TestSpotMarketApi(unittest.TestCase):
     """SpotMarketApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.spot_market_api.SpotMarketApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = SpotMarketApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_spot_market_request(self):
+    def test_create_spot_market_request(self) -> None:
         """Test case for create_spot_market_request
 
-        Create a spot market request  # noqa: E501
+        Create a spot market request
         """
         pass
 
-    def test_delete_spot_market_request(self):
+    def test_delete_spot_market_request(self) -> None:
         """Test case for delete_spot_market_request
 
-        Delete the spot market request  # noqa: E501
+        Delete the spot market request
         """
         pass
 
-    def test_find_metro_spot_market_prices(self):
+    def test_find_metro_spot_market_prices(self) -> None:
         """Test case for find_metro_spot_market_prices
 
-        Get current spot market prices for metros  # noqa: E501
+        Get current spot market prices for metros
         """
         pass
 
-    def test_find_spot_market_prices(self):
+    def test_find_spot_market_prices(self) -> None:
         """Test case for find_spot_market_prices
 
-        Get current spot market prices  # noqa: E501
+        Get current spot market prices
         """
         pass
 
-    def test_find_spot_market_prices_history(self):
+    def test_find_spot_market_prices_history(self) -> None:
         """Test case for find_spot_market_prices_history
 
-        Get spot market prices for a given period of time  # noqa: E501
+        Get spot market prices for a given period of time
         """
         pass
 
-    def test_find_spot_market_request_by_id(self):
+    def test_find_spot_market_request_by_id(self) -> None:
         """Test case for find_spot_market_request_by_id
 
-        Retrieve a spot market request  # noqa: E501
+        Retrieve a spot market request
         """
         pass
 
-    def test_list_spot_market_requests(self):
+    def test_list_spot_market_requests(self) -> None:
         """Test case for list_spot_market_requests
 
-        List spot market requests  # noqa: E501
+        List spot market requests
         """
         pass
 

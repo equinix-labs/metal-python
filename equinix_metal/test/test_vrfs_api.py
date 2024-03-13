@@ -15,129 +15,127 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.vrfs_api import VRFsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.vrfs_api import VRFsApi
 
 
 class TestVRFsApi(unittest.TestCase):
     """VRFsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.vrfs_api.VRFsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = VRFsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_bgp_dynamic_neighbors_id_get(self):
+    def test_bgp_dynamic_neighbors_id_get(self) -> None:
         """Test case for bgp_dynamic_neighbors_id_get
 
-        Retrieve a BGP Dynamic Neighbor  # noqa: E501
+        Retrieve a BGP Dynamic Neighbor
         """
         pass
 
-    def test_create_bgp_dynamic_neighbor(self):
+    def test_create_bgp_dynamic_neighbor(self) -> None:
         """Test case for create_bgp_dynamic_neighbor
 
-        Create a VRF BGP Dynamic Neighbor range  # noqa: E501
+        Create a VRF BGP Dynamic Neighbor range
         """
         pass
 
-    def test_create_vrf(self):
+    def test_create_vrf(self) -> None:
         """Test case for create_vrf
 
-        Create a new VRF in the specified project  # noqa: E501
+        Create a new VRF in the specified project
         """
         pass
 
-    def test_create_vrf_route(self):
+    def test_create_vrf_route(self) -> None:
         """Test case for create_vrf_route
 
-        Create a VRF route  # noqa: E501
+        Create a VRF route
         """
         pass
 
-    def test_delete_bgp_dynamic_neighbor_by_id(self):
+    def test_delete_bgp_dynamic_neighbor_by_id(self) -> None:
         """Test case for delete_bgp_dynamic_neighbor_by_id
 
-        Delete a VRF BGP Dynamic Neighbor  # noqa: E501
+        Delete a VRF BGP Dynamic Neighbor
         """
         pass
 
-    def test_delete_vrf(self):
+    def test_delete_vrf(self) -> None:
         """Test case for delete_vrf
 
-        Delete the VRF  # noqa: E501
+        Delete the VRF
         """
         pass
 
-    def test_delete_vrf_route_by_id(self):
+    def test_delete_vrf_route_by_id(self) -> None:
         """Test case for delete_vrf_route_by_id
 
-        Delete a VRF Route  # noqa: E501
+        Delete a VRF Route
         """
         pass
 
-    def test_find_vrf_by_id(self):
+    def test_find_vrf_by_id(self) -> None:
         """Test case for find_vrf_by_id
 
-        Retrieve a VRF  # noqa: E501
+        Retrieve a VRF
         """
         pass
 
-    def test_find_vrf_ip_reservation(self):
+    def test_find_vrf_ip_reservation(self) -> None:
         """Test case for find_vrf_ip_reservation
 
-        Retrieve all VRF IP Reservations in the VRF  # noqa: E501
+        Retrieve all VRF IP Reservations in the VRF
         """
         pass
 
-    def test_find_vrf_ip_reservations(self):
+    def test_find_vrf_ip_reservations(self) -> None:
         """Test case for find_vrf_ip_reservations
 
-        Retrieve all VRF IP Reservations in the VRF  # noqa: E501
+        Retrieve all VRF IP Reservations in the VRF
         """
         pass
 
-    def test_find_vrf_route_by_id(self):
+    def test_find_vrf_route_by_id(self) -> None:
         """Test case for find_vrf_route_by_id
 
-        Retrieve a VRF Route  # noqa: E501
+        Retrieve a VRF Route
         """
         pass
 
-    def test_find_vrfs(self):
+    def test_find_vrfs(self) -> None:
         """Test case for find_vrfs
 
-        Retrieve all VRFs in the project  # noqa: E501
+        Retrieve all VRFs in the project
         """
         pass
 
-    def test_get_bgp_dynamic_neighbors(self):
+    def test_get_bgp_dynamic_neighbors(self) -> None:
         """Test case for get_bgp_dynamic_neighbors
 
-        List BGP Dynamic Neighbors  # noqa: E501
+        List BGP Dynamic Neighbors
         """
         pass
 
-    def test_get_vrf_routes(self):
+    def test_get_vrf_routes(self) -> None:
         """Test case for get_vrf_routes
 
-        Retrieve all routes in the VRF  # noqa: E501
+        Retrieve all routes in the VRF
         """
         pass
 
-    def test_update_vrf(self):
+    def test_update_vrf(self) -> None:
         """Test case for update_vrf
 
-        Update the VRF  # noqa: E501
+        Update the VRF
         """
         pass
 
-    def test_update_vrf_route_by_id(self):
+    def test_update_vrf_route_by_id(self) -> None:
         """Test case for update_vrf_route_by_id
 
-        Update a VRF Route  # noqa: E501
+        Update a VRF Route
         """
         pass
 
