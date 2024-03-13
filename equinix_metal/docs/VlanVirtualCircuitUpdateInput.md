@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of VlanVirtualCircuitUpdateInput from a JSON string
 vlan_virtual_circuit_update_input_instance = VlanVirtualCircuitUpdateInput.from_json(json)
 # print the JSON string representation of the object
-print VlanVirtualCircuitUpdateInput.to_json()
+print(VlanVirtualCircuitUpdateInput.to_json())
 
 # convert the object into a dict
 vlan_virtual_circuit_update_input_dict = vlan_virtual_circuit_update_input_instance.to_dict()

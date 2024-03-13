@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device_metro import DeviceMetro  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device_metro import DeviceMetro
 
 class TestDeviceMetro(unittest.TestCase):
     """DeviceMetro unit test stubs"""
@@ -29,23 +26,23 @@ class TestDeviceMetro(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DeviceMetro:
         """Test DeviceMetro
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DeviceMetro`
         """
-        model = equinix_metal.models.device_metro.DeviceMetro()  # noqa: E501
-        if include_optional :
+        model = DeviceMetro()
+        if include_optional:
             return DeviceMetro(
-                code = '', 
-                country = '', 
-                href = '', 
-                id = '', 
+                code = '',
+                country = '',
+                href = '',
+                id = '',
                 name = ''
             )
-        else :
+        else:
             return DeviceMetro(
         )
         """

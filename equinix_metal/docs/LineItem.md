@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **float** |  | [optional] 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of LineItem from a JSON string
 line_item_instance = LineItem.from_json(json)
 # print the JSON string representation of the object
-print LineItem.to_json()
+print(LineItem.to_json())
 
 # convert the object into a dict
 line_item_dict = line_item_instance.to_dict()

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device_project_lite import DeviceProjectLite  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device_project_lite import DeviceProjectLite
 
 class TestDeviceProjectLite(unittest.TestCase):
     """DeviceProjectLite unit test stubs"""
@@ -29,19 +26,19 @@ class TestDeviceProjectLite(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DeviceProjectLite:
         """Test DeviceProjectLite
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DeviceProjectLite`
         """
-        model = equinix_metal.models.device_project_lite.DeviceProjectLite()  # noqa: E501
-        if include_optional :
+        model = DeviceProjectLite()
+        if include_optional:
             return DeviceProjectLite(
                 href = ''
             )
-        else :
+        else:
             return DeviceProjectLite(
                 href = '',
         )

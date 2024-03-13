@@ -15,52 +15,50 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.metal_gateways_api import MetalGatewaysApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.metal_gateways_api import MetalGatewaysApi
 
 
 class TestMetalGatewaysApi(unittest.TestCase):
     """MetalGatewaysApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.metal_gateways_api.MetalGatewaysApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = MetalGatewaysApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_metal_gateway(self):
+    def test_create_metal_gateway(self) -> None:
         """Test case for create_metal_gateway
 
-        Create a metal gateway  # noqa: E501
+        Create a metal gateway
         """
         pass
 
-    def test_create_metal_gateway_elastic_ip(self):
+    def test_create_metal_gateway_elastic_ip(self) -> None:
         """Test case for create_metal_gateway_elastic_ip
 
-        Create a Metal Gateway Elastic IP  # noqa: E501
+        Create a Metal Gateway Elastic IP
         """
         pass
 
-    def test_delete_metal_gateway(self):
+    def test_delete_metal_gateway(self) -> None:
         """Test case for delete_metal_gateway
 
-        Deletes the metal gateway  # noqa: E501
+        Deletes the metal gateway
         """
         pass
 
-    def test_find_metal_gateway_by_id(self):
+    def test_find_metal_gateway_by_id(self) -> None:
         """Test case for find_metal_gateway_by_id
 
-        Returns the metal gateway  # noqa: E501
+        Returns the metal gateway
         """
         pass
 
-    def test_find_metal_gateways_by_project(self):
+    def test_find_metal_gateways_by_project(self) -> None:
         """Test case for find_metal_gateways_by_project
 
-        Returns all metal gateways for a project  # noqa: E501
+        Returns all metal gateways for a project
         """
         pass
 
@@ -71,10 +69,10 @@ class TestMetalGatewaysApi(unittest.TestCase):
         """
         pass
 
-    def test_get_metal_gateway_elastic_ips(self):
+    def test_get_metal_gateway_elastic_ips(self) -> None:
         """Test case for get_metal_gateway_elastic_ips
 
-        List Metal Gateway Elastic IPs  # noqa: E501
+        List Metal Gateway Elastic IPs
         """
         pass
 

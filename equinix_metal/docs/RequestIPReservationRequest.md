@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **comments** | **str** |  | [optional] 
@@ -28,7 +29,7 @@ json = "{}"
 # create an instance of RequestIPReservationRequest from a JSON string
 request_ip_reservation_request_instance = RequestIPReservationRequest.from_json(json)
 # print the JSON string representation of the object
-print RequestIPReservationRequest.to_json()
+print(RequestIPReservationRequest.to_json())
 
 # convert the object into a dict
 request_ip_reservation_request_dict = request_ip_reservation_request_instance.to_dict()

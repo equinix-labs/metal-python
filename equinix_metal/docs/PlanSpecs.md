@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cpus** | [**List[PlanSpecsCpusInner]**](PlanSpecsCpusInner.md) |  | [optional] 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of PlanSpecs from a JSON string
 plan_specs_instance = PlanSpecs.from_json(json)
 # print the JSON string representation of the object
-print PlanSpecs.to_json()
+print(PlanSpecs.to_json())
 
 # convert the object into a dict
 plan_specs_dict = plan_specs_instance.to_dict()

@@ -18,65 +18,82 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import Any, Dict, List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
+from typing import Optional, Set
+from typing_extensions import Self
 
 class OperatingSystem(BaseModel):
     """
     OperatingSystem
-    """
-    default_operating_system: Optional[StrictBool] = Field(None, description="Default operating system for the distro.")
+    """ # noqa: E501
+    default_operating_system: Optional[StrictBool] = Field(default=None, description="Default operating system for the distro.")
     distro: Optional[StrictStr] = None
     distro_label: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    licensed: Optional[StrictBool] = Field(None, description="Licenced OS is priced according to pricing property")
+    licensed: Optional[StrictBool] = Field(default=None, description="Licenced OS is priced according to pricing property")
     name: Optional[StrictStr] = None
-    preinstallable: Optional[StrictBool] = Field(None, description="Servers can be already preinstalled with OS in order to shorten provision time.")
-    pricing: Optional[Dict[str, Any]] = Field(None, description="This object contains price per time unit and optional multiplier value if licence price depends on hardware plan or components (e.g. number of cores)")
-    provisionable_on: Optional[conlist(StrictStr)] = None
+    preinstallable: Optional[StrictBool] = Field(default=None, description="Servers can be already preinstalled with OS in order to shorten provision time.")
+    pricing: Optional[Dict[str, Any]] = Field(default=None, description="This object contains price per time unit and optional multiplier value if licence price depends on hardware plan or components (e.g. number of cores)")
+    provisionable_on: Optional[List[StrictStr]] = None
     slug: Optional[StrictStr] = None
     version: Optional[StrictStr] = None
-    __properties = ["default_operating_system", "distro", "distro_label", "href", "id", "licensed", "name", "preinstallable", "pricing", "provisionable_on", "slug", "version"]
+    __properties: ClassVar[List[str]] = ["default_operating_system", "distro", "distro_label", "href", "id", "licensed", "name", "preinstallable", "pricing", "provisionable_on", "slug", "version"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> OperatingSystem:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of OperatingSystem from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "default_operating_system",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "default_operating_system",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> OperatingSystem:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of OperatingSystem from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return OperatingSystem.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = OperatingSystem.parse_obj({
+        _obj = cls.model_validate({
             "default_operating_system": obj.get("default_operating_system"),
             "distro": obj.get("distro"),
             "distro_label": obj.get("distro_label"),

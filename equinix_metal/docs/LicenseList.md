@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of LicenseList from a JSON string
 license_list_instance = LicenseList.from_json(json)
 # print the JSON string representation of the object
-print LicenseList.to_json()
+print(LicenseList.to_json())
 
 # convert the object into a dict
 license_list_dict = license_list_instance.to_dict()

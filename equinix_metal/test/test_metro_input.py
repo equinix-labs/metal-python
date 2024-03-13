@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.metro_input import MetroInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.metro_input import MetroInput
 
 class TestMetroInput(unittest.TestCase):
     """MetroInput unit test stubs"""
@@ -29,20 +26,20 @@ class TestMetroInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> MetroInput:
         """Test MetroInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MetroInput`
         """
-        model = equinix_metal.models.metro_input.MetroInput()  # noqa: E501
-        if include_optional :
+        model = MetroInput()
+        if include_optional:
             return MetroInput(
-                href = '', 
+                href = '',
                 metro = 'sv'
             )
-        else :
+        else:
             return MetroInput(
                 metro = 'sv',
         )

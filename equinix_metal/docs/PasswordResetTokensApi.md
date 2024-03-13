@@ -18,9 +18,8 @@ Creates a password reset token
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -59,6 +58,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **str**| Email of user to create password reset token | 
@@ -77,6 +77,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -84,7 +85,6 @@ void (empty response body)
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **reset_password**
 > NewPassword reset_password()
 
@@ -95,9 +95,8 @@ Resets current user password.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.new_password import NewPassword
 from equinix_metal.rest import ApiException
@@ -137,6 +136,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -153,6 +153,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | ok |  -  |
@@ -160,4 +161,3 @@ This endpoint does not need any parameter.
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

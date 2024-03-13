@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.self_service_reservation_item_request import SelfServiceReservationItemRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.self_service_reservation_item_request import SelfServiceReservationItemRequest
 
 class TestSelfServiceReservationItemRequest(unittest.TestCase):
     """SelfServiceReservationItemRequest unit test stubs"""
@@ -29,24 +26,24 @@ class TestSelfServiceReservationItemRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SelfServiceReservationItemRequest:
         """Test SelfServiceReservationItemRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SelfServiceReservationItemRequest`
         """
-        model = equinix_metal.models.self_service_reservation_item_request.SelfServiceReservationItemRequest()  # noqa: E501
-        if include_optional :
+        model = SelfServiceReservationItemRequest()
+        if include_optional:
             return SelfServiceReservationItemRequest(
-                amount = 1.337, 
-                href = '', 
-                metro_id = '', 
-                plan_id = '', 
-                quantity = 56, 
+                amount = 1.337,
+                href = '',
+                metro_id = '',
+                plan_id = '',
+                quantity = 56,
                 term = ''
             )
-        else :
+        else:
             return SelfServiceReservationItemRequest(
         )
         """

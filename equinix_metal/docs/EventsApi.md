@@ -30,9 +30,8 @@ Returns a list of events pertaining to a specific device
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -78,6 +77,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -100,6 +100,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -108,12 +109,9 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_device_events_all_pages**
 > EventList find_device_events_all_pages(id, include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_device_events**](EventsApi.md#find_device_events) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_device_events**](EventsApi.md#find_device_events).
-
 # **find_event_by_id**
 > Event find_event_by_id(id, include=include, exclude=exclude)
 
@@ -124,9 +122,8 @@ Returns a single event if the user has access
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
@@ -170,6 +167,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Event UUID | 
@@ -190,6 +188,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -198,7 +197,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_events**
 > EventList find_events(include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -209,9 +207,8 @@ Returns a list of the current user’s events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -256,6 +253,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
@@ -277,18 +275,16 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
 **401** | unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_events_all_pages**
 > EventList find_events_all_pages(include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_events**](EventsApi.md#find_events) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_events**](EventsApi.md#find_events).
-
 # **find_interconnection_events**
 > EventList find_interconnection_events(connection_id, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -299,9 +295,8 @@ Returns a list of the interconnection events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -347,6 +342,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connection_id** | **str**| Interconnection UUID | 
@@ -369,6 +365,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -377,12 +374,9 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_interconnection_events_all_pages**
 > EventList find_interconnection_events_all_pages(connection_id, include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_interconnection_events**](EventsApi.md#find_interconnection_events) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_interconnection_events**](EventsApi.md#find_interconnection_events).
-
 # **find_interconnection_port_events**
 > Event find_interconnection_port_events(connection_id, id, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -393,9 +387,8 @@ Returns a list of the interconnection port events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
@@ -442,6 +435,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connection_id** | **str**| Interconnection UUID | 
@@ -465,6 +459,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -473,7 +468,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_events**
 > EventList find_organization_events(id, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -484,9 +478,8 @@ Returns a list of events for a single organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -532,6 +525,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -554,6 +548,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -562,12 +557,9 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_events_all_pages**
 > EventList find_organization_events_all_pages(id, include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_organization_events**](EventsApi.md#find_organization_events) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_organization_events**](EventsApi.md#find_organization_events).
-
 # **find_project_events**
 > EventList find_project_events(id, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -578,9 +570,8 @@ Returns a list of events for a single project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event_list import EventList
 from equinix_metal.rest import ApiException
@@ -626,6 +617,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -648,6 +640,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -656,12 +649,9 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_project_events_all_pages**
 > EventList find_project_events_all_pages(id, include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_project_events**](EventsApi.md#find_project_events) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_project_events**](EventsApi.md#find_project_events).
-
 # **find_virtual_circuit_events**
 > Event find_virtual_circuit_events(id, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -672,9 +662,8 @@ Returns a list of the virtual circuit events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
@@ -720,6 +709,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Virtual Circuit UUID | 
@@ -742,6 +732,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -750,7 +741,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_vrf_route_events**
 > Event find_vrf_route_events(id, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -761,9 +751,8 @@ Returns a list of the VRF route events
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.event import Event
 from equinix_metal.rest import ApiException
@@ -809,6 +798,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF Route UUID | 
@@ -831,6 +821,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -839,4 +830,3 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

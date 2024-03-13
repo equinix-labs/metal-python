@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.auth_token import AuthToken  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.auth_token import AuthToken
 
 class TestAuthToken(unittest.TestCase):
     """AuthToken unit test stubs"""
@@ -29,27 +26,27 @@ class TestAuthToken(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> AuthToken:
         """Test AuthToken
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `AuthToken`
         """
-        model = equinix_metal.models.auth_token.AuthToken()  # noqa: E501
-        if include_optional :
+        model = AuthToken()
+        if include_optional:
             return AuthToken(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                description = '', 
-                href = '', 
-                id = '', 
-                project = None, 
-                read_only = True, 
-                token = '', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                description = '',
+                href = '',
+                id = '',
+                project = None,
+                read_only = True,
+                token = '',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user = None
             )
-        else :
+        else:
             return AuthToken(
         )
         """

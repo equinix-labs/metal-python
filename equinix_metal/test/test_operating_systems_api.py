@@ -15,31 +15,29 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.operating_systems_api import OperatingSystemsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.operating_systems_api import OperatingSystemsApi
 
 
 class TestOperatingSystemsApi(unittest.TestCase):
     """OperatingSystemsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.operating_systems_api.OperatingSystemsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = OperatingSystemsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_find_operating_system_version(self):
+    def test_find_operating_system_version(self) -> None:
         """Test case for find_operating_system_version
 
-        Retrieve all operating system versions  # noqa: E501
+        Retrieve all operating system versions
         """
         pass
 
-    def test_find_operating_systems(self):
+    def test_find_operating_systems(self) -> None:
         """Test case for find_operating_systems
 
-        Retrieve all operating systems  # noqa: E501
+        Retrieve all operating systems
         """
         pass
 

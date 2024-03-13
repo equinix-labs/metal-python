@@ -18,45 +18,61 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.partition import Partition
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Disk(BaseModel):
     """
     Disk
-    """
+    """ # noqa: E501
     device: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
-    partitions: Optional[conlist(Partition)] = None
-    wipe_table: Optional[StrictBool] = Field(None, alias="wipeTable")
-    __properties = ["device", "href", "partitions", "wipeTable"]
+    partitions: Optional[List[Partition]] = None
+    wipe_table: Optional[StrictBool] = Field(default=None, alias="wipeTable")
+    __properties: ClassVar[List[str]] = ["device", "href", "partitions", "wipeTable"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Disk:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Disk from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in partitions (list)
         _items = []
         if self.partitions:
@@ -67,19 +83,19 @@ class Disk(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Disk:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Disk from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Disk.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Disk.parse_obj({
+        _obj = cls.model_validate({
             "device": obj.get("device"),
             "href": obj.get("href"),
-            "partitions": [Partition.from_dict(_item) for _item in obj.get("partitions")] if obj.get("partitions") is not None else None,
-            "wipe_table": obj.get("wipeTable")
+            "partitions": [Partition.from_dict(_item) for _item in obj["partitions"]] if obj.get("partitions") is not None else None,
+            "wipeTable": obj.get("wipeTable")
         })
         return _obj
 

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **str** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of IPAssignmentMetro from a JSON string
 ip_assignment_metro_instance = IPAssignmentMetro.from_json(json)
 # print the JSON string representation of the object
-print IPAssignmentMetro.to_json()
+print(IPAssignmentMetro.to_json())
 
 # convert the object into a dict
 ip_assignment_metro_dict = ip_assignment_metro_instance.to_dict()

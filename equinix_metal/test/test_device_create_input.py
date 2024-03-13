@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device_create_input import DeviceCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device_create_input import DeviceCreateInput
 
 class TestDeviceCreateInput(unittest.TestCase):
     """DeviceCreateInput unit test stubs"""
@@ -29,26 +26,26 @@ class TestDeviceCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DeviceCreateInput:
         """Test DeviceCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DeviceCreateInput`
         """
-        model = equinix_metal.models.device_create_input.DeviceCreateInput()  # noqa: E501
-        if include_optional :
+        model = DeviceCreateInput()
+        if include_optional:
             return DeviceCreateInput(
-                always_pxe = True, 
-                billing_cycle = 'hourly', 
-                customdata = { }, 
-                description = '', 
+                always_pxe = True,
+                billing_cycle = 'hourly',
+                customdata = { },
+                description = '',
                 features = [
                     ''
-                    ], 
-                hardware_reservation_id = 'next-available', 
-                hostname = '', 
-                href = '', 
+                    ],
+                hardware_reservation_id = 'next-available',
+                hostname = '',
+                href = '',
                 ip_addresses = [
                     equinix_metal.models.ip_address.IPAddress(
                         address_family = 4, 
@@ -58,20 +55,20 @@ class TestDeviceCreateInput(unittest.TestCase):
                             ''
                             ], 
                         public = False, )
-                    ], 
-                ipxe_script_url = '', 
-                locked = True, 
-                network_frozen = True, 
-                no_ssh_keys = True, 
-                operating_system = '', 
-                plan = 'c3.large.x86', 
-                private_ipv4_subnet_size = 56, 
+                    ],
+                ipxe_script_url = '',
+                locked = True,
+                network_frozen = True,
+                no_ssh_keys = True,
+                operating_system = '',
+                plan = 'c3.large.x86',
+                private_ipv4_subnet_size = 56,
                 project_ssh_keys = [
                     ''
-                    ], 
-                public_ipv4_subnet_size = 56, 
-                spot_instance = True, 
-                spot_price_max = 1.23, 
+                    ],
+                public_ipv4_subnet_size = 56,
+                spot_instance = True,
+                spot_price_max = 1.23,
                 ssh_keys = [
                     equinix_metal.models.ssh_key_input.SSHKeyInput(
                         href = '', 
@@ -80,7 +77,7 @@ class TestDeviceCreateInput(unittest.TestCase):
                         tags = [
                             ''
                             ], )
-                    ], 
+                    ],
                 storage = equinix_metal.models.storage.Storage(
                     disks = [
                         equinix_metal.models.disk.Disk(
@@ -116,17 +113,17 @@ class TestDeviceCreateInput(unittest.TestCase):
                             href = '', 
                             level = '', 
                             name = '', )
-                        ], ), 
+                        ], ),
                 tags = [
                     ''
-                    ], 
-                termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    ],
+                termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 user_ssh_keys = [
                     ''
-                    ], 
+                    ],
                 userdata = ''
             )
-        else :
+        else:
             return DeviceCreateInput(
                 operating_system = '',
                 plan = 'c3.large.x86',

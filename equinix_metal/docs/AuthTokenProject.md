@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **backend_transfer_enabled** | **bool** |  | [optional] 
@@ -35,7 +36,7 @@ json = "{}"
 # create an instance of AuthTokenProject from a JSON string
 auth_token_project_instance = AuthTokenProject.from_json(json)
 # print the JSON string representation of the object
-print AuthTokenProject.to_json()
+print(AuthTokenProject.to_json())
 
 # convert the object into a dict
 auth_token_project_dict = auth_token_project_instance.to_dict()

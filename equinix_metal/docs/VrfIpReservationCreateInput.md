@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cidr** | **int** | The size of the VRF IP Reservation&#39;s subnet | 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of VrfIpReservationCreateInput from a JSON string
 vrf_ip_reservation_create_input_instance = VrfIpReservationCreateInput.from_json(json)
 # print the JSON string representation of the object
-print VrfIpReservationCreateInput.to_json()
+print(VrfIpReservationCreateInput.to_json())
 
 # convert the object into a dict
 vrf_ip_reservation_create_input_dict = vrf_ip_reservation_create_input_instance.to_dict()

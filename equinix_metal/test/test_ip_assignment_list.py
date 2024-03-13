@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_assignment_list import IPAssignmentList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ip_assignment_list import IPAssignmentList
 
 class TestIPAssignmentList(unittest.TestCase):
     """IPAssignmentList unit test stubs"""
@@ -29,17 +26,17 @@ class TestIPAssignmentList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> IPAssignmentList:
         """Test IPAssignmentList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `IPAssignmentList`
         """
-        model = equinix_metal.models.ip_assignment_list.IPAssignmentList()  # noqa: E501
-        if include_optional :
+        model = IPAssignmentList()
+        if include_optional:
             return IPAssignmentList(
-                href = '', 
+                href = '',
                 ip_addresses = [
                     equinix_metal.models.ip_assignment.IPAssignment(
                         address = '', 
@@ -68,7 +65,7 @@ class TestIPAssignmentList(unittest.TestCase):
                         state = 'pending', )
                     ]
             )
-        else :
+        else:
             return IPAssignmentList(
         )
         """

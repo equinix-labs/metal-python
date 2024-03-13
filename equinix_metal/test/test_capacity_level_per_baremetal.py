@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.capacity_level_per_baremetal import CapacityLevelPerBaremetal  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.capacity_level_per_baremetal import CapacityLevelPerBaremetal
 
 class TestCapacityLevelPerBaremetal(unittest.TestCase):
     """CapacityLevelPerBaremetal unit test stubs"""
@@ -29,20 +26,20 @@ class TestCapacityLevelPerBaremetal(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CapacityLevelPerBaremetal:
         """Test CapacityLevelPerBaremetal
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CapacityLevelPerBaremetal`
         """
-        model = equinix_metal.models.capacity_level_per_baremetal.CapacityLevelPerBaremetal()  # noqa: E501
-        if include_optional :
+        model = CapacityLevelPerBaremetal()
+        if include_optional:
             return CapacityLevelPerBaremetal(
-                href = '', 
+                href = '',
                 level = ''
             )
-        else :
+        else:
             return CapacityLevelPerBaremetal(
         )
         """

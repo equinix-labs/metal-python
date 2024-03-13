@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.invitation import Invitation  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.invitation import Invitation
 
 class TestInvitation(unittest.TestCase):
     """Invitation unit test stubs"""
@@ -29,37 +26,37 @@ class TestInvitation(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Invitation:
         """Test Invitation
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Invitation`
         """
-        model = equinix_metal.models.invitation.Invitation()  # noqa: E501
-        if include_optional :
+        model = Invitation()
+        if include_optional:
             return Invitation(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
-                id = '', 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
+                id = '',
                 invitation = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 invited_by = equinix_metal.models.href.Href(
-                    href = '', ), 
-                invitee = '', 
-                nonce = '', 
+                    href = '', ),
+                invitee = '',
+                nonce = '',
                 organization = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 projects = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
+                    ],
                 roles = [
                     'admin'
-                    ], 
+                    ],
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return Invitation(
         )
         """

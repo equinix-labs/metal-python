@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
 
 class TestFindTrafficTimeframeParameter(unittest.TestCase):
     """FindTrafficTimeframeParameter unit test stubs"""
@@ -29,21 +26,21 @@ class TestFindTrafficTimeframeParameter(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> FindTrafficTimeframeParameter:
         """Test FindTrafficTimeframeParameter
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `FindTrafficTimeframeParameter`
         """
-        model = equinix_metal.models.find_traffic_timeframe_parameter.FindTrafficTimeframeParameter()  # noqa: E501
-        if include_optional :
+        model = FindTrafficTimeframeParameter()
+        if include_optional:
             return FindTrafficTimeframeParameter(
-                ended_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
+                ended_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
                 started_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return FindTrafficTimeframeParameter(
                 ended_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 started_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.event import Event  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.event import Event
 
 class TestEvent(unittest.TestCase):
     """Event unit test stubs"""
@@ -29,31 +26,31 @@ class TestEvent(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Event:
         """Test Event
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Event`
         """
-        model = equinix_metal.models.event.Event()  # noqa: E501
-        if include_optional :
+        model = Event()
+        if include_optional:
             return Event(
-                body = '', 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
-                id = '', 
-                interpolated = '', 
-                ip = '', 
-                modified_by = equinix_metal.models.modified_by.modified_by(), 
+                body = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
+                id = '',
+                interpolated = '',
+                ip = '',
+                modified_by = equinix_metal.models.modified_by.modified_by(),
                 relationships = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
-                state = '', 
+                    ],
+                state = '',
                 type = ''
             )
-        else :
+        else:
             return Event(
         )
         """

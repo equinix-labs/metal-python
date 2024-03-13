@@ -21,9 +21,8 @@ Creates a new license for the given project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.license import License
 from equinix_metal.models.license_create_input import LicenseCreateInput
@@ -69,6 +68,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -90,6 +90,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -99,7 +100,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_license**
 > delete_license(id)
 
@@ -110,9 +110,8 @@ Deletes a license.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -151,6 +150,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| License UUID | 
@@ -169,6 +169,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | no content |  -  |
@@ -177,7 +178,6 @@ void (empty response body)
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_license_by_id**
 > License find_license_by_id(id, include=include, exclude=exclude)
 
@@ -188,9 +188,8 @@ Returns a license
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.license import License
 from equinix_metal.rest import ApiException
@@ -234,6 +233,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| License UUID | 
@@ -254,6 +254,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -262,7 +263,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_project_licenses**
 > LicenseList find_project_licenses(id, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -273,9 +273,8 @@ Provides a collection of licenses for a given project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.license_list import LicenseList
 from equinix_metal.rest import ApiException
@@ -321,6 +320,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -343,6 +343,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -351,7 +352,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **update_license**
 > License update_license(id, license_update_input, include=include, exclude=exclude)
 
@@ -362,9 +362,8 @@ Updates the license.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.license import License
 from equinix_metal.models.license_update_input import LicenseUpdateInput
@@ -410,6 +409,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| License UUID | 
@@ -431,6 +431,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -440,4 +441,3 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

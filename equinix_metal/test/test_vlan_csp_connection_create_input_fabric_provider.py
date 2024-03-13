@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vlan_csp_connection_create_input_fabric_provider import VlanCSPConnectionCreateInputFabricProvider  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vlan_csp_connection_create_input_fabric_provider import VlanCSPConnectionCreateInputFabricProvider
 
 class TestVlanCSPConnectionCreateInputFabricProvider(unittest.TestCase):
     """VlanCSPConnectionCreateInputFabricProvider unit test stubs"""
@@ -29,22 +26,22 @@ class TestVlanCSPConnectionCreateInputFabricProvider(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VlanCSPConnectionCreateInputFabricProvider:
         """Test VlanCSPConnectionCreateInputFabricProvider
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VlanCSPConnectionCreateInputFabricProvider`
         """
-        model = equinix_metal.models.vlan_csp_connection_create_input_fabric_provider.VlanCSPConnectionCreateInputFabricProvider()  # noqa: E501
-        if include_optional :
+        model = VlanCSPConnectionCreateInputFabricProvider()
+        if include_optional:
             return VlanCSPConnectionCreateInputFabricProvider(
-                account_id = '129312', 
-                href = '', 
-                location = 'us-west-1', 
+                account_id = '129312',
+                href = '',
+                location = 'us-west-1',
                 type = 'CSP_AWS'
             )
-        else :
+        else:
             return VlanCSPConnectionCreateInputFabricProvider(
                 account_id = '129312',
                 type = 'CSP_AWS',

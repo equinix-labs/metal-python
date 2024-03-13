@@ -19,9 +19,8 @@ Provides a listing of available datacenters where you can provision Packet devic
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.facility_list import FacilityList
 from equinix_metal.rest import ApiException
@@ -64,6 +63,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
@@ -83,13 +83,13 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
 **401** | unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_facilities_by_organization**
 > FacilityList find_facilities_by_organization(id, include=include, exclude=exclude)
 
@@ -100,9 +100,8 @@ Returns a listing of available datacenters for the given organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.facility_list import FacilityList
 from equinix_metal.rest import ApiException
@@ -146,6 +145,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -166,6 +166,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -174,7 +175,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_facilities_by_project**
 > FacilityList find_facilities_by_project(id, include=include, exclude=exclude)
 
@@ -185,9 +185,8 @@ Returns a listing of available datacenters for the given project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.facility_list import FacilityList
 from equinix_metal.rest import ApiException
@@ -231,6 +230,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -251,6 +251,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -259,4 +260,3 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

@@ -18,9 +18,8 @@ Provides a listing of available metros
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.metro_list import MetroList
 from equinix_metal.rest import ApiException
@@ -60,6 +59,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -76,13 +76,13 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
 **401** | unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_metro**
 > Metro get_metro(id)
 
@@ -93,9 +93,8 @@ Show the details for a metro, including name, code, and country.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.metro import Metro
 from equinix_metal.rest import ApiException
@@ -137,6 +136,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Metro UUID | 
@@ -155,10 +155,10 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

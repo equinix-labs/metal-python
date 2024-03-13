@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of VlanVirtualCircuitCreateInput from a JSON string
 vlan_virtual_circuit_create_input_instance = VlanVirtualCircuitCreateInput.from_json(json)
 # print the JSON string representation of the object
-print VlanVirtualCircuitCreateInput.to_json()
+print(VlanVirtualCircuitCreateInput.to_json())
 
 # convert the object into a dict
 vlan_virtual_circuit_create_input_dict = vlan_virtual_circuit_create_input_instance.to_dict()

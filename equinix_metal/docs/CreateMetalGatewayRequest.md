@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of CreateMetalGatewayRequest from a JSON string
 create_metal_gateway_request_instance = CreateMetalGatewayRequest.from_json(json)
 # print the JSON string representation of the object
-print CreateMetalGatewayRequest.to_json()
+print(CreateMetalGatewayRequest.to_json())
 
 # convert the object into a dict
 create_metal_gateway_request_dict = create_metal_gateway_request_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | [**Address**](Address.md) |  | [optional] 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of IPReservationFacility from a JSON string
 ip_reservation_facility_instance = IPReservationFacility.from_json(json)
 # print the JSON string representation of the object
-print IPReservationFacility.to_json()
+print(IPReservationFacility.to_json())
 
 # convert the object into a dict
 ip_reservation_facility_dict = ip_reservation_facility_instance.to_dict()

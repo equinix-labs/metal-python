@@ -18,51 +18,67 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.plan_specs_cpus_inner import PlanSpecsCpusInner
 from equinix_metal.models.plan_specs_drives_inner import PlanSpecsDrivesInner
 from equinix_metal.models.plan_specs_features import PlanSpecsFeatures
 from equinix_metal.models.plan_specs_memory import PlanSpecsMemory
 from equinix_metal.models.plan_specs_nics_inner import PlanSpecsNicsInner
+from typing import Optional, Set
+from typing_extensions import Self
 
 class PlanSpecs(BaseModel):
     """
     PlanSpecs
-    """
-    cpus: Optional[conlist(PlanSpecsCpusInner)] = None
-    drives: Optional[conlist(PlanSpecsDrivesInner)] = None
+    """ # noqa: E501
+    cpus: Optional[List[PlanSpecsCpusInner]] = None
+    drives: Optional[List[PlanSpecsDrivesInner]] = None
     features: Optional[PlanSpecsFeatures] = None
     href: Optional[StrictStr] = None
     memory: Optional[PlanSpecsMemory] = None
-    nics: Optional[conlist(PlanSpecsNicsInner)] = None
-    __properties = ["cpus", "drives", "features", "href", "memory", "nics"]
+    nics: Optional[List[PlanSpecsNicsInner]] = None
+    __properties: ClassVar[List[str]] = ["cpus", "drives", "features", "href", "memory", "nics"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> PlanSpecs:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of PlanSpecs from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in cpus (list)
         _items = []
         if self.cpus:
@@ -93,21 +109,21 @@ class PlanSpecs(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> PlanSpecs:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of PlanSpecs from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return PlanSpecs.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = PlanSpecs.parse_obj({
-            "cpus": [PlanSpecsCpusInner.from_dict(_item) for _item in obj.get("cpus")] if obj.get("cpus") is not None else None,
-            "drives": [PlanSpecsDrivesInner.from_dict(_item) for _item in obj.get("drives")] if obj.get("drives") is not None else None,
-            "features": PlanSpecsFeatures.from_dict(obj.get("features")) if obj.get("features") is not None else None,
+        _obj = cls.model_validate({
+            "cpus": [PlanSpecsCpusInner.from_dict(_item) for _item in obj["cpus"]] if obj.get("cpus") is not None else None,
+            "drives": [PlanSpecsDrivesInner.from_dict(_item) for _item in obj["drives"]] if obj.get("drives") is not None else None,
+            "features": PlanSpecsFeatures.from_dict(obj["features"]) if obj.get("features") is not None else None,
             "href": obj.get("href"),
-            "memory": PlanSpecsMemory.from_dict(obj.get("memory")) if obj.get("memory") is not None else None,
-            "nics": [PlanSpecsNicsInner.from_dict(_item) for _item in obj.get("nics")] if obj.get("nics") is not None else None
+            "memory": PlanSpecsMemory.from_dict(obj["memory"]) if obj.get("memory") is not None else None,
+            "nics": [PlanSpecsNicsInner.from_dict(_item) for _item in obj["nics"]] if obj.get("nics") is not None else None
         })
         return _obj
 

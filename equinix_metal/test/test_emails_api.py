@@ -15,45 +15,43 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.emails_api import EmailsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.emails_api import EmailsApi
 
 
 class TestEmailsApi(unittest.TestCase):
     """EmailsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.emails_api.EmailsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = EmailsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_email(self):
+    def test_create_email(self) -> None:
         """Test case for create_email
 
-        Create an email  # noqa: E501
+        Create an email
         """
         pass
 
-    def test_delete_email(self):
+    def test_delete_email(self) -> None:
         """Test case for delete_email
 
-        Delete the email  # noqa: E501
+        Delete the email
         """
         pass
 
-    def test_find_email_by_id(self):
+    def test_find_email_by_id(self) -> None:
         """Test case for find_email_by_id
 
-        Retrieve an email  # noqa: E501
+        Retrieve an email
         """
         pass
 
-    def test_update_email(self):
+    def test_update_email(self) -> None:
         """Test case for update_email
 
-        Update the email  # noqa: E501
+        Update the email
         """
         pass
 

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device import Device  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device import Device
 
 class TestDevice(unittest.TestCase):
     """Device unit test stubs"""
@@ -29,29 +26,29 @@ class TestDevice(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Device:
         """Test Device
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Device`
         """
-        model = equinix_metal.models.device.Device()  # noqa: E501
-        if include_optional :
+        model = Device()
+        if include_optional:
             return Device(
                 actions = [
                     equinix_metal.models.device_actions_inner.Device_actions_inner(
                         href = '', 
                         name = '', 
                         type = '', )
-                    ], 
-                always_pxe = True, 
-                billing_cycle = '', 
-                bonding_mode = 56, 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                created_by = None, 
-                customdata = { }, 
-                description = '', 
+                    ],
+                always_pxe = True,
+                billing_cycle = '',
+                bonding_mode = 56,
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                created_by = None,
+                customdata = { },
+                description = '',
                 facility = equinix_metal.models.facility.Facility(
                     address = equinix_metal.models.address.Address(
                         address2 = '', 
@@ -70,8 +67,8 @@ class TestDevice(unittest.TestCase):
                     id = '', 
                     ip_ranges = ["2604:1380::/36","147.75.192.0/21"], 
                     metro = null, 
-                    name = '', ), 
-                firmware_set_id = '', 
+                    name = '', ),
+                firmware_set_id = '',
                 hardware_reservation = equinix_metal.models.hardware_reservation.HardwareReservation(
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     custom_rate = 1050.5, 
@@ -406,11 +403,11 @@ class TestDevice(unittest.TestCase):
                     short_id = '', 
                     spare = True, 
                     switch_uuid = '', 
-                    termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
-                hostname = '', 
-                href = '', 
-                id = '', 
-                image_url = '', 
+                    termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                hostname = '',
+                href = '',
+                id = '',
+                image_url = '',
                 ip_addresses = [
                     equinix_metal.models.ip_assignment.IPAssignment(
                         address = '', 
@@ -437,12 +434,12 @@ class TestDevice(unittest.TestCase):
                             network = '', ), 
                         public = True, 
                         state = 'pending', )
-                    ], 
-                ipxe_script_url = '', 
-                iqn = '', 
-                locked = True, 
-                metro = None, 
-                network_frozen = True, 
+                    ],
+                ipxe_script_url = '',
+                iqn = '',
+                locked = True,
+                metro = None,
+                network_frozen = True,
                 network_ports = [
                     equinix_metal.models.port.Port(
                         bond = equinix_metal.models.bond_port_data.BondPortData(
@@ -490,7 +487,7 @@ class TestDevice(unittest.TestCase):
                         virtual_networks = [
                             
                             ], )
-                    ], 
+                    ],
                 operating_system = equinix_metal.models.operating_system.OperatingSystem(
                     default_operating_system = True, 
                     distro = '', 
@@ -505,7 +502,7 @@ class TestDevice(unittest.TestCase):
                         ''
                         ], 
                     slug = '', 
-                    version = '', ), 
+                    version = '', ),
                 plan = equinix_metal.models.plan.Plan(
                     available_in = [
                         equinix_metal.models.plan_available_in_inner.Plan_available_in_inner(
@@ -563,7 +560,7 @@ class TestDevice(unittest.TestCase):
                                 href = '', 
                                 type = '', )
                             ], ), 
-                    type = 'standard', ), 
+                    type = 'standard', ),
                 project = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -600,8 +597,8 @@ class TestDevice(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
-                project_lite = None, 
+                        ], ),
+                project_lite = None,
                 provisioning_events = [
                     equinix_metal.models.event.Event(
                         body = '', 
@@ -617,18 +614,18 @@ class TestDevice(unittest.TestCase):
                             ], 
                         state = '', 
                         type = '', )
-                    ], 
-                provisioning_percentage = 1.337, 
-                root_password = '', 
-                short_id = '', 
-                sos = '', 
-                spot_instance = True, 
-                spot_price_max = 1.337, 
+                    ],
+                provisioning_percentage = 1.337,
+                root_password = '',
+                short_id = '',
+                sos = '',
+                spot_instance = True,
+                spot_price_max = 1.337,
                 ssh_keys = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
-                state = 'queued', 
+                    ],
+                state = 'queued',
                 storage = equinix_metal.models.storage.Storage(
                     disks = [
                         equinix_metal.models.disk.Disk(
@@ -664,21 +661,21 @@ class TestDevice(unittest.TestCase):
                             href = '', 
                             level = '', 
                             name = '', )
-                        ], ), 
-                switch_uuid = '', 
+                        ], ),
+                switch_uuid = '',
                 tags = [
                     ''
-                    ], 
-                termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                user = '', 
-                userdata = '', 
+                    ],
+                termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                user = '',
+                userdata = '',
                 volumes = [
                     equinix_metal.models.href.Href(
                         href = '', )
                     ]
             )
-        else :
+        else:
             return Device(
         )
         """

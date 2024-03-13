@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_address** | **object** |  | [optional] 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of PaymentMethodUpdateInput from a JSON string
 payment_method_update_input_instance = PaymentMethodUpdateInput.from_json(json)
 # print the JSON string representation of the object
-print PaymentMethodUpdateInput.to_json()
+print(PaymentMethodUpdateInput.to_json())
 
 # convert the object into a dict
 payment_method_update_input_dict = payment_method_update_input_instance.to_dict()

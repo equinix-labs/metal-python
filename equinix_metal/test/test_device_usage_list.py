@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device_usage_list import DeviceUsageList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device_usage_list import DeviceUsageList
 
 class TestDeviceUsageList(unittest.TestCase):
     """DeviceUsageList unit test stubs"""
@@ -29,17 +26,17 @@ class TestDeviceUsageList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DeviceUsageList:
         """Test DeviceUsageList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DeviceUsageList`
         """
-        model = equinix_metal.models.device_usage_list.DeviceUsageList()  # noqa: E501
-        if include_optional :
+        model = DeviceUsageList()
+        if include_optional:
             return DeviceUsageList(
-                href = '', 
+                href = '',
                 usages = [
                     equinix_metal.models.device_usage.DeviceUsage(
                         href = '', 
@@ -48,7 +45,7 @@ class TestDeviceUsageList(unittest.TestCase):
                         unit = '', )
                     ]
             )
-        else :
+        else:
             return DeviceUsageList(
         )
         """

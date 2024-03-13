@@ -15,66 +15,64 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.bgp_api import BGPApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.bgp_api import BGPApi
 
 
 class TestBGPApi(unittest.TestCase):
     """BGPApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.bgp_api.BGPApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = BGPApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_delete_bgp_session(self):
+    def test_delete_bgp_session(self) -> None:
         """Test case for delete_bgp_session
 
-        Delete the BGP session  # noqa: E501
+        Delete the BGP session
         """
         pass
 
-    def test_find_bgp_config_by_project(self):
+    def test_find_bgp_config_by_project(self) -> None:
         """Test case for find_bgp_config_by_project
 
-        Retrieve a bgp config  # noqa: E501
+        Retrieve a bgp config
         """
         pass
 
-    def test_find_bgp_session_by_id(self):
+    def test_find_bgp_session_by_id(self) -> None:
         """Test case for find_bgp_session_by_id
 
-        Retrieve a BGP session  # noqa: E501
+        Retrieve a BGP session
         """
         pass
 
-    def test_find_global_bgp_ranges(self):
+    def test_find_global_bgp_ranges(self) -> None:
         """Test case for find_global_bgp_ranges
 
-        Retrieve all global bgp ranges  # noqa: E501
+        Retrieve all global bgp ranges
         """
         pass
 
-    def test_find_project_bgp_sessions(self):
+    def test_find_project_bgp_sessions(self) -> None:
         """Test case for find_project_bgp_sessions
 
-        Retrieve all BGP sessions for project  # noqa: E501
+        Retrieve all BGP sessions for project
         """
         pass
 
-    def test_request_bgp_config(self):
+    def test_request_bgp_config(self) -> None:
         """Test case for request_bgp_config
 
-        Requesting bgp config  # noqa: E501
+        Requesting bgp config
         """
         pass
 
-    def test_update_bgp_session(self):
+    def test_update_bgp_session(self) -> None:
         """Test case for update_bgp_session
 
-        Update the BGP session  # noqa: E501
+        Update the BGP session
         """
         pass
 

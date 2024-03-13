@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.entitlement import Entitlement  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.entitlement import Entitlement
 
 class TestEntitlement(unittest.TestCase):
     """Entitlement unit test stubs"""
@@ -29,30 +26,30 @@ class TestEntitlement(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Entitlement:
         """Test Entitlement
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Entitlement`
         """
-        model = equinix_metal.models.entitlement.Entitlement()  # noqa: E501
-        if include_optional :
+        model = Entitlement()
+        if include_optional:
             return Entitlement(
-                description = '', 
-                feature_access = None, 
-                href = '', 
-                id = '', 
-                instance_quota = None, 
-                ip_quota = None, 
-                name = '', 
-                project_quota = 56, 
-                slug = '', 
-                volume_limits = None, 
-                volume_quota = None, 
+                description = '',
+                feature_access = None,
+                href = '',
+                id = '',
+                instance_quota = None,
+                ip_quota = None,
+                name = '',
+                project_quota = 56,
+                slug = '',
+                volume_limits = None,
+                volume_quota = None,
                 weight = 56
             )
-        else :
+        else:
             return Entitlement(
                 id = '',
                 slug = '',

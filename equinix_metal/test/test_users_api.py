@@ -15,59 +15,57 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.users_api import UsersApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.users_api import UsersApi
 
 
 class TestUsersApi(unittest.TestCase):
     """UsersApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.users_api.UsersApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = UsersApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_user(self):
+    def test_create_user(self) -> None:
         """Test case for create_user
 
-        Create a user  # noqa: E501
+        Create a user
         """
         pass
 
-    def test_find_current_user(self):
+    def test_find_current_user(self) -> None:
         """Test case for find_current_user
 
-        Retrieve the current user  # noqa: E501
+        Retrieve the current user
         """
         pass
 
-    def test_find_invitations(self):
+    def test_find_invitations(self) -> None:
         """Test case for find_invitations
 
-        Retrieve current user invitations  # noqa: E501
+        Retrieve current user invitations
         """
         pass
 
-    def test_find_user_by_id(self):
+    def test_find_user_by_id(self) -> None:
         """Test case for find_user_by_id
 
-        Retrieve a user  # noqa: E501
+        Retrieve a user
         """
         pass
 
-    def test_find_user_customdata(self):
+    def test_find_user_customdata(self) -> None:
         """Test case for find_user_customdata
 
-        Retrieve the custom metadata of a user  # noqa: E501
+        Retrieve the custom metadata of a user
         """
         pass
 
-    def test_find_users(self):
+    def test_find_users(self) -> None:
         """Test case for find_users
 
-        Retrieve all users  # noqa: E501
+        Retrieve all users
         """
         pass
 
@@ -78,10 +76,10 @@ class TestUsersApi(unittest.TestCase):
         """
         pass
 
-    def test_update_current_user(self):
+    def test_update_current_user(self) -> None:
         """Test case for update_current_user
 
-        Update the current user  # noqa: E501
+        Update the current user
         """
         pass
 

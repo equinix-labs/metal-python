@@ -33,9 +33,8 @@ Creates an organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.organization import Organization
 from equinix_metal.models.organization_input import OrganizationInput
@@ -80,6 +79,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **organization_input** | [**OrganizationInput**](OrganizationInput.md)| Organization to create | 
@@ -100,6 +100,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -108,7 +109,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_organization_invitation**
 > Invitation create_organization_invitation(id, invitation_input, include=include)
 
@@ -119,9 +119,8 @@ In order to add a user to an organization, they must first be invited. To invite
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invitation import Invitation
 from equinix_metal.models.invitation_input import InvitationInput
@@ -166,6 +165,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -186,6 +186,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -195,7 +196,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_organization_project**
 > Project create_organization_project(id, project_create_input, include=include, exclude=exclude)
 
@@ -206,9 +206,8 @@ Creates a new project for the organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.project import Project
 from equinix_metal.models.project_create_input import ProjectCreateInput
@@ -254,6 +253,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -275,6 +275,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -282,7 +283,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_payment_method**
 > PaymentMethod create_payment_method(id, payment_method_create_input, include=include)
 
@@ -293,9 +293,8 @@ Creates a payment method.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.payment_method import PaymentMethod
 from equinix_metal.models.payment_method_create_input import PaymentMethodCreateInput
@@ -340,6 +339,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -360,6 +360,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -368,7 +369,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_organization**
 > delete_organization(id)
 
@@ -379,9 +379,8 @@ Deletes the organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -420,6 +419,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -438,6 +438,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | no content |  -  |
@@ -445,7 +446,6 @@ void (empty response body)
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_operating_systems_by_organization**
 > OperatingSystemList find_operating_systems_by_organization(id, include=include)
 
@@ -456,9 +456,8 @@ Returns a listing of available operating systems for the given organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.operating_system_list import OperatingSystemList
 from equinix_metal.rest import ApiException
@@ -501,6 +500,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -520,6 +520,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -528,7 +529,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_by_id**
 > Organization find_organization_by_id(id, include=include, exclude=exclude)
 
@@ -539,9 +539,8 @@ Returns a single organization's details, if the user is authorized to view it.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.organization import Organization
 from equinix_metal.rest import ApiException
@@ -585,6 +584,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -605,6 +605,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -613,7 +614,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_customdata**
 > find_organization_customdata(id)
 
@@ -624,9 +624,8 @@ Provides the custom metadata stored for this organization in json format
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -665,6 +664,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -683,6 +683,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -691,7 +692,6 @@ void (empty response body)
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_invitations**
 > InvitationList find_organization_invitations(id, include=include, page=page, per_page=per_page)
 
@@ -702,9 +702,8 @@ Returns all invitations in an organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.invitation_list import InvitationList
 from equinix_metal.rest import ApiException
@@ -749,6 +748,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -770,6 +770,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -778,7 +779,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_payment_methods**
 > PaymentMethodList find_organization_payment_methods(id, include=include, page=page, per_page=per_page)
 
@@ -789,9 +789,8 @@ Returns all payment methods of an organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.payment_method_list import PaymentMethodList
 from equinix_metal.rest import ApiException
@@ -836,6 +835,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -857,6 +857,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -864,7 +865,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_projects**
 > ProjectList find_organization_projects(id, name=name, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -875,9 +875,8 @@ Returns a collection of projects that belong to the organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.project_list import ProjectList
 from equinix_metal.rest import ApiException
@@ -924,6 +923,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -947,18 +947,16 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
 **401** | unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_projects_all_pages**
 > ProjectList find_organization_projects_all_pages(id, name=name, include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_organization_projects**](OrganizationsApi.md#find_organization_projects) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_organization_projects**](OrganizationsApi.md#find_organization_projects).
-
 # **find_organization_transfers**
 > TransferRequestList find_organization_transfers(id, include=include)
 
@@ -969,9 +967,8 @@ Provides a collection of project transfer requests from or to the organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.transfer_request_list import TransferRequestList
 from equinix_metal.rest import ApiException
@@ -1014,6 +1011,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -1033,6 +1031,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1040,7 +1039,6 @@ Name | Type | Description  | Notes
 **403** | forbidden |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organizations**
 > OrganizationList find_organizations(personal=personal, without_projects=without_projects, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -1051,9 +1049,8 @@ Returns a list of organizations that are accessible to the current user.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.organization_list import OrganizationList
 from equinix_metal.rest import ApiException
@@ -1100,6 +1097,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **personal** | **str**| Include, exclude or show only personal organizations. | [optional] 
@@ -1123,18 +1121,16 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
 **401** | unauthorized |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organizations_all_pages**
 > OrganizationList find_organizations_all_pages(personal=personal, without_projects=without_projects, include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_organizations**](OrganizationsApi.md#find_organizations) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_organizations**](OrganizationsApi.md#find_organizations).
-
 # **find_plans_by_organization**
 > PlanList find_plans_by_organization(id, include=include, exclude=exclude)
 
@@ -1145,9 +1141,8 @@ Returns a listing of available plans for the given organization
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.plan_list import PlanList
 from equinix_metal.rest import ApiException
@@ -1191,6 +1186,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -1211,6 +1207,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1219,7 +1216,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **update_organization**
 > Organization update_organization(id, organization_input, include=include, exclude=exclude)
 
@@ -1230,9 +1226,8 @@ Updates the organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.organization import Organization
 from equinix_metal.models.organization_input import OrganizationInput
@@ -1278,6 +1273,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -1299,6 +1295,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1308,4 +1305,3 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

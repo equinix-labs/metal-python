@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hour** | **float** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of PlanAvailableInInnerPrice from a JSON string
 plan_available_in_inner_price_instance = PlanAvailableInInnerPrice.from_json(json)
 # print the JSON string representation of the object
-print PlanAvailableInInnerPrice.to_json()
+print(PlanAvailableInInnerPrice.to_json())
 
 # convert the object into a dict
 plan_available_in_inner_price_dict = plan_available_in_inner_price_instance.to_dict()

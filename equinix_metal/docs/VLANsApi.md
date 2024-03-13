@@ -20,9 +20,8 @@ Creates an virtual network.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.models.virtual_network_create_input import VirtualNetworkCreateInput
@@ -68,6 +67,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -89,6 +89,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -98,7 +99,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_virtual_network**
 > VirtualNetwork delete_virtual_network(id, include=include, exclude=exclude)
 
@@ -109,9 +109,8 @@ Deletes a virtual network.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.rest import ApiException
@@ -155,6 +154,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Virtual Network UUID | 
@@ -175,6 +175,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -184,7 +185,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_virtual_networks**
 > VirtualNetworkList find_virtual_networks(id, include=include, exclude=exclude, facility=facility, metro=metro)
 
@@ -195,9 +195,8 @@ Provides a list of virtual networks for a single project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_network_list import VirtualNetworkList
 from equinix_metal.rest import ApiException
@@ -243,6 +242,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -265,6 +265,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -273,7 +274,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_virtual_network**
 > VirtualNetwork get_virtual_network(id, include=include, exclude=exclude)
 
@@ -284,9 +284,8 @@ Get a virtual network.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.rest import ApiException
@@ -330,6 +329,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Virtual Network UUID | 
@@ -350,6 +350,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -359,4 +360,3 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

@@ -18,54 +18,70 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.metal_gateway_lite import MetalGatewayLite
+from typing import Optional, Set
+from typing_extensions import Self
 
 class VirtualNetwork(BaseModel):
     """
     VirtualNetwork
-    """
+    """ # noqa: E501
     assigned_to: Optional[Href] = None
-    assigned_to_virtual_circuit: Optional[StrictBool] = Field(None, description="True if the virtual network is attached to a virtual circuit. False if not.")
+    assigned_to_virtual_circuit: Optional[StrictBool] = Field(default=None, description="True if the virtual network is attached to a virtual circuit. False if not.")
     description: Optional[StrictStr] = None
     facility: Optional[Href] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    instances: Optional[conlist(Href)] = Field(None, description="A list of instances with ports currently associated to this Virtual Network.")
-    metal_gateways: Optional[conlist(MetalGatewayLite)] = Field(None, description="A list of metal gateways currently associated to this Virtual Network.")
+    instances: Optional[List[Href]] = Field(default=None, description="A list of instances with ports currently associated to this Virtual Network.")
+    metal_gateways: Optional[List[MetalGatewayLite]] = Field(default=None, description="A list of metal gateways currently associated to this Virtual Network.")
     metro: Optional[Href] = None
-    metro_code: Optional[StrictStr] = Field(None, description="The Metro code of the metro in which this Virtual Network is defined.")
-    tags: Optional[conlist(StrictStr)] = None
+    metro_code: Optional[StrictStr] = Field(default=None, description="The Metro code of the metro in which this Virtual Network is defined.")
+    tags: Optional[List[StrictStr]] = None
     vxlan: Optional[StrictInt] = None
-    __properties = ["assigned_to", "assigned_to_virtual_circuit", "description", "facility", "href", "id", "instances", "metal_gateways", "metro", "metro_code", "tags", "vxlan"]
+    __properties: ClassVar[List[str]] = ["assigned_to", "assigned_to_virtual_circuit", "description", "facility", "href", "id", "instances", "metal_gateways", "metro", "metro_code", "tags", "vxlan"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> VirtualNetwork:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of VirtualNetwork from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of assigned_to
         if self.assigned_to:
             _dict['assigned_to'] = self.assigned_to.to_dict()
@@ -92,24 +108,24 @@ class VirtualNetwork(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> VirtualNetwork:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of VirtualNetwork from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return VirtualNetwork.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = VirtualNetwork.parse_obj({
-            "assigned_to": Href.from_dict(obj.get("assigned_to")) if obj.get("assigned_to") is not None else None,
+        _obj = cls.model_validate({
+            "assigned_to": Href.from_dict(obj["assigned_to"]) if obj.get("assigned_to") is not None else None,
             "assigned_to_virtual_circuit": obj.get("assigned_to_virtual_circuit"),
             "description": obj.get("description"),
-            "facility": Href.from_dict(obj.get("facility")) if obj.get("facility") is not None else None,
+            "facility": Href.from_dict(obj["facility"]) if obj.get("facility") is not None else None,
             "href": obj.get("href"),
             "id": obj.get("id"),
-            "instances": [Href.from_dict(_item) for _item in obj.get("instances")] if obj.get("instances") is not None else None,
-            "metal_gateways": [MetalGatewayLite.from_dict(_item) for _item in obj.get("metal_gateways")] if obj.get("metal_gateways") is not None else None,
-            "metro": Href.from_dict(obj.get("metro")) if obj.get("metro") is not None else None,
+            "instances": [Href.from_dict(_item) for _item in obj["instances"]] if obj.get("instances") is not None else None,
+            "metal_gateways": [MetalGatewayLite.from_dict(_item) for _item in obj["metal_gateways"]] if obj.get("metal_gateways") is not None else None,
+            "metro": Href.from_dict(obj["metro"]) if obj.get("metro") is not None else None,
             "metro_code": obj.get("metro_code"),
             "tags": obj.get("tags"),
             "vxlan": obj.get("vxlan")

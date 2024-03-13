@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 
 class TestBgpDynamicNeighbor(unittest.TestCase):
     """BgpDynamicNeighbor unit test stubs"""
@@ -29,27 +26,27 @@ class TestBgpDynamicNeighbor(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BgpDynamicNeighbor:
         """Test BgpDynamicNeighbor
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BgpDynamicNeighbor`
         """
-        model = equinix_metal.models.bgp_dynamic_neighbor.BgpDynamicNeighbor()  # noqa: E501
-        if include_optional :
+        model = BgpDynamicNeighbor()
+        if include_optional:
             return BgpDynamicNeighbor(
-                bgp_neighbor_asn = 12345, 
-                bgp_neighbor_range = '192.168.1.0/25', 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                bgp_neighbor_asn = 12345,
+                bgp_neighbor_range = '192.168.1.0/25',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_by = equinix_metal.models.user_limited.UserLimited(
                     avatar_thumb_url = '', 
                     avatar_url = '', 
                     full_name = '', 
                     href = '', 
-                    id = '', ), 
-                href = '/bgp-dynamic-neighbors/aea82f16-57ec-412c-9523-b7f2b27635b2', 
-                id = 'aea82f16-57ec-412c-9523-b7f2b27635b2', 
+                    id = '', ),
+                href = '/bgp-dynamic-neighbors/aea82f16-57ec-412c-9523-b7f2b27635b2',
+                id = 'aea82f16-57ec-412c-9523-b7f2b27635b2',
                 metal_gateway = equinix_metal.models.vrf_metal_gateway.VrfMetalGateway(
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     created_by = equinix_metal.models.href.Href(
@@ -209,14 +206,14 @@ class TestBgpDynamicNeighbor(unittest.TestCase):
                             ], 
                         metro_code = '', 
                         vxlan = 56, ), 
-                    vrf = , ), 
-                state = 'active', 
+                    vrf = , ),
+                state = 'active',
                 tags = [
                     ''
-                    ], 
+                    ],
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return BgpDynamicNeighbor(
         )
         """

@@ -15,59 +15,57 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.capacity_api import CapacityApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.capacity_api import CapacityApi
 
 
 class TestCapacityApi(unittest.TestCase):
     """CapacityApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.capacity_api.CapacityApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = CapacityApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_check_capacity_for_facility(self):
+    def test_check_capacity_for_facility(self) -> None:
         """Test case for check_capacity_for_facility
 
-        Check capacity  # noqa: E501
+        Check capacity
         """
         pass
 
-    def test_check_capacity_for_metro(self):
+    def test_check_capacity_for_metro(self) -> None:
         """Test case for check_capacity_for_metro
 
-        Check capacity for a metro  # noqa: E501
+        Check capacity for a metro
         """
         pass
 
-    def test_find_capacity_for_facility(self):
+    def test_find_capacity_for_facility(self) -> None:
         """Test case for find_capacity_for_facility
 
-        View capacity  # noqa: E501
+        View capacity
         """
         pass
 
-    def test_find_capacity_for_metro(self):
+    def test_find_capacity_for_metro(self) -> None:
         """Test case for find_capacity_for_metro
 
-        View capacity for metros  # noqa: E501
+        View capacity for metros
         """
         pass
 
-    def test_find_organization_capacity_per_facility(self):
+    def test_find_organization_capacity_per_facility(self) -> None:
         """Test case for find_organization_capacity_per_facility
 
-        View available hardware plans per Facility for given organization  # noqa: E501
+        View available hardware plans per Facility for given organization
         """
         pass
 
-    def test_find_organization_capacity_per_metro(self):
+    def test_find_organization_capacity_per_metro(self) -> None:
         """Test case for find_organization_capacity_per_metro
 
-        View available hardware plans per Metro for given organization  # noqa: E501
+        View available hardware plans per Metro for given organization
         """
         pass
 

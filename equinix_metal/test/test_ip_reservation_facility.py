@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_reservation_facility import IPReservationFacility  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ip_reservation_facility import IPReservationFacility
 
 class TestIPReservationFacility(unittest.TestCase):
     """IPReservationFacility unit test stubs"""
@@ -29,17 +26,18 @@ class TestIPReservationFacility(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> IPReservationFacility:
         """Test IPReservationFacility
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `IPReservationFacility`
         """
-        model = equinix_metal.models.ip_reservation_facility.IPReservationFacility()  # noqa: E501
-        if include_optional :
+        model = IPReservationFacility()
+        if include_optional:
             return IPReservationFacility(
                 address = equinix_metal.models.address.Address(
+                    address = '', 
                     address2 = '', 
                     city = '', 
                     coordinates = equinix_metal.models.coordinates.Coordinates(
@@ -49,16 +47,16 @@ class TestIPReservationFacility(unittest.TestCase):
                     country = '', 
                     href = '', 
                     state = '', 
-                    zip_code = '', ), 
-                code = '', 
-                features = ["baremetal","backend_transfer","global_ipv4"], 
-                href = '', 
-                id = '', 
-                ip_ranges = ["2604:1380::/36","147.75.192.0/21"], 
-                metro = None, 
+                    zip_code = '', ),
+                code = '',
+                features = [baremetal, backend_transfer, global_ipv4],
+                href = '',
+                id = '',
+                ip_ranges = [2604:1380::/36, 147.75.192.0/21],
+                metro = None,
                 name = ''
             )
-        else :
+        else:
             return IPReservationFacility(
         )
         """

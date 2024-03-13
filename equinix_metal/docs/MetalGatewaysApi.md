@@ -23,9 +23,8 @@ Create a metal gateway in a project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.create_metal_gateway_request import CreateMetalGatewayRequest
 from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
@@ -73,6 +72,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| Project UUID | 
@@ -96,6 +96,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -104,7 +105,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_metal_gateway_elastic_ip**
 > IPAssignment create_metal_gateway_elastic_ip(id, metal_gateway_elastic_ip_create_input, include=include, exclude=exclude)
 
@@ -115,9 +115,8 @@ Create a new Elastic IP on this Metal Gateway.  Assign an IPv4 range as an elast
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.metal_gateway_elastic_ip_create_input import MetalGatewayElasticIpCreateInput
@@ -163,6 +162,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Metal Gateway UUID | 
@@ -184,6 +184,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Created |  -  |
@@ -193,7 +194,6 @@ Name | Type | Description  | Notes
 **422** | Unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_metal_gateway**
 > FindMetalGatewayById200Response delete_metal_gateway(id, include=include, exclude=exclude)
 
@@ -204,9 +204,8 @@ Deletes a metal gateway and any elastic IP assignments associated with this meta
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 from equinix_metal.rest import ApiException
@@ -250,6 +249,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Metal Gateway UUID | 
@@ -270,6 +270,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | accepted |  -  |
@@ -277,7 +278,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_metal_gateway_by_id**
 > FindMetalGatewayById200Response find_metal_gateway_by_id(id, include=include, exclude=exclude)
 
@@ -288,9 +288,8 @@ Returns a specific metal gateway
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.find_metal_gateway_by_id200_response import FindMetalGatewayById200Response
 from equinix_metal.rest import ApiException
@@ -334,6 +333,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Metal Gateway UUID | 
@@ -354,6 +354,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -361,7 +362,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_metal_gateways_by_project**
 > MetalGatewayList find_metal_gateways_by_project(project_id, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -372,9 +372,8 @@ Return all metal gateways for a project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.metal_gateway_list import MetalGatewayList
 from equinix_metal.rest import ApiException
@@ -420,6 +419,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| Project UUID | 
@@ -442,6 +442,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -449,12 +450,9 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_metal_gateways_by_project_all_pages**
 > MetalGatewayList find_metal_gateways_by_project_all_pages(project_id, include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_metal_gateways_by_project**](MetalGatewaysApi.md#find_metal_gateways_by_project) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_metal_gateways_by_project**](MetalGatewaysApi.md#find_metal_gateways_by_project).
-
 # **get_metal_gateway_elastic_ips**
 > IPAssignmentList get_metal_gateway_elastic_ips(id, include=include, exclude=exclude)
 
@@ -465,9 +463,8 @@ Returns the list of Elastic IPs assigned to this Metal Gateway
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_assignment_list import IPAssignmentList
 from equinix_metal.rest import ApiException
@@ -511,6 +508,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Metal Gateway UUID | 
@@ -531,6 +529,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -538,4 +537,3 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

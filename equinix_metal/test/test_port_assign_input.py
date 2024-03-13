@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.port_assign_input import PortAssignInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.port_assign_input import PortAssignInput
 
 class TestPortAssignInput(unittest.TestCase):
     """PortAssignInput unit test stubs"""
@@ -29,20 +26,20 @@ class TestPortAssignInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PortAssignInput:
         """Test PortAssignInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PortAssignInput`
         """
-        model = equinix_metal.models.port_assign_input.PortAssignInput()  # noqa: E501
-        if include_optional :
+        model = PortAssignInput()
+        if include_optional:
             return PortAssignInput(
-                href = '', 
+                href = '',
                 vnid = '1001'
             )
-        else :
+        else:
             return PortAssignInput(
         )
         """

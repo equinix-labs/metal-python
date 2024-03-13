@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.firmware_set_list_response import FirmwareSetListResponse  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.firmware_set_list_response import FirmwareSetListResponse
 
 class TestFirmwareSetListResponse(unittest.TestCase):
     """FirmwareSetListResponse unit test stubs"""
@@ -29,20 +26,20 @@ class TestFirmwareSetListResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> FirmwareSetListResponse:
         """Test FirmwareSetListResponse
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `FirmwareSetListResponse`
         """
-        model = equinix_metal.models.firmware_set_list_response.FirmwareSetListResponse()  # noqa: E501
-        if include_optional :
+        model = FirmwareSetListResponse()
+        if include_optional:
             return FirmwareSetListResponse(
-                href = '', 
-                page = 56, 
-                page_count = 56, 
-                page_size = 56, 
+                href = '',
+                page = 56,
+                page_count = 56,
+                page_size = 56,
                 records = [
                     equinix_metal.models.firmware_set.FirmwareSet(
                         attributes = [
@@ -80,11 +77,11 @@ class TestFirmwareSetListResponse(unittest.TestCase):
                         name = '', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         uuid = '0516463a-47ee-4809-9a66-ece8c740eed9', )
-                    ], 
-                total_pages = 56, 
+                    ],
+                total_pages = 56,
                 total_record_count = 56
             )
-        else :
+        else:
             return FirmwareSetListResponse(
         )
         """

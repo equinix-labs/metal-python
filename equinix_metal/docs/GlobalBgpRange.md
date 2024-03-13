@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address_family** | **int** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of GlobalBgpRange from a JSON string
 global_bgp_range_instance = GlobalBgpRange.from_json(json)
 # print the JSON string representation of the object
-print GlobalBgpRange.to_json()
+print(GlobalBgpRange.to_json())
 
 # convert the object into a dict
 global_bgp_range_dict = global_bgp_range_instance.to_dict()

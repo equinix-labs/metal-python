@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch_vlan_assignments_inner import PortVlanAssignmentBatchVlanAssignmentsInner  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.port_vlan_assignment_batch_vlan_assignments_inner import PortVlanAssignmentBatchVlanAssignmentsInner
 
 class TestPortVlanAssignmentBatchVlanAssignmentsInner(unittest.TestCase):
     """PortVlanAssignmentBatchVlanAssignmentsInner unit test stubs"""
@@ -29,23 +26,23 @@ class TestPortVlanAssignmentBatchVlanAssignmentsInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PortVlanAssignmentBatchVlanAssignmentsInner:
         """Test PortVlanAssignmentBatchVlanAssignmentsInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PortVlanAssignmentBatchVlanAssignmentsInner`
         """
-        model = equinix_metal.models.port_vlan_assignment_batch_vlan_assignments_inner.PortVlanAssignmentBatchVlanAssignmentsInner()  # noqa: E501
-        if include_optional :
+        model = PortVlanAssignmentBatchVlanAssignmentsInner()
+        if include_optional:
             return PortVlanAssignmentBatchVlanAssignmentsInner(
-                href = '', 
-                id = '', 
-                native = True, 
-                state = 'assigned', 
+                href = '',
+                id = '',
+                native = True,
+                state = 'assigned',
                 vlan = 56
             )
-        else :
+        else:
             return PortVlanAssignmentBatchVlanAssignmentsInner(
         )
         """

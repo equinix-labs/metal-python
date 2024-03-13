@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of VrfIpReservationList from a JSON string
 vrf_ip_reservation_list_instance = VrfIpReservationList.from_json(json)
 # print the JSON string representation of the object
-print VrfIpReservationList.to_json()
+print(VrfIpReservationList.to_json())
 
 # convert the object into a dict
 vrf_ip_reservation_list_dict = vrf_ip_reservation_list_instance.to_dict()

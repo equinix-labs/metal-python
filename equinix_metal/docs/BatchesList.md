@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **batches** | [**List[Batch]**](Batch.md) |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of BatchesList from a JSON string
 batches_list_instance = BatchesList.from_json(json)
 # print the JSON string representation of the object
-print BatchesList.to_json()
+print(BatchesList.to_json())
 
 # convert the object into a dict
 batches_list_dict = batches_list_instance.to_dict()

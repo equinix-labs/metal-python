@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -29,7 +30,7 @@ json = "{}"
 # create an instance of HardwareReservation from a JSON string
 hardware_reservation_instance = HardwareReservation.from_json(json)
 # print the JSON string representation of the object
-print HardwareReservation.to_json()
+print(HardwareReservation.to_json())
 
 # convert the object into a dict
 hardware_reservation_dict = hardware_reservation_instance.to_dict()

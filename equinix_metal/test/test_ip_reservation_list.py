@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_reservation_list import IPReservationList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ip_reservation_list import IPReservationList
 
 class TestIPReservationList(unittest.TestCase):
     """IPReservationList unit test stubs"""
@@ -29,20 +26,20 @@ class TestIPReservationList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> IPReservationList:
         """Test IPReservationList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `IPReservationList`
         """
-        model = equinix_metal.models.ip_reservation_list.IPReservationList()  # noqa: E501
-        if include_optional :
+        model = IPReservationList()
+        if include_optional:
             return IPReservationList(
-                href = '', 
+                href = '',
                 ip_addresses = [
                     null
-                    ], 
+                    ],
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -56,7 +53,7 @@ class TestIPReservationList(unittest.TestCase):
                     self = , 
                     total = 56, )
             )
-        else :
+        else:
             return IPReservationList(
         )
         """

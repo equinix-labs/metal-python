@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address_family** | **str** |  | 
@@ -24,7 +25,7 @@ json = "{}"
 # create an instance of BgpSession from a JSON string
 bgp_session_instance = BgpSession.from_json(json)
 # print the JSON string representation of the object
-print BgpSession.to_json()
+print(BgpSession.to_json())
 
 # convert the object into a dict
 bgp_session_dict = bgp_session_instance.to_dict()

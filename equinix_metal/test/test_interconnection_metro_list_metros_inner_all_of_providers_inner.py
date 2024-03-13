@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_metro_list_metros_inner_all_of_providers_inner import InterconnectionMetroListMetrosInnerAllOfProvidersInner  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection_metro_list_metros_inner_all_of_providers_inner import InterconnectionMetroListMetrosInnerAllOfProvidersInner
 
 class TestInterconnectionMetroListMetrosInnerAllOfProvidersInner(unittest.TestCase):
     """InterconnectionMetroListMetrosInnerAllOfProvidersInner unit test stubs"""
@@ -29,24 +26,24 @@ class TestInterconnectionMetroListMetrosInnerAllOfProvidersInner(unittest.TestCa
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InterconnectionMetroListMetrosInnerAllOfProvidersInner:
         """Test InterconnectionMetroListMetrosInnerAllOfProvidersInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InterconnectionMetroListMetrosInnerAllOfProvidersInner`
         """
-        model = equinix_metal.models.interconnection_metro_list_metros_inner_all_of_providers_inner.InterconnectionMetroListMetrosInnerAllOfProvidersInner()  # noqa: E501
-        if include_optional :
+        model = InterconnectionMetroListMetrosInnerAllOfProvidersInner()
+        if include_optional:
             return InterconnectionMetroListMetrosInnerAllOfProvidersInner(
-                href = '', 
+                href = '',
                 locations = [
                     'us-east-1'
-                    ], 
-                name = 'AWS Direct Connect', 
+                    ],
+                name = 'AWS Direct Connect',
                 type = 'CSP_AWS'
             )
-        else :
+        else:
             return InterconnectionMetroListMetrosInnerAllOfProvidersInner(
         )
         """

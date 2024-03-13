@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.firmware_set_response import FirmwareSetResponse  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.firmware_set_response import FirmwareSetResponse
 
 class TestFirmwareSetResponse(unittest.TestCase):
     """FirmwareSetResponse unit test stubs"""
@@ -29,17 +26,17 @@ class TestFirmwareSetResponse(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> FirmwareSetResponse:
         """Test FirmwareSetResponse
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `FirmwareSetResponse`
         """
-        model = equinix_metal.models.firmware_set_response.FirmwareSetResponse()  # noqa: E501
-        if include_optional :
+        model = FirmwareSetResponse()
+        if include_optional:
             return FirmwareSetResponse(
-                href = '', 
+                href = '',
                 record = equinix_metal.models.firmware_set.FirmwareSet(
                     attributes = [
                         equinix_metal.models.attribute.Attribute(
@@ -77,7 +74,7 @@ class TestFirmwareSetResponse(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     uuid = '0516463a-47ee-4809-9a66-ece8c740eed9', )
             )
-        else :
+        else:
             return FirmwareSetResponse(
         )
         """

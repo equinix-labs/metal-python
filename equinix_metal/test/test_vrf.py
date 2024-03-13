@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf import Vrf  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf import Vrf
 
 class TestVrf(unittest.TestCase):
     """Vrf unit test stubs"""
@@ -29,21 +26,21 @@ class TestVrf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Vrf:
         """Test Vrf
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Vrf`
         """
-        model = equinix_metal.models.vrf.Vrf()  # noqa: E501
-        if include_optional :
+        model = Vrf()
+        if include_optional:
             return Vrf(
-                bgp_dynamic_neighbors_bfd_enabled = True, 
-                bgp_dynamic_neighbors_enabled = True, 
-                bgp_dynamic_neighbors_export_route_map = True, 
-                bill = True, 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                bgp_dynamic_neighbors_bfd_enabled = True,
+                bgp_dynamic_neighbors_enabled = True,
+                bgp_dynamic_neighbors_export_route_map = True,
+                bill = True,
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 created_by = equinix_metal.models.user.User(
                     avatar_thumb_url = '', 
                     avatar_url = '', 
@@ -69,21 +66,21 @@ class TestVrf(unittest.TestCase):
                     short_id = '', 
                     timezone = '', 
                     two_factor_auth = '', 
-                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
-                description = '', 
-                href = '', 
-                id = '', 
+                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ),
+                description = '',
+                href = '',
+                id = '',
                 ip_ranges = [
                     ''
-                    ], 
-                local_asn = 56, 
+                    ],
+                local_asn = 56,
                 metro = equinix_metal.models.metro.Metro(
                     code = '', 
                     country = '', 
                     href = '', 
                     id = '', 
-                    name = '', ), 
-                name = '', 
+                    name = '', ),
+                name = '',
                 project = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -120,11 +117,11 @@ class TestVrf(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
+                        ], ),
                 tags = [
                     ''
-                    ], 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    ],
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 virtual_circuits = [
                     equinix_metal.models.vrf_virtual_circuit.VrfVirtualCircuit(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -197,7 +194,7 @@ class TestVrf(unittest.TestCase):
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                     ]
             )
-        else :
+        else:
             return Vrf(
         )
         """

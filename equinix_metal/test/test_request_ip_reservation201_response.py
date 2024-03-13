@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.request_ip_reservation201_response import RequestIPReservation201Response  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.request_ip_reservation201_response import RequestIPReservation201Response
 
 class TestRequestIPReservation201Response(unittest.TestCase):
     """RequestIPReservation201Response unit test stubs"""
@@ -29,37 +26,37 @@ class TestRequestIPReservation201Response(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> RequestIPReservation201Response:
         """Test RequestIPReservation201Response
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `RequestIPReservation201Response`
         """
-        model = equinix_metal.models.request_ip_reservation201_response.RequestIPReservation201Response()  # noqa: E501
-        if include_optional :
+        model = RequestIPReservation201Response()
+        if include_optional:
             return RequestIPReservation201Response(
-                addon = True, 
-                address = '', 
-                address_family = 56, 
+                addon = True,
+                address = '',
+                address_family = 56,
                 assignments = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
-                available = '', 
-                bill = True, 
-                cidr = 56, 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                customdata = equinix_metal.models.customdata.customdata(), 
-                details = '', 
-                enabled = True, 
-                facility = None, 
-                gateway = '', 
-                global_ip = True, 
-                href = '', 
-                id = '', 
-                manageable = True, 
-                management = True, 
+                    ],
+                available = '',
+                bill = True,
+                cidr = 56,
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                customdata = equinix_metal.models.customdata.customdata(),
+                details = '',
+                enabled = True,
+                facility = None,
+                gateway = '',
+                global_ip = True,
+                href = '',
+                id = '',
+                manageable = True,
+                management = True,
                 metal_gateway = equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     gateway_address = '10.1.2.1/27', 
@@ -67,15 +64,15 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                     id = '', 
                     state = 'ready', 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    vlan = 1001, ), 
+                    vlan = 1001, ),
                 metro = equinix_metal.models.metro.Metro(
                     code = '', 
                     country = '', 
                     href = '', 
                     id = '', 
-                    name = '', ), 
-                netmask = '', 
-                network = '', 
+                    name = '', ),
+                netmask = '',
+                network = '',
                 project = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -112,7 +109,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
+                        ], ),
                 project_lite = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -149,17 +146,17 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
-                public = True, 
+                        ], ),
+                public = True,
                 requested_by = equinix_metal.models.href.Href(
-                    href = '', ), 
-                state = '', 
+                    href = '', ),
+                state = '',
                 tags = [
                     ''
-                    ], 
-                type = 'global_ipv4', 
+                    ],
+                type = 'global_ipv4',
                 created_by = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 vrf = equinix_metal.models.vrf.Vrf(
                     bgp_dynamic_neighbors_bfd_enabled = True, 
                     bgp_dynamic_neighbors_enabled = True, 
@@ -278,7 +275,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], )
             )
-        else :
+        else:
             return RequestIPReservation201Response(
                 type = 'global_ipv4',
                 vrf = equinix_metal.models.vrf.Vrf(

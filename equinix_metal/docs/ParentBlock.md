@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cidr** | **int** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of ParentBlock from a JSON string
 parent_block_instance = ParentBlock.from_json(json)
 # print the JSON string representation of the object
-print ParentBlock.to_json()
+print(ParentBlock.to_json())
 
 # convert the object into a dict
 parent_block_dict = parent_block_instance.to_dict()

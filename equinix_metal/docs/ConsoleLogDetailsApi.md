@@ -17,9 +17,8 @@ Capture a screenshot from the device, if supported, via the BMC.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -59,6 +58,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -77,6 +77,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/jpeg, application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | An image file |  -  |
@@ -85,4 +86,3 @@ Name | Type | Description  | Notes
 **501** | not implemented for device |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

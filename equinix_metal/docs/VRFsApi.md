@@ -32,9 +32,8 @@ Return a single BGP Dynamic Neighbor resource
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.rest import ApiException
@@ -78,6 +77,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| BGP Dynamic Neighbor UUID | 
@@ -98,6 +98,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -105,7 +106,6 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_bgp_dynamic_neighbor**
 > BgpDynamicNeighbor create_bgp_dynamic_neighbor(id, bgp_dynamic_neighbor_create_input, include=include, exclude=exclude)
 
@@ -116,9 +116,8 @@ Create a VRF BGP Dynamic Neighbor range.  BGP Dynamic Neighbor records are limit
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput
@@ -164,6 +163,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Metal Gateway UUID | 
@@ -185,6 +185,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Created |  -  |
@@ -194,7 +195,6 @@ Name | Type | Description  | Notes
 **422** | Unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_vrf**
 > Vrf create_vrf(id, vrf_create_input, include=include, exclude=exclude)
 
@@ -205,9 +205,8 @@ Creates a new VRF in the specified project
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.models.vrf_create_input import VrfCreateInput
@@ -253,6 +252,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -274,6 +274,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -282,7 +283,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_vrf_route**
 > VrfRoute create_vrf_route(id, vrf_route_create_input, include=include, exclude=exclude)
 
@@ -293,9 +293,8 @@ Create a route in a VRF. Currently only static default routes are supported.  No
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.models.vrf_route_create_input import VrfRouteCreateInput
@@ -341,6 +340,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF UUID | 
@@ -362,6 +362,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -371,7 +372,6 @@ Name | Type | Description  | Notes
 **422** | Unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_bgp_dynamic_neighbor_by_id**
 > BgpDynamicNeighbor delete_bgp_dynamic_neighbor_by_id(id, include=include, exclude=exclude)
 
@@ -382,9 +382,8 @@ Trigger the removal of a BGP Neighbor range from a VRF
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.rest import ApiException
@@ -428,6 +427,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| BGP Dynamic Neighbor UUID | 
@@ -448,6 +448,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Accepted |  -  |
@@ -456,7 +457,6 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_vrf**
 > delete_vrf(id)
 
@@ -467,9 +467,8 @@ Deletes the VRF
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -508,6 +507,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF UUID | 
@@ -526,6 +526,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | no content |  -  |
@@ -534,7 +535,6 @@ void (empty response body)
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_vrf_route_by_id**
 > VrfRoute delete_vrf_route_by_id(id, include=include, exclude=exclude)
 
@@ -545,9 +545,8 @@ Trigger the deletion of a VRF Route resource. The status of the route will updat
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.rest import ApiException
@@ -591,6 +590,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF Route UUID | 
@@ -611,6 +611,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Accepted |  -  |
@@ -619,7 +620,6 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_vrf_by_id**
 > Vrf find_vrf_by_id(id, include=include, exclude=exclude)
 
@@ -630,9 +630,8 @@ Returns a single VRF resource
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.rest import ApiException
@@ -676,6 +675,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF UUID | 
@@ -696,6 +696,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -704,7 +705,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_vrf_ip_reservation**
 > VrfIpReservation find_vrf_ip_reservation(vrf_id, id, include=include, exclude=exclude)
 
@@ -715,9 +715,8 @@ Returns the IP Reservation for the VRF.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
 from equinix_metal.rest import ApiException
@@ -762,6 +761,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **vrf_id** | **str**| VRF UUID | 
@@ -783,6 +783,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -790,7 +791,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_vrf_ip_reservations**
 > VrfIpReservationList find_vrf_ip_reservations(id, include=include, exclude=exclude)
 
@@ -801,9 +801,8 @@ Returns the list of VRF IP Reservations for the VRF.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_ip_reservation_list import VrfIpReservationList
 from equinix_metal.rest import ApiException
@@ -847,6 +846,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF UUID | 
@@ -867,6 +867,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -874,7 +875,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_vrf_route_by_id**
 > VrfRoute find_vrf_route_by_id(id, include=include, exclude=exclude)
 
@@ -885,9 +885,8 @@ Returns a single VRF Route resource
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.rest import ApiException
@@ -931,6 +930,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF Route UUID | 
@@ -951,6 +951,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -958,7 +959,6 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_vrfs**
 > VrfList find_vrfs(id, include=include, exclude=exclude, metro=metro)
 
@@ -969,9 +969,8 @@ Returns the list of VRFs for a single project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_list import VrfList
 from equinix_metal.rest import ApiException
@@ -1016,6 +1015,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -1037,6 +1037,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1044,7 +1045,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_bgp_dynamic_neighbors**
 > BgpDynamicNeighborList get_bgp_dynamic_neighbors(id, include=include, exclude=exclude)
 
@@ -1055,9 +1055,8 @@ Returns the list of VRF BGP Dynamic Neighbors for this Metal Gateway
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList
 from equinix_metal.rest import ApiException
@@ -1101,6 +1100,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Metal Gateway UUID | 
@@ -1121,6 +1121,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1128,7 +1129,6 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_vrf_routes**
 > VrfRouteList get_vrf_routes(id, include=include, exclude=exclude)
 
@@ -1139,9 +1139,8 @@ Returns the list of routes for the VRF
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route_list import VrfRouteList
 from equinix_metal.rest import ApiException
@@ -1185,6 +1184,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF UUID | 
@@ -1205,6 +1205,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -1212,7 +1213,6 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **update_vrf**
 > Vrf update_vrf(id, vrf_update_input, include=include, exclude=exclude)
 
@@ -1223,9 +1223,8 @@ Updates the VRF.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.models.vrf_update_input import VrfUpdateInput
@@ -1271,6 +1270,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF UUID | 
@@ -1292,6 +1292,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1301,7 +1302,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **update_vrf_route_by_id**
 > VrfRoute update_vrf_route_by_id(id, vrf_route_update_input, include=include, exclude=exclude)
 
@@ -1312,9 +1312,8 @@ Requests a VRF Route be redeployed across the network. Updating the prefix or ne
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.models.vrf_route_update_input import VrfRouteUpdateInput
@@ -1360,6 +1359,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| VRF Route UUID | 
@@ -1381,6 +1381,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Accepted |  -  |
@@ -1391,4 +1392,3 @@ Name | Type | Description  | Notes
 **429** | Too Many Requests |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

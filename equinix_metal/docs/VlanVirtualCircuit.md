@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bill** | **bool** | True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal. | [optional] [default to False]
@@ -32,7 +33,7 @@ json = "{}"
 # create an instance of VlanVirtualCircuit from a JSON string
 vlan_virtual_circuit_instance = VlanVirtualCircuit.from_json(json)
 # print the JSON string representation of the object
-print VlanVirtualCircuit.to_json()
+print(VlanVirtualCircuit.to_json())
 
 # convert the object into a dict
 vlan_virtual_circuit_dict = vlan_virtual_circuit_instance.to_dict()

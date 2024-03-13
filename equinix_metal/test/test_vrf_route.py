@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_route import VrfRoute  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_route import VrfRoute
 
 class TestVrfRoute(unittest.TestCase):
     """VrfRoute unit test stubs"""
@@ -29,19 +26,19 @@ class TestVrfRoute(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfRoute:
         """Test VrfRoute
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfRoute`
         """
-        model = equinix_metal.models.vrf_route.VrfRoute()  # noqa: E501
-        if include_optional :
+        model = VrfRoute()
+        if include_optional:
             return VrfRoute(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '/routes/e1ff9c2b-051a-4688-965f-153e274f77e0', 
-                id = 'e1ff9c2b-051a-4688-965f-153e274f77e0', 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '/routes/e1ff9c2b-051a-4688-965f-153e274f77e0',
+                id = 'e1ff9c2b-051a-4688-965f-153e274f77e0',
                 metal_gateway = equinix_metal.models.vrf_metal_gateway.VrfMetalGateway(
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     created_by = equinix_metal.models.href.Href(
@@ -201,15 +198,15 @@ class TestVrfRoute(unittest.TestCase):
                             ], 
                         metro_code = '', 
                         vxlan = 56, ), 
-                    vrf = , ), 
-                next_hop = '192.168.1.254', 
-                prefix = '0.0.0.0/0', 
-                status = 'active', 
+                    vrf = , ),
+                next_hop = '192.168.1.254',
+                prefix = '0.0.0.0/0',
+                status = 'active',
                 tags = [
                     ''
-                    ], 
-                type = 'static', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    ],
+                type = 'static',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
                     assigned_to = equinix_metal.models.href.Href(
                         href = '', ), 
@@ -237,7 +234,7 @@ class TestVrfRoute(unittest.TestCase):
                     tags = [
                         ''
                         ], 
-                    vxlan = 56, ), 
+                    vxlan = 56, ),
                 vrf = equinix_metal.models.vrf.Vrf(
                     bgp_dynamic_neighbors_bfd_enabled = True, 
                     bgp_dynamic_neighbors_enabled = True, 
@@ -356,7 +353,7 @@ class TestVrfRoute(unittest.TestCase):
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], )
             )
-        else :
+        else:
             return VrfRoute(
         )
         """

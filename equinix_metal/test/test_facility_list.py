@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.facility_list import FacilityList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.facility_list import FacilityList
 
 class TestFacilityList(unittest.TestCase):
     """FacilityList unit test stubs"""
@@ -29,15 +26,15 @@ class TestFacilityList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> FacilityList:
         """Test FacilityList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `FacilityList`
         """
-        model = equinix_metal.models.facility_list.FacilityList()  # noqa: E501
-        if include_optional :
+        model = FacilityList()
+        if include_optional:
             return FacilityList(
                 facilities = [
                     equinix_metal.models.facility.Facility(
@@ -59,10 +56,10 @@ class TestFacilityList(unittest.TestCase):
                         ip_ranges = ["2604:1380::/36","147.75.192.0/21"], 
                         metro = null, 
                         name = '', )
-                    ], 
+                    ],
                 href = ''
             )
-        else :
+        else:
             return FacilityList(
         )
         """

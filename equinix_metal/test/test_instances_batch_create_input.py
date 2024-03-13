@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.instances_batch_create_input import InstancesBatchCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.instances_batch_create_input import InstancesBatchCreateInput
 
 class TestInstancesBatchCreateInput(unittest.TestCase):
     """InstancesBatchCreateInput unit test stubs"""
@@ -29,22 +26,22 @@ class TestInstancesBatchCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InstancesBatchCreateInput:
         """Test InstancesBatchCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InstancesBatchCreateInput`
         """
-        model = equinix_metal.models.instances_batch_create_input.InstancesBatchCreateInput()  # noqa: E501
-        if include_optional :
+        model = InstancesBatchCreateInput()
+        if include_optional:
             return InstancesBatchCreateInput(
                 batches = [
                     null
-                    ], 
+                    ],
                 href = ''
             )
-        else :
+        else:
             return InstancesBatchCreateInput(
         )
         """

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of AuthTokenInput from a JSON string
 auth_token_input_instance = AuthTokenInput.from_json(json)
 # print the JSON string representation of the object
-print AuthTokenInput.to_json()
+print(AuthTokenInput.to_json())
 
 # convert the object into a dict
 auth_token_input_dict = auth_token_input_instance.to_dict()

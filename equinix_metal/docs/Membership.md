@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of Membership from a JSON string
 membership_instance = Membership.from_json(json)
 # print the JSON string representation of the object
-print Membership.to_json()
+print(Membership.to_json())
 
 # convert the object into a dict
 membership_dict = membership_instance.to_dict()

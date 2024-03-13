@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.invoice import Invoice  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.invoice import Invoice
 
 class TestInvoice(unittest.TestCase):
     """Invoice unit test stubs"""
@@ -29,25 +26,25 @@ class TestInvoice(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Invoice:
         """Test Invoice
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Invoice`
         """
-        model = equinix_metal.models.invoice.Invoice()  # noqa: E501
-        if include_optional :
+        model = Invoice()
+        if include_optional:
             return Invoice(
-                amount = 1.337, 
-                balance = 1.337, 
-                created_on = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                credit_amount = 1.337, 
-                credits_applied = 1.337, 
-                currency = 'USD', 
-                due_on = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
-                href = '', 
-                id = '', 
+                amount = 1.337,
+                balance = 1.337,
+                created_on = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
+                credit_amount = 1.337,
+                credits_applied = 1.337,
+                currency = 'USD',
+                due_on = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
+                href = '',
+                id = '',
                 items = [
                     equinix_metal.models.line_item.LineItem(
                         amount = 1.337, 
@@ -115,17 +112,17 @@ class TestInvoice(unittest.TestCase):
                             type = 'standard', ), 
                         unit = '', 
                         unit_price = 1.337, )
-                    ], 
-                number = '', 
+                    ],
+                number = '',
                 project = equinix_metal.models.project_id_name.ProjectIdName(
                     href = '', 
                     id = '', 
-                    name = '', ), 
-                reference_number = '', 
-                status = '', 
+                    name = '', ),
+                reference_number = '',
+                status = '',
                 target_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date()
             )
-        else :
+        else:
             return Invoice(
         )
         """

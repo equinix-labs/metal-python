@@ -38,9 +38,8 @@ Creates a BGP session.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_session_input import BGPSessionInput
 from equinix_metal.models.bgp_session import BgpSession
@@ -85,6 +84,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -105,6 +105,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -113,7 +114,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_device**
 > Device create_device(id, create_device_request, include=include, exclude=exclude)
 
@@ -124,9 +124,8 @@ Creates a new device and provisions it in the specified location.  Device type-s
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.create_device_request import CreateDeviceRequest
 from equinix_metal.models.device import Device
@@ -172,6 +171,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -193,6 +193,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -202,7 +203,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_ip_assignment**
 > IPAssignment create_ip_assignment(id, ip_assignment_input, include=include, exclude=exclude)
 
@@ -213,9 +213,8 @@ Creates an ip assignment for a device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_assignment import IPAssignment
 from equinix_metal.models.ip_assignment_input import IPAssignmentInput
@@ -261,6 +260,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -282,6 +282,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | created |  -  |
@@ -290,7 +291,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **delete_device**
 > delete_device(id, force_delete=force_delete)
 
@@ -301,9 +301,8 @@ Deletes a device and deprovisions it in our datacenter.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -343,6 +342,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -362,6 +362,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | no content |  -  |
@@ -371,7 +372,6 @@ void (empty response body)
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_bgp_sessions**
 > BgpSessionList find_bgp_sessions(id, include=include)
 
@@ -382,9 +382,8 @@ Provides a listing of available BGP sessions for the device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_session_list import BgpSessionList
 from equinix_metal.rest import ApiException
@@ -427,6 +426,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -446,6 +446,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -453,7 +454,6 @@ Name | Type | Description  | Notes
 **403** | forbidden |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_device_by_id**
 > Device find_device_by_id(id, include=include, exclude=exclude)
 
@@ -464,9 +464,8 @@ Type-specific options (such as facility for baremetal devices) will be included 
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device import Device
 from equinix_metal.rest import ApiException
@@ -510,6 +509,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -530,6 +530,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -538,7 +539,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_device_customdata**
 > find_device_customdata(id)
 
@@ -549,9 +549,8 @@ Provides the custom metadata stored for this instance in json format
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -590,6 +589,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Instance UUID | 
@@ -608,6 +608,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -616,7 +617,6 @@ void (empty response body)
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_device_metadata_by_id**
 > Metadata find_device_metadata_by_id(id)
 
@@ -627,9 +627,8 @@ Retrieve device metadata
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.metadata import Metadata
 from equinix_metal.rest import ApiException
@@ -671,6 +670,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -689,6 +689,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -697,7 +698,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_device_userdata_by_id**
 > Userdata find_device_userdata_by_id(id)
 
@@ -708,9 +708,8 @@ Retrieve device userdata
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.userdata import Userdata
 from equinix_metal.rest import ApiException
@@ -752,6 +751,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -770,6 +770,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -778,7 +779,6 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_instance_bandwidth**
 > find_instance_bandwidth(id, var_from, until)
 
@@ -789,9 +789,8 @@ Retrieve an instance bandwidth for a given period of time.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -832,6 +831,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -852,6 +852,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -859,7 +860,6 @@ void (empty response body)
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_ip_assignment_customdata**
 > find_ip_assignment_customdata(instance_id, id)
 
@@ -870,9 +870,8 @@ Provides the custom metadata stored for this IP Assignment in json format
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -912,6 +911,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instance_id** | **str**| Instance UUID | 
@@ -931,6 +931,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -939,7 +940,6 @@ void (empty response body)
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_ip_assignments**
 > IPAssignmentList find_ip_assignments(id, include=include, exclude=exclude)
 
@@ -950,9 +950,8 @@ Returns all ip assignments for a device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.ip_assignment_list import IPAssignmentList
 from equinix_metal.rest import ApiException
@@ -996,6 +995,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -1016,6 +1016,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1023,7 +1024,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_devices**
 > DeviceList find_organization_devices(id, search=search, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, mac_address=mac_address, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -1034,9 +1034,8 @@ Provides a collection of devices for a given organization.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.rest import ApiException
@@ -1091,6 +1090,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
@@ -1122,6 +1122,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1130,12 +1131,9 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_organization_devices_all_pages**
 > DeviceList find_organization_devices_all_pages(id, search=search, categories=categories, facility=facility, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, mac_address=mac_address, include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_organization_devices**](DevicesApi.md#find_organization_devices) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_organization_devices**](DevicesApi.md#find_organization_devices).
-
 # **find_project_devices**
 > DeviceList find_project_devices(id, search=search, categories=categories, facility=facility, metro=metro, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, mac_address=mac_address, include=include, exclude=exclude, page=page, per_page=per_page)
 
@@ -1146,9 +1144,8 @@ Provides a collection of devices for a given project.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.rest import ApiException
@@ -1204,6 +1201,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
@@ -1236,6 +1234,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1244,12 +1243,9 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **find_project_devices_all_pages**
 > DeviceList find_project_devices_all_pages(id, search=search, categories=categories, facility=facility, metro=metro, hostname=hostname, reserved=reserved, tag=tag, type=type, has_termination_time=has_termination_time, mac_address=mac_address, include=include, exclude=exclude, per_page=per_page)
-
 Just like [**find_project_devices**](DevicesApi.md#find_project_devices) but fetches resources from all pages. This method doesn't take `page` parameter. Other parameters, return type and other characteristics are the same as in [**find_project_devices**](DevicesApi.md#find_project_devices).
-
 # **find_traffic**
 > find_traffic(id, direction, interval=interval, bucket=bucket, timeframe=timeframe)
 
@@ -1260,9 +1256,8 @@ Returns traffic for a specific device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
 from equinix_metal.rest import ApiException
@@ -1306,6 +1301,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -1328,6 +1324,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1336,7 +1333,6 @@ void (empty response body)
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_bgp_neighbor_data**
 > BgpSessionNeighbors get_bgp_neighbor_data(id, include=include)
 
@@ -1347,9 +1343,8 @@ Provides a summary of the BGP neighbor data associated to the BGP sessions for t
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.bgp_session_neighbors import BgpSessionNeighbors
 from equinix_metal.rest import ApiException
@@ -1392,6 +1387,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -1411,6 +1407,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1419,7 +1416,6 @@ Name | Type | Description  | Notes
 **404** | not found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_device_firmware_sets**
 > FirmwareSetResponse get_device_firmware_sets(id)
 
@@ -1430,9 +1426,8 @@ Returns the firmware set associated with the device. If a custom firmware set is
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.firmware_set_response import FirmwareSetResponse
 from equinix_metal.rest import ApiException
@@ -1474,6 +1469,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -1492,6 +1488,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful operation |  -  |
@@ -1500,7 +1497,6 @@ Name | Type | Description  | Notes
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_device_health_rollup**
 > DeviceHealthRollup get_device_health_rollup(id)
 
@@ -1511,9 +1507,8 @@ Returns the health rollup status of the device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device_health_rollup import DeviceHealthRollup
 from equinix_metal.rest import ApiException
@@ -1555,6 +1550,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -1573,6 +1569,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Successful operation |  -  |
@@ -1581,7 +1578,6 @@ Name | Type | Description  | Notes
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **perform_action**
 > perform_action(id, device_action_input)
 
@@ -1592,9 +1588,8 @@ Performs an action for the given device.  Possible actions include: power_on, po
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device_action_input import DeviceActionInput
 from equinix_metal.rest import ApiException
@@ -1635,6 +1630,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -1654,6 +1650,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | accepted |  -  |
@@ -1662,7 +1659,6 @@ void (empty response body)
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **update_device**
 > Device update_device(id, device_update_input, include=include, exclude=exclude)
 
@@ -1673,9 +1669,8 @@ Updates the device.
 ### Example
 
 * Api Key Authentication (x_auth_token):
+
 ```python
-import time
-import os
 import equinix_metal
 from equinix_metal.models.device import Device
 from equinix_metal.models.device_update_input import DeviceUpdateInput
@@ -1721,6 +1716,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
@@ -1742,6 +1738,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | ok |  -  |
@@ -1751,4 +1748,3 @@ Name | Type | Description  | Notes
 **422** | unprocessable entity |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

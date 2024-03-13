@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **batches** | [**List[PortVlanAssignmentBatch]**](PortVlanAssignmentBatch.md) |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of PortVlanAssignmentBatchList from a JSON string
 port_vlan_assignment_batch_list_instance = PortVlanAssignmentBatchList.from_json(json)
 # print the JSON string representation of the object
-print PortVlanAssignmentBatchList.to_json()
+print(PortVlanAssignmentBatchList.to_json())
 
 # convert the object into a dict
 port_vlan_assignment_batch_list_dict = port_vlan_assignment_batch_list_instance.to_dict()

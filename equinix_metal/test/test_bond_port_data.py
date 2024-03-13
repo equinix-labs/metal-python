@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.bond_port_data import BondPortData  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.bond_port_data import BondPortData
 
 class TestBondPortData(unittest.TestCase):
     """BondPortData unit test stubs"""
@@ -29,21 +26,21 @@ class TestBondPortData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BondPortData:
         """Test BondPortData
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BondPortData`
         """
-        model = equinix_metal.models.bond_port_data.BondPortData()  # noqa: E501
-        if include_optional :
+        model = BondPortData()
+        if include_optional:
             return BondPortData(
-                href = '', 
-                id = '', 
+                href = '',
+                id = '',
                 name = ''
             )
-        else :
+        else:
             return BondPortData(
         )
         """

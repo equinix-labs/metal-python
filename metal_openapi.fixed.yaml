@@ -906,9 +906,6 @@ components:
             should be 'dedicated'.
           enum:
           - dedicated
-          - shared
-          - shared_port_vlan
-          - shared_port_vlan_to_csp
           type: string
         use_case:
           description: The intended use case of the dedicated port.
@@ -2228,7 +2225,6 @@ components:
           - public_ipv4
           - private_ipv4
           - public_ipv6
-          - vrf
           type: string
       required:
       - type
@@ -5307,7 +5303,6 @@ components:
         type:
           enum:
           - vlan
-          - vrf
           type: string
         updated_at:
           format: date-time

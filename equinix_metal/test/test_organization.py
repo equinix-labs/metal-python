@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.organization import Organization  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.organization import Organization
 
 class TestOrganization(unittest.TestCase):
     """Organization unit test stubs"""
@@ -29,15 +26,15 @@ class TestOrganization(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Organization:
         """Test Organization
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Organization`
         """
-        model = equinix_metal.models.organization.Organization()  # noqa: E501
-        if include_optional :
+        model = Organization()
+        if include_optional:
             return Organization(
                 address = equinix_metal.models.address.Address(
                     address = '', 
@@ -50,7 +47,7 @@ class TestOrganization(unittest.TestCase):
                     country = '', 
                     href = '', 
                     state = '', 
-                    zip_code = '', ), 
+                    zip_code = '', ),
                 billing_address = equinix_metal.models.address.Address(
                     address = '', 
                     address2 = '', 
@@ -62,34 +59,34 @@ class TestOrganization(unittest.TestCase):
                     country = '', 
                     href = '', 
                     state = '', 
-                    zip_code = '', ), 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                credit_amount = 1.337, 
-                customdata = None, 
-                description = '', 
-                enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
-                id = '', 
-                logo = '', 
+                    zip_code = '', ),
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                credit_amount = 1.337,
+                customdata = None,
+                description = '',
+                enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
+                id = '',
+                logo = '',
                 members = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
+                    ],
                 memberships = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
-                name = '', 
+                    ],
+                name = '',
                 projects = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
-                terms = 56, 
-                twitter = '', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    ],
+                terms = 56,
+                twitter = '',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 website = ''
             )
-        else :
+        else:
             return Organization(
         )
         """

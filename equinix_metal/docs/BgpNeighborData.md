@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address_family** | **int** | Address Family for IP Address. Accepted values are 4 or 6 | [optional] 
@@ -26,7 +27,7 @@ json = "{}"
 # create an instance of BgpNeighborData from a JSON string
 bgp_neighbor_data_instance = BgpNeighborData.from_json(json)
 # print the JSON string representation of the object
-print BgpNeighborData.to_json()
+print(BgpNeighborData.to_json())
 
 # convert the object into a dict
 bgp_neighbor_data_dict = bgp_neighbor_data_instance.to_dict()

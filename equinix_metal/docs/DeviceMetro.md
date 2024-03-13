@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **str** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of DeviceMetro from a JSON string
 device_metro_instance = DeviceMetro.from_json(json)
 # print the JSON string representation of the object
-print DeviceMetro.to_json()
+print(DeviceMetro.to_json())
 
 # convert the object into a dict
 device_metro_dict = device_metro_instance.to_dict()

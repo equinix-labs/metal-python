@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of MetalGatewayCreateInput from a JSON string
 metal_gateway_create_input_instance = MetalGatewayCreateInput.from_json(json)
 # print the JSON string representation of the object
-print MetalGatewayCreateInput.to_json()
+print(MetalGatewayCreateInput.to_json())
 
 # convert the object into a dict
 metal_gateway_create_input_dict = metal_gateway_create_input_instance.to_dict()

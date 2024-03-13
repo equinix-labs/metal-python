@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.project_list import ProjectList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.project_list import ProjectList
 
 class TestProjectList(unittest.TestCase):
     """ProjectList unit test stubs"""
@@ -29,17 +26,17 @@ class TestProjectList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> ProjectList:
         """Test ProjectList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ProjectList`
         """
-        model = equinix_metal.models.project_list.ProjectList()  # noqa: E501
-        if include_optional :
+        model = ProjectList()
+        if include_optional:
             return ProjectList(
-                href = '', 
+                href = '',
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -51,7 +48,7 @@ class TestProjectList(unittest.TestCase):
                     next = , 
                     previous = , 
                     self = , 
-                    total = 56, ), 
+                    total = 56, ),
                 projects = [
                     equinix_metal.models.project.Project(
                         backend_transfer_enabled = True, 
@@ -92,7 +89,7 @@ class TestProjectList(unittest.TestCase):
                             ], )
                     ]
             )
-        else :
+        else:
             return ProjectList(
         )
         """

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.capacity_check_per_facility_list import CapacityCheckPerFacilityList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.capacity_check_per_facility_list import CapacityCheckPerFacilityList
 
 class TestCapacityCheckPerFacilityList(unittest.TestCase):
     """CapacityCheckPerFacilityList unit test stubs"""
@@ -29,17 +26,17 @@ class TestCapacityCheckPerFacilityList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CapacityCheckPerFacilityList:
         """Test CapacityCheckPerFacilityList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CapacityCheckPerFacilityList`
         """
-        model = equinix_metal.models.capacity_check_per_facility_list.CapacityCheckPerFacilityList()  # noqa: E501
-        if include_optional :
+        model = CapacityCheckPerFacilityList()
+        if include_optional:
             return CapacityCheckPerFacilityList(
-                href = '', 
+                href = '',
                 servers = [
                     equinix_metal.models.capacity_check_per_facility_info.CapacityCheckPerFacilityInfo(
                         available = True, 
@@ -49,7 +46,7 @@ class TestCapacityCheckPerFacilityList(unittest.TestCase):
                         quantity = '', )
                     ]
             )
-        else :
+        else:
             return CapacityCheckPerFacilityList(
         )
         """

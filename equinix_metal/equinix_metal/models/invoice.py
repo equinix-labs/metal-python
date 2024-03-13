@@ -19,15 +19,17 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from typing import List, Optional, Union
-from pydantic import BaseModel, StrictFloat, StrictInt, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from equinix_metal.models.line_item import LineItem
 from equinix_metal.models.project_id_name import ProjectIdName
+from typing import Optional, Set
+from typing_extensions import Self
 
 class Invoice(BaseModel):
     """
     Invoice
-    """
+    """ # noqa: E501
     amount: Optional[Union[StrictFloat, StrictInt]] = None
     balance: Optional[Union[StrictFloat, StrictInt]] = None
     created_on: Optional[date] = None
@@ -37,38 +39,53 @@ class Invoice(BaseModel):
     due_on: Optional[date] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    items: Optional[conlist(LineItem)] = None
+    items: Optional[List[LineItem]] = None
     number: Optional[StrictStr] = None
     project: Optional[ProjectIdName] = None
     reference_number: Optional[StrictStr] = None
     status: Optional[StrictStr] = None
     target_date: Optional[date] = None
-    __properties = ["amount", "balance", "created_on", "credit_amount", "credits_applied", "currency", "due_on", "href", "id", "items", "number", "project", "reference_number", "status", "target_date"]
+    __properties: ClassVar[List[str]] = ["amount", "balance", "created_on", "credit_amount", "credits_applied", "currency", "due_on", "href", "id", "items", "number", "project", "reference_number", "status", "target_date"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Invoice:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of Invoice from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in items (list)
         _items = []
         if self.items:
@@ -82,15 +99,15 @@ class Invoice(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Invoice:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of Invoice from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return Invoice.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = Invoice.parse_obj({
+        _obj = cls.model_validate({
             "amount": obj.get("amount"),
             "balance": obj.get("balance"),
             "created_on": obj.get("created_on"),
@@ -100,9 +117,9 @@ class Invoice(BaseModel):
             "due_on": obj.get("due_on"),
             "href": obj.get("href"),
             "id": obj.get("id"),
-            "items": [LineItem.from_dict(_item) for _item in obj.get("items")] if obj.get("items") is not None else None,
+            "items": [LineItem.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None,
             "number": obj.get("number"),
-            "project": ProjectIdName.from_dict(obj.get("project")) if obj.get("project") is not None else None,
+            "project": ProjectIdName.from_dict(obj["project"]) if obj.get("project") is not None else None,
             "reference_number": obj.get("reference_number"),
             "status": obj.get("status"),
             "target_date": obj.get("target_date")

@@ -19,62 +19,79 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.ip_reservation import IPReservation
 from equinix_metal.models.project import Project
 from equinix_metal.models.virtual_network import VirtualNetwork
+from typing import Optional, Set
+from typing_extensions import Self
 
 class MetalGateway(BaseModel):
     """
     MetalGateway
-    """
+    """ # noqa: E501
     created_at: Optional[datetime] = None
     created_by: Optional[Href] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     ip_reservation: Optional[IPReservation] = None
     project: Optional[Project] = None
-    state: Optional[StrictStr] = Field(None, description="The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.")
+    state: Optional[StrictStr] = Field(default=None, description="The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.")
     updated_at: Optional[datetime] = None
     virtual_network: Optional[VirtualNetwork] = None
-    __properties = ["created_at", "created_by", "href", "id", "ip_reservation", "project", "state", "updated_at", "virtual_network"]
+    __properties: ClassVar[List[str]] = ["created_at", "created_by", "href", "id", "ip_reservation", "project", "state", "updated_at", "virtual_network"]
 
-    @validator('state')
+    @field_validator('state')
     def state_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('ready', 'active', 'deleting'):
+        if value not in set(['ready', 'active', 'deleting']):
             raise ValueError("must be one of enum values ('ready', 'active', 'deleting')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> MetalGateway:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of MetalGateway from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of created_by
         if self.created_by:
             _dict['created_by'] = self.created_by.to_dict()
@@ -90,24 +107,24 @@ class MetalGateway(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> MetalGateway:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of MetalGateway from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return MetalGateway.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = MetalGateway.parse_obj({
+        _obj = cls.model_validate({
             "created_at": obj.get("created_at"),
-            "created_by": Href.from_dict(obj.get("created_by")) if obj.get("created_by") is not None else None,
+            "created_by": Href.from_dict(obj["created_by"]) if obj.get("created_by") is not None else None,
             "href": obj.get("href"),
             "id": obj.get("id"),
-            "ip_reservation": IPReservation.from_dict(obj.get("ip_reservation")) if obj.get("ip_reservation") is not None else None,
-            "project": Project.from_dict(obj.get("project")) if obj.get("project") is not None else None,
+            "ip_reservation": IPReservation.from_dict(obj["ip_reservation"]) if obj.get("ip_reservation") is not None else None,
+            "project": Project.from_dict(obj["project"]) if obj.get("project") is not None else None,
             "state": obj.get("state"),
             "updated_at": obj.get("updated_at"),
-            "virtual_network": VirtualNetwork.from_dict(obj.get("virtual_network")) if obj.get("virtual_network") is not None else None
+            "virtual_network": VirtualNetwork.from_dict(obj["virtual_network"]) if obj.get("virtual_network") is not None else None
         })
         return _obj
 

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **addresses** | **List[str]** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of MetadataNetwork from a JSON string
 metadata_network_instance = MetadataNetwork.from_json(json)
 # print the JSON string representation of the object
-print MetadataNetwork.to_json()
+print(MetadataNetwork.to_json())
 
 # convert the object into a dict
 metadata_network_dict = metadata_network_instance.to_dict()

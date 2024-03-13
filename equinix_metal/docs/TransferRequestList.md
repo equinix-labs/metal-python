@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of TransferRequestList from a JSON string
 transfer_request_list_instance = TransferRequestList.from_json(json)
 # print the JSON string representation of the object
-print TransferRequestList.to_json()
+print(TransferRequestList.to_json())
 
 # convert the object into a dict
 transfer_request_list_dict = transfer_request_list_instance.to_dict()

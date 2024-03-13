@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.project_update_input import ProjectUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.project_update_input import ProjectUpdateInput
 
 class TestProjectUpdateInput(unittest.TestCase):
     """ProjectUpdateInput unit test stubs"""
@@ -29,26 +26,26 @@ class TestProjectUpdateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> ProjectUpdateInput:
         """Test ProjectUpdateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ProjectUpdateInput`
         """
-        model = equinix_metal.models.project_update_input.ProjectUpdateInput()  # noqa: E501
-        if include_optional :
+        model = ProjectUpdateInput()
+        if include_optional:
             return ProjectUpdateInput(
-                backend_transfer_enabled = True, 
-                customdata = None, 
-                href = '', 
-                name = '0', 
-                payment_method_id = '', 
+                backend_transfer_enabled = True,
+                customdata = None,
+                href = '',
+                name = '0',
+                payment_method_id = '',
                 tags = [
                     ''
                     ]
             )
-        else :
+        else:
             return ProjectUpdateInput(
         )
         """

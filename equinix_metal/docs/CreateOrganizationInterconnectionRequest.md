@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **billing_account_name** | **str** | The billing account name of the Equinix Fabric account. | [optional] 
@@ -32,7 +33,7 @@ json = "{}"
 # create an instance of CreateOrganizationInterconnectionRequest from a JSON string
 create_organization_interconnection_request_instance = CreateOrganizationInterconnectionRequest.from_json(json)
 # print the JSON string representation of the object
-print CreateOrganizationInterconnectionRequest.to_json()
+print(CreateOrganizationInterconnectionRequest.to_json())
 
 # convert the object into a dict
 create_organization_interconnection_request_dict = create_organization_interconnection_request_instance.to_dict()

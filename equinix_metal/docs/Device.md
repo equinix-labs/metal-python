@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **actions** | [**List[DeviceActionsInner]**](DeviceActionsInner.md) | Actions supported by the device instance. | [optional] 
@@ -58,7 +59,7 @@ json = "{}"
 # create an instance of Device from a JSON string
 device_instance = Device.from_json(json)
 # print the JSON string representation of the object
-print Device.to_json()
+print(Device.to_json())
 
 # convert the object into a dict
 device_dict = device_instance.to_dict()

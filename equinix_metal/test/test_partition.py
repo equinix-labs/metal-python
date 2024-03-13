@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.partition import Partition  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.partition import Partition
 
 class TestPartition(unittest.TestCase):
     """Partition unit test stubs"""
@@ -29,22 +26,22 @@ class TestPartition(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Partition:
         """Test Partition
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Partition`
         """
-        model = equinix_metal.models.partition.Partition()  # noqa: E501
-        if include_optional :
+        model = Partition()
+        if include_optional:
             return Partition(
-                href = '', 
-                label = '', 
-                number = 56, 
+                href = '',
+                label = '',
+                number = 56,
                 size = ''
             )
-        else :
+        else:
             return Partition(
         )
         """

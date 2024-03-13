@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bgp_dynamic_neighbors_bfd_enabled** | **bool** | Toggle BFD on dynamic bgp neighbors sessions | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of VrfCreateInput from a JSON string
 vrf_create_input_instance = VrfCreateInput.from_json(json)
 # print the JSON string representation of the object
-print VrfCreateInput.to_json()
+print(VrfCreateInput.to_json())
 
 # convert the object into a dict
 vrf_create_input_dict = vrf_create_input_instance.to_dict()

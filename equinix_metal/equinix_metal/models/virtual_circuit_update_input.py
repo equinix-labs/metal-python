@@ -14,17 +14,15 @@
 
 
 from __future__ import annotations
-from inspect import getfullargspec
 import json
 import pprint
-import re  # noqa: F401
-
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from pydantic import BaseModel, Field, StrictStr, ValidationError, validator
 from equinix_metal.models.vlan_virtual_circuit_update_input import VlanVirtualCircuitUpdateInput
 from equinix_metal.models.vrf_virtual_circuit_update_input import VrfVirtualCircuitUpdateInput
-from typing import Union, Any, List, TYPE_CHECKING
 from pydantic import StrictStr, Field
+from typing import Union, List, Optional, Dict
+from typing_extensions import Literal, Self
 
 VIRTUALCIRCUITUPDATEINPUT_ONE_OF_SCHEMAS = ["VlanVirtualCircuitUpdateInput", "VrfVirtualCircuitUpdateInput"]
 
@@ -36,16 +34,16 @@ class VirtualCircuitUpdateInput(BaseModel):
     oneof_schema_1_validator: Optional[VlanVirtualCircuitUpdateInput] = None
     # data type: VrfVirtualCircuitUpdateInput
     oneof_schema_2_validator: Optional[VrfVirtualCircuitUpdateInput] = None
-    if TYPE_CHECKING:
-        actual_instance: Union[VlanVirtualCircuitUpdateInput, VrfVirtualCircuitUpdateInput]
-    else:
-        actual_instance: Any
-    one_of_schemas: List[str] = Field(VIRTUALCIRCUITUPDATEINPUT_ONE_OF_SCHEMAS, const=True)
+    actual_instance: Optional[Union[VlanVirtualCircuitUpdateInput, VrfVirtualCircuitUpdateInput]] = None
+    one_of_schemas: List[str] = Field(default=Literal["VlanVirtualCircuitUpdateInput", "VrfVirtualCircuitUpdateInput"])
 
-    class Config:
-        validate_assignment = True
+    model_config = ConfigDict(
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
 
-    def __init__(self, *args, **kwargs):
+
+    def __init__(self, *args, **kwargs) -> None:
         if args:
             if len(args) > 1:
                 raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
@@ -55,9 +53,9 @@ class VirtualCircuitUpdateInput(BaseModel):
         else:
             super().__init__(**kwargs)
 
-    @validator('actual_instance')
+    @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = VirtualCircuitUpdateInput.construct()
+        instance = VirtualCircuitUpdateInput.model_construct()
         error_messages = []
         match = 0
         # validate data type: VlanVirtualCircuitUpdateInput
@@ -80,13 +78,13 @@ class VirtualCircuitUpdateInput(BaseModel):
             return v
 
     @classmethod
-    def from_dict(cls, obj: dict) -> VirtualCircuitUpdateInput:
+    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
-    def from_json(cls, json_str: str) -> VirtualCircuitUpdateInput:
+    def from_json(cls, json_str: str) -> Self:
         """Returns the object represented by the json string"""
-        instance = VirtualCircuitUpdateInput.construct()
+        instance = cls.model_construct()
         error_messages = []
         match = 0
 
@@ -117,19 +115,17 @@ class VirtualCircuitUpdateInput(BaseModel):
         if self.actual_instance is None:
             return "null"
 
-        to_json = getattr(self.actual_instance, "to_json", None)
-        if callable(to_json):
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
             return self.actual_instance.to_json()
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], VlanVirtualCircuitUpdateInput, VrfVirtualCircuitUpdateInput]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None
 
-        to_dict = getattr(self.actual_instance, "to_dict", None)
-        if callable(to_dict):
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
             return self.actual_instance.to_dict()
         else:
             # primitive type
@@ -137,6 +133,6 @@ class VirtualCircuitUpdateInput(BaseModel):
 
     def to_str(self) -> str:
         """Returns the string representation of the actual instance"""
-        return pprint.pformat(self.dict())
+        return pprint.pformat(self.model_dump())
 
 

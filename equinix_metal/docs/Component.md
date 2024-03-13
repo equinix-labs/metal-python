@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **checksum** | **str** | File checksum | [optional] [readonly] 
@@ -27,7 +28,7 @@ json = "{}"
 # create an instance of Component from a JSON string
 component_instance = Component.from_json(json)
 # print the JSON string representation of the object
-print Component.to_json()
+print(Component.to_json())
 
 # convert the object into a dict
 component_dict = component_instance.to_dict()

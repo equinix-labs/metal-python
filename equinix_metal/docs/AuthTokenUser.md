@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **avatar_thumb_url** | **str** |  | [optional] 
@@ -37,7 +38,7 @@ json = "{}"
 # create an instance of AuthTokenUser from a JSON string
 auth_token_user_instance = AuthTokenUser.from_json(json)
 # print the JSON string representation of the object
-print AuthTokenUser.to_json()
+print(AuthTokenUser.to_json())
 
 # convert the object into a dict
 auth_token_user_dict = auth_token_user_instance.to_dict()

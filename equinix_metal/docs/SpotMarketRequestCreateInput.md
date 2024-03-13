@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **devices_max** | **int** |  | [optional] 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of SpotMarketRequestCreateInput from a JSON string
 spot_market_request_create_input_instance = SpotMarketRequestCreateInput.from_json(json)
 # print the JSON string representation of the object
-print SpotMarketRequestCreateInput.to_json()
+print(SpotMarketRequestCreateInput.to_json())
 
 # convert the object into a dict
 spot_market_request_create_input_dict = spot_market_request_create_input_instance.to_dict()

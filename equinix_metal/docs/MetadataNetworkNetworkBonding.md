@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of MetadataNetworkNetworkBonding from a JSON string
 metadata_network_network_bonding_instance = MetadataNetworkNetworkBonding.from_json(json)
 # print the JSON string representation of the object
-print MetadataNetworkNetworkBonding.to_json()
+print(MetadataNetworkNetworkBonding.to_json())
 
 # convert the object into a dict
 metadata_network_network_bonding_dict = metadata_network_network_bonding_instance.to_dict()

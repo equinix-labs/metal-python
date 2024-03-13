@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.project_id_name import ProjectIdName  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.project_id_name import ProjectIdName
 
 class TestProjectIdName(unittest.TestCase):
     """ProjectIdName unit test stubs"""
@@ -29,21 +26,21 @@ class TestProjectIdName(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> ProjectIdName:
         """Test ProjectIdName
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ProjectIdName`
         """
-        model = equinix_metal.models.project_id_name.ProjectIdName()  # noqa: E501
-        if include_optional :
+        model = ProjectIdName()
+        if include_optional:
             return ProjectIdName(
-                href = '', 
-                id = '', 
+                href = '',
+                id = '',
                 name = ''
             )
-        else :
+        else:
             return ProjectIdName(
         )
         """

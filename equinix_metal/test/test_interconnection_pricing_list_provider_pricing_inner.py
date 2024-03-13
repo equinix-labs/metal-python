@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_pricing_list_provider_pricing_inner import InterconnectionPricingListProviderPricingInner  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection_pricing_list_provider_pricing_inner import InterconnectionPricingListProviderPricingInner
 
 class TestInterconnectionPricingListProviderPricingInner(unittest.TestCase):
     """InterconnectionPricingListProviderPricingInner unit test stubs"""
@@ -29,18 +26,18 @@ class TestInterconnectionPricingListProviderPricingInner(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InterconnectionPricingListProviderPricingInner:
         """Test InterconnectionPricingListProviderPricingInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InterconnectionPricingListProviderPricingInner`
         """
-        model = equinix_metal.models.interconnection_pricing_list_provider_pricing_inner.InterconnectionPricingListProviderPricingInner()  # noqa: E501
-        if include_optional :
+        model = InterconnectionPricingListProviderPricingInner()
+        if include_optional:
             return InterconnectionPricingListProviderPricingInner(
-                href = '', 
-                provider = 'CSP_AWS', 
+                href = '',
+                provider = 'CSP_AWS',
                 tiers = [
                     equinix_metal.models.interconnection_pricing_list_provider_pricing_inner_tiers_inner.InterconnectionPricingList_provider_pricing_inner_tiers_inner(
                         bandwidth = 500, 
@@ -49,7 +46,7 @@ class TestInterconnectionPricingListProviderPricingInner(unittest.TestCase):
                         price = 10.04, )
                     ]
             )
-        else :
+        else:
             return InterconnectionPricingListProviderPricingInner(
         )
         """

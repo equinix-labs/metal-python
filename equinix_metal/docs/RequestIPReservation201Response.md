@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **addon** | **bool** |  | [optional] 
@@ -46,7 +47,7 @@ json = "{}"
 # create an instance of RequestIPReservation201Response from a JSON string
 request_ip_reservation201_response_instance = RequestIPReservation201Response.from_json(json)
 # print the JSON string representation of the object
-print RequestIPReservation201Response.to_json()
+print(RequestIPReservation201Response.to_json())
 
 # convert the object into a dict
 request_ip_reservation201_response_dict = request_ip_reservation201_response_instance.to_dict()

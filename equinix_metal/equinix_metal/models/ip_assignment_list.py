@@ -18,43 +18,59 @@ import pprint
 import re  # noqa: F401
 import json
 
-
-from typing import List, Optional
-from pydantic import BaseModel, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.ip_assignment import IPAssignment
+from typing import Optional, Set
+from typing_extensions import Self
 
 class IPAssignmentList(BaseModel):
     """
     IPAssignmentList
-    """
+    """ # noqa: E501
     href: Optional[StrictStr] = None
-    ip_addresses: Optional[conlist(IPAssignment)] = None
-    __properties = ["href", "ip_addresses"]
+    ip_addresses: Optional[List[IPAssignment]] = None
+    __properties: ClassVar[List[str]] = ["href", "ip_addresses"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IPAssignmentList:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of IPAssignmentList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in ip_addresses (list)
         _items = []
         if self.ip_addresses:
@@ -65,17 +81,17 @@ class IPAssignmentList(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IPAssignmentList:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of IPAssignmentList from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IPAssignmentList.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = IPAssignmentList.parse_obj({
+        _obj = cls.model_validate({
             "href": obj.get("href"),
-            "ip_addresses": [IPAssignment.from_dict(_item) for _item in obj.get("ip_addresses")] if obj.get("ip_addresses") is not None else None
+            "ip_addresses": [IPAssignment.from_dict(_item) for _item in obj["ip_addresses"]] if obj.get("ip_addresses") is not None else None
         })
         return _obj
 

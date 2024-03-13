@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.capacity_input import CapacityInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.capacity_input import CapacityInput
 
 class TestCapacityInput(unittest.TestCase):
     """CapacityInput unit test stubs"""
@@ -29,17 +26,17 @@ class TestCapacityInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CapacityInput:
         """Test CapacityInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CapacityInput`
         """
-        model = equinix_metal.models.capacity_input.CapacityInput()  # noqa: E501
-        if include_optional :
+        model = CapacityInput()
+        if include_optional:
             return CapacityInput(
-                href = '', 
+                href = '',
                 servers = [
                     equinix_metal.models.server_info.ServerInfo(
                         facility = '', 
@@ -49,7 +46,7 @@ class TestCapacityInput(unittest.TestCase):
                         quantity = '', )
                     ]
             )
-        else :
+        else:
             return CapacityInput(
         )
         """

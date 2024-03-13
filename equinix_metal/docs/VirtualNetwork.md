@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **assigned_to** | [**Href**](Href.md) |  | [optional] 
@@ -27,7 +28,7 @@ json = "{}"
 # create an instance of VirtualNetwork from a JSON string
 virtual_network_instance = VirtualNetwork.from_json(json)
 # print the JSON string representation of the object
-print VirtualNetwork.to_json()
+print(VirtualNetwork.to_json())
 
 # convert the object into a dict
 virtual_network_dict = virtual_network_instance.to_dict()

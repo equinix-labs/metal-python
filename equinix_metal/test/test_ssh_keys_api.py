@@ -15,73 +15,71 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.ssh_keys_api import SSHKeysApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.ssh_keys_api import SSHKeysApi
 
 
 class TestSSHKeysApi(unittest.TestCase):
     """SSHKeysApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.ssh_keys_api.SSHKeysApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = SSHKeysApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_project_ssh_key(self):
+    def test_create_project_ssh_key(self) -> None:
         """Test case for create_project_ssh_key
 
-        Create a ssh key for the given project  # noqa: E501
+        Create a ssh key for the given project
         """
         pass
 
-    def test_create_ssh_key(self):
+    def test_create_ssh_key(self) -> None:
         """Test case for create_ssh_key
 
-        Create a ssh key for the current user  # noqa: E501
+        Create a ssh key for the current user
         """
         pass
 
-    def test_delete_ssh_key(self):
+    def test_delete_ssh_key(self) -> None:
         """Test case for delete_ssh_key
 
-        Delete the ssh key  # noqa: E501
+        Delete the ssh key
         """
         pass
 
-    def test_find_device_ssh_keys(self):
+    def test_find_device_ssh_keys(self) -> None:
         """Test case for find_device_ssh_keys
 
-        Retrieve a device's ssh keys  # noqa: E501
+        Retrieve a device's ssh keys
         """
         pass
 
-    def test_find_project_ssh_keys(self):
+    def test_find_project_ssh_keys(self) -> None:
         """Test case for find_project_ssh_keys
 
-        Retrieve a project's ssh keys  # noqa: E501
+        Retrieve a project's ssh keys
         """
         pass
 
-    def test_find_ssh_key_by_id(self):
+    def test_find_ssh_key_by_id(self) -> None:
         """Test case for find_ssh_key_by_id
 
-        Retrieve a ssh key  # noqa: E501
+        Retrieve a ssh key
         """
         pass
 
-    def test_find_ssh_keys(self):
+    def test_find_ssh_keys(self) -> None:
         """Test case for find_ssh_keys
 
-        Retrieve all ssh keys  # noqa: E501
+        Retrieve all ssh keys
         """
         pass
 
-    def test_update_ssh_key(self):
+    def test_update_ssh_key(self) -> None:
         """Test case for update_ssh_key
 
-        Update the ssh key  # noqa: E501
+        Update the ssh key
         """
         pass
 

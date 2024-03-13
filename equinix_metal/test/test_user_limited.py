@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.user_limited import UserLimited  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.user_limited import UserLimited
 
 class TestUserLimited(unittest.TestCase):
     """UserLimited unit test stubs"""
@@ -29,23 +26,23 @@ class TestUserLimited(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> UserLimited:
         """Test UserLimited
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UserLimited`
         """
-        model = equinix_metal.models.user_limited.UserLimited()  # noqa: E501
-        if include_optional :
+        model = UserLimited()
+        if include_optional:
             return UserLimited(
-                avatar_thumb_url = '', 
-                avatar_url = '', 
-                full_name = '', 
-                href = '', 
+                avatar_thumb_url = '',
+                avatar_url = '',
+                full_name = '',
+                href = '',
                 id = ''
             )
-        else :
+        else:
             return UserLimited(
                 id = '',
         )

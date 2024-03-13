@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of MetroInput from a JSON string
 metro_input_instance = MetroInput.from_json(json)
 # print the JSON string representation of the object
-print MetroInput.to_json()
+print(MetroInput.to_json())
 
 # convert the object into a dict
 metro_input_dict = metro_input_instance.to_dict()

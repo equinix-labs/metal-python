@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.create_organization_interconnection_request import CreateOrganizationInterconnectionRequest
 
 class TestCreateOrganizationInterconnectionRequest(unittest.TestCase):
     """CreateOrganizationInterconnectionRequest unit test stubs"""
@@ -29,39 +26,39 @@ class TestCreateOrganizationInterconnectionRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CreateOrganizationInterconnectionRequest:
         """Test CreateOrganizationInterconnectionRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CreateOrganizationInterconnectionRequest`
         """
-        model = equinix_metal.models.create_organization_interconnection_request.CreateOrganizationInterconnectionRequest()  # noqa: E501
-        if include_optional :
+        model = CreateOrganizationInterconnectionRequest()
+        if include_optional:
             return CreateOrganizationInterconnectionRequest(
-                billing_account_name = '', 
-                contact_email = '', 
-                description = '', 
-                href = '', 
-                metro = '', 
-                mode = 'standard', 
-                name = '', 
-                project = '', 
-                redundancy = '', 
-                speed = '10000000000', 
+                billing_account_name = '',
+                contact_email = '',
+                description = '',
+                href = '',
+                metro = '',
+                mode = 'standard',
+                name = '',
+                project = '',
+                redundancy = '',
+                speed = '10000000000',
                 tags = [
                     ''
-                    ], 
-                type = 'dedicated', 
-                use_case = '', 
-                service_token_type = 'a_side', 
-                vlans = [1000,1001], 
+                    ],
+                type = 'dedicated',
+                use_case = '',
+                service_token_type = 'a_side',
+                vlans = [1000, 1001],
                 vrfs = [
                     ''
-                    ], 
+                    ],
                 fabric_provider = None
             )
-        else :
+        else:
             return CreateOrganizationInterconnectionRequest(
                 metro = '',
                 name = '',
@@ -69,7 +66,7 @@ class TestCreateOrganizationInterconnectionRequest(unittest.TestCase):
                 redundancy = '',
                 type = 'dedicated',
                 service_token_type = 'a_side',
-                vlans = [1000,1001],
+                vlans = [1000, 1001],
                 vrfs = [
                     ''
                     ],

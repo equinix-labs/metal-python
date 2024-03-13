@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_create_input import VrfCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_create_input import VrfCreateInput
 
 class TestVrfCreateInput(unittest.TestCase):
     """VrfCreateInput unit test stubs"""
@@ -29,32 +26,32 @@ class TestVrfCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfCreateInput:
         """Test VrfCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfCreateInput`
         """
-        model = equinix_metal.models.vrf_create_input.VrfCreateInput()  # noqa: E501
-        if include_optional :
+        model = VrfCreateInput()
+        if include_optional:
             return VrfCreateInput(
-                bgp_dynamic_neighbors_bfd_enabled = True, 
-                bgp_dynamic_neighbors_enabled = True, 
-                bgp_dynamic_neighbors_export_route_map = True, 
-                description = '', 
-                href = '', 
+                bgp_dynamic_neighbors_bfd_enabled = True,
+                bgp_dynamic_neighbors_enabled = True,
+                bgp_dynamic_neighbors_export_route_map = True,
+                description = '',
+                href = '',
                 ip_ranges = [
                     ''
-                    ], 
-                local_asn = 56, 
-                metro = '', 
-                name = '', 
+                    ],
+                local_asn = 56,
+                metro = '',
+                name = '',
                 tags = [
                     ''
                     ]
             )
-        else :
+        else:
             return VrfCreateInput(
                 metro = '',
                 name = '',

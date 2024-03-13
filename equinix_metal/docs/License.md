@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of License from a JSON string
 license_instance = License.from_json(json)
 # print the JSON string representation of the object
-print License.to_json()
+print(License.to_json())
 
 # convert the object into a dict
 license_dict = license_instance.to_dict()

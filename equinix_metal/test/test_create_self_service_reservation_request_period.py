@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.create_self_service_reservation_request_period import CreateSelfServiceReservationRequestPeriod  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.create_self_service_reservation_request_period import CreateSelfServiceReservationRequestPeriod
 
 class TestCreateSelfServiceReservationRequestPeriod(unittest.TestCase):
     """CreateSelfServiceReservationRequestPeriod unit test stubs"""
@@ -29,21 +26,21 @@ class TestCreateSelfServiceReservationRequestPeriod(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> CreateSelfServiceReservationRequestPeriod:
         """Test CreateSelfServiceReservationRequestPeriod
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `CreateSelfServiceReservationRequestPeriod`
         """
-        model = equinix_metal.models.create_self_service_reservation_request_period.CreateSelfServiceReservationRequestPeriod()  # noqa: E501
-        if include_optional :
+        model = CreateSelfServiceReservationRequestPeriod()
+        if include_optional:
             return CreateSelfServiceReservationRequestPeriod(
-                count = 12, 
-                href = '', 
+                count = 12,
+                href = '',
                 unit = 'monthly'
             )
-        else :
+        else:
             return CreateSelfServiceReservationRequestPeriod(
         )
         """

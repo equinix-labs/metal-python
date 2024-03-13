@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.operating_system_list import OperatingSystemList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.operating_system_list import OperatingSystemList
 
 class TestOperatingSystemList(unittest.TestCase):
     """OperatingSystemList unit test stubs"""
@@ -29,17 +26,17 @@ class TestOperatingSystemList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> OperatingSystemList:
         """Test OperatingSystemList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `OperatingSystemList`
         """
-        model = equinix_metal.models.operating_system_list.OperatingSystemList()  # noqa: E501
-        if include_optional :
+        model = OperatingSystemList()
+        if include_optional:
             return OperatingSystemList(
-                href = '', 
+                href = '',
                 operating_systems = [
                     equinix_metal.models.operating_system.OperatingSystem(
                         default_operating_system = True, 
@@ -58,7 +55,7 @@ class TestOperatingSystemList(unittest.TestCase):
                         version = '', )
                     ]
             )
-        else :
+        else:
             return OperatingSystemList(
         )
         """

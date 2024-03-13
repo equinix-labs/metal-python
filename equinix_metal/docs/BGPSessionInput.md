@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address_family** | **str** | Address family for BGP session. | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of BGPSessionInput from a JSON string
 bgp_session_input_instance = BGPSessionInput.from_json(json)
 # print the JSON string representation of the object
-print BGPSessionInput.to_json()
+print(BGPSessionInput.to_json())
 
 # convert the object into a dict
 bgp_session_input_dict = bgp_session_input_instance.to_dict()

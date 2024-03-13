@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_market_request_list import SpotMarketRequestList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.spot_market_request_list import SpotMarketRequestList
 
 class TestSpotMarketRequestList(unittest.TestCase):
     """SpotMarketRequestList unit test stubs"""
@@ -29,17 +26,17 @@ class TestSpotMarketRequestList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SpotMarketRequestList:
         """Test SpotMarketRequestList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SpotMarketRequestList`
         """
-        model = equinix_metal.models.spot_market_request_list.SpotMarketRequestList()  # noqa: E501
-        if include_optional :
+        model = SpotMarketRequestList()
+        if include_optional:
             return SpotMarketRequestList(
-                href = '', 
+                href = '',
                 spot_market_requests = [
                     equinix_metal.models.spot_market_request.SpotMarketRequest(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -57,7 +54,7 @@ class TestSpotMarketRequestList(unittest.TestCase):
                         project = , )
                     ]
             )
-        else :
+        else:
             return SpotMarketRequestList(
         )
         """

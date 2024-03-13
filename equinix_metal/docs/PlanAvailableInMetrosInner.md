@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** | href to the Metro | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of PlanAvailableInMetrosInner from a JSON string
 plan_available_in_metros_inner_instance = PlanAvailableInMetrosInner.from_json(json)
 # print the JSON string representation of the object
-print PlanAvailableInMetrosInner.to_json()
+print(PlanAvailableInMetrosInner.to_json())
 
 # convert the object into a dict
 plan_available_in_metros_inner_dict = plan_available_in_metros_inner_instance.to_dict()

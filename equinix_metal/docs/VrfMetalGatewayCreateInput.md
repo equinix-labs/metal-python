@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of VrfMetalGatewayCreateInput from a JSON string
 vrf_metal_gateway_create_input_instance = VrfMetalGatewayCreateInput.from_json(json)
 # print the JSON string representation of the object
-print VrfMetalGatewayCreateInput.to_json()
+print(VrfMetalGatewayCreateInput.to_json())
 
 # convert the object into a dict
 vrf_metal_gateway_create_input_dict = vrf_metal_gateway_create_input_instance.to_dict()

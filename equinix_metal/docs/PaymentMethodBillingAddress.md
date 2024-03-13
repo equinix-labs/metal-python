@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **country_code_alpha2** | **str** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of PaymentMethodBillingAddress from a JSON string
 payment_method_billing_address_instance = PaymentMethodBillingAddress.from_json(json)
 # print the JSON string representation of the object
-print PaymentMethodBillingAddress.to_json()
+print(PaymentMethodBillingAddress.to_json())
 
 # convert the object into a dict
 payment_method_billing_address_dict = payment_method_billing_address_instance.to_dict()

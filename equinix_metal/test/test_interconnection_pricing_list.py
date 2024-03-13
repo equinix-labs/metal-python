@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_pricing_list import InterconnectionPricingList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection_pricing_list import InterconnectionPricingList
 
 class TestInterconnectionPricingList(unittest.TestCase):
     """InterconnectionPricingList unit test stubs"""
@@ -29,17 +26,17 @@ class TestInterconnectionPricingList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InterconnectionPricingList:
         """Test InterconnectionPricingList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InterconnectionPricingList`
         """
-        model = equinix_metal.models.interconnection_pricing_list.InterconnectionPricingList()  # noqa: E501
-        if include_optional :
+        model = InterconnectionPricingList()
+        if include_optional:
             return InterconnectionPricingList(
-                href = '', 
+                href = '',
                 provider_pricing = [
                     equinix_metal.models.interconnection_pricing_list_provider_pricing_inner.InterconnectionPricingList_provider_pricing_inner(
                         href = '', 
@@ -53,7 +50,7 @@ class TestInterconnectionPricingList(unittest.TestCase):
                             ], )
                     ]
             )
-        else :
+        else:
             return InterconnectionPricingList(
         )
         """

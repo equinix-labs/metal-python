@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of InvitationInput from a JSON string
 invitation_input_instance = InvitationInput.from_json(json)
 # print the JSON string representation of the object
-print InvitationInput.to_json()
+print(InvitationInput.to_json())
 
 # convert the object into a dict
 invitation_input_dict = invitation_input_instance.to_dict()

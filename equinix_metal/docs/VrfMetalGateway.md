@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of VrfMetalGateway from a JSON string
 vrf_metal_gateway_instance = VrfMetalGateway.from_json(json)
 # print the JSON string representation of the object
-print VrfMetalGateway.to_json()
+print(VrfMetalGateway.to_json())
 
 # convert the object into a dict
 vrf_metal_gateway_dict = vrf_metal_gateway_instance.to_dict()

@@ -19,17 +19,19 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.auth_token_project import AuthTokenProject
 from equinix_metal.models.auth_token_user import AuthTokenUser
+from typing import Optional, Set
+from typing_extensions import Self
 
 class AuthToken(BaseModel):
     """
     AuthToken
-    """
+    """ # noqa: E501
     created_at: Optional[datetime] = None
-    description: Optional[StrictStr] = Field(None, description="Available only for API keys")
+    description: Optional[StrictStr] = Field(default=None, description="Available only for API keys")
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     project: Optional[AuthTokenProject] = None
@@ -37,32 +39,47 @@ class AuthToken(BaseModel):
     token: Optional[StrictStr] = None
     updated_at: Optional[datetime] = None
     user: Optional[AuthTokenUser] = None
-    __properties = ["created_at", "description", "href", "id", "project", "read_only", "token", "updated_at", "user"]
+    __properties: ClassVar[List[str]] = ["created_at", "description", "href", "id", "project", "read_only", "token", "updated_at", "user"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> AuthToken:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of AuthToken from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of project
         if self.project:
             _dict['project'] = self.project.to_dict()
@@ -72,24 +89,24 @@ class AuthToken(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> AuthToken:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of AuthToken from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return AuthToken.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = AuthToken.parse_obj({
+        _obj = cls.model_validate({
             "created_at": obj.get("created_at"),
             "description": obj.get("description"),
             "href": obj.get("href"),
             "id": obj.get("id"),
-            "project": AuthTokenProject.from_dict(obj.get("project")) if obj.get("project") is not None else None,
+            "project": AuthTokenProject.from_dict(obj["project"]) if obj.get("project") is not None else None,
             "read_only": obj.get("read_only"),
             "token": obj.get("token"),
             "updated_at": obj.get("updated_at"),
-            "user": AuthTokenUser.from_dict(obj.get("user")) if obj.get("user") is not None else None
+            "user": AuthTokenUser.from_dict(obj["user"]) if obj.get("user") is not None else None
         })
         return _obj
 

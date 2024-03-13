@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of OperatingSystemList from a JSON string
 operating_system_list_instance = OperatingSystemList.from_json(json)
 # print the JSON string representation of the object
-print OperatingSystemList.to_json()
+print(OperatingSystemList.to_json())
 
 # convert the object into a dict
 operating_system_list_dict = operating_system_list_instance.to_dict()

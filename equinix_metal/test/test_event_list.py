@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.event_list import EventList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.event_list import EventList
 
 class TestEventList(unittest.TestCase):
     """EventList unit test stubs"""
@@ -29,15 +26,15 @@ class TestEventList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> EventList:
         """Test EventList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `EventList`
         """
-        model = equinix_metal.models.event_list.EventList()  # noqa: E501
-        if include_optional :
+        model = EventList()
+        if include_optional:
             return EventList(
                 events = [
                     equinix_metal.models.event.Event(
@@ -54,8 +51,8 @@ class TestEventList(unittest.TestCase):
                             ], 
                         state = '', 
                         type = '', )
-                    ], 
-                href = '', 
+                    ],
+                href = '',
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -69,7 +66,7 @@ class TestEventList(unittest.TestCase):
                     self = , 
                     total = 56, )
             )
-        else :
+        else:
             return EventList(
         )
         """

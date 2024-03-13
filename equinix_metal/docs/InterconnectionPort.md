@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of InterconnectionPort from a JSON string
 interconnection_port_instance = InterconnectionPort.from_json(json)
 # print the JSON string representation of the object
-print InterconnectionPort.to_json()
+print(InterconnectionPort.to_json())
 
 # convert the object into a dict
 interconnection_port_dict = interconnection_port_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of MoveHardwareReservationRequest from a JSON string
 move_hardware_reservation_request_instance = MoveHardwareReservationRequest.from_json(json)
 # print the JSON string representation of the object
-print MoveHardwareReservationRequest.to_json()
+print(MoveHardwareReservationRequest.to_json())
 
 # convert the object into a dict
 move_hardware_reservation_request_dict = move_hardware_reservation_request_instance.to_dict()

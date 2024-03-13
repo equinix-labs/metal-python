@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.new_password import NewPassword  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.new_password import NewPassword
 
 class TestNewPassword(unittest.TestCase):
     """NewPassword unit test stubs"""
@@ -29,20 +26,20 @@ class TestNewPassword(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> NewPassword:
         """Test NewPassword
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `NewPassword`
         """
-        model = equinix_metal.models.new_password.NewPassword()  # noqa: E501
-        if include_optional :
+        model = NewPassword()
+        if include_optional:
             return NewPassword(
-                href = '', 
+                href = '',
                 new_password = ''
             )
-        else :
+        else:
             return NewPassword(
         )
         """

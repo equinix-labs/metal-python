@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **customdata** | **object** |  | [optional] 
@@ -22,7 +23,7 @@ json = "{}"
 # create an instance of UserUpdateInput from a JSON string
 user_update_input_instance = UserUpdateInput.from_json(json)
 # print the JSON string representation of the object
-print UserUpdateInput.to_json()
+print(UserUpdateInput.to_json())
 
 # convert the object into a dict
 user_update_input_dict = user_update_input_instance.to_dict()

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_update_input import VrfUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_update_input import VrfUpdateInput
 
 class TestVrfUpdateInput(unittest.TestCase):
     """VrfUpdateInput unit test stubs"""
@@ -29,31 +26,31 @@ class TestVrfUpdateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfUpdateInput:
         """Test VrfUpdateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfUpdateInput`
         """
-        model = equinix_metal.models.vrf_update_input.VrfUpdateInput()  # noqa: E501
-        if include_optional :
+        model = VrfUpdateInput()
+        if include_optional:
             return VrfUpdateInput(
-                bgp_dynamic_neighbors_bfd_enabled = True, 
-                bgp_dynamic_neighbors_enabled = True, 
-                bgp_dynamic_neighbors_export_route_map = True, 
-                description = '', 
-                href = '', 
+                bgp_dynamic_neighbors_bfd_enabled = True,
+                bgp_dynamic_neighbors_enabled = True,
+                bgp_dynamic_neighbors_export_route_map = True,
+                description = '',
+                href = '',
                 ip_ranges = [
                     ''
-                    ], 
-                local_asn = 56, 
-                name = '', 
+                    ],
+                local_asn = 56,
+                name = '',
                 tags = [
                     ''
                     ]
             )
-        else :
+        else:
             return VrfUpdateInput(
         )
         """

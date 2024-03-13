@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ams1** | [**SpotPricesPerFacility**](SpotPricesPerFacility.md) |  | [optional] 
@@ -30,7 +31,7 @@ json = "{}"
 # create an instance of SpotPricesReport from a JSON string
 spot_prices_report_instance = SpotPricesReport.from_json(json)
 # print the JSON string representation of the object
-print SpotPricesReport.to_json()
+print(SpotPricesReport.to_json())
 
 # convert the object into a dict
 spot_prices_report_dict = spot_prices_report_instance.to_dict()

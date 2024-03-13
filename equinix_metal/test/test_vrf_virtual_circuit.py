@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_virtual_circuit import VrfVirtualCircuit  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_virtual_circuit import VrfVirtualCircuit
 
 class TestVrfVirtualCircuit(unittest.TestCase):
     """VrfVirtualCircuit unit test stubs"""
@@ -29,38 +26,38 @@ class TestVrfVirtualCircuit(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfVirtualCircuit:
         """Test VrfVirtualCircuit
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfVirtualCircuit`
         """
-        model = equinix_metal.models.vrf_virtual_circuit.VrfVirtualCircuit()  # noqa: E501
-        if include_optional :
+        model = VrfVirtualCircuit()
+        if include_optional:
             return VrfVirtualCircuit(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                customer_ip = '12.0.0.2', 
-                description = '', 
-                href = '', 
-                id = '', 
-                md5 = '', 
-                metal_ip = '12.0.0.1', 
-                name = '', 
-                nni_vlan = 56, 
-                peer_asn = 56, 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                customer_ip = '12.0.0.2',
+                description = '',
+                href = '',
+                id = '',
+                md5 = '',
+                metal_ip = '12.0.0.1',
+                name = '',
+                nni_vlan = 56,
+                peer_asn = 56,
                 port = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 project = equinix_metal.models.href.Href(
-                    href = '', ), 
-                speed = 56, 
-                status = 'pending', 
-                subnet = '12.0.0.0/30', 
+                    href = '', ),
+                speed = 56,
+                status = 'pending',
+                subnet = '12.0.0.0/30',
                 tags = [
                     ''
-                    ], 
-                type = 'vrf', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    ],
+                type = 'vrf',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 vrf = equinix_metal.models.vrf.Vrf(
                     bgp_dynamic_neighbors_bfd_enabled = True, 
                     bgp_dynamic_neighbors_enabled = True, 
@@ -179,7 +176,7 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], )
             )
-        else :
+        else:
             return VrfVirtualCircuit(
                 vrf = equinix_metal.models.vrf.Vrf(
                     bgp_dynamic_neighbors_bfd_enabled = True, 

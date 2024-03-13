@@ -19,75 +19,92 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.bgp_session import BgpSession
 from equinix_metal.models.global_bgp_range import GlobalBgpRange
 from equinix_metal.models.href import Href
+from typing import Optional, Set
+from typing_extensions import Self
 
 class BgpConfig(BaseModel):
     """
     BgpConfig
-    """
-    asn: Optional[StrictInt] = Field(None, description="Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.")
+    """ # noqa: E501
+    asn: Optional[StrictInt] = Field(default=None, description="Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.")
     created_at: Optional[datetime] = None
-    deployment_type: Optional[StrictStr] = Field(None, description="In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space. ")
+    deployment_type: Optional[StrictStr] = Field(default=None, description="In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space. ")
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    max_prefix: Optional[StrictInt] = Field(10, description="The maximum number of route filters allowed per server")
-    md5: Optional[StrictStr] = Field(None, description="(Optional) Password for BGP session in plaintext (not a checksum)")
+    max_prefix: Optional[StrictInt] = Field(default=10, description="The maximum number of route filters allowed per server")
+    md5: Optional[StrictStr] = Field(default=None, description="(Optional) Password for BGP session in plaintext (not a checksum)")
     project: Optional[Href] = None
-    ranges: Optional[conlist(GlobalBgpRange)] = Field(None, description="The IP block ranges associated to the ASN (Populated in Global BGP only)")
+    ranges: Optional[List[GlobalBgpRange]] = Field(default=None, description="The IP block ranges associated to the ASN (Populated in Global BGP only)")
     requested_at: Optional[datetime] = None
-    route_object: Optional[StrictStr] = Field(None, description="Specifies AS-MACRO (aka AS-SET) to use when building client route filters")
-    sessions: Optional[conlist(BgpSession)] = Field(None, description="The direct connections between neighboring routers that want to exchange routing information.")
-    status: Optional[StrictStr] = Field(None, description="Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.")
-    __properties = ["asn", "created_at", "deployment_type", "href", "id", "max_prefix", "md5", "project", "ranges", "requested_at", "route_object", "sessions", "status"]
+    route_object: Optional[StrictStr] = Field(default=None, description="Specifies AS-MACRO (aka AS-SET) to use when building client route filters")
+    sessions: Optional[List[BgpSession]] = Field(default=None, description="The direct connections between neighboring routers that want to exchange routing information.")
+    status: Optional[StrictStr] = Field(default=None, description="Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.")
+    __properties: ClassVar[List[str]] = ["asn", "created_at", "deployment_type", "href", "id", "max_prefix", "md5", "project", "ranges", "requested_at", "route_object", "sessions", "status"]
 
-    @validator('deployment_type')
+    @field_validator('deployment_type')
     def deployment_type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('global', 'local'):
+        if value not in set(['global', 'local']):
             raise ValueError("must be one of enum values ('global', 'local')")
         return value
 
-    @validator('status')
+    @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('requested', 'enabled', 'disabled'):
+        if value not in set(['requested', 'enabled', 'disabled']):
             raise ValueError("must be one of enum values ('requested', 'enabled', 'disabled')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> BgpConfig:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of BgpConfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of project
         if self.project:
             _dict['project'] = self.project.to_dict()
@@ -106,22 +123,22 @@ class BgpConfig(BaseModel):
                     _items.append(_item.to_dict())
             _dict['sessions'] = _items
         # set to None if md5 (nullable) is None
-        # and __fields_set__ contains the field
-        if self.md5 is None and "md5" in self.__fields_set__:
+        # and model_fields_set contains the field
+        if self.md5 is None and "md5" in self.model_fields_set:
             _dict['md5'] = None
 
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> BgpConfig:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of BgpConfig from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return BgpConfig.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = BgpConfig.parse_obj({
+        _obj = cls.model_validate({
             "asn": obj.get("asn"),
             "created_at": obj.get("created_at"),
             "deployment_type": obj.get("deployment_type"),
@@ -129,11 +146,11 @@ class BgpConfig(BaseModel):
             "id": obj.get("id"),
             "max_prefix": obj.get("max_prefix") if obj.get("max_prefix") is not None else 10,
             "md5": obj.get("md5"),
-            "project": Href.from_dict(obj.get("project")) if obj.get("project") is not None else None,
-            "ranges": [GlobalBgpRange.from_dict(_item) for _item in obj.get("ranges")] if obj.get("ranges") is not None else None,
+            "project": Href.from_dict(obj["project"]) if obj.get("project") is not None else None,
+            "ranges": [GlobalBgpRange.from_dict(_item) for _item in obj["ranges"]] if obj.get("ranges") is not None else None,
             "requested_at": obj.get("requested_at"),
             "route_object": obj.get("route_object"),
-            "sessions": [BgpSession.from_dict(_item) for _item in obj.get("sessions")] if obj.get("sessions") is not None else None,
+            "sessions": [BgpSession.from_dict(_item) for _item in obj["sessions"]] if obj.get("sessions") is not None else None,
             "status": obj.get("status")
         })
         return _obj

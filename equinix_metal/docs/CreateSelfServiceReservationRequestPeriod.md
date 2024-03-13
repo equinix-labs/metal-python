@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **count** | **int** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of CreateSelfServiceReservationRequestPeriod from a JSON string
 create_self_service_reservation_request_period_instance = CreateSelfServiceReservationRequestPeriod.from_json(json)
 # print the JSON string representation of the object
-print CreateSelfServiceReservationRequestPeriod.to_json()
+print(CreateSelfServiceReservationRequestPeriod.to_json())
 
 # convert the object into a dict
 create_self_service_reservation_request_period_dict = create_self_service_reservation_request_period_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **device_id** | **str** |  | [optional] 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of SupportRequestInput from a JSON string
 support_request_input_instance = SupportRequestInput.from_json(json)
 # print the JSON string representation of the object
-print SupportRequestInput.to_json()
+print(SupportRequestInput.to_json())
 
 # convert the object into a dict
 support_request_input_dict = support_request_input_instance.to_dict()

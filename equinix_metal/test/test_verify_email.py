@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.verify_email import VerifyEmail  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.verify_email import VerifyEmail
 
 class TestVerifyEmail(unittest.TestCase):
     """VerifyEmail unit test stubs"""
@@ -29,20 +26,20 @@ class TestVerifyEmail(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VerifyEmail:
         """Test VerifyEmail
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VerifyEmail`
         """
-        model = equinix_metal.models.verify_email.VerifyEmail()  # noqa: E501
-        if include_optional :
+        model = VerifyEmail()
+        if include_optional:
             return VerifyEmail(
-                href = '', 
+                href = '',
                 user_token = ''
             )
-        else :
+        else:
             return VerifyEmail(
                 user_token = '',
         )

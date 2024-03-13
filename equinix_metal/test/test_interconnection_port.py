@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_port import InterconnectionPort  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection_port import InterconnectionPort
 
 class TestInterconnectionPort(unittest.TestCase):
     """InterconnectionPort unit test stubs"""
@@ -29,31 +26,31 @@ class TestInterconnectionPort(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InterconnectionPort:
         """Test InterconnectionPort
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InterconnectionPort`
         """
-        model = equinix_metal.models.interconnection_port.InterconnectionPort()  # noqa: E501
-        if include_optional :
+        model = InterconnectionPort()
+        if include_optional:
             return InterconnectionPort(
-                href = '', 
-                id = '', 
-                link_status = '', 
-                name = '', 
+                href = '',
+                id = '',
+                link_status = '',
+                name = '',
                 organization = equinix_metal.models.href.Href(
-                    href = '', ), 
-                role = 'primary', 
-                speed = 56, 
-                status = 'requested', 
-                switch_id = '', 
+                    href = '', ),
+                role = 'primary',
+                speed = 56,
+                status = 'requested',
+                switch_id = '',
                 virtual_circuits = [
                     null
                     ]
             )
-        else :
+        else:
             return InterconnectionPort(
         )
         """

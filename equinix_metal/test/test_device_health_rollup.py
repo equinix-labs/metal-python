@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device_health_rollup import DeviceHealthRollup  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device_health_rollup import DeviceHealthRollup
 
 class TestDeviceHealthRollup(unittest.TestCase):
     """DeviceHealthRollup unit test stubs"""
@@ -29,21 +26,21 @@ class TestDeviceHealthRollup(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DeviceHealthRollup:
         """Test DeviceHealthRollup
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DeviceHealthRollup`
         """
-        model = equinix_metal.models.device_health_rollup.DeviceHealthRollup()  # noqa: E501
-        if include_optional :
+        model = DeviceHealthRollup()
+        if include_optional:
             return DeviceHealthRollup(
-                health_rollup = 'ok', 
-                href = '', 
+                health_rollup = 'ok',
+                href = '',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return DeviceHealthRollup(
         )
         """

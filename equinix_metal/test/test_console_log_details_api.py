@@ -15,21 +15,19 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.console_log_details_api import ConsoleLogDetailsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.console_log_details_api import ConsoleLogDetailsApi
 
 
 class TestConsoleLogDetailsApi(unittest.TestCase):
     """ConsoleLogDetailsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.console_log_details_api.ConsoleLogDetailsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = ConsoleLogDetailsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_capture_screenshot(self):
+    def test_capture_screenshot(self) -> None:
         """Test case for capture_screenshot
 
         """

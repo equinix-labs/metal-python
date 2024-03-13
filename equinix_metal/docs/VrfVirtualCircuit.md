@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -34,7 +35,7 @@ json = "{}"
 # create an instance of VrfVirtualCircuit from a JSON string
 vrf_virtual_circuit_instance = VrfVirtualCircuit.from_json(json)
 # print the JSON string representation of the object
-print VrfVirtualCircuit.to_json()
+print(VrfVirtualCircuit.to_json())
 
 # convert the object into a dict
 vrf_virtual_circuit_dict = vrf_virtual_circuit_instance.to_dict()

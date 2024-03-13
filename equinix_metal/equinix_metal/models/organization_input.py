@@ -19,50 +19,67 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Any, Dict, Optional, Union
-from pydantic import BaseModel, Field, StrictBytes, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBytes, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from equinix_metal.models.address import Address
+from typing import Optional, Set
+from typing_extensions import Self
 
 class OrganizationInput(BaseModel):
     """
     OrganizationInput
-    """
+    """ # noqa: E501
     address: Optional[Address] = None
     billing_address: Optional[Address] = None
     customdata: Optional[Dict[str, Any]] = None
     description: Optional[StrictStr] = None
-    enforce_2fa_at: Optional[datetime] = Field(None, description="Force to all members to have enabled the two factor authentication after that date, unless the value is null")
+    enforce_2fa_at: Optional[datetime] = Field(default=None, description="Force to all members to have enabled the two factor authentication after that date, unless the value is null")
     href: Optional[StrictStr] = None
-    logo: Optional[Union[StrictBytes, StrictStr]] = Field(None, description="The logo for the organization; must be base64-encoded image data")
+    logo: Optional[Union[StrictBytes, StrictStr]] = Field(default=None, description="The logo for the organization; must be base64-encoded image data")
     name: Optional[StrictStr] = None
     twitter: Optional[StrictStr] = None
     website: Optional[StrictStr] = None
-    __properties = ["address", "billing_address", "customdata", "description", "enforce_2fa_at", "href", "logo", "name", "twitter", "website"]
+    __properties: ClassVar[List[str]] = ["address", "billing_address", "customdata", "description", "enforce_2fa_at", "href", "logo", "name", "twitter", "website"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> OrganizationInput:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of OrganizationInput from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of address
         if self.address:
             _dict['address'] = self.address.to_dict()
@@ -72,17 +89,17 @@ class OrganizationInput(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> OrganizationInput:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of OrganizationInput from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return OrganizationInput.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = OrganizationInput.parse_obj({
-            "address": Address.from_dict(obj.get("address")) if obj.get("address") is not None else None,
-            "billing_address": Address.from_dict(obj.get("billing_address")) if obj.get("billing_address") is not None else None,
+        _obj = cls.model_validate({
+            "address": Address.from_dict(obj["address"]) if obj.get("address") is not None else None,
+            "billing_address": Address.from_dict(obj["billing_address"]) if obj.get("billing_address") is not None else None,
             "customdata": obj.get("customdata"),
             "description": obj.get("description"),
             "enforce_2fa_at": obj.get("enforce_2fa_at"),

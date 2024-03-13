@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **always_pxe** | **bool** |  | [optional] 
@@ -28,7 +29,7 @@ json = "{}"
 # create an instance of DeviceUpdateInput from a JSON string
 device_update_input_instance = DeviceUpdateInput.from_json(json)
 # print the JSON string representation of the object
-print DeviceUpdateInput.to_json()
+print(DeviceUpdateInput.to_json())
 
 # convert the object into a dict
 device_update_input_dict = device_update_input_instance.to_dict()

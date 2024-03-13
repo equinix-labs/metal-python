@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of PortConvertLayer3Input from a JSON string
 port_convert_layer3_input_instance = PortConvertLayer3Input.from_json(json)
 # print the JSON string representation of the object
-print PortConvertLayer3Input.to_json()
+print(PortConvertLayer3Input.to_json())
 
 # convert the object into a dict
 port_convert_layer3_input_dict = port_convert_layer3_input_instance.to_dict()

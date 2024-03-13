@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **hostnames** | **List[str]** |  | [optional] 
@@ -45,7 +46,7 @@ json = "{}"
 # create an instance of InstancesBatchCreateInputBatchesInner from a JSON string
 instances_batch_create_input_batches_inner_instance = InstancesBatchCreateInputBatchesInner.from_json(json)
 # print the JSON string representation of the object
-print InstancesBatchCreateInputBatchesInner.to_json()
+print(InstancesBatchCreateInputBatchesInner.to_json())
 
 # convert the object into a dict
 instances_batch_create_input_batches_inner_dict = instances_batch_create_input_batches_inner_instance.to_dict()

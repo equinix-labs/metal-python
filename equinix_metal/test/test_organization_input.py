@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.organization_input import OrganizationInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.organization_input import OrganizationInput
 
 class TestOrganizationInput(unittest.TestCase):
     """OrganizationInput unit test stubs"""
@@ -29,15 +26,15 @@ class TestOrganizationInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> OrganizationInput:
         """Test OrganizationInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `OrganizationInput`
         """
-        model = equinix_metal.models.organization_input.OrganizationInput()  # noqa: E501
-        if include_optional :
+        model = OrganizationInput()
+        if include_optional:
             return OrganizationInput(
                 address = equinix_metal.models.address.Address(
                     address = '', 
@@ -50,7 +47,7 @@ class TestOrganizationInput(unittest.TestCase):
                     country = '', 
                     href = '', 
                     state = '', 
-                    zip_code = '', ), 
+                    zip_code = '', ),
                 billing_address = equinix_metal.models.address.Address(
                     address = '', 
                     address2 = '', 
@@ -62,17 +59,17 @@ class TestOrganizationInput(unittest.TestCase):
                     country = '', 
                     href = '', 
                     state = '', 
-                    zip_code = '', ), 
-                customdata = None, 
-                description = '', 
-                enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
-                logo = 'YQ==', 
-                name = '', 
-                twitter = '', 
+                    zip_code = '', ),
+                customdata = None,
+                description = '',
+                enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
+                logo = 'YQ==',
+                name = '',
+                twitter = '',
                 website = ''
             )
-        else :
+        else:
             return OrganizationInput(
         )
         """

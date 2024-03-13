@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.transfer_request_list import TransferRequestList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.transfer_request_list import TransferRequestList
 
 class TestTransferRequestList(unittest.TestCase):
     """TransferRequestList unit test stubs"""
@@ -29,17 +26,17 @@ class TestTransferRequestList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> TransferRequestList:
         """Test TransferRequestList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `TransferRequestList`
         """
-        model = equinix_metal.models.transfer_request_list.TransferRequestList()  # noqa: E501
-        if include_optional :
+        model = TransferRequestList()
+        if include_optional:
             return TransferRequestList(
-                href = '', 
+                href = '',
                 transfers = [
                     equinix_metal.models.transfer_request.TransferRequest(
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -52,7 +49,7 @@ class TestTransferRequestList(unittest.TestCase):
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
                     ]
             )
-        else :
+        else:
             return TransferRequestList(
         )
         """

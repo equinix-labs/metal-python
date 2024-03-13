@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **authorization_code** | **str** | For Fabric VCs (Metal Billed), this allows Fabric to connect the Metal network to any connection Fabric facilitates. Fabric uses this token to be able to give more detailed information about the Metal end of the network, when viewing resources from within Fabric. | [optional] 
@@ -11,7 +12,7 @@ Name | Type | Description | Notes
 **facility** | [**Href**](Href.md) |  | [optional] 
 **href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
-**metro** | [**Metro**](Metro.md) |  | [optional] 
+**metro** | [**Metro**](Metro.md) | The location of where the shared or Dedicated Port is located. For interconnections with Dedicated Ports,   this will be the location of the Dedicated Ports. For Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports   as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed),    this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here. | [optional] 
 **mode** | **str** | The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won&#39;t have this field. Can be either &#39;standard&#39; or &#39;tunnel&#39;.   The default mode of an interconnection on a Dedicated Port is &#39;standard&#39;. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances. | [optional] 
 **name** | **str** |  | [optional] 
 **organization** | [**Href**](Href.md) |  | [optional] 
@@ -36,7 +37,7 @@ json = "{}"
 # create an instance of Interconnection from a JSON string
 interconnection_instance = Interconnection.from_json(json)
 # print the JSON string representation of the object
-print Interconnection.to_json()
+print(Interconnection.to_json())
 
 # convert the object into a dict
 interconnection_dict = interconnection_instance.to_dict()

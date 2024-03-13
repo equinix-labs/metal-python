@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **datetime** |  | [optional] 
@@ -26,7 +27,7 @@ json = "{}"
 # create an instance of SpotMarketRequest from a JSON string
 spot_market_request_instance = SpotMarketRequest.from_json(json)
 # print the JSON string representation of the object
-print SpotMarketRequest.to_json()
+print(SpotMarketRequest.to_json())
 
 # convert the object into a dict
 spot_market_request_dict = spot_market_request_instance.to_dict()

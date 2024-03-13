@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of SpotMarketPricesList from a JSON string
 spot_market_prices_list_instance = SpotMarketPricesList.from_json(json)
 # print the JSON string representation of the object
-print SpotMarketPricesList.to_json()
+print(SpotMarketPricesList.to_json())
 
 # convert the object into a dict
 spot_market_prices_list_dict = spot_market_prices_list_instance.to_dict()

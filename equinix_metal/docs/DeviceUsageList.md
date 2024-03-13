@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of DeviceUsageList from a JSON string
 device_usage_list_instance = DeviceUsageList.from_json(json)
 # print the JSON string representation of the object
-print DeviceUsageList.to_json()
+print(DeviceUsageList.to_json())
 
 # convert the object into a dict
 device_usage_list_dict = device_usage_list_instance.to_dict()

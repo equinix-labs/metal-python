@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.disk import Disk  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.disk import Disk
 
 class TestDisk(unittest.TestCase):
     """Disk unit test stubs"""
@@ -29,28 +26,28 @@ class TestDisk(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Disk:
         """Test Disk
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Disk`
         """
-        model = equinix_metal.models.disk.Disk()  # noqa: E501
-        if include_optional :
+        model = Disk()
+        if include_optional:
             return Disk(
-                device = '', 
-                href = '', 
+                device = '',
+                href = '',
                 partitions = [
                     equinix_metal.models.partition.Partition(
                         href = '', 
                         label = '', 
                         number = 56, 
                         size = '', )
-                    ], 
+                    ],
                 wipe_table = True
             )
-        else :
+        else:
             return Disk(
         )
         """

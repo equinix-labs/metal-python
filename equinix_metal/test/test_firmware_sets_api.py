@@ -15,31 +15,29 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.firmware_sets_api import FirmwareSetsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.firmware_sets_api import FirmwareSetsApi
 
 
 class TestFirmwareSetsApi(unittest.TestCase):
     """FirmwareSetsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.firmware_sets_api.FirmwareSetsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = FirmwareSetsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_get_organization_firmware_sets(self):
+    def test_get_organization_firmware_sets(self) -> None:
         """Test case for get_organization_firmware_sets
 
-        Get Organization's Firmware Sets  # noqa: E501
+        Get Organization's Firmware Sets
         """
         pass
 
-    def test_get_project_firmware_sets(self):
+    def test_get_project_firmware_sets(self) -> None:
         """Test case for get_project_firmware_sets
 
-        Get Project's Firmware Sets  # noqa: E501
+        Get Project's Firmware Sets
         """
         pass
 

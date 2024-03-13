@@ -15,31 +15,29 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.usages_api import UsagesApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.usages_api import UsagesApi
 
 
 class TestUsagesApi(unittest.TestCase):
     """UsagesApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.usages_api.UsagesApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = UsagesApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_find_device_usages(self):
+    def test_find_device_usages(self) -> None:
         """Test case for find_device_usages
 
-        Retrieve all usages for device  # noqa: E501
+        Retrieve all usages for device
         """
         pass
 
-    def test_find_project_usage(self):
+    def test_find_project_usage(self) -> None:
         """Test case for find_project_usage
 
-        Retrieve all usages for project  # noqa: E501
+        Retrieve all usages for project
         """
         pass
 

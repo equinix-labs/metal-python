@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.auth_token_list import AuthTokenList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.auth_token_list import AuthTokenList
 
 class TestAuthTokenList(unittest.TestCase):
     """AuthTokenList unit test stubs"""
@@ -29,15 +26,15 @@ class TestAuthTokenList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> AuthTokenList:
         """Test AuthTokenList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `AuthTokenList`
         """
-        model = equinix_metal.models.auth_token_list.AuthTokenList()  # noqa: E501
-        if include_optional :
+        model = AuthTokenList()
+        if include_optional:
             return AuthTokenList(
                 api_keys = [
                     equinix_metal.models.auth_token.AuthToken(
@@ -50,10 +47,10 @@ class TestAuthTokenList(unittest.TestCase):
                         token = '', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         user = null, )
-                    ], 
+                    ],
                 href = ''
             )
-        else :
+        else:
             return AuthTokenList(
         )
         """

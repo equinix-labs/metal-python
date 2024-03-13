@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.project_usage import ProjectUsage  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.project_usage import ProjectUsage
 
 class TestProjectUsage(unittest.TestCase):
     """ProjectUsage unit test stubs"""
@@ -29,28 +26,28 @@ class TestProjectUsage(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> ProjectUsage:
         """Test ProjectUsage
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `ProjectUsage`
         """
-        model = equinix_metal.models.project_usage.ProjectUsage()  # noqa: E501
-        if include_optional :
+        model = ProjectUsage()
+        if include_optional:
             return ProjectUsage(
-                facility = '', 
-                href = '', 
-                name = '', 
-                plan = '', 
-                plan_version = '', 
-                price = '', 
-                quantity = '', 
-                total = '', 
-                type = '', 
+                facility = '',
+                href = '',
+                name = '',
+                plan = '',
+                plan_version = '',
+                price = '',
+                quantity = '',
+                total = '',
+                type = '',
                 unit = ''
             )
-        else :
+        else:
             return ProjectUsage(
         )
         """

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of LicenseUpdateInput from a JSON string
 license_update_input_instance = LicenseUpdateInput.from_json(json)
 # print the JSON string representation of the object
-print LicenseUpdateInput.to_json()
+print(LicenseUpdateInput.to_json())
 
 # convert the object into a dict
 license_update_input_dict = license_update_input_instance.to_dict()

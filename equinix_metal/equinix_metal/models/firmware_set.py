@@ -19,52 +19,73 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.attribute import Attribute
 from equinix_metal.models.component import Component
+from typing import Optional, Set
+from typing_extensions import Self
 
 class FirmwareSet(BaseModel):
     """
     Represents a Firmware Set
-    """
-    attributes: Optional[conlist(Attribute)] = Field(None, description="Represents a list of attributes")
-    component_firmware: Optional[conlist(Component)] = Field(None, description="List of components versions")
-    created_at: Optional[datetime] = Field(None, description="Datetime when the block was created.")
+    """ # noqa: E501
+    attributes: Optional[List[Attribute]] = Field(default=None, description="Represents a list of attributes")
+    component_firmware: Optional[List[Component]] = Field(default=None, description="List of components versions")
+    created_at: Optional[datetime] = Field(default=None, description="Datetime when the block was created.")
     href: Optional[StrictStr] = None
-    name: StrictStr = Field(..., description="Firmware Set Name")
-    updated_at: Optional[datetime] = Field(None, description="Datetime when the block was updated.")
-    uuid: StrictStr = Field(..., description="Firmware Set UUID")
-    __properties = ["attributes", "component_firmware", "created_at", "href", "name", "updated_at", "uuid"]
+    name: StrictStr = Field(description="Firmware Set Name")
+    updated_at: Optional[datetime] = Field(default=None, description="Datetime when the block was updated.")
+    uuid: StrictStr = Field(description="Firmware Set UUID")
+    __properties: ClassVar[List[str]] = ["attributes", "component_firmware", "created_at", "href", "name", "updated_at", "uuid"]
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> FirmwareSet:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of FirmwareSet from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                            "created_at",
-                            "name",
-                            "updated_at",
-                            "uuid",
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        * OpenAPI `readOnly` fields are excluded.
+        """
+        excluded_fields: Set[str] = set([
+            "created_at",
+            "name",
+            "updated_at",
+            "uuid",
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of each item in attributes (list)
         _items = []
         if self.attributes:
@@ -82,17 +103,17 @@ class FirmwareSet(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> FirmwareSet:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of FirmwareSet from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return FirmwareSet.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = FirmwareSet.parse_obj({
-            "attributes": [Attribute.from_dict(_item) for _item in obj.get("attributes")] if obj.get("attributes") is not None else None,
-            "component_firmware": [Component.from_dict(_item) for _item in obj.get("component_firmware")] if obj.get("component_firmware") is not None else None,
+        _obj = cls.model_validate({
+            "attributes": [Attribute.from_dict(_item) for _item in obj["attributes"]] if obj.get("attributes") is not None else None,
+            "component_firmware": [Component.from_dict(_item) for _item in obj["component_firmware"]] if obj.get("component_firmware") is not None else None,
             "created_at": obj.get("created_at"),
             "href": obj.get("href"),
             "name": obj.get("name"),

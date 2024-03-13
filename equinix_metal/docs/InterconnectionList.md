@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of InterconnectionList from a JSON string
 interconnection_list_instance = InterconnectionList.from_json(json)
 # print the JSON string representation of the object
-print InterconnectionList.to_json()
+print(InterconnectionList.to_json())
 
 # convert the object into a dict
 interconnection_list_dict = interconnection_list_instance.to_dict()

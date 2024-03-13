@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_virtual_circuit_update_input import VrfVirtualCircuitUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_virtual_circuit_update_input import VrfVirtualCircuitUpdateInput
 
 class TestVrfVirtualCircuitUpdateInput(unittest.TestCase):
     """VrfVirtualCircuitUpdateInput unit test stubs"""
@@ -29,30 +26,30 @@ class TestVrfVirtualCircuitUpdateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfVirtualCircuitUpdateInput:
         """Test VrfVirtualCircuitUpdateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfVirtualCircuitUpdateInput`
         """
-        model = equinix_metal.models.vrf_virtual_circuit_update_input.VrfVirtualCircuitUpdateInput()  # noqa: E501
-        if include_optional :
+        model = VrfVirtualCircuitUpdateInput()
+        if include_optional:
             return VrfVirtualCircuitUpdateInput(
-                customer_ip = '12.0.0.2', 
-                description = '', 
-                href = '', 
-                md5 = 'jUR,rZ#UM/?R,Fp^l6$ARjeJk C>i H'qT\\{<?'es#)#iK.YM{Rag2/!KB!k@5oXh.:Ts\";mGL,i&z5[P@M\"lzfB+Y,Twzfu~N^z\"mfqecVU{SE{QA<Y8XX0<}J;Krm9W'g~?)DvDDL7BlwpCDcpNjORpuEG', 
-                metal_ip = '12.0.0.1', 
-                name = '', 
-                peer_asn = 56, 
-                speed = '', 
-                subnet = '12.0.0.0/30', 
+                customer_ip = '12.0.0.2',
+                description = '',
+                href = '',
+                md5 = 'jUR,rZ#UM/?R,Fp^l6$ARjeJk C>i H'qT\\{<?'es#)#iK.YM{Rag2/!KB!k@5oXh.:Ts\";mGL,i&z5[P@M\"lzfB+Y,Twzfu~N^z\"mfqecVU{SE{QA<Y8XX0<}J;Krm9W'g~?)DvDDL7BlwpCDcpNjORpuEG',
+                metal_ip = '12.0.0.1',
+                name = '',
+                peer_asn = 56,
+                speed = '',
+                subnet = '12.0.0.0/30',
                 tags = [
                     ''
                     ]
             )
-        else :
+        else:
             return VrfVirtualCircuitUpdateInput(
         )
         """

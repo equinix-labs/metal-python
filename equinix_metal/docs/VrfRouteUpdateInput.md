@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -19,7 +20,7 @@ json = "{}"
 # create an instance of VrfRouteUpdateInput from a JSON string
 vrf_route_update_input_instance = VrfRouteUpdateInput.from_json(json)
 # print the JSON string representation of the object
-print VrfRouteUpdateInput.to_json()
+print(VrfRouteUpdateInput.to_json())
 
 # convert the object into a dict
 vrf_route_update_input_dict = vrf_route_update_input_instance.to_dict()

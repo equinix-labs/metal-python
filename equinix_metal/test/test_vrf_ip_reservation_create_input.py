@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_ip_reservation_create_input import VrfIpReservationCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_ip_reservation_create_input import VrfIpReservationCreateInput
 
 class TestVrfIpReservationCreateInput(unittest.TestCase):
     """VrfIpReservationCreateInput unit test stubs"""
@@ -29,28 +26,28 @@ class TestVrfIpReservationCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfIpReservationCreateInput:
         """Test VrfIpReservationCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfIpReservationCreateInput`
         """
-        model = equinix_metal.models.vrf_ip_reservation_create_input.VrfIpReservationCreateInput()  # noqa: E501
-        if include_optional :
+        model = VrfIpReservationCreateInput()
+        if include_optional:
             return VrfIpReservationCreateInput(
-                cidr = 16, 
-                customdata = None, 
-                details = '', 
-                href = '', 
-                network = '10.1.2.0', 
+                cidr = 16,
+                customdata = None,
+                details = '',
+                href = '',
+                network = '10.1.2.0',
                 tags = [
                     ''
-                    ], 
-                type = 'vrf', 
+                    ],
+                type = 'vrf',
                 vrf_id = ''
             )
-        else :
+        else:
             return VrfIpReservationCreateInput(
                 cidr = 16,
                 network = '10.1.2.0',

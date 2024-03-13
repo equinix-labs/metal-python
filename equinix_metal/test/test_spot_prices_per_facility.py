@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.spot_prices_per_facility import SpotPricesPerFacility  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.spot_prices_per_facility import SpotPricesPerFacility
 
 class TestSpotPricesPerFacility(unittest.TestCase):
     """SpotPricesPerFacility unit test stubs"""
@@ -29,46 +26,46 @@ class TestSpotPricesPerFacility(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> SpotPricesPerFacility:
         """Test SpotPricesPerFacility
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `SpotPricesPerFacility`
         """
-        model = equinix_metal.models.spot_prices_per_facility.SpotPricesPerFacility()  # noqa: E501
-        if include_optional :
+        model = SpotPricesPerFacility()
+        if include_optional:
             return SpotPricesPerFacility(
                 baremetal_0 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
-                    price = 1.337, ), 
+                    price = 1.337, ),
                 baremetal_1 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
-                    price = 1.337, ), 
+                    price = 1.337, ),
                 baremetal_2 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
-                    price = 1.337, ), 
+                    price = 1.337, ),
                 baremetal_2a = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
-                    price = 1.337, ), 
+                    price = 1.337, ),
                 baremetal_2a2 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
-                    price = 1.337, ), 
+                    price = 1.337, ),
                 baremetal_3 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
-                    price = 1.337, ), 
+                    price = 1.337, ),
                 baremetal_s = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
-                    price = 1.337, ), 
+                    price = 1.337, ),
                 c2_medium_x86 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
-                    price = 1.337, ), 
-                href = '', 
+                    price = 1.337, ),
+                href = '',
                 m2_xlarge_x86 = equinix_metal.models.spot_prices_per_baremetal.SpotPricesPerBaremetal(
                     href = '', 
                     price = 1.337, )
             )
-        else :
+        else:
             return SpotPricesPerFacility(
         )
         """

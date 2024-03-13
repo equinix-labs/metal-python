@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **contact_email** | **str** | The preferred email used for communication and notifications about the Equinix Fabric interconnection. Required when using a Project API key. Optional and defaults to the primary user email address when using a User API key. | [optional] 
@@ -25,7 +26,7 @@ json = "{}"
 # create an instance of SharedPortVCVlanCreateInput from a JSON string
 shared_port_vc_vlan_create_input_instance = SharedPortVCVlanCreateInput.from_json(json)
 # print the JSON string representation of the object
-print SharedPortVCVlanCreateInput.to_json()
+print(SharedPortVCVlanCreateInput.to_json())
 
 # convert the object into a dict
 shared_port_vc_vlan_create_input_dict = shared_port_vc_vlan_create_input_instance.to_dict()

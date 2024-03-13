@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_reservation import IPReservation  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ip_reservation import IPReservation
 
 class TestIPReservation(unittest.TestCase):
     """IPReservation unit test stubs"""
@@ -29,37 +26,37 @@ class TestIPReservation(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> IPReservation:
         """Test IPReservation
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `IPReservation`
         """
-        model = equinix_metal.models.ip_reservation.IPReservation()  # noqa: E501
-        if include_optional :
+        model = IPReservation()
+        if include_optional:
             return IPReservation(
-                addon = True, 
-                address = '', 
-                address_family = 56, 
+                addon = True,
+                address = '',
+                address_family = 56,
                 assignments = [
                     equinix_metal.models.href.Href(
                         href = '', )
-                    ], 
-                available = '', 
-                bill = True, 
-                cidr = 56, 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                customdata = None, 
-                details = '', 
-                enabled = True, 
-                facility = None, 
-                gateway = '', 
-                global_ip = True, 
-                href = '', 
-                id = '', 
-                manageable = True, 
-                management = True, 
+                    ],
+                available = '',
+                bill = True,
+                cidr = 56,
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                customdata = None,
+                details = '',
+                enabled = True,
+                facility = None,
+                gateway = '',
+                global_ip = True,
+                href = '',
+                id = '',
+                manageable = True,
+                management = True,
                 metal_gateway = equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     gateway_address = '10.1.2.1/27', 
@@ -67,10 +64,10 @@ class TestIPReservation(unittest.TestCase):
                     id = '', 
                     state = 'ready', 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                    vlan = 1001, ), 
-                metro = None, 
-                netmask = '', 
-                network = '', 
+                    vlan = 1001, ),
+                metro = None,
+                netmask = '',
+                network = '',
                 project = equinix_metal.models.project.Project(
                     backend_transfer_enabled = True, 
                     bgp_config = equinix_metal.models.href.Href(
@@ -107,19 +104,19 @@ class TestIPReservation(unittest.TestCase):
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     volumes = [
                         
-                        ], ), 
+                        ], ),
                 project_lite = equinix_metal.models.href.Href(
-                    href = '', ), 
-                public = True, 
+                    href = '', ),
+                public = True,
                 requested_by = equinix_metal.models.href.Href(
-                    href = '', ), 
-                state = '', 
+                    href = '', ),
+                state = '',
                 tags = [
                     ''
-                    ], 
+                    ],
                 type = 'global_ipv4'
             )
-        else :
+        else:
             return IPReservation(
                 type = 'global_ipv4',
         )

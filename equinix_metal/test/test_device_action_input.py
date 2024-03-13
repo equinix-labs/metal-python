@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.device_action_input import DeviceActionInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.device_action_input import DeviceActionInput
 
 class TestDeviceActionInput(unittest.TestCase):
     """DeviceActionInput unit test stubs"""
@@ -29,25 +26,25 @@ class TestDeviceActionInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> DeviceActionInput:
         """Test DeviceActionInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `DeviceActionInput`
         """
-        model = equinix_metal.models.device_action_input.DeviceActionInput()  # noqa: E501
-        if include_optional :
+        model = DeviceActionInput()
+        if include_optional:
             return DeviceActionInput(
-                deprovision_fast = True, 
-                force_delete = True, 
-                href = '', 
-                ipxe_script_url = '', 
-                operating_system = 'ubuntu_22_04', 
-                preserve_data = True, 
+                deprovision_fast = True,
+                force_delete = True,
+                href = '',
+                ipxe_script_url = '',
+                operating_system = 'ubuntu_22_04',
+                preserve_data = True,
                 type = 'power_on'
             )
-        else :
+        else:
             return DeviceActionInput(
                 type = 'power_on',
         )

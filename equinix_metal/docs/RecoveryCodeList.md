@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of RecoveryCodeList from a JSON string
 recovery_code_list_instance = RecoveryCodeList.from_json(json)
 # print the JSON string representation of the object
-print RecoveryCodeList.to_json()
+print(RecoveryCodeList.to_json())
 
 # convert the object into a dict
 recovery_code_list_dict = recovery_code_list_instance.to_dict()

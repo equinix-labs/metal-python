@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of IPAssignmentList from a JSON string
 ip_assignment_list_instance = IPAssignmentList.from_json(json)
 # print the JSON string representation of the object
-print IPAssignmentList.to_json()
+print(IPAssignmentList.to_json())
 
 # convert the object into a dict
 ip_assignment_list_dict = ip_assignment_list_instance.to_dict()

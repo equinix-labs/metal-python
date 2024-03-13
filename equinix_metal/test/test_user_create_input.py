@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.user_create_input import UserCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.user_create_input import UserCreateInput
 
 class TestUserCreateInput(unittest.TestCase):
     """UserCreateInput unit test stubs"""
@@ -29,41 +26,41 @@ class TestUserCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> UserCreateInput:
         """Test UserCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UserCreateInput`
         """
-        model = equinix_metal.models.user_create_input.UserCreateInput()  # noqa: E501
-        if include_optional :
+        model = UserCreateInput()
+        if include_optional:
             return UserCreateInput(
-                avatar = bytes(b'blah'), 
-                company_name = '', 
-                company_url = '', 
-                customdata = None, 
+                avatar = bytes(b'blah'),
+                company_name = '',
+                company_url = '',
+                customdata = None,
                 emails = [
                     equinix_metal.models.email_input.EmailInput(
                         address = '', 
                         default = True, 
                         href = '', )
-                    ], 
-                first_name = '', 
-                href = '', 
-                invitation_id = '', 
-                last_name = '', 
-                level = '', 
-                nonce = '', 
-                password = '', 
-                phone_number = '', 
-                social_accounts = None, 
-                timezone = '', 
-                title = '', 
-                two_factor_auth = '', 
+                    ],
+                first_name = '',
+                href = '',
+                invitation_id = '',
+                last_name = '',
+                level = '',
+                nonce = '',
+                password = '',
+                phone_number = '',
+                social_accounts = None,
+                timezone = '',
+                title = '',
+                two_factor_auth = '',
                 verified_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return UserCreateInput(
                 emails = [
                     equinix_metal.models.email_input.EmailInput(

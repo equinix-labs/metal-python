@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.global_bgp_range import GlobalBgpRange  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.global_bgp_range import GlobalBgpRange
 
 class TestGlobalBgpRange(unittest.TestCase):
     """GlobalBgpRange unit test stubs"""
@@ -29,24 +26,24 @@ class TestGlobalBgpRange(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> GlobalBgpRange:
         """Test GlobalBgpRange
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `GlobalBgpRange`
         """
-        model = equinix_metal.models.global_bgp_range.GlobalBgpRange()  # noqa: E501
-        if include_optional :
+        model = GlobalBgpRange()
+        if include_optional:
             return GlobalBgpRange(
-                address_family = 56, 
-                href = '', 
-                id = '', 
+                address_family = 56,
+                href = '',
+                id = '',
                 project = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 range = ''
             )
-        else :
+        else:
             return GlobalBgpRange(
         )
         """

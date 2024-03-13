@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vlan_csp_connection_create_input import VlanCSPConnectionCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vlan_csp_connection_create_input import VlanCSPConnectionCreateInput
 
 class TestVlanCSPConnectionCreateInput(unittest.TestCase):
     """VlanCSPConnectionCreateInput unit test stubs"""
@@ -29,31 +26,31 @@ class TestVlanCSPConnectionCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VlanCSPConnectionCreateInput:
         """Test VlanCSPConnectionCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VlanCSPConnectionCreateInput`
         """
-        model = equinix_metal.models.vlan_csp_connection_create_input.VlanCSPConnectionCreateInput()  # noqa: E501
-        if include_optional :
+        model = VlanCSPConnectionCreateInput()
+        if include_optional:
             return VlanCSPConnectionCreateInput(
-                contact_email = '', 
-                description = '', 
-                fabric_provider = None, 
-                href = '', 
-                metro = '', 
-                name = '', 
-                project = '', 
-                speed = '10000000000', 
+                contact_email = '',
+                description = '',
+                fabric_provider = None,
+                href = '',
+                metro = '',
+                name = '',
+                project = '',
+                speed = '10000000000',
                 tags = [
                     ''
-                    ], 
-                type = 'shared_port_vlan_to_csp', 
+                    ],
+                type = 'shared_port_vlan_to_csp',
                 vlans = [1000,1001]
             )
-        else :
+        else:
             return VlanCSPConnectionCreateInput(
                 fabric_provider = None,
                 metro = '',

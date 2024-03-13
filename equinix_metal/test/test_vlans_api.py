@@ -15,45 +15,43 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.vlans_api import VLANsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.vlans_api import VLANsApi
 
 
 class TestVLANsApi(unittest.TestCase):
     """VLANsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.vlans_api.VLANsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = VLANsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_create_virtual_network(self):
+    def test_create_virtual_network(self) -> None:
         """Test case for create_virtual_network
 
-        Create a virtual network  # noqa: E501
+        Create a virtual network
         """
         pass
 
-    def test_delete_virtual_network(self):
+    def test_delete_virtual_network(self) -> None:
         """Test case for delete_virtual_network
 
-        Delete a virtual network  # noqa: E501
+        Delete a virtual network
         """
         pass
 
-    def test_find_virtual_networks(self):
+    def test_find_virtual_networks(self) -> None:
         """Test case for find_virtual_networks
 
-        Retrieve all virtual networks  # noqa: E501
+        Retrieve all virtual networks
         """
         pass
 
-    def test_get_virtual_network(self):
+    def test_get_virtual_network(self) -> None:
         """Test case for get_virtual_network
 
-        Get a virtual network  # noqa: E501
+        Get a virtual network
         """
         pass
 

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.user_update_input import UserUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.user_update_input import UserUpdateInput
 
 class TestUserUpdateInput(unittest.TestCase):
     """UserUpdateInput unit test stubs"""
@@ -29,25 +26,25 @@ class TestUserUpdateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> UserUpdateInput:
         """Test UserUpdateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `UserUpdateInput`
         """
-        model = equinix_metal.models.user_update_input.UserUpdateInput()  # noqa: E501
-        if include_optional :
+        model = UserUpdateInput()
+        if include_optional:
             return UserUpdateInput(
-                customdata = None, 
-                first_name = '', 
-                href = '', 
-                last_name = '', 
-                password = '', 
-                phone_number = '', 
+                customdata = None,
+                first_name = '',
+                href = '',
+                last_name = '',
+                password = '',
+                phone_number = '',
                 timezone = ''
             )
-        else :
+        else:
             return UserUpdateInput(
         )
         """

@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.port_vlan_assignment_batch import PortVlanAssignmentBatch  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.port_vlan_assignment_batch import PortVlanAssignmentBatch
 
 class TestPortVlanAssignmentBatch(unittest.TestCase):
     """PortVlanAssignmentBatch unit test stubs"""
@@ -29,22 +26,22 @@ class TestPortVlanAssignmentBatch(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> PortVlanAssignmentBatch:
         """Test PortVlanAssignmentBatch
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `PortVlanAssignmentBatch`
         """
-        model = equinix_metal.models.port_vlan_assignment_batch.PortVlanAssignmentBatch()  # noqa: E501
-        if include_optional :
+        model = PortVlanAssignmentBatch()
+        if include_optional:
             return PortVlanAssignmentBatch(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 error_messages = [
                     ''
-                    ], 
-                href = '', 
-                id = '', 
+                    ],
+                href = '',
+                id = '',
                 port = equinix_metal.models.port.Port(
                     bond = equinix_metal.models.bond_port_data.BondPortData(
                         href = '', 
@@ -90,12 +87,12 @@ class TestPortVlanAssignmentBatch(unittest.TestCase):
                     type = 'NetworkPort', 
                     virtual_networks = [
                         
-                        ], ), 
+                        ], ),
                 project = equinix_metal.models.href.Href(
-                    href = '', ), 
-                quantity = 56, 
-                state = 'queued', 
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    href = '', ),
+                quantity = 56,
+                state = 'queued',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 vlan_assignments = [
                     equinix_metal.models.port_vlan_assignment_batch_vlan_assignments_inner.PortVlanAssignmentBatch_vlan_assignments_inner(
                         href = '', 
@@ -105,7 +102,7 @@ class TestPortVlanAssignmentBatch(unittest.TestCase):
                         vlan = 56, )
                     ]
             )
-        else :
+        else:
             return PortVlanAssignmentBatch(
         )
         """

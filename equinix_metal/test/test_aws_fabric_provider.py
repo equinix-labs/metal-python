@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.aws_fabric_provider import AWSFabricProvider  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.aws_fabric_provider import AWSFabricProvider
 
 class TestAWSFabricProvider(unittest.TestCase):
     """AWSFabricProvider unit test stubs"""
@@ -29,22 +26,22 @@ class TestAWSFabricProvider(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> AWSFabricProvider:
         """Test AWSFabricProvider
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `AWSFabricProvider`
         """
-        model = equinix_metal.models.aws_fabric_provider.AWSFabricProvider()  # noqa: E501
-        if include_optional :
+        model = AWSFabricProvider()
+        if include_optional:
             return AWSFabricProvider(
-                account_id = '129312', 
-                href = '', 
-                location = 'us-west-1', 
+                account_id = '129312',
+                href = '',
+                location = 'us-west-1',
                 type = 'CSP_AWS'
             )
-        else :
+        else:
             return AWSFabricProvider(
                 account_id = '129312',
                 type = 'CSP_AWS',

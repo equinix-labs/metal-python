@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **always_pxe** | **bool** | When true, devices with a &#x60;custom_ipxe&#x60; OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot. | [optional] 
@@ -41,7 +42,7 @@ json = "{}"
 # create an instance of DeviceCreateInput from a JSON string
 device_create_input_instance = DeviceCreateInput.from_json(json)
 # print the JSON string representation of the object
-print DeviceCreateInput.to_json()
+print(DeviceCreateInput.to_json())
 
 # convert the object into a dict
 device_create_input_dict = device_create_input_instance.to_dict()

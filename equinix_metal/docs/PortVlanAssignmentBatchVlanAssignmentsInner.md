@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of PortVlanAssignmentBatchVlanAssignmentsInner from a JSON string
 port_vlan_assignment_batch_vlan_assignments_inner_instance = PortVlanAssignmentBatchVlanAssignmentsInner.from_json(json)
 # print the JSON string representation of the object
-print PortVlanAssignmentBatchVlanAssignmentsInner.to_json()
+print(PortVlanAssignmentBatchVlanAssignmentsInner.to_json())
 
 # convert the object into a dict
 port_vlan_assignment_batch_vlan_assignments_inner_dict = port_vlan_assignment_batch_vlan_assignments_inner_instance.to_dict()

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of VrfList from a JSON string
 vrf_list_instance = VrfList.from_json(json)
 # print the JSON string representation of the object
-print VrfList.to_json()
+print(VrfList.to_json())
 
 # convert the object into a dict
 vrf_list_dict = vrf_list_instance.to_dict()

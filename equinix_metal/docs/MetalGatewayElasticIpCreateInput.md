@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **str** | An IP address (or IP Address range) contained within one of the project&#39;s IP Reservations | 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of MetalGatewayElasticIpCreateInput from a JSON string
 metal_gateway_elastic_ip_create_input_instance = MetalGatewayElasticIpCreateInput.from_json(json)
 # print the JSON string representation of the object
-print MetalGatewayElasticIpCreateInput.to_json()
+print(MetalGatewayElasticIpCreateInput.to_json())
 
 # convert the object into a dict
 metal_gateway_elastic_ip_create_input_dict = metal_gateway_elastic_ip_create_input_instance.to_dict()

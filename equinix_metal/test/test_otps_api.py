@@ -15,45 +15,43 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.otps_api import OTPsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.otps_api import OTPsApi
 
 
 class TestOTPsApi(unittest.TestCase):
     """OTPsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.otps_api.OTPsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = OTPsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_find_ensure_otp(self):
+    def test_find_ensure_otp(self) -> None:
         """Test case for find_ensure_otp
 
-        Verify user by providing an OTP  # noqa: E501
+        Verify user by providing an OTP
         """
         pass
 
-    def test_find_recovery_codes(self):
+    def test_find_recovery_codes(self) -> None:
         """Test case for find_recovery_codes
 
-        Retrieve my recovery codes  # noqa: E501
+        Retrieve my recovery codes
         """
         pass
 
-    def test_receive_codes(self):
+    def test_receive_codes(self) -> None:
         """Test case for receive_codes
 
-        Receive an OTP per sms  # noqa: E501
+        Receive an OTP per sms
         """
         pass
 
-    def test_regenerate_codes(self):
+    def test_regenerate_codes(self) -> None:
         """Test case for regenerate_codes
 
-        Generate new recovery codes  # noqa: E501
+        Generate new recovery codes
         """
         pass
 

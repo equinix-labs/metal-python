@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **float** |  | [optional] 
@@ -28,7 +29,7 @@ json = "{}"
 # create an instance of SelfServiceReservationItemResponse from a JSON string
 self_service_reservation_item_response_instance = SelfServiceReservationItemResponse.from_json(json)
 # print the JSON string representation of the object
-print SelfServiceReservationItemResponse.to_json()
+print(SelfServiceReservationItemResponse.to_json())
 
 # convert the object into a dict
 self_service_reservation_item_response_dict = self_service_reservation_item_response_instance.to_dict()

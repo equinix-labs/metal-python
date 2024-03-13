@@ -3,6 +3,7 @@
 Represents a Firmware Set
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **attributes** | [**List[Attribute]**](Attribute.md) | Represents a list of attributes | [optional] 
@@ -23,7 +24,7 @@ json = "{}"
 # create an instance of FirmwareSet from a JSON string
 firmware_set_instance = FirmwareSet.from_json(json)
 # print the JSON string representation of the object
-print FirmwareSet.to_json()
+print(FirmwareSet.to_json())
 
 # convert the object into a dict
 firmware_set_dict = firmware_set_instance.to_dict()

@@ -19,79 +19,96 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
+from typing import Optional, Set
+from typing_extensions import Self
 
 class VrfVirtualCircuit(BaseModel):
     """
     VrfVirtualCircuit
-    """
+    """ # noqa: E501
     created_at: Optional[datetime] = None
-    customer_ip: Optional[StrictStr] = Field(None, description="An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.")
+    customer_ip: Optional[StrictStr] = Field(default=None, description="An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.")
     description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    md5: Optional[StrictStr] = Field(None, description="The MD5 password for the BGP peering in plaintext (not a checksum).")
-    metal_ip: Optional[StrictStr] = Field(None, description="An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.")
+    md5: Optional[StrictStr] = Field(default=None, description="The MD5 password for the BGP peering in plaintext (not a checksum).")
+    metal_ip: Optional[StrictStr] = Field(default=None, description="An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.")
     name: Optional[StrictStr] = None
     nni_vlan: Optional[StrictInt] = None
-    peer_asn: Optional[StrictInt] = Field(None, description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
+    peer_asn: Optional[StrictInt] = Field(default=None, description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
     port: Optional[Href] = None
     project: Optional[Href] = None
-    speed: Optional[StrictInt] = Field(None, description="integer representing bps speed")
-    status: Optional[StrictStr] = Field(None, description="The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren't in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to 'waiting_on_peering_details' once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to `changing_peering_details` whenever an active VRF Virtual Circuit has any of its peering details updated.")
-    subnet: Optional[StrictStr] = Field(None, description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.")
-    tags: Optional[conlist(StrictStr)] = None
+    speed: Optional[StrictInt] = Field(default=None, description="integer representing bps speed")
+    status: Optional[StrictStr] = Field(default=None, description="The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren't in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to 'waiting_on_peering_details' once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to `changing_peering_details` whenever an active VRF Virtual Circuit has any of its peering details updated.")
+    subnet: Optional[StrictStr] = Field(default=None, description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.")
+    tags: Optional[List[StrictStr]] = None
     type: Optional[StrictStr] = None
     updated_at: Optional[datetime] = None
-    vrf: Vrf = Field(...)
-    __properties = ["created_at", "customer_ip", "description", "href", "id", "md5", "metal_ip", "name", "nni_vlan", "peer_asn", "port", "project", "speed", "status", "subnet", "tags", "type", "updated_at", "vrf"]
+    vrf: Vrf
+    __properties: ClassVar[List[str]] = ["created_at", "customer_ip", "description", "href", "id", "md5", "metal_ip", "name", "nni_vlan", "peer_asn", "port", "project", "speed", "status", "subnet", "tags", "type", "updated_at", "vrf"]
 
-    @validator('status')
+    @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('pending', 'waiting_on_peering_details', 'activating', 'changing_peering_details', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_peering_details_failed', 'deactivation_failed', 'delete_failed'):
+        if value not in set(['pending', 'waiting_on_peering_details', 'activating', 'changing_peering_details', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_peering_details_failed', 'deactivation_failed', 'delete_failed']):
             raise ValueError("must be one of enum values ('pending', 'waiting_on_peering_details', 'activating', 'changing_peering_details', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_peering_details_failed', 'deactivation_failed', 'delete_failed')")
         return value
 
-    @validator('type')
+    @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in ('vrf'):
+        if value not in set(['vrf']):
             raise ValueError("must be one of enum values ('vrf')")
         return value
 
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.dict(by_alias=True))
+        return pprint.pformat(self.model_dump(by_alias=True))
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> VrfVirtualCircuit:
+    def from_json(cls, json_str: str) -> Optional[Self]:
         """Create an instance of VrfVirtualCircuit from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
-    def to_dict(self):
-        """Returns the dictionary representation of the model using alias"""
-        _dict = self.dict(by_alias=True,
-                          exclude={
-                          },
-                          exclude_none=True)
+    def to_dict(self) -> Dict[str, Any]:
+        """Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic's
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        """
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
         # override the default output from pydantic by calling `to_dict()` of port
         if self.port:
             _dict['port'] = self.port.to_dict()
@@ -104,15 +121,15 @@ class VrfVirtualCircuit(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> VrfVirtualCircuit:
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
         """Create an instance of VrfVirtualCircuit from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return VrfVirtualCircuit.parse_obj(obj)
+            return cls.model_validate(obj)
 
-        _obj = VrfVirtualCircuit.parse_obj({
+        _obj = cls.model_validate({
             "created_at": obj.get("created_at"),
             "customer_ip": obj.get("customer_ip"),
             "description": obj.get("description"),
@@ -123,18 +140,19 @@ class VrfVirtualCircuit(BaseModel):
             "name": obj.get("name"),
             "nni_vlan": obj.get("nni_vlan"),
             "peer_asn": obj.get("peer_asn"),
-            "port": Href.from_dict(obj.get("port")) if obj.get("port") is not None else None,
-            "project": Href.from_dict(obj.get("project")) if obj.get("project") is not None else None,
+            "port": Href.from_dict(obj["port"]) if obj.get("port") is not None else None,
+            "project": Href.from_dict(obj["project"]) if obj.get("project") is not None else None,
             "speed": obj.get("speed"),
             "status": obj.get("status"),
             "subnet": obj.get("subnet"),
             "tags": obj.get("tags"),
             "type": obj.get("type"),
             "updated_at": obj.get("updated_at"),
-            "vrf": Vrf.from_dict(obj.get("vrf")) if obj.get("vrf") is not None else None
+            "vrf": Vrf.from_dict(obj["vrf"]) if obj.get("vrf") is not None else None
         })
         return _obj
 
 from equinix_metal.models.vrf import Vrf
-VrfVirtualCircuit.update_forward_refs()
+# TODO: Rewrite to not use raise_errors
+VrfVirtualCircuit.model_rebuild(raise_errors=False)
 

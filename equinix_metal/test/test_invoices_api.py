@@ -15,31 +15,29 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.invoices_api import InvoicesApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.invoices_api import InvoicesApi
 
 
 class TestInvoicesApi(unittest.TestCase):
     """InvoicesApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.invoices_api.InvoicesApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = InvoicesApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_find_organization_invoices(self):
+    def test_find_organization_invoices(self) -> None:
         """Test case for find_organization_invoices
 
-        Retrieve all invoices for an organization  # noqa: E501
+        Retrieve all invoices for an organization
         """
         pass
 
-    def test_get_invoice_by_id(self):
+    def test_get_invoice_by_id(self) -> None:
         """Test case for get_invoice_by_id
 
-        Retrieve an invoice  # noqa: E501
+        Retrieve an invoice
         """
         pass
 

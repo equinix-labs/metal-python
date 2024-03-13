@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.ip_assignment_metro import IPAssignmentMetro  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.ip_assignment_metro import IPAssignmentMetro
 
 class TestIPAssignmentMetro(unittest.TestCase):
     """IPAssignmentMetro unit test stubs"""
@@ -29,23 +26,23 @@ class TestIPAssignmentMetro(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> IPAssignmentMetro:
         """Test IPAssignmentMetro
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `IPAssignmentMetro`
         """
-        model = equinix_metal.models.ip_assignment_metro.IPAssignmentMetro()  # noqa: E501
-        if include_optional :
+        model = IPAssignmentMetro()
+        if include_optional:
             return IPAssignmentMetro(
-                code = '', 
-                country = '', 
-                href = '', 
-                id = '', 
+                code = '',
+                country = '',
+                href = '',
+                id = '',
                 name = ''
             )
-        else :
+        else:
             return IPAssignmentMetro(
         )
         """

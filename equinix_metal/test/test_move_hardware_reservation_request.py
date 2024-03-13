@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.move_hardware_reservation_request import MoveHardwareReservationRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.move_hardware_reservation_request import MoveHardwareReservationRequest
 
 class TestMoveHardwareReservationRequest(unittest.TestCase):
     """MoveHardwareReservationRequest unit test stubs"""
@@ -29,20 +26,20 @@ class TestMoveHardwareReservationRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> MoveHardwareReservationRequest:
         """Test MoveHardwareReservationRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MoveHardwareReservationRequest`
         """
-        model = equinix_metal.models.move_hardware_reservation_request.MoveHardwareReservationRequest()  # noqa: E501
-        if include_optional :
+        model = MoveHardwareReservationRequest()
+        if include_optional:
             return MoveHardwareReservationRequest(
-                href = '', 
+                href = '',
                 project_id = ''
             )
-        else :
+        else:
             return MoveHardwareReservationRequest(
         )
         """

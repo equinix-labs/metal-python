@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.port import Port  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.port import Port
 
 class TestPort(unittest.TestCase):
     """Port unit test stubs"""
@@ -29,28 +26,28 @@ class TestPort(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Port:
         """Test Port
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Port`
         """
-        model = equinix_metal.models.port.Port()  # noqa: E501
-        if include_optional :
+        model = Port()
+        if include_optional:
             return Port(
                 bond = equinix_metal.models.bond_port_data.BondPortData(
                     href = '', 
                     id = '', 
-                    name = '', ), 
+                    name = '', ),
                 data = equinix_metal.models.port_data.PortData(
                     bonded = True, 
                     href = '', 
-                    mac = '', ), 
-                disbond_operation_supported = True, 
-                href = '', 
-                id = '', 
-                name = 'bond0', 
+                    mac = '', ),
+                disbond_operation_supported = True,
+                href = '',
+                id = '',
+                name = 'bond0',
                 native_virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
                     assigned_to = equinix_metal.models.href.Href(
                         href = '', ), 
@@ -78,15 +75,15 @@ class TestPort(unittest.TestCase):
                     tags = [
                         ''
                         ], 
-                    vxlan = 56, ), 
-                network_type = 'layer2-bonded', 
-                type = 'NetworkPort', 
+                    vxlan = 56, ),
+                network_type = 'layer2-bonded',
+                type = 'NetworkPort',
                 virtual_networks = [
                     equinix_metal.models.href.Href(
                         href = '', )
                     ]
             )
-        else :
+        else:
             return Port(
         )
         """

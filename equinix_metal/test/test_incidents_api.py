@@ -15,24 +15,22 @@
 
 import unittest
 
-import equinix_metal
-from equinix_metal.api.incidents_api import IncidentsApi  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.api.incidents_api import IncidentsApi
 
 
 class TestIncidentsApi(unittest.TestCase):
     """IncidentsApi unit test stubs"""
 
-    def setUp(self):
-        self.api = equinix_metal.api.incidents_api.IncidentsApi()  # noqa: E501
+    def setUp(self) -> None:
+        self.api = IncidentsApi()
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         pass
 
-    def test_find_incidents(self):
+    def test_find_incidents(self) -> None:
         """Test case for find_incidents
 
-        Retrieve the number of incidents  # noqa: E501
+        Retrieve the number of incidents
         """
         pass
 

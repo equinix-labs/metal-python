@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.bgp_config import BgpConfig  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.bgp_config import BgpConfig
 
 class TestBgpConfig(unittest.TestCase):
     """BgpConfig unit test stubs"""
@@ -29,25 +26,25 @@ class TestBgpConfig(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> BgpConfig:
         """Test BgpConfig
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `BgpConfig`
         """
-        model = equinix_metal.models.bgp_config.BgpConfig()  # noqa: E501
-        if include_optional :
+        model = BgpConfig()
+        if include_optional:
             return BgpConfig(
-                asn = 65000, 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                deployment_type = 'local', 
-                href = '', 
-                id = '', 
-                max_prefix = 56, 
-                md5 = '', 
+                asn = 65000,
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                deployment_type = 'local',
+                href = '',
+                id = '',
+                max_prefix = 56,
+                md5 = '',
                 project = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 ranges = [
                     equinix_metal.models.global_bgp_range.GlobalBgpRange(
                         address_family = 56, 
@@ -56,9 +53,9 @@ class TestBgpConfig(unittest.TestCase):
                         project = equinix_metal.models.href.Href(
                             href = '', ), 
                         range = '', )
-                    ], 
-                requested_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                route_object = '', 
+                    ],
+                requested_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                route_object = '',
                 sessions = [
                     equinix_metal.models.bgp_session.BgpSession(
                         address_family = 'ipv4', 
@@ -73,10 +70,10 @@ class TestBgpConfig(unittest.TestCase):
                             ], 
                         status = 'up,down', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), )
-                    ], 
+                    ],
                 status = 'requested'
             )
-        else :
+        else:
             return BgpConfig(
         )
         """

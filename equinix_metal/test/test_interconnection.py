@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection import Interconnection  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection import Interconnection
 
 class TestInterconnection(unittest.TestCase):
     """Interconnection unit test stubs"""
@@ -29,34 +26,34 @@ class TestInterconnection(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Interconnection:
         """Test Interconnection
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Interconnection`
         """
-        model = equinix_metal.models.interconnection.Interconnection()  # noqa: E501
-        if include_optional :
+        model = Interconnection()
+        if include_optional:
             return Interconnection(
-                authorization_code = '', 
-                contact_email = '', 
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                description = '', 
+                authorization_code = '',
+                contact_email = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                description = '',
                 facility = equinix_metal.models.href.Href(
-                    href = '', ), 
-                href = '', 
-                id = '', 
+                    href = '', ),
+                href = '',
+                id = '',
                 metro = equinix_metal.models.metro.Metro(
                     code = '', 
                     country = '', 
                     href = '', 
                     id = '', 
-                    name = '', ), 
-                mode = 'standard', 
-                name = '', 
+                    name = '', ),
+                mode = 'standard',
+                name = '',
                 organization = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 ports = [
                     equinix_metal.models.interconnection_port.InterconnectionPort(
                         href = '', 
@@ -72,10 +69,10 @@ class TestInterconnection(unittest.TestCase):
                         virtual_circuits = [
                             null
                             ], )
-                    ], 
-                redundancy = 'primary', 
+                    ],
+                redundancy = 'primary',
                 requested_by = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 service_tokens = [
                     equinix_metal.models.fabric_service_token.FabricServiceToken(
                         expires_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -85,17 +82,17 @@ class TestInterconnection(unittest.TestCase):
                         role = 'primary', 
                         service_token_type = 'a_side', 
                         state = 'inactive', )
-                    ], 
-                speed = 10000000000, 
-                status = '', 
+                    ],
+                speed = 10000000000,
+                status = '',
                 tags = [
                     ''
-                    ], 
-                token = '', 
-                type = 'shared', 
+                    ],
+                token = '',
+                type = 'shared',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return Interconnection(
         )
         """

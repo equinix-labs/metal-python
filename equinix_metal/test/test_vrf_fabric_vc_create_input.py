@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_fabric_vc_create_input import VrfFabricVcCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_fabric_vc_create_input import VrfFabricVcCreateInput
 
 class TestVrfFabricVcCreateInput(unittest.TestCase):
     """VrfFabricVcCreateInput unit test stubs"""
@@ -29,34 +26,34 @@ class TestVrfFabricVcCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfFabricVcCreateInput:
         """Test VrfFabricVcCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfFabricVcCreateInput`
         """
-        model = equinix_metal.models.vrf_fabric_vc_create_input.VrfFabricVcCreateInput()  # noqa: E501
-        if include_optional :
+        model = VrfFabricVcCreateInput()
+        if include_optional:
             return VrfFabricVcCreateInput(
-                contact_email = '', 
-                description = '', 
-                href = '', 
-                metro = '', 
-                name = '', 
-                project = '', 
-                redundancy = '', 
-                service_token_type = 'a_side', 
-                speed = '10000000000', 
+                contact_email = '',
+                description = '',
+                href = '',
+                metro = '',
+                name = '',
+                project = '',
+                redundancy = '',
+                service_token_type = 'a_side',
+                speed = '10000000000',
                 tags = [
                     ''
-                    ], 
-                type = 'shared', 
+                    ],
+                type = 'shared',
                 vrfs = [
                     ''
                     ]
             )
-        else :
+        else:
             return VrfFabricVcCreateInput(
                 metro = '',
                 name = '',

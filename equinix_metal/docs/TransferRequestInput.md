@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
@@ -17,7 +18,7 @@ json = "{}"
 # create an instance of TransferRequestInput from a JSON string
 transfer_request_input_instance = TransferRequestInput.from_json(json)
 # print the JSON string representation of the object
-print TransferRequestInput.to_json()
+print(TransferRequestInput.to_json())
 
 # convert the object into a dict
 transfer_request_input_dict = transfer_request_input_instance.to_dict()

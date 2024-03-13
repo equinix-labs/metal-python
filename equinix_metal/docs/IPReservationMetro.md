@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **code** | **str** |  | [optional] 
@@ -20,7 +21,7 @@ json = "{}"
 # create an instance of IPReservationMetro from a JSON string
 ip_reservation_metro_instance = IPReservationMetro.from_json(json)
 # print the JSON string representation of the object
-print IPReservationMetro.to_json()
+print(IPReservationMetro.to_json())
 
 # convert the object into a dict
 ip_reservation_metro_dict = ip_reservation_metro_instance.to_dict()

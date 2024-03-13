@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.interconnection_pricing_list_provider_pricing_inner_tiers_inner import InterconnectionPricingListProviderPricingInnerTiersInner  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.interconnection_pricing_list_provider_pricing_inner_tiers_inner import InterconnectionPricingListProviderPricingInnerTiersInner
 
 class TestInterconnectionPricingListProviderPricingInnerTiersInner(unittest.TestCase):
     """InterconnectionPricingListProviderPricingInnerTiersInner unit test stubs"""
@@ -29,22 +26,22 @@ class TestInterconnectionPricingListProviderPricingInnerTiersInner(unittest.Test
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> InterconnectionPricingListProviderPricingInnerTiersInner:
         """Test InterconnectionPricingListProviderPricingInnerTiersInner
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `InterconnectionPricingListProviderPricingInnerTiersInner`
         """
-        model = equinix_metal.models.interconnection_pricing_list_provider_pricing_inner_tiers_inner.InterconnectionPricingListProviderPricingInnerTiersInner()  # noqa: E501
-        if include_optional :
+        model = InterconnectionPricingListProviderPricingInnerTiersInner()
+        if include_optional:
             return InterconnectionPricingListProviderPricingInnerTiersInner(
-                bandwidth = 500, 
-                billing_cycle = 'monthly', 
-                href = '', 
+                bandwidth = 500,
+                billing_cycle = 'monthly',
+                href = '',
                 price = 10.04
             )
-        else :
+        else:
             return InterconnectionPricingListProviderPricingInnerTiersInner(
         )
         """

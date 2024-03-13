@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.metal_gateway_list import MetalGatewayList  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.metal_gateway_list import MetalGatewayList
 
 class TestMetalGatewayList(unittest.TestCase):
     """MetalGatewayList unit test stubs"""
@@ -29,17 +26,17 @@ class TestMetalGatewayList(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> MetalGatewayList:
         """Test MetalGatewayList
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `MetalGatewayList`
         """
-        model = equinix_metal.models.metal_gateway_list.MetalGatewayList()  # noqa: E501
-        if include_optional :
+        model = MetalGatewayList()
+        if include_optional:
             return MetalGatewayList(
-                href = '', 
+                href = '',
                 meta = equinix_metal.models.meta.Meta(
                     current_page = 56, 
                     first = equinix_metal.models.href.Href(
@@ -51,12 +48,12 @@ class TestMetalGatewayList(unittest.TestCase):
                     next = , 
                     previous = , 
                     self = , 
-                    total = 56, ), 
+                    total = 56, ),
                 metal_gateways = [
                     null
                     ]
             )
-        else :
+        else:
             return MetalGatewayList(
         )
         """

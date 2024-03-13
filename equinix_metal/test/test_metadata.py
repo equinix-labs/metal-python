@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.metadata import Metadata  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.metadata import Metadata
 
 class TestMetadata(unittest.TestCase):
     """Metadata unit test stubs"""
@@ -29,24 +26,24 @@ class TestMetadata(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> Metadata:
         """Test Metadata
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `Metadata`
         """
-        model = equinix_metal.models.metadata.Metadata()  # noqa: E501
-        if include_optional :
+        model = Metadata()
+        if include_optional:
             return Metadata(
-                var_class = '', 
-                customdata = { }, 
-                facility = '', 
-                hostname = '', 
-                href = '', 
-                id = '', 
-                iqn = '', 
-                metro = '', 
+                var_class = '',
+                customdata = { },
+                facility = '',
+                hostname = '',
+                href = '',
+                id = '',
+                iqn = '',
+                metro = '',
                 network = equinix_metal.models.metadata_network.Metadata_network(
                     addresses = [
                         ''
@@ -61,27 +58,27 @@ class TestMetadata(unittest.TestCase):
                             link_aggregation = '', 
                             mac = '', 
                             mode = 56, ), 
-                        href = '', ), ), 
-                operating_system = None, 
-                plan = '', 
+                        href = '', ), ),
+                operating_system = None,
+                plan = '',
                 private_subnets = [
                     ''
-                    ], 
-                reserved = True, 
-                specs = None, 
+                    ],
+                reserved = True,
+                specs = None,
                 ssh_keys = [
                     ''
-                    ], 
-                state = 'queued', 
-                switch_short_id = '', 
+                    ],
+                state = 'queued',
+                switch_short_id = '',
                 tags = [
                     ''
-                    ], 
+                    ],
                 volumes = [
                     ''
                     ]
             )
-        else :
+        else:
             return Metadata(
         )
         """

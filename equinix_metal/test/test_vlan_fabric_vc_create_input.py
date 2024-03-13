@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vlan_fabric_vc_create_input import VlanFabricVcCreateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vlan_fabric_vc_create_input import VlanFabricVcCreateInput
 
 class TestVlanFabricVcCreateInput(unittest.TestCase):
     """VlanFabricVcCreateInput unit test stubs"""
@@ -29,32 +26,32 @@ class TestVlanFabricVcCreateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VlanFabricVcCreateInput:
         """Test VlanFabricVcCreateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VlanFabricVcCreateInput`
         """
-        model = equinix_metal.models.vlan_fabric_vc_create_input.VlanFabricVcCreateInput()  # noqa: E501
-        if include_optional :
+        model = VlanFabricVcCreateInput()
+        if include_optional:
             return VlanFabricVcCreateInput(
-                contact_email = '', 
-                description = '', 
-                href = '', 
-                metro = '', 
-                name = '', 
-                project = '', 
-                redundancy = '', 
-                service_token_type = 'a_side', 
-                speed = '10000000000', 
+                contact_email = '',
+                description = '',
+                href = '',
+                metro = '',
+                name = '',
+                project = '',
+                redundancy = '',
+                service_token_type = 'a_side',
+                speed = '10000000000',
                 tags = [
                     ''
-                    ], 
-                type = 'shared', 
+                    ],
+                type = 'shared',
                 vlans = [1000,1001]
             )
-        else :
+        else:
             return VlanFabricVcCreateInput(
                 metro = '',
                 name = '',

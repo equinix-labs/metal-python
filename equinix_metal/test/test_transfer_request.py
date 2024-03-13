@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.transfer_request import TransferRequest  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.transfer_request import TransferRequest
 
 class TestTransferRequest(unittest.TestCase):
     """TransferRequest unit test stubs"""
@@ -29,26 +26,26 @@ class TestTransferRequest(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> TransferRequest:
         """Test TransferRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `TransferRequest`
         """
-        model = equinix_metal.models.transfer_request.TransferRequest()  # noqa: E501
-        if include_optional :
+        model = TransferRequest()
+        if include_optional:
             return TransferRequest(
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
-                href = '', 
-                id = '', 
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                href = '',
+                id = '',
                 project = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 target_organization = equinix_metal.models.href.Href(
-                    href = '', ), 
+                    href = '', ),
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
-        else :
+        else:
             return TransferRequest(
         )
         """

@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **description** | **str** |  | [optional] 
@@ -29,7 +30,7 @@ json = "{}"
 # create an instance of VirtualCircuitCreateInput from a JSON string
 virtual_circuit_create_input_instance = VirtualCircuitCreateInput.from_json(json)
 # print the JSON string representation of the object
-print VirtualCircuitCreateInput.to_json()
+print(VirtualCircuitCreateInput.to_json())
 
 # convert the object into a dict
 virtual_circuit_create_input_dict = virtual_circuit_create_input_instance.to_dict()

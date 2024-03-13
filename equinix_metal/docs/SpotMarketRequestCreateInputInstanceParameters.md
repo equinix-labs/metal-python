@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **always_pxe** | **bool** |  | [optional] 
@@ -34,7 +35,7 @@ json = "{}"
 # create an instance of SpotMarketRequestCreateInputInstanceParameters from a JSON string
 spot_market_request_create_input_instance_parameters_instance = SpotMarketRequestCreateInputInstanceParameters.from_json(json)
 # print the JSON string representation of the object
-print SpotMarketRequestCreateInputInstanceParameters.to_json()
+print(SpotMarketRequestCreateInputInstanceParameters.to_json())
 
 # convert the object into a dict
 spot_market_request_create_input_instance_parameters_dict = spot_market_request_create_input_instance_parameters_instance.to_dict()

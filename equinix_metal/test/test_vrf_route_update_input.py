@@ -14,11 +14,8 @@
 
 
 import unittest
-import datetime
 
-import equinix_metal
-from equinix_metal.models.vrf_route_update_input import VrfRouteUpdateInput  # noqa: E501
-from equinix_metal.rest import ApiException
+from equinix_metal.models.vrf_route_update_input import VrfRouteUpdateInput
 
 class TestVrfRouteUpdateInput(unittest.TestCase):
     """VrfRouteUpdateInput unit test stubs"""
@@ -29,24 +26,24 @@ class TestVrfRouteUpdateInput(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional):
+    def make_instance(self, include_optional) -> VrfRouteUpdateInput:
         """Test VrfRouteUpdateInput
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
         # uncomment below to create an instance of `VrfRouteUpdateInput`
         """
-        model = equinix_metal.models.vrf_route_update_input.VrfRouteUpdateInput()  # noqa: E501
-        if include_optional :
+        model = VrfRouteUpdateInput()
+        if include_optional:
             return VrfRouteUpdateInput(
-                href = '', 
-                next_hop = '192.168.1.254', 
-                prefix = '0.0.0.0/0', 
+                href = '',
+                next_hop = '192.168.1.254',
+                prefix = '0.0.0.0/0',
                 tags = [
                     ''
                     ]
             )
-        else :
+        else:
             return VrfRouteUpdateInput(
         )
         """

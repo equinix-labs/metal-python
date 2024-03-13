@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ended_at** | **datetime** |  | 
@@ -18,7 +19,7 @@ json = "{}"
 # create an instance of FindTrafficTimeframeParameter from a JSON string
 find_traffic_timeframe_parameter_instance = FindTrafficTimeframeParameter.from_json(json)
 # print the JSON string representation of the object
-print FindTrafficTimeframeParameter.to_json()
+print(FindTrafficTimeframeParameter.to_json())
 
 # convert the object into a dict
 find_traffic_timeframe_parameter_dict = find_traffic_timeframe_parameter_instance.to_dict()

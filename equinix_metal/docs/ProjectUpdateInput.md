@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **backend_transfer_enabled** | **bool** |  | [optional] 
@@ -21,7 +22,7 @@ json = "{}"
 # create an instance of ProjectUpdateInput from a JSON string
 project_update_input_instance = ProjectUpdateInput.from_json(json)
 # print the JSON string representation of the object
-print ProjectUpdateInput.to_json()
+print(ProjectUpdateInput.to_json())
 
 # convert the object into a dict
 project_update_input_dict = project_update_input_instance.to_dict()
