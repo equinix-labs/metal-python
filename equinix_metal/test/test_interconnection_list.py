@@ -43,15 +43,62 @@ class TestInterconnectionList(unittest.TestCase):
                         contact_email = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         description = '', 
-                        facility = equinix_metal.models.href.Href(
-                            href = '', ), 
+                        facility = equinix_metal.models.facility.Facility(
+                            address = equinix_metal.models.address.Address(
+                                address2 = '', 
+                                city = '', 
+                                coordinates = equinix_metal.models.coordinates.Coordinates(
+                                    href = '', 
+                                    latitude = '', 
+                                    longitude = '', ), 
+                                country = '', 
+                                href = '', 
+                                state = '', 
+                                zip_code = '', ), 
+                            code = '', 
+                            features = ["baremetal","backend_transfer","global_ipv4"], 
+                            href = '', 
+                            id = '', 
+                            ip_ranges = ["2604:1380::/36","147.75.192.0/21"], 
+                            metro = null, 
+                            name = '', ), 
                         href = '', 
                         id = '', 
                         metro = null, 
                         mode = 'standard', 
                         name = '', 
-                        organization = equinix_metal.models.href.Href(
-                            href = '', ), 
+                        organization = equinix_metal.models.organization.Organization(
+                            billing_address = equinix_metal.models.address.Address(
+                                address2 = '', 
+                                city = '', 
+                                country = '', 
+                                href = '', 
+                                state = '', 
+                                zip_code = '', ), 
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            credit_amount = 1.337, 
+                            customdata = equinix_metal.models.customdata.customdata(), 
+                            description = '', 
+                            enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            href = '', 
+                            id = '', 
+                            logo = '', 
+                            members = [
+                                equinix_metal.models.href.Href(
+                                    href = '', )
+                                ], 
+                            memberships = [
+                                equinix_metal.models.href.Href(
+                                    href = '', )
+                                ], 
+                            name = '', 
+                            projects = [
+                                
+                                ], 
+                            terms = 56, 
+                            twitter = '', 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            website = '', ), 
                         ports = [
                             equinix_metal.models.interconnection_port.InterconnectionPort(
                                 href = '', 
@@ -66,6 +113,35 @@ class TestInterconnectionList(unittest.TestCase):
                                     null
                                     ], )
                             ], 
+                        project = equinix_metal.models.project.Project(
+                            backend_transfer_enabled = True, 
+                            bgp_config = , 
+                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            customdata = equinix_metal.models.customdata.customdata(), 
+                            devices = [
+                                
+                                ], 
+                            href = '', 
+                            id = '', 
+                            invitations = [
+                                
+                                ], 
+                            max_devices = equinix_metal.models.max_devices.max_devices(), 
+                            name = '0', 
+                            network_status = equinix_metal.models.network_status.network_status(), 
+                            payment_method = , 
+                            ssh_keys = [
+                                
+                                ], 
+                            tags = [
+                                ''
+                                ], 
+                            type = 'default', 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            url = '', 
+                            volumes = [
+                                
+                                ], ), 
                         redundancy = 'primary', 
                         requested_by = , 
                         service_tokens = [

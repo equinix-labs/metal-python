@@ -118,6 +118,20 @@ class TestVRFsApi(unittest.TestCase):
         """
         pass
 
+    def test_get_vrf_bgp_neighbors(self) -> None:
+        """Test case for get_vrf_bgp_neighbors
+
+        Retreive BGP neighbor states for the VRF
+        """
+        pass
+
+    def test_get_vrf_learned_routes(self) -> None:
+        """Test case for get_vrf_learned_routes
+
+        Retreive learned L3 routes within the VRF
+        """
+        pass
+
     def test_get_vrf_routes(self) -> None:
         """Test case for get_vrf_routes
 

@@ -130,12 +130,12 @@ class TestDeviceList(unittest.TestCase):
                                         name = 'bond0', 
                                         native_virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
                                             assigned_to_virtual_circuit = True, 
+                                            created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                             description = '', 
                                             href = '', 
                                             id = '', 
                                             instances = [
-                                                equinix_metal.models.href.Href(
-                                                    href = '', )
+                                                
                                                 ], 
                                             metal_gateways = [
                                                 equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
@@ -155,7 +155,14 @@ class TestDeviceList(unittest.TestCase):
                                         network_type = 'layer2-bonded', 
                                         type = 'NetworkPort', 
                                         virtual_networks = [
-                                            
+                                            equinix_metal.models.virtual_network.VirtualNetwork(
+                                                assigned_to_virtual_circuit = True, 
+                                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                                description = '', 
+                                                href = '', 
+                                                id = '', 
+                                                metro_code = '', 
+                                                vxlan = 56, )
                                             ], )
                                     ], 
                                 operating_system = equinix_metal.models.operating_system.OperatingSystem(
@@ -233,7 +240,8 @@ class TestDeviceList(unittest.TestCase):
                                     type = 'standard', ), 
                                 project = equinix_metal.models.project.Project(
                                     backend_transfer_enabled = True, 
-                                    bgp_config = , 
+                                    bgp_config = equinix_metal.models.href.Href(
+                                        href = '', ), 
                                     created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                     devices = [
                                         
@@ -259,6 +267,7 @@ class TestDeviceList(unittest.TestCase):
                                         ], 
                                     type = 'default', 
                                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                    url = '', 
                                     volumes = [
                                         
                                         ], ), 
@@ -353,7 +362,8 @@ class TestDeviceList(unittest.TestCase):
                                 name = '0', 
                                 network_status = equinix_metal.models.network_status.network_status(), 
                                 type = 'default', 
-                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                url = '', ), 
                             provisionable = True, 
                             short_id = '', 
                             spare = True, 

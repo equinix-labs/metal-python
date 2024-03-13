@@ -44,7 +44,7 @@ class TestVrfCreateInput(unittest.TestCase):
                 ip_ranges = [
                     ''
                     ],
-                local_asn = 56,
+                local_asn = 65000,
                 metro = '',
                 name = '',
                 tags = [

@@ -102,6 +102,7 @@ class TestVrfIpReservationList(unittest.TestCase):
                                 ], 
                             type = 'default', 
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            url = '', 
                             volumes = [
                                 
                                 ], ), 
@@ -115,7 +116,8 @@ class TestVrfIpReservationList(unittest.TestCase):
                             name = '0', 
                             network_status = equinix_metal.models.network_status.network_status(), 
                             type = 'default', 
-                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                            updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            url = '', ), 
                         public = True, 
                         state = '', 
                         tags = [
@@ -134,7 +136,7 @@ class TestVrfIpReservationList(unittest.TestCase):
                             ip_ranges = [
                                 ''
                                 ], 
-                            local_asn = 56, 
+                            local_asn = 65000, 
                             name = '', 
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                             virtual_circuits = [
@@ -148,8 +150,16 @@ class TestVrfIpReservationList(unittest.TestCase):
                                     metal_ip = '12.0.0.1', 
                                     name = '', 
                                     nni_vlan = 56, 
-                                    peer_asn = 56, 
-                                    port = , 
+                                    peer_asn = 65000, 
+                                    port = equinix_metal.models.interconnection_port.InterconnectionPort(
+                                        href = '', 
+                                        id = '', 
+                                        link_status = '', 
+                                        name = '', 
+                                        role = 'primary', 
+                                        speed = 56, 
+                                        status = 'requested', 
+                                        switch_id = '', ), 
                                     speed = 56, 
                                     status = 'pending', 
                                     subnet = '12.0.0.0/30', 
@@ -164,7 +174,7 @@ class TestVrfIpReservationList(unittest.TestCase):
                                         description = '', 
                                         href = '', 
                                         id = '', 
-                                        local_asn = 56, 
+                                        local_asn = 65000, 
                                         name = '', 
                                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                                 ], ), )

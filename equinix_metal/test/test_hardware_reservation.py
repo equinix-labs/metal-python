@@ -169,6 +169,7 @@ class TestHardwareReservation(unittest.TestCase):
                                 ], 
                             type = 'default', 
                             updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                            url = '', 
                             volumes = [
                                 
                                 ], ), 
@@ -226,11 +227,100 @@ class TestHardwareReservation(unittest.TestCase):
                             name = 'bond0', 
                             native_virtual_network = equinix_metal.models.virtual_network.VirtualNetwork(
                                 assigned_to_virtual_circuit = True, 
+                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                                 description = '', 
                                 href = '', 
                                 id = '', 
                                 instances = [
-                                    
+                                    equinix_metal.models.device.Device(
+                                        always_pxe = True, 
+                                        billing_cycle = '', 
+                                        bonding_mode = 56, 
+                                        created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                        description = '', 
+                                        firmware_set_id = '', 
+                                        hostname = '', 
+                                        href = '', 
+                                        id = '', 
+                                        image_url = '', 
+                                        ipxe_script_url = '', 
+                                        iqn = '', 
+                                        locked = True, 
+                                        network_frozen = True, 
+                                        operating_system = equinix_metal.models.operating_system.OperatingSystem(
+                                            default_operating_system = True, 
+                                            distro = '', 
+                                            distro_label = '', 
+                                            href = '', 
+                                            id = '', 
+                                            licensed = True, 
+                                            name = '', 
+                                            preinstallable = True, 
+                                            pricing = equinix_metal.models.pricing.pricing(), 
+                                            provisionable_on = [
+                                                ''
+                                                ], 
+                                            slug = '', 
+                                            version = '', ), 
+                                        project_lite = null, 
+                                        provisioning_events = [
+                                            equinix_metal.models.event.Event(
+                                                body = '', 
+                                                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                                href = '', 
+                                                id = '', 
+                                                interpolated = '', 
+                                                ip = '', 
+                                                modified_by = equinix_metal.models.modified_by.modified_by(), 
+                                                relationships = [
+                                                    
+                                                    ], 
+                                                state = '', 
+                                                type = '', )
+                                            ], 
+                                        provisioning_percentage = 1.337, 
+                                        root_password = '', 
+                                        short_id = '', 
+                                        sos = '', 
+                                        spot_instance = True, 
+                                        spot_price_max = 1.337, 
+                                        state = 'queued', 
+                                        storage = equinix_metal.models.storage.Storage(
+                                            disks = [
+                                                equinix_metal.models.disk.Disk(
+                                                    href = '', 
+                                                    partitions = [
+                                                        equinix_metal.models.partition.Partition(
+                                                            href = '', 
+                                                            label = '', 
+                                                            number = 56, 
+                                                            size = '', )
+                                                        ], 
+                                                    wipe_table = True, )
+                                                ], 
+                                            filesystems = [
+                                                equinix_metal.models.filesystem.Filesystem(
+                                                    href = '', 
+                                                    mount = equinix_metal.models.mount.Mount(
+                                                        format = '', 
+                                                        href = '', 
+                                                        options = [
+                                                            ''
+                                                            ], 
+                                                        point = '', ), )
+                                                ], 
+                                            href = '', 
+                                            raid = [
+                                                equinix_metal.models.raid.Raid(
+                                                    href = '', 
+                                                    level = '', 
+                                                    name = '', )
+                                                ], ), 
+                                        switch_uuid = '', 
+                                        termination_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                        user = '', 
+                                        userdata = '', )
                                     ], 
                                 metal_gateways = [
                                     equinix_metal.models.metal_gateway_lite.MetalGatewayLite(
@@ -247,7 +337,14 @@ class TestHardwareReservation(unittest.TestCase):
                             network_type = 'layer2-bonded', 
                             type = 'NetworkPort', 
                             virtual_networks = [
-                                
+                                equinix_metal.models.virtual_network.VirtualNetwork(
+                                    assigned_to_virtual_circuit = True, 
+                                    created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                                    description = '', 
+                                    href = '', 
+                                    id = '', 
+                                    metro_code = '', 
+                                    vxlan = 56, )
                                 ], )
                         ], 
                     operating_system = equinix_metal.models.operating_system.OperatingSystem(
@@ -260,9 +357,6 @@ class TestHardwareReservation(unittest.TestCase):
                         name = '', 
                         preinstallable = True, 
                         pricing = equinix_metal.models.pricing.pricing(), 
-                        provisionable_on = [
-                            ''
-                            ], 
                         slug = '', 
                         version = '', ), 
                     plan = equinix_metal.models.plan.Plan(
@@ -285,7 +379,8 @@ class TestHardwareReservation(unittest.TestCase):
                         name = '0', 
                         network_status = equinix_metal.models.network_status.network_status(), 
                         type = 'default', 
-                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                        updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        url = '', ), 
                     project_lite = null, 
                     provisioning_events = [
                         equinix_metal.models.event.Event(
@@ -296,9 +391,6 @@ class TestHardwareReservation(unittest.TestCase):
                             interpolated = '', 
                             ip = '', 
                             modified_by = equinix_metal.models.modified_by.modified_by(), 
-                            relationships = [
-                                
-                                ], 
                             state = '', 
                             type = '', )
                         ], 
@@ -313,36 +405,7 @@ class TestHardwareReservation(unittest.TestCase):
                         ], 
                     state = 'queued', 
                     storage = equinix_metal.models.storage.Storage(
-                        disks = [
-                            equinix_metal.models.disk.Disk(
-                                href = '', 
-                                partitions = [
-                                    equinix_metal.models.partition.Partition(
-                                        href = '', 
-                                        label = '', 
-                                        number = 56, 
-                                        size = '', )
-                                    ], 
-                                wipe_table = True, )
-                            ], 
-                        filesystems = [
-                            equinix_metal.models.filesystem.Filesystem(
-                                href = '', 
-                                mount = equinix_metal.models.mount.Mount(
-                                    format = '', 
-                                    href = '', 
-                                    options = [
-                                        ''
-                                        ], 
-                                    point = '', ), )
-                            ], 
-                        href = '', 
-                        raid = [
-                            equinix_metal.models.raid.Raid(
-                                href = '', 
-                                level = '', 
-                                name = '', )
-                            ], ), 
+                        href = '', ), 
                     switch_uuid = '', 
                     tags = [
                         ''
@@ -468,6 +531,7 @@ class TestHardwareReservation(unittest.TestCase):
                         ], 
                     type = 'default', 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    url = '', 
                     volumes = [
                         
                         ], ),

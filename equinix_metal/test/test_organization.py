@@ -37,7 +37,6 @@ class TestOrganization(unittest.TestCase):
         if include_optional:
             return Organization(
                 address = equinix_metal.models.address.Address(
-                    address = '', 
                     address2 = '', 
                     city = '', 
                     coordinates = equinix_metal.models.coordinates.Coordinates(
@@ -62,7 +61,7 @@ class TestOrganization(unittest.TestCase):
                     zip_code = '', ),
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 credit_amount = 1.337,
-                customdata = None,
+                customdata = equinix_metal.models.customdata.customdata(),
                 description = '',
                 enforce_2fa_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 href = '',

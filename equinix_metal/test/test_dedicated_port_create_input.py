@@ -39,6 +39,7 @@ class TestDedicatedPortCreateInput(unittest.TestCase):
                 billing_account_name = '',
                 contact_email = '',
                 description = '',
+                facility_id = '',
                 href = '',
                 metro = '',
                 mode = 'standard',

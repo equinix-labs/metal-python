@@ -47,7 +47,7 @@ class TestVirtualCircuitUpdateInput(unittest.TestCase):
                 customer_ip = '12.0.0.2',
                 md5 = 'jUR,rZ#UM/?R,Fp^l6$ARjeJk C>i H'qT\\{<?'es#)#iK.YM{Rag2/!KB!k@5oXh.:Ts\";mGL,i&z5[P@M\"lzfB+Y,Twzfu~N^z\"mfqecVU{SE{QA<Y8XX0<}J;Krm9W'g~?)DvDDL7BlwpCDcpNjORpuEG',
                 metal_ip = '12.0.0.1',
-                peer_asn = 56,
+                peer_asn = 65000,
                 subnet = '12.0.0.0/30'
             )
         else:

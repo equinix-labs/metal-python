@@ -45,11 +45,59 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                 metal_ip = '12.0.0.1',
                 name = '',
                 nni_vlan = 56,
-                peer_asn = 56,
-                port = equinix_metal.models.href.Href(
-                    href = '', ),
-                project = equinix_metal.models.href.Href(
-                    href = '', ),
+                peer_asn = 65000,
+                port = equinix_metal.models.interconnection_port.InterconnectionPort(
+                    href = '', 
+                    id = '', 
+                    link_status = '', 
+                    name = '', 
+                    organization = equinix_metal.models.href.Href(
+                        href = '', ), 
+                    role = 'primary', 
+                    speed = 56, 
+                    status = 'requested', 
+                    switch_id = '', 
+                    virtual_circuits = [
+                        null
+                        ], ),
+                project = equinix_metal.models.project.Project(
+                    backend_transfer_enabled = True, 
+                    bgp_config = equinix_metal.models.href.Href(
+                        href = '', ), 
+                    created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    customdata = equinix_metal.models.customdata.customdata(), 
+                    devices = [
+                        equinix_metal.models.href.Href(
+                            href = '', )
+                        ], 
+                    href = '', 
+                    id = '', 
+                    invitations = [
+                        
+                        ], 
+                    max_devices = equinix_metal.models.max_devices.max_devices(), 
+                    members = [
+                        
+                        ], 
+                    memberships = [
+                        
+                        ], 
+                    name = '0', 
+                    network_status = equinix_metal.models.network_status.network_status(), 
+                    organization = , 
+                    payment_method = , 
+                    ssh_keys = [
+                        
+                        ], 
+                    tags = [
+                        ''
+                        ], 
+                    type = 'default', 
+                    updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    url = '', 
+                    volumes = [
+                        
+                        ], ),
                 speed = 56,
                 status = 'pending',
                 subnet = '12.0.0.0/30',
@@ -96,7 +144,7 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                     ip_ranges = [
                         ''
                         ], 
-                    local_asn = 56, 
+                    local_asn = 65000, 
                     metro = equinix_metal.models.metro.Metro(
                         code = '', 
                         country = '', 
@@ -137,6 +185,7 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                             ], 
                         type = 'default', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        url = '', 
                         volumes = [
                             
                             ], ), 
@@ -155,8 +204,16 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                             metal_ip = '12.0.0.1', 
                             name = '', 
                             nni_vlan = 56, 
-                            peer_asn = 56, 
-                            port = , 
+                            peer_asn = 65000, 
+                            port = equinix_metal.models.interconnection_port.InterconnectionPort(
+                                href = '', 
+                                id = '', 
+                                link_status = '', 
+                                name = '', 
+                                role = 'primary', 
+                                speed = 56, 
+                                status = 'requested', 
+                                switch_id = '', ), 
                             speed = 56, 
                             status = 'pending', 
                             subnet = '12.0.0.0/30', 
@@ -171,7 +228,7 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                                 description = '', 
                                 href = '', 
                                 id = '', 
-                                local_asn = 56, 
+                                local_asn = 65000, 
                                 name = '', 
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], )
@@ -216,7 +273,7 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                     ip_ranges = [
                         ''
                         ], 
-                    local_asn = 56, 
+                    local_asn = 65000, 
                     metro = equinix_metal.models.metro.Metro(
                         code = '', 
                         country = '', 
@@ -257,6 +314,7 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                             ], 
                         type = 'default', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        url = '', 
                         volumes = [
                             
                             ], ), 
@@ -275,8 +333,16 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                             metal_ip = '12.0.0.1', 
                             name = '', 
                             nni_vlan = 56, 
-                            peer_asn = 56, 
-                            port = , 
+                            peer_asn = 65000, 
+                            port = equinix_metal.models.interconnection_port.InterconnectionPort(
+                                href = '', 
+                                id = '', 
+                                link_status = '', 
+                                name = '', 
+                                role = 'primary', 
+                                speed = 56, 
+                                status = 'requested', 
+                                switch_id = '', ), 
                             speed = 56, 
                             status = 'pending', 
                             subnet = '12.0.0.0/30', 
@@ -291,7 +357,7 @@ class TestVrfVirtualCircuit(unittest.TestCase):
                                 description = '', 
                                 href = '', 
                                 id = '', 
-                                local_asn = 56, 
+                                local_asn = 65000, 
                                 name = '', 
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], ),

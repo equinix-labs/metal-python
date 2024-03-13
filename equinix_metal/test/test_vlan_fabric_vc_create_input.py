@@ -38,6 +38,7 @@ class TestVlanFabricVcCreateInput(unittest.TestCase):
             return VlanFabricVcCreateInput(
                 contact_email = '',
                 description = '',
+                facility_id = '',
                 href = '',
                 metro = '',
                 name = '',
@@ -58,6 +59,7 @@ class TestVlanFabricVcCreateInput(unittest.TestCase):
                 redundancy = '',
                 service_token_type = 'a_side',
                 type = 'shared',
+                vlans = [1000,1001],
         )
         """
 

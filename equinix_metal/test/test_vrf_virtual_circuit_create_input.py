@@ -43,7 +43,7 @@ class TestVrfVirtualCircuitCreateInput(unittest.TestCase):
                 metal_ip = '12.0.0.1',
                 name = '',
                 nni_vlan = 2,
-                peer_asn = 56,
+                peer_asn = 65000,
                 project_id = '',
                 speed = '',
                 subnet = '12.0.0.0/30',
@@ -55,7 +55,7 @@ class TestVrfVirtualCircuitCreateInput(unittest.TestCase):
         else:
             return VrfVirtualCircuitCreateInput(
                 nni_vlan = 2,
-                peer_asn = 56,
+                peer_asn = 65000,
                 project_id = '',
                 subnet = '12.0.0.0/30',
                 vrf = '',

@@ -38,6 +38,7 @@ class TestVrfFabricVcCreateInput(unittest.TestCase):
             return VrfFabricVcCreateInput(
                 contact_email = '',
                 description = '',
+                facility_id = '',
                 href = '',
                 metro = '',
                 name = '',

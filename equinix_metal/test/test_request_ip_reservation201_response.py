@@ -107,6 +107,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                         ], 
                     type = 'default', 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    url = '', 
                     volumes = [
                         
                         ], ),
@@ -144,6 +145,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                         ], 
                     type = 'default', 
                     updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                    url = '', 
                     volumes = [
                         
                         ], ),
@@ -195,7 +197,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                     ip_ranges = [
                         ''
                         ], 
-                    local_asn = 56, 
+                    local_asn = 65000, 
                     metro = equinix_metal.models.metro.Metro(
                         code = '', 
                         country = '', 
@@ -236,6 +238,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                             ], 
                         type = 'default', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        url = '', 
                         volumes = [
                             
                             ], ), 
@@ -254,8 +257,16 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                             metal_ip = '12.0.0.1', 
                             name = '', 
                             nni_vlan = 56, 
-                            peer_asn = 56, 
-                            port = , 
+                            peer_asn = 65000, 
+                            port = equinix_metal.models.interconnection_port.InterconnectionPort(
+                                href = '', 
+                                id = '', 
+                                link_status = '', 
+                                name = '', 
+                                role = 'primary', 
+                                speed = 56, 
+                                status = 'requested', 
+                                switch_id = '', ), 
                             speed = 56, 
                             status = 'pending', 
                             subnet = '12.0.0.0/30', 
@@ -270,7 +281,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                                 description = '', 
                                 href = '', 
                                 id = '', 
-                                local_asn = 56, 
+                                local_asn = 65000, 
                                 name = '', 
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], )
@@ -316,7 +327,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                     ip_ranges = [
                         ''
                         ], 
-                    local_asn = 56, 
+                    local_asn = 65000, 
                     metro = equinix_metal.models.metro.Metro(
                         code = '', 
                         country = '', 
@@ -357,6 +368,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                             ], 
                         type = 'default', 
                         updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        url = '', 
                         volumes = [
                             
                             ], ), 
@@ -375,8 +387,16 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                             metal_ip = '12.0.0.1', 
                             name = '', 
                             nni_vlan = 56, 
-                            peer_asn = 56, 
-                            port = , 
+                            peer_asn = 65000, 
+                            port = equinix_metal.models.interconnection_port.InterconnectionPort(
+                                href = '', 
+                                id = '', 
+                                link_status = '', 
+                                name = '', 
+                                role = 'primary', 
+                                speed = 56, 
+                                status = 'requested', 
+                                switch_id = '', ), 
                             speed = 56, 
                             status = 'pending', 
                             subnet = '12.0.0.0/30', 
@@ -391,7 +411,7 @@ class TestRequestIPReservation201Response(unittest.TestCase):
                                 description = '', 
                                 href = '', 
                                 id = '', 
-                                local_asn = 56, 
+                                local_asn = 65000, 
                                 name = '', 
                                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
                         ], ),

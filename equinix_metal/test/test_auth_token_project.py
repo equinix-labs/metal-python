@@ -75,6 +75,7 @@ class TestAuthTokenProject(unittest.TestCase):
                     ],
                 type = 'default',
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                url = '',
                 volumes = [
                     equinix_metal.models.href.Href(
                         href = '', )
