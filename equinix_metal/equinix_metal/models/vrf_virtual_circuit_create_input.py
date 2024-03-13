@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -35,7 +35,7 @@ class VrfVirtualCircuitCreateInput(BaseModel):
     metal_ip: Optional[StrictStr] = Field(default=None, description="An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.")
     name: Optional[StrictStr] = None
     nni_vlan: Annotated[int, Field(le=4094, strict=True, ge=2)]
-    peer_asn: StrictInt = Field(description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
+    peer_asn: Annotated[int, Field(le=4294967295, strict=True, ge=0)] = Field(description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
     project_id: StrictStr
     speed: Optional[StrictStr] = Field(default=None, description="speed can be passed as integer number representing bps speed or string (e.g. '52m' or '100g' or '4 gbps')")
     subnet: StrictStr = Field(description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP. The subnet specified must be contained within an already-defined IP Range for the VRF.")

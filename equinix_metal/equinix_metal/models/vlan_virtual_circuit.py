@@ -22,6 +22,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
+from equinix_metal.models.project import Project
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -37,8 +38,8 @@ class VlanVirtualCircuit(BaseModel):
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     nni_vlan: Optional[StrictInt] = None
-    port: Optional[Href] = None
-    project: Optional[Href] = None
+    port: Optional[InterconnectionPort] = None
+    project: Optional[Project] = None
     speed: Optional[StrictInt] = Field(default=None, description="For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.")
     status: Optional[StrictStr] = Field(default=None, description="The status of a Virtual Circuit is always 'pending' on creation. The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was not set yet on the Virtual Circuit and is the last step needed for full activation. For Dedicated interconnections, as long as the Dedicated Port has been associated to the Virtual Circuit and a NNI VNID has been set, it will turn to 'waiting_on_customer_vlan'. For Fabric VCs, it will only change to 'waiting_on_customer_vlan' once the corresponding Fabric connection has been found on the Fabric side. If the Fabric service token associated with the Virtual Circuit hasn't been redeemed on Fabric within the expiry time, it will change to an `expired` status. Once a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can be set on creation of a Fabric VC) and the necessary set up is done, it will turn into 'Activating' status as it tries to activate the Virtual Circuit. Once the Virtual Circuit fully activates and is configured on the switch, it will turn to staus 'active'. For Fabric VCs (Metal Billed), we will start billing the moment the status of the Virtual Circuit turns to 'active'. If there are any changes to the VLAN after the Virtual Circuit is in an 'active' status, the status will show 'changing_vlan' if a new VLAN has been provided, or 'deactivating' if we are removing the VLAN. When a deletion request is issued for the Virtual Circuit, it will move to a 'deleting' status, and we will immediately unconfigure the switch for the Virtual Circuit and issue a deletion on any associated Fabric connections. Any associated Metro VLANs on the virtual circuit will also be unassociated after the switch has been successfully unconfigured. If there are any associated Fabric connections, we will only fully delete the Virtual Circuit once we have checked that the Fabric connection was fully deprovisioned on Fabric.")
     tags: Optional[List[StrictStr]] = None
@@ -151,8 +152,8 @@ class VlanVirtualCircuit(BaseModel):
             "id": obj.get("id"),
             "name": obj.get("name"),
             "nni_vlan": obj.get("nni_vlan"),
-            "port": Href.from_dict(obj["port"]) if obj.get("port") is not None else None,
-            "project": Href.from_dict(obj["project"]) if obj.get("project") is not None else None,
+            "port": InterconnectionPort.from_dict(obj["port"]) if obj.get("port") is not None else None,
+            "project": Project.from_dict(obj["project"]) if obj.get("project") is not None else None,
             "speed": obj.get("speed"),
             "status": obj.get("status"),
             "tags": obj.get("tags"),
@@ -163,4 +164,7 @@ class VlanVirtualCircuit(BaseModel):
         })
         return _obj
 
+from equinix_metal.models.interconnection_port import InterconnectionPort
+# TODO: Rewrite to not use raise_errors
+VlanVirtualCircuit.model_rebuild(raise_errors=False)
 

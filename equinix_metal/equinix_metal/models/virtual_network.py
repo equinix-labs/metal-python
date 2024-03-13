@@ -18,10 +18,13 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.metal_gateway_lite import MetalGatewayLite
+from equinix_metal.models.metro import Metro
+from equinix_metal.models.project import Project
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,19 +32,20 @@ class VirtualNetwork(BaseModel):
     """
     VirtualNetwork
     """ # noqa: E501
-    assigned_to: Optional[Href] = None
+    assigned_to: Optional[Project] = None
     assigned_to_virtual_circuit: Optional[StrictBool] = Field(default=None, description="True if the virtual network is attached to a virtual circuit. False if not.")
+    created_at: Optional[datetime] = None
     description: Optional[StrictStr] = None
     facility: Optional[Href] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    instances: Optional[List[Href]] = Field(default=None, description="A list of instances with ports currently associated to this Virtual Network.")
+    instances: Optional[List[Device]] = Field(default=None, description="A list of instances with ports currently associated to this Virtual Network.")
     metal_gateways: Optional[List[MetalGatewayLite]] = Field(default=None, description="A list of metal gateways currently associated to this Virtual Network.")
-    metro: Optional[Href] = None
+    metro: Optional[Metro] = None
     metro_code: Optional[StrictStr] = Field(default=None, description="The Metro code of the metro in which this Virtual Network is defined.")
     tags: Optional[List[StrictStr]] = None
     vxlan: Optional[StrictInt] = None
-    __properties: ClassVar[List[str]] = ["assigned_to", "assigned_to_virtual_circuit", "description", "facility", "href", "id", "instances", "metal_gateways", "metro", "metro_code", "tags", "vxlan"]
+    __properties: ClassVar[List[str]] = ["assigned_to", "assigned_to_virtual_circuit", "created_at", "description", "facility", "href", "id", "instances", "metal_gateways", "metro", "metro_code", "tags", "vxlan"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -117,19 +121,23 @@ class VirtualNetwork(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "assigned_to": Href.from_dict(obj["assigned_to"]) if obj.get("assigned_to") is not None else None,
+            "assigned_to": Project.from_dict(obj["assigned_to"]) if obj.get("assigned_to") is not None else None,
             "assigned_to_virtual_circuit": obj.get("assigned_to_virtual_circuit"),
+            "created_at": obj.get("created_at"),
             "description": obj.get("description"),
             "facility": Href.from_dict(obj["facility"]) if obj.get("facility") is not None else None,
             "href": obj.get("href"),
             "id": obj.get("id"),
-            "instances": [Href.from_dict(_item) for _item in obj["instances"]] if obj.get("instances") is not None else None,
+            "instances": [Device.from_dict(_item) for _item in obj["instances"]] if obj.get("instances") is not None else None,
             "metal_gateways": [MetalGatewayLite.from_dict(_item) for _item in obj["metal_gateways"]] if obj.get("metal_gateways") is not None else None,
-            "metro": Href.from_dict(obj["metro"]) if obj.get("metro") is not None else None,
+            "metro": Metro.from_dict(obj["metro"]) if obj.get("metro") is not None else None,
             "metro_code": obj.get("metro_code"),
             "tags": obj.get("tags"),
             "vxlan": obj.get("vxlan")
         })
         return _obj
 
+from equinix_metal.models.device import Device
+# TODO: Rewrite to not use raise_errors
+VirtualNetwork.model_rebuild(raise_errors=False)
 

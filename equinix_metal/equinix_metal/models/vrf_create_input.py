@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,7 +34,7 @@ class VrfCreateInput(BaseModel):
     description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     ip_ranges: Optional[List[StrictStr]] = Field(default=None, description="A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"]. IPv4 blocks must be between /8 and /29 in size. IPv6 blocks must be between /56 and /64. A VRF\\'s IP ranges must be defined in order to create VRF IP Reservations, which can then be used for Metal Gateways or Virtual Circuits.")
-    local_asn: Optional[StrictInt] = None
+    local_asn: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = None
     metro: StrictStr = Field(description="The UUID (or metro code) for the Metro in which to create this VRF.")
     name: StrictStr
     tags: Optional[List[StrictStr]] = None

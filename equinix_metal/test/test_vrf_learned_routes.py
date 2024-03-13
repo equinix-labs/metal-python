@@ -13,83 +13,45 @@
 """  # noqa: E501
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from typing import Optional, Set
-from typing_extensions import Self
+from equinix_metal.models.vrf_learned_routes import VrfLearnedRoutes
 
-class BgpDynamicNeighborCreateInput(BaseModel):
-    """
-    BgpDynamicNeighborCreateInput
-    """ # noqa: E501
-    bgp_neighbor_asn: Annotated[int, Field(le=4294967295, strict=True, ge=0)] = Field(description="The ASN of the dynamic BGP neighbor")
-    bgp_neighbor_range: StrictStr = Field(description="Network range of the dynamic BGP neighbor in CIDR format")
-    href: Optional[StrictStr] = None
-    tags: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["bgp_neighbor_asn", "bgp_neighbor_range", "href", "tags"]
+class TestVrfLearnedRoutes(unittest.TestCase):
+    """VrfLearnedRoutes unit test stubs"""
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    def setUp(self):
+        pass
 
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
-
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
-
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BgpDynamicNeighborCreateInput from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
+    def make_instance(self, include_optional) -> VrfLearnedRoutes:
+        """Test VrfLearnedRoutes
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `VrfLearnedRoutes`
         """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
+        model = VrfLearnedRoutes()
+        if include_optional:
+            return VrfLearnedRoutes(
+                href = '',
+                learned_routes = [
+                    equinix_metal.models.vrf_learned_routes_learned_routes_inner.VrfLearnedRoutes_learned_routes_inner(
+                        origin_as = 65000, 
+                        prefix = '8.8.8.0/24', )
+                    ]
+            )
+        else:
+            return VrfLearnedRoutes(
         )
-        return _dict
+        """
 
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BgpDynamicNeighborCreateInput from a dict"""
-        if obj is None:
-            return None
+    def testVrfLearnedRoutes(self):
+        """Test VrfLearnedRoutes"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
-
-        _obj = cls.model_validate({
-            "bgp_neighbor_asn": obj.get("bgp_neighbor_asn"),
-            "bgp_neighbor_range": obj.get("bgp_neighbor_range"),
-            "href": obj.get("href"),
-            "tags": obj.get("tags")
-        })
-        return _obj
-
-
+if __name__ == '__main__':
+    unittest.main()

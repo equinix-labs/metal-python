@@ -18,37 +18,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
-class VrfVirtualCircuitUpdateInput(BaseModel):
+class VrfBGPNeighborsBgpNeighborsInner(BaseModel):
     """
-    VrfVirtualCircuitUpdateInput
+    VrfBGPNeighborsBgpNeighborsInner
     """ # noqa: E501
-    customer_ip: Optional[StrictStr] = Field(default=None, description="An IP address from the subnet that will be used on the Customer side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Metal IP. By default, the last usable IP address in the subnet will be used.")
-    description: Optional[StrictStr] = None
-    href: Optional[StrictStr] = None
-    md5: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The plaintext BGP peering password shared by neighbors as an MD5 checksum: * must be 10-20 characters long * may not include punctuation * must be a combination of numbers and letters * must contain at least one lowercase, uppercase, and digit character ")
-    metal_ip: Optional[StrictStr] = Field(default=None, description="An IP address from the subnet that will be used on the Metal side. This parameter is optional, but if supplied, we will use the other usable IP address in the subnet as the Customer IP. By default, the first usable IP address in the subnet will be used.")
-    name: Optional[StrictStr] = None
-    peer_asn: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = Field(default=None, description="The peer ASN that will be used with the VRF on the Virtual Circuit.")
-    speed: Optional[StrictStr] = Field(default=None, description="Speed can be changed only if it is an interconnection on a Dedicated Port")
-    subnet: Optional[StrictStr] = Field(default=None, description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.")
-    tags: Optional[List[StrictStr]] = None
-    __properties: ClassVar[List[str]] = ["customer_ip", "description", "href", "md5", "metal_ip", "name", "peer_asn", "speed", "subnet", "tags"]
-
-    @field_validator('md5')
-    def md5_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{10,20}$", value):
-            raise ValueError(r"must validate the regular expression /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{10,20}$/")
-        return value
+    peer_as: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = Field(default=None, description="The ASN of the peer that advertised the prefix.")
+    peer_ip: Optional[StrictStr] = None
+    state: Optional[StrictStr] = Field(default=None, description="The current status of the connection to the BGP peer. State is either up or down.")
+    __properties: ClassVar[List[str]] = ["peer_as", "peer_ip", "state"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,7 +51,7 @@ class VrfVirtualCircuitUpdateInput(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of VrfVirtualCircuitUpdateInput from a JSON string"""
+        """Create an instance of VrfBGPNeighborsBgpNeighborsInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -93,7 +76,7 @@ class VrfVirtualCircuitUpdateInput(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of VrfVirtualCircuitUpdateInput from a dict"""
+        """Create an instance of VrfBGPNeighborsBgpNeighborsInner from a dict"""
         if obj is None:
             return None
 
@@ -101,16 +84,9 @@ class VrfVirtualCircuitUpdateInput(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "customer_ip": obj.get("customer_ip"),
-            "description": obj.get("description"),
-            "href": obj.get("href"),
-            "md5": obj.get("md5"),
-            "metal_ip": obj.get("metal_ip"),
-            "name": obj.get("name"),
-            "peer_asn": obj.get("peer_asn"),
-            "speed": obj.get("speed"),
-            "subnet": obj.get("subnet"),
-            "tags": obj.get("tags")
+            "peer_as": obj.get("peer_as"),
+            "peer_ip": obj.get("peer_ip"),
+            "state": obj.get("state")
         })
         return _obj
 

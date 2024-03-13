@@ -397,6 +397,8 @@ Class | Method | HTTP request | Description
 *VRFsApi* | [**find_vrf_route_by_id**](docs/VRFsApi.md#find_vrf_route_by_id) | **GET** /routes/{id} | Retrieve a VRF Route
 *VRFsApi* | [**find_vrfs**](docs/VRFsApi.md#find_vrfs) | **GET** /projects/{id}/vrfs | Retrieve all VRFs in the project
 *VRFsApi* | [**get_bgp_dynamic_neighbors**](docs/VRFsApi.md#get_bgp_dynamic_neighbors) | **GET** /metal-gateways/{id}/bgp-dynamic-neighbors | List BGP Dynamic Neighbors
+*VRFsApi* | [**get_vrf_bgp_neighbors**](docs/VRFsApi.md#get_vrf_bgp_neighbors) | **GET** /vrfs/{id}/bgp-neighbors | Retreive BGP neighbor states for the VRF
+*VRFsApi* | [**get_vrf_learned_routes**](docs/VRFsApi.md#get_vrf_learned_routes) | **GET** /vrfs/{id}/learned-routes | Retreive learned L3 routes within the VRF
 *VRFsApi* | [**get_vrf_routes**](docs/VRFsApi.md#get_vrf_routes) | **GET** /vrfs/{id}/routes | Retrieve all routes in the VRF
 *VRFsApi* | [**update_vrf**](docs/VRFsApi.md#update_vrf) | **PUT** /vrfs/{id} | Update the VRF
 *VRFsApi* | [**update_vrf_route_by_id**](docs/VRFsApi.md#update_vrf_route_by_id) | **PUT** /routes/{id} | Update a VRF Route
@@ -637,11 +639,15 @@ Class | Method | HTTP request | Description
  - [VlanVirtualCircuitCreateInput](docs/VlanVirtualCircuitCreateInput.md)
  - [VlanVirtualCircuitUpdateInput](docs/VlanVirtualCircuitUpdateInput.md)
  - [Vrf](docs/Vrf.md)
+ - [VrfBGPNeighbors](docs/VrfBGPNeighbors.md)
+ - [VrfBGPNeighborsBgpNeighborsInner](docs/VrfBGPNeighborsBgpNeighborsInner.md)
  - [VrfCreateInput](docs/VrfCreateInput.md)
  - [VrfFabricVcCreateInput](docs/VrfFabricVcCreateInput.md)
  - [VrfIpReservation](docs/VrfIpReservation.md)
  - [VrfIpReservationCreateInput](docs/VrfIpReservationCreateInput.md)
  - [VrfIpReservationList](docs/VrfIpReservationList.md)
+ - [VrfLearnedRoutes](docs/VrfLearnedRoutes.md)
+ - [VrfLearnedRoutesLearnedRoutesInner](docs/VrfLearnedRoutesLearnedRoutesInner.md)
  - [VrfList](docs/VrfList.md)
  - [VrfMetalGateway](docs/VrfMetalGateway.md)
  - [VrfMetalGatewayCreateInput](docs/VrfMetalGatewayCreateInput.md)

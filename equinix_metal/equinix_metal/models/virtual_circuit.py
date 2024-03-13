@@ -18,8 +18,6 @@ import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
-from equinix_metal.models.vlan_virtual_circuit import VlanVirtualCircuit
-from equinix_metal.models.vrf_virtual_circuit import VrfVirtualCircuit
 from pydantic import StrictStr, Field
 from typing import Union, List, Optional, Dict
 from typing_extensions import Literal, Self
@@ -135,4 +133,8 @@ class VirtualCircuit(BaseModel):
         """Returns the string representation of the actual instance"""
         return pprint.pformat(self.model_dump())
 
+from equinix_metal.models.vlan_virtual_circuit import VlanVirtualCircuit
+from equinix_metal.models.vrf_virtual_circuit import VrfVirtualCircuit
+# TODO: Rewrite to not use raise_errors
+VirtualCircuit.model_rebuild(raise_errors=False)
 

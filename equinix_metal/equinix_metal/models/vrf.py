@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from equinix_metal.models.metro import Metro
 from equinix_metal.models.project import Project
 from equinix_metal.models.user import User
@@ -41,7 +42,7 @@ class Vrf(BaseModel):
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     ip_ranges: Optional[List[StrictStr]] = Field(default=None, description="A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"].")
-    local_asn: Optional[StrictInt] = Field(default=None, description="A 4-byte ASN associated with the VRF.")
+    local_asn: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = Field(default=None, description="A 4-byte ASN associated with the VRF.")
     metro: Optional[Metro] = None
     name: Optional[StrictStr] = None
     project: Optional[Project] = None

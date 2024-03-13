@@ -21,9 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.bond_port_data import BondPortData
-from equinix_metal.models.href import Href
 from equinix_metal.models.port_data import PortData
-from equinix_metal.models.virtual_network import VirtualNetwork
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -40,7 +38,7 @@ class Port(BaseModel):
     native_virtual_network: Optional[VirtualNetwork] = None
     network_type: Optional[StrictStr] = Field(default=None, description="Composite network type of the bond")
     type: Optional[StrictStr] = Field(default=None, description="Type is either \"NetworkBondPort\" for bond ports or \"NetworkPort\" for bondable ethernet ports")
-    virtual_networks: Optional[List[Href]] = None
+    virtual_networks: Optional[List[VirtualNetwork]] = None
     __properties: ClassVar[List[str]] = ["bond", "data", "disbond_operation_supported", "href", "id", "name", "native_virtual_network", "network_type", "type", "virtual_networks"]
 
     @field_validator('network_type')
@@ -139,8 +137,11 @@ class Port(BaseModel):
             "native_virtual_network": VirtualNetwork.from_dict(obj["native_virtual_network"]) if obj.get("native_virtual_network") is not None else None,
             "network_type": obj.get("network_type"),
             "type": obj.get("type"),
-            "virtual_networks": [Href.from_dict(_item) for _item in obj["virtual_networks"]] if obj.get("virtual_networks") is not None else None
+            "virtual_networks": [VirtualNetwork.from_dict(_item) for _item in obj["virtual_networks"]] if obj.get("virtual_networks") is not None else None
         })
         return _obj
 
+from equinix_metal.models.virtual_network import VirtualNetwork
+# TODO: Rewrite to not use raise_errors
+Port.model_rebuild(raise_errors=False)
 
