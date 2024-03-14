@@ -1,3 +1,6 @@
 {
-    "templateDir": "/local/templates"
+    "templateDir": "/local/templates",
+    "inlineSchemaOptions": {
+        "RESOLVE_INLINE_ENUMS": true
+    }
 }
