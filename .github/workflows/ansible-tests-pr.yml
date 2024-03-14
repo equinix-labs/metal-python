@@ -1,13 +1,12 @@
 on:
   pull_request_target:
     paths:
-    - config
-    - equinix_metal
-    - templates
+    - 'config/**'
+    - 'equinix_metal/**'
+    - 'templates/**'
     - metal_openapi.fixed.yaml
-    - oas3.stitched
-    - oas3.fetched
-    - .github/**
+    - 'oas3.stitched/**'
+    - 'oas3.fetched/**'
   workflow_dispatch:
 
 permissions:
