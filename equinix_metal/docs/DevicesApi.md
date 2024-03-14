@@ -1038,6 +1038,7 @@ Provides a collection of devices for a given organization.
 ```python
 import equinix_metal
 from equinix_metal.models.device_list import DeviceList
+from equinix_metal.models.find_organization_devices_categories_parameter_inner import FindOrganizationDevicesCategoriesParameterInner
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -1064,7 +1065,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Organization UUID
     search = 'search_example' # str | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
-    categories = ['categories_example'] # List[str] | Filter by plan category (optional)
+    categories = [equinix_metal.FindOrganizationDevicesCategoriesParameterInner()] # List[FindOrganizationDevicesCategoriesParameterInner] | Filter by plan category (optional)
     facility = 'facility_example' # str | Filter by device facility (optional)
     hostname = 'hostname_example' # str | Filter by partial hostname (optional)
     reserved = True # bool | Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. (optional)
@@ -1095,7 +1096,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Organization UUID | 
  **search** | **str**| Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. | [optional] 
- **categories** | [**List[str]**](str.md)| Filter by plan category | [optional] 
+ **categories** | [**List[FindOrganizationDevicesCategoriesParameterInner]**](FindOrganizationDevicesCategoriesParameterInner.md)| Filter by plan category | [optional] 
  **facility** | **str**| Filter by device facility | [optional] 
  **hostname** | **str**| Filter by partial hostname | [optional] 
  **reserved** | **bool**| Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances. | [optional] 
@@ -1148,6 +1149,7 @@ Provides a collection of devices for a given project.
 ```python
 import equinix_metal
 from equinix_metal.models.device_list import DeviceList
+from equinix_metal.models.find_organization_devices_categories_parameter_inner import FindOrganizationDevicesCategoriesParameterInner
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -1174,7 +1176,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Project UUID
     search = 'search_example' # str | Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. (optional)
-    categories = ['categories_example'] # List[str] | Filter by plan category (optional)
+    categories = [equinix_metal.FindOrganizationDevicesCategoriesParameterInner()] # List[FindOrganizationDevicesCategoriesParameterInner] | Filter by plan category (optional)
     facility = 'facility_example' # str | Filter by device facility (optional)
     metro = 'metro_example' # str | Filter by device metro (optional)
     hostname = 'hostname_example' # str | Filter by partial hostname (optional)
@@ -1206,7 +1208,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **search** | **str**| Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses. | [optional] 
- **categories** | [**List[str]**](str.md)| Filter by plan category | [optional] 
+ **categories** | [**List[FindOrganizationDevicesCategoriesParameterInner]**](FindOrganizationDevicesCategoriesParameterInner.md)| Filter by plan category | [optional] 
  **facility** | **str**| Filter by device facility | [optional] 
  **metro** | **str**| Filter by device metro | [optional] 
  **hostname** | **str**| Filter by partial hostname | [optional] 
@@ -1259,6 +1261,9 @@ Returns traffic for a specific device.
 
 ```python
 import equinix_metal
+from equinix_metal.models.find_traffic_bucket_parameter import FindTrafficBucketParameter
+from equinix_metal.models.find_traffic_direction_parameter import FindTrafficDirectionParameter
+from equinix_metal.models.find_traffic_interval_parameter import FindTrafficIntervalParameter
 from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -1285,9 +1290,9 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.DevicesApi(api_client)
     id = 'id_example' # str | Device UUID
-    direction = 'direction_example' # str | Traffic direction
-    interval = 'interval_example' # str | Traffic interval (optional)
-    bucket = 'bucket_example' # str | Traffic bucket (optional)
+    direction = equinix_metal.FindTrafficDirectionParameter() # FindTrafficDirectionParameter | Traffic direction
+    interval = equinix_metal.FindTrafficIntervalParameter() # FindTrafficIntervalParameter | Traffic interval (optional)
+    bucket = equinix_metal.FindTrafficBucketParameter() # FindTrafficBucketParameter | Traffic bucket (optional)
     timeframe = equinix_metal.FindTrafficTimeframeParameter() # FindTrafficTimeframeParameter |  (optional)
 
     try:
@@ -1305,9 +1310,9 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Device UUID | 
- **direction** | **str**| Traffic direction | 
- **interval** | **str**| Traffic interval | [optional] 
- **bucket** | **str**| Traffic bucket | [optional] 
+ **direction** | [**FindTrafficDirectionParameter**](.md)| Traffic direction | 
+ **interval** | [**FindTrafficIntervalParameter**](.md)| Traffic interval | [optional] 
+ **bucket** | [**FindTrafficBucketParameter**](.md)| Traffic bucket | [optional] 
  **timeframe** | [**FindTrafficTimeframeParameter**](.md)|  | [optional] 
 
 ### Return type

@@ -19,10 +19,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.port import Port
+from equinix_metal.models.port_vlan_assignment_batch_state import PortVlanAssignmentBatchState
 from equinix_metal.models.port_vlan_assignment_batch_vlan_assignments_inner import PortVlanAssignmentBatchVlanAssignmentsInner
 from typing import Optional, Set
 from typing_extensions import Self
@@ -38,20 +39,10 @@ class PortVlanAssignmentBatch(BaseModel):
     port: Optional[Port] = None
     project: Optional[Href] = None
     quantity: Optional[StrictInt] = None
-    state: Optional[StrictStr] = None
+    state: Optional[PortVlanAssignmentBatchState] = None
     updated_at: Optional[datetime] = None
     vlan_assignments: Optional[List[PortVlanAssignmentBatchVlanAssignmentsInner]] = None
     __properties: ClassVar[List[str]] = ["created_at", "error_messages", "href", "id", "port", "project", "quantity", "state", "updated_at", "vlan_assignments"]
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['queued', 'in_progress', 'completed', 'failed']):
-            raise ValueError("must be one of enum values ('queued', 'in_progress', 'completed', 'failed')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

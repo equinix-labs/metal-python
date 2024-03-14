@@ -17,10 +17,12 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, field_validator
+from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
 from equinix_metal.models.find_ip_address_by_id200_response import FindIPAddressById200Response
+from equinix_metal.models.find_ip_availabilities_cidr_parameter import FindIPAvailabilitiesCidrParameter
+from equinix_metal.models.find_ip_reservations_types_parameter_inner import FindIPReservationsTypesParameterInner
 from equinix_metal.models.ip_assignment_update_input import IPAssignmentUpdateInput
 from equinix_metal.models.ip_availabilities_list import IPAvailabilitiesList
 from equinix_metal.models.ip_reservation_list import IPReservationList
@@ -878,7 +880,7 @@ class IPAddressesApi:
     def find_ip_availabilities(
         self,
         id: Annotated[StrictStr, Field(description="IP Reservation UUID")],
-        cidr: Annotated[StrictStr, Field(description="Size of subnets in bits")],
+        cidr: Annotated[FindIPAvailabilitiesCidrParameter, Field(description="Size of subnets in bits")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -899,7 +901,7 @@ class IPAddressesApi:
         :param id: IP Reservation UUID (required)
         :type id: str
         :param cidr: Size of subnets in bits (required)
-        :type cidr: str
+        :type cidr: FindIPAvailabilitiesCidrParameter
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -952,7 +954,7 @@ class IPAddressesApi:
     def find_ip_availabilities_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="IP Reservation UUID")],
-        cidr: Annotated[StrictStr, Field(description="Size of subnets in bits")],
+        cidr: Annotated[FindIPAvailabilitiesCidrParameter, Field(description="Size of subnets in bits")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -973,7 +975,7 @@ class IPAddressesApi:
         :param id: IP Reservation UUID (required)
         :type id: str
         :param cidr: Size of subnets in bits (required)
-        :type cidr: str
+        :type cidr: FindIPAvailabilitiesCidrParameter
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1026,7 +1028,7 @@ class IPAddressesApi:
     def find_ip_availabilities_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="IP Reservation UUID")],
-        cidr: Annotated[StrictStr, Field(description="Size of subnets in bits")],
+        cidr: Annotated[FindIPAvailabilitiesCidrParameter, Field(description="Size of subnets in bits")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1047,7 +1049,7 @@ class IPAddressesApi:
         :param id: IP Reservation UUID (required)
         :type id: str
         :param cidr: Size of subnets in bits (required)
-        :type cidr: str
+        :type cidr: FindIPAvailabilitiesCidrParameter
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1120,7 +1122,7 @@ class IPAddressesApi:
         # process the query parameters
         if cidr is not None:
             
-            _query_params.append(('cidr', cidr))
+            _query_params.append(('cidr', cidr.value))
             
         # process the header parameters
         # process the form parameters
@@ -1160,7 +1162,7 @@ class IPAddressesApi:
     def find_ip_reservations(
         self,
         id: Annotated[StrictStr, Field(description="Project UUID")],
-        types: Annotated[Optional[List[StrictStr]], Field(description="Filter project IP reservations by reservation type")] = None,
+        types: Annotated[Optional[List[FindIPReservationsTypesParameterInner]], Field(description="Filter project IP reservations by reservation type")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         per_page: Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None,
@@ -1184,7 +1186,7 @@ class IPAddressesApi:
         :param id: Project UUID (required)
         :type id: str
         :param types: Filter project IP reservations by reservation type
-        :type types: List[str]
+        :type types: List[FindIPReservationsTypesParameterInner]
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -1246,7 +1248,7 @@ class IPAddressesApi:
     def find_ip_reservations_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Project UUID")],
-        types: Annotated[Optional[List[StrictStr]], Field(description="Filter project IP reservations by reservation type")] = None,
+        types: Annotated[Optional[List[FindIPReservationsTypesParameterInner]], Field(description="Filter project IP reservations by reservation type")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         per_page: Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None,
@@ -1270,7 +1272,7 @@ class IPAddressesApi:
         :param id: Project UUID (required)
         :type id: str
         :param types: Filter project IP reservations by reservation type
-        :type types: List[str]
+        :type types: List[FindIPReservationsTypesParameterInner]
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -1332,7 +1334,7 @@ class IPAddressesApi:
     def find_ip_reservations_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Project UUID")],
-        types: Annotated[Optional[List[StrictStr]], Field(description="Filter project IP reservations by reservation type")] = None,
+        types: Annotated[Optional[List[FindIPReservationsTypesParameterInner]], Field(description="Filter project IP reservations by reservation type")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         per_page: Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None,
@@ -1356,7 +1358,7 @@ class IPAddressesApi:
         :param id: Project UUID (required)
         :type id: str
         :param types: Filter project IP reservations by reservation type
-        :type types: List[str]
+        :type types: List[FindIPReservationsTypesParameterInner]
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.

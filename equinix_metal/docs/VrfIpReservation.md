@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **public** | **bool** |  | [optional] 
 **state** | **str** |  | [optional] 
 **tags** | **List[str]** |  | [optional] 
-**type** | **str** |  | 
+**type** | [**VrfIpReservationType**](VrfIpReservationType.md) |  | 
 **vrf** | [**Vrf**](Vrf.md) |  | 
 
 ## Example

@@ -17,9 +17,11 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, field_validator
+from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
+from equinix_metal.models.find_organization_devices_categories_parameter_inner import FindOrganizationDevicesCategoriesParameterInner
+from equinix_metal.models.find_plans_type_parameter import FindPlansTypeParameter
 from equinix_metal.models.plan_list import PlanList
 
 from equinix_metal.api_client import ApiClient, RequestSerialized
@@ -41,8 +43,8 @@ class PlansApi:
     @validate_call
     def find_plans(
         self,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter plans by its category")] = None,
-        type: Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter plans by its category")] = None,
+        type: Annotated[Optional[FindPlansTypeParameter], Field(description="Filter plans by its plan type")] = None,
         slug: Annotated[Optional[StrictStr], Field(description="Filter plans by slug")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
@@ -64,9 +66,9 @@ class PlansApi:
         Provides a listing of available plans to provision your device on.
 
         :param categories: Filter plans by its category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param type: Filter plans by its plan type
-        :type type: str
+        :type type: FindPlansTypeParameter
         :param slug: Filter plans by slug
         :type slug: str
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -125,8 +127,8 @@ class PlansApi:
     @validate_call
     def find_plans_with_http_info(
         self,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter plans by its category")] = None,
-        type: Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter plans by its category")] = None,
+        type: Annotated[Optional[FindPlansTypeParameter], Field(description="Filter plans by its plan type")] = None,
         slug: Annotated[Optional[StrictStr], Field(description="Filter plans by slug")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
@@ -148,9 +150,9 @@ class PlansApi:
         Provides a listing of available plans to provision your device on.
 
         :param categories: Filter plans by its category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param type: Filter plans by its plan type
-        :type type: str
+        :type type: FindPlansTypeParameter
         :param slug: Filter plans by slug
         :type slug: str
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -209,8 +211,8 @@ class PlansApi:
     @validate_call
     def find_plans_without_preload_content(
         self,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter plans by its category")] = None,
-        type: Annotated[Optional[StrictStr], Field(description="Filter plans by its plan type")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter plans by its category")] = None,
+        type: Annotated[Optional[FindPlansTypeParameter], Field(description="Filter plans by its plan type")] = None,
         slug: Annotated[Optional[StrictStr], Field(description="Filter plans by slug")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
@@ -232,9 +234,9 @@ class PlansApi:
         Provides a listing of available plans to provision your device on.
 
         :param categories: Filter plans by its category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param type: Filter plans by its plan type
-        :type type: str
+        :type type: FindPlansTypeParameter
         :param slug: Filter plans by slug
         :type slug: str
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
@@ -322,7 +324,7 @@ class PlansApi:
             
         if type is not None:
             
-            _query_params.append(('type', type))
+            _query_params.append(('type', type.value))
             
         if slug is not None:
             

@@ -19,9 +19,10 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
+from equinix_metal.models.metal_gateway_state import MetalGatewayState
 from equinix_metal.models.project import Project
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.models.vrf import Vrf
@@ -39,21 +40,11 @@ class VrfMetalGateway(BaseModel):
     id: Optional[StrictStr] = None
     ip_reservation: Optional[VrfIpReservation] = None
     project: Optional[Project] = None
-    state: Optional[StrictStr] = Field(default=None, description="The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.")
+    state: Optional[MetalGatewayState] = None
     updated_at: Optional[datetime] = None
     virtual_network: Optional[VirtualNetwork] = None
     vrf: Optional[Vrf] = None
     __properties: ClassVar[List[str]] = ["created_at", "created_by", "href", "id", "ip_reservation", "project", "state", "updated_at", "virtual_network", "vrf"]
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['ready', 'active', 'deleting']):
-            raise ValueError("must be one of enum values ('ready', 'active', 'deleting')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

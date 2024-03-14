@@ -197,6 +197,8 @@ Provides a collection of hardware reservations for a given project.
 
 ```python
 import equinix_metal
+from equinix_metal.models.find_project_hardware_reservations_provisionable_parameter import FindProjectHardwareReservationsProvisionableParameter
+from equinix_metal.models.find_project_hardware_reservations_state_parameter import FindProjectHardwareReservationsStateParameter
 from equinix_metal.models.hardware_reservation_list import HardwareReservationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -224,8 +226,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
     api_instance = equinix_metal.HardwareReservationsApi(api_client)
     id = 'id_example' # str | Project UUID
     query = 'query_example' # str | Search by facility code, plan name, project name, reservation short ID or device hostname (optional)
-    state = 'state_example' # str | Filter by hardware reservation state (optional)
-    provisionable = 'provisionable_example' # str | Filter hardware reservation that is provisionable (optional)
+    state = equinix_metal.FindProjectHardwareReservationsStateParameter() # FindProjectHardwareReservationsStateParameter | Filter by hardware reservation state (optional)
+    provisionable = equinix_metal.FindProjectHardwareReservationsProvisionableParameter() # FindProjectHardwareReservationsProvisionableParameter | Filter hardware reservation that is provisionable (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
@@ -249,8 +251,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
  **query** | **str**| Search by facility code, plan name, project name, reservation short ID or device hostname | [optional] 
- **state** | **str**| Filter by hardware reservation state | [optional] 
- **provisionable** | **str**| Filter hardware reservation that is provisionable | [optional] 
+ **state** | [**FindProjectHardwareReservationsStateParameter**](.md)| Filter by hardware reservation state | [optional] 
+ **provisionable** | [**FindProjectHardwareReservationsProvisionableParameter**](.md)| Filter hardware reservation that is provisionable | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]

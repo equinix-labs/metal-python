@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.device_health_rollup_health_rollup import DeviceHealthRollupHealthRollup
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,20 +29,10 @@ class DeviceHealthRollup(BaseModel):
     """
     Represents a Device Health Status
     """ # noqa: E501
-    health_rollup: Optional[StrictStr] = Field(default=None, description="Health Status")
+    health_rollup: Optional[DeviceHealthRollupHealthRollup] = None
     href: Optional[StrictStr] = None
     updated_at: Optional[datetime] = Field(default=None, description="Last update of health status.")
     __properties: ClassVar[List[str]] = ["health_rollup", "href", "updated_at"]
-
-    @field_validator('health_rollup')
-    def health_rollup_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['ok', 'warning', 'critical']):
-            raise ValueError("must be one of enum values ('ok', 'warning', 'critical')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -74,10 +65,8 @@ class DeviceHealthRollup(BaseModel):
           were set at model initialization. Other fields with value `None`
           are ignored.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
-            "health_rollup",
             "updated_at",
         ])
 

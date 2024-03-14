@@ -1052,6 +1052,7 @@ Returns a list of organizations that are accessible to the current user.
 
 ```python
 import equinix_metal
+from equinix_metal.models.find_organizations_personal_parameter import FindOrganizationsPersonalParameter
 from equinix_metal.models.organization_list import OrganizationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -1077,8 +1078,8 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.OrganizationsApi(api_client)
-    personal = 'personal_example' # str | Include, exclude or show only personal organizations. (optional)
-    without_projects = 'without_projects_example' # str | Include, exclude or show only organizations that have no projects. (optional)
+    personal = equinix_metal.FindOrganizationsPersonalParameter() # FindOrganizationsPersonalParameter | Include, exclude or show only personal organizations. (optional)
+    without_projects = equinix_metal.FindOrganizationsPersonalParameter() # FindOrganizationsPersonalParameter | Include, exclude or show only organizations that have no projects. (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     page = 1 # int | Page to return (optional) (default to 1)
@@ -1100,8 +1101,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **personal** | **str**| Include, exclude or show only personal organizations. | [optional] 
- **without_projects** | **str**| Include, exclude or show only organizations that have no projects. | [optional] 
+ **personal** | [**FindOrganizationsPersonalParameter**](.md)| Include, exclude or show only personal organizations. | [optional] 
+ **without_projects** | [**FindOrganizationsPersonalParameter**](.md)| Include, exclude or show only organizations that have no projects. | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **page** | **int**| Page to return | [optional] [default to 1]

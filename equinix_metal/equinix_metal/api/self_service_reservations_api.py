@@ -17,10 +17,11 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, field_validator
+from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
 from equinix_metal.models.create_self_service_reservation_request import CreateSelfServiceReservationRequest
+from equinix_metal.models.find_organization_devices_categories_parameter_inner import FindOrganizationDevicesCategoriesParameterInner
 from equinix_metal.models.self_service_reservation_list import SelfServiceReservationList
 from equinix_metal.models.self_service_reservation_response import SelfServiceReservationResponse
 
@@ -613,7 +614,7 @@ class SelfServiceReservationsApi:
         project_id: Annotated[StrictStr, Field(description="Project UUID")],
         page: Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None,
         per_page: Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter reservations by items category")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter reservations by items category")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -638,7 +639,7 @@ class SelfServiceReservationsApi:
         :param per_page: Items returned per page
         :type per_page: int
         :param categories: Filter reservations by items category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -693,7 +694,7 @@ class SelfServiceReservationsApi:
         project_id: Annotated[StrictStr, Field(description="Project UUID")],
         page: Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None,
         per_page: Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter reservations by items category")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter reservations by items category")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -718,7 +719,7 @@ class SelfServiceReservationsApi:
         :param per_page: Items returned per page
         :type per_page: int
         :param categories: Filter reservations by items category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -773,7 +774,7 @@ class SelfServiceReservationsApi:
         project_id: Annotated[StrictStr, Field(description="Project UUID")],
         page: Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None,
         per_page: Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter reservations by items category")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter reservations by items category")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -798,7 +799,7 @@ class SelfServiceReservationsApi:
         :param per_page: Items returned per page
         :type per_page: int
         :param categories: Filter reservations by items category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

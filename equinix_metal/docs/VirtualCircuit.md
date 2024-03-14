@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bill** | **bool** | True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal. | [optional] [default to False]
-**bill_type** | **str** | Fabric Billed if the Virtual Circuit is billed by Fabric. Metal Billed if the Virtual Circuit is billed by Metal. Legacy Virtual Circuits will have a value of nil. | [optional] 
+**bill_type** | [**VlanVirtualCircuitBillType**](VlanVirtualCircuitBillType.md) |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **description** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **port** | [**InterconnectionPort**](InterconnectionPort.md) |  | [optional] 
 **project** | [**Project**](Project.md) |  | [optional] 
 **speed** | **int** | integer representing bps speed | [optional] 
-**status** | **str** | The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren&#39;t in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to &#39;waiting_on_peering_details&#39; once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to &#x60;changing_peering_details&#x60; whenever an active VRF Virtual Circuit has any of its peering details updated. | [optional] 
+**status** | [**VrfVirtualCircuitStatus**](VrfVirtualCircuitStatus.md) |  | [optional] 
 **tags** | **List[str]** |  | [optional] 
-**type** | **str** |  | [optional] 
+**type** | [**VrfIpReservationType**](VrfIpReservationType.md) |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 **virtual_network** | [**Href**](Href.md) |  | [optional] 
 **vnid** | **int** |  | [optional] 

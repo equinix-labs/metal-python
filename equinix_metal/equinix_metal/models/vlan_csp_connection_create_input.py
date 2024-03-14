@@ -18,9 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.vlan_csp_connection_create_input_fabric_provider import VlanCSPConnectionCreateInputFabricProvider
+from equinix_metal.models.vlan_csp_connection_create_input_type import VlanCSPConnectionCreateInputType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -37,16 +38,9 @@ class VlanCSPConnectionCreateInput(BaseModel):
     project: StrictStr
     speed: Optional[StrictStr] = Field(default=None, description="A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following: ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.")
     tags: Optional[List[StrictStr]] = None
-    type: StrictStr
+    type: VlanCSPConnectionCreateInputType
     vlans: List[StrictInt] = Field(description="A list of one or two metro-based VLANs that will be set on the virtual circuits of primary and/or secondary interconnections respectively when creating Fabric VCs. VLANs can also be set after the interconnection is created, but are required to fully activate the virtual circuits.")
     __properties: ClassVar[List[str]] = ["contact_email", "description", "fabric_provider", "href", "metro", "name", "project", "speed", "tags", "type", "vlans"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['shared_port_vlan_to_csp']):
-            raise ValueError("must be one of enum values ('shared_port_vlan_to_csp')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

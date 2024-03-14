@@ -19,11 +19,13 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.virtual_network import VirtualNetwork
 from equinix_metal.models.vrf import Vrf
 from equinix_metal.models.vrf_metal_gateway import VrfMetalGateway
+from equinix_metal.models.vrf_route_status import VrfRouteStatus
+from equinix_metal.models.vrf_route_type import VrfRouteType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -37,33 +39,13 @@ class VrfRoute(BaseModel):
     metal_gateway: Optional[VrfMetalGateway] = None
     next_hop: Optional[StrictStr] = Field(default=None, description="The next-hop IPv4 address for the route")
     prefix: Optional[StrictStr] = Field(default=None, description="The IPv4 prefix for the route, in CIDR-style notation")
-    status: Optional[StrictStr] = Field(default=None, description="The status of the route. Potential values are \"pending\", \"active\", \"deleting\", and \"error\", representing various lifecycle states of the route and whether or not it has been successfully configured on the network")
+    status: Optional[VrfRouteStatus] = None
     tags: Optional[List[StrictStr]] = None
-    type: Optional[StrictStr] = Field(default=None, description="VRF route type, like 'bgp', 'connected', and 'static'. Currently, only static routes are supported")
+    type: Optional[VrfRouteType] = None
     updated_at: Optional[datetime] = None
     virtual_network: Optional[VirtualNetwork] = None
     vrf: Optional[Vrf] = None
     __properties: ClassVar[List[str]] = ["created_at", "href", "id", "metal_gateway", "next_hop", "prefix", "status", "tags", "type", "updated_at", "virtual_network", "vrf"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['pending', 'active', 'deleting', 'error']):
-            raise ValueError("must be one of enum values ('pending', 'active', 'deleting', 'error')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['static']):
-            raise ValueError("must be one of enum values ('static')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,15 +81,11 @@ class VrfRoute(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "created_at",
             "href",
             "id",
-            "status",
-            "type",
             "updated_at",
         ])
 

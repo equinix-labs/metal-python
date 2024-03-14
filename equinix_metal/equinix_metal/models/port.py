@@ -18,10 +18,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.bond_port_data import BondPortData
 from equinix_metal.models.port_data import PortData
+from equinix_metal.models.port_network_type import PortNetworkType
+from equinix_metal.models.port_type import PortType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -36,30 +38,10 @@ class Port(BaseModel):
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     native_virtual_network: Optional[VirtualNetwork] = None
-    network_type: Optional[StrictStr] = Field(default=None, description="Composite network type of the bond")
-    type: Optional[StrictStr] = Field(default=None, description="Type is either \"NetworkBondPort\" for bond ports or \"NetworkPort\" for bondable ethernet ports")
+    network_type: Optional[PortNetworkType] = None
+    type: Optional[PortType] = None
     virtual_networks: Optional[List[VirtualNetwork]] = None
     __properties: ClassVar[List[str]] = ["bond", "data", "disbond_operation_supported", "href", "id", "name", "native_virtual_network", "network_type", "type", "virtual_networks"]
-
-    @field_validator('network_type')
-    def network_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded']):
-            raise ValueError("must be one of enum values ('layer2-bonded', 'layer2-individual', 'layer3', 'hybrid', 'hybrid-bonded')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['NetworkPort', 'NetworkBondPort']):
-            raise ValueError("must be one of enum values ('NetworkPort', 'NetworkBondPort')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

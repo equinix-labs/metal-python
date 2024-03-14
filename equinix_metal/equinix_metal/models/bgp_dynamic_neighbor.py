@@ -19,9 +19,10 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from equinix_metal.models.bgp_dynamic_neighbor_state import BgpDynamicNeighborState
 from equinix_metal.models.user_limited import UserLimited
 from equinix_metal.models.vrf_metal_gateway import VrfMetalGateway
 from typing import Optional, Set
@@ -38,20 +39,10 @@ class BgpDynamicNeighbor(BaseModel):
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = Field(default=None, description="The unique identifier for the resource")
     metal_gateway: Optional[VrfMetalGateway] = None
-    state: Optional[StrictStr] = None
+    state: Optional[BgpDynamicNeighborState] = None
     tags: Optional[List[StrictStr]] = None
     updated_at: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["bgp_neighbor_asn", "bgp_neighbor_range", "created_at", "created_by", "href", "id", "metal_gateway", "state", "tags", "updated_at"]
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['active', 'deleting', 'pending', 'ready']):
-            raise ValueError("must be one of enum values ('active', 'deleting', 'pending', 'ready')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,13 +78,11 @@ class BgpDynamicNeighbor(BaseModel):
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
         * OpenAPI `readOnly` fields are excluded.
-        * OpenAPI `readOnly` fields are excluded.
         """
         excluded_fields: Set[str] = set([
             "created_at",
             "href",
             "id",
-            "state",
             "updated_at",
         ])
 

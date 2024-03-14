@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.ip_address_address_family import IPAddressAddressFamily
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,22 +28,12 @@ class IPAddress(BaseModel):
     """
     IPAddress
     """ # noqa: E501
-    address_family: Optional[StrictInt] = Field(default=None, description="Address Family for IP Address")
+    address_family: Optional[IPAddressAddressFamily] = None
     cidr: Optional[StrictInt] = Field(default=None, description="Cidr Size for the IP Block created. Valid values depends on the operating system being provisioned. (28..32 for IPv4 addresses, 124..127 for IPv6 addresses)")
     href: Optional[StrictStr] = None
     ip_reservations: Optional[List[StrictStr]] = Field(default=None, description="UUIDs of any IP reservations to use when assigning IPs")
     public: Optional[StrictBool] = Field(default=True, description="Address Type for IP Address")
     __properties: ClassVar[List[str]] = ["address_family", "cidr", "href", "ip_reservations", "public"]
-
-    @field_validator('address_family')
-    def address_family_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set([4, 6]):
-            raise ValueError("must be one of enum values (4, 6)")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

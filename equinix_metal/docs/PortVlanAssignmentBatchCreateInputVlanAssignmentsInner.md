@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **href** | **str** |  | [optional] 
 **native** | **bool** |  | [optional] 
-**state** | **str** |  | [optional] 
+**state** | [**PortVlanAssignmentBatchCreateInputVlanAssignmentsInnerState**](PortVlanAssignmentBatchCreateInputVlanAssignmentsInnerState.md) |  | [optional] 
 **vlan** | **str** |  | [optional] 
 
 ## Example

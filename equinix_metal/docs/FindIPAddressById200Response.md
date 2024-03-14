@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 **project_lite** | [**Project**](Project.md) |  | [optional] 
 **requested_by** | [**Href**](Href.md) |  | [optional] 
 **tags** | **List[str]** |  | [optional] 
-**type** | **str** |  | 
+**type** | [**VrfIpReservationType**](VrfIpReservationType.md) |  | 
 **created_by** | [**Href**](Href.md) |  | [optional] 
 **vrf** | [**Vrf**](Vrf.md) |  | 
 

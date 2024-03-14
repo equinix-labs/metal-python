@@ -17,10 +17,12 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, field_validator
+from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
 from equinix_metal.models.activate_hardware_reservation_request import ActivateHardwareReservationRequest
+from equinix_metal.models.find_project_hardware_reservations_provisionable_parameter import FindProjectHardwareReservationsProvisionableParameter
+from equinix_metal.models.find_project_hardware_reservations_state_parameter import FindProjectHardwareReservationsStateParameter
 from equinix_metal.models.hardware_reservation import HardwareReservation
 from equinix_metal.models.hardware_reservation_list import HardwareReservationList
 from equinix_metal.models.move_hardware_reservation_request import MoveHardwareReservationRequest
@@ -672,7 +674,7 @@ class HardwareReservationsApi:
 
 
     @validate_call
-    def find_project_hardware_reservations_all_pages(self, id : Annotated[StrictStr, Field(description="Project UUID")], query : Annotated[Optional[StrictStr], Field(description="Search by facility code, plan name, project name, reservation short ID or device hostname")] = None, state : Annotated[Optional[StrictStr], Field(description="Filter by hardware reservation state")] = None, provisionable : Annotated[Optional[StrictStr], Field(description="Filter hardware reservation that is provisionable")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> HardwareReservationList:  # noqa: E501
+    def find_project_hardware_reservations_all_pages(self, id : Annotated[StrictStr, Field(description="Project UUID")], query : Annotated[Optional[StrictStr], Field(description="Search by facility code, plan name, project name, reservation short ID or device hostname")] = None, state : Annotated[Optional[FindProjectHardwareReservationsStateParameter], Field(description="Filter by hardware reservation state")] = None, provisionable : Annotated[Optional[FindProjectHardwareReservationsProvisionableParameter], Field(description="Filter hardware reservation that is provisionable")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> HardwareReservationList:  # noqa: E501
         """Retrieve all hardware reservations for a given project  # noqa: E501
 
         This method is the same as find_project_hardware_reservations, but fetches resources from all the pages.
@@ -691,10 +693,10 @@ class HardwareReservationsApi:
         :type query: str
  
         :param state: Filter by hardware reservation state
-        :type state: str
+        :type state: FindProjectHardwareReservationsStateParameter
  
         :param provisionable: Filter hardware reservation that is provisionable
-        :type provisionable: str
+        :type provisionable: FindProjectHardwareReservationsProvisionableParameter
  
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
@@ -740,8 +742,8 @@ class HardwareReservationsApi:
         self,
         id: Annotated[StrictStr, Field(description="Project UUID")],
         query: Annotated[Optional[StrictStr], Field(description="Search by facility code, plan name, project name, reservation short ID or device hostname")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Filter by hardware reservation state")] = None,
-        provisionable: Annotated[Optional[StrictStr], Field(description="Filter hardware reservation that is provisionable")] = None,
+        state: Annotated[Optional[FindProjectHardwareReservationsStateParameter], Field(description="Filter by hardware reservation state")] = None,
+        provisionable: Annotated[Optional[FindProjectHardwareReservationsProvisionableParameter], Field(description="Filter hardware reservation that is provisionable")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         page: Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None,
@@ -768,9 +770,9 @@ class HardwareReservationsApi:
         :param query: Search by facility code, plan name, project name, reservation short ID or device hostname
         :type query: str
         :param state: Filter by hardware reservation state
-        :type state: str
+        :type state: FindProjectHardwareReservationsStateParameter
         :param provisionable: Filter hardware reservation that is provisionable
-        :type provisionable: str
+        :type provisionable: FindProjectHardwareReservationsProvisionableParameter
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -838,8 +840,8 @@ class HardwareReservationsApi:
         self,
         id: Annotated[StrictStr, Field(description="Project UUID")],
         query: Annotated[Optional[StrictStr], Field(description="Search by facility code, plan name, project name, reservation short ID or device hostname")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Filter by hardware reservation state")] = None,
-        provisionable: Annotated[Optional[StrictStr], Field(description="Filter hardware reservation that is provisionable")] = None,
+        state: Annotated[Optional[FindProjectHardwareReservationsStateParameter], Field(description="Filter by hardware reservation state")] = None,
+        provisionable: Annotated[Optional[FindProjectHardwareReservationsProvisionableParameter], Field(description="Filter hardware reservation that is provisionable")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         page: Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None,
@@ -866,9 +868,9 @@ class HardwareReservationsApi:
         :param query: Search by facility code, plan name, project name, reservation short ID or device hostname
         :type query: str
         :param state: Filter by hardware reservation state
-        :type state: str
+        :type state: FindProjectHardwareReservationsStateParameter
         :param provisionable: Filter hardware reservation that is provisionable
-        :type provisionable: str
+        :type provisionable: FindProjectHardwareReservationsProvisionableParameter
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -936,8 +938,8 @@ class HardwareReservationsApi:
         self,
         id: Annotated[StrictStr, Field(description="Project UUID")],
         query: Annotated[Optional[StrictStr], Field(description="Search by facility code, plan name, project name, reservation short ID or device hostname")] = None,
-        state: Annotated[Optional[StrictStr], Field(description="Filter by hardware reservation state")] = None,
-        provisionable: Annotated[Optional[StrictStr], Field(description="Filter hardware reservation that is provisionable")] = None,
+        state: Annotated[Optional[FindProjectHardwareReservationsStateParameter], Field(description="Filter by hardware reservation state")] = None,
+        provisionable: Annotated[Optional[FindProjectHardwareReservationsProvisionableParameter], Field(description="Filter hardware reservation that is provisionable")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         page: Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None,
@@ -964,9 +966,9 @@ class HardwareReservationsApi:
         :param query: Search by facility code, plan name, project name, reservation short ID or device hostname
         :type query: str
         :param state: Filter by hardware reservation state
-        :type state: str
+        :type state: FindProjectHardwareReservationsStateParameter
         :param provisionable: Filter hardware reservation that is provisionable
-        :type provisionable: str
+        :type provisionable: FindProjectHardwareReservationsProvisionableParameter
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -1065,11 +1067,11 @@ class HardwareReservationsApi:
             
         if state is not None:
             
-            _query_params.append(('state', state))
+            _query_params.append(('state', state.value))
             
         if provisionable is not None:
             
-            _query_params.append(('provisionable', provisionable))
+            _query_params.append(('provisionable', provisionable.value))
             
         if include is not None:
             

@@ -17,10 +17,11 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, field_validator
+from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
 from equinix_metal.models.facility_list import FacilityList
+from equinix_metal.models.find_facilities_include_parameter_inner import FindFacilitiesIncludeParameterInner
 
 from equinix_metal.api_client import ApiClient, RequestSerialized
 from equinix_metal.api_response import ApiResponse
@@ -41,8 +42,8 @@ class FacilitiesApi:
     @validate_call
     def find_facilities(
         self,
-        include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
-        exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
+        include: Annotated[Optional[List[FindFacilitiesIncludeParameterInner]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
+        exclude: Annotated[Optional[List[FindFacilitiesIncludeParameterInner]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -61,9 +62,9 @@ class FacilitiesApi:
         Provides a listing of available datacenters where you can provision Packet devices.
 
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-        :type include: List[str]
+        :type include: List[FindFacilitiesIncludeParameterInner]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-        :type exclude: List[str]
+        :type exclude: List[FindFacilitiesIncludeParameterInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -114,8 +115,8 @@ class FacilitiesApi:
     @validate_call
     def find_facilities_with_http_info(
         self,
-        include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
-        exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
+        include: Annotated[Optional[List[FindFacilitiesIncludeParameterInner]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
+        exclude: Annotated[Optional[List[FindFacilitiesIncludeParameterInner]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -134,9 +135,9 @@ class FacilitiesApi:
         Provides a listing of available datacenters where you can provision Packet devices.
 
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-        :type include: List[str]
+        :type include: List[FindFacilitiesIncludeParameterInner]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-        :type exclude: List[str]
+        :type exclude: List[FindFacilitiesIncludeParameterInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -187,8 +188,8 @@ class FacilitiesApi:
     @validate_call
     def find_facilities_without_preload_content(
         self,
-        include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
-        exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
+        include: Annotated[Optional[List[FindFacilitiesIncludeParameterInner]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
+        exclude: Annotated[Optional[List[FindFacilitiesIncludeParameterInner]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -207,9 +208,9 @@ class FacilitiesApi:
         Provides a listing of available datacenters where you can provision Packet devices.
 
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
-        :type include: List[str]
+        :type include: List[FindFacilitiesIncludeParameterInner]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
-        :type exclude: List[str]
+        :type exclude: List[FindFacilitiesIncludeParameterInner]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

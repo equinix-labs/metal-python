@@ -6,7 +6,7 @@ Represents a Device Health Status
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**health_rollup** | **str** | Health Status | [optional] [readonly] 
+**health_rollup** | [**DeviceHealthRollupHealthRollup**](DeviceHealthRollupHealthRollup.md) |  | [optional] 
 **href** | **str** |  | [optional] 
 **updated_at** | **datetime** | Last update of health status. | [optional] [readonly] 
 

@@ -19,12 +19,15 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.fabric_service_token import FabricServiceToken
 from equinix_metal.models.facility import Facility
 from equinix_metal.models.href import Href
+from equinix_metal.models.interconnection_mode import InterconnectionMode
 from equinix_metal.models.interconnection_port import InterconnectionPort
+from equinix_metal.models.interconnection_redundancy import InterconnectionRedundancy
+from equinix_metal.models.interconnection_type import InterconnectionType
 from equinix_metal.models.metro import Metro
 from equinix_metal.models.organization import Organization
 from equinix_metal.models.project import Project
@@ -43,51 +46,21 @@ class Interconnection(BaseModel):
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     metro: Optional[Metro] = Field(default=None, description="The location of where the shared or Dedicated Port is located. For interconnections with Dedicated Ports,   this will be the location of the Dedicated Ports. For Fabric VCs (Metal Billed), this is where interconnection will be originating from, as we pre-authorize the use of one of our shared ports   as the origin of the interconnection using A-Side service tokens. We only allow local connections for Fabric VCs (Metal Billed), so the destination location must be the same as the origin. For Fabric VCs (Fabric Billed),    this will be the destination of the interconnection. We allow remote connections for Fabric VCs (Fabric Billed), so the origin of the interconnection can be a different metro set here.")
-    mode: Optional[StrictStr] = Field(default=None, description="The mode of the interconnection (only relevant to Dedicated Ports). Shared connections won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.")
+    mode: Optional[InterconnectionMode] = None
     name: Optional[StrictStr] = None
     organization: Optional[Organization] = None
     ports: Optional[List[InterconnectionPort]] = Field(default=None, description="For Fabric VCs, these represent Virtual Port(s) created for the interconnection. For dedicated interconnections, these represent the Dedicated Port(s).")
     project: Optional[Project] = None
-    redundancy: Optional[StrictStr] = Field(default=None, description="Either 'primary', meaning a single interconnection, or 'redundant', meaning a redundant interconnection.")
+    redundancy: Optional[InterconnectionRedundancy] = None
     requested_by: Optional[Href] = None
     service_tokens: Optional[List[FabricServiceToken]] = Field(default=None, description="For Fabric VCs (Metal Billed), this will show details of the A-Side service tokens issued for the interconnection. For Fabric VCs (Fabric Billed), this will show the details of the Z-Side service tokens issued for the interconnection. Dedicated interconnections will not have any service tokens issued. There will be one per interconnection, so for redundant interconnections, there should be two service tokens issued.")
     speed: Optional[StrictInt] = Field(default=None, description="For interconnections on Dedicated Ports and shared connections, this represents the interconnection's speed in bps. For Fabric VCs, this field refers to the maximum speed of the interconnection in bps. This value will default to 10Gbps for Fabric VCs (Fabric Billed).")
     status: Optional[StrictStr] = None
     tags: Optional[List[StrictStr]] = None
     token: Optional[StrictStr] = Field(default=None, description="This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated.")
-    type: Optional[StrictStr] = Field(default=None, description="The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports. The 'shared_port_vlan' type of interconnection refers to shared connections created without service tokens. The 'shared_port_vlan_to_csp' type of interconnection refers to connections created directly to a supported cloud service provider.")
+    type: Optional[InterconnectionType] = None
     updated_at: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["authorization_code", "contact_email", "created_at", "description", "facility", "href", "id", "metro", "mode", "name", "organization", "ports", "project", "redundancy", "requested_by", "service_tokens", "speed", "status", "tags", "token", "type", "updated_at"]
-
-    @field_validator('mode')
-    def mode_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['standard', 'tunnel']):
-            raise ValueError("must be one of enum values ('standard', 'tunnel')")
-        return value
-
-    @field_validator('redundancy')
-    def redundancy_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['primary', 'redundant']):
-            raise ValueError("must be one of enum values ('primary', 'redundant')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['shared', 'dedicated', 'shared_port_vlan', 'shared_port_vlan_to_csp']):
-            raise ValueError("must be one of enum values ('shared', 'dedicated', 'shared_port_vlan', 'shared_port_vlan_to_csp')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

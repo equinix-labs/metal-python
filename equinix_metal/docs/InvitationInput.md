@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **message** | **str** |  | [optional] 
 **organization_id** | **str** |  | [optional] 
 **projects_ids** | **List[str]** |  | [optional] 
-**roles** | **List[str]** |  | [optional] 
+**roles** | [**List[InvitationRolesInner]**](InvitationRolesInner.md) |  | [optional] 
 
 ## Example
 

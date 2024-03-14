@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**category** | **str** |  | [optional] 
+**category** | [**PlanSpecsDrivesInnerCategory**](PlanSpecsDrivesInnerCategory.md) |  | [optional] 
 **count** | **int** |  | [optional] 
 **href** | **str** |  | [optional] 
 **size** | **str** |  | [optional] 

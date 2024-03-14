@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **nonce** | **str** |  | [optional] 
 **organization** | [**Href**](Href.md) |  | [optional] 
 **projects** | [**List[Href]**](Href.md) |  | [optional] 
-**roles** | **List[str]** |  | [optional] 
+**roles** | [**List[InvitationRolesInner]**](InvitationRolesInner.md) |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 
 ## Example

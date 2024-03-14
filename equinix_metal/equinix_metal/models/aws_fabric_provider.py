@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.aws_fabric_provider_type import AWSFabricProviderType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,15 +31,8 @@ class AWSFabricProvider(BaseModel):
     account_id: StrictStr = Field(description="AWS Account ID")
     href: Optional[StrictStr] = None
     location: Optional[StrictStr] = None
-    type: StrictStr
+    type: AWSFabricProviderType
     __properties: ClassVar[List[str]] = ["account_id", "href", "location", "type"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['CSP_AWS']):
-            raise ValueError("must be one of enum values ('CSP_AWS')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.metal_gateway_state import MetalGatewayState
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,20 +33,10 @@ class MetalGatewayLite(BaseModel):
     gateway_address: Optional[StrictStr] = Field(default=None, description="The gateway address with subnet CIDR value for this Metal Gateway. For example, a Metal Gateway using an IP reservation with block 10.1.2.0/27 would have a gateway address of 10.1.2.1/27.")
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
-    state: Optional[StrictStr] = Field(default=None, description="The current state of the Metal Gateway. 'Ready' indicates the gateway record has been configured, but is currently not active on the network. 'Active' indicates the gateway has been configured on the network. 'Deleting' is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted.")
+    state: Optional[MetalGatewayState] = None
     updated_at: Optional[datetime] = None
     vlan: Optional[StrictInt] = Field(default=None, description="The VLAN id of the Virtual Network record associated to this Metal Gateway.")
     __properties: ClassVar[List[str]] = ["created_at", "gateway_address", "href", "id", "state", "updated_at", "vlan"]
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['ready', 'active', 'deleting']):
-            raise ValueError("must be one of enum values ('ready', 'active', 'deleting')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

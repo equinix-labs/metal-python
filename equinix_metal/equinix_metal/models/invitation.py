@@ -19,9 +19,10 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
+from equinix_metal.models.invitation_roles_inner import InvitationRolesInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -38,20 +39,9 @@ class Invitation(BaseModel):
     nonce: Optional[StrictStr] = None
     organization: Optional[Href] = None
     projects: Optional[List[Href]] = None
-    roles: Optional[List[StrictStr]] = None
+    roles: Optional[List[InvitationRolesInner]] = None
     updated_at: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["created_at", "href", "id", "invitation", "invited_by", "invitee", "nonce", "organization", "projects", "roles", "updated_at"]
-
-    @field_validator('roles')
-    def roles_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        for i in value:
-            if i not in set(['admin', 'billing', 'collaborator', 'limited_collaborator']):
-                raise ValueError("each list item must be one of ('admin', 'billing', 'collaborator', 'limited_collaborator')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

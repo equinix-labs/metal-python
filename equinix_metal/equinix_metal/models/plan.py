@@ -18,12 +18,14 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from equinix_metal.models.plan_available_in_inner import PlanAvailableInInner
 from equinix_metal.models.plan_available_in_metros_inner import PlanAvailableInMetrosInner
+from equinix_metal.models.plan_deployment_types_inner import PlanDeploymentTypesInner
 from equinix_metal.models.plan_specs import PlanSpecs
+from equinix_metal.models.plan_type import PlanType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,7 +37,7 @@ class Plan(BaseModel):
     available_in_metros: Optional[List[PlanAvailableInMetrosInner]] = Field(default=None, description="Shows which metros the plan is available in, and the metro-based price if it is different from the default price.")
     categories: Optional[List[StrictStr]] = Field(default=None, description="Categories of the plan, like compute or storage. A Plan can belong to multiple categories.")
     var_class: Optional[StrictStr] = Field(default=None, alias="class")
-    deployment_types: Optional[Annotated[List[StrictStr], Field(min_length=0)]] = None
+    deployment_types: Optional[Annotated[List[PlanDeploymentTypesInner], Field(min_length=0)]] = None
     description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
@@ -45,29 +47,8 @@ class Plan(BaseModel):
     pricing: Optional[Dict[str, Any]] = None
     slug: Optional[StrictStr] = None
     specs: Optional[PlanSpecs] = None
-    type: Optional[StrictStr] = Field(default=None, description="The plan type")
+    type: Optional[PlanType] = None
     __properties: ClassVar[List[str]] = ["available_in", "available_in_metros", "categories", "class", "deployment_types", "description", "href", "id", "legacy", "line", "name", "pricing", "slug", "specs", "type"]
-
-    @field_validator('deployment_types')
-    def deployment_types_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        for i in value:
-            if i not in set(['on_demand', 'spot_market']):
-                raise ValueError("each list item must be one of ('on_demand', 'spot_market')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['standard', 'workload_optimized', 'custom']):
-            raise ValueError("must be one of enum values ('standard', 'workload_optimized', 'custom')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

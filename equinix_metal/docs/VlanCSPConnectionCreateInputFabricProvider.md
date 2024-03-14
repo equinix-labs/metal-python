@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **account_id** | **str** | AWS Account ID | 
 **href** | **str** |  | [optional] 
 **location** | **str** |  | [optional] 
-**type** | **str** |  | 
+**type** | [**AWSFabricProviderType**](AWSFabricProviderType.md) |  | 
 
 ## Example
 

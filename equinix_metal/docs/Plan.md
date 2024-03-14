@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **available_in_metros** | [**List[PlanAvailableInMetrosInner]**](PlanAvailableInMetrosInner.md) | Shows which metros the plan is available in, and the metro-based price if it is different from the default price. | [optional] 
 **categories** | **List[str]** | Categories of the plan, like compute or storage. A Plan can belong to multiple categories. | [optional] 
 **var_class** | **str** |  | [optional] 
-**deployment_types** | **List[str]** |  | [optional] 
+**deployment_types** | [**List[PlanDeploymentTypesInner]**](PlanDeploymentTypesInner.md) |  | [optional] 
 **description** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **pricing** | **object** |  | [optional] 
 **slug** | **str** |  | [optional] 
 **specs** | [**PlanSpecs**](PlanSpecs.md) |  | [optional] 
-**type** | **str** | The plan type | [optional] 
+**type** | [**PlanType**](PlanType.md) |  | [optional] 
 
 ## Example
 

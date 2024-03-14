@@ -19,9 +19,10 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
+from equinix_metal.models.port_vlan_assignment_state import PortVlanAssignmentState
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,21 +35,11 @@ class PortVlanAssignment(BaseModel):
     id: Optional[StrictStr] = None
     native: Optional[StrictBool] = None
     port: Optional[Href] = None
-    state: Optional[StrictStr] = None
+    state: Optional[PortVlanAssignmentState] = None
     updated_at: Optional[datetime] = None
     virtual_network: Optional[Href] = None
     vlan: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["created_at", "href", "id", "native", "port", "state", "updated_at", "virtual_network", "vlan"]
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['assigned', 'unassigning']):
-            raise ValueError("must be one of enum values ('assigned', 'unassigning')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

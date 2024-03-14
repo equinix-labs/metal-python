@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.bgp_session_address_family import BgpSessionAddressFamily
 from equinix_metal.models.href import Href
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +30,7 @@ class BgpSession(BaseModel):
     """
     BgpSession
     """ # noqa: E501
-    address_family: StrictStr
+    address_family: BgpSessionAddressFamily
     created_at: Optional[datetime] = None
     default_route: Optional[StrictBool] = None
     device: Optional[Href] = None
@@ -39,13 +40,6 @@ class BgpSession(BaseModel):
     status: Optional[StrictStr] = Field(default=None, description=" The status of the BGP Session. Multiple status values may be reported when the device is connected to multiple switches, one value per switch. Each status will start with \"unknown\" and progress to \"up\" or \"down\" depending on the connected device. Subsequent \"unknown\" values indicate a problem acquiring status from the switch. ")
     updated_at: Optional[datetime] = None
     __properties: ClassVar[List[str]] = ["address_family", "created_at", "default_route", "device", "href", "id", "learned_routes", "status", "updated_at"]
-
-    @field_validator('address_family')
-    def address_family_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['ipv4', 'ipv6']):
-            raise ValueError("must be one of enum values ('ipv4', 'ipv6')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

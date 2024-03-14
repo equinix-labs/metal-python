@@ -19,10 +19,13 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.project import Project
+from equinix_metal.models.vlan_virtual_circuit_bill_type import VlanVirtualCircuitBillType
+from equinix_metal.models.vlan_virtual_circuit_status import VlanVirtualCircuitStatus
+from equinix_metal.models.vlan_virtual_circuit_type import VlanVirtualCircuitType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,7 +34,7 @@ class VlanVirtualCircuit(BaseModel):
     VlanVirtualCircuit
     """ # noqa: E501
     bill: Optional[StrictBool] = Field(default=False, description="True if the Virtual Circuit is being billed. Currently, only Virtual Circuits of Fabric VCs (Metal Billed) will be billed. Usage will start the first time the Virtual Circuit becomes active, and will not stop until it is deleted from Metal.")
-    bill_type: Optional[StrictStr] = Field(default=None, description="Fabric Billed if the Virtual Circuit is billed by Fabric. Metal Billed if the Virtual Circuit is billed by Metal. Legacy Virtual Circuits will have a value of nil.")
+    bill_type: Optional[VlanVirtualCircuitBillType] = None
     created_at: Optional[datetime] = None
     description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
@@ -41,43 +44,13 @@ class VlanVirtualCircuit(BaseModel):
     port: Optional[InterconnectionPort] = None
     project: Optional[Project] = None
     speed: Optional[StrictInt] = Field(default=None, description="For Virtual Circuits on shared and dedicated connections, this speed should match the one set on their Interconnection Ports. For Virtual Circuits on Fabric VCs (both Metal and Fabric Billed) that have found their corresponding Fabric connection, this is the actual speed of the interconnection that was configured when setting up the interconnection on the Fabric Portal. Details on Fabric VCs are included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.")
-    status: Optional[StrictStr] = Field(default=None, description="The status of a Virtual Circuit is always 'pending' on creation. The status can turn to 'Waiting on Customer VLAN' if a Metro VLAN was not set yet on the Virtual Circuit and is the last step needed for full activation. For Dedicated interconnections, as long as the Dedicated Port has been associated to the Virtual Circuit and a NNI VNID has been set, it will turn to 'waiting_on_customer_vlan'. For Fabric VCs, it will only change to 'waiting_on_customer_vlan' once the corresponding Fabric connection has been found on the Fabric side. If the Fabric service token associated with the Virtual Circuit hasn't been redeemed on Fabric within the expiry time, it will change to an `expired` status. Once a Metro VLAN is set on the Virtual Circuit (which for Fabric VCs, can be set on creation of a Fabric VC) and the necessary set up is done, it will turn into 'Activating' status as it tries to activate the Virtual Circuit. Once the Virtual Circuit fully activates and is configured on the switch, it will turn to staus 'active'. For Fabric VCs (Metal Billed), we will start billing the moment the status of the Virtual Circuit turns to 'active'. If there are any changes to the VLAN after the Virtual Circuit is in an 'active' status, the status will show 'changing_vlan' if a new VLAN has been provided, or 'deactivating' if we are removing the VLAN. When a deletion request is issued for the Virtual Circuit, it will move to a 'deleting' status, and we will immediately unconfigure the switch for the Virtual Circuit and issue a deletion on any associated Fabric connections. Any associated Metro VLANs on the virtual circuit will also be unassociated after the switch has been successfully unconfigured. If there are any associated Fabric connections, we will only fully delete the Virtual Circuit once we have checked that the Fabric connection was fully deprovisioned on Fabric.")
+    status: Optional[VlanVirtualCircuitStatus] = None
     tags: Optional[List[StrictStr]] = None
-    type: Optional[StrictStr] = None
+    type: Optional[VlanVirtualCircuitType] = None
     updated_at: Optional[datetime] = None
     virtual_network: Optional[Href] = None
     vnid: Optional[StrictInt] = None
     __properties: ClassVar[List[str]] = ["bill", "bill_type", "created_at", "description", "href", "id", "name", "nni_vlan", "port", "project", "speed", "status", "tags", "type", "updated_at", "virtual_network", "vnid"]
-
-    @field_validator('bill_type')
-    def bill_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['metal_billed', 'fabric_billed']):
-            raise ValueError("must be one of enum values ('metal_billed', 'fabric_billed')")
-        return value
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['pending', 'waiting_on_customer_vlan', 'activating', 'changing_vlan', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_vlan_failed', 'deactivation_failed', 'delete_failed']):
-            raise ValueError("must be one of enum values ('pending', 'waiting_on_customer_vlan', 'activating', 'changing_vlan', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_vlan_failed', 'deactivation_failed', 'delete_failed')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['vlan']):
-            raise ValueError("must be one of enum values ('vlan')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

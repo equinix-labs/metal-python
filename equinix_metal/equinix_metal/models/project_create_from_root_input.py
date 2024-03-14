@@ -18,9 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from equinix_metal.models.project_create_from_root_input_type import ProjectCreateFromRootInputType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -34,18 +35,8 @@ class ProjectCreateFromRootInput(BaseModel):
     organization_id: Optional[StrictStr] = None
     payment_method_id: Optional[StrictStr] = None
     tags: Optional[List[StrictStr]] = None
-    type: Optional[StrictStr] = Field(default=None, description="The type of the project. If no type is specified the project type will automatically be `default` Projects of type 'vmce' are part of an in development feature and not available to all customers.")
+    type: Optional[ProjectCreateFromRootInputType] = None
     __properties: ClassVar[List[str]] = ["customdata", "href", "name", "organization_id", "payment_method_id", "tags", "type"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['default', 'vmce']):
-            raise ValueError("must be one of enum values ('default', 'vmce')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

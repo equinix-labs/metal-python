@@ -19,11 +19,12 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.ip_reservation_facility import IPReservationFacility
 from equinix_metal.models.ip_reservation_metro import IPReservationMetro
+from equinix_metal.models.ip_reservation_type import IPReservationType
 from equinix_metal.models.metal_gateway_lite import MetalGatewayLite
 from equinix_metal.models.project import Project
 from typing import Optional, Set
@@ -61,15 +62,8 @@ class IPReservation(BaseModel):
     requested_by: Optional[Href] = None
     state: Optional[StrictStr] = None
     tags: Optional[List[StrictStr]] = None
-    type: StrictStr
+    type: IPReservationType
     __properties: ClassVar[List[str]] = ["addon", "address", "address_family", "assignments", "available", "bill", "cidr", "created_at", "customdata", "details", "enabled", "facility", "gateway", "global_ip", "href", "id", "manageable", "management", "metal_gateway", "metro", "netmask", "network", "project", "project_lite", "public", "requested_by", "state", "tags", "type"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6']):
-            raise ValueError("must be one of enum values ('global_ipv4', 'public_ipv4', 'private_ipv4', 'public_ipv6')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

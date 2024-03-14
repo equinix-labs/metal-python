@@ -19,10 +19,12 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from equinix_metal.models.project import Project
+from equinix_metal.models.vrf_ip_reservation_type import VrfIpReservationType
+from equinix_metal.models.vrf_virtual_circuit_status import VrfVirtualCircuitStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -43,33 +45,13 @@ class VrfVirtualCircuit(BaseModel):
     port: Optional[InterconnectionPort] = None
     project: Optional[Project] = None
     speed: Optional[StrictInt] = Field(default=None, description="integer representing bps speed")
-    status: Optional[StrictStr] = Field(default=None, description="The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren't in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to 'waiting_on_peering_details' once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to `changing_peering_details` whenever an active VRF Virtual Circuit has any of its peering details updated.")
+    status: Optional[VrfVirtualCircuitStatus] = None
     subnet: Optional[StrictStr] = Field(default=None, description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.")
     tags: Optional[List[StrictStr]] = None
-    type: Optional[StrictStr] = None
+    type: Optional[VrfIpReservationType] = None
     updated_at: Optional[datetime] = None
     vrf: Vrf
     __properties: ClassVar[List[str]] = ["created_at", "customer_ip", "description", "href", "id", "md5", "metal_ip", "name", "nni_vlan", "peer_asn", "port", "project", "speed", "status", "subnet", "tags", "type", "updated_at", "vrf"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['pending', 'waiting_on_peering_details', 'activating', 'changing_peering_details', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_peering_details_failed', 'deactivation_failed', 'delete_failed']):
-            raise ValueError("must be one of enum values ('pending', 'waiting_on_peering_details', 'activating', 'changing_peering_details', 'deactivating', 'deleting', 'active', 'expired', 'activation_failed', 'changing_peering_details_failed', 'deactivation_failed', 'delete_failed')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['vrf']):
-            raise ValueError("must be one of enum values ('vrf')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

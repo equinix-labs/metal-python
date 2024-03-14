@@ -19,8 +19,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from equinix_metal.models.device_create_input_billing_cycle import DeviceCreateInputBillingCycle
 from equinix_metal.models.facility_input_facility import FacilityInputFacility
 from equinix_metal.models.ip_address import IPAddress
 from equinix_metal.models.ssh_key_input import SSHKeyInput
@@ -37,7 +38,7 @@ class InstancesBatchCreateInputBatchesInner(BaseModel):
     href: Optional[StrictStr] = None
     metro: StrictStr = Field(description="Metro code or ID of where the device should be provisioned in, or it can be instructed to create the device in the best available metro with `{ \"metro\": \"any\" }`. The special metro value of any means anywhere, any metro. When any is chosen in the request, the metro location is picked per our scheduling algorithms that favor the following factors: hardware reservation location (if requesting reserved hardware), ip reservations, spot instances, etc. The any keyword *does not* optimize for cost, this means that usage costs (instance, transfer, other features dependent on location) will vary. Please check metro value in response to see where the device was created. Either metro or facility must be provided.")
     always_pxe: Optional[StrictBool] = Field(default=None, description="When true, devices with a `custom_ipxe` OS will always boot to iPXE. The default setting of false ensures that iPXE will be used on only the first boot.")
-    billing_cycle: Optional[StrictStr] = Field(default=None, description="The billing cycle of the device.")
+    billing_cycle: Optional[DeviceCreateInputBillingCycle] = None
     customdata: Optional[Dict[str, Any]] = Field(default=None, description="Customdata is an arbitrary JSON value that can be accessed via the metadata service.")
     description: Optional[StrictStr] = Field(default=None, description="Any description of the device or how it will be used. This may be used to inform other API consumers with project access.")
     features: Optional[List[StrictStr]] = Field(default=None, description="The features attribute allows you to optionally specify what features your server should have.  In the API shorthand syntax, all features listed are `required`:  ``` { \"features\": [\"tpm\"] } ```  Alternatively, if you do not require a certain feature, but would prefer to be assigned a server with that feature if there are any available, you may specify that feature with a `preferred` value. The request will not fail if we have no servers with that feature in our inventory. The API offers an alternative syntax for mixing preferred and required features:  ``` { \"features\": { \"tpm\": \"required\", \"raid\": \"preferred\" } } ```  The request will only fail if there are no available servers matching the required `tpm` criteria.")
@@ -63,16 +64,6 @@ class InstancesBatchCreateInputBatchesInner(BaseModel):
     userdata: Optional[StrictStr] = Field(default=None, description="The userdata presented in the metadata service for this device.  Userdata is fetched and interpreted by the operating system installed on the device. Acceptable formats are determined by the operating system, with the exception of a special iPXE enabling syntax which is handled before the operating system starts.  See [Server User Data](https://metal.equinix.com/developers/docs/servers/user-data/) and [Provisioning with Custom iPXE](https://metal.equinix.com/developers/docs/operating-systems/custom-ipxe/#provisioning-with-custom-ipxe) for more details.")
     facility: FacilityInputFacility
     __properties: ClassVar[List[str]] = ["hostnames", "quantity", "href", "metro", "always_pxe", "billing_cycle", "customdata", "description", "features", "hardware_reservation_id", "hostname", "ip_addresses", "ipxe_script_url", "locked", "network_frozen", "no_ssh_keys", "operating_system", "plan", "private_ipv4_subnet_size", "project_ssh_keys", "public_ipv4_subnet_size", "spot_instance", "spot_price_max", "ssh_keys", "storage", "tags", "termination_time", "user_ssh_keys", "userdata", "facility"]
-
-    @field_validator('billing_cycle')
-    def billing_cycle_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['hourly', 'daily', 'monthly', 'yearly']):
-            raise ValueError("must be one of enum values ('hourly', 'daily', 'monthly', 'yearly')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

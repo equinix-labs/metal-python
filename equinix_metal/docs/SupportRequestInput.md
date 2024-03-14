@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **device_id** | **str** |  | [optional] 
 **href** | **str** |  | [optional] 
 **message** | **str** |  | 
-**priority** | **str** |  | [optional] 
+**priority** | [**SupportRequestInputPriority**](SupportRequestInputPriority.md) |  | [optional] 
 **project_id** | **str** |  | [optional] 
 **subject** | **str** |  | 
 

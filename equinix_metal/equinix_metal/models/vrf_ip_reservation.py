@@ -19,13 +19,14 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.metal_gateway_lite import MetalGatewayLite
 from equinix_metal.models.metro import Metro
 from equinix_metal.models.project import Project
 from equinix_metal.models.vrf import Vrf
+from equinix_metal.models.vrf_ip_reservation_type import VrfIpReservationType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -55,16 +56,9 @@ class VrfIpReservation(BaseModel):
     public: Optional[StrictBool] = None
     state: Optional[StrictStr] = None
     tags: Optional[List[StrictStr]] = None
-    type: StrictStr
+    type: VrfIpReservationType
     vrf: Vrf
     __properties: ClassVar[List[str]] = ["address", "address_family", "bill", "cidr", "created_at", "created_by", "customdata", "details", "gateway", "href", "id", "manageable", "management", "metal_gateway", "metro", "netmask", "network", "project", "project_lite", "public", "state", "tags", "type", "vrf"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['vrf']):
-            raise ValueError("must be one of enum values ('vrf')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -19,9 +19,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from equinix_metal.models.bgp_config_deployment_type import BgpConfigDeploymentType
+from equinix_metal.models.bgp_config_status import BgpConfigStatus
 from equinix_metal.models.bgp_session import BgpSession
 from equinix_metal.models.global_bgp_range import GlobalBgpRange
 from equinix_metal.models.href import Href
@@ -34,7 +36,7 @@ class BgpConfig(BaseModel):
     """ # noqa: E501
     asn: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = Field(default=None, description="Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned.")
     created_at: Optional[datetime] = None
-    deployment_type: Optional[StrictStr] = Field(default=None, description="In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space. ")
+    deployment_type: Optional[BgpConfigDeploymentType] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     max_prefix: Optional[StrictInt] = Field(default=10, description="The maximum number of route filters allowed per server")
@@ -44,28 +46,8 @@ class BgpConfig(BaseModel):
     requested_at: Optional[datetime] = None
     route_object: Optional[StrictStr] = Field(default=None, description="Specifies AS-MACRO (aka AS-SET) to use when building client route filters")
     sessions: Optional[List[BgpSession]] = Field(default=None, description="The direct connections between neighboring routers that want to exchange routing information.")
-    status: Optional[StrictStr] = Field(default=None, description="Status of the BGP Config. Status \"requested\" is valid only with the \"global\" deployment_type.")
+    status: Optional[BgpConfigStatus] = None
     __properties: ClassVar[List[str]] = ["asn", "created_at", "deployment_type", "href", "id", "max_prefix", "md5", "project", "ranges", "requested_at", "route_object", "sessions", "status"]
-
-    @field_validator('deployment_type')
-    def deployment_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['global', 'local']):
-            raise ValueError("must be one of enum values ('global', 'local')")
-        return value
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['requested', 'enabled', 'disabled']):
-            raise ValueError("must be one of enum values ('requested', 'enabled', 'disabled')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.device_action_input_type import DeviceActionInputType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,15 +34,8 @@ class DeviceActionInput(BaseModel):
     ipxe_script_url: Optional[StrictStr] = Field(default=None, description="When type is `reinstall`, use this `ipxe_script_url` (`operating_system` must be `custom_ipxe`, defaults to the current `ipxe_script_url`)")
     operating_system: Optional[StrictStr] = Field(default=None, description="When type is `reinstall`, use this `operating_system` (defaults to the current `operating system`)")
     preserve_data: Optional[StrictBool] = Field(default=None, description="When type is `reinstall`, preserve the existing data on all disks except the operating-system disk.")
-    type: StrictStr = Field(description="Action to perform. See Device.actions for possible actions.")
+    type: DeviceActionInputType
     __properties: ClassVar[List[str]] = ["deprovision_fast", "force_delete", "href", "ipxe_script_url", "operating_system", "preserve_data", "type"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['power_on', 'power_off', 'reboot', 'rescue', 'reinstall']):
-            raise ValueError("must be one of enum values ('power_on', 'power_off', 'reboot', 'rescue', 'reinstall')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

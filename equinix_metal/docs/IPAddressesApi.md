@@ -267,6 +267,7 @@ Provides a list of IP resevations for a single project.
 
 ```python
 import equinix_metal
+from equinix_metal.models.find_ip_availabilities_cidr_parameter import FindIPAvailabilitiesCidrParameter
 from equinix_metal.models.ip_availabilities_list import IPAvailabilitiesList
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -293,7 +294,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.IPAddressesApi(api_client)
     id = 'id_example' # str | IP Reservation UUID
-    cidr = 'cidr_example' # str | Size of subnets in bits
+    cidr = equinix_metal.FindIPAvailabilitiesCidrParameter() # FindIPAvailabilitiesCidrParameter | Size of subnets in bits
 
     try:
         # Retrieve all available subnets of a particular reservation
@@ -312,7 +313,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| IP Reservation UUID | 
- **cidr** | **str**| Size of subnets in bits | 
+ **cidr** | [**FindIPAvailabilitiesCidrParameter**](.md)| Size of subnets in bits | 
 
 ### Return type
 
@@ -350,6 +351,7 @@ Provides a paginated list of IP reservations for a single project.
 
 ```python
 import equinix_metal
+from equinix_metal.models.find_ip_reservations_types_parameter_inner import FindIPReservationsTypesParameterInner
 from equinix_metal.models.ip_reservation_list import IPReservationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -376,7 +378,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.IPAddressesApi(api_client)
     id = 'id_example' # str | Project UUID
-    types = ['types_example'] # List[str] | Filter project IP reservations by reservation type (optional)
+    types = [equinix_metal.FindIPReservationsTypesParameterInner()] # List[FindIPReservationsTypesParameterInner] | Filter project IP reservations by reservation type (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
     per_page = 250 # int | Items returned per page (optional) (default to 250)
@@ -398,7 +400,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**| Project UUID | 
- **types** | [**List[str]**](str.md)| Filter project IP reservations by reservation type | [optional] 
+ **types** | [**List[FindIPReservationsTypesParameterInner]**](FindIPReservationsTypesParameterInner.md)| Filter project IP reservations by reservation type | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 
  **per_page** | **int**| Items returned per page | [optional] [default to 250]

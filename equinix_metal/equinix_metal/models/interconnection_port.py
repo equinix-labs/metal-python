@@ -18,9 +18,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
+from equinix_metal.models.interconnection_port_role import InterconnectionPortRole
+from equinix_metal.models.interconnection_port_status import InterconnectionPortStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,32 +35,12 @@ class InterconnectionPort(BaseModel):
     link_status: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
     organization: Optional[Href] = None
-    role: Optional[StrictStr] = Field(default=None, description="Either 'primary' or 'secondary'.")
+    role: Optional[InterconnectionPortRole] = None
     speed: Optional[StrictInt] = None
-    status: Optional[StrictStr] = Field(default=None, description="For both Fabric VCs and Dedicated Ports, this will be 'requested' on creation and 'deleting' on deletion. Once the Fabric VC has found its corresponding Fabric connection, this will turn to 'active'. For Dedicated Ports, once the dedicated port is associated, this will also turn to 'active'. For Fabric VCs, this can turn into an 'expired' state if the service token associated is expired.")
+    status: Optional[InterconnectionPortStatus] = None
     switch_id: Optional[StrictStr] = Field(default=None, description="A switch 'short ID'")
     virtual_circuits: Optional[List[VirtualCircuit]] = None
     __properties: ClassVar[List[str]] = ["href", "id", "link_status", "name", "organization", "role", "speed", "status", "switch_id", "virtual_circuits"]
-
-    @field_validator('role')
-    def role_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['primary', 'secondary']):
-            raise ValueError("must be one of enum values ('primary', 'secondary')")
-        return value
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['requested', 'active', 'deleting', 'expired', 'delete_failed']):
-            raise ValueError("must be one of enum values ('requested', 'active', 'deleting', 'expired', 'delete_failed')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **id** | **str** |  | [optional] 
 **native** | **bool** |  | [optional] 
 **port** | [**Href**](Href.md) |  | [optional] 
-**state** | **str** |  | [optional] 
+**state** | [**PortVlanAssignmentState**](PortVlanAssignmentState.md) |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 **virtual_network** | [**Href**](Href.md) |  | [optional] 
 **vlan** | **int** |  | [optional] 

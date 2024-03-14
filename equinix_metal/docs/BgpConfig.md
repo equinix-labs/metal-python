@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asn** | **int** | Autonomous System Number. ASN is required with Global BGP. With Local BGP the private ASN, 65000, is assigned. | [optional] 
 **created_at** | **datetime** |  | [optional] 
-**deployment_type** | **str** | In a Local BGP deployment, a customer uses an internal ASN to control routes within a single Equinix Metal datacenter. This means that the routes are never advertised to the global Internet. Global BGP, on the other hand, requires a customer to have a registered ASN and IP space.  | [optional] 
+**deployment_type** | [**BgpConfigDeploymentType**](BgpConfigDeploymentType.md) |  | [optional] 
 **href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
 **max_prefix** | **int** | The maximum number of route filters allowed per server | [optional] [default to 10]
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **requested_at** | **datetime** |  | [optional] 
 **route_object** | **str** | Specifies AS-MACRO (aka AS-SET) to use when building client route filters | [optional] 
 **sessions** | [**List[BgpSession]**](BgpSession.md) | The direct connections between neighboring routers that want to exchange routing information. | [optional] 
-**status** | **str** | Status of the BGP Config. Status \&quot;requested\&quot; is valid only with the \&quot;global\&quot; deployment_type. | [optional] 
+**status** | [**BgpConfigStatus**](BgpConfigStatus.md) |  | [optional] 
 
 ## Example
 

@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 **requested_by** | [**Href**](Href.md) |  | [optional] 
 **state** | **str** |  | [optional] 
 **tags** | **List[str]** |  | [optional] 
-**type** | **str** |  | 
+**type** | [**IPReservationType**](IPReservationType.md) |  | 
 
 ## Example
 

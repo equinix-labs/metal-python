@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.support_request_input_priority import SupportRequestInputPriority
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,20 +31,10 @@ class SupportRequestInput(BaseModel):
     device_id: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     message: StrictStr
-    priority: Optional[StrictStr] = None
+    priority: Optional[SupportRequestInputPriority] = None
     project_id: Optional[StrictStr] = None
     subject: StrictStr
     __properties: ClassVar[List[str]] = ["device_id", "href", "message", "priority", "project_id", "subject"]
-
-    @field_validator('priority')
-    def priority_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['urgent', 'high', 'medium', 'low']):
-            raise ValueError("must be one of enum values ('urgent', 'high', 'medium', 'low')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

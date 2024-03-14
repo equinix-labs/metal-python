@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **next_hop** | **str** | Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded.  | [optional] 
 **parent_block** | [**ParentBlock**](ParentBlock.md) |  | [optional] 
 **public** | **bool** |  | [optional] 
-**state** | **str** | Only set when this is a Metal Gateway Elastic IP Assignment.  Describes the current configuration state of this IP on the network.  | [optional] 
+**state** | [**IPAssignmentState**](IPAssignmentState.md) |  | [optional] 
 
 ## Example
 

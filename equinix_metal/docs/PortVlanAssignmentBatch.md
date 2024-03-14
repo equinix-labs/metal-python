@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **port** | [**Port**](Port.md) |  | [optional] 
 **project** | [**Href**](Href.md) |  | [optional] 
 **quantity** | **int** |  | [optional] 
-**state** | **str** |  | [optional] 
+**state** | [**PortVlanAssignmentBatchState**](PortVlanAssignmentBatchState.md) |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 **vlan_assignments** | [**List[PortVlanAssignmentBatchVlanAssignmentsInner]**](PortVlanAssignmentBatchVlanAssignmentsInner.md) |  | [optional] 
 

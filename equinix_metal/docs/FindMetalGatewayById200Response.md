@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **id** | **str** |  | [optional] 
 **ip_reservation** | [**VrfIpReservation**](VrfIpReservation.md) |  | [optional] 
 **project** | [**Project**](Project.md) |  | [optional] 
-**state** | **str** | The current state of the Metal Gateway. &#39;Ready&#39; indicates the gateway record has been configured, but is currently not active on the network. &#39;Active&#39; indicates the gateway has been configured on the network. &#39;Deleting&#39; is a temporary state used to indicate that the gateway is in the process of being un-configured from the network, after which the gateway record will be deleted. | [optional] 
+**state** | [**MetalGatewayState**](MetalGatewayState.md) |  | [optional] 
 **updated_at** | **datetime** |  | [optional] 
 **virtual_network** | [**VirtualNetwork**](VirtualNetwork.md) |  | [optional] 
 **vrf** | [**Vrf**](Vrf.md) |  | [optional] 

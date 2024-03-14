@@ -18,8 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.vlan_fabric_vc_create_input_service_token_type import VlanFabricVcCreateInputServiceTokenType
+from equinix_metal.models.vlan_fabric_vc_create_input_type import VlanFabricVcCreateInputType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -35,26 +37,12 @@ class VrfFabricVcCreateInput(BaseModel):
     name: StrictStr
     project: Optional[StrictStr] = None
     redundancy: StrictStr = Field(description="Either 'primary' or 'redundant'.")
-    service_token_type: StrictStr = Field(description="Either 'a_side' or 'z_side'. Setting this field to 'a_side' will create an interconnection with Fabric VCs (Metal Billed). Setting this field to 'z_side' will create an interconnection with Fabric VCs (Fabric Billed). This is required when the 'type' is 'shared', but this is not applicable when the 'type' is 'dedicated'. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.")
+    service_token_type: VlanFabricVcCreateInputServiceTokenType
     speed: Optional[StrictStr] = Field(default=None, description="A interconnection speed, in bps, mbps, or gbps. For Fabric VCs, this represents the maximum speed of the interconnection. For Fabric VCs (Metal Billed), this can only be one of the following:  ''50mbps'', ''200mbps'', ''500mbps'', ''1gbps'', ''2gbps'', ''5gbps'' or ''10gbps'', and is required for creation. For Fabric VCs (Fabric Billed), this field will always default to ''10gbps'' even if it is not provided. For example, ''500000000'', ''50m'', or' ''500mbps'' will all work as valid inputs.")
     tags: Optional[List[StrictStr]] = None
-    type: StrictStr = Field(description="When requesting for a Fabric VC, the value of this field should be 'shared'.")
+    type: VlanFabricVcCreateInputType
     vrfs: List[StrictStr] = Field(description="This field holds a list of VRF UUIDs that will be set automatically on the virtual circuits of Fabric VCs on creation, and can hold up to two UUIDs. Two UUIDs are required when requesting redundant Fabric VCs. The first UUID will be set on the primary virtual circuit, while the second UUID will be set on the secondary. The two UUIDs can be the same if both the primary and secondary virtual circuits will be in the same VRF. This parameter is included in the specification as a developer preview and is generally unavailable. Please contact our Support team for more details.")
     __properties: ClassVar[List[str]] = ["contact_email", "description", "facility_id", "href", "metro", "name", "project", "redundancy", "service_token_type", "speed", "tags", "type", "vrfs"]
-
-    @field_validator('service_token_type')
-    def service_token_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['a_side', 'z_side']):
-            raise ValueError("must be one of enum values ('a_side', 'z_side')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['shared']):
-            raise ValueError("must be one of enum values ('shared')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

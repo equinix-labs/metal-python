@@ -21,6 +21,8 @@ Provides a listing of available plans to provision your device on.
 
 ```python
 import equinix_metal
+from equinix_metal.models.find_organization_devices_categories_parameter_inner import FindOrganizationDevicesCategoriesParameterInner
+from equinix_metal.models.find_plans_type_parameter import FindPlansTypeParameter
 from equinix_metal.models.plan_list import PlanList
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -46,8 +48,8 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.PlansApi(api_client)
-    categories = ['categories_example'] # List[str] | Filter plans by its category (optional)
-    type = 'standard' # str | Filter plans by its plan type (optional)
+    categories = [equinix_metal.FindOrganizationDevicesCategoriesParameterInner()] # List[FindOrganizationDevicesCategoriesParameterInner] | Filter plans by its category (optional)
+    type = equinix_metal.FindPlansTypeParameter() # FindPlansTypeParameter | Filter plans by its plan type (optional)
     slug = 'c3.small.x86' # str | Filter plans by slug (optional)
     include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
@@ -68,8 +70,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **categories** | [**List[str]**](str.md)| Filter plans by its category | [optional] 
- **type** | **str**| Filter plans by its plan type | [optional] 
+ **categories** | [**List[FindOrganizationDevicesCategoriesParameterInner]**](FindOrganizationDevicesCategoriesParameterInner.md)| Filter plans by its category | [optional] 
+ **type** | [**FindPlansTypeParameter**](.md)| Filter plans by its plan type | [optional] 
  **slug** | **str**| Filter plans by slug | [optional] 
  **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
  **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] 

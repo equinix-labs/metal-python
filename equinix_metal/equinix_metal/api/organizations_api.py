@@ -17,9 +17,10 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr, field_validator
+from pydantic import Field, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
+from equinix_metal.models.find_organizations_personal_parameter import FindOrganizationsPersonalParameter
 from equinix_metal.models.invitation import Invitation
 from equinix_metal.models.invitation_input import InvitationInput
 from equinix_metal.models.invitation_list import InvitationList
@@ -3744,7 +3745,7 @@ class OrganizationsApi:
 
 
     @validate_call
-    def find_organizations_all_pages(self, personal : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None, without_projects : Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> OrganizationList:  # noqa: E501
+    def find_organizations_all_pages(self, personal : Annotated[Optional[FindOrganizationsPersonalParameter], Field(description="Include, exclude or show only personal organizations.")] = None, without_projects : Annotated[Optional[FindOrganizationsPersonalParameter], Field(description="Include, exclude or show only organizations that have no projects.")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> OrganizationList:  # noqa: E501
         """Retrieve all organizations  # noqa: E501
 
         This method is the same as find_organizations, but fetches resources from all the pages.
@@ -3757,10 +3758,10 @@ class OrganizationsApi:
 
  
         :param personal: Include, exclude or show only personal organizations.
-        :type personal: str
+        :type personal: FindOrganizationsPersonalParameter
  
         :param without_projects: Include, exclude or show only organizations that have no projects.
-        :type without_projects: str
+        :type without_projects: FindOrganizationsPersonalParameter
  
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
@@ -3804,8 +3805,8 @@ class OrganizationsApi:
     @validate_call
     def find_organizations(
         self,
-        personal: Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None,
-        without_projects: Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None,
+        personal: Annotated[Optional[FindOrganizationsPersonalParameter], Field(description="Include, exclude or show only personal organizations.")] = None,
+        without_projects: Annotated[Optional[FindOrganizationsPersonalParameter], Field(description="Include, exclude or show only organizations that have no projects.")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         page: Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None,
@@ -3828,9 +3829,9 @@ class OrganizationsApi:
         Returns a list of organizations that are accessible to the current user.
 
         :param personal: Include, exclude or show only personal organizations.
-        :type personal: str
+        :type personal: FindOrganizationsPersonalParameter
         :param without_projects: Include, exclude or show only organizations that have no projects.
-        :type without_projects: str
+        :type without_projects: FindOrganizationsPersonalParameter
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -3892,8 +3893,8 @@ class OrganizationsApi:
     @validate_call
     def find_organizations_with_http_info(
         self,
-        personal: Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None,
-        without_projects: Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None,
+        personal: Annotated[Optional[FindOrganizationsPersonalParameter], Field(description="Include, exclude or show only personal organizations.")] = None,
+        without_projects: Annotated[Optional[FindOrganizationsPersonalParameter], Field(description="Include, exclude or show only organizations that have no projects.")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         page: Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None,
@@ -3916,9 +3917,9 @@ class OrganizationsApi:
         Returns a list of organizations that are accessible to the current user.
 
         :param personal: Include, exclude or show only personal organizations.
-        :type personal: str
+        :type personal: FindOrganizationsPersonalParameter
         :param without_projects: Include, exclude or show only organizations that have no projects.
-        :type without_projects: str
+        :type without_projects: FindOrganizationsPersonalParameter
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -3980,8 +3981,8 @@ class OrganizationsApi:
     @validate_call
     def find_organizations_without_preload_content(
         self,
-        personal: Annotated[Optional[StrictStr], Field(description="Include, exclude or show only personal organizations.")] = None,
-        without_projects: Annotated[Optional[StrictStr], Field(description="Include, exclude or show only organizations that have no projects.")] = None,
+        personal: Annotated[Optional[FindOrganizationsPersonalParameter], Field(description="Include, exclude or show only personal organizations.")] = None,
+        without_projects: Annotated[Optional[FindOrganizationsPersonalParameter], Field(description="Include, exclude or show only organizations that have no projects.")] = None,
         include: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None,
         exclude: Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None,
         page: Annotated[Optional[Annotated[int, Field(le=100000, strict=True, ge=1)]], Field(description="Page to return")] = None,
@@ -4004,9 +4005,9 @@ class OrganizationsApi:
         Returns a list of organizations that are accessible to the current user.
 
         :param personal: Include, exclude or show only personal organizations.
-        :type personal: str
+        :type personal: FindOrganizationsPersonalParameter
         :param without_projects: Include, exclude or show only organizations that have no projects.
-        :type without_projects: str
+        :type without_projects: FindOrganizationsPersonalParameter
         :param include: Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.
         :type include: List[str]
         :param exclude: Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.
@@ -4093,11 +4094,11 @@ class OrganizationsApi:
         # process the query parameters
         if personal is not None:
             
-            _query_params.append(('personal', personal))
+            _query_params.append(('personal', personal.value))
             
         if without_projects is not None:
             
-            _query_params.append(('without_projects', without_projects))
+            _query_params.append(('without_projects', without_projects.value))
             
         if include is not None:
             

@@ -19,8 +19,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.fabric_service_token_role import FabricServiceTokenRole
+from equinix_metal.models.fabric_service_token_service_token_type import FabricServiceTokenServiceTokenType
+from equinix_metal.models.fabric_service_token_state import FabricServiceTokenState
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,40 +35,10 @@ class FabricServiceToken(BaseModel):
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = Field(default=None, description="The UUID that can be used on the Fabric Portal to redeem either an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this UUID will represent an A-Side Service Token, which will allow interconnections to be made from Equinix Metal to other Service Providers on Fabric. For Fabric VCs (Fabric Billed), this UUID will represent a Z-Side Service Token, which will allow interconnections to be made to connect an owned Fabric Port or  Virtual Device to Equinix Metal.")
     max_allowed_speed: Optional[StrictInt] = Field(default=None, description="The maximum speed that can be selected on the Fabric Portal when configuring a interconnection with either  an A-Side or Z-Side Service Token. For Fabric VCs (Metal Billed), this is what the billing is based off of, and can be one of the following options, '50mbps', '200mbps', '500mbps', '1gbps', '2gbps', '5gbps' or '10gbps'. For Fabric VCs (Fabric Billed), this will default to 10Gbps.")
-    role: Optional[StrictStr] = Field(default=None, description="Either primary or secondary, depending on which interconnection the service token is associated to.")
-    service_token_type: Optional[StrictStr] = Field(default=None, description="Either 'a_side' or 'z_side', depending on which type of Fabric VC was requested.")
-    state: Optional[StrictStr] = Field(default=None, description="The state of the service token that corresponds with the service token state on Fabric. An 'inactive' state refers to a token that has not been redeemed yet on the Fabric side, an 'active' state refers to a token that has already been redeemed, and an 'expired' state refers to a token that has reached its expiry time.")
+    role: Optional[FabricServiceTokenRole] = None
+    service_token_type: Optional[FabricServiceTokenServiceTokenType] = None
+    state: Optional[FabricServiceTokenState] = None
     __properties: ClassVar[List[str]] = ["expires_at", "href", "id", "max_allowed_speed", "role", "service_token_type", "state"]
-
-    @field_validator('role')
-    def role_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['primary', 'secondary']):
-            raise ValueError("must be one of enum values ('primary', 'secondary')")
-        return value
-
-    @field_validator('service_token_type')
-    def service_token_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['a_side', 'z_side']):
-            raise ValueError("must be one of enum values ('a_side', 'z_side')")
-        return value
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['inactive', 'active', 'expired']):
-            raise ValueError("must be one of enum values ('inactive', 'active', 'expired')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | [**Address**](Address.md) |  | [optional] 
 **code** | **str** |  | [optional] 
-**features** | **List[str]** |  | [optional] 
+**features** | [**List[FacilityFeaturesInner]**](FacilityFeaturesInner.md) |  | [optional] 
 **href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 
 **ip_ranges** | **List[str]** | IP ranges registered in facility. Can be used for GeoIP location | [optional] 

@@ -18,8 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.dedicated_port_create_input_mode import DedicatedPortCreateInputMode
+from equinix_metal.models.dedicated_port_create_input_type import DedicatedPortCreateInputType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,32 +35,15 @@ class DedicatedPortCreateInput(BaseModel):
     facility_id: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
     metro: StrictStr = Field(description="A Metro ID or code. For interconnections with Dedicated Ports, this will be the location of the issued Dedicated Ports.")
-    mode: Optional[StrictStr] = Field(default=None, description="The mode of the interconnection (only relevant to Dedicated Ports). Fabric VCs won't have this field. Can be either 'standard' or 'tunnel'.   The default mode of an interconnection on a Dedicated Port is 'standard'. The mode can only be changed when there are no associated virtual circuits on the interconnection.   In tunnel mode, an 802.1q tunnel is added to a port to send/receive double tagged packets from server instances.")
+    mode: Optional[DedicatedPortCreateInputMode] = None
     name: StrictStr
     project: Optional[StrictStr] = None
     redundancy: StrictStr = Field(description="Either 'primary' or 'redundant'.")
     speed: Optional[StrictStr] = Field(default=None, description="A interconnection speed, in bps, mbps, or gbps. For Dedicated Ports, this can be 10Gbps or 100Gbps.")
     tags: Optional[List[StrictStr]] = None
-    type: StrictStr = Field(description="When requesting for a dedicated port, the value of this field should be 'dedicated'.")
+    type: DedicatedPortCreateInputType
     use_case: Optional[StrictStr] = Field(default=None, description="The intended use case of the dedicated port.")
     __properties: ClassVar[List[str]] = ["billing_account_name", "contact_email", "description", "facility_id", "href", "metro", "mode", "name", "project", "redundancy", "speed", "tags", "type", "use_case"]
-
-    @field_validator('mode')
-    def mode_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['standard', 'tunnel']):
-            raise ValueError("must be one of enum values ('standard', 'tunnel')")
-        return value
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['dedicated']):
-            raise ValueError("must be one of enum values ('dedicated')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

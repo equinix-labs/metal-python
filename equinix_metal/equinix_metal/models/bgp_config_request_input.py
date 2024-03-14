@@ -21,6 +21,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from equinix_metal.models.bgp_config_request_input_deployment_type import BgpConfigRequestInputDeploymentType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,18 +30,11 @@ class BgpConfigRequestInput(BaseModel):
     BgpConfigRequestInput
     """ # noqa: E501
     asn: Annotated[int, Field(le=4294967295, strict=True, ge=0)] = Field(description="Autonomous System Number for local BGP deployment.")
-    deployment_type: StrictStr = Field(description="Wether the BGP deployment is local or global. Local deployments are configured immediately. Global deployments will need to be reviewed by Equinix Metal engineers.")
+    deployment_type: BgpConfigRequestInputDeploymentType
     href: Optional[StrictStr] = None
     md5: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The plaintext password to share between BGP neighbors as an MD5 checksum: * must be 10-20 characters long * may not include punctuation * must be a combination of numbers and letters * must contain at least one lowercase, uppercase, and digit character ")
     use_case: Optional[StrictStr] = Field(default=None, description="A use case explanation (necessary for global BGP request review).")
     __properties: ClassVar[List[str]] = ["asn", "deployment_type", "href", "md5", "use_case"]
-
-    @field_validator('deployment_type')
-    def deployment_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['local', 'global']):
-            raise ValueError("must be one of enum values ('local', 'global')")
-        return value
 
     @field_validator('md5')
     def md5_validate_regular_expression(cls, value):

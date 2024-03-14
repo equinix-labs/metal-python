@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.device_state import DeviceState
 from equinix_metal.models.metadata_network import MetadataNetwork
 from typing import Optional, Set
 from typing_extensions import Self
@@ -43,21 +44,11 @@ class Metadata(BaseModel):
     reserved: Optional[StrictBool] = None
     specs: Optional[Dict[str, Any]] = Field(default=None, description="The specs of the plan version of the instance")
     ssh_keys: Optional[List[StrictStr]] = None
-    state: Optional[StrictStr] = Field(default=None, description="The current state the instance is in.  * When an instance is initially created it will be in the `queued` state until it is picked up by the provisioner. * Once provisioning has begun on the instance it's state will move to `provisioning`. * When an instance is deleted, it will move to `deprovisioning` state until the deprovision is completed and the instance state moves to `deleted`. * If an instance fails to provision or deprovision it will move to `failed` state. * Once an instance has completed provisioning it will move to `active` state. * If an instance is currently powering off or powering on it will move to `powering_off` or `powering_on` states respectively.  * When the instance is powered off completely it will move to the `inactive` state. * When an instance is powered on completely it will move to the `active` state. * Using the reinstall action to install a new OS on the instance will cause the instance state to change to `reinstalling`. * When the reinstall action is complete the instance will move to `active` state.")
+    state: Optional[DeviceState] = None
     switch_short_id: Optional[StrictStr] = None
     tags: Optional[List[StrictStr]] = None
     volumes: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = ["class", "customdata", "facility", "hostname", "href", "id", "iqn", "metro", "network", "operating_system", "plan", "private_subnets", "reserved", "specs", "ssh_keys", "state", "switch_short_id", "tags", "volumes"]
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['queued', 'provisioning', 'deprovisioning', 'reinstalling', 'active', 'inactive', 'failed', 'powering_on', 'powering_off', 'deleted']):
-            raise ValueError("must be one of enum values ('queued', 'provisioning', 'deprovisioning', 'reinstalling', 'active', 'inactive', 'failed', 'powering_on', 'powering_off', 'deleted')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -18,10 +18,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.address import Address
 from equinix_metal.models.device_metro import DeviceMetro
+from equinix_metal.models.facility_features_inner import FacilityFeaturesInner
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,24 +32,13 @@ class IPReservationFacility(BaseModel):
     """ # noqa: E501
     address: Optional[Address] = None
     code: Optional[StrictStr] = None
-    features: Optional[List[StrictStr]] = None
+    features: Optional[List[FacilityFeaturesInner]] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
     ip_ranges: Optional[List[StrictStr]] = Field(default=None, description="IP ranges registered in facility. Can be used for GeoIP location")
     metro: Optional[DeviceMetro] = None
     name: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["address", "code", "features", "href", "id", "ip_ranges", "metro", "name"]
-
-    @field_validator('features')
-    def features_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        for i in value:
-            if i not in set(['baremetal', 'backend_transfer', 'layer_2', 'global_ipv4', 'ibx']):
-                raise ValueError("each list item must be one of ('baremetal', 'backend_transfer', 'layer_2', 'global_ipv4', 'ibx')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

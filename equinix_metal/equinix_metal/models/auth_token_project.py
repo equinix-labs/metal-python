@@ -19,10 +19,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from equinix_metal.models.href import Href
+from equinix_metal.models.project_type import ProjectType
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -47,21 +48,11 @@ class AuthTokenProject(BaseModel):
     payment_method: Optional[Href] = None
     ssh_keys: Optional[List[Href]] = None
     tags: Optional[List[StrictStr]] = None
-    type: Optional[StrictStr] = Field(default=None, description="The type of the project. Projects of type `vmce` are part of an in development feature and not available to all customers.")
+    type: Optional[ProjectType] = None
     updated_at: Optional[datetime] = None
     url: Optional[StrictStr] = None
     volumes: Optional[List[Href]] = None
     __properties: ClassVar[List[str]] = ["backend_transfer_enabled", "bgp_config", "created_at", "customdata", "devices", "href", "id", "invitations", "max_devices", "members", "memberships", "name", "network_status", "organization", "payment_method", "ssh_keys", "tags", "type", "updated_at", "url", "volumes"]
-
-    @field_validator('type')
-    def type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['default', 'vmce']):
-            raise ValueError("must be one of enum values ('default', 'vmce')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

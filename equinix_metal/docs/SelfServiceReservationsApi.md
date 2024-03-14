@@ -187,6 +187,7 @@ Returns all reservations.
 
 ```python
 import equinix_metal
+from equinix_metal.models.find_organization_devices_categories_parameter_inner import FindOrganizationDevicesCategoriesParameterInner
 from equinix_metal.models.self_service_reservation_list import SelfServiceReservationList
 from equinix_metal.rest import ApiException
 from pprint import pprint
@@ -215,7 +216,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     project_id = 'project_id_example' # str | Project UUID
     page = 1 # int | Page to return (optional) (default to 1)
     per_page = 10 # int | Items returned per page (optional) (default to 10)
-    categories = ['categories_example'] # List[str] | Filter reservations by items category (optional)
+    categories = [equinix_metal.FindOrganizationDevicesCategoriesParameterInner()] # List[FindOrganizationDevicesCategoriesParameterInner] | Filter reservations by items category (optional)
 
     try:
         # Retrieve all reservations
@@ -236,7 +237,7 @@ Name | Type | Description  | Notes
  **project_id** | **str**| Project UUID | 
  **page** | **int**| Page to return | [optional] [default to 1]
  **per_page** | **int**| Items returned per page | [optional] [default to 10]
- **categories** | [**List[str]**](str.md)| Filter reservations by items category | [optional] 
+ **categories** | [**List[FindOrganizationDevicesCategoriesParameterInner]**](FindOrganizationDevicesCategoriesParameterInner.md)| Filter reservations by items category | [optional] 
 
 ### Return type
 

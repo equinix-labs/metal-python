@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **href** | **str** |  | [optional] [readonly] 
 **id** | **str** | The unique identifier for the resource | [optional] [readonly] 
 **metal_gateway** | [**VrfMetalGateway**](VrfMetalGateway.md) |  | [optional] 
-**state** | **str** |  | [optional] [readonly] 
+**state** | [**BgpDynamicNeighborState**](BgpDynamicNeighborState.md) |  | [optional] 
 **tags** | **List[str]** |  | [optional] 
 **updated_at** | **datetime** |  | [optional] [readonly] 
 

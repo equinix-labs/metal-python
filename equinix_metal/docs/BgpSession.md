@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address_family** | **str** |  | 
+**address_family** | [**BgpSessionAddressFamily**](BgpSessionAddressFamily.md) |  | 
 **created_at** | **datetime** |  | [optional] 
 **default_route** | **bool** |  | [optional] 
 **device** | [**Href**](Href.md) |  | [optional] 

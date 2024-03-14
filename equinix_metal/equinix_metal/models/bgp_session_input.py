@@ -18,8 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.bgp_session_input_address_family import BGPSessionInputAddressFamily
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,20 +28,10 @@ class BGPSessionInput(BaseModel):
     """
     BGPSessionInput
     """ # noqa: E501
-    address_family: Optional[StrictStr] = Field(default=None, description="Address family for BGP session.")
+    address_family: Optional[BGPSessionInputAddressFamily] = None
     default_route: Optional[StrictBool] = Field(default=False, description="Set the default route policy.")
     href: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["address_family", "default_route", "href"]
-
-    @field_validator('address_family')
-    def address_family_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['ipv4', 'ipv6']):
-            raise ValueError("must be one of enum values ('ipv4', 'ipv6')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

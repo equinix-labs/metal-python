@@ -19,10 +19,11 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.href import Href
 from equinix_metal.models.ip_assignment_metro import IPAssignmentMetro
+from equinix_metal.models.ip_assignment_state import IPAssignmentState
 from equinix_metal.models.parent_block import ParentBlock
 from typing import Optional, Set
 from typing_extensions import Self
@@ -49,18 +50,8 @@ class IPAssignment(BaseModel):
     next_hop: Optional[StrictStr] = Field(default=None, description="Only set when this is a Metal Gateway Elastic IP Assignment.  The IP address within the Metal Gateway to which requests to the Elastic IP are forwarded. ")
     parent_block: Optional[ParentBlock] = None
     public: Optional[StrictBool] = None
-    state: Optional[StrictStr] = Field(default=None, description="Only set when this is a Metal Gateway Elastic IP Assignment.  Describes the current configuration state of this IP on the network. ")
+    state: Optional[IPAssignmentState] = None
     __properties: ClassVar[List[str]] = ["address", "address_family", "assigned_to", "cidr", "created_at", "enabled", "gateway", "global_ip", "href", "id", "manageable", "management", "metro", "netmask", "network", "next_hop", "parent_block", "public", "state"]
-
-    @field_validator('state')
-    def state_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['pending', 'active', 'deleting']):
-            raise ValueError("must be one of enum values ('pending', 'active', 'deleting')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

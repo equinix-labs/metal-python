@@ -18,8 +18,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.create_self_service_reservation_request_period_count import CreateSelfServiceReservationRequestPeriodCount
+from equinix_metal.models.create_self_service_reservation_request_period_unit import CreateSelfServiceReservationRequestPeriodUnit
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,30 +29,10 @@ class CreateSelfServiceReservationRequestPeriod(BaseModel):
     """
     CreateSelfServiceReservationRequestPeriod
     """ # noqa: E501
-    count: Optional[StrictInt] = None
+    count: Optional[CreateSelfServiceReservationRequestPeriodCount] = None
     href: Optional[StrictStr] = None
-    unit: Optional[StrictStr] = None
+    unit: Optional[CreateSelfServiceReservationRequestPeriodUnit] = None
     __properties: ClassVar[List[str]] = ["count", "href", "unit"]
-
-    @field_validator('count')
-    def count_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set([12, 36]):
-            raise ValueError("must be one of enum values (12, 36)")
-        return value
-
-    @field_validator('unit')
-    def unit_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['monthly']):
-            raise ValueError("must be one of enum values ('monthly')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

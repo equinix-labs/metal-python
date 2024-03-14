@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**count** | **int** |  | [optional] 
+**count** | [**CreateSelfServiceReservationRequestPeriodCount**](CreateSelfServiceReservationRequestPeriodCount.md) |  | [optional] 
 **href** | **str** |  | [optional] 
-**unit** | **str** |  | [optional] 
+**unit** | [**CreateSelfServiceReservationRequestPeriodUnit**](CreateSelfServiceReservationRequestPeriodUnit.md) |  | [optional] 
 
 ## Example
 

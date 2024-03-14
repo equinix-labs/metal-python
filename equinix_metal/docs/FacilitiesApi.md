@@ -23,6 +23,7 @@ Provides a listing of available datacenters where you can provision Packet devic
 ```python
 import equinix_metal
 from equinix_metal.models.facility_list import FacilityList
+from equinix_metal.models.find_facilities_include_parameter_inner import FindFacilitiesIncludeParameterInner
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -47,8 +48,8 @@ configuration.api_key['x_auth_token'] = os.environ["API_KEY"]
 with equinix_metal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = equinix_metal.FacilitiesApi(api_client)
-    include = ['include_example'] # List[str] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
-    exclude = ["address"] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional) (default to ["address"])
+    include = [equinix_metal.FindFacilitiesIncludeParameterInner()] # List[FindFacilitiesIncludeParameterInner] | Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. (optional)
+    exclude = ["address"] # List[FindFacilitiesIncludeParameterInner] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional) (default to ["address"])
 
     try:
         # Retrieve all facilities
@@ -66,8 +67,8 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include** | [**List[str]**](str.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
- **exclude** | [**List[str]**](str.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] [default to [&quot;address&quot;]]
+ **include** | [**List[FindFacilitiesIncludeParameterInner]**](FindFacilitiesIncludeParameterInner.md)| Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects. | [optional] 
+ **exclude** | [**List[FindFacilitiesIncludeParameterInner]**](FindFacilitiesIncludeParameterInner.md)| Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. | [optional] [default to [&quot;address&quot;]]
 
 ### Return type
 

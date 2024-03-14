@@ -17,7 +17,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr, field_validator
+from pydantic import Field, StrictBool, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
 from equinix_metal.models.bgp_session_input import BGPSessionInput
@@ -30,6 +30,10 @@ from equinix_metal.models.device_action_input import DeviceActionInput
 from equinix_metal.models.device_health_rollup import DeviceHealthRollup
 from equinix_metal.models.device_list import DeviceList
 from equinix_metal.models.device_update_input import DeviceUpdateInput
+from equinix_metal.models.find_organization_devices_categories_parameter_inner import FindOrganizationDevicesCategoriesParameterInner
+from equinix_metal.models.find_traffic_bucket_parameter import FindTrafficBucketParameter
+from equinix_metal.models.find_traffic_direction_parameter import FindTrafficDirectionParameter
+from equinix_metal.models.find_traffic_interval_parameter import FindTrafficIntervalParameter
 from equinix_metal.models.find_traffic_timeframe_parameter import FindTrafficTimeframeParameter
 from equinix_metal.models.firmware_set_response import FirmwareSetResponse
 from equinix_metal.models.ip_assignment import IPAssignment
@@ -3562,7 +3566,7 @@ class DevicesApi:
 
 
     @validate_call
-    def find_organization_devices_all_pages(self, id : Annotated[StrictStr, Field(description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_organization_devices_all_pages(self, id : Annotated[StrictStr, Field(description="Organization UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of an organization  # noqa: E501
 
         This method is the same as find_organization_devices, but fetches resources from all the pages.
@@ -3581,7 +3585,7 @@ class DevicesApi:
         :type search: str
  
         :param categories: Filter by plan category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
  
         :param facility: Filter by device facility
         :type facility: str
@@ -3648,7 +3652,7 @@ class DevicesApi:
         self,
         id: Annotated[StrictStr, Field(description="Organization UUID")],
         search: Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter by plan category")] = None,
         facility: Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None,
         hostname: Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None,
         reserved: Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None,
@@ -3682,7 +3686,7 @@ class DevicesApi:
         :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
         :type search: str
         :param categories: Filter by plan category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param facility: Filter by device facility
         :type facility: str
         :param hostname: Filter by partial hostname
@@ -3770,7 +3774,7 @@ class DevicesApi:
         self,
         id: Annotated[StrictStr, Field(description="Organization UUID")],
         search: Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter by plan category")] = None,
         facility: Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None,
         hostname: Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None,
         reserved: Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None,
@@ -3804,7 +3808,7 @@ class DevicesApi:
         :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
         :type search: str
         :param categories: Filter by plan category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param facility: Filter by device facility
         :type facility: str
         :param hostname: Filter by partial hostname
@@ -3892,7 +3896,7 @@ class DevicesApi:
         self,
         id: Annotated[StrictStr, Field(description="Organization UUID")],
         search: Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter by plan category")] = None,
         facility: Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None,
         hostname: Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None,
         reserved: Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None,
@@ -3926,7 +3930,7 @@ class DevicesApi:
         :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
         :type search: str
         :param categories: Filter by plan category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param facility: Filter by device facility
         :type facility: str
         :param hostname: Filter by partial hostname
@@ -4133,7 +4137,7 @@ class DevicesApi:
 
 
     @validate_call
-    def find_project_devices_all_pages(self, id : Annotated[StrictStr, Field(description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
+    def find_project_devices_all_pages(self, id : Annotated[StrictStr, Field(description="Project UUID")], search : Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None, categories : Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter by plan category")] = None, facility : Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None, metro : Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None, hostname : Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None, reserved : Annotated[Optional[StrictBool], Field(description="Filter only reserved instances. When set to true, only include reserved instances. When set to false, only include on-demand instances.")] = None, tag : Annotated[Optional[StrictStr], Field(description="Filter by device tag")] = None, type : Annotated[Optional[StrictStr], Field(description="Filter by instance type (ondemand,spot,reserved)")] = None, has_termination_time : Annotated[Optional[StrictBool], Field(description="Filter only instances marked for termination. When set to true, only include instances that have a termination time. When set to false, only include instances that do not have a termination time.")] = None, mac_address : Annotated[Optional[StrictStr], Field(description="Filter by MAC address")] = None, include : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to include. Included objects will return their full attributes. Attribute names can be dotted (up to 3 levels) to included deeply nested objects.")] = None, exclude : Annotated[Optional[List[StrictStr]], Field(description="Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects.")] = None, per_page : Annotated[Optional[Annotated[int, Field(le=1000, strict=True, ge=1)]], Field(description="Items returned per page")] = None, **kwargs) -> DeviceList:  # noqa: E501
         """Retrieve all devices of a project  # noqa: E501
 
         This method is the same as find_project_devices, but fetches resources from all the pages.
@@ -4152,7 +4156,7 @@ class DevicesApi:
         :type search: str
  
         :param categories: Filter by plan category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
  
         :param facility: Filter by device facility
         :type facility: str
@@ -4222,7 +4226,7 @@ class DevicesApi:
         self,
         id: Annotated[StrictStr, Field(description="Project UUID")],
         search: Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter by plan category")] = None,
         facility: Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None,
         metro: Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None,
         hostname: Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None,
@@ -4257,7 +4261,7 @@ class DevicesApi:
         :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
         :type search: str
         :param categories: Filter by plan category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param facility: Filter by device facility
         :type facility: str
         :param metro: Filter by device metro
@@ -4348,7 +4352,7 @@ class DevicesApi:
         self,
         id: Annotated[StrictStr, Field(description="Project UUID")],
         search: Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter by plan category")] = None,
         facility: Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None,
         metro: Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None,
         hostname: Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None,
@@ -4383,7 +4387,7 @@ class DevicesApi:
         :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
         :type search: str
         :param categories: Filter by plan category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param facility: Filter by device facility
         :type facility: str
         :param metro: Filter by device metro
@@ -4474,7 +4478,7 @@ class DevicesApi:
         self,
         id: Annotated[StrictStr, Field(description="Project UUID")],
         search: Annotated[Optional[StrictStr], Field(description="Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.")] = None,
-        categories: Annotated[Optional[List[StrictStr]], Field(description="Filter by plan category")] = None,
+        categories: Annotated[Optional[List[FindOrganizationDevicesCategoriesParameterInner]], Field(description="Filter by plan category")] = None,
         facility: Annotated[Optional[StrictStr], Field(description="Filter by device facility")] = None,
         metro: Annotated[Optional[StrictStr], Field(description="Filter by device metro")] = None,
         hostname: Annotated[Optional[StrictStr], Field(description="Filter by partial hostname")] = None,
@@ -4509,7 +4513,7 @@ class DevicesApi:
         :param search: Search by hostname, description, short_id, reservation short_id, tags, plan name, plan slug, facility code, facility name, operating system name, operating system slug, IP addresses.
         :type search: str
         :param categories: Filter by plan category
-        :type categories: List[str]
+        :type categories: List[FindOrganizationDevicesCategoriesParameterInner]
         :param facility: Filter by device facility
         :type facility: str
         :param metro: Filter by device metro
@@ -4727,9 +4731,9 @@ class DevicesApi:
     def find_traffic(
         self,
         id: Annotated[StrictStr, Field(description="Device UUID")],
-        direction: Annotated[StrictStr, Field(description="Traffic direction")],
-        interval: Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None,
-        bucket: Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None,
+        direction: Annotated[FindTrafficDirectionParameter, Field(description="Traffic direction")],
+        interval: Annotated[Optional[FindTrafficIntervalParameter], Field(description="Traffic interval")] = None,
+        bucket: Annotated[Optional[FindTrafficBucketParameter], Field(description="Traffic bucket")] = None,
         timeframe: Optional[FindTrafficTimeframeParameter] = None,
         _request_timeout: Union[
             None,
@@ -4751,11 +4755,11 @@ class DevicesApi:
         :param id: Device UUID (required)
         :type id: str
         :param direction: Traffic direction (required)
-        :type direction: str
+        :type direction: FindTrafficDirectionParameter
         :param interval: Traffic interval
-        :type interval: str
+        :type interval: FindTrafficIntervalParameter
         :param bucket: Traffic bucket
-        :type bucket: str
+        :type bucket: FindTrafficBucketParameter
         :param timeframe:
         :type timeframe: FindTrafficTimeframeParameter
         :param _request_timeout: timeout setting for this request. If one
@@ -4813,9 +4817,9 @@ class DevicesApi:
     def find_traffic_with_http_info(
         self,
         id: Annotated[StrictStr, Field(description="Device UUID")],
-        direction: Annotated[StrictStr, Field(description="Traffic direction")],
-        interval: Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None,
-        bucket: Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None,
+        direction: Annotated[FindTrafficDirectionParameter, Field(description="Traffic direction")],
+        interval: Annotated[Optional[FindTrafficIntervalParameter], Field(description="Traffic interval")] = None,
+        bucket: Annotated[Optional[FindTrafficBucketParameter], Field(description="Traffic bucket")] = None,
         timeframe: Optional[FindTrafficTimeframeParameter] = None,
         _request_timeout: Union[
             None,
@@ -4837,11 +4841,11 @@ class DevicesApi:
         :param id: Device UUID (required)
         :type id: str
         :param direction: Traffic direction (required)
-        :type direction: str
+        :type direction: FindTrafficDirectionParameter
         :param interval: Traffic interval
-        :type interval: str
+        :type interval: FindTrafficIntervalParameter
         :param bucket: Traffic bucket
-        :type bucket: str
+        :type bucket: FindTrafficBucketParameter
         :param timeframe:
         :type timeframe: FindTrafficTimeframeParameter
         :param _request_timeout: timeout setting for this request. If one
@@ -4899,9 +4903,9 @@ class DevicesApi:
     def find_traffic_without_preload_content(
         self,
         id: Annotated[StrictStr, Field(description="Device UUID")],
-        direction: Annotated[StrictStr, Field(description="Traffic direction")],
-        interval: Annotated[Optional[StrictStr], Field(description="Traffic interval")] = None,
-        bucket: Annotated[Optional[StrictStr], Field(description="Traffic bucket")] = None,
+        direction: Annotated[FindTrafficDirectionParameter, Field(description="Traffic direction")],
+        interval: Annotated[Optional[FindTrafficIntervalParameter], Field(description="Traffic interval")] = None,
+        bucket: Annotated[Optional[FindTrafficBucketParameter], Field(description="Traffic bucket")] = None,
         timeframe: Optional[FindTrafficTimeframeParameter] = None,
         _request_timeout: Union[
             None,
@@ -4923,11 +4927,11 @@ class DevicesApi:
         :param id: Device UUID (required)
         :type id: str
         :param direction: Traffic direction (required)
-        :type direction: str
+        :type direction: FindTrafficDirectionParameter
         :param interval: Traffic interval
-        :type interval: str
+        :type interval: FindTrafficIntervalParameter
         :param bucket: Traffic bucket
-        :type bucket: str
+        :type bucket: FindTrafficBucketParameter
         :param timeframe:
         :type timeframe: FindTrafficTimeframeParameter
         :param _request_timeout: timeout setting for this request. If one
@@ -5008,15 +5012,15 @@ class DevicesApi:
         # process the query parameters
         if direction is not None:
             
-            _query_params.append(('direction', direction))
+            _query_params.append(('direction', direction.value))
             
         if interval is not None:
             
-            _query_params.append(('interval', interval))
+            _query_params.append(('interval', interval.value))
             
         if bucket is not None:
             
-            _query_params.append(('bucket', bucket))
+            _query_params.append(('bucket', bucket.value))
             
         if timeframe is not None:
             
