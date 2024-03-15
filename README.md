@@ -62,6 +62,24 @@ pip install ./equinix_metal
 
 .. and then `import equinix_metal` in a Python script.
 
+### Debugging
+
+If you set `Configuration.debug`, the sdk will print HTTP traffic to stderr:
+
+```python
+def get_equinix_metal_client(api_token):
+    conf = equinix_metal.Configuration(
+        host="https://api.equinix.com/metal/v1"
+    )
+    conf.api_key['x_auth_token'] = api_token
+    conf.debug = True
+    return equinix_metal.ApiClient(conf)
+```
+
+You can also set `Configuration.logger_file` to see debug messages in a file.
+
+Configuration options might change with openapi-generator version. See [Configuration class](https://github.com/equinix-labs/metal-python/blob/main/equinix_metal/equinix_metal/configuration.py) for more details.
+
 ## Release
 
 If you want to do a new release from main branch, make sure that `make generate` doesn't taint git status.
