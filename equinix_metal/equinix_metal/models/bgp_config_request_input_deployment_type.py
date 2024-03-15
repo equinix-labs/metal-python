@@ -30,6 +30,9 @@ class BgpConfigRequestInputDeploymentType(str, Enum):
     LOCAL = 'local'
     GLOBAL = 'global'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of BgpConfigRequestInputDeploymentType from a JSON string"""

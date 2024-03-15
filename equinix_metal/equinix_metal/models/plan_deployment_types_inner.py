@@ -30,6 +30,9 @@ class PlanDeploymentTypesInner(str, Enum):
     ON_DEMAND = 'on_demand'
     SPOT_MARKET = 'spot_market'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of PlanDeploymentTypesInner from a JSON string"""

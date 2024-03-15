@@ -38,6 +38,9 @@ class FindTrafficIntervalParameter(str, Enum):
     DAY_OF_MONTH = 'day_of_month'
     MONTH_OF_YEAR = 'month_of_year'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FindTrafficIntervalParameter from a JSON string"""

@@ -31,6 +31,9 @@ class FindProjectHardwareReservationsStateParameter(str, Enum):
     SPARE = 'spare'
     NEED_OF_SERVICE = 'need_of_service'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FindProjectHardwareReservationsStateParameter from a JSON string"""

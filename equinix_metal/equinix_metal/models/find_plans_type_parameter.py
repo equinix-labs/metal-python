@@ -31,6 +31,9 @@ class FindPlansTypeParameter(str, Enum):
     WORKLOAD_OPTIMIZED = 'workload_optimized'
     CUSTOM = 'custom'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FindPlansTypeParameter from a JSON string"""

@@ -32,6 +32,9 @@ class InterconnectionType(str, Enum):
     SHARED_PORT_VLAN = 'shared_port_vlan'
     SHARED_PORT_VLAN_TO_CSP = 'shared_port_vlan_to_csp'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of InterconnectionType from a JSON string"""

@@ -32,6 +32,9 @@ class InvitationRolesInner(str, Enum):
     COLLABORATOR = 'collaborator'
     LIMITED_COLLABORATOR = 'limited_collaborator'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of InvitationRolesInner from a JSON string"""

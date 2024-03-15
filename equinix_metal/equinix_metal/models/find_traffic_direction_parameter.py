@@ -30,6 +30,9 @@ class FindTrafficDirectionParameter(str, Enum):
     INBOUND = 'inbound'
     OUTBOUND = 'outbound'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FindTrafficDirectionParameter from a JSON string"""

@@ -30,6 +30,9 @@ class FabricServiceTokenServiceTokenType(str, Enum):
     A_SIDE = 'a_side'
     Z_SIDE = 'z_side'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FabricServiceTokenServiceTokenType from a JSON string"""

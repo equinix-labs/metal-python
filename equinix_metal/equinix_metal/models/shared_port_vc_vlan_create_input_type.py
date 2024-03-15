@@ -29,6 +29,9 @@ class SharedPortVCVlanCreateInputType(str, Enum):
     """
     SHARED_PORT_VLAN = 'shared_port_vlan'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of SharedPortVCVlanCreateInputType from a JSON string"""

@@ -30,6 +30,9 @@ class BGPSessionInputAddressFamily(str, Enum):
     IPV4 = 'ipv4'
     IPV6 = 'ipv6'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of BGPSessionInputAddressFamily from a JSON string"""

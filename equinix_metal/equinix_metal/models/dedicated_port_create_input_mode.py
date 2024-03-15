@@ -30,6 +30,9 @@ class DedicatedPortCreateInputMode(str, Enum):
     STANDARD = 'standard'
     TUNNEL = 'tunnel'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DedicatedPortCreateInputMode from a JSON string"""

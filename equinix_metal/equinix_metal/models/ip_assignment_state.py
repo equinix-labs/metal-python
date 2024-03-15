@@ -31,6 +31,9 @@ class IPAssignmentState(str, Enum):
     ACTIVE = 'active'
     DELETING = 'deleting'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of IPAssignmentState from a JSON string"""

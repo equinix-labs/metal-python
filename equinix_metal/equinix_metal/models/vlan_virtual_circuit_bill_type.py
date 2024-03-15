@@ -30,6 +30,9 @@ class VlanVirtualCircuitBillType(str, Enum):
     METAL_BILLED = 'metal_billed'
     FABRIC_BILLED = 'fabric_billed'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of VlanVirtualCircuitBillType from a JSON string"""

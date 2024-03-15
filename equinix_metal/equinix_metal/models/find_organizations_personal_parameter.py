@@ -31,6 +31,9 @@ class FindOrganizationsPersonalParameter(str, Enum):
     EXCLUDE = 'exclude'
     ONLY = 'only'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FindOrganizationsPersonalParameter from a JSON string"""

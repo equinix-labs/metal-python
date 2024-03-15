@@ -31,6 +31,9 @@ class DeviceHealthRollupHealthRollup(str, Enum):
     WARNING = 'warning'
     CRITICAL = 'critical'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DeviceHealthRollupHealthRollup from a JSON string"""

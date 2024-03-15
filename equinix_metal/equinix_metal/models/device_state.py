@@ -38,6 +38,9 @@ class DeviceState(str, Enum):
     POWERING_OFF = 'powering_off'
     DELETED = 'deleted'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DeviceState from a JSON string"""

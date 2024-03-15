@@ -32,6 +32,9 @@ class DeviceCreateInputBillingCycle(str, Enum):
     MONTHLY = 'monthly'
     YEARLY = 'yearly'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of DeviceCreateInputBillingCycle from a JSON string"""

@@ -33,6 +33,9 @@ class FacilityFeaturesInner(str, Enum):
     GLOBAL_IPV4 = 'global_ipv4'
     IBX = 'ibx'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FacilityFeaturesInner from a JSON string"""

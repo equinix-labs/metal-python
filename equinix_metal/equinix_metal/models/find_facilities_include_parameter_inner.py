@@ -30,6 +30,9 @@ class FindFacilitiesIncludeParameterInner(str, Enum):
     ADDRESS = 'address'
     LABELS = 'labels'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of FindFacilitiesIncludeParameterInner from a JSON string"""

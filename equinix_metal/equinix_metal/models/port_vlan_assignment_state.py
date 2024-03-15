@@ -30,6 +30,9 @@ class PortVlanAssignmentState(str, Enum):
     ASSIGNED = 'assigned'
     UNASSIGNING = 'unassigning'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of PortVlanAssignmentState from a JSON string"""

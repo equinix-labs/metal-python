@@ -29,6 +29,9 @@ class AWSFabricProviderType(str, Enum):
     """
     CSP_AWS = 'CSP_AWS'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of AWSFabricProviderType from a JSON string"""

@@ -30,6 +30,9 @@ class IPAddressAddressFamily(int, Enum):
     NUMBER_4 = 4
     NUMBER_6 = 6
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of IPAddressAddressFamily from a JSON string"""

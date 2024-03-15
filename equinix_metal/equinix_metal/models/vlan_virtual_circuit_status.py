@@ -40,6 +40,9 @@ class VlanVirtualCircuitStatus(str, Enum):
     DEACTIVATION_FAILED = 'deactivation_failed'
     DELETE_FAILED = 'delete_failed'
 
+    def __str__(self) -> string:
+        return self.value.__str__()
+
     @classmethod
     def from_json(cls, json_str: str) -> Self:
         """Create an instance of VlanVirtualCircuitStatus from a JSON string"""
