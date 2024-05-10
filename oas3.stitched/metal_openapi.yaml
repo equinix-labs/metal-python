@@ -10833,7 +10833,7 @@ paths:
   /support-requests:
     post:
       description: Support Ticket.
-      operationId: requestSuppert
+      operationId: requestSupport
       requestBody:
         content:
           application/json:
@@ -12393,7 +12393,7 @@ paths:
       - VRFs
   /vrfs/{vrf_id}/ips/{id}:
     get:
-      description: Returns the IP Reservation for the VRF.
+      description: Returns the specified IP Reservation for the VRF.
       operationId: findVrfIpReservation
       parameters:
       - description: VRF UUID
@@ -12449,7 +12449,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: not found
-      summary: Retrieve all VRF IP Reservations in the VRF
+      summary: Retrieve the Specified VRF IP Reservation
       tags:
       - VRFs
   /vrfs/{id}/routes:
@@ -14594,6 +14594,8 @@ components:
           - shared_port_vlan
           - shared_port_vlan_to_csp
           type: string
+        fabric_provider:
+          $ref: '#/components/schemas/Interconnection_fabric_provider'
         created_at:
           format: date-time
           type: string
@@ -14864,6 +14866,34 @@ components:
         unit_price:
           format: float
           type: number
+        hostname:
+          type: string
+        location:
+          type: string
+        item_type:
+          type: string
+        service_id:
+          format: uuid
+          type: string
+        start_date:
+          format: date
+          type: string
+        end_date:
+          format: date
+          type: string
+        project_id:
+          format: uuid
+          type: string
+        plan_id:
+          format: uuid
+          type: string
+        project:
+          $ref: '#/components/schemas/ProjectIdName'
+        adjustments:
+          description: Adjustments for the line item
+          items:
+            $ref: '#/components/schemas/LineItemAdjustment'
+          type: array
       type: object
     Membership:
       properties:
@@ -16772,6 +16802,14 @@ components:
           - changing_vlan_failed
           - deactivation_failed
           - delete_failed
+          - configure_fabric_routing_protocols
+          type: string
+        provider_connection_id:
+          description: "This field is relevant if using the `shared_port_vlan_to_csp`\
+            \ interconnection type. Once activated on the CSP, this field should contain\
+            \ the resource name that the virtual circuit is connected to on the provider's\
+            \ end."
+          example: dxcon-fggxx63k
           type: string
         tags:
           items:
@@ -17725,6 +17763,32 @@ components:
             $ref: '#/components/schemas/Filesystem'
           type: array
       type: object
+    AWSFabricProvider:
+      properties:
+        type:
+          enum:
+          - CSP_AWS
+          type: string
+        account_id:
+          description: AWS Account ID
+          example: "123412341234"
+          pattern: "^\\d{12}$"
+          type: string
+        location:
+          example: us-west-1
+          type: string
+      required:
+      - account_id
+      - type
+      type: object
+    LineItemAdjustment:
+      properties:
+        amount:
+          format: float
+          type: number
+        description:
+          type: string
+      type: object
     BondPortData:
       properties:
         id:
@@ -17744,23 +17808,6 @@ components:
           description: Bonded is true for NetworkPort ports in a bond and NetworkBondPort
             ports that are active
           type: boolean
-      type: object
-    AWSFabricProvider:
-      properties:
-        type:
-          enum:
-          - CSP_AWS
-          type: string
-        account_id:
-          description: AWS Account ID
-          example: "129312"
-          type: string
-        location:
-          example: us-west-1
-          type: string
-      required:
-      - account_id
-      - type
       type: object
     BgpRoute:
       properties:
@@ -17980,6 +18027,12 @@ components:
       - oneOf:
         - $ref: '#/components/schemas/DeviceCreateInMetroInput'
         - $ref: '#/components/schemas/DeviceCreateInFacilityInput'
+    Interconnection_fabric_provider:
+      description: Configuration information for connecting to external cloud service
+        provider. Only available if the fabric_provider param was used when creating
+        the interconnection.
+      oneOf:
+      - $ref: '#/components/schemas/AWSFabricProvider'
     Metadata_network_network_bonding:
       properties:
         link_aggregation:
@@ -18219,6 +18272,18 @@ components:
             description: The provider's network region name that is equivalent to
               the Equinix Metro.
             example: us-east-1
+            type: string
+          type: array
+        bandwidths:
+          items:
+            description: Supported bandwidths in Mbps
+            example: 50
+            type: integer
+          type: array
+        features:
+          items:
+            description: Additional features available in this profile.
+            example: high capacity
             type: string
           type: array
       type: object
