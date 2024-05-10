@@ -14,85 +14,111 @@
 
 
 from __future__ import annotations
-import pprint
-import re  # noqa: F401
 import json
+import pprint
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
+from typing import Any, List, Optional
+from equinix_metal.models.aws_fabric_provider import AWSFabricProvider
+from pydantic import StrictStr, Field
+from typing import Union, List, Optional, Dict
+from typing_extensions import Literal, Self
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from typing import Optional, Set
-from typing_extensions import Self
+INTERCONNECTIONFABRICPROVIDER_ONE_OF_SCHEMAS = ["AWSFabricProvider"]
 
-class InterconnectionMetroListMetrosInnerAllOfProvidersInner(BaseModel):
+class InterconnectionFabricProvider(BaseModel):
     """
-    InterconnectionMetroListMetrosInnerAllOfProvidersInner
-    """ # noqa: E501
-    bandwidths: Optional[List[StrictInt]] = None
-    features: Optional[List[StrictStr]] = None
-    href: Optional[StrictStr] = None
-    locations: Optional[List[StrictStr]] = None
-    name: Optional[StrictStr] = None
-    type: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["bandwidths", "features", "href", "locations", "name", "type"]
+    Configuration information for connecting to external cloud service provider. Only available if the fabric_provider param was used when creating the interconnection.
+    """
+    # data type: AWSFabricProvider
+    oneof_schema_1_validator: Optional[AWSFabricProvider] = None
+    actual_instance: Optional[Union[AWSFabricProvider]] = None
+    one_of_schemas: List[str] = Field(default=Literal["AWSFabricProvider"])
 
     model_config = ConfigDict(
-        populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
 
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
+    def __init__(self, *args, **kwargs) -> None:
+        if args:
+            if len(args) > 1:
+                raise ValueError("If a position argument is used, only 1 is allowed to set `actual_instance`")
+            if kwargs:
+                raise ValueError("If a position argument is used, keyword arguments cannot be used.")
+            super().__init__(actual_instance=args[0])
+        else:
+            super().__init__(**kwargs)
+
+    @field_validator('actual_instance')
+    def actual_instance_must_validate_oneof(cls, v):
+        instance = InterconnectionFabricProvider.model_construct()
+        error_messages = []
+        match = 0
+        # validate data type: AWSFabricProvider
+        if not isinstance(v, AWSFabricProvider):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `AWSFabricProvider`")
+        else:
+            match += 1
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when setting `actual_instance` in InterconnectionFabricProvider with oneOf schemas: AWSFabricProvider. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when setting `actual_instance` in InterconnectionFabricProvider with oneOf schemas: AWSFabricProvider. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> Self:
+        """Returns the object represented by the json string"""
+        instance = cls.model_construct()
+        error_messages = []
+        match = 0
+
+        # deserialize data into AWSFabricProvider
+        try:
+            instance.actual_instance = AWSFabricProvider.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+
+        if match > 1:
+            # more than 1 match
+            raise ValueError("Multiple matches found when deserializing the JSON string into InterconnectionFabricProvider with oneOf schemas: AWSFabricProvider. Details: " + ", ".join(error_messages))
+        elif match == 0:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into InterconnectionFabricProvider with oneOf schemas: AWSFabricProvider. Details: " + ", ".join(error_messages))
+        else:
+            return instance
 
     def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
 
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InterconnectionMetroListMetrosInnerAllOfProvidersInner from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
+        if hasattr(self.actual_instance, "to_json") and callable(self.actual_instance.to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
-        """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
-        )
-        return _dict
-
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InterconnectionMetroListMetrosInnerAllOfProvidersInner from a dict"""
-        if obj is None:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], AWSFabricProvider]]:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
             return None
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
+        if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
+            return self.actual_instance.to_dict()
+        else:
+            # primitive type
+            return self.actual_instance
 
-        _obj = cls.model_validate({
-            "bandwidths": obj.get("bandwidths"),
-            "features": obj.get("features"),
-            "href": obj.get("href"),
-            "locations": obj.get("locations"),
-            "name": obj.get("name"),
-            "type": obj.get("type")
-        })
-        return _obj
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.model_dump())
 
 

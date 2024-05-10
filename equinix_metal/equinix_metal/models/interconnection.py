@@ -24,6 +24,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from equinix_metal.models.fabric_service_token import FabricServiceToken
 from equinix_metal.models.facility import Facility
 from equinix_metal.models.href import Href
+from equinix_metal.models.interconnection_fabric_provider import InterconnectionFabricProvider
 from equinix_metal.models.interconnection_port import InterconnectionPort
 from equinix_metal.models.metro import Metro
 from equinix_metal.models.organization import Organization
@@ -39,6 +40,7 @@ class Interconnection(BaseModel):
     contact_email: Optional[StrictStr] = None
     created_at: Optional[datetime] = None
     description: Optional[StrictStr] = None
+    fabric_provider: Optional[InterconnectionFabricProvider] = None
     facility: Optional[Facility] = None
     href: Optional[StrictStr] = None
     id: Optional[StrictStr] = None
@@ -57,7 +59,7 @@ class Interconnection(BaseModel):
     token: Optional[StrictStr] = Field(default=None, description="This token is used for shared interconnections to be used as the Fabric Token. This field is entirely deprecated.")
     type: Optional[StrictStr] = Field(default=None, description="The 'shared' type of interconnection refers to shared connections, or later also known as Fabric Virtual Connections (or Fabric VCs). The 'dedicated' type of interconnection refers to interconnections created with Dedicated Ports. The 'shared_port_vlan' type of interconnection refers to shared connections created without service tokens. The 'shared_port_vlan_to_csp' type of interconnection refers to connections created directly to a supported cloud service provider.")
     updated_at: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["authorization_code", "contact_email", "created_at", "description", "facility", "href", "id", "metro", "mode", "name", "organization", "ports", "project", "redundancy", "requested_by", "service_tokens", "speed", "status", "tags", "token", "type", "updated_at"]
+    __properties: ClassVar[List[str]] = ["authorization_code", "contact_email", "created_at", "description", "fabric_provider", "facility", "href", "id", "metro", "mode", "name", "organization", "ports", "project", "redundancy", "requested_by", "service_tokens", "speed", "status", "tags", "token", "type", "updated_at"]
 
     @field_validator('mode')
     def mode_validate_enum(cls, value):
@@ -128,6 +130,9 @@ class Interconnection(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of fabric_provider
+        if self.fabric_provider:
+            _dict['fabric_provider'] = self.fabric_provider.to_dict()
         # override the default output from pydantic by calling `to_dict()` of facility
         if self.facility:
             _dict['facility'] = self.facility.to_dict()
@@ -173,6 +178,7 @@ class Interconnection(BaseModel):
             "contact_email": obj.get("contact_email"),
             "created_at": obj.get("created_at"),
             "description": obj.get("description"),
+            "fabric_provider": InterconnectionFabricProvider.from_dict(obj["fabric_provider"]) if obj.get("fabric_provider") is not None else None,
             "facility": Facility.from_dict(obj["facility"]) if obj.get("facility") is not None else None,
             "href": obj.get("href"),
             "id": obj.get("id"),

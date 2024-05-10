@@ -4,11 +4,11 @@ All URIs are relative to *https://api.equinix.com/metal/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**request_suppert**](SupportRequestApi.md#request_suppert) | **POST** /support-requests | Create a support ticket
+[**request_support**](SupportRequestApi.md#request_support) | **POST** /support-requests | Create a support ticket
 
 
-# **request_suppert**
-> request_suppert(support_request_input)
+# **request_support**
+> request_support(support_request_input)
 
 Create a support ticket
 
@@ -49,9 +49,9 @@ with equinix_metal.ApiClient(configuration) as api_client:
 
     try:
         # Create a support ticket
-        api_instance.request_suppert(support_request_input)
+        api_instance.request_support(support_request_input)
     except Exception as e:
-        print("Exception when calling SupportRequestApi->request_suppert: %s\n" % e)
+        print("Exception when calling SupportRequestApi->request_support: %s\n" % e)
 ```
 
 

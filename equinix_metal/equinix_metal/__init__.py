@@ -165,6 +165,7 @@ from equinix_metal.models.ip_reservation_request_input import IPReservationReque
 from equinix_metal.models.instances_batch_create_input import InstancesBatchCreateInput
 from equinix_metal.models.instances_batch_create_input_batches_inner import InstancesBatchCreateInputBatchesInner
 from equinix_metal.models.interconnection import Interconnection
+from equinix_metal.models.interconnection_fabric_provider import InterconnectionFabricProvider
 from equinix_metal.models.interconnection_list import InterconnectionList
 from equinix_metal.models.interconnection_metro_list import InterconnectionMetroList
 from equinix_metal.models.interconnection_metro_list_metros_inner import InterconnectionMetroListMetrosInner
@@ -185,6 +186,7 @@ from equinix_metal.models.license_create_input import LicenseCreateInput
 from equinix_metal.models.license_list import LicenseList
 from equinix_metal.models.license_update_input import LicenseUpdateInput
 from equinix_metal.models.line_item import LineItem
+from equinix_metal.models.line_item_adjustment import LineItemAdjustment
 from equinix_metal.models.membership import Membership
 from equinix_metal.models.membership_input import MembershipInput
 from equinix_metal.models.membership_list import MembershipList

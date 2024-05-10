@@ -38,7 +38,7 @@ class SupportRequestApi:
             api_client = ApiClient.get_default()
         self.api_client = api_client
     @validate_call
-    def request_suppert(
+    def request_support(
         self,
         support_request_input: Annotated[SupportRequestInput, Field(description="Support Request to create")],
         _request_timeout: Union[
@@ -82,7 +82,7 @@ class SupportRequestApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._request_suppert_serialize(
+        _param = self._request_support_serialize(
             support_request_input=support_request_input,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -109,7 +109,7 @@ class SupportRequestApi:
 
 
     @validate_call
-    def request_suppert_with_http_info(
+    def request_support_with_http_info(
         self,
         support_request_input: Annotated[SupportRequestInput, Field(description="Support Request to create")],
         _request_timeout: Union[
@@ -153,7 +153,7 @@ class SupportRequestApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._request_suppert_serialize(
+        _param = self._request_support_serialize(
             support_request_input=support_request_input,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -180,7 +180,7 @@ class SupportRequestApi:
 
 
     @validate_call
-    def request_suppert_without_preload_content(
+    def request_support_without_preload_content(
         self,
         support_request_input: Annotated[SupportRequestInput, Field(description="Support Request to create")],
         _request_timeout: Union[
@@ -224,7 +224,7 @@ class SupportRequestApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._request_suppert_serialize(
+        _param = self._request_support_serialize(
             support_request_input=support_request_input,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -246,7 +246,7 @@ class SupportRequestApi:
         return response_data.response
 
 
-    def _request_suppert_serialize(
+    def _request_support_serialize(
         self,
         support_request_input,
         _request_auth,

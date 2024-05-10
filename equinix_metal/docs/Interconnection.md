@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **contact_email** | **str** |  | [optional] 
 **created_at** | **datetime** |  | [optional] 
 **description** | **str** |  | [optional] 
+**fabric_provider** | [**InterconnectionFabricProvider**](InterconnectionFabricProvider.md) |  | [optional] 
 **facility** | [**Facility**](Facility.md) |  | [optional] 
 **href** | **str** |  | [optional] 
 **id** | **str** |  | [optional] 

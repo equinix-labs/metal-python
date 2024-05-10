@@ -13,86 +13,45 @@
 """  # noqa: E501
 
 
-from __future__ import annotations
-import pprint
-import re  # noqa: F401
-import json
+import unittest
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from typing import Optional, Set
-from typing_extensions import Self
+from equinix_metal.models.interconnection_fabric_provider import InterconnectionFabricProvider
 
-class InterconnectionMetroListMetrosInnerAllOfProvidersInner(BaseModel):
-    """
-    InterconnectionMetroListMetrosInnerAllOfProvidersInner
-    """ # noqa: E501
-    bandwidths: Optional[List[StrictInt]] = None
-    features: Optional[List[StrictStr]] = None
-    href: Optional[StrictStr] = None
-    locations: Optional[List[StrictStr]] = None
-    name: Optional[StrictStr] = None
-    type: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["bandwidths", "features", "href", "locations", "name", "type"]
+class TestInterconnectionFabricProvider(unittest.TestCase):
+    """InterconnectionFabricProvider unit test stubs"""
 
-    model_config = ConfigDict(
-        populate_by_name=True,
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
+    def setUp(self):
+        pass
 
+    def tearDown(self):
+        pass
 
-    def to_str(self) -> str:
-        """Returns the string representation of the model using alias"""
-        return pprint.pformat(self.model_dump(by_alias=True))
-
-    def to_json(self) -> str:
-        """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
-
-    @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InterconnectionMetroListMetrosInnerAllOfProvidersInner from a JSON string"""
-        return cls.from_dict(json.loads(json_str))
-
-    def to_dict(self) -> Dict[str, Any]:
-        """Return the dictionary representation of the model using alias.
-
-        This has the following differences from calling pydantic's
-        `self.model_dump(by_alias=True)`:
-
-        * `None` is only added to the output dict for nullable fields that
-          were set at model initialization. Other fields with value `None`
-          are ignored.
+    def make_instance(self, include_optional) -> InterconnectionFabricProvider:
+        """Test InterconnectionFabricProvider
+            include_option is a boolean, when False only required
+            params are included, when True both required and
+            optional params are included """
+        # uncomment below to create an instance of `InterconnectionFabricProvider`
         """
-        excluded_fields: Set[str] = set([
-        ])
-
-        _dict = self.model_dump(
-            by_alias=True,
-            exclude=excluded_fields,
-            exclude_none=True,
+        model = InterconnectionFabricProvider()
+        if include_optional:
+            return InterconnectionFabricProvider(
+                account_id = '123412341234',
+                href = '',
+                location = 'us-west-1',
+                type = 'CSP_AWS'
+            )
+        else:
+            return InterconnectionFabricProvider(
+                account_id = '123412341234',
+                type = 'CSP_AWS',
         )
-        return _dict
+        """
 
-    @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InterconnectionMetroListMetrosInnerAllOfProvidersInner from a dict"""
-        if obj is None:
-            return None
+    def testInterconnectionFabricProvider(self):
+        """Test InterconnectionFabricProvider"""
+        # inst_req_only = self.make_instance(include_optional=False)
+        # inst_req_and_optional = self.make_instance(include_optional=True)
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
-
-        _obj = cls.model_validate({
-            "bandwidths": obj.get("bandwidths"),
-            "features": obj.get("features"),
-            "href": obj.get("href"),
-            "locations": obj.get("locations"),
-            "name": obj.get("name"),
-            "type": obj.get("type")
-        })
-        return _obj
-
-
+if __name__ == '__main__':
+    unittest.main()
