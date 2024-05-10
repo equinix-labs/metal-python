@@ -18,22 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
-class InterconnectionMetroListMetrosInnerAllOfProvidersInner(BaseModel):
+class LineItemAdjustment(BaseModel):
     """
-    InterconnectionMetroListMetrosInnerAllOfProvidersInner
+    LineItemAdjustment
     """ # noqa: E501
-    bandwidths: Optional[List[StrictInt]] = None
-    features: Optional[List[StrictStr]] = None
+    amount: Optional[Union[StrictFloat, StrictInt]] = None
+    description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
-    locations: Optional[List[StrictStr]] = None
-    name: Optional[StrictStr] = None
-    type: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["bandwidths", "features", "href", "locations", "name", "type"]
+    __properties: ClassVar[List[str]] = ["amount", "description", "href"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +50,7 @@ class InterconnectionMetroListMetrosInnerAllOfProvidersInner(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InterconnectionMetroListMetrosInnerAllOfProvidersInner from a JSON string"""
+        """Create an instance of LineItemAdjustment from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,7 +75,7 @@ class InterconnectionMetroListMetrosInnerAllOfProvidersInner(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InterconnectionMetroListMetrosInnerAllOfProvidersInner from a dict"""
+        """Create an instance of LineItemAdjustment from a dict"""
         if obj is None:
             return None
 
@@ -86,12 +83,9 @@ class InterconnectionMetroListMetrosInnerAllOfProvidersInner(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "bandwidths": obj.get("bandwidths"),
-            "features": obj.get("features"),
-            "href": obj.get("href"),
-            "locations": obj.get("locations"),
-            "name": obj.get("name"),
-            "type": obj.get("type")
+            "amount": obj.get("amount"),
+            "description": obj.get("description"),
+            "href": obj.get("href")
         })
         return _obj
 

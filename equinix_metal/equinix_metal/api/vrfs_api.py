@@ -2531,9 +2531,9 @@ class VRFsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> VrfIpReservation:
-        """Retrieve all VRF IP Reservations in the VRF
+        """Retrieve the Specified VRF IP Reservation
 
-        Returns the IP Reservation for the VRF.
+        Returns the specified IP Reservation for the VRF.
 
         :param vrf_id: VRF UUID (required)
         :type vrf_id: str
@@ -2612,9 +2612,9 @@ class VRFsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[VrfIpReservation]:
-        """Retrieve all VRF IP Reservations in the VRF
+        """Retrieve the Specified VRF IP Reservation
 
-        Returns the IP Reservation for the VRF.
+        Returns the specified IP Reservation for the VRF.
 
         :param vrf_id: VRF UUID (required)
         :type vrf_id: str
@@ -2693,9 +2693,9 @@ class VRFsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Retrieve all VRF IP Reservations in the VRF
+        """Retrieve the Specified VRF IP Reservation
 
-        Returns the IP Reservation for the VRF.
+        Returns the specified IP Reservation for the VRF.
 
         :param vrf_id: VRF UUID (required)
         :type vrf_id: str

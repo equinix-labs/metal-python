@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**delete_vrf**](VRFsApi.md#delete_vrf) | **DELETE** /vrfs/{id} | Delete the VRF
 [**delete_vrf_route_by_id**](VRFsApi.md#delete_vrf_route_by_id) | **DELETE** /routes/{id} | Delete a VRF Route
 [**find_vrf_by_id**](VRFsApi.md#find_vrf_by_id) | **GET** /vrfs/{id} | Retrieve a VRF
-[**find_vrf_ip_reservation**](VRFsApi.md#find_vrf_ip_reservation) | **GET** /vrfs/{vrf_id}/ips/{id} | Retrieve all VRF IP Reservations in the VRF
+[**find_vrf_ip_reservation**](VRFsApi.md#find_vrf_ip_reservation) | **GET** /vrfs/{vrf_id}/ips/{id} | Retrieve the Specified VRF IP Reservation
 [**find_vrf_ip_reservations**](VRFsApi.md#find_vrf_ip_reservations) | **GET** /vrfs/{id}/ips | Retrieve all VRF IP Reservations in the VRF
 [**find_vrf_route_by_id**](VRFsApi.md#find_vrf_route_by_id) | **GET** /routes/{id} | Retrieve a VRF Route
 [**find_vrfs**](VRFsApi.md#find_vrfs) | **GET** /projects/{id}/vrfs | Retrieve all VRFs in the project
@@ -710,9 +710,9 @@ Name | Type | Description  | Notes
 # **find_vrf_ip_reservation**
 > VrfIpReservation find_vrf_ip_reservation(vrf_id, id, include=include, exclude=exclude)
 
-Retrieve all VRF IP Reservations in the VRF
+Retrieve the Specified VRF IP Reservation
 
-Returns the IP Reservation for the VRF.
+Returns the specified IP Reservation for the VRF.
 
 ### Example
 
@@ -751,7 +751,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     exclude = ['exclude_example'] # List[str] | Nested attributes to exclude. Excluded objects will return only the href attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply nested objects. (optional)
 
     try:
-        # Retrieve all VRF IP Reservations in the VRF
+        # Retrieve the Specified VRF IP Reservation
         api_response = api_instance.find_vrf_ip_reservation(vrf_id, id, include=include, exclude=exclude)
         print("The response of VRFsApi->find_vrf_ip_reservation:\n")
         pprint(api_response)

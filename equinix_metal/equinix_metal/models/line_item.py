@@ -18,9 +18,12 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictFloat, StrictInt, StrictStr
+from datetime import date
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from equinix_metal.models.line_item_adjustment import LineItemAdjustment
 from equinix_metal.models.plan import Plan
+from equinix_metal.models.project_id_name import ProjectIdName
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,15 +31,25 @@ class LineItem(BaseModel):
     """
     LineItem
     """ # noqa: E501
+    adjustments: Optional[List[LineItemAdjustment]] = Field(default=None, description="Adjustments for the line item")
     amount: Optional[Union[StrictFloat, StrictInt]] = None
     currency: Optional[StrictStr] = None
     description: Optional[StrictStr] = None
     details: Optional[StrictStr] = None
+    end_date: Optional[date] = None
+    hostname: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
+    item_type: Optional[StrictStr] = None
+    location: Optional[StrictStr] = None
     plan: Optional[Plan] = None
+    plan_id: Optional[StrictStr] = None
+    project: Optional[ProjectIdName] = None
+    project_id: Optional[StrictStr] = None
+    service_id: Optional[StrictStr] = None
+    start_date: Optional[date] = None
     unit: Optional[StrictStr] = None
     unit_price: Optional[Union[StrictFloat, StrictInt]] = None
-    __properties: ClassVar[List[str]] = ["amount", "currency", "description", "details", "href", "plan", "unit", "unit_price"]
+    __properties: ClassVar[List[str]] = ["adjustments", "amount", "currency", "description", "details", "end_date", "hostname", "href", "item_type", "location", "plan", "plan_id", "project", "project_id", "service_id", "start_date", "unit", "unit_price"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,9 +90,19 @@ class LineItem(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in adjustments (list)
+        _items = []
+        if self.adjustments:
+            for _item in self.adjustments:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['adjustments'] = _items
         # override the default output from pydantic by calling `to_dict()` of plan
         if self.plan:
             _dict['plan'] = self.plan.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of project
+        if self.project:
+            _dict['project'] = self.project.to_dict()
         return _dict
 
     @classmethod
@@ -92,12 +115,22 @@ class LineItem(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "adjustments": [LineItemAdjustment.from_dict(_item) for _item in obj["adjustments"]] if obj.get("adjustments") is not None else None,
             "amount": obj.get("amount"),
             "currency": obj.get("currency"),
             "description": obj.get("description"),
             "details": obj.get("details"),
+            "end_date": obj.get("end_date"),
+            "hostname": obj.get("hostname"),
             "href": obj.get("href"),
+            "item_type": obj.get("item_type"),
+            "location": obj.get("location"),
             "plan": Plan.from_dict(obj["plan"]) if obj.get("plan") is not None else None,
+            "plan_id": obj.get("plan_id"),
+            "project": ProjectIdName.from_dict(obj["project"]) if obj.get("project") is not None else None,
+            "project_id": obj.get("project_id"),
+            "service_id": obj.get("service_id"),
+            "start_date": obj.get("start_date"),
             "unit": obj.get("unit"),
             "unit_price": obj.get("unit_price")
         })

@@ -360,7 +360,7 @@ Class | Method | HTTP request | Description
 *SpotMarketApi* | [**find_spot_market_prices_history**](docs/SpotMarketApi.md#find_spot_market_prices_history) | **GET** /market/spot/prices/history | Get spot market prices for a given period of time
 *SpotMarketApi* | [**find_spot_market_request_by_id**](docs/SpotMarketApi.md#find_spot_market_request_by_id) | **GET** /spot-market-requests/{id} | Retrieve a spot market request
 *SpotMarketApi* | [**list_spot_market_requests**](docs/SpotMarketApi.md#list_spot_market_requests) | **GET** /projects/{id}/spot-market-requests | List spot market requests
-*SupportRequestApi* | [**request_suppert**](docs/SupportRequestApi.md#request_suppert) | **POST** /support-requests | Create a support ticket
+*SupportRequestApi* | [**request_support**](docs/SupportRequestApi.md#request_support) | **POST** /support-requests | Create a support ticket
 *TransferRequestsApi* | [**accept_transfer_request**](docs/TransferRequestsApi.md#accept_transfer_request) | **PUT** /transfers/{id} | Accept a transfer request
 *TransferRequestsApi* | [**decline_transfer_request**](docs/TransferRequestsApi.md#decline_transfer_request) | **DELETE** /transfers/{id} | Decline a transfer request
 *TransferRequestsApi* | [**find_transfer_request_by_id**](docs/TransferRequestsApi.md#find_transfer_request_by_id) | **GET** /transfers/{id} | View a transfer request
@@ -392,7 +392,7 @@ Class | Method | HTTP request | Description
 *VRFsApi* | [**delete_vrf**](docs/VRFsApi.md#delete_vrf) | **DELETE** /vrfs/{id} | Delete the VRF
 *VRFsApi* | [**delete_vrf_route_by_id**](docs/VRFsApi.md#delete_vrf_route_by_id) | **DELETE** /routes/{id} | Delete a VRF Route
 *VRFsApi* | [**find_vrf_by_id**](docs/VRFsApi.md#find_vrf_by_id) | **GET** /vrfs/{id} | Retrieve a VRF
-*VRFsApi* | [**find_vrf_ip_reservation**](docs/VRFsApi.md#find_vrf_ip_reservation) | **GET** /vrfs/{vrf_id}/ips/{id} | Retrieve all VRF IP Reservations in the VRF
+*VRFsApi* | [**find_vrf_ip_reservation**](docs/VRFsApi.md#find_vrf_ip_reservation) | **GET** /vrfs/{vrf_id}/ips/{id} | Retrieve the Specified VRF IP Reservation
 *VRFsApi* | [**find_vrf_ip_reservations**](docs/VRFsApi.md#find_vrf_ip_reservations) | **GET** /vrfs/{id}/ips | Retrieve all VRF IP Reservations in the VRF
 *VRFsApi* | [**find_vrf_route_by_id**](docs/VRFsApi.md#find_vrf_route_by_id) | **GET** /routes/{id} | Retrieve a VRF Route
 *VRFsApi* | [**find_vrfs**](docs/VRFsApi.md#find_vrfs) | **GET** /projects/{id}/vrfs | Retrieve all VRFs in the project
@@ -500,6 +500,7 @@ Class | Method | HTTP request | Description
  - [InstancesBatchCreateInput](docs/InstancesBatchCreateInput.md)
  - [InstancesBatchCreateInputBatchesInner](docs/InstancesBatchCreateInputBatchesInner.md)
  - [Interconnection](docs/Interconnection.md)
+ - [InterconnectionFabricProvider](docs/InterconnectionFabricProvider.md)
  - [InterconnectionList](docs/InterconnectionList.md)
  - [InterconnectionMetroList](docs/InterconnectionMetroList.md)
  - [InterconnectionMetroListMetrosInner](docs/InterconnectionMetroListMetrosInner.md)
@@ -520,6 +521,7 @@ Class | Method | HTTP request | Description
  - [LicenseList](docs/LicenseList.md)
  - [LicenseUpdateInput](docs/LicenseUpdateInput.md)
  - [LineItem](docs/LineItem.md)
+ - [LineItemAdjustment](docs/LineItemAdjustment.md)
  - [Membership](docs/Membership.md)
  - [MembershipInput](docs/MembershipInput.md)
  - [MembershipList](docs/MembershipList.md)

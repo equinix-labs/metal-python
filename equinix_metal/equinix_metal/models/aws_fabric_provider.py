@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,11 +28,18 @@ class AWSFabricProvider(BaseModel):
     """
     AWSFabricProvider
     """ # noqa: E501
-    account_id: StrictStr = Field(description="AWS Account ID")
+    account_id: Annotated[str, Field(strict=True)] = Field(description="AWS Account ID")
     href: Optional[StrictStr] = None
     location: Optional[StrictStr] = None
     type: StrictStr
     __properties: ClassVar[List[str]] = ["account_id", "href", "location", "type"]
+
+    @field_validator('account_id')
+    def account_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"^\d{12}$", value):
+            raise ValueError(r"must validate the regular expression /^\d{12}$/")
+        return value
 
     @field_validator('type')
     def type_validate_enum(cls, value):

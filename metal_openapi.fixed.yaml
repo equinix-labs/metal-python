@@ -120,7 +120,8 @@ components:
       properties:
         account_id:
           description: AWS Account ID
-          example: '129312'
+          example: '123412341234'
+          pattern: ^\d{12}$
           type: string
         href:
           format: uri
@@ -2348,6 +2349,8 @@ components:
           type: string
         description:
           type: string
+        fabric_provider:
+          $ref: '#/components/schemas/Interconnection_fabric_provider'
         facility:
           $ref: '#/components/schemas/Facility'
         href:
@@ -2489,6 +2492,18 @@ components:
         type: object
     InterconnectionMetroList_metros_inner_allOf_providers_inner:
       properties:
+        bandwidths:
+          items:
+            description: Supported bandwidths in Mbps
+            example: 50
+            type: integer
+          type: array
+        features:
+          items:
+            description: Additional features available in this profile.
+            example: high capacity
+            type: string
+          type: array
         href:
           format: uri
           type: string
@@ -2630,6 +2645,12 @@ components:
             type: string
           type: array
       type: object
+    Interconnection_fabric_provider:
+      description: Configuration information for connecting to external cloud service
+        provider. Only available if the fabric_provider param was used when creating
+        the interconnection.
+      oneOf:
+      - $ref: '#/components/schemas/AWSFabricProvider'
     Invitation:
       properties:
         created_at:
@@ -2816,6 +2837,11 @@ components:
       type: object
     LineItem:
       properties:
+        adjustments:
+          description: Adjustments for the line item
+          items:
+            $ref: '#/components/schemas/LineItemAdjustment'
+          type: array
         amount:
           format: float
           type: number
@@ -2825,16 +2851,50 @@ components:
           type: string
         details:
           type: string
+        end_date:
+          format: date
+          type: string
+        hostname:
+          type: string
         href:
           format: uri
           type: string
+        item_type:
+          type: string
+        location:
+          type: string
         plan:
           $ref: '#/components/schemas/Plan'
+        plan_id:
+          format: uuid
+          type: string
+        project:
+          $ref: '#/components/schemas/ProjectIdName'
+        project_id:
+          format: uuid
+          type: string
+        service_id:
+          format: uuid
+          type: string
+        start_date:
+          format: date
+          type: string
         unit:
           type: string
         unit_price:
           format: float
           type: number
+      type: object
+    LineItemAdjustment:
+      properties:
+        amount:
+          format: float
+          type: number
+        description:
+          type: string
+        href:
+          format: uri
+          type: string
       type: object
     Membership:
       properties:
@@ -5276,6 +5336,13 @@ components:
           $ref: '#/components/schemas/InterconnectionPort'
         project:
           $ref: '#/components/schemas/Project'
+        provider_connection_id:
+          description: This field is relevant if using the `shared_port_vlan_to_csp`
+            interconnection type. Once activated on the CSP, this field should contain
+            the resource name that the virtual circuit is connected to on the provider's
+            end.
+          example: dxcon-fggxx63k
+          type: string
         speed:
           description: For Virtual Circuits on shared and dedicated connections, this
             speed should match the one set on their Interconnection Ports. For Virtual
@@ -5328,6 +5395,7 @@ components:
           - changing_vlan_failed
           - deactivation_failed
           - delete_failed
+          - configure_fabric_routing_protocols
           type: string
         tags:
           items:
@@ -17350,7 +17418,7 @@ paths:
   /support-requests:
     post:
       description: Support Ticket.
-      operationId: requestSuppert
+      operationId: requestSupport
       requestBody:
         content:
           application/json:
@@ -19193,7 +19261,7 @@ paths:
       - VRFs
   /vrfs/{vrf_id}/ips/{id}:
     get:
-      description: Returns the IP Reservation for the VRF.
+      description: Returns the specified IP Reservation for the VRF.
       operationId: findVrfIpReservation
       parameters:
       - description: VRF UUID
@@ -19249,7 +19317,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: not found
-      summary: Retrieve all VRF IP Reservations in the VRF
+      summary: Retrieve the Specified VRF IP Reservation
       tags:
       - VRFs
 security:

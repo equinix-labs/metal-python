@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **nni_vlan** | **int** |  | [optional] 
 **port** | [**InterconnectionPort**](InterconnectionPort.md) |  | [optional] 
 **project** | [**Project**](Project.md) |  | [optional] 
+**provider_connection_id** | **str** | This field is relevant if using the &#x60;shared_port_vlan_to_csp&#x60; interconnection type. Once activated on the CSP, this field should contain the resource name that the virtual circuit is connected to on the provider&#39;s end. | [optional] 
 **speed** | **int** | integer representing bps speed | [optional] 
 **status** | **str** | The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren&#39;t in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to &#39;waiting_on_peering_details&#39; once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to &#x60;changing_peering_details&#x60; whenever an active VRF Virtual Circuit has any of its peering details updated. | [optional] 
 **tags** | **List[str]** |  | [optional] 

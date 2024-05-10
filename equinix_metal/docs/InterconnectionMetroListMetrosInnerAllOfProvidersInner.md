@@ -5,6 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bandwidths** | **List[int]** |  | [optional] 
+**features** | **List[str]** |  | [optional] 
 **href** | **str** |  | [optional] 
 **locations** | **List[str]** |  | [optional] 
 **name** | **str** |  | [optional] 
