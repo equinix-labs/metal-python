@@ -271,6 +271,7 @@ docs/VirtualCircuitUpdateInput.md
 docs/VirtualNetwork.md
 docs/VirtualNetworkCreateInput.md
 docs/VirtualNetworkList.md
+docs/VirtualNetworkUpdateInput.md
 docs/VlanCSPConnectionCreateInput.md
 docs/VlanCSPConnectionCreateInputFabricProvider.md
 docs/VlanFabricVcCreateInput.md
@@ -573,6 +574,7 @@ equinix_metal/models/virtual_circuit_update_input.py
 equinix_metal/models/virtual_network.py
 equinix_metal/models/virtual_network_create_input.py
 equinix_metal/models/virtual_network_list.py
+equinix_metal/models/virtual_network_update_input.py
 equinix_metal/models/vlan_csp_connection_create_input.py
 equinix_metal/models/vlan_csp_connection_create_input_fabric_provider.py
 equinix_metal/models/vlan_fabric_vc_create_input.py
@@ -609,6 +611,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_interconnection_fabric_provider.py
-test/test_line_item_adjustment.py
+test/test_virtual_network_update_input.py
 tox.ini

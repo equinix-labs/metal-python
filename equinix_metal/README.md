@@ -384,6 +384,7 @@ Class | Method | HTTP request | Description
 *VLANsApi* | [**delete_virtual_network**](docs/VLANsApi.md#delete_virtual_network) | **DELETE** /virtual-networks/{id} | Delete a virtual network
 *VLANsApi* | [**find_virtual_networks**](docs/VLANsApi.md#find_virtual_networks) | **GET** /projects/{id}/virtual-networks | Retrieve all virtual networks
 *VLANsApi* | [**get_virtual_network**](docs/VLANsApi.md#get_virtual_network) | **GET** /virtual-networks/{id} | Get a virtual network
+*VLANsApi* | [**update_virtual_network**](docs/VLANsApi.md#update_virtual_network) | **PUT** /virtual-networks/{id} | Updates the virtual network
 *VRFsApi* | [**bgp_dynamic_neighbors_id_get**](docs/VRFsApi.md#bgp_dynamic_neighbors_id_get) | **GET** /bgp-dynamic-neighbors/{id} | Retrieve a BGP Dynamic Neighbor
 *VRFsApi* | [**create_bgp_dynamic_neighbor**](docs/VRFsApi.md#create_bgp_dynamic_neighbor) | **POST** /metal-gateways/{id}/bgp-dynamic-neighbors | Create a VRF BGP Dynamic Neighbor range
 *VRFsApi* | [**create_vrf**](docs/VRFsApi.md#create_vrf) | **POST** /projects/{id}/vrfs | Create a new VRF in the specified project
@@ -634,6 +635,7 @@ Class | Method | HTTP request | Description
  - [VirtualNetwork](docs/VirtualNetwork.md)
  - [VirtualNetworkCreateInput](docs/VirtualNetworkCreateInput.md)
  - [VirtualNetworkList](docs/VirtualNetworkList.md)
+ - [VirtualNetworkUpdateInput](docs/VirtualNetworkUpdateInput.md)
  - [VlanCSPConnectionCreateInput](docs/VlanCSPConnectionCreateInput.md)
  - [VlanCSPConnectionCreateInputFabricProvider](docs/VlanCSPConnectionCreateInputFabricProvider.md)
  - [VlanFabricVcCreateInput](docs/VlanFabricVcCreateInput.md)

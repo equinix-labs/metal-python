@@ -18,24 +18,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class VrfIpReservationCreateInput(BaseModel):
+class VirtualNetworkUpdateInput(BaseModel):
     """
-    VrfIpReservationCreateInput
+    VirtualNetworkUpdateInput
     """ # noqa: E501
-    cidr: StrictInt = Field(description="The size of the VRF IP Reservation's subnet. The following subnet sizes are supported: - IPv4: between 22 - 29 inclusive - IPv6: exactly 64 ")
-    customdata: Optional[Dict[str, Any]] = None
-    details: Optional[StrictStr] = None
+    description: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
-    network: StrictStr = Field(description="The starting address for this VRF IP Reservation's subnet. Both IPv4 and IPv6 are supported.")
     tags: Optional[List[StrictStr]] = None
-    type: StrictStr = Field(description="Must be set to 'vrf'")
-    vrf_id: StrictStr = Field(description="The ID of the VRF in which this VRF IP Reservation is created. The VRF must have an existing IP Range that contains the requested subnet. This field may be aliased as just 'vrf'.")
-    __properties: ClassVar[List[str]] = ["cidr", "customdata", "details", "href", "network", "tags", "type", "vrf_id"]
+    __properties: ClassVar[List[str]] = ["description", "href", "tags"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +50,7 @@ class VrfIpReservationCreateInput(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of VrfIpReservationCreateInput from a JSON string"""
+        """Create an instance of VirtualNetworkUpdateInput from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +75,7 @@ class VrfIpReservationCreateInput(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of VrfIpReservationCreateInput from a dict"""
+        """Create an instance of VirtualNetworkUpdateInput from a dict"""
         if obj is None:
             return None
 
@@ -88,14 +83,9 @@ class VrfIpReservationCreateInput(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "cidr": obj.get("cidr"),
-            "customdata": obj.get("customdata"),
-            "details": obj.get("details"),
+            "description": obj.get("description"),
             "href": obj.get("href"),
-            "network": obj.get("network"),
-            "tags": obj.get("tags"),
-            "type": obj.get("type"),
-            "vrf_id": obj.get("vrf_id")
+            "tags": obj.get("tags")
         })
         return _obj
 
