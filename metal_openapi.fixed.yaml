@@ -5134,6 +5134,18 @@ components:
             $ref: '#/components/schemas/VirtualNetwork'
           type: array
       type: object
+    VirtualNetworkUpdateInput:
+      properties:
+        description:
+          type: string
+        href:
+          format: uri
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
     VlanCSPConnectionCreateInput:
       properties:
         contact_email:
@@ -5781,8 +5793,15 @@ components:
     VrfIpReservationCreateInput:
       properties:
         cidr:
-          description: The size of the VRF IP Reservation's subnet
-          example: 16
+          description: 'The size of the VRF IP Reservation''s subnet. The following
+            subnet sizes are supported:
+
+            - IPv4: between 22 - 29 inclusive
+
+            - IPv6: exactly 64
+
+            '
+          example: 22
           type: integer
         customdata:
           type: object
@@ -5792,7 +5811,8 @@ components:
           format: uri
           type: string
         network:
-          description: The starting address for this VRF IP Reservation's subnet
+          description: The starting address for this VRF IP Reservation's subnet.
+            Both IPv4 and IPv6 are supported.
           example: 10.1.2.0
           type: string
         tags:
@@ -8231,7 +8251,7 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: not implemented for device
       tags:
-      - Console Log Details
+      - ConsoleLogDetails
   /devices/{id}/events:
     get:
       description: Returns a list of events pertaining to a specific device
@@ -11834,7 +11854,7 @@ paths:
           description: Internal Server Error
       summary: Get Organization's Firmware Sets
       tags:
-      - Firmware Sets
+      - FirmwareSets
   /organizations/{id}/invitations:
     get:
       description: Returns all invitations in an organization.
@@ -14831,7 +14851,7 @@ paths:
           description: Internal Server Error
       summary: Get Project's Firmware Sets
       tags:
-      - Firmware Sets
+      - FirmwareSets
   /projects/{id}/global-bgp-ranges:
     get:
       description: Returns all global bgp ranges for a project
@@ -18698,12 +18718,8 @@ paths:
           type: array
         style: form
       responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VirtualNetwork'
-          description: ok
+        '204':
+          description: no content
         '401':
           content:
             application/json:
@@ -18802,6 +18818,92 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: unprocessable entity
       summary: Get a virtual network
+      tags:
+      - VLANs
+    put:
+      description: Updates the virtual network.
+      operationId: updateVirtualNetwork
+      parameters:
+      - description: Virtual Network UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: 'Nested attributes to include. Included objects will return their
+          full
+
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: 'Nested attributes to exclude. Excluded objects will return only
+          the href
+
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+
+          nested objects.'
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VirtualNetworkUpdateInput'
+        description: Virtual network to update
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualNetwork'
+          description: ok
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unprocessable entity
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: too many requests
+      summary: Updates the virtual network
       tags:
       - VLANs
   /vrfs/{id}:
@@ -19452,13 +19554,13 @@ tags:
     contact Customer Success for more information.
 
     '
-  name: Firmware Sets
+  name: FirmwareSets
 - description: 'Console Log Details. Notice: This is a test feature currently under
     active development, and only available to certain users. Please contact Customer
     Success for more information.
 
     '
-  name: Console Log Details
+  name: ConsoleLogDetails
 - description: 'Global BGP Range Management
 
     '
@@ -19687,6 +19789,8 @@ x-tagGroups:
   - Devices
   - Batches
   - Capacity
+  - ConsoleLogDetails
+  - FirmwareSets
   - HardwareReservations
   - OperatingSystems
   - Ports
