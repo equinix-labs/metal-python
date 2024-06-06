@@ -180,6 +180,7 @@ docs/Plan.md
 docs/PlanAvailableInInner.md
 docs/PlanAvailableInInnerPrice.md
 docs/PlanAvailableInMetrosInner.md
+docs/PlanIdName.md
 docs/PlanList.md
 docs/PlanSpecs.md
 docs/PlanSpecsCpusInner.md
@@ -271,6 +272,7 @@ docs/VirtualCircuitUpdateInput.md
 docs/VirtualNetwork.md
 docs/VirtualNetworkCreateInput.md
 docs/VirtualNetworkList.md
+docs/VirtualNetworkUpdateInput.md
 docs/VlanCSPConnectionCreateInput.md
 docs/VlanCSPConnectionCreateInputFabricProvider.md
 docs/VlanFabricVcCreateInput.md
@@ -279,14 +281,14 @@ docs/VlanVirtualCircuitCreateInput.md
 docs/VlanVirtualCircuitUpdateInput.md
 docs/Vrf.md
 docs/VrfBGPNeighbors.md
-docs/VrfBGPNeighborsBgpNeighborsInner.md
+docs/VrfBGPNeighborsList.md
 docs/VrfCreateInput.md
 docs/VrfFabricVcCreateInput.md
 docs/VrfIpReservation.md
 docs/VrfIpReservationCreateInput.md
 docs/VrfIpReservationList.md
 docs/VrfLearnedRoutes.md
-docs/VrfLearnedRoutesLearnedRoutesInner.md
+docs/VrfLearnedRoutesList.md
 docs/VrfList.md
 docs/VrfMetalGateway.md
 docs/VrfMetalGatewayCreateInput.md
@@ -497,6 +499,7 @@ equinix_metal/models/plan.py
 equinix_metal/models/plan_available_in_inner.py
 equinix_metal/models/plan_available_in_inner_price.py
 equinix_metal/models/plan_available_in_metros_inner.py
+equinix_metal/models/plan_id_name.py
 equinix_metal/models/plan_list.py
 equinix_metal/models/plan_specs.py
 equinix_metal/models/plan_specs_cpus_inner.py
@@ -573,6 +576,7 @@ equinix_metal/models/virtual_circuit_update_input.py
 equinix_metal/models/virtual_network.py
 equinix_metal/models/virtual_network_create_input.py
 equinix_metal/models/virtual_network_list.py
+equinix_metal/models/virtual_network_update_input.py
 equinix_metal/models/vlan_csp_connection_create_input.py
 equinix_metal/models/vlan_csp_connection_create_input_fabric_provider.py
 equinix_metal/models/vlan_fabric_vc_create_input.py
@@ -581,14 +585,14 @@ equinix_metal/models/vlan_virtual_circuit_create_input.py
 equinix_metal/models/vlan_virtual_circuit_update_input.py
 equinix_metal/models/vrf.py
 equinix_metal/models/vrf_bgp_neighbors.py
-equinix_metal/models/vrf_bgp_neighbors_bgp_neighbors_inner.py
+equinix_metal/models/vrf_bgp_neighbors_list.py
 equinix_metal/models/vrf_create_input.py
 equinix_metal/models/vrf_fabric_vc_create_input.py
 equinix_metal/models/vrf_ip_reservation.py
 equinix_metal/models/vrf_ip_reservation_create_input.py
 equinix_metal/models/vrf_ip_reservation_list.py
 equinix_metal/models/vrf_learned_routes.py
-equinix_metal/models/vrf_learned_routes_learned_routes_inner.py
+equinix_metal/models/vrf_learned_routes_list.py
 equinix_metal/models/vrf_list.py
 equinix_metal/models/vrf_metal_gateway.py
 equinix_metal/models/vrf_metal_gateway_create_input.py
@@ -609,6 +613,8 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_interconnection_fabric_provider.py
-test/test_line_item_adjustment.py
+test/test_plan_id_name.py
+test/test_virtual_network_update_input.py
+test/test_vrf_bgp_neighbors_list.py
+test/test_vrf_learned_routes_list.py
 tox.ini

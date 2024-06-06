@@ -18,9 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from equinix_metal.models.vrf_learned_routes_learned_routes_inner import VrfLearnedRoutesLearnedRoutesInner
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,8 +29,9 @@ class VrfLearnedRoutes(BaseModel):
     VrfLearnedRoutes
     """ # noqa: E501
     href: Optional[StrictStr] = None
-    learned_routes: Optional[List[VrfLearnedRoutesLearnedRoutesInner]] = None
-    __properties: ClassVar[List[str]] = ["href", "learned_routes"]
+    origin_as: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = Field(default=None, description="The ASN of the peer that advertised the prefix.")
+    prefix: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["href", "origin_as", "prefix"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,13 +72,6 @@ class VrfLearnedRoutes(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in learned_routes (list)
-        _items = []
-        if self.learned_routes:
-            for _item in self.learned_routes:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['learned_routes'] = _items
         return _dict
 
     @classmethod
@@ -91,7 +85,8 @@ class VrfLearnedRoutes(BaseModel):
 
         _obj = cls.model_validate({
             "href": obj.get("href"),
-            "learned_routes": [VrfLearnedRoutesLearnedRoutesInner.from_dict(_item) for _item in obj["learned_routes"]] if obj.get("learned_routes") is not None else None
+            "origin_as": obj.get("origin_as"),
+            "prefix": obj.get("prefix")
         })
         return _obj
 

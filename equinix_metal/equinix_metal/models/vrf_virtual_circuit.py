@@ -45,11 +45,12 @@ class VrfVirtualCircuit(BaseModel):
     speed: Optional[StrictInt] = Field(default=None, description="integer representing bps speed")
     status: Optional[StrictStr] = Field(default=None, description="The status changes of a VRF virtual circuit are generally the same as Virtual Circuits that aren't in a VRF. However, for VRF Virtual Circuits on Fabric VCs, the status will change to 'waiting_on_peering_details' once the Fabric service token associated with the virtual circuit has been redeemed on Fabric, and Metal has found the associated Fabric connection. At this point, users can update the subnet, MD5 password, customer IP and/or metal IP accordingly. For VRF Virtual Circuits on Dedicated Ports, we require all peering details to be set on creation of a VRF Virtual Circuit. The status will change to `changing_peering_details` whenever an active VRF Virtual Circuit has any of its peering details updated.")
     subnet: Optional[StrictStr] = Field(default=None, description="The /30 or /31 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IP and Customer IP must be IPs from this subnet. For /30 subnets, the network and broadcast IPs cannot be used as the Metal or Customer IP.")
+    subnet_ipv6: Optional[StrictStr] = Field(default=None, description="The /126 or /127 IPv6 subnet of one of the VRF IP Blocks that will be used with the VRF for the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we will create the VRF IP reservation on creation if it does not exist. The Metal IPv6 and Customer IPv6 must be IPs from this subnet. For /126 subnets, the network and broadcast IPs cannot be used as the Metal IPv6 or Customer IPv6. The subnet specified must be contained within an already-defined IP Range for the VRF.")
     tags: Optional[List[StrictStr]] = None
     type: Optional[StrictStr] = None
     updated_at: Optional[datetime] = None
     vrf: Vrf
-    __properties: ClassVar[List[str]] = ["created_at", "customer_ip", "description", "href", "id", "md5", "metal_ip", "name", "nni_vlan", "peer_asn", "port", "project", "speed", "status", "subnet", "tags", "type", "updated_at", "vrf"]
+    __properties: ClassVar[List[str]] = ["created_at", "customer_ip", "description", "href", "id", "md5", "metal_ip", "name", "nni_vlan", "peer_asn", "port", "project", "speed", "status", "subnet", "subnet_ipv6", "tags", "type", "updated_at", "vrf"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -146,6 +147,7 @@ class VrfVirtualCircuit(BaseModel):
             "speed": obj.get("speed"),
             "status": obj.get("status"),
             "subnet": obj.get("subnet"),
+            "subnet_ipv6": obj.get("subnet_ipv6"),
             "tags": obj.get("tags"),
             "type": obj.get("type"),
             "updated_at": obj.get("updated_at"),

@@ -27,11 +27,11 @@ class VrfIpReservationCreateInput(BaseModel):
     """
     VrfIpReservationCreateInput
     """ # noqa: E501
-    cidr: StrictInt = Field(description="The size of the VRF IP Reservation's subnet")
+    cidr: StrictInt = Field(description="The size of the VRF IP Reservation's subnet. The following subnet sizes are supported: - IPv4: between 22 - 29 inclusive - IPv6: exactly 64 ")
     customdata: Optional[Dict[str, Any]] = None
     details: Optional[StrictStr] = None
     href: Optional[StrictStr] = None
-    network: StrictStr = Field(description="The starting address for this VRF IP Reservation's subnet")
+    network: StrictStr = Field(description="The starting address for this VRF IP Reservation's subnet. Both IPv4 and IPv6 are supported.")
     tags: Optional[List[StrictStr]] = None
     type: StrictStr = Field(description="Must be set to 'vrf'")
     vrf_id: StrictStr = Field(description="The ID of the VRF in which this VRF IP Reservation is created. The VRF must have an existing IP Range that contains the requested subnet. This field may be aliased as just 'vrf'.")

@@ -24,11 +24,11 @@ from equinix_metal.models.bgp_dynamic_neighbor import BgpDynamicNeighbor
 from equinix_metal.models.bgp_dynamic_neighbor_create_input import BgpDynamicNeighborCreateInput
 from equinix_metal.models.bgp_dynamic_neighbor_list import BgpDynamicNeighborList
 from equinix_metal.models.vrf import Vrf
-from equinix_metal.models.vrf_bgp_neighbors import VrfBGPNeighbors
+from equinix_metal.models.vrf_bgp_neighbors_list import VrfBGPNeighborsList
 from equinix_metal.models.vrf_create_input import VrfCreateInput
 from equinix_metal.models.vrf_ip_reservation import VrfIpReservation
 from equinix_metal.models.vrf_ip_reservation_list import VrfIpReservationList
-from equinix_metal.models.vrf_learned_routes import VrfLearnedRoutes
+from equinix_metal.models.vrf_learned_routes_list import VrfLearnedRoutesList
 from equinix_metal.models.vrf_list import VrfList
 from equinix_metal.models.vrf_route import VrfRoute
 from equinix_metal.models.vrf_route_create_input import VrfRouteCreateInput
@@ -4049,8 +4049,8 @@ class VRFsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> VrfBGPNeighbors:
-        """Retreive BGP neighbor states for the VRF
+    ) -> VrfBGPNeighborsList:
+        """Retrieve BGP neighbor states for the VRF
 
         Provides BGP peering information such as the IP and state of the neighbor.
 
@@ -4087,7 +4087,7 @@ class VRFsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VrfBGPNeighbors",
+            '200': "VrfBGPNeighborsList",
             '403': "Error",
             '404': "Error",
         }
@@ -4118,8 +4118,8 @@ class VRFsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[VrfBGPNeighbors]:
-        """Retreive BGP neighbor states for the VRF
+    ) -> ApiResponse[VrfBGPNeighborsList]:
+        """Retrieve BGP neighbor states for the VRF
 
         Provides BGP peering information such as the IP and state of the neighbor.
 
@@ -4156,7 +4156,7 @@ class VRFsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VrfBGPNeighbors",
+            '200': "VrfBGPNeighborsList",
             '403': "Error",
             '404': "Error",
         }
@@ -4188,7 +4188,7 @@ class VRFsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Retreive BGP neighbor states for the VRF
+        """Retrieve BGP neighbor states for the VRF
 
         Provides BGP peering information such as the IP and state of the neighbor.
 
@@ -4225,7 +4225,7 @@ class VRFsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VrfBGPNeighbors",
+            '200': "VrfBGPNeighborsList",
             '403': "Error",
             '404': "Error",
         }
@@ -4311,8 +4311,8 @@ class VRFsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> VrfLearnedRoutes:
-        """Retreive learned L3 routes within the VRF
+    ) -> VrfLearnedRoutesList:
+        """Retrieve learned L3 routes within the VRF
 
         Provides information about learned routes for the VRF. The VRF builds this information dynamically though BGP from other routers in the network.
 
@@ -4349,7 +4349,7 @@ class VRFsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VrfLearnedRoutes",
+            '200': "VrfLearnedRoutesList",
             '403': "Error",
             '404': "Error",
         }
@@ -4380,8 +4380,8 @@ class VRFsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[VrfLearnedRoutes]:
-        """Retreive learned L3 routes within the VRF
+    ) -> ApiResponse[VrfLearnedRoutesList]:
+        """Retrieve learned L3 routes within the VRF
 
         Provides information about learned routes for the VRF. The VRF builds this information dynamically though BGP from other routers in the network.
 
@@ -4418,7 +4418,7 @@ class VRFsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VrfLearnedRoutes",
+            '200': "VrfLearnedRoutesList",
             '403': "Error",
             '404': "Error",
         }
@@ -4450,7 +4450,7 @@ class VRFsApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Retreive learned L3 routes within the VRF
+        """Retrieve learned L3 routes within the VRF
 
         Provides information about learned routes for the VRF. The VRF builds this information dynamically though BGP from other routers in the network.
 
@@ -4487,7 +4487,7 @@ class VRFsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "VrfLearnedRoutes",
+            '200': "VrfLearnedRoutesList",
             '403': "Error",
             '404': "Error",
         }
