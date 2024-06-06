@@ -17,8 +17,8 @@ Method | HTTP request | Description
 [**find_vrf_route_by_id**](VRFsApi.md#find_vrf_route_by_id) | **GET** /routes/{id} | Retrieve a VRF Route
 [**find_vrfs**](VRFsApi.md#find_vrfs) | **GET** /projects/{id}/vrfs | Retrieve all VRFs in the project
 [**get_bgp_dynamic_neighbors**](VRFsApi.md#get_bgp_dynamic_neighbors) | **GET** /metal-gateways/{id}/bgp-dynamic-neighbors | List BGP Dynamic Neighbors
-[**get_vrf_bgp_neighbors**](VRFsApi.md#get_vrf_bgp_neighbors) | **GET** /vrfs/{id}/bgp-neighbors | Retreive BGP neighbor states for the VRF
-[**get_vrf_learned_routes**](VRFsApi.md#get_vrf_learned_routes) | **GET** /vrfs/{id}/learned-routes | Retreive learned L3 routes within the VRF
+[**get_vrf_bgp_neighbors**](VRFsApi.md#get_vrf_bgp_neighbors) | **GET** /vrfs/{id}/bgp-neighbors | Retrieve BGP neighbor states for the VRF
+[**get_vrf_learned_routes**](VRFsApi.md#get_vrf_learned_routes) | **GET** /vrfs/{id}/learned-routes | Retrieve learned L3 routes within the VRF
 [**get_vrf_routes**](VRFsApi.md#get_vrf_routes) | **GET** /vrfs/{id}/routes | Retrieve all routes in the VRF
 [**update_vrf**](VRFsApi.md#update_vrf) | **PUT** /vrfs/{id} | Update the VRF
 [**update_vrf_route_by_id**](VRFsApi.md#update_vrf_route_by_id) | **PUT** /routes/{id} | Update a VRF Route
@@ -1132,9 +1132,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 # **get_vrf_bgp_neighbors**
-> VrfBGPNeighbors get_vrf_bgp_neighbors(id)
+> VrfBGPNeighborsList get_vrf_bgp_neighbors(id)
 
-Retreive BGP neighbor states for the VRF
+Retrieve BGP neighbor states for the VRF
 
 Provides BGP peering information such as the IP and state of the neighbor.
 
@@ -1144,7 +1144,7 @@ Provides BGP peering information such as the IP and state of the neighbor.
 
 ```python
 import equinix_metal
-from equinix_metal.models.vrf_bgp_neighbors import VrfBGPNeighbors
+from equinix_metal.models.vrf_bgp_neighbors_list import VrfBGPNeighborsList
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -1172,7 +1172,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     id = 'id_example' # str | VRF UUID
 
     try:
-        # Retreive BGP neighbor states for the VRF
+        # Retrieve BGP neighbor states for the VRF
         api_response = api_instance.get_vrf_bgp_neighbors(id)
         print("The response of VRFsApi->get_vrf_bgp_neighbors:\n")
         pprint(api_response)
@@ -1191,7 +1191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VrfBGPNeighbors**](VrfBGPNeighbors.md)
+[**VrfBGPNeighborsList**](VrfBGPNeighborsList.md)
 
 ### Authorization
 
@@ -1212,9 +1212,9 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 # **get_vrf_learned_routes**
-> VrfLearnedRoutes get_vrf_learned_routes(id)
+> VrfLearnedRoutesList get_vrf_learned_routes(id)
 
-Retreive learned L3 routes within the VRF
+Retrieve learned L3 routes within the VRF
 
 Provides information about learned routes for the VRF. The VRF builds this information dynamically though BGP from other routers in the network.
 
@@ -1224,7 +1224,7 @@ Provides information about learned routes for the VRF. The VRF builds this infor
 
 ```python
 import equinix_metal
-from equinix_metal.models.vrf_learned_routes import VrfLearnedRoutes
+from equinix_metal.models.vrf_learned_routes_list import VrfLearnedRoutesList
 from equinix_metal.rest import ApiException
 from pprint import pprint
 
@@ -1252,7 +1252,7 @@ with equinix_metal.ApiClient(configuration) as api_client:
     id = 'id_example' # str | VRF UUID
 
     try:
-        # Retreive learned L3 routes within the VRF
+        # Retrieve learned L3 routes within the VRF
         api_response = api_instance.get_vrf_learned_routes(id)
         print("The response of VRFsApi->get_vrf_learned_routes:\n")
         pprint(api_response)
@@ -1271,7 +1271,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**VrfLearnedRoutes**](VrfLearnedRoutes.md)
+[**VrfLearnedRoutesList**](VrfLearnedRoutesList.md)
 
 ### Authorization
 

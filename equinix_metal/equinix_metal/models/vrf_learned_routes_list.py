@@ -20,17 +20,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.vrf_learned_routes import VrfLearnedRoutes
 from typing import Optional, Set
 from typing_extensions import Self
 
-class VrfMetalGatewayCreateInput(BaseModel):
+class VrfLearnedRoutesList(BaseModel):
     """
-    VrfMetalGatewayCreateInput
+    VrfLearnedRoutesList
     """ # noqa: E501
     href: Optional[StrictStr] = None
-    ip_reservation_id: StrictStr = Field(description="The UUID an a VRF IP Reservation that belongs to the same project as the one in which the Metal Gateway is to be created. Additionally, the VRF IP Reservation and the Virtual Network must reside in the same Metro.")
-    virtual_network_id: StrictStr = Field(description="THe UUID of a Metro Virtual Network that belongs to the same project as the one in which the Metal Gateway is to be created. Additionally, the Virtual Network and the VRF IP Reservation must reside in the same metro. In the case of the IP reservation being an IPv6 based VRF IP Reservation, the Virtual Network must not already have an associated IPv6 based VRF IP Reservation. There can be exactly one IPv6 based VRF IP Reservation associated to a Virtual Network.")
-    __properties: ClassVar[List[str]] = ["href", "ip_reservation_id", "virtual_network_id"]
+    learned_routes: Optional[List[VrfLearnedRoutes]] = Field(default=None, alias="learned routes")
+    __properties: ClassVar[List[str]] = ["href", "learned routes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -50,7 +50,7 @@ class VrfMetalGatewayCreateInput(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of VrfMetalGatewayCreateInput from a JSON string"""
+        """Create an instance of VrfLearnedRoutesList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,11 +71,18 @@ class VrfMetalGatewayCreateInput(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in learned_routes (list)
+        _items = []
+        if self.learned_routes:
+            for _item in self.learned_routes:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['learned routes'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of VrfMetalGatewayCreateInput from a dict"""
+        """Create an instance of VrfLearnedRoutesList from a dict"""
         if obj is None:
             return None
 
@@ -84,8 +91,7 @@ class VrfMetalGatewayCreateInput(BaseModel):
 
         _obj = cls.model_validate({
             "href": obj.get("href"),
-            "ip_reservation_id": obj.get("ip_reservation_id"),
-            "virtual_network_id": obj.get("virtual_network_id")
+            "learned routes": [VrfLearnedRoutes.from_dict(_item) for _item in obj["learned routes"]] if obj.get("learned routes") is not None else None
         })
         return _obj
 

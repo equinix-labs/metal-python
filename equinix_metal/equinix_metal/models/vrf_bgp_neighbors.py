@@ -18,9 +18,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from equinix_metal.models.vrf_bgp_neighbors_bgp_neighbors_inner import VrfBGPNeighborsBgpNeighborsInner
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,9 +28,11 @@ class VrfBGPNeighbors(BaseModel):
     """
     VrfBGPNeighbors
     """ # noqa: E501
-    bgp_neighbors: Optional[List[VrfBGPNeighborsBgpNeighborsInner]] = None
     href: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["bgp_neighbors", "href"]
+    peer_as: Optional[Annotated[int, Field(le=4294967295, strict=True, ge=0)]] = Field(default=None, description="The ASN of the peer that advertised the prefix.")
+    peer_ip: Optional[StrictStr] = None
+    state: Optional[StrictStr] = Field(default=None, description="The current status of the connection to the BGP peer. State is either up or down.")
+    __properties: ClassVar[List[str]] = ["href", "peer_as", "peer_ip", "state"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,13 +73,6 @@ class VrfBGPNeighbors(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in bgp_neighbors (list)
-        _items = []
-        if self.bgp_neighbors:
-            for _item in self.bgp_neighbors:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['bgp_neighbors'] = _items
         return _dict
 
     @classmethod
@@ -90,8 +85,10 @@ class VrfBGPNeighbors(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "bgp_neighbors": [VrfBGPNeighborsBgpNeighborsInner.from_dict(_item) for _item in obj["bgp_neighbors"]] if obj.get("bgp_neighbors") is not None else None,
-            "href": obj.get("href")
+            "href": obj.get("href"),
+            "peer_as": obj.get("peer_as"),
+            "peer_ip": obj.get("peer_ip"),
+            "state": obj.get("state")
         })
         return _obj
 

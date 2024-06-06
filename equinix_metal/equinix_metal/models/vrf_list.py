@@ -20,6 +20,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from equinix_metal.models.meta import Meta
 from equinix_metal.models.vrf import Vrf
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +30,9 @@ class VrfList(BaseModel):
     VrfList
     """ # noqa: E501
     href: Optional[StrictStr] = None
+    meta: Optional[Meta] = None
     vrfs: Optional[List[Vrf]] = None
-    __properties: ClassVar[List[str]] = ["href", "vrfs"]
+    __properties: ClassVar[List[str]] = ["href", "meta", "vrfs"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,6 +73,9 @@ class VrfList(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of meta
+        if self.meta:
+            _dict['meta'] = self.meta.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in vrfs (list)
         _items = []
         if self.vrfs:
@@ -91,6 +96,7 @@ class VrfList(BaseModel):
 
         _obj = cls.model_validate({
             "href": obj.get("href"),
+            "meta": Meta.from_dict(obj["meta"]) if obj.get("meta") is not None else None,
             "vrfs": [Vrf.from_dict(_item) for _item in obj["vrfs"]] if obj.get("vrfs") is not None else None
         })
         return _obj

@@ -22,7 +22,7 @@ from datetime import date
 from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from equinix_metal.models.line_item_adjustment import LineItemAdjustment
-from equinix_metal.models.plan import Plan
+from equinix_metal.models.plan_id_name import PlanIdName
 from equinix_metal.models.project_id_name import ProjectIdName
 from typing import Optional, Set
 from typing_extensions import Self
@@ -41,7 +41,7 @@ class LineItem(BaseModel):
     href: Optional[StrictStr] = None
     item_type: Optional[StrictStr] = None
     location: Optional[StrictStr] = None
-    plan: Optional[Plan] = None
+    plan: Optional[PlanIdName] = None
     plan_id: Optional[StrictStr] = None
     project: Optional[ProjectIdName] = None
     project_id: Optional[StrictStr] = None
@@ -125,7 +125,7 @@ class LineItem(BaseModel):
             "href": obj.get("href"),
             "item_type": obj.get("item_type"),
             "location": obj.get("location"),
-            "plan": Plan.from_dict(obj["plan"]) if obj.get("plan") is not None else None,
+            "plan": PlanIdName.from_dict(obj["plan"]) if obj.get("plan") is not None else None,
             "plan_id": obj.get("plan_id"),
             "project": ProjectIdName.from_dict(obj["project"]) if obj.get("project") is not None else None,
             "project_id": obj.get("project_id"),
