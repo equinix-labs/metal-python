@@ -3701,10 +3701,6 @@ components:
     Plan_specs_drives_inner:
       properties:
         category:
-          enum:
-          - boot
-          - cache
-          - storage
           type: string
         count:
           type: integer
