@@ -47,11 +47,21 @@ class TestInvoice(unittest.TestCase):
                 id = '',
                 items = [
                     equinix_metal.models.line_item.LineItem(
+                        adjustments = [
+                            equinix_metal.models.line_item_adjustment.LineItemAdjustment(
+                                amount = 1.337, 
+                                description = '', 
+                                href = '', )
+                            ], 
                         amount = 1.337, 
                         currency = '', 
                         description = '', 
                         details = '', 
+                        end_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
+                        hostname = '', 
                         href = '', 
+                        item_type = '', 
+                        location = '', 
                         plan = equinix_metal.models.plan.Plan(
                             available_in = [
                                 equinix_metal.models.plan_available_in_inner.Plan_available_in_inner(
@@ -110,6 +120,14 @@ class TestInvoice(unittest.TestCase):
                                         type = '', )
                                     ], ), 
                             type = 'standard', ), 
+                        plan_id = '', 
+                        project = equinix_metal.models.project_id_name.ProjectIdName(
+                            href = '', 
+                            id = '', 
+                            name = '', ), 
+                        project_id = '', 
+                        service_id = '', 
+                        start_date = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(), 
                         unit = '', 
                         unit_price = 1.337, )
                     ],

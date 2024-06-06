@@ -43,6 +43,7 @@ class TestInterconnectionList(unittest.TestCase):
                         contact_email = '', 
                         created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         description = '', 
+                        fabric_provider = null, 
                         facility = equinix_metal.models.facility.Facility(
                             address = equinix_metal.models.address.Address(
                                 address2 = '', 

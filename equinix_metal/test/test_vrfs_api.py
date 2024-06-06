@@ -86,7 +86,7 @@ class TestVRFsApi(unittest.TestCase):
     def test_find_vrf_ip_reservation(self) -> None:
         """Test case for find_vrf_ip_reservation
 
-        Retrieve all VRF IP Reservations in the VRF
+        Retrieve the Specified VRF IP Reservation
         """
         pass
 

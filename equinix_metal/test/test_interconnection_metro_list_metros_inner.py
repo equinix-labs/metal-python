@@ -43,6 +43,12 @@ class TestInterconnectionMetroListMetrosInner(unittest.TestCase):
                 name = '',
                 providers = [
                     equinix_metal.models.interconnection_metro_list_metros_inner_all_of_providers_inner.InterconnectionMetroList_metros_inner_allOf_providers_inner(
+                        bandwidths = [
+                            50
+                            ], 
+                        features = [
+                            'high capacity'
+                            ], 
                         href = '', 
                         locations = [
                             'us-east-1'

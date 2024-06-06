@@ -96,6 +96,7 @@ class TestVirtualCircuit(unittest.TestCase):
                     volumes = [
                         
                         ], ),
+                provider_connection_id = 'dxcon-fggxx63k',
                 speed = 56,
                 status = 'pending',
                 tags = [

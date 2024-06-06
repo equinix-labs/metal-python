@@ -36,14 +36,14 @@ class TestVlanCSPConnectionCreateInputFabricProvider(unittest.TestCase):
         model = VlanCSPConnectionCreateInputFabricProvider()
         if include_optional:
             return VlanCSPConnectionCreateInputFabricProvider(
-                account_id = '129312',
+                account_id = '123412341234',
                 href = '',
                 location = 'us-west-1',
                 type = 'CSP_AWS'
             )
         else:
             return VlanCSPConnectionCreateInputFabricProvider(
-                account_id = '129312',
+                account_id = '123412341234',
                 type = 'CSP_AWS',
         )
         """

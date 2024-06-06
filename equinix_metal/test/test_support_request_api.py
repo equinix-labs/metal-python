@@ -27,8 +27,8 @@ class TestSupportRequestApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_request_suppert(self) -> None:
-        """Test case for request_suppert
+    def test_request_support(self) -> None:
+        """Test case for request_support
 
         Create a support ticket
         """

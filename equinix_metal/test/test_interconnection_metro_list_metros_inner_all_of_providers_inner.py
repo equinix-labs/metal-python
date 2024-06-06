@@ -36,6 +36,12 @@ class TestInterconnectionMetroListMetrosInnerAllOfProvidersInner(unittest.TestCa
         model = InterconnectionMetroListMetrosInnerAllOfProvidersInner()
         if include_optional:
             return InterconnectionMetroListMetrosInnerAllOfProvidersInner(
+                bandwidths = [
+                    50
+                    ],
+                features = [
+                    'high capacity'
+                    ],
                 href = '',
                 locations = [
                     'us-east-1'
