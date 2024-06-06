@@ -76,6 +76,15 @@ properties:
       as the Metal or Customer IP.
     type: string
     example: "12.0.0.0/30"
+  subnet_ipv6:
+    description: The /126 or /127 IPv6 subnet of one of the VRF IP Blocks that will be used with the VRF for
+      the Virtual Circuit. This subnet does not have to be an existing VRF IP reservation, as we
+      will create the VRF IP reservation on creation if it does not exist. The Metal IPv6 and Customer
+      IPv6 must be IPs from this subnet. For /126 subnets, the network and broadcast IPs cannot be used
+      as the Metal IPv6 or Customer IPv6. The subnet specified must be contained within an already-defined
+      IP Range for the VRF.
+    type: string
+    example: "2604:1380:4641:a00::4/126"
   tags:
     items:
       type: string
