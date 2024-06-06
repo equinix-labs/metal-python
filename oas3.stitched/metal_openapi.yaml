@@ -180,10 +180,10 @@ tags:
   name: Facilities
 - description: |
     Firmware Sets Management. Notice: Firmware Sets are a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
-  name: Firmware Sets
+  name: FirmwareSets
 - description: |
     Console Log Details. Notice: This is a test feature currently under active development, and only available to certain users. Please contact Customer Success for more information.
-  name: Console Log Details
+  name: ConsoleLogDetails
 - description: |
     Global BGP Range Management
   externalDocs:
@@ -2004,7 +2004,7 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: not implemented for device
       tags:
-      - Console Log Details
+      - ConsoleLogDetails
   /devices/{id}/diagnostics/health/rollup:
     get:
       description: Returns the health rollup status of the device.
@@ -5490,7 +5490,7 @@ paths:
           description: Internal Server Error
       summary: Get Organization's Firmware Sets
       tags:
-      - Firmware Sets
+      - FirmwareSets
   /organizations/{id}/invitations:
     get:
       description: Returns all invitations in an organization.
@@ -8361,7 +8361,7 @@ paths:
           description: Internal Server Error
       summary: Get Project's Firmware Sets
       tags:
-      - Firmware Sets
+      - FirmwareSets
   /projects/{id}/global-bgp-ranges:
     get:
       description: Returns all global bgp ranges for a project
@@ -12060,12 +12060,8 @@ paths:
           type: array
         style: form
       responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VirtualNetwork'
-          description: ok
+        "204":
+          description: no content
         "401":
           content:
             application/json:
@@ -12160,6 +12156,88 @@ paths:
                 $ref: '#/components/schemas/Error'
           description: unprocessable entity
       summary: Get a virtual network
+      tags:
+      - VLANs
+    put:
+      description: Updates the virtual network.
+      operationId: updateVirtualNetwork
+      parameters:
+      - description: Virtual Network UUID
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+      - description: |-
+          Nested attributes to include. Included objects will return their full
+          attributes. Attribute names can be dotted (up to 3 levels) to included deeply
+          nested objects.
+        explode: false
+        in: query
+        name: include
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          Nested attributes to exclude. Excluded objects will return only the href
+          attribute. Attribute names can be dotted (up to 3 levels) to exclude deeply
+          nested objects.
+        explode: false
+        in: query
+        name: exclude
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VirtualNetworkUpdateInput'
+        description: Virtual network to update
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualNetwork'
+          description: ok
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unprocessable entity
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: too many requests
+      summary: Updates the virtual network
       tags:
       - VLANs
   /vrfs/{id}:
@@ -12606,7 +12684,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VrfLearnedRoutes'
+                $ref: '#/components/schemas/VrfLearnedRoutesList'
           description: ok
         "403":
           content:
@@ -12620,7 +12698,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: not found
-      summary: Retreive learned L3 routes within the VRF
+      summary: Retrieve learned L3 routes within the VRF
       tags:
       - VRFs
   /vrfs/{id}/bgp-neighbors:
@@ -12641,7 +12719,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VrfBGPNeighbors'
+                $ref: '#/components/schemas/VrfBGPNeighborsList'
           description: ok
         "403":
           content:
@@ -12655,7 +12733,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: not found
-      summary: Retreive BGP neighbor states for the VRF
+      summary: Retrieve BGP neighbor states for the VRF
       tags:
       - VRFs
 components:
@@ -14860,7 +14938,7 @@ components:
         details:
           type: string
         plan:
-          $ref: '#/components/schemas/Plan'
+          $ref: '#/components/schemas/PlanIdName'
         unit:
           type: string
         unit_price:
@@ -16917,7 +16995,7 @@ components:
           type: array
         ip_ranges:
           description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"\
-            2001:d78::/56\"]."
+            2001:d78::/59\"]."
           items:
             type: string
           type: array
@@ -16955,8 +17033,8 @@ components:
           type: string
         ip_ranges:
           description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"\
-            2001:d78::/56\"]. IPv4 blocks must be between /8 and /29 in size. IPv6\
-            \ blocks must be between /56 and /64. A VRF\\'s IP ranges must be defined\
+            2001:d78::/59\"]. IPv4 blocks must be between /8 and /29 in size. IPv6\
+            \ blocks must be between /59 and /64. A VRF\\'s IP ranges must be defined\
             \ in order to create VRF IP Reservations, which can then be used for Metal\
             \ Gateways or Virtual Circuits."
           items:
@@ -17070,23 +17148,23 @@ components:
       - vrfs
       type: object
     VrfIpRangeCreateInput:
-      description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"\
+      description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/59\"\
         ]. IPv4 blocks must be between /8 and /29 in size. IPv6 blocks must be between\
-        \ /56 and /64. A VRF\\'s IP ranges must be defined in order to create VRF\
+        \ /59 and /64. A VRF\\'s IP ranges must be defined in order to create VRF\
         \ IP Reservations, which can then be used for Metal Gateways or Virtual Circuits."
       items:
         type: string
       type: array
     VrfIpRangeList:
-      description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"\
+      description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/59\"\
         ]."
       items:
         type: string
       type: array
     VrfIpRangeUpdateInput:
-      description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/56\"\
+      description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"2001:d78::/59\"\
         ]. IPv4 blocks must be between /8 and /29 in size. IPv6 blocks must be between\
-        \ /56 and /64. A VRF\\'s IP ranges must be defined in order to create VRF\
+        \ /59 and /64. A VRF\\'s IP ranges must be defined in order to create VRF\
         \ IP Reservations, which can then be used for Metal Gateways or Virtual Circuits.\
         \ Adding a new CIDR address to the list will result in the creation of a new\
         \ IP Range for this VRF. Removal of an existing CIDR address from the list\
@@ -17163,15 +17241,19 @@ components:
     VrfIpReservationCreateInput:
       properties:
         cidr:
-          description: The size of the VRF IP Reservation's subnet
-          example: 16
+          description: |
+            The size of the VRF IP Reservation's subnet. The following subnet sizes are supported:
+            - IPv4: between 22 - 29 inclusive
+            - IPv6: exactly 64
+          example: 22
           type: integer
         customdata:
           type: object
         details:
           type: string
         network:
-          description: The starting address for this VRF IP Reservation's subnet
+          description: The starting address for this VRF IP Reservation's subnet.
+            Both IPv4 and IPv6 are supported.
           example: 10.1.2.0
           type: string
         tags:
@@ -17203,6 +17285,8 @@ components:
       type: object
     VrfList:
       properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
         vrfs:
           items:
             $ref: '#/components/schemas/Vrf'
@@ -17257,7 +17341,10 @@ components:
           description: "THe UUID of a Metro Virtual Network that belongs to the same\
             \ project as the one in which the Metal Gateway is to be created. Additionally,\
             \ the Virtual Network and the VRF IP Reservation must reside in the same\
-            \ metro."
+            \ metro. In the case of the IP reservation being an IPv6 based VRF IP\
+            \ Reservation, the Virtual Network must not already have an associated\
+            \ IPv6 based VRF IP Reservation. There can be exactly one IPv6 based VRF\
+            \ IP Reservation associated to a Virtual Network."
           format: uuid
           type: string
       required:
@@ -17388,8 +17475,8 @@ components:
           type: string
         ip_ranges:
           description: "A list of CIDR network addresses. Like [\"10.0.0.0/16\", \"\
-            2001:d78::/56\"]. IPv4 blocks must be between /8 and /29 in size. IPv6\
-            \ blocks must be between /56 and /64. A VRF\\'s IP ranges must be defined\
+            2001:d78::/59\"]. IPv4 blocks must be between /8 and /29 in size. IPv6\
+            \ blocks must be between /59 and /64. A VRF\\'s IP ranges must be defined\
             \ in order to create VRF IP Reservations, which can then be used for Metal\
             \ Gateways or Virtual Circuits. Adding a new CIDR address to the list\
             \ will result in the creation of a new IP Range for this VRF. Removal\
@@ -17496,6 +17583,17 @@ components:
             \ IPs cannot be used as the Metal or Customer IP."
           example: 12.0.0.0/30
           type: string
+        subnet_ipv6:
+          description: "The /126 or /127 IPv6 subnet of one of the VRF IP Blocks that\
+            \ will be used with the VRF for the Virtual Circuit. This subnet does\
+            \ not have to be an existing VRF IP reservation, as we will create the\
+            \ VRF IP reservation on creation if it does not exist. The Metal IPv6\
+            \ and Customer IPv6 must be IPs from this subnet. For /126 subnets, the\
+            \ network and broadcast IPs cannot be used as the Metal IPv6 or Customer\
+            \ IPv6. The subnet specified must be contained within an already-defined\
+            \ IP Range for the VRF."
+          example: 2604:1380:4641:a00::4/126
+          type: string
         tags:
           items:
             type: string
@@ -17583,6 +17681,32 @@ components:
             Circuit.
           format: uuid
           type: string
+        subnet_ipv6:
+          description: "The /126 or /127 IPv6 subnet of one of the VRF IP Blocks that\
+            \ will be used with the VRF for the Virtual Circuit. This subnet does\
+            \ not have to be an existing VRF IP reservation, as we will create the\
+            \ VRF IP reservation on creation if it does not exist. The Metal IPv6\
+            \ and Customer IPv6 must be IPs from this subnet. For /126 subnets, the\
+            \ network and broadcast IPs cannot be used as the Metal IPv6 or Customer\
+            \ IPv6. The subnet specified must be contained within an already-defined\
+            \ IP Range for the VRF."
+          example: 2604:1380:4641:a00::4/126
+          type: string
+        customer_ipv6:
+          description: "An IPv6 address from the subnet IPv6 that will be used on\
+            \ the Customer side. This parameter is optional, but if supplied, we will\
+            \ use the other usable IP address in the subnet IPv6 as the Metal IPv6.\
+            \ By default, the last usable IP address in the subnet IPv6 will be used."
+          example: 2604:1380:4641:a00::6
+          type: string
+        metal_ipv6:
+          description: "An IPv6 address from the subnet IPv6 that will be used on\
+            \ the Metal side. This parameter is optional, but if supplied, we will\
+            \ use the other usable IPv6 address in the subnet IPv6 as the Customer\
+            \ IP. By default, the first usable IPv6 address in the subnet IPv6 will\
+            \ be used."
+          example: 2604:1380:4641:a00::6
+          type: string
       required:
       - nni_vlan
       - peer_asn
@@ -17640,6 +17764,32 @@ components:
             \ IPs cannot be used as the Metal or Customer IP."
           example: 12.0.0.0/30
           type: string
+        subnet_ipv6:
+          description: "The /126 or /127 IPv6 subnet of one of the VRF IP Blocks that\
+            \ will be used with the VRF for the Virtual Circuit. This subnet does\
+            \ not have to be an existing VRF IP reservation, as we will create the\
+            \ VRF IP reservation on creation if it does not exist. The Metal IPv6\
+            \ and Customer IPv6 must be IPs from this subnet. For /126 subnets, the\
+            \ network and broadcast IPs cannot be used as the Metal IPv6 or Customer\
+            \ IPv6. The subnet specified must be contained within an already-defined\
+            \ IP Range for the VRF."
+          example: 2604:1380:4641:a00::4/126
+          type: string
+        customer_ipv6:
+          description: "An IPv6 address from the subnet IPv6 that will be used on\
+            \ the Customer side. This parameter is optional, but if supplied, we will\
+            \ use the other usable IP address in the subnet IPv6 as the Metal IPv6.\
+            \ By default, the last usable IP address in the subnet IPv6 will be used."
+          example: 2604:1380:4641:a00::6
+          type: string
+        metal_ipv6:
+          description: "An IPv6 address from the subnet IPv6 that will be used on\
+            \ the Metal side. This parameter is optional, but if supplied, we will\
+            \ use the other usable IPv6 address in the subnet IPv6 as the Customer\
+            \ IP. By default, the first usable IPv6 address in the subnet IPv6 will\
+            \ be used."
+          example: 2604:1380:4641:a00::6
+          type: string
         tags:
           items:
             type: string
@@ -17647,44 +17797,34 @@ components:
       type: object
     VrfBGPNeighbors:
       properties:
-        bgp_neighbors:
-          items:
-            properties:
-              peer_ip:
-                example: 8.8.8.8
-                type: string
-              peer_as:
-                description: The ASN of the peer that advertised the prefix.
-                example: 65000
-                format: int64
-                maximum: 4294967295
-                minimum: 0
-                type: integer
-              state:
-                description: The current status of the connection to the BGP peer.
-                  State is either up or down.
-                example: up
-                type: string
-            type: object
-          type: object
+        peer_ip:
+          example: 8.8.8.8
+          type: string
+        peer_as:
+          description: The ASN of the peer that advertised the prefix.
+          example: 65000
+          format: int64
+          maximum: 4294967295
+          minimum: 0
+          type: integer
+        state:
+          description: The current status of the connection to the BGP peer. State
+            is either up or down.
+          example: up
+          type: string
       type: object
     VrfLearnedRoutes:
       properties:
-        learned_routes:
-          items:
-            properties:
-              prefix:
-                example: 8.8.8.0/24
-                type: string
-              origin_as:
-                description: The ASN of the peer that advertised the prefix.
-                example: 65000
-                format: int64
-                maximum: 4294967295
-                minimum: 0
-                type: integer
-            type: object
-          type: object
+        prefix:
+          example: 8.8.8.0/24
+          type: string
+        origin_as:
+          description: The ASN of the peer that advertised the prefix.
+          example: 65000
+          format: int64
+          maximum: 4294967295
+          minimum: 0
+          type: integer
       type: object
     InterconnectionMetroList:
       properties:
@@ -17748,6 +17888,29 @@ components:
             type: string
           type: array
       type: object
+    VirtualNetworkUpdateInput:
+      properties:
+        description:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
+    VrfLearnedRoutesList:
+      properties:
+        learned routes:
+          items:
+            $ref: '#/components/schemas/VrfLearnedRoutes'
+          type: array
+      type: object
+    VrfBGPNeighborsList:
+      properties:
+        bgp_neighbors:
+          items:
+            $ref: '#/components/schemas/VrfBGPNeighbors'
+          type: array
+      type: object
     Storage:
       properties:
         disks:
@@ -17780,6 +17943,14 @@ components:
       required:
       - account_id
       - type
+      type: object
+    PlanIdName:
+      properties:
+        id:
+          format: uuid
+          type: string
+        name:
+          type: string
       type: object
     LineItemAdjustment:
       properties:
@@ -18363,6 +18534,8 @@ x-tagGroups:
   - Devices
   - Batches
   - Capacity
+  - ConsoleLogDetails
+  - FirmwareSets
   - HardwareReservations
   - OperatingSystems
   - Ports
