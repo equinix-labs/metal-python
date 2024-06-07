@@ -15,7 +15,7 @@
 """  # noqa: E501
 
 
-__version__ = "0.10.0"
+__version__ = "0.10.1"
 
 # import apis into sdk package
 from equinix_metal.api.authentication_api import AuthenticationApi

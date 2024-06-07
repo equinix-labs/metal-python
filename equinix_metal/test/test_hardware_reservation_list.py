@@ -116,7 +116,7 @@ class TestHardwareReservationList(unittest.TestCase):
                                             ], 
                                         drives = [
                                             equinix_metal.models.plan_specs_drives_inner.Plan_specs_drives_inner(
-                                                category = 'boot', 
+                                                category = '', 
                                                 count = 56, 
                                                 href = '', 
                                                 size = '3.84TB', 

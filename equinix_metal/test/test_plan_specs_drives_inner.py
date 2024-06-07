@@ -36,7 +36,7 @@ class TestPlanSpecsDrivesInner(unittest.TestCase):
         model = PlanSpecsDrivesInner()
         if include_optional:
             return PlanSpecsDrivesInner(
-                category = 'boot',
+                category = '',
                 count = 56,
                 href = '',
                 size = '3.84TB',
