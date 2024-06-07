@@ -18,7 +18,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -33,16 +33,6 @@ class PlanSpecsDrivesInner(BaseModel):
     size: Optional[StrictStr] = None
     type: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["category", "count", "href", "size", "type"]
-
-    @field_validator('category')
-    def category_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['boot', 'cache', 'storage']):
-            raise ValueError("must be one of enum values ('boot', 'cache', 'storage')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

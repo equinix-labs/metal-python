@@ -82,6 +82,7 @@ del fixedSpec['components']['schemas']['Address']['required']
 # https://github.com/equinix-labs/metal-python/pull/63
 
 del fixedSpec['components']['schemas']['Plan_specs_drives_inner']['properties']['type']['enum']
+del fixedSpec['components']['schemas']['Plan_specs_drives_inner']['properties']['category']['enum']
 del fixedSpec['components']['schemas']['Plan_specs_nics_inner']['properties']['type']['enum']
 
 # FIX 13. rename query attribute categories to "categories[]"
