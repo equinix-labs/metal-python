@@ -1,11 +1,5 @@
 # metal-python
 
-
-[![Experimental](https://img.shields.io/badge/Stability-Experimental-red.svg)](https://github.com/equinix-labs/equinix-labs/blob/main/uniform-standards.md)
-
-> **[Experimental](https://github.com/equinix-labs/equinix-labs/blob/main/experimental-statement.md)**
-> This is experimental. Don't use it in production. Examples demonstrate that this client is usable. Please submit patches and open issues with your experience. This repo contains Python code generated from a customized [metal_openapi.fixed.yaml](metal_openapi.fixed.yaml) based on the [Equinix Metal API spec](https://api.equinix.com/metal/v1/api-docs). The client is generated using the python-nextgen generator built into the [OpenAPITools openapi-generator](https://github.com/OpenAPITools/openapi-generator).
-
 Python SDK for Equinix Metal API , generated with openapi-generator. Pypi package name is `equinix-metal`.
 
 ## Installation
