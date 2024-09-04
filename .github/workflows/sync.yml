@@ -57,7 +57,7 @@ jobs:
     - name: Create Pull Request
       id: cpr
       uses: peter-evans/create-pull-request@v6
-      if: ${{ always() && steps.generate.conclusion == 'success' }}
+      if: ${{ always() && steps.fetch.conclusion == 'success' }}
       with:
         branch: sync/gh
         branch-suffix: timestamp
