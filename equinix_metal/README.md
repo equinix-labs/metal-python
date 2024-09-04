@@ -6,7 +6,7 @@ The API allows you to programmatically interact with all
 of your Equinix Metal resources, including devices, networks, addresses, organizations,
 projects, and your user account. Every feature of the Equinix Metal web interface is accessible through the API.
 
-The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://metal.equinix.com/developers/api>.
+The API docs are generated from the Equinix Metal OpenAPI specification and are officially hosted at <https://deploy.equinix.com/developers/api/metal/>.
 
 # Common Parameters
 
@@ -281,11 +281,13 @@ Class | Method | HTTP request | Description
 *MembershipsApi* | [**delete_membership**](docs/MembershipsApi.md#delete_membership) | **DELETE** /memberships/{id} | Delete the membership
 *MembershipsApi* | [**find_membership_by_id**](docs/MembershipsApi.md#find_membership_by_id) | **GET** /memberships/{id} | Retrieve a membership
 *MembershipsApi* | [**update_membership**](docs/MembershipsApi.md#update_membership) | **PUT** /memberships/{id} | Update the membership
+*MetalGatewaysApi* | [**create_bgp_dynamic_neighbor**](docs/MetalGatewaysApi.md#create_bgp_dynamic_neighbor) | **POST** /metal-gateways/{id}/bgp-dynamic-neighbors | Create a VRF BGP Dynamic Neighbor range
 *MetalGatewaysApi* | [**create_metal_gateway**](docs/MetalGatewaysApi.md#create_metal_gateway) | **POST** /projects/{project_id}/metal-gateways | Create a metal gateway
 *MetalGatewaysApi* | [**create_metal_gateway_elastic_ip**](docs/MetalGatewaysApi.md#create_metal_gateway_elastic_ip) | **POST** /metal-gateways/{id}/ips | Create a Metal Gateway Elastic IP
 *MetalGatewaysApi* | [**delete_metal_gateway**](docs/MetalGatewaysApi.md#delete_metal_gateway) | **DELETE** /metal-gateways/{id} | Deletes the metal gateway
 *MetalGatewaysApi* | [**find_metal_gateway_by_id**](docs/MetalGatewaysApi.md#find_metal_gateway_by_id) | **GET** /metal-gateways/{id} | Returns the metal gateway
 *MetalGatewaysApi* | [**find_metal_gateways_by_project**](docs/MetalGatewaysApi.md#find_metal_gateways_by_project) | **GET** /projects/{project_id}/metal-gateways | Returns all metal gateways for a project
+*MetalGatewaysApi* | [**get_bgp_dynamic_neighbors**](docs/MetalGatewaysApi.md#get_bgp_dynamic_neighbors) | **GET** /metal-gateways/{id}/bgp-dynamic-neighbors | List BGP Dynamic Neighbors
 *MetalGatewaysApi* | [**get_metal_gateway_elastic_ips**](docs/MetalGatewaysApi.md#get_metal_gateway_elastic_ips) | **GET** /metal-gateways/{id}/ips | List Metal Gateway Elastic IPs
 *MetrosApi* | [**find_metros**](docs/MetrosApi.md#find_metros) | **GET** /locations/metros | Retrieve all metros
 *MetrosApi* | [**get_metro**](docs/MetrosApi.md#get_metro) | **GET** /locations/metros/{id} | Retrieve a specific Metro&#39;s details
@@ -384,8 +386,8 @@ Class | Method | HTTP request | Description
 *VLANsApi* | [**delete_virtual_network**](docs/VLANsApi.md#delete_virtual_network) | **DELETE** /virtual-networks/{id} | Delete a virtual network
 *VLANsApi* | [**find_virtual_networks**](docs/VLANsApi.md#find_virtual_networks) | **GET** /projects/{id}/virtual-networks | Retrieve all virtual networks
 *VLANsApi* | [**get_virtual_network**](docs/VLANsApi.md#get_virtual_network) | **GET** /virtual-networks/{id} | Get a virtual network
+*VLANsApi* | [**update_virtual_network**](docs/VLANsApi.md#update_virtual_network) | **PUT** /virtual-networks/{id} | Updates the virtual network
 *VRFsApi* | [**bgp_dynamic_neighbors_id_get**](docs/VRFsApi.md#bgp_dynamic_neighbors_id_get) | **GET** /bgp-dynamic-neighbors/{id} | Retrieve a BGP Dynamic Neighbor
-*VRFsApi* | [**create_bgp_dynamic_neighbor**](docs/VRFsApi.md#create_bgp_dynamic_neighbor) | **POST** /metal-gateways/{id}/bgp-dynamic-neighbors | Create a VRF BGP Dynamic Neighbor range
 *VRFsApi* | [**create_vrf**](docs/VRFsApi.md#create_vrf) | **POST** /projects/{id}/vrfs | Create a new VRF in the specified project
 *VRFsApi* | [**create_vrf_route**](docs/VRFsApi.md#create_vrf_route) | **POST** /vrfs/{id}/routes | Create a VRF route
 *VRFsApi* | [**delete_bgp_dynamic_neighbor_by_id**](docs/VRFsApi.md#delete_bgp_dynamic_neighbor_by_id) | **DELETE** /bgp-dynamic-neighbors/{id} | Delete a VRF BGP Dynamic Neighbor
@@ -396,9 +398,8 @@ Class | Method | HTTP request | Description
 *VRFsApi* | [**find_vrf_ip_reservations**](docs/VRFsApi.md#find_vrf_ip_reservations) | **GET** /vrfs/{id}/ips | Retrieve all VRF IP Reservations in the VRF
 *VRFsApi* | [**find_vrf_route_by_id**](docs/VRFsApi.md#find_vrf_route_by_id) | **GET** /routes/{id} | Retrieve a VRF Route
 *VRFsApi* | [**find_vrfs**](docs/VRFsApi.md#find_vrfs) | **GET** /projects/{id}/vrfs | Retrieve all VRFs in the project
-*VRFsApi* | [**get_bgp_dynamic_neighbors**](docs/VRFsApi.md#get_bgp_dynamic_neighbors) | **GET** /metal-gateways/{id}/bgp-dynamic-neighbors | List BGP Dynamic Neighbors
-*VRFsApi* | [**get_vrf_bgp_neighbors**](docs/VRFsApi.md#get_vrf_bgp_neighbors) | **GET** /vrfs/{id}/bgp-neighbors | Retreive BGP neighbor states for the VRF
-*VRFsApi* | [**get_vrf_learned_routes**](docs/VRFsApi.md#get_vrf_learned_routes) | **GET** /vrfs/{id}/learned-routes | Retreive learned L3 routes within the VRF
+*VRFsApi* | [**get_vrf_bgp_neighbors**](docs/VRFsApi.md#get_vrf_bgp_neighbors) | **GET** /vrfs/{id}/bgp-neighbors | Retrieve BGP neighbor states for the VRF
+*VRFsApi* | [**get_vrf_learned_routes**](docs/VRFsApi.md#get_vrf_learned_routes) | **GET** /vrfs/{id}/learned-routes | Retrieve learned L3 routes within the VRF
 *VRFsApi* | [**get_vrf_routes**](docs/VRFsApi.md#get_vrf_routes) | **GET** /vrfs/{id}/routes | Retrieve all routes in the VRF
 *VRFsApi* | [**update_vrf**](docs/VRFsApi.md#update_vrf) | **PUT** /vrfs/{id} | Update the VRF
 *VRFsApi* | [**update_vrf_route_by_id**](docs/VRFsApi.md#update_vrf_route_by_id) | **PUT** /routes/{id} | Update a VRF Route
@@ -558,6 +559,7 @@ Class | Method | HTTP request | Description
  - [PlanAvailableInInner](docs/PlanAvailableInInner.md)
  - [PlanAvailableInInnerPrice](docs/PlanAvailableInInnerPrice.md)
  - [PlanAvailableInMetrosInner](docs/PlanAvailableInMetrosInner.md)
+ - [PlanIdName](docs/PlanIdName.md)
  - [PlanList](docs/PlanList.md)
  - [PlanSpecs](docs/PlanSpecs.md)
  - [PlanSpecsCpusInner](docs/PlanSpecsCpusInner.md)
@@ -634,6 +636,7 @@ Class | Method | HTTP request | Description
  - [VirtualNetwork](docs/VirtualNetwork.md)
  - [VirtualNetworkCreateInput](docs/VirtualNetworkCreateInput.md)
  - [VirtualNetworkList](docs/VirtualNetworkList.md)
+ - [VirtualNetworkUpdateInput](docs/VirtualNetworkUpdateInput.md)
  - [VlanCSPConnectionCreateInput](docs/VlanCSPConnectionCreateInput.md)
  - [VlanCSPConnectionCreateInputFabricProvider](docs/VlanCSPConnectionCreateInputFabricProvider.md)
  - [VlanFabricVcCreateInput](docs/VlanFabricVcCreateInput.md)
@@ -642,14 +645,14 @@ Class | Method | HTTP request | Description
  - [VlanVirtualCircuitUpdateInput](docs/VlanVirtualCircuitUpdateInput.md)
  - [Vrf](docs/Vrf.md)
  - [VrfBGPNeighbors](docs/VrfBGPNeighbors.md)
- - [VrfBGPNeighborsBgpNeighborsInner](docs/VrfBGPNeighborsBgpNeighborsInner.md)
+ - [VrfBGPNeighborsList](docs/VrfBGPNeighborsList.md)
  - [VrfCreateInput](docs/VrfCreateInput.md)
  - [VrfFabricVcCreateInput](docs/VrfFabricVcCreateInput.md)
  - [VrfIpReservation](docs/VrfIpReservation.md)
  - [VrfIpReservationCreateInput](docs/VrfIpReservationCreateInput.md)
  - [VrfIpReservationList](docs/VrfIpReservationList.md)
  - [VrfLearnedRoutes](docs/VrfLearnedRoutes.md)
- - [VrfLearnedRoutesLearnedRoutesInner](docs/VrfLearnedRoutesLearnedRoutesInner.md)
+ - [VrfLearnedRoutesList](docs/VrfLearnedRoutesList.md)
  - [VrfList](docs/VrfList.md)
  - [VrfMetalGateway](docs/VrfMetalGateway.md)
  - [VrfMetalGatewayCreateInput](docs/VrfMetalGatewayCreateInput.md)
